@@ -1,0 +1,246 @@
++++++++++++++++++++++++++++++++++++++
+------------- Credits ---------------
++++++++++++++++++++++++++++++++++++++
+
+CREATIVE LICENSE AND DISCLAIMER: All photos, clips and music are
+copyrighted to their respective owners. No infringement is intended.
+This is a fan-made modification of CIV4 Beyond the Sword,
+made for entertainment purposes and not for profit.
+
++++++++++++++++++++++++++++++++++++++
+
+Most new attachements are downloaded from http://forums.civfanatics.com
+I want to thank all the people who had offered their units and buildings at this forum.
+I also want to thank all people of civforum.de, who supported me by creating this mod.
+Pie (Pierre Voak, Austria)
+
+---- Buildings ----
+
+Slavic heathen temple: Veles: by Deon
+Guild Workhouse: HROCHland
+Porttower: HROCHland
+Cisterns (Ancient Well): woodelf
+Dolmen: woodelf
+Curing house: woodelf
+Acropolis: Chamaedrys
+Woodentower: Chamaedrys
+Roman Temple: Refar
+Pantheon: Refar
+Nordic Shrine: Walter Hawkwood
+Fortresses: Walter Hawkwood
+Mausoleum: Walter Hawkwood
+Circus Maximus: jojoweb
+Great Sphinx: tsentom1
+Ishtar Gate: tsentom1
+Elephant monument: Aaranda
+Babylonian Walls: veBear
+Nuraghe: C. Roland, woodelf
+Siege Workshop: Duke van Frost
+Wonder Books by Dual
+
+Great modelling by Andreas Charell (www.andreascharell.de):
+Zoroastrian shrine
+Castra (Kastell)
+Leper colony
+Small Oracle
+Memorial (Siegessaeule)
+Naval port (Kriegshafen)
+Manufactury (Demeter cult)
+Temple of elements (Cosmogony)
+Serapeum (Hellenism)
+
+Amazing modelling for PAE by Willi Tell:
+Limes (Wood and Stone)
+Trading post
+Latifundium I-V
+Kastell
+Signifier
+
+---- Units ----
+
+Battering Ram: The WoC Team
+Some galley skins: FK2006
+Roman Chariot: Sakhr
+Greeks: Sakhr
+First Archer: Bakuel
+Greco-Roman Units: Modfreak
+Heavy Cavalry: Bakuel
+Egyptian Knight: Bakuel
+Hittites: Bakuel
+Gladiator: Bakuel
+Persia Unit Pack: Bakuel
+Roman Elephant: Bakuel
+Some Celtic: Bakuel
+Disc chariots: Bakuel
+Carthag Unit Pack: danrell
+Greek   Unit Pack: danrell
+Ottoman Unit Pack: danrell
+Persian Unit Pack: danrell
+Roman   Unit Pack: danrell
+Roman Legionary: zenspiderz
+Light Chariot: ambrox62
+Light Spearmen: ambrox62
+Heavy Spearmen: ambrox62
+Hittite 3man chariot: ambrox62
+Slaves: ambrox62
+Skirmishers: ambrox62
+Freed slaves: ambrox62
+Cultist: ambrox62
+Religion ejector: ambrox62
+Spartan: ambrox62
+Sailing boat: Refar
+Horse: Refar
+Caravan: Ermelinho
+Militia: mechaerik
+Emigrant: GFO_Anubis
+Chariot Archers: ambrox62, GFO_Anubis
+Freedom figher: bernie14
+Horsemen: ambrox62
+Dacian Units: Ploeperpengel
+Dacian Swordsman: ModFreak
+Axeman with shield: mechaerik
+Assyrian desert warrior: mechaerik
+Nordic Hypaspist: mechaerik
+Seapeoples Spear: Ploeperpengel
+Seapeoples Axe: C.Roland
+Ships: ambrox62
+Mounted Scout: Rabbit, White
+Ballista: Kathy
+Packed horse and camel: Kathy
+Camel: SaibotLieh
+Tiger, Hyena, Leopard: from RI-Mod
+Leopard: redesigned by Thomas Pi
+Deceris: RI-Mod
+Carvel boats: RI-Mod
+Hastati, Principes, Triarii: SaibotLieh, Bakuel and me
+Wild elephant: chugginator
+Walrus: SaibotLieh
+Goat: C2C
+Triarii: charles88
+Treibgut: Kathy
+Imperial Praetorian: Aranor
+Late Roman Units: Willi Tell, Hunk
+Thracian Units: Hunk
+
+Some other units by Bernie14, Civmansam and RI
+Some improved skins: Hunk
+Most of the different unit artstyles and more by
+ambrox62 and Bakuel. Great work, guys!
+
+---- Movies until PAE IV ----
+
+Sphinx: mourndraken
+Carthagian Port: mourndraken
+Circus Maximus: mourndraken
+Silk road: Arian
+Tower of Babel: Arian
+Abu Simbel: Arian
+Labyrinth of Knossos: Arian
+Academy: Arian
+High Walls: Arian
+Treasury (Coinage): Arian
+Forum Romanum: Thorgal
+Horus Temple: Thorgal
+Petra: Thorgal
+Pergamon: Thorgal
+
+---- Movies in PAE V ----
+
+There are 23:51 minutes of movies made by mourndraken (Canada) for PAE V.
+Thank you very much!
+
+---- Events for PAE V ----
+All made by Thorgal
+
+---- Flags-Icons and all CIV-Flag-Buttons for PAE V ----
+Thanks veBear!
+
+---- Spoken quotes in English for PAE V ----
+by Ray Van Ness (RayVanNess.com, NY)
+Thank you very, very much!
+Adaption (bing, cutting): Georg (Schurli) Hackl, Austria
+
+---- other stuff ----
+Literopedia: Burberryan
+Previous Camel resource: Jojoweb
+Camel resource: Stolenrays
+Irrigation canals: Kissa
+Some civic buttons: FK2006
+Attitude Icons: Porges, turlute
+Lions resource: Refar
+BUGs Great Person Bar with a tip from Thomas Pi
+AI-XML-Optimizing: Thorgal
+Idea of Cults and Cultures (Coporations): Keinpferd
+Fair wind: Keinpferd (idea), melcher kuerzer (arrow graphics)
+Salt and saltmine: hrochland
+Blood Effects by RoM (Mod)
+Python Bugs fixing for PAE V: Dertuek
+Silphium: Dune Wars
+Wolf/Attack Dogs resource: stolenrays
+Formations: Keinpferd (initial idea)
+New promotion system: BoggyB and MRBrip
+New fair wind feature: together with MRBrip, Elwood and the TAC Team
+Destroying improvements on battlefield: together with antriot
+Starting Points: The_J
+HiddenPromotions: platyping
+Bonus cultivation: Mixture of ideas from Thorgal, MRBrip, Keinpferd, Scanner
+City names update: Rual
+Scoreboard: from Platyping
+Field of View: from BUG
+CIV specific names of Great Generals (proofed and extended): Markus1978
+Terrain, Feature textures: Blue Marble, BASE and me
+Worldbuilder: Platyping
+Foreign Advisor: Ramkhamhaeng
+DarkIce: Idea (Thorgal), dark Ice textures (me), adaption (Ramkhamhaeng)
+Savanna: By me, improved by Ramk
+Swamp: By me, improved by Ramk
+Correct scenario loading for any dll (dynamic Barb-ID): Ramk
+WBDesc Bug fixing and improvements: Ramk and me
+City Tabs fixing for PAE rows: Ramk
+WorldPicker: Ramk and me
+
+---- translation ----
+German and English before PAE V by me, afterwards by lots of PAE fans, thx!
+Some proof reading (english): ono-neko
+Spanish: wolfman1234, Rual, Hunk and others from the Spanish CIV-forum: www.todocivilization.com
+French: Dertuek, Tachywaxon
+Italian: Tschuggi and fans from civfanatics
+
+Some python scripts and lots of important starting help: The_J
+Button optimizing of PAE III: Stompi2k
+PAE V Beta 2 Patch 8 Python optimizing/check: Flunky
+PAE V Python analysis and bug solving: BoggyB
+Python scripting for new scenarios: BoggyB
+
+Helping ideas: Keinpferd, Scanner, The_J, Cybah, Kathy, Thorgal
+Lots of constitutive ideas from users of civforum.de and civfanatics.com!
+
+Lots of Pedia/Info Texts:
+German and English: Thorgal, Skyvaheri, Keinpferd, BoggyB, MrPresident, Hannibal a.p., Epidemais, Flunky
+English: MarkNL, qwerecd, wolfman1234
+French: Tachywaxon
+Italian: Tschuggi, PinkPallin
+Some help with music: MrPresident
+PAE V: Help in updating concept texts: BoggyB
+Spanish: wolfman1234, Rual, Hunk
+
+Important Error Handling: Thorgal, Keinpferd, Dertuek, rucivfan, BoggyB and Flunky.
+
+Thx Dertuek for helping in trouble-shooting and changing!
+Thx to HUNK for his amazing and detailed bug reports during test phase for PAE V!
+
+---- All important stuff (Buttons, Icons,.., initial and lots other ideas,
+lots of new features, helping in ideas and new features, history research,
+buttons, modding, Python programming and implementation of scripts (Python) by me ----
+
+Special thanks goes to all critical users of civforum.de!
+Especially to Scanner, Keinpferd and Thorgal! Thx!
+
++++++++++++
+If you think this mod has benefited you in some way,
+maybe you think about a donation for about more of two thousands of working hours:
+Pierre Voak, Austria, Europe
+Paypal: pierre@voak.at
+Or via Bank Account:
+IBAN: AT042025601601610890
++++++++++++

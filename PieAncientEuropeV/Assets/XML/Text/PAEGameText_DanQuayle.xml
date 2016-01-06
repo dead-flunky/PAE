@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+        <TEXT>
+                <Tag>TXT_KEY_DQ_TEXT_STRING</Tag>
+                <English>%s1_leader, during this game you have displayed the leadership abilities of %s2_leader!</English>
+                <French>%s1_leader, pendant cette partie, vous avez affich&#233; les comp&#233;tences de dirigeant de %s2_leader !</French>
+                <German>Ihr habt in diesem Spiel die Herrschermerkmale von %s2_leader gezeigt, %s1_leader!</German>
+                <Italian>%s1_leader, durante la partita hai mostrato le abilit&#224; da leader di %s2_leader!</Italian>
+                <Spanish>%s1_leader, durante esta partida hab&#233;is demostrado tener la capacidad de liderazgo de %s2_leader.</Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_1</Tag>
+                <English>Alexander the Great</English>
+                <French>
+                        <Text>Alexandre le Grand</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Alexander der Gro&#223;e</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Alessandro Magno</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Alejandro Magno</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_2</Tag>
+                <English>Augustus Caesar</English>
+                <French>
+                        <Text>Auguste</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Augustus Caesar</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Cesare Augusto</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>C&#233;sar Augusto</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_3</Tag>
+                <English>Ramesses II</English>
+                <French>
+                        <Text>Ramses II</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Ramses II.</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Ramses II</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Rams&#233;s II</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_4</Tag>
+                <English>Cyrus the Great</English>
+                <French>
+                        <Text>Cyrus II</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Kyros II.</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Ciro il Grande</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Ciro el Grande</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_5</Tag>
+                <English>Ptolemy I Soter</English>
+                <French>
+                        <Text>Ptol&#233;m&#233;e I Soter</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Ptolemaios I. Soter</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Tolomeo I Sotere</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Ptolomeo I S&#243;ter</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_6</Tag>
+                <English>Hammurabi</English>
+                <French>
+                        <Text>Hammourabi</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Hammurabi</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Hammurabi</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Hammurabi</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_7</Tag>
+                <English>Julius Caesar</English>
+                <French>
+                        <Text>Jules C&#233;sar</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Julius Caesar</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Giulio Cesare</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Julio C&#233;sar</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_8</Tag>
+                <English>Seleucus I Nicator</English>
+                <French>
+                        <Text>S&#233;leucos I Nicator</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Seleukos I. Nikator</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Seleuco I Nicatore</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Seleuco I Nic&#225;tor</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_9</Tag>
+                <English>Hannibal Barcas</English>
+                <French>
+                        <Text>Hannibal Barca</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Hannibal Barkas</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Annibale Barca</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>An&#237;bal Barca</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_10</Tag>
+                <English>Pericles</English>
+                <French>
+                        <Text>P&#233;ricl&#232;s</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Perikles</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Pericle</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Pericles</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_11</Tag>
+                <English>Thutmose I</English>
+                <French>
+                        <Text>Thoutmosis I</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Thutmosis I.</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Thutmose I</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Tutmosis I</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_12</Tag>
+                <English>Darius the Great </English>
+                <French>
+                        <Text>Darius I</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Dareios I.</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Dario I</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Dar&#237;o I el Grande</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_13</Tag>
+                <English>Hattusili</English>
+                <French>
+                        <Text>Hattushili</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Hattusili</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Hattusili</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Hattusil</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_14</Tag>
+                <English>Xerxes</English>
+                <French>
+                        <Text>Xerx&#232;s</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Xerxes</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Xerxes</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Jerjes</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_15</Tag>
+                <English>Leonidas</English>
+                <French>
+                        <Text>Leonidas</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Leonidas</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Leonidas</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Le&#243;nidas</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_16</Tag>
+                <English>Brennus</English>
+                <French>
+                        <Text>Brennos</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Brennus</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Brenno</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Breno</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_17</Tag>
+                <English>Arminius</English>
+                <French>
+                        <Text>Arminius</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Arminius</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Arminius</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Arminio</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_18</Tag>
+                <English>Croesus</English>
+                <French>
+                        <Text>Cr&#233;sus</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Kroisos</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Croesus</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Creso</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_19</Tag>
+                <English>Pyrrhos</English>
+                <French>
+                        <Text>Pyrrhus</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Pyrrhos</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Pyrrhos</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Pirro</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+        <TEXT>
+                <Tag>TXT_KEY_DQ_LEADER_NAME_20</Tag>
+                <English>Vercingetorix</English>
+                <French>
+                        <Text>Vercingetorix</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </French>
+                <German>
+                        <Text>Vercingetorix</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </German>
+                <Italian>
+                        <Text>Vercingetorix</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Italian>
+                <Spanish>
+                        <Text>Vercinge&#233;torix</Text>
+                        <Gender>Male</Gender>
+                        <Plural>0</Plural>
+                </Spanish>
+        </TEXT>
+</Civ4GameText>

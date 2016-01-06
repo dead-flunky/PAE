@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="ISO - 8859 - 1"?>
+<!--  edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by XMLSPY 2004 Professional Ed. Release 2, Installed Multi + SMP for 3 users (Firaxis Games)  -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+<!--  PAE For translators: please read the PAE_TranslationREADME.txt file of this folder  -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+<!--  PAE Game Text Quotes  -->
+<!--  Not used: 97  -->
+<!--  Mehrfach (Religion Moral): 109  -->
+<!--  Missing: 63  -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+   <TEXT>
+     <Tag>TXT_KEY_TECH_INFO_QUOTE</Tag>
+     <English>This is no explorable technology, but it serves as a chronological signpost.</English>
+     <French>Cette technologie n'est pas recherchable. Elle est utilis&#233;e en tant que rep&#232;re chronologique.</French>
+     <German>Dies ist keine erforschbare Technologie, sondern dient lediglich als zeitlicher Wegweiser.</German>
+     <Italian>Questa non &#232; la tecnologia esplorabile, ma serve solo come guida temporale.</Italian>
+     <Spanish>Esto no es tecnolog&#237;a explorable, pero sirve como se&#241;al cronol&#243;gica.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_97</Tag>
+     <English>"Good steel is not used to make nails; good men are not used to make soldiers." - Confucius</English>
+     <French>"On ne fait pas des clous du meilleur acier. On ne fait des soldats des meilleurs hommes." - Confucius</French>
+     <German>"Aus gutem Stahl macht man keine N&#228;gel und aus guten M&#228;nnern keine Soldaten." - Konfuzius</German>
+     <Italian>"Fatto di buon acciaio si fa senza chiodi e gli uomini buoni non soldati." - Confucio</Italian>
+     <Spanish>"Al igual que el buen metal no se usa para los clavos; los buenos hombres no son usados como soldados." - Confucio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_57</Tag>
+     <English>To be armed with a bow is no proof of courage. It takes a real soldier to wait and hold his ground, to look without flinching as spears fall like scythes, slashing through the ranks of the brave. &#8722; Euripides</English>
+     <French>"Porteur de l'arc, la pire des armes, toujours pr&#234;t &#224; la fuite, la preuve du courage d'un homme ce n'est pas l'arc, mais de rester &#224; son poste et de voir, sans baisser ni d&#233;tourner le regard, un champ de lances en mouvement, toujours ferme &#224; son rang." - Euripide</French>
+     <German>Der Bogen ist die feigste Waffe, stets zur Flucht bereit. Denn Pfeil und Bogen zeigen nicht des Mannes Mut. &#8722; Euripides</German>
+     <Italian>L'arco &#232; l'arma pi&#249; vile, sempre pronto per la fuga. Poich&#233; l'arco e la freccia non &#232; l'uomo a mostrare coraggio. - Euripide</Italian>
+     <Spanish>El arco es el arma de los cobardes, hombres sin valor que siempre est&#225;n dispuestos a huir. &#8722; Eur&#237;pides</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_58</Tag>
+     <English>"War is the father of all things." &#8722; Heraklit</English>
+     <French>"La guerre est la m&#232;re de toutes choses." - H&#233;raclite</French>
+     <German>"Der Krieg ist der Vater aller Dinge." &#8722; Heraklit</German>
+     <Italian>"La guerra &#232; il padre di tutte le cose." - Eraclito</Italian>
+     <Spanish>"La guerra es el padre de todas las cosas." &#8722; Her&#225;clito</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_59</Tag>
+     <English>"Go tell the Spartans, stranger passing by, that here, obedient to their laws, we lie" &#8722; epitaph at the pass of Thermopylae</English>
+     <French>"Etranger, annonce &#224; Sparte que nous gisons ici, fid&#232;les &#224; ses lois." - Epitaphe du d&#233;fil&#233; des Thermopyles</French>
+     <German>"Wanderer, kommst du nach Sparta, verk&#252;nde dorten, du habest uns hier liegen gesehen, wie das Gesetz es befahl." &#8722; Inschrift am Thermopylenpass</German>
+     <Italian>"Andate a dire agli Spartani, straniero di passaggio, che qui, obbedienti alle loro leggi, noi mentiamo" - epitaffio al passo delle Termopili</Italian>
+     <Spanish>"Ve a decirle a los espartanos, caminante extranjero, que aqu&#237;, obedientes a sus leyes, moriremos" - epitafio en el paso de las Term&#243;pilas</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_60</Tag>
+     <English>"As for leaving a battle alive after your chief has fallen, that means lifelong infamy and shame." &#8722; Tacitus, Germania</English>
+     <French>"Faut-il ajouter qu'on encourt pour le reste de sa vie infamie et d&#233;shonneur quand on quitte le combat en survivant &#224; son chef ?" - Tacite, Germania</French>
+     <German>"Vollends l&#228;dt Schimpf und Schande f&#252;rs ganze Leben auf sich, wer ohne seinen Gefolgsherren aus der Schlacht zur&#252;ckkommt." &#8722; Tacitus, Germania</German>
+     <Italian>"Come per lasciare una battaglia in vita dopo che il vostro capo &#232; caduto, il che significa infamia per tutta la vita e la vergogna". - Tacito, Germania</Italian>
+     <Spanish>"Salir vivo de una batalla despu&#233;s de que tu jefe haya ca&#237;do, te lleva a la deshonra y a la verg&#252;enza el resto de tu vida." - T&#225;cito, Germania</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_1</Tag>
+     <English>"One of the residents discovers a fire here and cries out for water, another neighbor saves his shabby possessions. The third floor, where you live is already smoking - but you do not even know it! Below there is panic, but you, above, where the gentle doves nest, where only thin tiles protect you from the rain, you will be the last that burns." - Juvenal, Sat 3</English>
+     <French>"Quels cris, quelle rumeur dans tout le voisinage ! Ucal&#233;gon tremblant emporte son m&#233;nage, Et d&#233;j&#224; l'incendie a gagn&#233; le premier. Tu ne soup&#231;onnes rien, toi, pr&#232;s du colombier. Le pauvre sous la tuile, o&#249; le danger l'assi&#232;ge, Est br&#251;l&#233; le dernier : c'est l&#224; son privil&#232;ge." - Juv&#233;nal, Satire 3</French>
+     <German>"Hier entdeckt einer der Bewohner ein Feuer und schreit nach Wasser, ein anderer Nachbar rettet seinen sch&#228;bigen Besitz. Das dritte Stockwerk, auf dem Du lebst, raucht schon - aber Du wei&#223;t es nicht einmal! Unten herrscht Panik, aber Du, oben, wo die sanften Tauben nisten, wo Dich nur d&#252;nne Dachziegel vor dem Regen sch&#252;tzen, Du wirst der letzte sein, der verbrennt." - Juvenal, Sat. 3</German>
+     <Italian>"Qui scoperto uno degli abitanti di un incendio e urlando per l'acqua, un altro vicino di casa salva suo possesso squallido. Il terzo piano su cui vivete, fuma gi&#224; - ma non si sa nemmeno! Qui di seguito c'&#232; il panico, ma voi, sopra cui la colombe nido delicato in cui si protegge solo le piastrelle sottili dalla pioggia, sarai l'ultimo a bruciare." - Giovenale, Sat 3</Italian>
+     <Spanish>"Uno de los residentes descubre fuego aqu&#237; grita por agua, otro vecino salva sus mezquinas posesiones. El tercer piso, donde tu vives est&#225; ya humeando - &#161;pero a&#250;n no lo sabes! Debajo hay p&#225;nico, pero t&#250;, por encima, donde anidan las tiernas palomas, donde s&#243;lo las finas baldosas que te protegen de la lluvia, ser&#225;s el &#250;ltimo en quemarse." - Juvenal, S&#225;b 3</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_2</Tag>
+     <English>Lead the people by edicts, restrain them by punishmentand they will keep out of trouble but develop no sense of shame. - Confucius</English>
+     <French>"Si le prince conduit le peuple au moyen des lois et le retient dans l'unit&#233; au moyen des ch&#226;timents, le peuple s'abstient de mal faire ; mais il ne conna&#238;t aucune honte." - Confucius</French>
+     <German>Wenn man durch Erlasse leitet und durch Strafe ordnet, so weicht das Volk aus und hat kein Gewissen. - Konfuzius</German>
+     <Italian>Quando si passa attraverso decreti e regolamenti attraverso la punizione, si discosta dal popolo e non ha coscienza. - Confucio</Italian>
+     <Spanish>Dirige a la gente con edictos, repr&#237;melos con castigos y ellos se alejar&#225;n de problemas pero no tendr&#225;n ningun sentido de la verg&#252;enza. - Confucio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_3</Tag>
+     <English>"Yet when I hoped for good, evil came; when I looked for light, then came darkness." - OT, Job 30.26</English>
+     <French>"Cependant lorsque j'esp&#233;rais le bien, le mal est arriv&#233;; et quand je cherchais la lumi&#232;re, les t&#233;n&#232;bres sont venues." - Livre de Job 30:26</French>
+     <German>"Ich wartete des Guten und es kommt das B&#246;se; ich hoffte aufs Licht, und es kommt Finsternis." - AT, Hiob 30,26</German>
+     <Italian>"Ho guardato per bene e il male &#232; venuto, e mi aspettavo la luce, e non vi &#232; il buio." - AT, Giobbe 30:26</Italian>
+     <Spanish>"A&#250;n cuando esper&#233; por el bien, vino el mal, cuando buscaba la luz, vino la oscuridad." - AT, Job 30.26</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_4</Tag>
+     <English>"The first casualty when war comes is truth." - Hiram Warren Johnson</English>
+     <French>"La premi&#232;re victime de la guerre est la v&#233;rit&#233;." - Hiram Warren Johnson</French>
+     <German>"Das erste Opfer des Krieges ist die Wahrheit." - Hiram Warren Johnson</German>
+     <Italian>"La prima vittima della guerra &#232; la verit&#224;." - Hiram Warren Johnson</Italian>
+     <Spanish>"La primera v&#237;ctima de la guerra es la verdad." - Hiram Warren Johnson</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_5</Tag>
+     <English>If I were not better than you, I would not be king! - Leonidas, King of Sparta</English>
+     <French>"Si je n'&#233;tais pas meilleur que toi, je ne serais pas roi !" - L&#233;onidas, roi de Sparte</French>
+     <German>Wenn ich nicht besser w&#228;re als ihr, so w&#228;re ich nicht K&#246;nig! - Leonidas, K&#246;nig von Sparta</German>
+     <Italian>Se non mi sarei meglio di te, quindi non sarei il re! - Leonida, re di Sparta</Italian>
+     <Spanish>&#161;Si no fuera mejor que t&#250;, no ser&#237;a rey! - Le&#243;nidas, Rey de Esparta</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_6</Tag>
+     <English>"It is kingly to let evil be spoken of oneself by one to whom good has been done." - Alexander the Great</English>
+     <French>"Il est royal de laisser m&#233;dire de soi par quelqu'un que l'on a aid&#233;." - Alexandre le Grand</French>
+     <German>"Das ist k&#246;niglich, da&#223; man B&#246;ses &#252;ber sich sagen l&#228;&#223;t von einem, dem man Gutes getan." - Alexander der Gro&#223;e</German>
+     <Italian>"Questo &#232; reale, che &#232; permesso di dire male di se stesso di uno, che hai fatto bene." - Alessandro Magno</Italian>
+     <Spanish>"Es majestuoso dejar al mal hablar de s&#237; mismo por uno a quien bien ha hecho." - Alejandro Magno</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_7</Tag>
+     <English>"I have come to Italy, not to fight Italians, but to fight for the liberty of the Italians against Rome." - Hannibal</English>
+     <French>"Je ne suis pas venu me battre contre les Italiens mais au nom des Italiens contre Rome" - Hannibal</French>
+     <German>"Ich bin nach Italien gekommen, nicht um die Italiener zu bek&#228;mpfen, sondern f&#252;r die Freiheit der Italiener gegen Rom zu k&#228;mpfen." - Hannibal</German>
+     <Italian>"Sono venuto in Italia, non per combattere gli italiani, ma di lottare per la libert&#224; degli italiani contro Roma." - Hannibal</Italian>
+     <Spanish>"He venido a Italia, no a lucha contra los italianos, pero s&#237; a luchar por la libertad de los italianos contra Roma." - An&#237;bal</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_8</Tag>
+     <English>"Superstition is to religion what astrology is to astronomy: the mad daughter of a wise mother." - Voltaire</English>
+     <French>"La superstition est &#224; la religion ce que l'astrologie est &#224; l'astronomie, la fille tr&#232;s folle d'une m&#232;re tr&#232;s sage" - Voltaire</French>
+     <German>"Wer sich zwischen den Sternen bewegt, kann nur noch l&#228;cheln &#252;ber die kostbaren Fu&#223;b&#246;den der Reichen." - Seneca</German>
+     <Italian>"Che si muove tra le stelle, solo pu&#242; ancora sorridere i preziosi pavimenti dei ricchi." - Seneca</Italian>
+     <Spanish>"La superstici&#243;n es a la religi&#243;n lo que la astrolog&#237;a a la astronom&#237;a: la hija loca de una madre sabia." - Voltaire</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_9</Tag>
+     <English>"Architecture aims at Eternity." - Christopher Wren</English>
+     <French>"L'architecture vise l'&#233;ternit&#233;." - Christopher Wren</French>
+     <German>"Architektur beruht auf drei Prinzipien: Firmitas (Festigkeit), Utilitas (N&#252;tzlichkeit) und Venustas (Sch&#246;nheit)." - Vitruv</German>
+     <Italian>"Architettura si basa su tre principi: firmitas (solidit&#224;), Utilitas (utilit&#224;) e venustas (bellezza)." - Vitruvio</Italian>
+     <Spanish>"La arquitectura mira a la eternidad." - Christopher Wren</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_10</Tag>
+     <English>"The grave is still the best shelter against the storms of destiny." - Georg Christoph Lichtenberg</English>
+     <French>"Une tombe est toujours le meilleur abri contre les temp&#234;tes du destin." - Georg Christoph Lichtenberg</French>
+     <German>"Ein Grab ist doch immer die beste Befestigung wider die St&#252;rme des Schicksals." - Georg Christoph Lichtenberg</German>
+     <Italian>"Una tomba &#232; sempre il migliore montaggio contro le tempeste del destino." - Georg Christoph Lichtenberg</Italian>
+     <Spanish>"La tumba sigue siendo el mejor refugio contra las tormentas del destino." - Georg Christoph Lichtenberg</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_11</Tag>
+     <English>Alchemy is the art of manipulating life, and consciousness in matter, to help it evolve, or to solve problems of inner disharmonies. - Jean Dubuis</English>
+     <French>"L'Alchimie est l'art de manipuler la vie et la conscience dans la mati&#232;re, pour aider son &#233;volution ou pour r&#233;soudre des probl&#232;mes de disharmonies internes." - Jean Dubuis</French>
+     <German>"Jedes Ding ist ein Gift, nur die Dosis ist entscheidend." - Feldbert Malm&#246;</German>
+     <Italian>"Ogni cosa &#232; un veleno, solo la dose &#232; cruciale." - Campo Bert Malm&#246;</Italian>
+     <Spanish>La alquimia es el arte de la manipulaci&#243;n de la vida y la conciencia en cuesti&#243;n, para ayudar a evolucionar, o para resolver problemas de desajustes internos. - Jean Dubuis</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_12</Tag>
+     <English>"An absolute ruler is an undesireable leader." - Charles de Montesquieu</English>
+     <French>"Un dirigeant absolu est un dirigeant ind&#233;sirable." - Charles de Montesquieu</French>
+     <German>"Ein absoluter Herrscher ist ein unerw&#252;nschte F&#252;hrer." - Charles de Montesquieu</German>
+     <Italian>"Un dominatore assoluto &#232; un leader indesiderato". - Charles de Montesquieu</Italian>
+     <Spanish>"Un gobernante absolutista es un l&#237;der indeseable." - Charles de Montesquieu</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_13</Tag>
+     <English>"The true healing art is in its nature a pure science of experience, and can and must rest upon clear facts and on the sensible phenomena pertaining to their sphere of action.' - Samuel Hahnemann</English>
+     <French>"D'abord la parole, puis les plantes, et enfin le couteau." - Esculape</French>
+     <German>Erst das Wort, dann die Pflanze, zuletzt das Messer. &#196;skulap</German>
+     <Italian>Prima parola, poi la pianta, pi&#249; di recente il coltello. Esculapio</Italian>
+     <Spanish>"El verdadero arte de la curaci&#243;n est&#225; en su naturaleza una ciencia pura de la experiencia, y puede y debe apoyarse en hechos evidentes y sobre los fen&#243;menos sensatos relativos a su esfera de acci&#243;n.' - Samuel Hahnemann</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_14</Tag>
+     <English>"No man should marry until he has studied anatomy and dissected at least one woman." - Honore de Balzac</English>
+     <French>"Aucun homme ne devrait se marier avant d'avoir &#233;tudi&#233; l'anatomie et diss&#233;qu&#233; au moins une femme." - Honor&#233; de Balzac</French>
+     <German>"Kein Mann sollte heiraten, ehe er nicht Anatomie studiert und mindestens eine Frau seziert hat." - Honore de Balzac</German>
+     <Italian>"Nessun uomo dovrebbe sposare fino a che non ha studiato anatomia e sezionato almeno una donna." - Honore de Balzac</Italian>
+     <Spanish>"Ning&#250;n hombre deber&#237;a casarse hasta haber estudiado anatom&#237;a y diseccionado al menos una mujer." - Honore de Balzac</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_15</Tag>
+     <English>"We cannot ... prove geometrical truths by arithmetic." - Aristotle</English>
+     <French>"Nous ne pouvons pas prouver les v&#233;rit&#233;s g&#233;om&#233;triques par l'arithm&#233;tique." - Aristote</French>
+     <German>"Wir k&#246;nnen geometrische Wahrheiten nicht arithmetisch beweisen." - Aristoteles</German>
+     <Italian>"Non possiamo dimostrare le verit&#224; geometriche aritmetiche." - Aristotele</Italian>
+     <Spanish>"No podemos ... probar las verdades geom&#233;tircas con la arim&#233;tica." - Arist&#243;teles</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_16</Tag>
+     <English>I don't believe in astrology; I'm a Sagittarius and we're skeptical. - Arthur C. Clarke</English>
+     <French>"Je ne crois pas &#224; l'astrologie; je suis Sagittaire et nous sommes sceptiques." - Arthur C. Clarke</French>
+     <German>Ich glaube nicht an Astrologie. Ich bin Sch&#252;tze, die sind von Natur aus skeptisch. - Arthur C. Clarke</German>
+     <Italian>Io non credo nell'astrologia. Sono Sagittario che sono scettici per natura. - Arthur C. Clarke</Italian>
+     <Spanish>No s&#233; cuantos de vosotros creen en la astrolog&#237;a. Soy un sagitario. El m&#225;s filos&#243;fico de todos los signos. - Arthur C. Clarke</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_17</Tag>
+     <English>The highest strategy thwarts the opponent's plans, the second best hinders him from mustering his forces, the third best brings him to the field of battle, the worst to besiege his fortified cities. - Sun Tzu</English>
+     <French>"Attaquez le plan de l'adversaire au moment o&#249; il na&#238;t, puis rompez ses alliances, puis attaquez son arm&#233;e. La pire des politiques consiste &#224; attaquer les cit&#233;s." - Sun Tzu</French>
+     <German>Die h&#246;chste Feldherrnkunst durchkreuzt die Pl&#228;ne des Gegners, die zweitbeste hindert ihn, seine Kr&#228;ft zu sammeln, die drittbeste f&#252;hrt in die Feldschlacht, die schlechteste zur Belagerung von befestigten St&#228;dten. - Sun Tzu</German>
+     <Italian>La generalship massima sventato i piani del nemico, il secondo miglior gli impedisce di raccogliere il suo Kraft, il terzo miglior risultato nel campo di battaglia, il peggiore per l'assedio di citt&#224; fortificate. - Sun Tzu</Italian>
+     <Spanish>La mejor estrategia es frustrar los planes del enemigo, la segunda mejor impedirle reunir sus fuerzas, la tercera mejor llevarlo al campo de batalla, la peor asediar sus ciudades fortificadas. - Sun Tzu</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_18</Tag>
+     <English>If your enemy is only the size of an ant, so still count him among the elephants! - Proverb</English>
+     <French>"Tiens pour un &#233;l&#233;phant ton ennemi, ne f&#251;t-il pas plus gros qu'une fourmi." - Proverbe</French>
+     <German>Hat dein Feind nur die Gr&#246;&#223;e einer Ameise, so rechne ihn dennoch unter die Elefanten! - Sprichwort</German>
+     <Italian>Se il tuo nemico &#232; solo la dimensione di una formica, quindi ancora lui fare i conti tra gli elefanti! - Proverbio</Italian>
+     <Spanish>Si tu enemigo es solo del tama&#241;o de una hormiga, &#161;sigue contandole contra los elefantes! - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_19</Tag>
+     <English>"True nobility is exempt from fear." - Marcus Tullius Cicero</English>
+     <French>"La vraie noblesse ne connait pas la peur." - Marcus Tullius Cicero</French>
+     <German>"Der echte Adel wei&#223; von keiner Furcht." - Marcus Tullius Cicero</German>
+     <Italian>"La vera conoscenza nobilt&#224; di paura." - Marco Tullio Cicerone</Italian>
+     <Spanish>"La verdadera nobleza est&#225; exenta de miedo." - Marco Tulio Cicer&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_20</Tag>
+     <English>"Veni vidi vici" ("I came, I saw, I conquered") - Julius Caesar</English>
+     <French>"Veni vidi vici" ("Je suis venu, j'ai vu, j'ai vaincu) - Jules C&#233;sar</French>
+     <German>"Veni vidi vici" ("Ich kam, ich sah, ich siegte") - Julius Caesar</German>
+     <Italian>"Veni Vidi Vici" ("Sono venuto, ho visto, ho conquistato") - Giulio Cesare</Italian>
+     <Spanish>"Veni vidi vici" ("Vine, vi, venc&#237;") - Julio C&#233;sar</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_21</Tag>
+     <English>You wound, like Parthians, while you fly, and kill with a retreating eye. - Samuel Butler (in Hudibras)</English>
+     <French>"Comme les Parthes en fuyant, Vos yeux au coeur blessent l'amant ; Et, plus il presse la poursuite, Plus vous l'amorcez par la fuite." - Samuel Butler (Hudibras)</French>
+     <German>"Ihr andern verwundet, wie Parther, indem ihr stiebet, und t&#246;det mit wegeilenden Blicken." - Samuel Butler (in Hudibras)</German>
+     <Italian>Il mio feriti un altro, come Parti da lei stiebet, e t&#246;det con gli occhi wegeilenden." - Samuel Butler (Hudibras in)</Italian>
+     <Spanish>Los heridos, como los Partos, mientras acelerabas la marcha te mataban con la mirada. - Samuel Butler (en Hudibras)</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_22</Tag>
+     <English>"La Garde meurt et ne se rend pas!" ("The Guard dies and does not yield") - a Grognard at Waterloo</English>
+     <French>"La Garde meurt et ne se lors de polo!" ("La Garde meurt et ne se rend pas!") - Un appel &#224; la bataille de Waterloo</French>
+     <German>"La Garde meurt et ne se rend pas!" ("Die Garde stirbt und ergibt sich nicht!") - ein Ruf in der Schlacht von Waterloo</German>
+     <Italian>"La Garde muore et ne se durante pas!" ("La Guardia muore e non si arrende!") - Una chiamata nella battaglia di Waterloo</Italian>
+     <Spanish>"La Garde meurt et ne se rend pas!" ("&#161;La guardia muere y no se rinde!") - grito de guerra en Waterloo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_23</Tag>
+     <English>"Rome will exist as long as the Colosseum does; when the Colosseum falls so will Rome; when Rome falls so will the world!" - Beda, 7th c. AD</English>
+     <French>"Tant que durera le Colosse, Rome durera ; quand le Colosse tombera, Rome tombera ; quand Rome tombera, le monde tombera !" - B&#232;de, 7 Si&#232;cle ap JC</French>
+     <German>"Solange das Kolosseum steht, solange besteht Rom, solange Rom besteht, besteht auch die Welt!" - Beda, 7. Jh. n. Chr.</German>
+     <Italian>"Finch&#233; si trova il Colosseo, finch&#233; ci &#232; Roma, mentre Roma &#232;, &#232; anche il mondo!" - Bede, 7 Secolo dC</Italian>
+     <Spanish>"Roma existir&#225; tanto como lo haga el Coliseo; cuando el Coliseo caiga lo har&#225; Roma; &#161;cuando Roma caiga lo har&#225; el mundo!" - Beda, siglo VII d. C.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_24</Tag>
+     <English>"Proof is the idol before whom the pure mathematician tortures himself." - Sir Arthur Eddington</English>
+     <French>"La preuve est une idole devant laquelle les math&#233;maticiens se torturent." - Sir Arthur Eddington</French>
+     <German>"Der Beweis ist ein G&#246;tze, vor dem der Mathematiker sich foltert." - Sir Arthur Eddington</German>
+     <Italian>"La prova &#232; un idolo davanti al quale il matematico si tortura." - Sir Arthur Eddington</Italian>
+     <Spanish>"Una operacion es la imagen ante quien el matem&#225;tico puro se tortura a s&#237; mismo." - Sir Arthur Eddington</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_25</Tag>
+     <English>"Water is best." - Pindar, 5th Century B.C.</English>
+     <French>"L'eau est la meilleure des choses." - Pindare 5 si&#232;cle avant JC</French>
+     <German>"Das Beste ist das Wasser." - Pindar 5. Jh. v. Chr.</German>
+     <Italian>"La cosa migliore &#232; l'acqua." - Pindaro 5 Secolo aC</Italian>
+     <Spanish>"El agua es mejor." - P&#237;ndaro, siglo V a. C.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_26</Tag>
+     <English>"The principle of all things is water, because from water is everything and everything turns back into water." - Thales of Milet, 6th Century B.C.</English>
+     <French>"Le principe de toutes choses est l'eau car elle est la source de tout et tout redevient eau." - Thal&#232;s de Milet, 6 si&#232;cle avant JC</French>
+     <German>"Das Prinzip aller Dinge ist das Wasser. Aus Wasser ist alles, und ins Wasser kehrt alles zur&#252;ck." - Thales von Milet, 6. Jh. v. Chr.</German>
+     <Italian>"Il principio di tutte le cose &#232; l'acqua. Tutto &#232; da acqua, e l'acqua tutte le cose ritornano". - Talete di Mileto, 6 Secolo aC</Italian>
+     <Spanish>"El principio de todas las cosas es el agua, porque del agua sale todo y todo se vuelve agua." - Tales de Mileto, Siglo VI a. C.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_27</Tag>
+     <English>" Whoever sees nothing in the distance, has no right to say that there is nothing in the distance." - Unknown author</English>
+     <French>"Qui ne voit rien dans la distance, n'a pas le droit de dire que la distance n'&#233;tait rien." - Auteur inconnu</French>
+     <German>"Wer in der Ferne nichts sieht, hat nicht das Recht zu sagen, dass in der Ferne nichts sei." - Unbekannter Autor</German>
+     <Italian>"Chi non vede nulla in lontananza, non ha alcun diritto di dire che in lontananza era niente." - Autore sconosciuto</Italian>
+     <Spanish>" Quien no ve nada en la distancia, no tiene derecho a decir que no hay nada en la distancia." - Autor desconocido</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_28</Tag>
+     <English>"Give a man a horse he can ride, give a man a boat he can sail; and his rank and wealth, his strength and health, on sea nor shore shall fail." - James Thomson</English>
+     <French>"Donne un cheval &#224; un homme et il peut chevaucher, donne lui un navire et il peut naviguer ; Et sur mer comme sur terre, ni son rang ni sa richesse, ni sa force ni sa sant&#233; ne faibliront jamais." - James Thomson</French>
+     <German>"Wer allzu straff die Segeltaue spannt und niemals schie&#223;en l&#228;&#223;t, der kentert bald und mag, den Kiel nach oben, weitersegeln." - Sophokles</German>
+     <Italian>"Se troppo stretto attraversa la Segeltaue e non lascia sparare, il capovolgimento presto e ama verso l'alto per salpare alla chiglia." - Sofocle</Italian>
+     <Spanish>"Dale a un hombre un caballo que pueda montar, dale a un hombre un barco que pueda navegar; y su estatus y su riqueza, su fuerza y su salud nunca decaer&#225;n." - James Thomson</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_29</Tag>
+     <English>"We believe ancient Chinese bronze still has room to appreciate. They are very rare." - Ji Chongjian</English>
+     <French>"Tout le monde garde son cuivre pour de l'or." - Proverbe</French>
+     <German>"Jeder h&#228;lt sein Kupfer f&#252;r Gold." - Sprichwort</German>
+     <Italian>"Ognuno mantiene la sua rame per l'oro." - Proverbio</Italian>
+     <Spanish>"Creemos que el antiguo bronce chino todav&#237;a tiene sitio para apreciarse. Son muy raros." - Ji Chongjian</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_30</Tag>
+     <English>"Believe me, nothing except a battle lost can be half so melancholy as a battle won." - Arthur Wellesley</English>
+     <French>"Rien, sinon une bataille perdue, n'est aussi m&#233;lancolique qu'une bataille gagn&#233;e." - Sir Arthur Wellesley</French>
+     <German>"Das gr&#246;&#223;te Ungl&#252;ck ist eine verlorene Schlacht, das zweitgr&#246;&#223;te eine gewonnene." - Sir Arthur Wellesley</German>
+     <Italian>"La pi&#249; grande disgrazia &#232; una battaglia persa, la seconda pi&#249; grande vinto." - Sir Arthur Wellesley</Italian>
+     <Spanish>"Junto a una batalla perdida, nada es tan triste como una batalla que se ha ganado." - Arthur Wellesley</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_31</Tag>
+     <English>"It is words that are to blame .... most irresponsible, most un-teachable of all. Of course you can catch them and sort them, place them in alphabetical order, in dictionaries. But words do not live in dictionaries, they live in the mind." - Virginia Woolf</English>
+     <French>"C'est la faute des mots, si absolument indompt&#233;s, libres, irresponsables et impossible &#224; enseigner. Naturellement, on peut les attraper, les trier et les classer par ordre alphab&#233;tique dans les dictionnaires. Mais les mots ne vivent pas dans les dictionnaires, ils vivent dans l'esprit." - Virginia Woolf</French>
+     <German>"Worte sind wild, frei, unverantwortlich und nicht zu lehren. Nat&#252;rlich kann man sie einfangen, einsortieren und sie in alphabetischer Reihenfolge in W&#246;rterb&#252;cher stecken. Aber dort leben sie nicht." - Virginia Woolf</German>
+     <Italian>"Le parole sono selvaggi, liberi, irresponsabile e non insegnare. Corso li pu&#242; prendere, ordinarli e mettere in ordine alfabetico nei dizionari., Ma non vivono l&#236;". - Virginia Woolf</Italian>
+     <Spanish>"Las palabras tienen la culpa .... mas irresponsables, mas incapaces de ense&#241;ar de todos. Por supuesto que puedes cogerlas y ordenarlas, colocarlas en orden alfab&#233;tico, en los diccionarios. Pero las palabras no viven en los diccionarios, viven en la mente." - Virginia Woolf</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_32</Tag>
+     <English>"There are many religions, but only one moral." - John Ruskin</English>
+     <French>"Il y a beaucoup de religions, mais seulement une morale." - John Ruskin</French>
+     <German>"Es gibt viele Religionen, aber nur eine Moral." - John Ruskin</German>
+     <Italian>"Ci sono molte religioni, ma solo una morale." - John Ruskin</Italian>
+     <Spanish>"Hay varias religiones, pero solo una moral." - John Ruskin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_33</Tag>
+     <English>"The great Carthage led three wars. It was still powerful after the first, still inhabitable after the second. It was no more to be found after the third." - Bertolt Brecht</English>
+     <French>"Carthage la Grande fit trois fois la guerre. Encore debout apr&#232;s la premi&#232;re, elle restait habitable apr&#232;s la seconde. Apr&#232;s la troisi&#232;me, il n'y avait plus trace d'elle." - Bertolt Brecht</French>
+     <German>"Das gro&#223;e Karthago f&#252;hrte drei Kriege. Nach dem ersten war es noch m&#228;chtig. Nach dem zweiten war es noch bewohnbar. Nach dem dritten war es nicht mehr aufzufinden." - Bertolt Brecht</German>
+     <Italian>"Ottima Carthage combattuta tre guerre. Secondo la prima, era ancora potente. Sensi del secondo, era ancora abitabile. Secondo il terzo, era introvabile." - Bertolt Brecht</Italian>
+     <Spanish>"La gran Cartago llev&#243; tres guerras. Todav&#237;a era poderosa despu&#233;s de la primera, habitable a&#250;n despu&#233;s de la segunda. No hab&#237;a mas que encontrar despu&#233;s de la tercera." - Bertolt Brecht</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_34</Tag>
+     <English>"By gnawing through a dike, even a rat may drown a nation." - Edmund Burke</English>
+     <French>"En rongeant une digue, m&#234;me un rat peut noyer une nation." - Edmund Burke</French>
+     <German>"Durch Nagen durch einen Deich, kann sogar eine Ratte eine Nation ertr&#228;nken." - Edmund Burke</German>
+     <Italian>"Per rosicchiare attraverso una diga, potrebbe annegare una nazione, anche un topo." - Edmund Burke</Italian>
+     <Spanish>"Royendo por un dique, incluso una rata puede ahogar una naci&#243;n." - Edmund Burke</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_35</Tag>
+     <English>"A public library is the most enduring of memorials, the trustiest monument for the preservation of an event or a name or an affection; for it, and it only, is respected by wars and revolutions, and survives them" - Mark Twain</English>
+     <French>"Celui qui tue sa m&#232;re, est d&#233;capit&#233;. C'est une ancienne coutume compr&#233;hensible. Quiconque tue des centaines de milliers, re&#231;oit un monument." - Erich K&#228;stner</French>
+     <German>"Wer seine Schwiegermutter totschl&#228;gt, wird gek&#246;pft. Das ist ein uralter verst&#228;ndlicher Brauch. Wer aber Hunderttausende umbringt, erh&#228;lt ein Denkmal." - Erich K&#228;stner</German>
+     <Italian>"Colui che uccide sua madre, &#232; decapitato. Questa &#232; un'antica usanza comprensibile. Chi uccide centinaia di migliaia di persone, riceve un monumento." - Erich K&#228;stner</Italian>
+     <Spanish>"Una biblioteca p&#250;blica es la mas perdurable de los monumentos, el mas confiable monumento de la preservaci&#243;n de un evento o un nombre o un cari&#241;o; por ello, y solo por ello, es repetado por guerras y revoluciones, y sobreviviendo a ellas" - Mark Twain</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_36</Tag>
+     <English>"The old ox plows a straight furrow." - English Proverb</English>
+     <French>"Vieux boeuf fait sillon droit." - Proverbe anglais</French>
+     <German>"Der alte Ochse pfl&#252;gt eine gerade Furche." - Englisches Sprichwort</German>
+     <Italian>"Il vecchio bue ara un solco dritto". - Proverbio inglese</Italian>
+     <Spanish>"El viejo buey ara un surco recto." - Proverbio ingl&#233;s</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_37</Tag>
+     <English>"I know how to lead the fair song of the Lord Dionysus, the dithyramb, when my wits are fused with wine." - Archilochus</English>
+     <French>"Car je sais entonner le beau chant du seigneur Dionysos, le dithyrambe, quand le vin a frapp&#233; mon esprit de sa fronde." - Archiloque</French>
+     <German>"Was ich verstehe unter einem sch&#246;nen Lied ist ein Dithyrambus auf Dionysos wenn der Wein im Bauch alles zusammenstaucht." - Archilochos</German>
+     <Italian>"Quello che voglio dire con una bella canzone &#232; un ditirambo a Dioniso quando il vino nella pancia insieme bagna tutto." - Archiloco</Italian>
+     <Spanish>"S&#233; como llevar una buena canci&#243;n del se&#241;or Dioniso, el ditirambo, cuando mi ingenio se funde con el vino." - Arqu&#237;loco</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_38</Tag>
+     <English>"A multitude of rulers is not a good thing. Let there be one ruler, one king." - Homer</English>
+     <French>"Nous ne pouvons pas tous commander ici ; il est dangereux qu'il y ait tant de ma&#238;tres. Il suffit d'un seul chef, d'un seul roi." - Hom&#232;re</French>
+     <German>"Niemals frommt Vielherrschaft im Volk. Nur einer sei Herrscher, einer K&#246;nig allein." - Homer</German>
+     <Italian>"Mai avvale Molto governare il popolo., Solo uno &#232; un righello, solo un re." - Homer</Italian>
+     <Spanish>"Una multitud de gobernantes no es una buena cosa. Solo deber&#237;a haber un gobernante, un rey." - Homero</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_39</Tag>
+     <English>"Everyone must row with the oars he has." - English Proverb</English>
+     <French>"Chacun doit ramer avec les avirons dont-il dispose." - Proverbe anglais</French>
+     <German>"Jeder muss mit den Rudern rudern, die er hat." - englisches Sprichwort</German>
+     <Italian>"Tutti devono remare con i remi che ha." - Proverbio inglese</Italian>
+     <Spanish>"Todo el mundo debe remar con los remos que tenga." - Proverbio ingl&#233;s</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_40</Tag>
+     <English>"I believe in general in a dualism between facts and the ideas of those facts in human heads." - George Santayana</English>
+     <French>"Je crois en g&#233;n&#233;ral en une dualit&#233; entre les faits et l'id&#233;e de ces faits dans l'esprit humain" - George Santayana</French>
+     <German>"Ich glaube im allgemeinen an einen Dualismus zwischen Tatsachen und den Ideen jener Tatsachen in den menschlichen K&#246;pfen." - George Santayana</German>
+     <Italian>"Penso che in generale un dualismo tra fatti e le idee di quei fatti in teste umane." - George Santayana</Italian>
+     <Spanish>"Creo en general en un dualismo entre hechos y las ideas de esos hechos en las cabezas humanas." - George Santayana</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_41</Tag>
+     <English>"One should not draw the cart before the horse." - Proverb</English>
+     <French>"Il ne faut pas mettre la charrue avant les boeufs." - Proverbe</French>
+     <German>"Man soll den Pflug nicht vor den Ochsen spannen." - Sprichwort</German>
+     <Italian>"Non si dovrebbe allungare prima che il cavallo per arare". - Proverbio</Italian>
+     <Spanish>"Uno no debe sacar el carro antes que el caballo." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_42</Tag>
+     <English>"Ran on embattled armies clad in iron, and weaponless himself, made arms ridiculous." - John Milton</English>
+     <French>"Pour une bonne fer-vous pas de clous fait, de bons hommes non des soldats." - Proverbe</French>
+     <German>"Aus gutem Eisen macht man keine N&#228;gel, aus guten M&#228;nnern keine Soldaten." - Sprichwort</German>
+     <Italian>"Per una buona ferro si fa senza chiodi, da buoni soldati non gli uomini." - Proverbio</Italian>
+     <Spanish>"Huy&#243; de ej&#233;rcitos acosados ataviado en hierro, y sin armas, haciendo los brazos rid&#237;culos." - John Milton</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_43</Tag>
+     <English>"Nobody untrained in geometry may enter my house." - Plato</English>
+     <French>"Que nul n'entre s'il n'est g&#233;om&#232;tre." - Platon</French>
+     <German>"Niemand, der unwissend in Geometrie ist, darf mein Haus betreten." - Plato</German>
+     <Italian>"Nessuno che sia ignorante di geometria, pu&#242; entrare in casa mia." - Platone</Italian>
+     <Spanish>"Nadie no instru&#237;do en geomatr&#237;a puede entrar en mi casa." - Plat&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_44</Tag>
+     <English>"We do not learn; and what we call learning is only a process of recollection." - Plato</English>
+     <French>"Nous n'apprenons pas, mais que ce que nous appelons 'apprendre' est une r&#233;miniscence." - Platon</French>
+     <German>"Wir lernen nicht, wir erinnern uns." - Platon</German>
+     <Italian>"Noi non impariamo, noi ricordiamo." - Platone</Italian>
+     <Spanish>"No aprendemos; y lo que llamamos aprendizaje es s&#243;lo un proceso de recolecci&#243;n." - Plat&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_45</Tag>
+     <English>"Carthago delenda est" ("Carthage must be destroyed") - Marcus Porcius Cato</English>
+     <French>"Carthago delenda est" ("Carthage doit &#234;tre d&#233;truite") - Marcus Porcius Cato</French>
+     <German>"Carthago delenda est" ("Karthago muss zerst&#246;rt werden") - Marcus Porcius Cato</German>
+     <Italian>"Carthago delenda est" ("Cartagine deve essere distrutta") - Marco Porcio Catone</Italian>
+     <Spanish>"Carthago delenda est" ("Cartago debe ser destru&#237;da") - Marco Porcio Cat&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_46</Tag>
+     <English>"There is no fortress so strong that money cannot take it" - Marcus Tullius Cicero</English>
+     <French>"Il n'est de forteresse si puissante que l'argent ne puisse prendre." - Marcus Tullius Cicero</French>
+     <German>"Keine Festung ist so stark, da&#223; Geld sie nicht einnehmen kann." - Marcus Tullius Cicero</German>
+     <Italian>"No fortezza &#232; cos&#236; forte che il denaro non pu&#242; prenderlo." - Marco Tullio Cicerone</Italian>
+     <Spanish>"No hay fortaleza tan fuerte que el dinero no pueda tomarla" - Marco Tulio Cicer&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_47</Tag>
+     <English>"Without Ceres and Bacchus, Venus is cold." - Terence, 2nd Century, B.C.</English>
+     <French>"Sans C&#233;r&#232;s et Bacchus, V&#233;nus est de glace." - T&#233;rence, 2 si&#232;cle avant JC</French>
+     <German>"Ohne Ceres und Bacchus bleibt Venus kalt." - Terenz, 2. Jh. v. Chr.</German>
+     <Italian>"Senza Cerere e Bacco Venere &#232; freddo." - Terence, 2 Secolo aC</Italian>
+     <Spanish>"Sin Ceres y Baco, Venus es fr&#237;a." - Terencio, siglo II a.C.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_48</Tag>
+     <English>"Inspiration is needed in geometry, just as much as in poetry." - Alexander Pushkin</English>
+     <French>"Quiconque comprend la g&#233;om&#233;trie, est capable de tout comprendre en ce monde." - Galil&#233;e</French>
+     <German>"Wer die Geometrie begreift, vermag in dieser Welt alles zu verstehen." - Galileo Galilei</German>
+     <Italian>"Chiunque capisce la geometria, &#232; in grado di capire tutto in questo mondo." - Galileo Galilei</Italian>
+     <Spanish>"La inspiraci&#243;n se necesita en geometr&#237;a, tanto como en poes&#237;a." - Alexander Pushkin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_49</Tag>
+     <English>"The world is a book. Those who do not travel read only one page of it." - Augustinus Aurelius</English>
+     <French>"Le monde est un livre. Ceux qui ne voyagent pas n'en lisent qu'une page." - Augustin Aur&#232;le</French>
+     <German>"Die Welt ist ein Buch. Wer nie reist, sieht nur eine Seite davon." - Augustinus Aurelius</German>
+     <Italian>"Il mondo &#232; un libro. Coloro che non viaggiano ne leggono solo una pagina." - Agostino Aurelio</Italian>
+     <Spanish>"El mundo es un libro. Aquellos que no viajan leyendo solo una p&#225;gina de &#233;l." - Augustinus Aurelius (San Agust&#237;n)</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_50</Tag>
+     <English>"Greek was very much a live language, and a language still unconscious of grammar, not, like ours, dominated by definitions and trained upon dictionaries." - Gilbert Murray</English>
+     <French>"En politique comme en grammaire, une faute commise par tous est finalement reconnue comme une r&#232;gle" - Andr&#233; Malraux</French>
+     <German>"In der Politik ist es manchmal wie in der Grammatik: Ein Fehler, den alle begehen, wird schlie&#223;lich als Regel anerkannt." - Andre Malraux</German>
+     <Italian>"In politica &#232; a volte, come nella grammatica: Un errore che ogni commit viene finalmente riconosciuto come una regola." - Andre Malraux</Italian>
+     <Spanish>"El griego fue en gran medida un idioma vivo, y un idioma a&#250;n sin conocimiento de gram&#225;tica, no, como el nuestro, dominado por definiciones y ense&#241;ado por los diccionarios." - Gilbert Murray</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_51</Tag>
+     <English>"All the performances of human art, at which we look with praise or wonder, are instances of the resistless force of perseverance; it is by this that the quarry becomes a pyramid, and that distant countries are united with canals." - Samuel Johnson</English>
+     <French>La vie devant nous, c'est comme une carri&#232;re avant les constructeurs. - Johann Wolfgang von Goethe</French>
+     <German>Das Leben vor uns ist wie ein Steinbruch vor dem Baumeister. - Johann Wolfgang von Goethe</German>
+     <Italian>La vita davanti a noi &#232; come una cava prima dei costruttori. - Johann Wolfgang von Goethe</Italian>
+     <Spanish>"Todas las representaciones del arte humano, a las que miramos con elogios o maravilla, son muestras de la fuerza irresistible de la perseverancia; es por esto que la cantera se convierte en una pir&#225;mide, y los distantes pa&#237;ses est&#225;n unidos con canales." - Samuel Johnson</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_52</Tag>
+     <English>"Morituri te salutant" - ("Those who are about to die salute you")</English>
+     <French>"Morituri te salutant" - (Ceux qui vont mourir te saluent)</French>
+     <German>"Morituri te salutant" - "Die Todgeweihten gr&#252;&#223;en Euch"</German>
+     <Italian>"Morituri te salutant" - "Il saluto die te"</Italian>
+     <Spanish>"Morituri te salutant" - ("Los que van a morir te saludan")</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_53</Tag>
+     <English>"Don't throw stones at your neighbours, if your own windows are glass." - Benjamin Franklin</English>
+     <French>"Ne jetez pas de pierre &#224; vos voisins si vos fen&#234;tres sont de verre." - Benjamin Franklin</French>
+     <German>"Wer im Glashaus sitzt, soll nicht mit Steinen werfen." - Deutsches Sprichwort</German>
+     <Italian>"Le persone che vivono in case di vetro non dovrebbe lanciare pietre." - Proverbio tedesco</Italian>
+     <Spanish>"No tires piedras a tus vecinos, si tus propias ventanas son de vidrio." - Benjamin Franklin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_54</Tag>
+     <English>"Let yourself be open and life will be easier. A spoon of salt in a glass of water makes the water undrinkable. A spoon of salt in a lake is almost unnoticed." - Buddha</English>
+     <French>"Un esprit ouvert te facilitera la vie. Une cuiller&#233;e de sel dans un verre d'eau rendra l'eau imbuvable, mais une cuiller&#233;e de sel dans un lac se remarquera &#224; peine." - Bouddha</French>
+     <German>"Wenn der Abt zum Glase greift, so greifen die M&#246;nche zum Krug." - Sprichwort</German>
+     <Italian>"Se l'abate prende il bicchiere, cos&#236; i monaci prendere la brocca". - Proverbio</Italian>
+     <Spanish>"&#193;brete y la vida ser&#225; m&#225;s f&#225;cil. Una cucharada de sal en un vaso de agua hace del agua imbebible. Una cucharada de sal en un lago es casi inapreciable." - Buda</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_55</Tag>
+     <English>"Style is correct omission of the unessential." - Anselm Feuerbach</English>
+     <French>"Le style est la juste omission du superflu." - Anselm Feuerbach</French>
+     <German>"Stil ist richtiges Weglassen des Unwesentlichen." - Anselm Feuerbach</German>
+     <Italian>"Lo stile &#232; vero omettendo l'inessenziale". - Anselm Feuerbach</Italian>
+     <Spanish>"El estilo es la correcto omisi&#243;n de lo prescindible." - Anselm Feuerbach</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_56</Tag>
+     <English>"The Kingdom of God is not a democracy. The Lord never seeks re-election. There's no discussion. No deliberation. No referenda as to which road to take. There's one right, one wrong. One absolute ruler." - Colin Welland</English>
+     <French>"Le royaume de Dieu n'est pas une d&#233;mocratie. Le Seigneur ne cherche pas &#224; &#234;tre r&#233;&#233;lu. Il n'y a pas de discussion, pas de d&#233;lib&#233;ration, pas de r&#233;f&#233;rundum sur le chemin &#224; suivre. Il y a le Bien et le Mal. Un ma&#238;tre absolu." - Colin Welland</French>
+     <German>"Will einer erst die Herrschaft Gott verschaffen, sieht er in sich gar leicht des Herren Werkzeug und strebt zu herrschen." - Franz Grillparzer</German>
+     <Italian>"Sar&#224; un primo bisogno del governo di Dio, egli vede in s&#233; abbastanza facilmente lo strumento signori e aspira a governare." - Franz Grillparzer</Italian>
+     <Spanish>"El Reino de Dios no es una democracia. El Se&#241;or nunca busca la reelecci&#243;n. No hay discusi&#243;n. Sin deliberaci&#243;n. Sin referendum sobre qu&#233; camino tomar. Hay un bien, un mal. Un gobernante absoluto." - Colin Welland</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_62</Tag>
+     <English>"The trade actually was the fact, that the world - the Old and the New - had pulled out of their barbarism." - Carl Julius Weber</English>
+     <French>"C'est le commerce qui a sorti le monde - l'Ancien et le Nouveau - de la barbarie." - Karl Julius Weber</French>
+     <German>"Der Handel war es, der eigentlich die Welt - die Alte wie die Neue - aus ihrer Barbarei gezogen hat." - Karl Julius Weber</German>
+     <Italian>"Il commercio &#232; stato quello che in realt&#224; il mondo - l'Antico e il Nuovo -. Ha tirato fuori del loro barbarie" - Karl Julius Weber</Italian>
+     <Spanish>"El comercio fue realmente el motivo, de que el mundo - el Viejo y el Nuevo - haya salido de su barbarismo." - Carl Julius Weber</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_63</Tag>
+     <English>"And yet it still moves" - Galileo Galilei</English>
+     <French>"Et pourtant, elle tourne !" - Galil&#233;e</French>
+     <German>"Und sie dreht sich doch!" - Galileo Galilei</German>
+     <Italian>"E che si muove!" - Galileo Galilei</Italian>
+     <Spanish>"Y sin embargo se mueve" - Galileo Galilei</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_64</Tag>
+     <English>He is the wisest, who is the humblest among wise men." - Claudius Ptolemaeus</English>
+     <French>"Celui qui est le plus humble parmi les sages, celui-l&#224; est le plus sage de tous." - Claude Ptol&#233;m&#233;e</French>
+     <German>"Wer unter weisen M&#228;nnern der dem&#252;tigste ist, der ist der weiseste." - Claudius Ptolem&#228;us</German>
+     <Italian>"Chi tra gli uomini saggi di umili, che &#232; il pi&#249; saggio." - Claudio Tolomeo</Italian>
+     <Spanish>Es el mas sabio, que es el m&#225;s humilde entre los hombres sabios." - Claudio Ptolomeo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_65</Tag>
+     <English>"I swear by Apollo the physician, and Aesculapius, and Hygieia, and Panacea, and all the gods and goddesses, that, according to my ability and judgment, I will keep this Oath and this stipulation [...]" - The Hippocratic Oath</English>
+     <French>"Je jure par Apollon, m&#233;decin, par Ascl&#233;pios, par Hygie et Panac&#233;e, par tous les dieux et toutes les d&#233;esses, les prenant &#224; t&#233;moin que je remplirai, suivant mes forces et ma capacit&#233;, le serment et l'engagement suivants[...]" - Serment d'Hippocrate</French>
+     <German>"Ich schw&#246;re bei Apollon, dem Arzte, und bei Asklepios, Hygieia und Panakeia und bei allen G&#246;ttern und G&#246;ttinnen als Zeugen, dass ich nach bestem Verm&#246;gen und Urteil diesen Eid und diese Verpflichtung erf&#252;llen werde [...]" - Hippokratischer Eid</German>
+     <Italian>"Giuro per Apollo medico e Asclepio, Igea e Panacea e per tutti gli dei e le dee come testimoni, che io realizzer&#242; questo giuramento e questo impegno al meglio delle capacit&#224; e del giudizio [...]" - Giuramento di Ippocrate</Italian>
+     <Spanish>"Juro por Apolo, m&#233;dico, por Esculapio, Hig&#237;as y Panacea y pongo por testigos a todos los dioses y diosas, de que he de observar el siguiente juramento, que me obligo a cumplir en cuanto ofrezco, poniendo en tal empe&#241;o todas mis fuerzas y mi inteligencia. [...]" - El Juramento Hipocr&#225;tico</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_66</Tag>
+     <English>"Also the tree, under which one can seek protection from rain, leaks." - Proverb</English>
+     <French>"M&#234;me l'arbre, sous lequel on cherche &#224; se prot&#233;ger de la pluie, laisse passer de l'eau." - Proverbe</French>
+     <German>"Auch der Baum, unter dem man Schutz sucht, l&#228;&#223;t das Wasser durch." - Sprichwort</German>
+     <Italian>"Inoltre, l'albero sotto il quale si cerca di protezione, l'acqua pu&#242; essere effettuata." - Proverbio</Italian>
+     <Spanish>"Tambi&#233;n el &#225;rbol, bajo el cual uno busca protecci&#243;n de la lluvia, gotea." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_67</Tag>
+     <English>"Who does not respect the nail on the horseshoe, loses the horse." - Proverb</English>
+     <French>"Celui qui &#233;conomise un clou sur le fer, perd le cheval." - Proverbe</French>
+     <German>"Wer den Nagel am Hufeisen nicht achtet, der verliert auch das Pferd." - Sprichwort</German>
+     <Italian>"Chi non rispetta il chiodo sulla ferri di cavallo, che perde il cavallo." - Proverbio</Italian>
+     <Spanish>"Quien no respeta el clavo de la herradura, pierde el caballo." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_68</Tag>
+     <English>"The best thing about religion is that it makes for heretics." - Ernst Bloch</English>
+     <French>"Le meilleur dans la religion, c'est qu'elle engendre des h&#233;r&#233;tiques." - Ernst Bloch</French>
+     <German>"Das Beste, was Religionen hervorbringen, sind seine Ketzer." - Ernst Bloch</German>
+     <Italian>"La cosa migliore che le religioni portare avanti, i suoi eretici." - Ernst Bloch</Italian>
+     <Spanish>"Lo mejor sobre la religi&#243;n es lo que hace a los herejes." - Ernst Bloch</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_69</Tag>
+     <English>"The man who has experienced shipwreck shudders even at a calm sea." - Ovid</English>
+     <French>"Celui qui a fait un naufrage tremble devant des flots tranquilles." - Ovide</French>
+     <German>"Ein Schiffbr&#252;chiger hat Angst auch vor ruhiger See." - Ovid</German>
+     <Italian>"Un naufrago ha paura anche prima che il mare &#232; calmo." - Ovidio</Italian>
+     <Spanish>"El hombre que ha experimentado un naufragio se estremece a&#250;n en un mar en calma." - Ovidio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_70</Tag>
+     <English>"A camel is a horse designed by a committee." - Sir Alec Issigonis</English>
+     <French>"Un chameau est un cheval dessin&#233; par un comit&#233;." - Sir Alec Issigonis</French>
+     <German>"Ein Kamel ist ein Pferd, das von einem Ausschu&#223; entworfen wurde." - Sir Alec Issigonis</German>
+     <Italian>"Un cammello &#232; un cavallo disegnato da un comitato." - Sir Alec Issigonis</Italian>
+     <Spanish>"Un camello es un caballo dise&#241;ado por una comisi&#243;n." - Sir Alec Issigonis</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_71</Tag>
+     <English>"A man's home cannot be found on any map, but in the hearts of the people who love him." - Margot Bickel</English>
+     <French>"La demeure d'un homme ne se trouve pas sur une carte mais dans les coeurs des gens qui l'aiment." - Margot Bickel</French>
+     <German>"Eines Menschen Heimat ist auf keiner Landkarte zu finden, nur in den Herzen der Menschen, die ihn lieben." - Margot Bickel</German>
+     <Italian>"La casa di un uomo che si trova su qualsiasi mappa, solo nei cuori delle persone che lo amano." - Margot Bickel</Italian>
+     <Spanish>"La casa de un hombre no puede ser encontrada en ning&#250;n mapa, pero s&#237; en los corazones de la gente que lo ama." - Margot Bickel</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_72</Tag>
+     <English>"Vae victis!" ("Woe to the vanquished!") - Brennus</English>
+     <French>"Vae victis !" ("Malheur aux vaincus !") - Brennus</French>
+     <German>"Vae victis!" ("Wehe den Besiegten!") - Brennus</German>
+     <Italian>"Vae Victis!" ("Guai ai vinti!") - Brenno</Italian>
+     <Spanish>"&#161;Vae victis!" ("&#161;Ay de los vencidos!") - Breno</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_73</Tag>
+     <English>"The sweetest of all sounds is praise." - Xenophon</English>
+     <French>"Le plus doux de tous les sons, c'est la louange." - X&#233;nophon</French>
+     <German>"Das s&#252;&#223;este aller T&#246;ne ist Lob." - Xenophon</German>
+     <Italian>"Il pi&#249; dolce di tutti i suoni &#232; lode". - Senofonte</Italian>
+     <Spanish>"El m&#225;s dulce de todos los sonidos es la alabanza." - Jenofonte</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_74</Tag>
+     <English>"If you want to build a ship, don't drum up the men to gather wood, divide the work and give orders. Instead, teach them to yearn for the vast and endless sea." - Antoine de Saint-Exupery</English>
+     <French>"Quand tu veux construire un bateau, ne commence pas par rassembler du bois, couper des planches et distribuer du travail, mais r&#233;veille au sein des hommes le d&#233;sir de la mer grande et belle." - Antoine de Saint-Exup&#233;ry</French>
+     <German>"Wenn Du ein Schiff bauen willst, dann trommle nicht M&#228;nner zusammen um Holz zu beschaffen, Aufgaben zu vergeben und die Arbeit einzuteilen, sondern lehre die M&#228;nner die Sehnsucht nach dem weiten, endlosen Meer." - Antoine de Saint-Exupery</German>
+     <Italian>"Se vuoi costruire una nave, non radunare insieme le persone di procurarsi il legno per assegnare loro compiti e il lavoro, ma piuttosto insegnare loro a lungo per l'immensit&#224; infinito del mare." - Antoine de Saint-Exupery</Italian>
+     <Spanish>"Si quieres construir un barco, no reunas a los hombres para recoger le&#241;a, dividir el trabajo y dar &#243;rdenes. En su lugar, ens&#233;&#241;ales a a&#241;orar la inmensidad del mar." - Antoine de Saint-Exupery</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_75</Tag>
+     <English>"Draw the bow but don't shoot - it is a bigger threat to be intimidated than to be hit." - Chinese Proverb</English>
+     <French>"Span l'arc, mais ne tirez pas sur off! Pourtant, &#224; craindre, est plus efficace." - Proverbe chinois</French>
+     <German>"Spanne den Bogen, aber schie&#223;e nicht los! Noch gef&#252;rchtet zu sein, ist wirksamer." - Chinesisches Sprichwort</German>
+     <Italian>"Span l'arco, ma non sparare fuori! Eppure da temere, &#232; pi&#249; efficace." - Proverbio cinese</Italian>
+     <Spanish>"Apunta con el arco pero no dispares - es una amenaza mas grande ser intimidado que ser golpeado." - Proverbio chino</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_76</Tag>
+     <English>"Buy no salt until you have licked it!" - Proverb</English>
+     <French>"N'achetez pas de sel avant de l'avoir l&#233;ch&#233; !" - Proverbe</French>
+     <German>"Kauf kein Salz, bevor du daran geleckt hast!" - Sprichwort</German>
+     <Italian>"Compra senza sale, prima leccato it!" - Proverbio</Italian>
+     <Spanish>"&#161;No compres sal hasta que la hayas lamido!" - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_77</Tag>
+     <English>"Even a small axe can cut down a strong tree." - Proverb</English>
+     <French>"M&#234;me une petite hache peut abattre un gros arbre." - Proverbe</French>
+     <German>"Auch eine kleine Axt kann einen starken Baum umhauen." - Sprichwort</German>
+     <Italian>"Anche una piccola ascia in grado di abbattere un albero forte." - Proverbio</Italian>
+     <Spanish>"Incluso un hacha peque&#241;a puede talar un &#225;rbol fuerte." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_78</Tag>
+     <English>"They make a desert and call it peace." - Publius Cornelius Tacitus</English>
+     <French>"O&#249; ils ont fait un d&#233;sert, ils disent qu'ils ont donn&#233; la paix." - Tacite</French>
+     <German>"Sie schaffen eine W&#252;ste und nennen das Frieden." - Publius Cornelius Tacitus</German>
+     <Italian>"Fanno un deserto e lo chiamano pace". - Publio Cornelio Tacito</Italian>
+     <Spanish>"Hacen un desierto y lo llaman paz." - Publio Cornelio T&#225;cito</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_79</Tag>
+     <English>"No human trait deserves less tolerance in everyday life, and gets less, than intolerance." - Giacomo Leopardi</English>
+     <French>"Dans la vie, il n'est rien de plus intol&#233;rable, ni en fait de moins tol&#233;r&#233;, que l'intol&#233;rance." - Giacomo Leopardi</French>
+     <German>"Toleranz ist immer das Zeichen. da&#223; sich eine Herrschaft als gesichert betrachtet." - Max Frisch</German>
+     <Italian>"La tolleranza &#232; sempre il segno. Che una norma considerata certa." - Max Frisch</Italian>
+     <Spanish>"Ning&#250;n rasgo humano merece menos tolerancia en la vida cotidiana, y recibe menos, que la intolerancia." - Giacomo Leopardi</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_80</Tag>
+     <English>"Alea iacta est!" ("The die is cast.") - Julius Caesar</English>
+     <French>"Alea jacta est !" (Le sort en est jet&#233;) - Jules C&#233;sar</French>
+     <German>"Alea iacta est!" ("Der W&#252;rfel ist gefallen.") - Julius Caesar</German>
+     <Italian>"Alea iacta est!" ("Il dado &#232; tratto.") - Giulio Cesare</Italian>
+     <Spanish>"&#161;Alea iacta est!" ("La suerte est&#225; echada.") - Julio C&#233;sar</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_81</Tag>
+     <English>"We may not follow money, it is something we must approach." - Aristoteles Onassis</English>
+     <French>"L'argent ne vient pas &#224; vous, vous devez aller &#224; sa rencontre." - Aristote Onassis</French>
+     <German>"Dem Geld darf man nicht nachlaufen, man mu&#223; ihm entgegenkommen." - Aristoteles Onassis</German>
+     <Italian>"Il denaro non necessario correre, hai bisogno di lui". - Aristotele Onassis</Italian>
+     <Spanish>"No podemos seguir al dinero, es algo que debemos encarar." - Aristoteles Onassis</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_82</Tag>
+     <English>"A blow with a word strikes deeper than a blow with a sword." - Robert Burton</English>
+     <French>"Un coup port&#233; par un mot frappe plus fort que celui port&#233; par une &#233;p&#233;e." - Robert Burton</French>
+     <German>"Ein Schlag mit einem Wort trifft tiefer als ein Schlag mit einem Schwert." - Robert Burton</German>
+     <Italian>"Un colpo con una parola colpisce pi&#249; profondo di un colpo con una spada." - Robert Burton</Italian>
+     <Spanish>"Un golpe con una palabra golpea mas profundo que un golpe con una espada." - Robert Burton</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_83</Tag>
+     <English>"Logic is the anatomy of thought" - John Locke</English>
+     <French>"La logique est l'anatomie de la pens&#233;e." - John Locke</French>
+     <German>"Ich habe kaum einen Mathematiker gekannt, der Schlussfolgerungen ziehen konnte." - Plato</German>
+     <Italian>"Ho appena conosciuto un matematico che &#232; stato in grado di trarre delle conclusioni." - Platone</Italian>
+     <Spanish>"La l&#243;gica es la anatom&#237;a del pensamiento" - John Locke</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_84</Tag>
+     <English>"Destiny carries the willing man; and drags the unwilling." - Lucius Annaeus Seneca</English>
+     <French>"Le destin porte ceux qui l'acceptent et tra&#238;ne ceux qui le refusent." - S&#233;n&#232;que</French>
+     <German>"Den Willigen f&#252;hrt, den Unwilligen treibt das Schicksal." - Lucius Annaeus Seneca</German>
+     <Italian>"La porta della volont&#224;, gli azionamenti involontari del destino." - Lucio Anneo Seneca</Italian>
+     <Spanish>"El destindo lleva al hombre dispuesto; y arrastra a los reticientes." - Lucio Anneo S&#233;neca</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_85</Tag>
+     <English>"The most beautiful thing we can experience is the mysterious. It is the source of all true art and all science. He to whom this emotion is a stranger, who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed." - Albert Einstein</English>
+     <French>"J'&#233;prouve l'&#233;motion la plus forte devant le myst&#232;re de la vie. Le sentiment fonde le beau et le vrai, il suscite l'art et la science. Celui qui n'a jamais connu cette &#233;motion, ses yeux sont ferm&#233;s." - Albert Einstein</French>
+     <German>"Das Sch&#246;nste, was wir erleben k&#246;nnen, ist das Geheimnisvolle. Es ist das Grundgef&#252;hl, das an der Wiege von wahrer Kunst und Wissenschaft steht. Wer es nicht kennt und sich nicht wundern, nicht mehr staunen kann, der ist sozusagen tot und sein Auge erloschen." - Albert Einstein</German>
+     <Italian>"La cosa pi&#249; bella che possiamo sperimentare &#232; il mistero. E 'l'emozione fondamentale che sta alla base della vera arte e della scienza. Chi non conosce e non essere sorpreso, non pu&#242; pi&#249; meraviglia, &#232; come morto e gli occhi sono senza vita." - Albert Einstein</Italian>
+     <Spanish>"La cosa mas bonita que podemos experimentar es el misterio. Es la fuente del verdadero arte y de toda la ciencia. Aquel para quien esta emoci&#243;n es un extra&#241;o, que ya no puede detenerse a pensar y estar absorto en el temor, es como si estuviera muerto: sus ojos est&#225;n cerrados." - Albert Einstein</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_86</Tag>
+     <English>"Archimedes will be remembered when Aeschylus is forgotten, because languages die and mathematical ideas do not. Immortality may be a silly word, but probably a mathematician has the best chance of whatever it may mean." - G.H.Hardy</English>
+     <French>"On se souviendra d'Archim&#232;de quand on aura oubli&#233; Eschyle, parce que les langues meurent, mais pas les id&#233;es math&#233;matiques. Immortalit&#233; est sans doute un mot creux, mais un math&#233;maticien a probablement plus de chances d'en jouir qu'un autre." - G.H.Hardy</French>
+     <German>"An Archimedes wird man noch denken, wenn Aischylos l&#228;ngst vergessen ist, denn Sprachen sterben, mathematische Ideen jedoch nicht. Unsterblichkeit mag ein dummes Wort sein, doch was immer es bedeuten mag, ein Mathematiker hat wohl die besten Chancen, unsterblich zu werden." - G.H.Hardy</German>
+     <Italian>"A Archimede si continua a pensare a quando Eschilo &#232; dimenticato, perch&#233; le lingue muoiono e idee matematiche, ma ancora. L'immortalit&#224; pu&#242; essere una parola stupida, ma qualunque cosa ci&#242; possa significare esso, un matematico probabilmente ha le migliori possibilit&#224; di diventare immortale." - G.H.Hardy</Italian>
+     <Spanish>"Arqu&#237;medes ser&#225; recordado cuando Esquilo sea olvidado, poque los idiomas mueren y las ideas matem&#225;ticas no. La inmortalidad puede ser una palabra tonta, pero probablemente un matem&#225;tico tiene las mejores posibilidades de lo que puede significar." - G.H.Hardy</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_87</Tag>
+     <English>"Contentment is natural wealth, luxury is artificial poverty." - Socrates</English>
+     <French>"Le contentement est une richesse naturelle, le luxe est une pauvret&#233; artificielle." - Socrate</French>
+     <German>"Gen&#252;gsamkeit ist nat&#252;rlicher Reichtum, Luxus ist k&#252;nstliche Armut." - Sokrates</German>
+     <Italian>"La soddisfazione &#232; ricchezza naturale, il lusso &#232; la povert&#224; artificiale." - Socrate</Italian>
+     <Spanish>"La satisfacci&#243;n es la riqueza natural, el lujo es la pobreza artificial." - S&#243;crates</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_88</Tag>
+     <English>Reasons brought by coins, persuade best. - Proverb</English>
+     <French>"Une bourse d'or me para&#238;t toujours un argument sans r&#233;plique." - Pierre Augustin Caron de Beaumarchais</French>
+     <German>Gr&#252;nde aus der M&#252;nze geholt, &#252;berreden am besten. - Sprichwort</German>
+     <Italian>Motivi prelevato dalla menta convincere migliore. - Proverbio</Italian>
+     <Spanish>Razones tra&#237;das por las monedas, persuaden a los mejores. - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_89</Tag>
+     <English>"As for me, all I know is that I know nothing." - Socrates</English>
+     <French>"Tout ce que je sais, c'est que je ne sais rien." - Socrate</French>
+     <German>"Ich wei&#223;, dass ich nichts wei&#223;." - Sokrates</German>
+     <Italian>"So che non so nulla." - Socrate</Italian>
+     <Spanish>"En cuanto a m&#237;, todo lo que s&#233; es que no s&#233; nada." - S&#243;crates</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_90</Tag>
+     <English>"The wife, the horse and the sword may be shew'd, but not lent." - English Proverb</English>
+     <French>"L'&#233;pouse, le cheval et l'&#233;p&#233;e peuvent &#234;tre exhib&#233;s mais pas pr&#234;t&#233;s." - Proverbe anglais</French>
+     <German>"Dein Pferd, dein Weib und dein Schwert leih nicht her." - Englisches Sprichwort</German>
+     <Italian>"Il vostro cavallo, tua moglie e la tua spada non prestano fa." - Proverbio inglese</Italian>
+     <Spanish>"La esposa, el caballo y la espada pueden ser mostradas, pero no prestadas." - Proverbio ingl&#233;s</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_91</Tag>
+     <English>"A healthy mind in a healthy body." - Decimus Iunius Juvenal</English>
+     <French>"Un esprit sain dans un corps sain." - Decimus Junius Juvenal</French>
+     <German>"Ein gesunder Geist in einem gesunden K&#246;rper." - Decimus Iunius Juvenal</German>
+     <Italian>"Una mente sana in un corpo sano". - Decimo Giunio Giovenale</Italian>
+     <Spanish>"Una mente sana en un cuerpo sano." - D&#233;cimo Junio Juvenal</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_92</Tag>
+     <English>"One who lived well, lived unnoticed." - Ovid</English>
+     <French>"Pour vivre heureux, vivons cach&#233;s." - Ovide</French>
+     <German>"Gl&#252;cklich lebte, wer sich gut verborgen hielt." - Ovid</German>
+     <Italian>"Happy vissuto, che si &#232; tenuto ben nascosto." - Ovidio</Italian>
+     <Spanish>"El que vivi&#243; bien, pas&#243; desapercibido." - Ovidio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_93</Tag>
+     <English>"Care, and not fine stables, makes a good horse." - Danish Proverb</English>
+     <French>"Ce sont les soins, et non les bonnes &#233;curies, qui font les bons chevaux." - Proverbe danois</French>
+     <German>"Gute Pflege, nicht ein sch&#246;ner Stall macht ein gutes Pferd." - D&#228;nisches Sprichwort</German>
+     <Italian>"Buona cura, non &#232; un bel fienile fa un buon cavallo." - Proverbio danese</Italian>
+     <Spanish>"Cuidados, y no buenos establos, hacen un buen caballo." - Proverbio dan&#233;s</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_94</Tag>
+     <English>"Two captains will sink the ship." - Turkish Proverb</English>
+     <French>"Deux capitaines couleront un navire." - Proverbe turc</French>
+     <German>"Das Schiff, auf dem sich zwei Kapit&#228;ne befinden, geht unter." - T&#252;rkisches Sprichwort</German>
+     <Italian>"La nave su cui ci sono due capitani, va gi&#249;." - Proverbio turco</Italian>
+     <Spanish>"Dos capitanes pueden hundir el barco" - Proverbio turco</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_95</Tag>
+     <English>"The best armor is to keep out of range" - Italian Proverb</English>
+     <French>"La meilleure armure consiste &#224; se tenir hors d'atteinte." - Proverbe italien</French>
+     <German>"Distanz ist die beste R&#252;stung." - Italienisches Sprichwort</German>
+     <Italian>"La distanza &#232; la migliore armatura." - Proverbio italiano</Italian>
+     <Spanish>"La mejor armadura es mantenerse fuera de alcance" - Proverbio italiano</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_96</Tag>
+     <English>"A horse of good breed is not dishonored by his saddle" - Arabian Proverb</English>
+     <French>"Un cheval de bonne lign&#233;e n'est pas d&#233;shonor&#233; par sa selle." - Proverbe arabe</French>
+     <German>"Erst satteln, dann reiten! Doch ist zuzeiten verloren der Mann, der ohne Sattel nicht reiten kann." - Karl Weitbrecht</German>
+     <Italian>"Solo sella, poi giro! Ma &#232; a volte perso l'uomo che non pu&#242; cavalcare senza sella." - Karl Weitbrecht</Italian>
+     <Spanish>"Un caballo de pura raza no es deshonrada por su montura" - Proverbio &#225;rabe</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_98</Tag>
+     <English>"Taking part is everything!" - Olympic principle</English>
+     <French>"L'important, c'est de participer !" - Principe olympique</French>
+     <German>"Dabei sein ist alles!" - Olympisches Prinzip</German>
+     <Italian>"Esserci &#232; tutto!" - Principio di Olympic</Italian>
+     <Spanish>"&#161;Tomar parte lo es todo!" - Principio Ol&#237;mpico</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_99</Tag>
+     <English>"What is elegance? Soap and water!" - Cecil Beaton</English>
+     <French>"Qu'est-ce que l'&#233;l&#233;gance ? Du savon et de l'eau !" - Cecil Beaton</French>
+     <German>Was ist Eleganz? Wasser und Seife! Cecil Beaton</German>
+     <Italian>Che cos'&#232; l'eleganza? Acqua e sapone! Cecil Beaton</Italian>
+     <Spanish>"&#191;Qu&#233; es la elegancia? &#161;Agua y jab&#243;n!" - Cecil Beaton</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_100</Tag>
+     <English>"I can calculate the movement of the stars, but not the madness of men." - Isaac Newton</English>
+     <French>"Je sais calculer le mouvement des corps pesants, mais pas la folie des foules." - Isaac Newton</French>
+     <German>"Ich kann die Bewegung der Himmelsk&#246;rper berechnen, aber nicht das Verhalten der Menschen." - Isaac Newton</German>
+     <Italian>"Posso calcolare il moto dei corpi celesti, ma non il comportamento della gente." - Isaac Newton</Italian>
+     <Spanish>"Puedo calcular el movimiento de las estrellas, pero no la locura de los hombres." - Isaac Newton</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_101</Tag>
+     <English>"All roads lead to Rome." - Proverb</English>
+     <French>"Tous les chemins m&#232;nent &#224; Rome." - Proverbe</French>
+     <German>"Alle Wege f&#252;hren nach Rom." - Sprichwort</German>
+     <Italian>"Tutte le strade portano a Roma". - Proverbio</Italian>
+     <Spanish>"Todos los caminos llevan a Roma." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_102</Tag>
+     <English>"Religion is regarded by the common people as true, by the wise as false, and by rulers as useful." - Lucius Annaeus Seneca</English>
+     <French>"La religion est consid&#233;r&#233;e par les gens ordinaires comme vraie, par les sages comme fausse, et par les dirigeants comme utile." - S&#233;n&#232;que</French>
+     <German>"Religion gilt dem gemeinen Mann als wahr, dem Weisen als falsch und dem Herrscher als n&#252;tzlich." - Lucius Annaeus Seneca</German>
+     <Italian>La religione &#232; considerato l'uomo comune come vero, il saggio come falsa, ei governanti come utile "-. Lucio Anneo Seneca</Italian>
+     <Spanish>"La religi&#243;n es considerada por la gente com&#250;n como verdadera, por los sabios como falsa, y por los gobernantes como &#250;til." - Lucio Anneo S&#233;neca</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_103</Tag>
+     <English>"Always when a state prospers, obedience has built its house." - Sophocles</English>
+     <French>"L'ob&#233;issance est la fondation de toute nation prosp&#232;re." - Sophocle</French>
+     <German>"Immer wo ein Staat gedeiht, hat der Gehorsam ihm das Haus gebaut." - Sophokles</German>
+     <Italian>"Sempre se uno Stato prospera, l'obbedienza ha costruito la casa per lui." - Sofocle</Italian>
+     <Spanish>"Siempre que un estado prospera, la obediencia construye su casa." - S&#243;focles</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_104</Tag>
+     <English>"Put it before them briefly, so they will read it, clearly so they will appreciate it, picturesquely so they will remember it and, above all, accurately so they will be guided by its light." - Joseph Pulitzer</English>
+     <French>"Ecrivez court pour &#234;tre lu, &#233;crivez clairement pour &#234;tre compris, &#233;crivez imag&#233; pour rester en m&#233;moire !" - Joseph Pulitzer</French>
+     <German>"Halte es kurz, damit sie es lesen, klar, damit sie es w&#252;rdigen k&#246;nnen, anschaulich, damit sie sich daran erinnern und, vor allem, korrekt, damit es den richtigen Weg weist." - Joseph Pulitzer</German>
+     <Italian>"Di essere breve in modo che lo leggono, chiaramente in modo che possano apprezzare, chiaramente in modo che si ricorder&#224; e, soprattutto, corretto in modo che abbia il modo giusto." - Joseph Pulitzer</Italian>
+     <Spanish>"Ponedlo antes que ellos brevemente, que puedan leerlo, claramente para que puedan apreciarlo, pintorescamente para que lo recuerden y, sobre todo, con precisi&#243;n para que puedan ser gu&#237;ados por su luz." - Joseph Pulitzer</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_105</Tag>
+     <English>"Hold friendship with the bear! But consider to keep the axe on hand!" - Proverb</English>
+     <French>"Fais ami avec le loup, mais garde ta hache pr&#234;te." - Proverbe russe</French>
+     <German>"Halte Freundschaft mit dem B&#228;ren! Doch halte auch immer die Axt bereit!" - Sprichwort</German>
+     <Italian>"Hold amicizia con l'orso! Tuttavia, tenere sempre pronto l'ascia!" - Proverbio</Italian>
+     <Spanish>"&#161;Mant&#233;n la amistad con el oso! &#161;Pero considera mantener el hacha en la mano!" - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_106</Tag>
+     <English>"Whoever wishes for peace, let him prepare for war." - Flavius Vegetius Renatus</English>
+     <French>"Qui veut la paix pr&#233;pare la guerre." - V&#233;g&#232;ce</French>
+     <German>"Wer sich nach Frieden sehnt, bereite den Krieg vor." - Flavius Vegetius Renatus</German>
+     <Italian>"Coloro che a lungo per la pace, prepara la guerra". - Flavio Vegezio Renatus</Italian>
+     <Spanish>"Quien desea la paz, dejadle que se prepare para la guerra." - Flavio Vegecio Renato</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_107</Tag>
+     <English>"Don't refuse the help of a mercenary. Keep in mind - every one of these creatures is worth two soldiers: one more warrior on your side and one fewer on the side of the enemy." - Anon</English>
+     <French>"Ne refusez pas l'aide d'un mercenaire. Rappelez-vous que chacune de ces cr&#233;atures vaut deux soldats : un guerrier de plus &#224; vos c&#244;t&#233;s et un de moins chez l'ennemi." - Anon</French>
+     <German>"Lehne nicht die Hilfe des S&#246;ldners ab. Bedenke - jede dieser Kreaturen ist soviel wert wie zwei Soldaten: ein Krieger mehr auf deiner Seite und einer weniger auf der deines Feindes." - Anon</German>
+     <Italian>"Non rifiutare l'aiuto del mercenario. Ricordate - ognuna di queste creature vale quanto due soldati: un guerriero pi&#249; su un fianco e meno sul tuo nemico." - Anon</Italian>
+     <Spanish>"No rechazes la ayuda de un mercenario. Mantenlo en mente - cada una de estas criaturas vale dos soldados: un guerrero mas a tu lado y uno menos en el lado del enemigo." - Anon</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_108</Tag>
+     <English>"Life is short, but Art is long." - Hippokrates</English>
+     <French>"L'art est long, la vie est br&#232;ve." - Hippocrate</French>
+     <German>"Das Leben ist kurz, lang die Kunst." - Hippokrates</German>
+     <Italian>"La vita &#232; breve, l'arte lunga." - Ippocrate</Italian>
+     <Spanish>"La vida es corta, pero el arte es longevo." - Hip&#243;crates</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_109</Tag>
+     <English>"There are many religions, but only a moral." - John Ruskin</English>
+     <French>"Il y a beaucoup de religions, mais seulement une morale." - John Ruskin</French>
+     <German>"Es gibt viele Religionen, aber nur eine Moral." - John Ruskin</German>
+     <Italian>"Ci sono molte religioni, ma solo una morale." - John Ruskin</Italian>
+     <Spanish>"Hay varias religiones, pero solo una moral." - John Ruskin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_110</Tag>
+     <English>"War is the father of all and king of all, who manifested some as gods and some as men, who made some slaves and some freemen." - Heraclitus</English>
+     <French>"La guerre est m&#232;re de toutes choses, reine de toutes choses, et elle fait appara&#238;tre les uns comme dieux, les autres comme hommes, et elle fait les uns libres et les autres esclaves." - H&#233;raclite</French>
+     <German>"Der Krieg ist der Vater aller Dinge und der K&#246;nig aller. Die einen macht er zu G&#246;ttern, die andern zu Menschen, die einen zu Sklaven, die andern zu Freien." - Heraklit</German>
+     <Italian>"La guerra &#232; il padre di tutte le cose e il re di tutti., Quella che fa dei, e alcune a persone che vogliono diventare schiavi, altri all'aria aperta". - Eraclito</Italian>
+     <Spanish>"La guerra es el padre de todo y el rey de todo, que se manifiesta como dioses de algunos y como hombres de otros, que hace de algunos esclavos y de otros hombres libres." - Her&#225;clito</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_111</Tag>
+     <English>"The art of medicine consists in amusing the patient while nature cures the disease." - Voltaire</English>
+     <French>"Le secret de la m&#233;decine consiste &#224; distraire le patient pendant que la nature le gu&#233;rit." - Voltaire</French>
+     <German>"Das Geheimnis der Medizin besteht darin, den Patienten abzulenken, w&#228;hrend die Natur sich selber hilft." - Voltaire</German>
+     <Italian>"Il segreto della medicina &#232; quello di distrarre il paziente mentre la natura stessa aiuta." - Voltaire</Italian>
+     <Spanish>"El arte de la medicina consiste en entretener al paciente mientras la naturaleza cura la enfermedad." - Voltaire</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_112</Tag>
+     <English>"When it is a question of money, everyone is of the same religion." - Voltaire</English>
+     <French>"Quand il s'agit d'argent, tout le monde est de la m&#234;me religion." - Voltaire</French>
+     <German>"Der Kaufmann hat in der ganzen Welt dieselbe Religion." - Heinrich Heine</German>
+     <Italian>"Il commerciante ha in tutto il mondo la stessa religione". - Heinrich Heine</Italian>
+     <Spanish>"Cuando es una cuesti&#243;n de dinero, todos son de las misma religi&#243;n." - Voltaire</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_114</Tag>
+     <English>"In vino veritas" ("In wine there is the truth") - Pliny the Elder</English>
+     <French>"In vino veritas" ("Dans le vin la v&#233;rit&#233;") - Pline l'Ancien</French>
+     <German>"In vino veritas" ("Im Wein liegt die Wahrheit") - Plinius der &#196;ltere</German>
+     <Italian>"In vino veritas" ("Nel vino c'&#232; la verit&#224;") - Plinio il Vecchio</Italian>
+     <Spanish>"In vino veritas" ("En el vino est&#225; la verdad") - Plinio el Viejo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_115</Tag>
+     <English>"A writer who is a master in accounting is bad in cuneiform. A writer who is a master in cuneiform is bad in accounting." - Sumerian proverb</English>
+     <French>"Un scribe bon comptable est mauvais cun&#233;iformiste. Un scribe bon cun&#233;iformiste est mauvais comptable" - Proverbe sum&#233;rien</French>
+     <German>"Ein Schreiber, der Meister im Rechnen ist, ist schlecht im Ton. Ein Schreiber, der Meister im Ton ist, ist schlecht im Rechnen." - Sumerisches Sprichwort</German>
+     <Italian>"Uno scrittore che maestri in aritmetica &#232;, &#232; un male in tono. Uno scrittore che Champion Sound &#232;, &#232; povero in aritmetica." - Proverbio sumerico</Italian>
+     <Spanish>"Un escritor que es un maestro en contabilidad es malo en escritura cuneiforme. Un escritor que es un maestro en escritura cuneiforme es malo en contabilidad." - Proverbio sumerio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_116</Tag>
+     <English>"All places are alike, and every earth is fit for burial." - Christopher Marlowe</English>
+     <French>"Tous les lieux se ressemblent, et chaque terre est bonne pour un enterrement." - Christopher Marlowe</French>
+     <German>"Ein weiser Mann, der sich nicht brauchen l&#228;&#223;t, und ein vergrabener Schatz - wozu sind die beiden n&#252;tze?" - Jesus Sirach, 2. Jh. v. Chr.</German>
+     <Italian>"Un uomo saggio non ha bisogno, e tesori nascosti - Quali sono le due redditizio?" - Ecclesiastico, 2 Secolo aC</Italian>
+     <Spanish>"Todos los lugares son iguales, y toda la tierra es apta para el entierro." - Christopher Marlowe</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_117</Tag>
+     <English>"The wife, the mill and the ship is always lacking in something." - Proverb</English>
+     <French>"Il manque toujours quelque chose &#224; la femme, au moulin et au navire." - Proverbe</French>
+     <German>"Der Frau, der M&#252;hle und dem Schiff mangelt es immer an etwas." - Sprichwort</German>
+     <Italian>"La donna, il mulino e la nave manca sempre qualcosa." - Proverbio</Italian>
+     <Spanish>"La esposa, el molino y el barco siempre se echa en falta algo." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_118</Tag>
+     <English>"Building well has three conditions: Firmitas (firmness), Utilitas (commodity) and Venustas (delight)." - Vitruv, Roman architect 1st c. BC</English>
+     <French>"L'architecture doit satisfaire &#224; trois principes : Firmitas, Utilitas et Venustats (Solide, utile et belle)." - Vitruve, architecte romain du 1er si&#232;cle av JC</French>
+     <German>"Architektur beruht auf drei Prinzipien: Firmitas (Festigkeit, Stabilit&#228;t), Utilitas (Zweckm&#228;&#223;igkeit, N&#252;tzlichkeit) und Venustas (Anmut, Sch&#246;nheit)." - Vitruv, r&#246;mischer Architekt 1 Jh. v. Chr.</German>
+     <Italian>"L'architettura si basa su tre principi:. Firmitas (solidit&#224;, stabilit&#224;), Utilitas (appropriatezza, utilit&#224;) e venustas (grazia, bellezza)" - Vitruvio, architetto romano 1 a.C </Italian>
+     <Spanish>"La arquitectura descansa en tres principios: Firmitas (firmeza), Utilitas (utilidad) and Venustas (belleza)." - Vitruvio, arquitecto romano siglo I a.C</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_119</Tag>
+     <English>"Attack is the best form of defence." - Proverb</English>
+     <French>"La meilleure d&#233;fense, c'est l'attaque." - Proverbe</French>
+     <German>"Angriff ist die beste Verteidigung." - Sprichwort</German>
+     <Italian>"Attack &#232; la miglior difesa". - Proverbio</Italian>
+     <Spanish>"El ataque es la mejor defensa." - Proverbio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_120</Tag>
+     <English>Beer is the living proof that God loves us and wants us to be happy. - Benjamin Franklin</English>
+     <French>La bi&#232;re est la preuve que Dieu nous aime et veut que nous soyons heureux. - Benjamin Franklin</French>
+     <German>Bier ist der Beweis, dass Gott uns liebt und will, dass wir gl&#252;cklich sind. - Benjamin Franklin</German>
+     <Italian>La birra &#232; la prova che Dio ci ama e vuole che siamo felici. - Benjamin Franklin</Italian>
+     <Spanish>La cerveza es la prueba de que Dios nos ama y quiere que seamos felices. - Benjamin Franklin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_121</Tag>
+     <English>"To understand a saint, his devotion is sufficient. In order to understand some theologians, a translation is required." - Ernst R. Hauschka</English>
+     <French>"Pour comprendre un saint, sa pi&#233;t&#233; est suffisante. Pour comprendre certains th&#233;ologiens, une traduction est n&#233;cessaire." - Ernst R. Hauschka</French>
+     <German>"Um einen Heiligen zu verstehen, gen&#252;gt seine Verehrung. Um manche Theologen zu verstehen, bedarf es einer &#220;bersetzung." - Ernst R. Hauschka</German>
+     <Italian>"Per capire un santo, il suo culto &#232; sufficiente. Per comprendere alcuni teologi, che richiede una traduzione." - Ernst R. Hauschka</Italian>
+     <Spanish>"Para entender a un santo, su devoci&#243;n es suficiente. Para entender a algunos te&#243;logos, se necesita una traducci&#243;n." - Ernst R. Hauschka</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_122</Tag>
+     <English>"The axe at home oft saves the carpenter." - Friedrich Schiller</English>
+     <French>"Avec ma hache, je sais me passer de charpentier." - Friedrich von Schiller</French>
+     <German>"Die Axt im Haus erspart den Zimmermann." - Friedrich von Schiller</German>
+     <Italian>"L'ascia nella casa salva il falegname." - Friedrich von Schiller</Italian>
+     <Spanish>"El hacha en casa salva a menudo al carpintero." - Friedrich Schiller</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_123</Tag>
+     <English>"We must reform society before we can reform ourselves." - George Bernard Shaw</English>
+     <French>"Nous devons r&#233;former la soci&#233;t&#233; avant que nous puissions nous r&#233;former." - George Bernard Shaw</French>
+     <German>"Wir m&#252;ssen die Gesellschaft reformieren, bevor wir uns selbst reformieren." - George Bernard Shaw</German>
+     <Italian>"Dobbiamo riformare la societ&#224;, prima di riformare noi stessi." - George Bernard Shaw</Italian>
+     <Spanish>"Debemos reformar a la sociedad antes de poder reformarnos a nosotros mismos." - George Bernard Shaw</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_124</Tag>
+     <English>"Legio expedita!" (The Legion is ready to fight!)</English>
+     <French>"Legio Expedita !" (Garde &#224; vous !)</French>
+     <German>"Legio expedita!" (Die Legion ist kampfbereit!)</German>
+     <Italian>"Legio Expedita!" (La Legione &#232; pronto a combattere!)</Italian>
+     <Spanish>"&#161;Legio expedita!" (&#161;La legi&#243;n est&#225; preparada para luchar!)</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_125</Tag>
+     <English>Heureka! - Archimedes</English>
+     <French>Eur&#234;ka ! - Archim&#232;de</French>
+     <German>Heureka! - Archimedes</German>
+     <Italian>Eureka! - Archimede</Italian>
+     <Spanish>&#161;Eureka! - Arqu&#237;medes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_126</Tag>
+     <English>"[...]when Rome falls, so falls the world." - Beda Venerabilis</English>
+     <French>"[...] Quand Rome tombera, le monde tombera." - B&#232;de le V&#233;n&#233;rable</French>
+     <German>"[...]wenn Rom f&#228;llt, wird auch die Welt untergehen." - Beda Venerabilis</German>
+     <Italian>"[...] Quando Roma cade, il mondo finir&#224;." - Venerabile Beda</Italian>
+     <Spanish>"[...]cuando Roma cae, as&#237; cae el mundo." - Beda Venerabilis</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_127</Tag>
+     <English>"Imperatorem facit exercitus" - The Imperator gets appointed by the army.</English>
+     <French>"Imperatorem exercitus facit" - L'arm&#233;e fait l'emprereur</French>
+     <German>"Imperatorem facit exercitus" - Den Kaiser stellt das Heer.</German>
+     <Italian>"Imperatorem exercitus Facit" - L'Imperatore &#232; l'esercito.</Italian>
+     <Spanish>"Imperatorem facit exercitus" - El emperador ha sido impuesto por el ej&#233;rcito.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_61</Tag>
+     <English>"The first blow has to be strong, then you save many more." - Persian proverb</English>
+     <French>"Le premier coup doit &#234;tre fort, alors vous en &#233;conomiserez beaucoup d'autres." - Proverbe persan</French>
+     <German>"Der erste Schlag muss kr&#228;ftig sein, dann ersparst du dir viele weitere." - Persisches Sprichwort</German>
+     <Italian>"Il primo colpo deve essere forte, quindi si salva da soli molto di pi&#249;." - Proverbio persiano</Italian>
+     <Spanish>"El primer golpe tiene que ser fuerte, as&#237; puedes guardarte de m&#225;s." - Proverbio persa</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_128</Tag>
+     <English>"A horse without rider is still a horse; A rider without horse is just a person." - Stanislaw Jerzy Lec</English>
+     <French>"Un cheval sans cavalier est toujours un cheval. Un cavalier sans cheval juste un homme." - Stanislaw Jerzy Lec</French>
+     <German>"Ein Pferd ohne Reiter ist immer ein Pferd. Ein Reiter ohne Pferd nur ein Mensch." - Stanislaw Jerzy Lec</German>
+     <Italian>"Un cavallo senza cavaliere &#232; sempre un cavallo. Un cavaliere senza cavallo solo un uomo." - Stanislaw Jerzy Lec</Italian>
+     <Spanish>"Un caballo sin jinete sigue siendo un caballo; Un jinete sin un caballo es s&#243;lo una persona." - Stanislaw Jerzy Lec</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_129</Tag>
+     <English>"Only he who knows his destination, finds the way." - Laozi</English>
+     <French>"Seul celui qui connait sa destination trouve le chemin." - Lao-Tseu</French>
+     <German>"Nur wer sein Ziel kennt, findet den Weg." - Laozi</German>
+     <Italian>"Solo chi conosce il suo obiettivo sar&#224; trovare la sua strada." - Laozi</Italian>
+     <Spanish>"S&#243;lo quien conoce su destino, encuentra su camino." Lao-Ts&#233;</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_130</Tag>
+     <English>"Ora et labora" (Pray and work) - Principle of the Benedicts</English>
+     <French>"Ora et labora" (Prie et travaille) - Principe des b&#233;n&#233;dictins</French>
+     <German>"Ora et labora" (Bete und arbeite) - Grundsatz der Benediktiner</German>
+     <Italian>"Ora et labora" (prega e lavora) - Principio di benedettino</Italian>
+     <Spanish>"Ora et labora" (Reza y trabaja) - Principio de los benedictinos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_131</Tag>
+     <English>"The first human who hurled an insult instead of a stone was the founder of civilization." - Sigmund Freud</English>
+     <French>"Le premier homme &#224; jeter une insulte plut&#244;t qu'une pierre est le fondateur de la civilisation." - Sigmund Freud</French>
+     <German>"Derjenige, der zum erstenmal an Stelle eines Speeres ein Schimpfwort benutzte, war der Begr&#252;nder der Zivilisation." - Sigmund Freud</German>
+     <Italian>"Colui che prende il posto di una lancia usato una parolaccia per la prima volta, &#232; stato il fondatore della civilt&#224;." - Sigmund Freud</Italian>
+     <Spanish>"El primer humano que insult&#243; a su enemigo en vez de tirarle una piedra fue el fundador de la civilizaci&#243;n." - Sigmund Freud</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_132</Tag>
+     <English>"You call it a sin that I love the dog above all else? The dog stayed with me in the storm, the man not even in the wind!" - St. Francis of Assisi</English>
+     <French>"Tu me dis que mon amour pour le chien est un p&#233;ch&#233;. Mais songe-y, mon chien m'a &#233;t&#233; fid&#232;le &#224; travers la temp&#234;te. Et toi ? M&#234;me pas dans le vent." - Saint Fran&#231;ois d'Assise</French>
+     <German>"Dass mir mein Hund das Liebste sei, sagst du, oh Mensch, sei S&#252;nde, mein Hund ist mir im Sturme treu, der Mensch nicht mal im Winde!" - Franz von Assisi</German>
+     <Italian>"Il fatto che il mio cane era il pi&#249; caro, tu dici, oh uomo, era un peccato, il mio cane &#232; fedele nella tempesta, l'uomo nemmeno nel vento!" - Francesco d'Assisi</Italian>
+     <Spanish>"&#191;Puedes llamarlo un pecado qu&#233; me encante el perro por encima de todo lo dem&#225;s? &#161;El perro permaneci&#243; conmigo en la tormenta, el hombre ni con el viento!" - San Francisco de As&#237;s</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_133</Tag>
+     <English>"Labor omnia vincit" (Labor conquers all things) - Virgil</English>
+     <French>"Labor omnia vincit" - Virgil</French>
+     <German>"Labor omnia vincit" (Arbeit besiegt alles) - Vergil</German>
+     <Italian>"Labor omnia vincit" - Virgilio</Italian>
+     <Spanish>"Labor omnia vincit" (El trabajo todo lo vence) - Virgilio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_134</Tag>
+     <English>Economy is as tough as the battle at the Teutoburg. - Friedrich D&#252;rrenmatt</English>
+     <French>Economy is as tough as the battle at the Teutoburg. - Friedrich D&#252;rrenmatt</French>
+     <German>In der Wirtschaft geht es nicht gn&#228;diger zu als in der Schlacht im Teutoburger Wald. - Friedrich D&#252;rrenmatt</German>
+     <Italian>Economy is as tough as the battle at the Teutoburg. - Friedrich D&#252;rrenmatt</Italian>
+     <Spanish>La econom&#237;a es tan dura como la batalla de Teutoburgo. - Friedrich D&#252;rrenmatt</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_135</Tag>
+     <English>The more human beings proceed by plan the more effectively they may be hit by accident. - Friedrich D&#252;rrenmatt</English>
+     <French>The more human beings proceed by plan the more effectively they may be hit by accident. - Friedrich D&#252;rrenmatt</French>
+     <German>Je planm&#228;&#223;iger die Menschen vorgehen, desto wirksamer vermag sie der Zufall treffen. - Friedrich D&#252;rrenmatt</German>
+     <Italian>The more human beings proceed by plan the more effectively they may be hit by accident. - Friedrich D&#252;rrenmatt</Italian>
+     <Spanish>Los seres humanos que proceden el plan de la manera m&#225;s efectiva pueden ser afectados por accidente. - Friedrich D&#252;rrenmatt</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_136</Tag>
+     <English>Nobody heads more easily than those who have no heads. - Friedrich D&#252;rrenmatt</English>
+     <French>Nobody heads more easily than those who have no heads. - Friedrich D&#252;rrenmatt</French>
+     <German>Niemand k&#246;pft leichter als jene, die keine K&#246;pfe haben. - Friedrich D&#252;rrenmatt</German>
+     <Italian>Nobody heads more easily than those who have no heads. - Friedrich D&#252;rrenmatt</Italian>
+     <Spanish>Nadie encabeza con m&#225;s facilidad que los que no tienen cabeza. - Friedrich D&#252;rrenmatt</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_QUOTE_137</Tag>
+     <English>The experience of the general is much more important than his physical strength. - Onasandros, 1 cent. BC</English>
+     <French>The experience of the general is much more important than his physical strength. - Onasandros, 1 cent. BC</French>
+     <German>Die Erfahrung des Feldherren ist viel wichtiger als seine K&#246;rperkraft. - Onasandros, 1 Jh. v. Chr.</German>
+     <Italian>The experience of the general is much more important than his physical strength. - Onasandros, 1 cent. BC</Italian>
+     <Spanish>La experiencia del general es mucho mas importante que su fuerza f&#237;sica. - Onasandros, S. I a.C</Spanish>
+   </TEXT>
+</Civ4GameText>

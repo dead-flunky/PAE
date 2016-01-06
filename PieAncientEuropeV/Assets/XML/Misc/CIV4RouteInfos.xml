@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<Civ4RouteInfos xmlns="x-schema:CIV4MiscSchema.xml">
+  <RouteInfos>
+    <RouteInfo>
+      <Type>ROUTE_ROAD</Type>
+      <Description>TXT_KEY_ROUTE_ROAD</Description>
+      <iValue>1</iValue>
+      <iAdvancedStartCost>10</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <iMovement>30</iMovement>
+      <iFlatMovement>30</iFlatMovement>
+      <BonusType/>
+      <PrereqOrBonuses/>
+      <Yields/>
+      <TechMovementChanges/>
+      <Button>Art/Interface/Buttons/Builds/BuildRoad.dds</Button>
+    </RouteInfo>
+    <RouteInfo>
+      <Type>ROUTE_RAILROAD</Type>
+      <Description>TXT_KEY_ROUTE_ROMAN_ROAD</Description>
+      <iValue>2</iValue>
+      <iAdvancedStartCost>30</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <iMovement>15</iMovement>
+      <iFlatMovement>15</iFlatMovement>
+      <BonusType/>
+      <PrereqOrBonuses/>
+      <Yields/>
+      <TechMovementChanges/>
+      <Button>,Art/Interface/Buttons/Builds/BuildRailroad.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,3,9</Button>
+    </RouteInfo>
+    <RouteInfo>
+      <Type>ROUTE_PERSIAN_ROAD</Type>
+      <Description>TXT_KEY_ROUTE_PERSIAN_ROAD</Description>
+      <iValue>2</iValue>
+      <iAdvancedStartCost>20</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <iMovement>20</iMovement>
+      <iFlatMovement>20</iFlatMovement>
+      <BonusType/>
+      <PrereqOrBonuses/>
+      <Yields/>
+      <TechMovementChanges/>
+      <Button>Art/Interface/Buttons/Builds/Build_Persian_Road.dds</Button>
+    </RouteInfo>
+  </RouteInfos>
+</Civ4RouteInfos>

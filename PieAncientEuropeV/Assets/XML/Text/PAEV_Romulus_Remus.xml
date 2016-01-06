@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+ <TEXT>
+    <Tag>TXT_KEY_SCENARIO_ROMULUS_REMUS</Tag>
+    <English>DoctorG's Romulus scenario overhaul by Keinpferd.[NEWLINE][NEWLINE]Quoting DoctorG: In this scenario, we have a map of central Italy, in 753 BC. Romulus, mythical king of Rome, has just founded a city on the banks of the Tiber. Its population: outcasts and criminals. The neighborhood is a bit crowded, since Italy has been populated since the last ice-age. To the north of Rome lie the Etruscan and Faliscan peoples; to the south, other Latins. Various other tribes live in the far hills...</English>
+    <French>DoctorG's Romulus scenario overhaul by Keinpferd.[NEWLINE][NEWLINE]Quoting DoctorG: In this scenario, we have a map of central Italy, in 753 BC. Romulus, mythical king of Rome, has just founded a city on the banks of the Tiber. Its population: outcasts and criminals. The neighborhood is a bit crowded, since Italy has been populated since the last ice-age. To the north of Rome lie the Etruscan and Faliscan peoples; to the south, other Latins. Various other tribes live in the far hills...</French>
+    <German>DoctorG's Romulus-Szenario umgestaltet von Keinpferd.[NEWLINE][NEWLINE]Zitat DoctorG: In diesem Szenario haben wir eine Karte von Mittelitalien im Jahre 753 v. Chr..  Romulus, der mythische K&#246;nig Roms, hat soeben eine Stadt am Ufer des Tibers gegr&#252;ndet. Ihre Bev&#246;lkerung: Ausgesto&#223;ene und Verbrecher. Drumherum ist es ein bi&#223;chen voll, da man in Italien schon seit der letzten Eiszeit siedelte. Im Norden sind die Etrusker und Falisker; im S&#252;den andere Latiner. Verschiedene andere V&#246;lker leben im bergigen Hinterland. Runden entsprechen Jahren.</German>
+    <Italian>DoctorG's Romulus scenario overhaul by Keinpferd.[NEWLINE][NEWLINE]Quoting DoctorG: In this scenario, we have a map of central Italy, in 753 BC. Romulus, mythical king of Rome, has just founded a city on the banks of the Tiber. Its population: outcasts and criminals. The neighborhood is a bit crowded, since Italy has been populated since the last ice-age. To the north of Rome lie the Etruscan and Faliscan peoples; to the south, other Latins. Various other tribes live in the far hills...</Italian>
+    <Spanish>Escenario de R&#243;mulo del DoctorG revisado por Keinpferd.[NEWLINE][NEWLINE]Citando a DoctorG: En este escenario, tenemos un mapa de Italia central, en el 753 a.C. R&#243;mulo, el rey m&#237;tico de Roma, ha fundado recientemente Roma en las orillas del T&#237;ber. Su poblaci&#243;n: marginados y criminales. Las cercan&#237;as est&#225;n un poco abarratodas, desde que Italia ha sido poblada desde la &#250;ltima edad de hielo. Al norte de Roma residen los pueblos Etruscos y Faliscos; al sur, otros Latinos. Otras variadas tribus viven en las colinas lejanas...</Spanish>
+  </TEXT>
+ <TEXT>
+    <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_ROMULUS_REMUS</Tag>
+    <English>Pie's Ancient Europe - Romulus and Remus</English>
+    <French>Pie's Ancient Europe - Romulus and Remus</French>
+    <German>Pie's Antikes Europa - Romulus and Remus</German>
+    <Italian>Pie's Ancient Europe - Romulus and Remus</Italian>
+    <Spanish>Pie's Ancient Europe - Romulus and Remus</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_DAWN_OF_MAN_ROMULUS_REMUS</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_ETRUSKISCHE_SIEDLUNG</Tag>
+    <English>Etruscan Settlement</English>
+    <French>Cit&#233; &#233;truscienne</French>
+    <German>Etruskische Siedlung</German>
+    <Italian>Insediamento etrusco</Italian>
+    <Spanish>Asentamiento etrusco</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_SABINISCHE_SIEDLUNG</Tag>
+    <English>Sabine Settlement</English>
+    <French>Cit&#233; sabinienne</French>
+    <German>Sabinische Siedlung</German>
+    <Italian>Insediamento sabino</Italian>
+    <Spanish>Asentamiento sabino</Spanish>
+  </TEXT>
+ <!-- ++++++++++++ Falisker +++++++++++++++++ -->
+   <TEXT>
+    <Tag>TXT_KEY_CIV_FALISCI_DESC</Tag>
+    <English>Faliscans</English>
+    <French>Falisciens</French>
+    <German>Falisker</German>
+    <Italian>Falisci</Italian>
+    <Spanish>Faliscos</Spanish>
+  </TEXT>
+   <TEXT>
+    <Tag>TXT_KEY_CIV_FALISCI_SHORT_DESC</Tag>
+    <English>Falerii</English>
+    <French>Falerii</French>
+    <German>Falerii</German>
+    <Italian>Falerii</Italian>
+    <Spanish>Falerii</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIV_FALISCI_ADJECTIVE</Tag>
+    <English>Faliscan</English>
+    <French><Text>faliscien:faliscenne:falisciens:falisciennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+    <German><Text>faliskisch:faliskischen:faliskische:faliskischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+    <Italian>Faliscan</Italian>
+    <Spanish><Text>falisco:falisca:faliscos:faliscas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+  </TEXT>
+  <!-- ++++++++++++ Fidenae +++++++++++++++++ -->
+  <TEXT>
+    <Tag>TXT_KEY_CIV_FIDENAE_DESC</Tag>
+    <English>Latins of Fidenae</English>
+    <French>Latins de Fid&#232;nes</French>
+    <German>Latiner zu Fidenae</German>
+    <Italian>Latini di Fidene</Italian>
+    <Spanish>Latinos de Fidenas</Spanish>
+  </TEXT>
+   <TEXT>
+    <Tag>TXT_KEY_CIV_FIDENAE_SHORT_DESC</Tag>
+    <English>Fidenae</English>
+    <French>Fid&#232;nes</French>
+    <German>Fidenae</German>
+    <Italian>Fidene</Italian>
+    <Spanish>Fidenas</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIV_FINDENAE_ADJECTIVE</Tag>
+    <English>Fidenan</English>
+    <French><Text>fid&#233;en:fid&#233;enne:fid&#233;ens:fid&#233;ennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+    <German><Text>fidenisch:fidenischen:fidenische:fidenischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+    <Italian>Fidenan</Italian>
+    <Spanish><Text>fideno:fidena:fidenos:fidenas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+  </TEXT>
+  <!-- ++++++++++++ Veii +++++++++++++++++ -->
+  <TEXT>
+    <Tag>TXT_KEY_CIV_VEII_DESC</Tag>
+    <English>Etruscans of Veii</English>
+    <French>&#201;trusques de V&#233;ies</French>
+    <German>Etrusker zu Veii</German>
+    <Italian>Etruschi di Veio</Italian>
+    <Spanish>Etruscos de Veyes</Spanish>
+  </TEXT>
+   <TEXT>
+    <Tag>TXT_KEY_CIV_VEII_SHORT_DESC</Tag>
+    <English>Veii</English>
+    <French>V&#233;ies</French>
+    <German>Veii</German>
+    <Italian>Veio</Italian>
+    <Spanish>Veyes</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIV_VEII_ADJECTIVE</Tag>
+    <English>Etrurian</English>
+    <French><Text>&#233;truscien:&#233;truscienne:&#233;trusciens:&#233;trusciennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+    <German><Text>etruskisch:etruskischen:etruskische:etruskischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+    <Italian>veiano</Italian>
+    <Spanish><Text>veyeno:veyena:veyenos:veyenas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+  </TEXT>
+  <!-- ++++++++++++ Tarquinia +++++++++++++++++ -->
+  <TEXT>
+    <Tag>TXT_KEY_CIV_TARQUINIA_DESC</Tag>
+    <English>Etruscans of Tarquinia</English>
+    <French>&#201;trusques de Tarquinia</French>
+    <German>Etrusker zu Tarquinia</German>
+    <Italian>Etruschi di Tarquinia</Italian>
+    <Spanish>Etruscos de Tarquinia</Spanish>
+  </TEXT>
+   <TEXT>
+    <Tag>TXT_KEY_CIV_TARQUINIA_SHORT_DESC</Tag>
+    <English>Tarquinia</English>
+    <French>Tarquinia</French>
+    <German>Tarquinia</German>
+    <Italian>Tarquinia</Italian>
+    <Spanish>Tarquinia</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIV_TARQUINIA_ADJECTIVE</Tag>
+    <English>Tarquinian</English>
+    <French><Text>&#233;truscien:&#233;truscienne:&#233;trusciens:&#233;trusciennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+    <German><Text>tarquinisch:tarquinischen:tarquinische:tarquinischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+    <Italian>tarquiniano</Italian>
+    <Spanish><Text>tarquino:tarquina:tarquinos:tarquinas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+  </TEXT>
+  <!-- ++++++++++++ Praeneste +++++++++++++++++ -->
+  <TEXT>
+    <Tag>TXT_KEY_CIV_PRAENESTE_DESC</Tag>
+    <English>Latins of Praeneste</English>
+    <French>Latins de Praeneste</French>
+    <German>Latiner zu Praeneste</German>
+    <Italian>Latini di Praeneste</Italian>
+    <Spanish>Latinos de Praeneste</Spanish>
+  </TEXT>
+   <TEXT>
+    <Tag>TXT_KEY_CIV_PRAENESTE_SHORT_DESC</Tag>
+    <English>Praeneste</English>
+    <French>Praeneste</French>
+    <German>Praeneste</German>
+    <Italian>Praeneste</Italian>
+    <Spanish>Praeneste</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIV_PRAENESTE_ADJECTIVE</Tag>
+    <English>Praenestine</English>
+    <French><Text>praenestien:praenestienne:praenestiens:praenestiennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+    <German><Text>praenestisch:praenestischen:praenestische:praenestischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+    <Italian>praenestino</Italian>
+    <Spanish><Text>praenestino:praenestina:praenestinos:praenestinas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+  </TEXT>
+  <!-- ++++++++++++ Alba Longa +++++++++++++++++ -->
+  <TEXT>
+    <Tag>TXT_KEY_CIV_ALBA_LONGA_DESC</Tag>
+    <English>Latins of Alba Longa</English>
+    <French>Latins d'Albe&#8722;la&#8722;Longue</French>
+    <German>Latiner zu Alba Longa</German>
+    <Italian>Latini di Alba Longa</Italian>
+    <Spanish>Latinos de Alba Longa</Spanish>
+  </TEXT>
+   <TEXT>
+    <Tag>TXT_KEY_CIV_ALBA_LONGA_SHORT_DESC</Tag>
+    <English>Alba Longa</English>
+    <French>Albe&#8722;la&#8722;Longue</French>
+    <German>Alba Longa</German>
+    <Italian>Alba Longa</Italian>
+    <Spanish>Alba Longa</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIV_ALBA_LONGA_ADJECTIVE</Tag>
+    <English>Latin</English>
+    <French><Text>latin:latine:latins:latines</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+    <German><Text>latinisch:latinischen:latinische:latinischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+    <Italian>latino</Italian>
+    <Spanish><Text>latino:latina:latinos:latinas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+  </TEXT>
+</Civ4GameText>

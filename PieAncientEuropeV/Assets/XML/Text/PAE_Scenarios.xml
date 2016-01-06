@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+  <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_300</Tag>
+     <English>Pie's Ancient Europe - The Wars of the Diadochi</English>
+     <French>Pie's Ancient Europe - Les guerres de la Diadochi</French>
+     <German>Pies Antikes Europa - Die Diadochenkriege</German>
+     <Italian>Pie's Ancient Europe - Le guerre dei Diadochi</Italian>
+     <Spanish>Pie's Ancient Europe - Las Guerras de los Di&#225;docos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_300</Tag>
+     <English>The year 300 BC. A turning point in ancient history. After the death of Alexander the Great a war for his succession. has started in the East of the Mediterranean. During this war of the Diadochi whole empires will perish, but also new ones will arise. At the same time the rise of Rome begins in the West. But first it has to defend its position against the Greek colonies in southern Italy and the upcoming power of Carthage. Now it's up to you %s3_leader to stand the test of time and make your name immortal. [NEWLINE] [NEWLINE]-) Play one of the five Diadochi and become the legitimate successor of Alexander the Great. [NEWLINE]-) Lead Rome to its historic size or prevent its rise with Carthage, Taranto or a northern European civilization.. </English>
+     <French>L'ann&#233;e 300 av. J.-C. est un point tournant dans l'histoire de l'antiquit&#233;. Suivant la mort d'Alexandre le Grand, une guerre pour la succession &#233;clate dans la r&#233;gion orientale de la M&#233;diterran&#233;e. Pendant ces guerres des diadoques, de nombreux empires p&#233;riront, mais &#224; l'avantage de nouveaux. Durant cette m&#234;me p&#233;riode, la mont&#233;e en puissance de la nation romaine comman&#231;ait dans l'est. N&#233;anmoins, Rome devra se d&#233;fendre contre les colonies grecques du sud de la botte italique ainsi que contre la nouvelle puissance punique. Ainsi, il est de ton devoir, %s3_leader, de maintenir la stabilit&#233; de ton empire et de faire jaillir d'humbles pr&#233;mices un tout puissant empire, ce qui imprimera dans les pens&#233;es des g&#233;n&#233;rations futures la gloire et la supr&#233;matie de ton nom. [NEWLINE] [NEWLINE]-) Joue en tant qu'un diadoque et devient le successeur l&#233;gitime d'Alexandre le Grand. [NEWLINE]-) M&#232;ne Rome &#224; sa hauteur historique ou jugule Rome en tant que Carthage, Tarente ou la civilisation europ&#233;enne. </French>
+     <German>Wir schreiben das Jahr 300 v. Chr. Ein Wendepunkt in der Geschichte der Antike. Nach dem Tod Alexander des Gro&#223;en ist im Osten des Mittelmeers ein Kampf um seine Nachfolge entbrannt. W&#228;hrend der Diadochenkriege werden ganze Reiche untergehen, aber auch neue entstehen. Im Westen beginnt zeitgleich der Aufstieg Roms, das sich erstmals gegen die griechischen Kolonien in S&#252;ditalien und die aufstrebende Macht Karthagos behaupten muss. Nun ist es an euch %s3_leader, die Wirren der Zeit zu &#252;berstehen und euren Namen unsterblich zu machen. [NEWLINE] [NEWLINE]-) Spiele einen von f&#252;nf Diadochen und werde der legitime Nachfolger Alexanders des Gro&#223;en. [NEWLINE]-) F&#252;hre Rom zu seiner historischen Gr&#246;&#223;e oder verhindere seinen Aufstieg mit Karthago, Tarent oder einem nordeurop&#228;ischen Volk.</German>
+     <Italian>The year 300 BC. A turning point in ancient history. After the death of Alexander the Great a war for his succession. has started in the East of the Mediterranean. During this war of the Diadochi whole empires will perish, but also new ones will arise. At the same time the rise of Rome begins in the West. But first it has to defend its position against the Greek colonies in southern Italy and the upcoming power of Carthage. Now it's up to you %s3_leader to stand the test of time and make your name immortal. [NEWLINE] [NEWLINE]-) Play one of the five Diadochi and become the legitimate successor of Alexander the Great. [NEWLINE]-) Lead Rome to its historic size or prevent its rise with Carthage, Taranto or a northern European civilization.. </Italian>
+     <Spanish>A&#241;o 300 a. C. Un punto de inflexi&#243;n en la historia antigua. Despu&#233;s de la muerte de Alejandro Magno ha empezado una guerra por su sucesi&#243;n en el Este del Mediterr&#225;neo. Durante esta guerra de los Di&#225;docos imperios enteros caer&#225;n, pero otros nuevos emerger&#225;n. Al mismo tiempo el surgimiento de Roma comienza en el Oeste. Pero primero tiene que defender su posici&#243;n contra las colonias griegas en el sur de Italia y el poder emergente de Cartago. Ahora depende de ti %s3_leader resistir el paso del tiempo y hacer tu nombre inmortal. [NEWLINE] [NEWLINE]-) Juega como uno de los cinco Di&#225;docos y convi&#233;rtete en el leg&#237;timo sucesor de Alejandro Magno. [NEWLINE]-) Lleva a Roma a su tama&#241;o hist&#243;rico o previene su surgimiento con Cartago, Tarento o una civilizaci&#243;n europea del norte.. </Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_NIL</Tag>
+     <English>Pie's Ancient Europe - The Nile and the Eastern Mediterranean</English>
+     <French>Pie's Ancient Europe - Le Nil et la M&#233;diterran&#233;e orientale</French>
+     <German>Pies Antikes Europa - Der Nil und das &#246;stliche Mittelmeer</German>
+     <Italian>Pie's Ancient Europe - Il Nilo e il Mediterraneo orientale</Italian>
+     <Spanish>Pie's Ancient Europe - El Nilo y el Mediterr&#225;neo Oriental</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_NIL</Tag>
+     <English>It's the year 4000 BC On fertile banks of the Nile the first foundations of a new civilization were set. But also on the coasts of the Eastern Mediterranean and the Aegean new civilizations are arising and in inland Anatolia another power heads to a glorious future. Now it's up to you %s3_leader to lead your subjects through the following centuries. [NEWLINE] [NEWLINE]-) Egypt: Unite Upper und Lower Egypt and lead Egypt to its historical height. [NEWLINE]-) Nubians and Lybians: Descend on the Nile Valley and found your own dynasty of pharaohs. [NEWLINE]-) Hittites: Conquer Anatolia and prevent the rise of Egypt. [NEWLINE]-) Greeks and Macedonians: Become a hegemonic power in the Aegean and get ready for the campaign to Egypt. [NEWLINE]-) Phoenicians and Hebrews: Be careful not to be overrun by the neighboring Great Powers.</English>
+     <French>Nous sommes en 4000 avant JC. De nouvelles civilisations posent leurs premi&#232;res fondations sur les rives fertiles du Nil, le long des c&#244;tes de la M&#233;diterran&#233;e et en Anatolie. C'est &#224; vous %s3_leader de mener vos sujets vers la gloire &#224; travers les si&#232;cles ! [NEWLINE] [NEWLINE]-) Egyptiens : unissez la haute et la basse Egypte pour atteindre son extension historique [NEWLINE]-) Nubiens et libyens : prenez le contr&#244;le de la vall&#233;e du Nil et installez votre propre dynastie de pharaons [NEWLINE]-) Hittites: &#233;tendez-vous en Anatolie et limitez la puissance de l'Egypte [NEWLINE]-) Grecs et mac&#233;doniens : devenez la puissance dominante en Gr&#232;ce et pr&#233;parez-vous &#224; envahir l'Egypte [NEWLINE]-) Ph&#233;niciens et h&#233;breux : r&#233;sistez aux grandes puissances qui vous entourent</French>
+     <German>Wir schreiben das Jahr 4000 v. Chr. Am fruchtbaren Ufer des Nils wurden die ersten Grundsteine einer neuen Zivilisation gesetzt. Aber auch an den K&#252;sten des &#246;stlichen Mittelmeers und der &#196;g&#228;is entstehen neue Kulturen und im Innland Anatolien macht sich ein weiteres Volk auf den Weg in eine glorreiche Zukunft. Nun liegt es an euch %s3_leader, eure Untertanen durch die folgenden Jahrhunderte zu f&#252;hren. [NEWLINE] [NEWLINE]-) &#196;gypten: Eine Ober- und Unter&#228;gypten und f&#252;hre &#196;gypten zur Hochkultur im &#246;stlichen Mittelmeerraum. [NEWLINE]-) Nubier und Libyer: Falle im Niltal ein und gr&#252;nde deine eigene Pharaonendynastie. [NEWLINE]-) Hethiter: Erobere Anatolien und mache den &#196;gyptern ihren Platz an der Sonne streitig. [NEWLINE]-) Griechen und Makedonen: Werde zur Hegemonialmacht in der &#196;g&#228;is und bereite dich auf den &#196;gyptenfeldzug vor. [NEWLINE]-) Ph&#246;nizier und Hebr&#228;er: Achte darauf nicht von den umliegenden Gro&#223;m&#228;chten &#252;berrannt zu werden.</German>
+     <Italian>It's the year 4000 BC On fertile banks of the Nile the first foundations of a new civilization were set. But also on the coasts of the Eastern Mediterranean and the Aegean new civilizations are arising and in inland Anatolia another power heads to a glorious future. Now it's up to you %s3_leader to lead your subjects through the following centuries. [NEWLINE] [NEWLINE]-) Egypt: Unite Upper und Lower Egypt and lead Egypt to its historical height. [NEWLINE]-) Nubians and Lybians: Descend on the Nile Valley and found your own dynasty of pharaohs. [NEWLINE]-) Hittites: Conquer Anatolia and prevent the rise of Egypt. [NEWLINE]-) Greeks and Macedonians: Become a hegemonic power in the Aegean and get ready for the campaign to Egypt. [NEWLINE]-) Phoenicians and Hebrews: Be careful not to be overrun by the neighboring Great Powers.</Italian>
+     <Spanish>Es el a&#241;o 4000 a.C. Se han establecido en las f&#233;rtiles orillas del Nilo los primeros fundadores de una nueva civilizaci&#243;n. Pero tambi&#233;n en las costas del Mediterr&#225;neo Oriental y del Egeo est&#225;n emergiendo nuevas civilizaciones y en el interior de Anatolia otra potencia se dirige a un glorioso futuro. Ahora depende de ti %s3_leader llevar a tus s&#250;bditos a trav&#233;s de los siguientes siglos. [NEWLINE] [NEWLINE]-) Egipto: Une el Bajo y el Alto Egipto y lleva a Egipto a su cumbre hist&#243;rica. [NEWLINE]-) Nubios y Libios: Invade el Valle del Nilo y funda tu propia dinast&#237;a de faraones. [NEWLINE]-) Hititas: Conquista Anatolia y previene el surgimiento de Egipto. [NEWLINE]-) Griegos y Macedonios: Convi&#233;rtete en una potencia hegem&#243;nica en el Egeo y prep&#225;rate para la campa&#241;a a Egipto. [NEWLINE]-) Fenicios y Hebreos: Ten cuidado de no ser invadidos por las Grandes Potencias vecinas.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_300_BC</Tag>
+     <English>Created by Thorgal![NEWLINE][NEWLINE]The year 300 BC, a turning point in history of ancient times.[NEWLINE]After the death of Alexander the Great a succession war started in the east of the Mediterranean. During these Wars of the Diadochi whole empires will go down, but also new will arise.[NEWLINE]At the same time the rise of Rome begins in the West, which has to deal first with the Greek colonies in Southern Italy and the upcoming power Carthage.[NEWLINE]Play one of five Diadochi and win the war.[NEWLINE]Lead Rome to his historical size or prevent his rise with Carthage, Taranto or a civilisation of Northern Europe.</English>
+     <French>Created by Thorgal![NEWLINE][NEWLINE]The year 300 BC, a turning point in history of ancient times.[NEWLINE]After the death of Alexander the Great a succession war started in the east of the Mediterranean. During these Wars of the Diadochi whole empires will go down, but also new will arise.[NEWLINE]At the same time the rise of Rome begins in the West, which has to deal first with the Greek colonies in Southern Italy and the upcoming power Carthage.[NEWLINE]Play one of five Diadochi and win the war.[NEWLINE]Lead Rome to his historical size or prevent his rise with Carthage, Taranto or a civilisation of Northern Europe.</French>
+     <German>Erstellt von Thorgal![NEWLINE][NEWLINE]Das Jahr 300 v. Chr., ein Wendepunkt in der Geschichte der Antike.[NEWLINE]Nach dem Tod Alexander des Gro&#223;en ist im Osten des Mittelmeers ein Kampf um seine Nachfolge entbrannt. W&#228;hrend dieser Diadochenkriege werden ganze Reiche untergehen, aber auch neue entstehen.[NEWLINE]Im Westen beginnt zeitgleich der Aufstieg Roms, das sich zuerst gegen die griechischen Kolonien in S&#252;ditalien und die aufstrebende Macht Karthagos behaupten muss.[NEWLINE]Spiele einen von f&#252;nf Diadochen und gewinne den Krieg.[NEWLINE]F&#252;hre Rom zu seiner historischen Gr&#246;&#223;e oder verhindere seinen Aufstieg mit Karthago, Tarent oder einem nordeurop&#228;ischen Volk.</German>
+     <Italian>Created by Thorgal![NEWLINE][NEWLINE]The year 300 BC, a turning point in history of ancient times.[NEWLINE]After the death of Alexander the Great a succession war started in the east of the Mediterranean. During these Wars of the Diadochi whole empires will go down, but also new will arise.[NEWLINE]At the same time the rise of Rome begins in the West, which has to deal first with the Greek colonies in Southern Italy and the upcoming power Carthage.[NEWLINE]Play one of five Diadochi and win the war.[NEWLINE]Lead Rome to his historical size or prevent his rise with Carthage, Taranto or a civilisation of Northern Europe.</Italian>
+     <Spanish>&#161;Creado por Thorgal![NEWLINE][NEWLINE]El a&#241;o 300 a.C., un punto de inflexi&#243;n en la historia de la antig&#252;edad.[NEWLINE]Despu&#233;s de la muerte de Alejandro el Magno comenz&#243; una guerra de sucesi&#243;n en el Mediterr&#225;neo Oriental. Durante estas Guerras de los Di&#225;docos imperios enteros caer&#225;n, pero otros nuevos emerger&#225;n.[NEWLINE]Al mismo tiempo el surgimiento de Roma comienza en el Oeste, que tienen que tratar primero con las colonias griegas del sur de Italia y del poder emergente de Cartago.[NEWLINE]Juega con uno de los Di&#225;docos y gana la guerra.[NEWLINE]Lleva a Roma a su tama&#241;o hist&#243;rica o previene en surgimiento de Cartago, Tarento o una civilizaci&#243;n del norte de Europa.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_RISEOFEGYPT</Tag>
+     <English>Created by Thorgal![NEWLINE][NEWLINE]It's the year 4000 BC On fertile banks of the Nile the first foundations of a new civilization were set. But also on the coasts of the Eastern Mediterranean and the Aegean new civilizations are arising and in inland Anatolia another power heads to a glorious future.</English>
+     <French>Created by Thorgal![NEWLINE][NEWLINE]It's the year 4000 BC On fertile banks of the Nile the first foundations of a new civilization were set. But also on the coasts of the Eastern Mediterranean and the Aegean new civilizations are arising and in inland Anatolia another power heads to a glorious future.</French>
+     <German>Erstellt von Thorgal![NEWLINE][NEWLINE]Wir schreiben das Jahr 4000 v. Chr. Am fruchtbaren Ufer des Nils wurden die ersten Grundsteine einer neuen Zivilisation gesetzt. Aber auch an den K&#252;sten des &#246;stlichen Mittelmeers und der &#196;g&#228;is entstehen neue Kulturen und im Innland Anatolien macht sich ein weiteres Volk auf den Weg in eine glorreiche Zukunft.</German>
+     <Italian>Created by Thorgal![NEWLINE][NEWLINE]It's the year 4000 BC On fertile banks of the Nile the first foundations of a new civilization were set. But also on the coasts of the Eastern Mediterranean and the Aegean new civilizations are arising and in inland Anatolia another power heads to a glorious future.</Italian>
+     <Spanish>&#161;Creado por Thorgal![NEWLINE][NEWLINE]It's the year 4000 BC On fertile banks of the Nile the first foundations of a new civilization were set. But also on the coasts of the Eastern Mediterranean and the Aegean new civilizations are arising and in inland Anatolia another power heads to a glorious future.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PAE_ORIENT</Tag>
+     <English>Created by Thorgal and Keinpferd![NEWLINE][NEWLINE]A huge map with 18 Civs on a huge Central Asien map.</English>
+     <French>Cr&#233;&#233;e par Thorgal et Keinpferd ![NEWLINE][NEWLINE]Une &#233;norme carte d'Asie Centrale avec 18 civilisations.</French>
+     <German>Erstellt von Thorgal und Keinpferd![NEWLINE][NEWLINE]Eine Karte mit 18 V&#246;lkern von Makedonien und Libyen im Westen, Nubien und Saba im S&#252;den und Indien im Osten. Kartengr&#246;&#223;e Riesig.</German>
+     <Italian>Created by Thorgal and Keinpferd![NEWLINE][NEWLINE]A huge map with 18 Civs on a huge Central Asien map.</Italian>
+     <Spanish>&#161;Creado por Thorgal y Keinpferd![NEWLINE][NEWLINE]Un mapa enorme con 18 Civs en un mapa de Asia Central.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_PELOPONNESIAN_WAR</Tag>
+     <English>Created by JohnDay! [NEWLINE]In the Peloponnesian War, the Delian League (Athens and vassals) and the Peloponnesian League (Sparta, Macedonia, Sicily and Thebes / Corinth) are irreconcilable in the struggle for power. [NEWLINE] [NEWLINE]Sparta is superior to land and Athens at sea. [NEWLINE] [NEWLINE]Choose a League and lead it to victory or thwart their rise with one of many Greek city-states (poleis). Have fun with it.</English>
+     <French>Sc&#233;nario cr&#233;&#233; par JohnDay! [NEWLINE]Pendant les guerres du P&#233;loponn&#232;se la ligue de D&#233;los (Ath&#232;nes et ses vassaux) et la ligue du P&#233;loponn&#232;se (Sparte, la Mac&#233;doine, la Sicile, Th&#232;bes, Corinthe) se livrent un combat sans merci. [NEWLINE] [NEWLINE]Sparte domine la terre et Ath&#232;nes les mers. [NEWLINE] [NEWLINE]Choisissez une alliance et menez-la &#224; la victoire, ou emp&#234;chez leur domination en jouant l'une des nombreuses cit&#233;s-&#233;tats grecques ! Amusez-vous bien !</French>
+     <German>Erstellt von JohnDay! [NEWLINE]Im Peloponnesischen Krieg stehen sich der Attisch-Delische Seebund (Athen und Vasallen) und der Peloponnesische Bund (Sparta, Macedonien, Sizilien und Theben/Korinth) unvers&#246;hnlich im Kampf um die Macht gegen&#252;ber. [NEWLINE] [NEWLINE]Sparta ist zu Lande &#252;berlegen und Athen zur See. [NEWLINE] [NEWLINE]W&#228;hle und f&#252;hre einen Bund zum Sieg, oder verhindere deren Aufstieg mit einer der vielen griechischen Stadtstaaten (Poleis). Viel Spa&#223; dabei.</German>
+     <Italian>Created by JohnDay! [NEWLINE]In the Peloponnesian War, the Delian League (Athens and vassals) and the Peloponnesian League (Sparta, Macedonia, Sicily and Thebes / Corinth) are irreconcilable in the struggle for power. [NEWLINE] [NEWLINE]Sparta is superior to land and Athens at sea. [NEWLINE] [NEWLINE]Choose a League and lead it to victory or thwart their rise with one of many Greek city-states (poleis). Have fun with it.</Italian>
+     <Spanish>&#161;Creado por JohnDay! [NEWLINE]En la Guerra del Peloponeso, la Liga de Delos (Atenas y sus vasallos) y la Liga del Peloponeso (Esparta, Macedonia, Sicilia y Tebas / Corinto) son irreconciliables en la lucha por el poder. [NEWLINE] [NEWLINE]Esparta es superior por tierra y Atenas por mar. [NEWLINE] [NEWLINE]Elige una Liga y ll&#233;vala a la victoria o impide su surgimiento con una de las varias ciudades estado griegas (polis). Divi&#233;rtete.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_PELOPONNESIAN_WAR</Tag>
+     <English>Pie's Ancient Europe - The Peloponnesian War</English>
+     <French>Pie's Ancient Europe - La Guerre du P&#233;loponn&#232;se</French>
+     <German>Pie's Ancient Europe - Der Peloponnesische Krieg</German>
+     <Italian>Pie's Ancient Europe - The Peloponnesian War</Italian>
+     <Spanish>Pie's Ancient Europe - La guerra del Peloponeso</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_PELOPONNESIAN_WAR</Tag>
+     <English>In the Peloponnesian War, the Delian League (Athens and vassals) and the Peloponnesian League (Sparta, Macedonia, Sicily and Thebes / Corinth) are irreconcilable in the struggle for power. [NEWLINE] [NEWLINE]Sparta is superior to land and Athens at sea. [NEWLINE] [NEWLINE]Acquaint with the basic game concepts of PAE. All features are explained in the Civilopedia under Pie's MOD concepts. [NEWLINE] [NEWLINE]The Poleis of Mykonos is provided to play it as OCC. This option has to be added in the scenario file by hand before starting the game.</English>
+     <French>Pendant la guerre du P&#233;loponn&#232;se la ligue de D&#233;los (Ath&#232;nes et ses vassaux) et la ligue du P&#233;loponn&#232;se (Sparte, la Mac&#233;doine, la Sicile, Th&#232;bes, Corinthe) se livrent un combat sans merci. [NEWLINE] [NEWLINE]Sparte domine la terre et Ath&#232;nes les mers. [NEWLINE] [NEWLINE]Habituez vous aux principes de PAE. Tout est expliqu&#233; dans la civilopedia dans Pie's MOD concepts. [NEWLINE] [NEWLINE]La ville de Mykonos peut &#234;tre jou&#233;e en OOC (One City Challenge). L'option doit &#234;tre ajout&#233;e au fichier de sc&#233;nario &#224; la main avant de commencer la partie.</French>
+     <German>Im Peloponnesischen Krieg stehen sich der Attische Seebund (Athen und Vasallen) und der Peloponnesische Bund (Sparta, Macedonien, Sizilien und Theben/Korinth) unvers&#246;hnlich im Kampf um die Macht gegen&#252;ber. [NEWLINE] [NEWLINE]Sparta ist zu Lande &#252;berlegen und Athen zur See. [NEWLINE] [NEWLINE]Macht euch mit den grundlegenden Spielkonzepten von PAE vertraut. Alle Features werden in der Zivilop&#228;die unter Pie's MOD Konzepte erkl&#228;rt. [NEWLINE] [NEWLINE]Die Polis of Mykonos ist als Zivilisation OCC f&#228;hig. Die entsprechende Option daf&#252;r muss per Hand und vor dem Start selbst in das Scenario kopiert werden.</German>
+     <Italian>In the Peloponnesian War, the Delian League (Athens and vassals) and the Peloponnesian League (Sparta, Macedonia, Sicily and Thebes / Corinth) are irreconcilable in the struggle for power. [NEWLINE] [NEWLINE]Sparta is superior to land and Athens at sea. [NEWLINE] [NEWLINE]Acquaint with the basic game concepts of PAE. All features are explained in the Civilopedia under Pie's MOD concepts. [NEWLINE] [NEWLINE]The Poleis of Mykonos is provided to play it as OCC. This option has to be added in the scenario file by hand before starting the game.</Italian>
+     <Spanish>En la Guerra del Peloponeso, la Liga de Delos (Atenas y sus vasallos) y la Liga del Peloponeso (Esparta, Macedonia, Sicilia y Tebas / Corinto) son irreconciliables en la lucha por el poder. [NEWLINE] [NEWLINE]Esparta es superior por tierra y Atenas por mar. [NEWLINE] [NEWLINE]Familiar&#237;zate con los conceptos b&#225;sicos de PAE. Todas las caracter&#237;sticas est&#225;n explicadas en la Civilopedia en los conceptos del MOD de Pie. [NEWLINE] [NEWLINE]La Polis de M&#237;conos est&#225; preparada para jugar como Reto de una sola ciudad. Esta opci&#243;n tiene que ser a&#241;adida al archivo del escenario a mano antes de iniciar el juego. </Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_ICE_AGE</Tag>
+     <English>Created by BoggyB! [NEWLINE]Big map of europe. The Ice Age has ended and the planet thaws. [NEWLINE]Featurers: [NEWLINE]-) The ice covering the oceans melts which causes the sea level to rise (coastal areas can be flooded). [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains and grassland. [NEWLINE]-) Africa dries out and becomes a desert slowly.</English>
+     <French>Cr&#233;&#233; par BoggyB ! [NEWLINE]Grande carte de l'Europe. La glaciation est termin&#233;e et la plan&#232;te commence &#224; d&#233;geler. [NEWLINE]Caract&#233;ristiques: [NEWLINE]-) La glace couvrant les oc&#233;ans fond ce qui cause une augmentation du niveau de la mer (les zones c&#244;ti&#232;res peuvent &#234;tre inond&#233;es). [NEWLINE]-) La glace se transforme en toundra, la toundra se transforme en plaine et prairie. [NEWLINE]-) L'Afrique s'ass&#232;che et devient progressivement un d&#233;sert.</French>
+     <German>Erstellt von BoggyB! [NEWLINE]Gro&#223;e Europakarte. Die Eiszeit hat geendet und der Planet beginnt zu tauen. [NEWLINE]Features: [NEWLINE]-) Das die Meere bedeckende Eis schmilzt und sorgt so f&#252;r einen steigenden Meeresspiegel (K&#252;stenregionen k&#246;nnen &#252;berflutet werden). [NEWLINE]-) Eisfelder verwandeln sich zu Tundra, Tundrafelder zu Ebenen und Grasland. [NEWLINE]-) Afrika trocknet aus und wird langsam zu einer W&#252;ste.</German>
+     <Italian>Created by BoggyB! [NEWLINE]Big map of europe. The Ice Age has ended and the planet thaws. [NEWLINE]Featurers: [NEWLINE]-) The ice covering the oceans melts which causes the sea level to rise (coastal areas can be flooded). [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains and grassland. [NEWLINE]-) Africa dries out and becomes a desert slowly.</Italian>
+     <Spanish>&#161;Creado por BoggyB! [NEWLINE]Mapa grande de Europa. La Edad de Hielo ha terminado y el planeta se descongela. [NEWLINE]Caracter&#237;sticas: [NEWLINE]-) El hielo que cubre el oc&#233;ano se derrite lo que causa que se eleve el nivel del mar (las &#225;reas costeras pueden ser inundadas). [NEWLINE]-) Las casillas de hielo se convierten en tundra, las de tundra en llanura y pradera. [NEWLINE]-) &#193;frica se seca y se convierte lentamente en un desierto.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_ICE_AGE</Tag>
+     <English>Pie's Ancient Europe - Ice Age</English>
+     <French>Pie's Ancient Europe - Ice Age</French>
+     <German>Pie's Ancient Europe - Ice Age</German>
+     <Italian>Pie's Ancient Europe - Ice Age</Italian>
+     <Spanish>Pie's Ancient Europe - Ice Age</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_ICE_AGE</Tag>
+     <English>4.000 BC. The Ice Age has ended and the earth starts thawing. Your people has vested absolute power in you, hoping that you lead it through these cold times and achieve domination in this world. [NEWLINE]Every 32/40/45/52 rounds (fast/normal/epic/marathon), the following can happen: [NEWLINE]-) Ice floes in the sea disappear. [NEWLINE]-) Land tiles near the coast are flooded, claiming the lives of all units on this tile. Cities, hills, peaks and resource tiles are spared. [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains (75%) or grassland (25%). [NEWLINE]-) The seas in africa dry out slowly so the desert as we know it today arises.</English>
+     <French>4.000 av. La glaciation a fini et la terre commence &#224; d&#233;geler. Votre peuple vous a confi&#233; le pouvoir absolu esp&#233;rant que vous le dirigez par ces temps froids et arrivez &#224; la pr&#233;dominance du monde. [NEWLINE]Chaque 32/40/45/52 tours (rapide/normale/epique/marathon), les choses suivantes peuvent se passer: [NEWLINE]-) Des blocs de glace dans le mer disparaissent. [NEWLINE]-) Les r&#233;gions c&#244;ti&#232;res sont inond&#233;es en entrainant la mort de tous les units sur le terrain (des villes, collines, sommets et tuiles avec des ressources ne sont affect&#233;s). [NEWLINE]-) Glace change en toundra, toundra en plaines (75%) ou prairie (25%). [NEWLINE]-) Les lacs en Afrique ass&#232;chent lentement et le d&#233;sert que nous connaissons aujourd'hui se pose.</French>
+     <German>4.000 vor Christus. Die Eiszeit hat geendet und die Erde beginnt zu tauen. Euer Volk hat Euch die F&#252;hrung &#252;berlassen, um diese kalten Zeiten sicher zu &#252;berstehen und die Vorherrschaft zu erringen. [NEWLINE]Alle 32/40/45/52 Runden (Schnell/Normal/Episch/Marathon) kann folgendes geschehen: [NEWLINE]-) Eisschollen im Meer verschwinden. [NEWLINE]-) Landfelder an der K&#252;ste werden &#252;berflutet und rei&#223;en alle Einheiten auf diesem Feld mit in den Tod. St&#228;dte, H&#252;gel, Gipfel und Ressourcenfelder bleiben verschont. [NEWLINE]-) Eisfelder verwandeln sich in Tundra, Tundrafelder in Ebene (75%) oder Grasland (25%). [NEWLINE]-) Die Seen in Afrika trocknen langsam aus und die W&#252;ste, wie wir sie heute kennen, entsteht.</German>
+     <Italian>4.000 BC. The Ice Age has ended and the earth starts thawing. Your people has vested absolute power in you, hoping that you lead it through these cold times and achieve domination in this world. [NEWLINE]Every 32/40/45/52 rounds (fast/normal/epic/marathon), the following can happen: [NEWLINE]-) Ice floes in the sea disappear. [NEWLINE]-) Land tiles near the coast are flooded, claiming the lives of all units on this tile. Cities, hills, peaks and resource tiles are spared. [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains (75%) or grassland (25%). [NEWLINE]-) The seas in africa dry out slowly so the desert as we know it today arises.</Italian>
+     <Spanish>4.000 a. C. La Edad de Hielo ha terminado y la Tierra empieza a descongelarse. Tu pueblo te ha conferido poder absoluto, esperando que los lideres a trav&#233;s de estos fr&#237;os tiempos y consigas la dominaci&#243;n en este mundo. [NEWLINE]Cada 32/40/45/52 turnos (r&#225;pido/normal/&#233;pica/marat&#243;n), puede ocurrir lo siguiente: [NEWLINE]-) Los t&#233;mpanos de hielo en el mar desaparecen. [NEWLINE]-) Las tierras cercanas a las costas son inundadas, cobr&#225;ndose las vidas de todas las unidades en esa casilla. Las ciudades, colinas, picos y las casillas de recursos son conservadas. [NEWLINE]-) Las casillas de hielo se convierten en tundra, las de tundra en llanura (75%) o pradera (25%). [NEWLINE]-) Los mares en &#193;frica se secan lentamente por lo que el desierto que conocemos hoy emerge.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_EUROPE_XL</Tag>
+     <English>Created by Inex! [NEWLINE]Arranged by Keinpferd and Thorgal! [NEWLINE]A really big map (WxH: 101x67) for a veritable great Imperium Romanum.</English>
+     <French>Carte cr&#233;&#233;e par Inex ! [NEWLINE]Arrang&#233;e par Keinperfd et Thorgal ! [NEWLINE]Une tr&#232;s grand carte (LxH : 101x67) pour un v&#233;ritable grand empire romain.</French>
+     <German>Erstellt von Inex! [NEWLINE]Bearbeitet von Keinpferd und Thorgal! [NEWLINE]Eine sehr gro&#223;e Karte (BxH: 101x67) f&#252;r ein wahrhaft gro&#223;es Imperium Romanum.</German>
+     <Italian>Created by Inex! [NEWLINE]Arranged by Keinpferd and Thorgal! [NEWLINE]A really big map (WxH: 101x67) for a veritable great Imperium Romanum.</Italian>
+     <Spanish>&#161;Creado por Inex! [NEWLINE]&#161;Adaptado por Keinpferd y Thorgal! [NEWLINE]Un mapa realmente grande (Ancho por Alto: 101x67) para un Imperio Romano de verdad.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_ICE_AGE2</Tag>
+     <English>Created by BoggyB! [NEWLINE]Huge world map. The Ice Age has ended and the planet thaws. [NEWLINE]Featurers: [NEWLINE]-) The ice covering the oceans melts which causes the sea level to rise (coastal areas can be flooded). [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains and grassland.</English>
+     <French>Cr&#233;&#233; par BoggyB ! [NEWLINE]Immense carte du monde. La glaciation est termin&#233;e et la plan&#232;te commence &#224; d&#233;geler. [NEWLINE]Caract&#233;ristiques: [NEWLINE]-) La glace couvrant les oc&#233;ans fond ce qui cause une augmentation du niveau de la mer (les zones c&#244;ti&#232;res peuvent &#234;tre inond&#233;es). [NEWLINE]-) La glace se transforme en toundra, la toundra se transforme en plaine et prairie.</French>
+     <German>Erstellt von BoggyB! [NEWLINE]Riesige Weltkarte. Die Eiszeit hat geendet und der Planet beginnt zu tauen. [NEWLINE]Features: [NEWLINE]-) Das die Meere bedeckende Eis schmilzt und sorgt so f&#252;r einen steigenden Meeresspiegel (K&#252;stenregionen k&#246;nnen &#252;berflutet werden). [NEWLINE]-) Eisfelder verwandeln sich zu Tundra, Tundrafelder zu Ebenen und Grasland.</German>
+     <Italian>Created by BoggyB! [NEWLINE]Huge world map. The Ice Age has ended and the planet thaws. [NEWLINE]Featurers: [NEWLINE]-) The ice covering the oceans melts which causes the sea level to rise (coastal areas can be flooded). [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains and grassland.</Italian>
+     <Spanish>&#161;Creado por BoggyB! [NEWLINE]Mapa del mundo enorme. La Edad de Hielo ha finalizado y el planeta se descongela. [NEWLINE]Caracter&#237;sticas: [NEWLINE]-) El hielo que cubre los oc&#233;anos se derrite lo que provoca que suba el nivel del mar (las &#225;reas de costas pueden inundarse). [NEWLINE]-) Las casillas de hielo se convierten en tundra, las casillas de tundra en llanuras y praderas.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_ICE_AGE2</Tag>
+     <English>4.000 BC. The Ice Age has ended and the earth starts thawing. Your people has vested absolute power in you, hoping that you lead it through these cold times and achieve domination in this world. [NEWLINE]Every 32/40/45/52 rounds (fast/normal/epic/marathon), the following can happen: [NEWLINE]-) Ice floes in the sea disappear. [NEWLINE]-) Land tiles near the coast are flooded, claiming the lives of all units on this tile. Cities, hills, peaks and resource tiles are spared. [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains (75%) or grassland (25%). [NEWLINE]</English>
+     <French>4.000 av. La glaciation a fini et la terre commence &#224; d&#233;geler. Votre peuple vous a confi&#233; le pouvoir absolu esp&#233;rant que vous le dirigez par ces temps froids et arrivez &#224; la pr&#233;dominance du monde. [NEWLINE]Chaque 32/40/45/52 tours (rapide/normale/epique/marathon), les choses suivantes peuvent se passer: [NEWLINE]-) Des blocs de glace dans le mer disparaissent. [NEWLINE]-) Les r&#233;gions c&#244;ti&#232;res sont inond&#233;es en entrainant la mort de tous les units sur le terrain (des villes, collines, sommets et tuiles avec des ressources ne sont affect&#233;s). [NEWLINE]-) Glace change en toundra, toundra en plaines (75%) ou prairie (25%).</French>
+     <German>4.000 vor Christus. Die Eiszeit hat geendet und die Erde beginnt zu tauen. Euer Volk hat Euch die F&#252;hrung &#252;berlassen, um diese kalten Zeiten sicher zu &#252;berstehen und die Vorherrschaft zu erringen. [NEWLINE]Alle 32/40/45/52 Runden (Schnell/Normal/Episch/Marathon) kann folgendes geschehen: [NEWLINE]-) Eisschollen im Meer verschwinden. [NEWLINE]-) Landfelder an der K&#252;ste werden &#252;berflutet und rei&#223;en alle Einheiten auf diesem Feld mit in den Tod. St&#228;dte, H&#252;gel, Gipfel und Ressourcenfelder bleiben verschont. [NEWLINE]-) Eisfelder verwandeln sich in Tundra, Tundrafelder in Ebene (75%) oder Grasland (25%). [NEWLINE]-) Die Seen in Afrika trocknen langsam aus und die W&#252;ste, wie wir sie heute kennen, entsteht.</German>
+     <Italian>4.000 BC. The Ice Age has ended and the earth starts thawing. Your people has vested absolute power in you, hoping that you lead it through these cold times and achieve domination in this world. [NEWLINE]Every 32/40/45/52 rounds (fast/normal/epic/marathon), the following can happen: [NEWLINE]-) Ice floes in the sea disappear. [NEWLINE]-) Land tiles near the coast are flooded, claiming the lives of all units on this tile. Cities, hills, peaks and resource tiles are spared. [NEWLINE]-) Ice tiles convert into tundra, tundra tiles into plains (75%) or grassland (25%). [NEWLINE]</Italian>
+     <Spanish>4.000 a. de C. La Edad de Hielo ha termino y la Tierra empieza a descongelarse. Tu pueblo te ha conferido poder absoluto, esperando que los lideres a trav&#233;s de estos fr&#237;os tiempos y consigas la dominaci&#243;n en este mundo. [NEWLINE]Cada 32/40/45/52 turnos (r&#225;pido/normal/&#233;pica/marat&#243;n), puede ocurrir lo siguiente: [NEWLINE]-) Los t&#233;mpanos de hielo en el mar desaparecen. [NEWLINE]-) Las tierras cercanas a las costas son inundadas, cobr&#225;ndose las vidas de todas las unidades en esa casilla. Las ciudades son conservadas. [NEWLINE]-) Las casillas de hielo se convierten en tundra, las de tundra en llanura (75%) o pradera (25%).</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_480BC</Tag>
+     <English>Created by JohnDay and Rual! [NEWLINE] [NEWLINE]480 BC. 14 civilizations on a very small map of Europe (55x28). The focus is the conflict between Persia and Greece (Xerxes against the 300 Spartans). Rome, Babylon and Israel are playable as OCC.</English>
+     <French>Cr&#233;&#233; par JohnDay et Rual ! [NEWLINE] [NEWLINE]480 avant JC. 14 civilisations ur une tr&#232;s petite carte d'Europe (55x28). L'&#233;v&#232;nement principal est le conflit entre la Perse et la Gr&#232;ce (Xerx&#232;s contre les 300 spartiates). Rome, Babylon et Israel sont jouables en OOC.</French>
+     <German>Erstellt von JohnDay und Rual! [NEWLINE] [NEWLINE]480 vor Christus. 14 Zivilisationen auf einer sehr kleinen Europakarte (55x28). Im Vordergrund steht der Konflikt zwischen Persien und Griechenland (Xerxes gegen die 300 Spartaner). Rom, Babylon und Israel sind als OCC spielbar.</German>
+     <Italian>Created by JohnDay and Rual! [NEWLINE] [NEWLINE]480 BC. 14 civilizations on a very small map of Europe (55x28). The focus is the conflict between Persia and Greece (Xerxes against the 300 Spartans). Rome, Babylon and Israel are playable as OCC.</Italian>
+     <Spanish>&#161;Creado por JohnDay y Rual! [NEWLINE] [NEWLINE]480 a. C. 14 civilizaciones en un mapa muy peque&#241;o de Europa (55x28). El foco es el conflicto entre Persia y Grecia (Jerjes contra los 300 espartanos). Roma, Babilonia e Israel son jugables como reto de una sola ciudad.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_480BC</Tag>
+     <English>480 BC. Persia rules the world. Only Greece defies the powerful Xerxes, who vowed to burn down Athens. It comes to the famous battle with the 300 Spartans at Thermopylae. [NEWLINE] [NEWLINE]The map is very small, so everything is compressed. The ionic revolt in Asia Minor is anticipated to offer Greece a bigger base of power. [NEWLINE] [NEWLINE]Will you follow the paths of history, or do you write your own. Let the adventure begin ...</English>
+     <French>480 avant JC. La Perse gouverne le monde. Seule la Gr&#232;ce d&#233;fie le puissant Xerx&#232;s, qui a jur&#233; de br&#251;ler Ath&#232;nes. La guerre commence avec la c&#233;l&#232;bre bataille des 300 spartiates aux Thermopyles. [NEWLINE] [NEWLINE]La carte est tr&#232;s petite, donc tout est compress&#233;. La r&#233;volte des ioniens en Asie Mineure est une chance pour les grecs. [NEWLINE] [NEWLINE]Suivrez-vous les chemins de l'Histoire, ou &#233;crirez-vous la v&#244;tre ? Que l'aventure commence ...</French>
+     <German>480 vor Christus. Persien beherrscht die Welt. Nur Griechenland trotzt dem allm&#228;chtigen Xerxes, der schwor Athen niederzubrennen. Es kommt zur ber&#252;hmten Schlacht mit den 300 Spartiaten bei den Thermophylen. [NEWLINE] [NEWLINE]Die Europakarte ist sehr klein, daher ist alles stark komprimiert. Der ionische Aufstand in Kleinasien ist vorweg genommen, um Griechenland eine gr&#246;&#223;ere Machtbasis zu bieten. [NEWLINE] [NEWLINE]Wirst du den Pfaden der Geschichte folgen, oder deine eigene schreiben. Lass das Abenteuer beginnen... </German>
+     <Italian>480 BC. Persia rules the world. Only Greece defies the powerful Xerxes, who vowed to burn down Athens. It comes to the famous battle with the 300 Spartans at Thermopylae. [NEWLINE] [NEWLINE]The map is very small, so everything is compressed. The ionic revolt in Asia Minor is anticipated to offer Greece a bigger base of power. [NEWLINE] [NEWLINE]Will you follow the paths of history, or do you write your own. Let the adventure begin ...</Italian>
+     <Spanish>480 a.C. Persia gobierna el mundo. S&#243;lo Grecia desaf&#237;a al poderoso Jerjes, quien prometi&#243; arrasar Atenas. Acontecer&#225; la famosa batalla con los 300 espartanos en las Term&#243;pilas. [NEWLINE] [NEWLINE]El mapa es muy peque&#241;o, por lo que todo est&#225; comprimido. La revoluci&#243;n j&#243;nica en Asia Menor se espera que ofrezca a Grecia una mayor base de poder. [NEWLINE] [NEWLINE]&#191;Seguir&#225;s el camino de las historia, o escribir&#225;s el tuyo propio? Que la aventura comience...</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_480BC</Tag>
+     <English>PAE - Europa in the year 480 BC.</English>
+     <French>PAE - Europe en 480 avant JC.</French>
+     <German>PAE - Europa um das Jahr 480 vor Christus.</German>
+     <Italian>PAE - Europa in the year 480 BC.</Italian>
+     <Spanish>PAE - Europa en el a&#241;o 480 a.C.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_EASTERN_MED</Tag>
+     <English>It is the year 4000 BC. Lead your people to the domination of the eastern Mediterranean area and create a civilization which stands the test of time!</English>
+     <French>Nous sommes en 4000 avant JC. Menez votre peuple vers la domination de la M&#233;diterran&#233;e et cr&#233;ez une civilisation qui restera dans l'histoire !</French>
+     <German>Wir schreiben das Jahr 4.000 vor Christus. F&#252;hre dein Volk zur Vorherrschaft im &#246;stlichen Mittelmeerraum und errichte eine Zivilisation, die die Zeit &#252;berdauern wird!</German>
+     <Italian>It is the year 4000 BC. Lead your people to the domination of the eastern Mediterranean area and create a civilization which stands the test of time!</Italian>
+     <Spanish>Es el a&#241;o 4000 a. C. Conduce a tu gente a la dominaci&#243;n de la zona del Mediterr&#225;neo oriental y &#161;crea una civilizaci&#243;n que resista el paso del tiempo!</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_EASTERN_MED</Tag>
+     <English>Pie's Ancient Europe - The Eastern Mediterranean</English>
+     <French>Pie's Ancient Europe - La M&#233;diterran&#233;e orientale</French>
+     <German>Pie's Ancient Europe - Das &#214;stliche Mittelmeer</German>
+     <Italian>Pie's Ancient Europe - The Eastern Mediterranean</Italian>
+     <Spanish>Pie's Ancient Europe - El Mediterr&#225;neo oriental</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_EASTERN_MED</Tag>
+     <English>Created by BoggyB! [NEWLINE] [NEWLINE]A map of the eastern Mediterranean (17 civs) with Greece and Libya in the west, Phoenicia and Isreal in the east, Hittitia and Lydia in the north and Egypt in the south. [NEWLINE]Rhodes and Israel can be played as OCC (One-City Challenge) feasibly. [NEWLINE]Based on a map from veBear.</English>
+     <French>Cr&#233;&#233; par BoggyB! [NEWLINE] [NEWLINE]Une carte de l'est de la M&#233;diterran&#233;e (17 civilisations) avec la Gr&#232;ce et la Libye &#224; l'ouest, la Ph&#233;nicie et Isra&#235;l &#224; l'est, les Hittites et Lydiens au nord, et l'Egypte au sud. [NEWLINE]Rhodes et Isra&#235;l peuvent &#234;tre jou&#233;s en OOC. [NEWLINE] [NEWLINE]A partir de la carte de veBear.</French>
+     <German>Erstellt von BoggyB! [NEWLINE] [NEWLINE]Eine Karte des &#246;stlichen Mittelmeers (17 Zivilisationen) mit Griechenland und Libyen im Westen, Ph&#246;nizien und Israel im Osten, Hethitien und Lydien im Norden und &#196;gypten im S&#252;den. [NEWLINE]Rhodos und Israel k&#246;nnen sinnvoll als OCC (Einzelstadt-Wettkampf) gespielt werden. [NEWLINE]Basierend auf einer Karte von veBear.</German>
+     <Italian>Created by BoggyB! [NEWLINE] [NEWLINE]A map of the eastern Mediterranean (17 civs) with Greece and Libya in the west, Phoenicia and Isreal in the east, Hittitia and Lydia in the north and Egypt in the south. [NEWLINE]Rhodes and Israel can be played as OCC (One-City Challenge) feasibly. [NEWLINE]Based on a map from veBear.</Italian>
+     <Spanish>&#161;Creado por BoggyB! [NEWLINE] [NEWLINE]Un mapa del Mediterr&#225;neo oriental (17 civs) con Grecia y Libia al oeste, Fenicia e Israel en el este, Hititas y Lidia en el norte y Egipto en el sur. [NEWLINE]Rodas e Israel pueden ser jugados como OCC (Reto de una sola ciudad) factibles. [NEWLINE]Basado en un mapa de veBear.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_LIMES_GERMANICUS</Tag>
+     <English>Created by JohnDay! [NEWLINE] [NEWLINE]This is a fictional scenario about the Limes Germanicus on a map of middle Europe (70x50). All Germanic tribes except the Jutes and Angles are playable as OCC.</English>
+     <French>Cr&#233;&#233; par JohnDay ! [NEWLINE] [NEWLINE]C'est un sc&#233;nario fictif sur les Limes avec une carte de l'Europe centrale (70x50). Toutes les tribus germaniques sauf les Jutes et Angles sont jouables en OOC.</French>
+     <German>Erstellt von JohnDay! [NEWLINE] [NEWLINE]Dies ist ein fiktives Szenario &#252;ber den Limes Germanicus auf einer mitteleurop&#228;ischen Karte (70x50). Alle germanischen St&#228;mme bis auf die Jueten und Angeln sind OCC f&#228;hig.</German>
+     <Italian>Created by JohnDay! [NEWLINE] [NEWLINE]This is a fictional scenario about the Limes Germanicus on a map of middle Europe (70x50). All Germanic tribes except the Jutes and Angles are playable as OCC.</Italian>
+     <Spanish>&#161;Creado por JohnDay! [NEWLINE] [NEWLINE]Este es un escenario ficticio sobre el Limes Germanicus en el 12 a.C. en una mapa medio de Europa (70x50). Todas las tribus germ&#225;nicas excepto los Jutos y los Anglos pueden jugarse como reto de una sola ciudad.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_LIMES_GERMANICUS</Tag>
+     <English>Pie's Ancient Europe - Limes Germanicus</English>
+     <French>Pie's Ancient Europe - Limes Germanicus</French>
+     <German>Pie's Ancient Europe - Limes Germanicus</German>
+     <Italian>Pie's Ancient Europe - Limes Germanicus</Italian>
+     <Spanish>Pie's Ancient Europe - Limes Germanicus</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_LIMES_GERMANICUS</Tag>
+     <English>It is the year 235 AD at the Limes Germanicus. [NEWLINE] [NEWLINE]Since 233, the Alemanni use a weak phase of the Romans for looting and destruction. The Emperor Severus Alexander and his mother, who sought a cowardly negotiated solution with the Germans, are swept out of the way. The officer, who was responsible for the training of new excavated troops for a campaign against the Germans, Maximinus Thrax, has now been proclaimed by the troops to the new Roman Emperor. He promises an increase in salae, gratuities (donations) and an amnesty for all disciplinary sanctions. The Legionaries by contrast hoping prey, retribution and an easy victory over the Germans. In the summer of 235 AD, a campaign of retaliation begins, deep into the Germanic settlements. [NEWLINE] [NEWLINE]Lead the Romans and subdue all Germania... or be in charge of one of the Germanic tribes to stop Rome.</English>
+     <French>It is the year 235 AD at the Limes Germanicus. [NEWLINE] [NEWLINE]Since 233, the Alemanni use a weak phase of the Romans for looting and destruction. The Emperor Severus Alexander and his mother, who sought a cowardly negotiated solution with the Germans, are swept out of the way. The officer, who was responsible for the training of new excavated troops for a campaign against the Germans, Maximinus Thrax, has now been proclaimed by the troops to the new Roman Emperor. He promises an increase in salae, gratuities (donations) and an amnesty for all disciplinary sanctions. The Legionaries by contrast hoping prey, retribution and an easy victory over the Germans. In the summer of 235 AD, a campaign of retaliation begins, deep into the Germanic settlements. [NEWLINE] [NEWLINE]Lead the Romans and subdue all Germania... or be in charge of one of the Germanic tribes to stop Rome.</French>
+     <German>Wir schreiben das Jahr 235 nach Christus am Limes Germanicus. [NEWLINE] [NEWLINE]Seit 233 nutzen die Alamannen eine schwache Phase der R&#246;mer f&#252;r Pl&#252;nderungen und Zerst&#246;rungen. Der Kaiser Severus Alexander und seine Mutter, die mit den Germanen eine feige Verhandlungsl&#246;sung anstrebten, sind aus dem Weg ger&#228;umt. Der Offizier, der f&#252;r die Ausbildung der neu ausgehobenen Truppen f&#252;r einen Feldzug gegen die Germanen zust&#228;ndig war, Maximinus Thrax, ist von den Truppen zum neuen r&#246;mischen Kaiser ausgerufen worden. Er verspricht eine Erh&#246;hung des Solds, Sonderzuwendungen (Donativen) und eine Amnestie bei allen Disziplinarstrafen. Die Legion&#228;re hingegen erhoffen sich Beute, Vergeltung und einen leichten Sieg &#252;ber die Germanen. Im Sommer 235 nach Christus beginnt nun ein Vergeltungsfeldzug, bis tief in die germanischen Siedlungsgebiete hinein. [NEWLINE] [NEWLINE]F&#252;hre die R&#246;mer und unterwerfe ganz Germanien... oder bestimme &#252;ber einen der germanischen St&#228;mme, um Rom daran zu hindern.</German>
+     <Italian>It is the year 235 AD at the Limes Germanicus. [NEWLINE] [NEWLINE]Since 233, the Alemanni use a weak phase of the Romans for looting and destruction. The Emperor Severus Alexander and his mother, who sought a cowardly negotiated solution with the Germans, are swept out of the way. The officer, who was responsible for the training of new excavated troops for a campaign against the Germans, Maximinus Thrax, has now been proclaimed by the troops to the new Roman Emperor. He promises an increase in salae, gratuities (donations) and an amnesty for all disciplinary sanctions. The Legionaries by contrast hoping prey, retribution and an easy victory over the Germans. In the summer of 235 AD, a campaign of retaliation begins, deep into the Germanic settlements. [NEWLINE] [NEWLINE]Lead the Romans and subdue all Germania... or be in charge of one of the Germanic tribes to stop Rome.</Italian>
+     <Spanish>Es el a&#241;o 235 d.C. en las limes germ&#225;nicas. [NEWLINE] [NEWLINE]Desde el 233, los alemanni utilizan una etapa d&#233;bil de los romanos para saquear y destruir. El emperador Alejandro Severo y su madre, quienes buscaron una cobarde soluci&#243;n negociado con los germanos, han sido asesinados. El oficial, quien fue el responsable del entrenamiento de nuevas tropas reclutadas para una campa&#241;a contra los germanos, Maximino el Tracio, ha sido ahora proclamado por las tropas como el nuevo emperador romano. El promete un aumento de salario, propinas (donaciones) y una amnist&#237;a para todas las sanciones disciplinarias. Los legionarios por contra desean cazar, castigar y una f&#225;cil victoria sobre los germanos. En el verano del 235 d.C., una campa&#241;a de represalia empieza, en lo m&#225;s profundo de los asentamientos germanos. [NEWLINE] [NEWLINE]Lidera a los romanos y subyuga a toda Germania... o se en cambio una de las tribus germanas que parar&#225;n a Roma.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_EURASIA_5000BC</Tag>
+     <English>Created by Thorgal and based on the Imperium Romanum map by Inex! [NEWLINE] [NEWLINE]A really big map with space for the whole PAE universe from Britannia to India.</English>
+     <French>Created by Thorgal and based on the Imperium Romanum map by Inex! [NEWLINE] [NEWLINE]A really big map with space for the whole PAE universe from Britannia to India.</French>
+     <German>Erstellt von Thorgal auf Basis der Imperium Romanum Karte von Inex! [NEWLINE] [NEWLINE]Eine sehr gro&#223;e Karte mit Platz f&#252;r das ganze PAE-Universum von Britannien bis Indien.</German>
+     <Italian>Created by Thorgal and based on the Imperium Romanum map by Inex! [NEWLINE] [NEWLINE]A really big map with space for the whole PAE universe from Britannia to India.</Italian>
+     <Spanish>&#161;Creado por Thorgal y basado en el mapa Imperium Romanum de Inex! [NEWLINE] [NEWLINE]Un mapa verdaderamente grande con espacio para todo el universo PAE, desde Britania hasta la India.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_SMALL_LIMES_GERMANICUS</Tag>
+     <English>Created by JohnDay! [NEWLINE] [NEWLINE]A scenario about the Limes Germanicus on a small map (60x40). The Burgundians are playable as OCC. [NEWLINE]</English>
+     <French>Created by JohnDay! [NEWLINE] [NEWLINE]A scenario about the Limes Germanicus on a small map (60x40). The Burgundians are playable as OCC. [NEWLINE]</French>
+     <German>Erstellt von JohnDay! [NEWLINE] [NEWLINE]Szenario &#252;ber den Limes Germanicus auf einer kleinen Karte (60x40). Die Zivilisation der Burgunder ist OCC f&#228;hig.</German>
+     <Italian>Created by JohnDay! [NEWLINE] [NEWLINE]A scenario about the Limes Germanicus on a small map (60x40). The Burgundians are playable as OCC. [NEWLINE]</Italian>
+     <Spanish>&#161;Creado por JohnDay! [NEWLINE] [NEWLINE]Un escenario sobre las Limes Germanicus en un mapa peque&#241;o (60x40). Los Burgundios son jugables como OCC (reto de &#250;nica ciudad).</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_SMALL_LIMES_GERMANICUS</Tag>
+     <English>Pie's Ancient Europe - Limes Germanicus (small)</English>
+     <French>Pie's Ancient Europe - Limes Germanicus (small)</French>
+     <German>Pie's Ancient Europe - Limes Germanicus (klein)</German>
+     <Italian>Pie's Ancient Europe - Limes Germanicus (small)</Italian>
+     <Spanish>Pie's Ancient Europe - Limes Germanicus (peque&#241;o)</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SMALL_LIMES_GERMANICUS</Tag>
+     <English>Since 233, the Hermunduri use a weak phase of the Romans for looting and destruction. The Emperor Severus Alexander and his mother, who sought a cowardly negotiated solution with the Germans, are swept out of the way. The officer, who was responsible for the training of new excavated troops for a campaign against the Germans, Maximinus Thrax, has now been proclaimed by the troops to the new Roman Emperor. He promises an increase in salae, gratuities (donations) and an amnesty for all disciplinary sanctions. The Legionaries by contrast hoping prey, retribution and an easy victory over the Germans. In the summer of 235 AD, a campaign of retaliation begins, deep into the Germanic settlements. [NEWLINE] [NEWLINE]Lead the Romans and subdue all Germania... or be in charge of one of the Germanic tribes to stop Rome.</English>
+     <French>Since 233, the Hermunduri use a weak phase of the Romans for looting and destruction. The Emperor Severus Alexander and his mother, who sought a cowardly negotiated solution with the Germans, are swept out of the way. The officer, who was responsible for the training of new excavated troops for a campaign against the Germans, Maximinus Thrax, has now been proclaimed by the troops to the new Roman Emperor. He promises an increase in salae, gratuities (donations) and an amnesty for all disciplinary sanctions. The Legionaries by contrast hoping prey, retribution and an easy victory over the Germans. In the summer of 235 AD, a campaign of retaliation begins, deep into the Germanic settlements. [NEWLINE] [NEWLINE]Lead the Romans and subdue all Germania... or be in charge of one of the Germanic tribes to stop Rome.</French>
+     <German>Seit 233 nutzen die Hermunduren eine schwache Phase der R&#246;mer f&#252;r Pl&#252;nderungen und Zerst&#246;rungen. Der Kaiser Severus Alexander und seine Mutter, die mit den Germanen eine feige Verhandlungsl&#246;sung anstrebten, sind aus dem Weg ger&#228;umt. Der Offizier, der f&#252;r die Ausbildung der neu ausgehobenen Truppen f&#252;r einen Feldzug gegen die Germanen zust&#228;ndig war, Maximinus Thrax, ist von den Truppen zum neuen r&#246;mischen Kaiser ausgerufen worden. Er verspricht eine Erh&#246;hung des Solds, Sonderzuwendungen (Donativen) und eine Amnestie bei allen Disziplinarstrafen. Die Legion&#228;re hingegen erhoffen sich Beute, Vergeltung und einen leichten Sieg &#252;ber die Germanen. Im Sommer 235 nach Christus beginnt nun ein Vergeltungsfeldzug, bis tief in die germanischen Siedlungsgebiete hinein. [NEWLINE] [NEWLINE]F&#252;hre die R&#246;mer und unterwerfe ganz Germanien... oder bestimme &#252;ber einen der germanischen St&#228;mme, um Rom daran zu hindern. </German>
+     <Italian>Since 233, the Hermunduri use a weak phase of the Romans for looting and destruction. The Emperor Severus Alexander and his mother, who sought a cowardly negotiated solution with the Germans, are swept out of the way. The officer, who was responsible for the training of new excavated troops for a campaign against the Germans, Maximinus Thrax, has now been proclaimed by the troops to the new Roman Emperor. He promises an increase in salae, gratuities (donations) and an amnesty for all disciplinary sanctions. The Legionaries by contrast hoping prey, retribution and an easy victory over the Germans. In the summer of 235 AD, a campaign of retaliation begins, deep into the Germanic settlements. [NEWLINE] [NEWLINE]Lead the Romans and subdue all Germania... or be in charge of one of the Germanic tribes to stop Rome.</Italian>
+     <Spanish>Desde el 233, los ermunduri utilizan una etapa d&#233;bil de los romanos para saquear y destruir. El emperador Alejandro Severo y su madre, quienes buscaron una cobarde soluci&#243;n negociado con los germanos, han sido asesinados. El oficial, quien fue el responsable del entrenamiento de nuevas tropas reclutadas para una campa&#241;a contra los germanos, Maximino el Tracio, ha sido ahora proclamado por las tropas como el nuevo emperador romano. El promete un aumento de salario, propinas (donaciones) y una amnist&#237;a para todas las sanciones disciplinarias. Los legionarios por contra desean cazar, castigar y una f&#225;cil victoria sobre los germanos. En el verano del 235 d.C., una campa&#241;a de represalia empieza, en lo m&#225;s profundo de los asentamientos germanos. [NEWLINE] [NEWLINE]Lidera a los romanos y subyuga a toda Germania... o se en cambio una de las tribus germanas que parar&#225;n a Roma.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MAURYA_DESC</Tag>
+     <English>Maurya Empire</English>
+     <French>Maurya</French>
+     <German>Maurya Reich</German>
+     <Italian>Impero Maurya</Italian>
+     <Spanish>Imperio Maurya</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MAURYA_SHORT_DESC</Tag>
+     <English>Maurya</English>
+     <French>Maurya</French>
+     <German>Maurya</German>
+     <Italian>Mauria</Italian>
+     <Spanish>Mauria</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MAURYA_ADJECTIVE</Tag>
+     <English>mauryan</English>
+     <French>Maurya</French>
+     <German><Text>mauryanisch:mauryanischen:mauryanische:mauryanischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+     <Italian><Text>mauria:mauri:mauria:maurie</Text><Gender>Male:Female</Gender><Plural>0:1</Plural></Italian>
+     <Spanish><Text>mauria:mauria:maurias:maurias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ARMENIA_DESC</Tag>
+     <English>Armenians</English>
+     <French>Arm&#233;niens</French>
+     <German>Armenier</German>
+     <Italian>Armeni</Italian>
+     <Spanish><Text>Armenios</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ARMENIA_SHORT_DESC</Tag>
+     <English>Armenia</English>
+     <French>Arm&#233;nie</French>
+     <German>Armenien</German>
+     <Italian>Armenia</Italian>
+     <Spanish>Armenia</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ARMENIA_ADJECTIVE</Tag>
+     <English>Armenian</English>
+     <French><Text>arm&#233;nien:arm&#233;nienne:arm&#233;niens:arm&#233;niennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+     <German><Text>armenisch:armenischen:armenische:armenischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+     <Italian><Text>armenio:armenia:armeni:armenie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>armenio:armenia:armenios:armenias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BACTRIA_DESC</Tag>
+     <English>Bactrians</English>
+     <French>Bactriens</French>
+     <German>Baktrier</German>
+     <Italian>Battriani</Italian>
+     <Spanish><Text>Bactrianos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BACTRIA_SHORT_DESC</Tag>
+     <English>Bactria</English>
+     <French>Bactriane</French>
+     <German>Baktrien</German>
+     <Italian>Battria</Italian>
+     <Spanish>Bactria</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BACTRIA_ADJECTIVE</Tag>
+     <English>Bactrian</English>
+     <French><Text>bactrien:bactrienne:bactriens:bactriennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+     <German><Text>baktrisch:baktrischen:baktrische:baktrischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+     <Italian><Text>battriana:battriana:battriani:battriane</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>bactriano:bactriana:bactrianos:bactrianas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_NANDA_DESC</Tag>
+     <English>Nanda</English>
+     <French>Nanda</French>
+     <German>Nanda</German>
+     <Italian>Nanda</Italian>
+     <Spanish>Nanda</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_NANDA_SHORT_DESC</Tag>
+     <English>Nanda</English>
+     <French>Nanda</French>
+     <German><Text>Nanda</Text><Gender>Neuter</Gender><Plural>0</Plural></German>
+     <Italian>Nanda</Italian>
+     <Spanish>Nanda</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_NANDA_ADJECTIVE</Tag>
+     <English>Nanda-Indian</English>
+     <French>Nanda-indien</French>
+     <German><Text>Nanda-indisch:Nanda-indischen:Nanda-indische:Nanda-indischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+     <Italian><Text>Nanda-indio:Nanda-india:Nanda-indi:Nanda-indie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>Nanda-indio:Nanda-india:Nanda-indios:Nanda-indias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_NANDA</Tag>
+     <English>Mahapadma Nanda</English>
+     <French>Mahapadma Nanda</French>
+     <German>Mahapadma Nanda</German>
+     <Italian>Majapadma Nanda</Italian>
+     <Spanish>Majapadma Nanda</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_ACHAIMENES</Tag>
+     <English>Governor Achaimenes</English>
+     <French>Gouverneur Ach&#233;m&#233;n&#232;s</French>
+     <German>Statthalter Achaimenes</German>
+     <Italian>Governatore Achaimenes</Italian>
+     <Spanish>Gobernador Aquemenes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_MARCUS_FABIUS</Tag>
+     <English>Marcus Fabius Vibulanus</English>
+     <French>Marcus Fabius Vibulanus</French>
+     <German>Marcus Fabius Vibulanus</German>
+     <Italian>Marco Fabio Vibulano</Italian>
+     <Spanish>Marco Fabio Vibulano</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_NABATU_DESC</Tag>
+     <English>Nabataeans</English>
+     <French>Nabat&#233;ens</French>
+     <German>Nabat&#228;er</German>
+     <Italian>Nabatei</Italian>
+     <Spanish>Nabateos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_NABATU_SHORT_DESC</Tag>
+     <English>Nabataea</English>
+     <French>Nabat&#232;ne</French>
+     <German>Nabataea</German>
+     <Italian>Nabatei</Italian>
+     <Spanish>Nabatea</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_NABATU_ADJECTIVE</Tag>
+     <English>nabataean</English>
+     <French>nabat&#233;en</French>
+     <German>nabat&#228;isch</German>
+     <Italian><Text>nabateo:nabatea:nabatei:nabateie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>nabateo:nabatea:nabateos:nabateas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HURRITER_DESC</Tag>
+     <English>Hurrians</English>
+     <French>Hourittes</French>
+     <German>Hurriter</German>
+     <Italian>Hurriti</Italian>
+     <Spanish>Hurritas</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HURRITER_ADJECTIVE</Tag>
+     <English>hurrian</English>
+     <French>hourrite</French>
+     <German>hurritisch</German>
+     <Italian>hurrita</Italian>
+     <Spanish>hurrita</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_RHODOS_DESC</Tag>
+     <English>Rhodians</English>
+     <French>Rhodes</French>
+     <German>Rhodier</German>
+     <Italian>Rodi</Italian>
+     <Spanish>Rodios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_RHODOS_SHORT_DESC</Tag>
+     <English>Rhodes</English>
+     <French>Rhodes</French>
+     <German>Rhodos</German>
+     <Italian>Rodi</Italian>
+     <Spanish>Rodas</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_RHODOS_ADJECTIVE</Tag>
+     <English>rhodian</English>
+     <French>rhode</French>
+     <German>rhodisch</German>
+     <Italian><Text>rodio:rodia:rodi:rodie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>rodio:rodia:rodios:rodias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ACHAIER_DESC</Tag>
+     <English>Achaean League</English>
+     <French>Ligue ach&#233;enne</French>
+     <German>Achaiischer Bund</German>
+     <Italian>Lega achea</Italian>
+     <Spanish>Liga Aquea</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ACHAIER_SHORT_DESC</Tag>
+     <English>Achaea</English>
+     <French>Acha&#239;e</French>
+     <German>Achaia</German>
+     <Italian>Acaia</Italian>
+     <Spanish>Acaya</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ACHAIER_ADJECTIVE</Tag>
+     <English>achaean</English>
+     <French>ach&#233;en</French>
+     <German>achaiisch</German>
+     <Italian>achea</Italian>
+     <Spanish><Text>aqueo:aquea:aqueos:aqueas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_IONIER_DESC</Tag>
+     <English>Ionian League</English>
+     <French>Conf&#233;d&#233;ration ionienne</French>
+     <German>Ionischer Bund</German>
+     <Italian>Lega ionia</Italian>
+     <Spanish>Liga J&#243;nica</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_IONIER_SHORT_DESC</Tag>
+     <English>Ionia</English>
+     <French>Ionie</French>
+     <German>Ionien</German>
+     <Italian>Ionia</Italian>
+     <Spanish>Jonia</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_IONIER_ADJECTIVE</Tag>
+     <English>ionian</English>
+     <French>ionien</French>
+     <German>ionisch</German>
+     <Italian>ionia</Italian>
+     <Spanish><Text>jonio:jonia:jonios:jonias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_IONIER</Tag>
+     <English>Histiaeus</English>
+     <French>Histi&#233;e</French>
+     <German>Histiaios</German>
+     <Italian>Istieo</Italian>
+     <Spanish>Histieo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_ACHAIER</Tag>
+     <English>Aratus of Sicyon</English>
+     <French>Aratos de Sicyone</French>
+     <German>Aratos von Sikyon</German>
+     <Italian>Arato di Sicione</Italian>
+     <Spanish>Arato de Sici&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_RHODOS</Tag>
+     <English>Tlepolemus</English>
+     <French>Tl&#233;pol&#232;me</French>
+     <German>Tlepolemos</German>
+     <Italian>Tlepolemo</Italian>
+     <Spanish>Tlepol&#233;mo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_NABATU</Tag>
+     <English>Aretas III</English>
+     <French>Ar&#233;tas III</French>
+     <German>Aretas III.</German>
+     <Italian>Areta III</Italian>
+     <Spanish>Aretas III</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_PERDIKKAS</Tag>
+     <English>Perdiccas</English>
+     <French>Perdiccas </French>
+     <German>Perdikkas</German>
+     <Italian>Perdicca</Italian>
+     <Spanish>P&#233;rdicas</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON1</Tag>
+     <English>Germanicus</English>
+     <French>Germanicus</French>
+     <German>Germanicus</German>
+     <Italian>Germanico</Italian>
+     <Spanish>Germanicus</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON2</Tag>
+     <English>Drusus</English>
+     <French>Drusus</French>
+     <German>Drusus</German>
+     <Italian>Druso</Italian>
+     <Spanish>Druso</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON3</Tag>
+     <English>Varus</English>
+     <French>Varus</French>
+     <German>Varus</German>
+     <Italian>Varo</Italian>
+     <Spanish>Varo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HALIKARNASSOS_DESC</Tag>
+     <English>Polis of Halicarnassus</English>
+     <French>Polis d'Halicarnasse</French>
+     <German>Polis Halikarnassos</German>
+     <Italian>Polis Alicarnasso</Italian>
+     <Spanish>Polis de Halicarnaso</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HALIKARNASSOS_SHORT_DESC</Tag>
+     <English>Halicarnassus</English>
+     <French>Halicarnasse</French>
+     <German>Halikarnassos</German>
+     <Italian>Alicarnasso</Italian>
+     <Spanish>Halicarnaso</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HALIKARNASSOS_ADJECTIVE</Tag>
+     <English>Halicarnassian</English>
+     <French>Halicarnassien</French>
+     <German>halikarnassisch</German>
+     <Italian>alicarnassa</Italian>
+     <Spanish>halikarnassisch</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_EPHESOS_DESC</Tag>
+     <English>Polis of Ephesus</English>
+     <French>Polis d'&#201;ph&#232;se</French>
+     <German>Polis Ephesos</German>
+     <Italian>Polis Efeso</Italian>
+     <Spanish>Polis de &#201;feso</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_EPHESOS_SHORT_DESC</Tag>
+     <English>Ephesus</English>
+     <French>&#201;ph&#232;se</French>
+     <German>Ephesos</German>
+     <Italian>Efeso</Italian>
+     <Spanish>&#201;feso</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_EPHESOS_ADJECTIVE</Tag>
+     <English>Ephesian</English>
+     <French>&#201;ph&#233;sien</French>
+     <German>Ephesisch</German>
+     <Italian>efesia</Italian>
+     <Spanish><Text>efesio:efesia:efesios:efesias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_PERGAMON_DESC</Tag>
+     <English>Polis of Pergamon</English>
+     <French>Polis de Pergame</French>
+     <German>Polis Pergamon</German>
+     <Italian>Polis Pergamon</Italian>
+     <Spanish>Polis de P&#233;rgamo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_PERGAMON_SHORT_DESC</Tag>
+     <English>Pergamon</English>
+     <French>Pergame</French>
+     <German>Pergamon</German>
+     <Italian>Pergamo</Italian>
+     <Spanish>P&#233;rgamo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_PERGAMON_ADJECTIVE</Tag>
+     <English>Pergamonian</English>
+     <French>Pergam&#233;nien</French>
+     <German>pergamonisch</German>
+     <Italian>pergamena</Italian>
+     <Spanish><Text>pergameno:pergamena:pergamenos:pergamenas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HERAKLEA_DESC</Tag>
+     <English>Polis of Heracleia</English>
+     <French>Polis d'H&#233;racl&#233;e</French>
+     <German>Polis Herakleia</German>
+     <Italian>Polis Heraclea [NEWLINE]</Italian>
+     <Spanish>Polis de Heraclea</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HERAKLEA_SHORT_DESC</Tag>
+     <English>Heracleia</English>
+     <French>H&#233;racl&#233;e</French>
+     <German>Herakleia</German>
+     <Italian>Eraclea</Italian>
+     <Spanish>Heraclea</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HERAKLEA_ADJECTIVE</Tag>
+     <English>Heracleian</English>
+     <French>H&#233;racl&#233;en</French>
+     <German>herakleisch</German>
+     <Italian>eracleia</Italian>
+     <Spanish>herakleisch</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ILION_DESC</Tag>
+     <English>Polis of Ilion</English>
+     <French>Polis d'Ilion</French>
+     <German>Polis Ilion</German>
+     <Italian>Polis Ilion</Italian>
+     <Spanish>Polis de Ili&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ILION_SHORT_DESC</Tag>
+     <English>Ilion</English>
+     <French>Ilion</French>
+     <German>Ilion</German>
+     <Italian>Ilion</Italian>
+     <Spanish>Ili&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ILION_ADJECTIVE</Tag>
+     <English>Ilionic</English>
+     <French>Ilionien</French>
+     <German>ilionisch</German>
+     <Italian>iliona</Italian>
+     <Spanish>ilionisch</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MYKONOS_DESC</Tag>
+     <English>Polis of Mykonos</English>
+     <French>Polis de Myconos</French>
+     <German>Polis Mykonos</German>
+     <Italian>Polis Mykonos</Italian>
+     <Spanish>Polis de M&#237;conos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MYKONOS_SHORT_DESC</Tag>
+     <English>Mykonos</English>
+     <French>Myconos</French>
+     <German>Mykonos</German>
+     <Italian>Mykonos</Italian>
+     <Spanish>M&#237;conos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MYKONOS_ADJECTIVE</Tag>
+     <English>Mykonian</English>
+     <French>Myconien</French>
+     <German>mykonisch</German>
+     <Italian>miconia</Italian>
+     <Spanish><Text>miconiano:miconiana:miconianos:miconianas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON4</Tag>
+     <English>Tiberius</English>
+     <French>Tib&#232;re</French>
+     <German>Tiberius</German>
+     <Italian>Tiberio</Italian>
+     <Spanish>Tiberio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON5</Tag>
+     <English>Ajax the Lingonian</English>
+     <French>Ajax le Lingonien</French>
+     <German>Ajax der Lingone</German>
+     <Italian>Ajax di Lingoni</Italian>
+     <Spanish>Ajax el Ling&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON6</Tag>
+     <English>Son of Ajax</English>
+     <French>Fils d'Ajax le Lingonien</French>
+     <German>Sohn des Ajax</German>
+     <Italian>Figlio di Ajax</Italian>
+     <Spanish>Hijo de Ajax</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON7</Tag>
+     <English>Avestes the Menapian</English>
+     <French>Avestes le M&#233;napien</French>
+     <German>Avestes der Menapier</German>
+     <Italian>Avestes Menapi [NEWLINE]</Italian>
+     <Spanish>Avestes los menapios [NEWLINE]</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON8</Tag>
+     <English>Son of Avestes</English>
+     <French>Fils d'Aveste le M&#233;napien</French>
+     <German>Sohn des Avestes</German>
+     <Italian>Figlio di Avestes</Italian>
+     <Spanish>Hijo de Avestes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON9</Tag>
+     <English>Einhard the Frisian</English>
+     <French>&#201;ginhard le Frison</French>
+     <German>Einhard der Friese</German>
+     <Italian>Eginardo Fregi</Italian>
+     <Spanish>Einhard Frisos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON10</Tag>
+     <English>Son of Einhard</English>
+     <French>Fils d'&#201;ginhard le Frison</French>
+     <German>Sohn des Einhard</German>
+     <Italian>Figlio di Eginardo</Italian>
+     <Spanish>Hijo de Einhard</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON11</Tag>
+     <English>Arminius the Cheruscian</English>
+     <French>Arminius le Ch&#233;rusque</French>
+     <German>Arminius der Cherusker</German>
+     <Italian>Arminio di Cherusci</Italian>
+     <Spanish>Arminio del Querusco</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON12</Tag>
+     <English>Segestes the Cheruscian</English>
+     <French>S&#233;gestes le Ch&#233;rusque</French>
+     <German>Segestes der Cherusker</German>
+     <Italian>Segestes di Cherusci</Italian>
+     <Spanish>Segestes el Querusco</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON13</Tag>
+     <English>Son of Segestes</English>
+     <French>Fils de S&#233;gestes le Ch&#233;rusque</French>
+     <German>Sohn des Segestes</German>
+     <Italian>Son Segeste</Italian>
+     <Spanish>Hijo de Segestes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON14</Tag>
+     <English>Ekwin the Variscian</English>
+     <French>Ekwin, le Varisque</French>
+     <German>Ekwin der Narister</German>
+     <Italian>Ekwin il Narister</Italian>
+     <Spanish>Ekwin la Narister</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON15</Tag>
+     <English>Son of Ekwin</English>
+     <French>Fils d'Ekwin</French>
+     <German>Sohn des Ekwin</German>
+     <Italian>Figlio di Ekwin [NEWLINE]</Italian>
+     <Spanish>Hijo de Ekwin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON16</Tag>
+     <English>Tallic of the Angles</English>
+     <French>Tallic des Angles</French>
+     <German>Tallic der Angeln</German>
+     <Italian>Tallic di pesca</Italian>
+     <Spanish>Tallic de Pesca</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON17</Tag>
+     <English>Son of Tallic</English>
+     <French>Fils de Tallic, l'Angle.</French>
+     <German>Sohn des Tallic</German>
+     <Italian>Figlio di Tallic</Italian>
+     <Spanish>Hijo de Tallic</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON18</Tag>
+     <English>Gotwin the Lombard</English>
+     <French>Gotwin le Lombard</French>
+     <German>Gotwin der Langobarde</German>
+     <Italian>Gotwin lombardo [NEWLINE]</Italian>
+     <Spanish>Gotwin el Lombardo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON19</Tag>
+     <English>Son of Gotwin</English>
+     <French>Fils de Gotwin le Lombard</French>
+     <German>Sohn des Gotwin</German>
+     <Italian>Figlio di Gotwin [NEWLINE]</Italian>
+     <Spanish>Hijo de Gotwin</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON20</Tag>
+     <English>Wigand the Semnonian</English>
+     <French>Wigand le Semnonien</French>
+     <German>Wigand der Semnone</German>
+     <Italian>Wigand di Semnone [NEWLINE]</Italian>
+     <Spanish>Wigand de Semnone</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON21</Tag>
+     <English>Son of Wigand</English>
+     <French>Fils de Wigand le Semnonien</French>
+     <German>Sohn des Wigand</German>
+     <Italian>Figlio di Wigand</Italian>
+     <Spanish>Hijo de Wigand</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON22</Tag>
+     <English>Marbod the Marcomann</English>
+     <French>Marobod le Marcoman</French>
+     <German>Marbod der Markomanne</German>
+     <Italian>Maroboduus il marito Marko</Italian>
+     <Spanish>Marbod el Marc&#243;mano</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON23</Tag>
+     <English>Son of Marbod</English>
+     <French>Fils de Marobod le Marcoman</French>
+     <German>Sohn des Marbod</German>
+     <Italian>Figlio di Maroboduus</Italian>
+     <Spanish>Hijo de Marbod</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON24</Tag>
+     <English>Harald the Rugian</English>
+     <French>Harald des Rugiens</French>
+     <German>Harald der Rugier</German>
+     <Italian>Harald i Rugi</Italian>
+     <Spanish>Harald las Rugians</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON25</Tag>
+     <English>Son of Harald</English>
+     <French>Fils d'Harald le Rugien</French>
+     <German>Sohn des Harald</German>
+     <Italian>Figlio di Harald</Italian>
+     <Spanish>Hijo de Harald</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON26</Tag>
+     <English>Gundobad the Burgundian</English>
+     <French>Gondebaud le Burgonde</French>
+     <German>Gundobad der Burgunder</German>
+     <Italian>Gundobad di Borgogna</Italian>
+     <Spanish>Gundebaldo el Burgundio</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON27</Tag>
+     <English>Son of Gundobad</English>
+     <French>Fils de Gondebaud le Burgonde</French>
+     <German>Sohn des Gundobad</German>
+     <Italian>Figlio di Gundobad</Italian>
+     <Spanish>Hijo de Gundebaldo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON28</Tag>
+     <English>Vannius the Quadian</English>
+     <French>Vannius le Quadien</French>
+     <German>Vannius der Quade</German>
+     <Italian>Vannius di Quade</Italian>
+     <Spanish>Vannius el Cuado</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON29</Tag>
+     <English>Son of Vannius</English>
+     <French>Fils de Vannius le Quadien</French>
+     <German>Sohn des Vannius</German>
+     <Italian>Figlio di Vannius</Italian>
+     <Spanish>Hijo de Vannius</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON30</Tag>
+     <English>Arne the Bastarnian</English>
+     <French>Arne le Bastarnien</French>
+     <German>Arne der Bastarne</German>
+     <Italian>Arne il Bastarne</Italian>
+     <Spanish>Arne la Bastarne</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON31</Tag>
+     <English>Son of Arne</English>
+     <French>Fils d'Arne le Bastarnien</French>
+     <German>Sohn des Arne</German>
+     <Italian>Figlio di Arne</Italian>
+     <Spanish>Hijo de Arne</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON32</Tag>
+     <English>Thoralf the Goton</English>
+     <French>Thoralf le Goton</French>
+     <German>Thoralf der Gotone</German>
+     <Italian>Thoralf il Gotone</Italian>
+     <Spanish>Thoralf el Godo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON33</Tag>
+     <English>Son of Thoralf</English>
+     <French>Fils de Thoralf le Goton</French>
+     <German>Sohn des Thoralf</German>
+     <Italian>Figlio di Thoralf</Italian>
+     <Spanish>Hijo de Thoralf</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON34</Tag>
+     <English>Fritjof the Vandal</English>
+     <French>Fritjof le Vandale</French>
+     <German>Fritjof der Vandale</German>
+     <Italian>Fritjof il vandalo</Italian>
+     <Spanish>Fritjof el V&#225;ndalo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON35</Tag>
+     <English>Son of Fritjof</English>
+     <French>Fils de Fritjof le Vandale</French>
+     <German>Sohn des Fritjof</German>
+     <Italian>Figlio di Fritjof</Italian>
+     <Spanish>Hijo de Fritjof</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV1_DESC</Tag>
+     <English>Tribe of Menapi</English>
+     <French>Tribu des M&#233;napiens</French>
+     <German>Stamm der Menapier</German>
+     <Italian>Tribu di Menapi</Italian>
+     <Spanish>Tribu de los Menapios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV1_SHORT_DESC</Tag>
+     <English>Menapi</English>
+     <French>M&#233;napiens</French>
+     <German>Menapier</German>
+     <Italian>Menapi</Italian>
+     <Spanish>Menapios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV1_ADJECTIVE</Tag>
+     <English>Menapi</English>
+     <French>M&#233;napiens</French>
+     <German>Menapier</German>
+     <Italian>Menapi</Italian>
+     <Spanish>Menapios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV2_DESC</Tag>
+     <English>Tribe of Lingones</English>
+     <French>Tribu des Lingons</French>
+     <German>Stamm der Lingonen</German>
+     <Italian>Tribu di Lingoni</Italian>
+     <Spanish>Tribu de los Lingoones</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV2_SHORT_DESC</Tag>
+     <English>Lingones</English>
+     <French>Lingons</French>
+     <German>Lingonen</German>
+     <Italian>Lingoni</Italian>
+     <Spanish>Lingones</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV2_ADJECTIVE</Tag>
+     <English>Lingones</English>
+     <French>Lingons</French>
+     <German>Lingonen</German>
+     <Italian>Lingoni</Italian>
+     <Spanish>Lingones</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV3_DESC</Tag>
+     <English>Tribe of Goths</English>
+     <French>Tribu des Goths</French>
+     <German>Stamm der Gotonen</German>
+     <Italian>Tribu di Goti</Italian>
+     <Spanish>Tribu de los Godos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV3_SHORT_DESC</Tag>
+     <English>Goths</English>
+     <French>Goths</French>
+     <German>Gotonen</German>
+     <Italian>Goti</Italian>
+     <Spanish>Godos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV3_ADJECTIVE</Tag>
+     <English>Goths</English>
+     <French>Goths</French>
+     <German>Gotonen</German>
+     <Italian>Goti</Italian>
+     <Spanish><Text>godo:goda:godos:godas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV4_DESC</Tag>
+     <English>Tribe of Varisci</English>
+     <French>Tribu des Varasques</French>
+     <German>Stamm der Narister</German>
+     <Italian>Tribu di Naristi</Italian>
+     <Spanish>Tribu de los Varisci</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV4_SHORT_DESC</Tag>
+     <English>Varisci</English>
+     <French>Varasques</French>
+     <German>Narister</German>
+     <Italian>Naristi</Italian>
+     <Spanish>Naristios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV4_ADJECTIVE</Tag>
+     <English>Varisci</English>
+     <French>Varasques</French>
+     <German>Narister</German>
+     <Italian>Naristi</Italian>
+     <Spanish>Naristios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV5_DESC</Tag>
+     <English>Tribe of Bastarnae</English>
+     <French>Tribu des Bastarnes</French>
+     <German>Stamm der Bastarnen</German>
+     <Italian>Tribu di Bastarni</Italian>
+     <Spanish>Tribu de los Bastarnos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV5_SHORT_DESC</Tag>
+     <English>Bastarnae</English>
+     <French>Bastarne</French>
+     <German>Bastarnen</German>
+     <Italian>Bastarni</Italian>
+     <Spanish>Bastarnos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_CIV5_ADJECTIVE</Tag>
+     <English>Bastarnae</English>
+     <French>Bastarne</French>
+     <German>Bastarnen</German>
+     <Italian>Bastarni</Italian>
+     <Spanish><Text>bastarno:bastarna:bastarnos:bastarnas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON36</Tag>
+     <English>Ajax the Lingone</English>
+     <French>Ajax le Lingon</French>
+     <German>Ajax der Lingone</German>
+     <Italian>Ajax il Lingone</Italian>
+     <Spanish>Ajax el Ling&#243;n</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_UPPER_IONIAN_DESC</Tag>
+     <English>Northern Ionians</English>
+     <French><Text>Corcyr&#233;ens</Text><Gender>Male</Gender><Plural>1</Plural></French>
+     <German><Text>Nordionier</Text><Gender>Female</Gender><Plural>1</Plural></German>
+     <Italian><Text>Corciri</Text><Gender>Male</Gender><Plural>0</Plural></Italian>
+     <Spanish><Text>J&#243;nicos del norte</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_UPPER_IONIAN_SHORT_DESC</Tag>
+     <English>Northern Ionia</English>
+     <French>Corcyra</French>
+     <German>Nordionische St&#228;dte</German>
+     <Italian>Corcira</Italian>
+     <Spanish>Jonia del norte</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_UPPER_IONIAN_ADJECTIVE</Tag>
+     <English>Northern Ionian</English>
+     <French>corcyre</French>
+     <German><Text>nordionisch:nordionischen:nordionische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian>corcyro</Italian>
+     <Spanish><Text>j&#243;nico norte&#241;o:j&#243;nica norte&#241;a:j&#243;nicos norte&#241;os:j&#243;nicas norte&#241;as</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LOWER_IONIAN_SHORT_DESC</Tag>
+     <English>Southern Ionia</English>
+     <French>Thessalie</French>
+     <German>S&#252;dionien</German>
+     <Italian>Tessaglia</Italian>
+     <Spanish>Jonia del sur</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LOWER_IONIAN_ADJECTIVE</Tag>
+     <English>Southern Ionian</English>
+     <French><Text>thessalien:thessalienne:thessaliens:thessaliennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+     <German><Text>s&#252;dionisch:s&#252;dionischen:s&#252;dionisches</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>tessaglio:tessaglia:tessagli:tessagle</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>j&#243;nico sure&#241;o:j&#243;nica sure&#241;a:j&#243;nicos sure&#241;os:j&#243;nicas sure&#241;as</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ITALICS_SHORT_DESC</Tag>
+     <English>Italics</English>
+     <French>Bactriane</French>
+     <German>Italiker</German>
+     <Italian>Battria</Italian>
+     <Spanish>It&#225;licos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_ITALICS_DESC</Tag>
+     <English>Italic Peoples</English>
+     <French>Bactriens</French>
+     <German>Italische V&#246;lker</German>
+     <Italian>Battriani</Italian>
+     <Spanish><Text>Pueblos It&#225;licos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ITALICS_ADJECTIVE</Tag>
+     <English>Italic</English>
+     <French><Text>italicien:italicienne:italiciens:italiciennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+     <German><Text>italisch:italischen:italische:italischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+     <Italian><Text>battriana:battriana:battriani:battriane</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>bactriano:bactriana:bactrianos:bactrianas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LOWER_IONIAN_DESC</Tag>
+     <English>Southern Ionians</English>
+     <French>Thessaliens</French>
+     <German>S&#252;dionier</German>
+     <Italian>Tessagli</Italian>
+     <Spanish><Text>J&#243;nicos del sur</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON37</Tag>
+     <English>Vibillius the Hermunduri</English>
+     <French>Vibillius le Hermundures</French>
+     <German>Vibillius der Hermundure</German>
+     <Italian>Vibillius il Ermunduri</Italian>
+     <Spanish>Vibillius el Ermunduri</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON38</Tag>
+     <English>Sigismer the Chauci</English>
+     <French>Sigismer le Chauques</French>
+     <German>Sigismer der Chauken</German>
+     <Italian>Sigismer il Chauci</Italian>
+     <Spanish>Sigismer el Caucos</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON39</Tag>
+     <English>Chlodwig the Sugambrers</English>
+     <French>Chlodwig le Sicambres</French>
+     <German>Chlodwig der Sugambrer</German>
+     <Italian>Chlodwig il Sugambrers</Italian>
+     <Spanish>Chlodwig el Sicambrios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LIMES_PERSON40</Tag>
+     <English>Rando the Alemanni</English>
+     <French>Rando le Alamans</French>
+     <German>Rando der Alemannen</German>
+     <Italian>Rando il Alemanni</Italian>
+     <Spanish>Rando el Alamanes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HERMUNDUREN_SHORT_DESC</Tag>
+     <English>Hermunduri</English>
+     <French>Hermundures</French>
+     <German>Hermunduren</German>
+     <Italian>Ermunduri</Italian>
+     <Spanish>Herm&#250;nduros</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_HERMUNDUREN_ADJECTIVE</Tag>
+     <English>Hermunduri</English>
+     <French>Hermundures</French>
+     <German>Hermunduren</German>
+     <Italian>Ermunduri</Italian>
+     <Spanish>Herm&#250;nduros</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SUGAMBRER_SHORT_DESC</Tag>
+     <English>Sicambri</English>
+     <French>Sicambres</French>
+     <German>Sugambrer</German>
+     <Italian>Sigambri</Italian>
+     <Spanish>Sicambrios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SUGAMBRER_ADJECTIVE</Tag>
+     <English>Sicambri</English>
+     <French>Sicambres</French>
+     <German>Sugambrer</German>
+     <Italian>Sigambri</Italian>
+     <Spanish>Sicambrios</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ALEMANNEN_SHORT_DESC</Tag>
+     <English>Alemanni</English>
+     <French>Alamans</French>
+     <German>Alemannen</German>
+     <Italian>Alemanni</Italian>
+     <Spanish>Alamanes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ALEMANNEN_ADJECTIVE</Tag>
+     <English>Alemanni</English>
+     <French>Alamans</French>
+     <German>Alemannen</German>
+     <Italian>Alemanni</Italian>
+     <Spanish>Alamanes</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_SPQR</Tag>
+     <English>Senate and People of Rome</English>
+     <French>Le s&#233;nat et le peuple romain</French>
+     <German>Senat und Volk von Rom</German>
+     <Italian>Il Senato e il popolo romano</Italian>
+     <Spanish>El Senado y el Pueblo Romano</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SPQR_SHORT_DESC</Tag>
+     <English>Roman Senate</English>
+     <French>S&#233;nate Romain</French>
+     <German>Senat und Volk von Rom</German>
+     <Italian>Senato Romano</Italian>
+     <Spanish>Senado Romano</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SPQR_DESC</Tag>
+     <English>S.P.Q.R.</English>
+     <French>S.P.Q.R.</French>
+     <German>S.P.Q.R.</German>
+     <Italian>S.P.Q.R.</Italian>
+     <Spanish>S.P.Q.R.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SPQR_ADJECTIVE</Tag>
+     <English>Italic</English>
+     <French><Text>italicien:italicienne:italiciens:italiciennes</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></French>
+     <German><Text>italisch:italischen:italische:italischer</Text><Gender>Neuter:Neuter:Neuter:Male</Gender><Plural>0:0:0:0</Plural></German>
+     <Italian><Text>battriana:battriana:battriani:battriane</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>bactriano:bactriana:bactrianos:bactrianas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+</Civ4GameText>

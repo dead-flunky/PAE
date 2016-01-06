@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+ <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_FIRST_PUNIC_WAR</Tag>
+     <English>Pie's Ancient Europe - The 1. Punic War</English>
+     <French>Pie's Ancient Europe - La premi&#232;re Guerre Punique</French>
+     <German>Pie's Ancient Europe - Der 1. Punische Krieg</German>
+     <Italian>Pie's Ancient Europe - Il 1. guerra punica</Italian>
+     <Spanish>Pie's Ancient Europe - La 1&#170; Guerra P&#250;nica</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_DAWN_OF_MAN_FIRST_PUNIC_WAR</Tag>
+     <English>Vie for control of the Western Mediterranean! %s3_leader, your people have vested a certain trust in you, hoping the gentle grace of the gods will never leave you! [NEWLINE] [NEWLINE]1) New victory condition: Conquest of the enemy's capital. [NEWLINE]2) Review diplomacy on the very first turn. Check for allies, vassal relations and open boarders agreements. [NEWLINE]3) Do some trade on the first turn, for valuable resources might be traded away to someone else, if you're not quick enogh. [NEWLINE]4) Garrison loyalty promoted units in cities with settled slaves to prevent slave revolts. [NEWLINE]5) Have sufficient funds to pay your provincial governors to keep them from plotting against you. [NEWLINE]6) Don't stack too many military units on one spot, because parts of your army might defect to fight against you. [NEWLINE]7) Get aquainted with PAE's basic concepts before playing! [NEWLINE] [NEWLINE]Find all detailed explanations in the civilopedia, look for Pie's Mod concepts.</English>
+     <French>Luttez pour le contr&#244;le de la M&#233;diterran&#233;e ! %s3_leader, votre peuple vous a accord&#233; sa confiance, que la gr&#226;ce divine vous suive toujours ! [NEWLINE] [NEWLINE]1) Nouvelle condition de victoire : conqu&#234;te de la capitale ennemie. [NEWLINE]2) Etudiez la diplomatie le premier tour. V&#233;rifiez vos alli&#233;s, vassaux, et accords. [NEWLINE]3) Commencez le commerce le premier, avant que d'autres n'acqui&#232;rent des ressources importantes. [NEWLINE]4) Evitez les r&#233;voltes d'esclaves en laissant en garnison des unit&#233;s avec la promotion loyaut&#233; de garnison. [NEWLINE]5) Gardez toujours assez d'or pour payer vos gouverneurs provinciaux, sinon ils pourraient comploter contre vous [NEWLINE]6) Ne concentrez pas trop d'unit&#233;s au m&#234;me endroit, une partie de votre arm&#233;e pourrait se r&#233;volter. [NEWLINE]7) Lisez les concepts de base de PAE avant de jouer ! [NEWLINE] [NEWLINE]Les explications d&#233;taill&#233;es sont dans la civilopedia, sous Pie's Mod concepts.</French>
+     <German>Erringe die Vorherrschaft im westlichen Mittelmeer! %s3_leader, Euer Volk hat auf Zeit Vertrauen in Euch gesetzt darauf und hofft, dass Euch die G&#246;tter wohlgesonnen bleiben! [NEWLINE] [NEWLINE]1) Neue Siegbedingung f&#252;r Rom und Karthago: Hauptstadteroberung. [NEWLINE]2) Werft gleich in der ersten Runde einen Blick auf Diplomatie, B&#252;ndnisse, Vassalenverh&#228;ltnisse und Abkommen &#252;ber Offene Grenzen. [NEWLINE]3) Versucht in der ersten Runde, g&#252;nstige Handelsabschl&#252;sse zu machen, bevor Euch jemand anderes wichtige Ressourcen wegschnappt. [NEWLINE]4) Stationiert ein paar loyalit&#228;tsbef&#246;rderte Truppen in St&#228;dte, in denen Sklaven angsiedelt sind, um Rebellionen zuvorzukomen. [NEWLINE]5) Man sollte immer eine Geldreserve haben, um Provinzstatthalter zu bezahlen, damit diese nicht auf die Idee kommen, gegen Euch zu opponieren. [NEWLINE]6) Vorsicht vor zu grossen Stacks von Milit&#228;reinheiten! Diese k&#246;nnen sich abspalten und gegen Euch k&#228;mpfen. [NEWLINE]7) Macht Euch mit den grundlegenden PAE-Konzepten vertraut, bevor ihr loslegt! [NEWLINE] [NEWLINE]Alle Features werden in der Zivilop&#228;die unter Pie's MOD Konzepte erkl&#228;rt.</German>
+     <Italian>Vie for control of the Western Mediterranean! %s3_leader, your people have vested a certain trust in you, hoping the gentle grace of the gods will never leave you! [NEWLINE] [NEWLINE]1) New victory condition: Conquest of the enemy's capital. [NEWLINE]2) Review diplomacy on the very first turn. Check for allies, vassal relations and open boarders agreements. [NEWLINE]3) Do some trade on the first turn, for valuable resources might be traded away to someone else, if you're not quick enogh. [NEWLINE]4) Garrison loyalty promoted units in cities with settled slaves to prevent slave revolts. [NEWLINE]5) Have sufficient funds to pay your provincial governors to keep them from plotting against you. [NEWLINE]6) Don't stack too many military units on one spot, because parts of your army might defect to fight against you. [NEWLINE]7) Get aquainted with PAE's basic concepts before playing! [NEWLINE] [NEWLINE]Find all detailed explanations in the civilopedia, look for Pie's Mod concepts.</Italian>
+     <Spanish>&#161;Compite por el control del Mediterr&#225;neo Occidental! %s3_leader, tu gente te ha conferido cierta confianza en ti, &#161;esperando que la noble gracia de los dioses nunca te abandone! [NEWLINE] [NEWLINE]1) Nueva condici&#243;n de victoria: Conquista la capital del enemigo. [NEWLINE]2) Revisa la diplomacia desde el primer turno. Busca aliados, pactos de vasallaje y acuerdos de aperturas de fronteras. [NEWLINE]3) Trata en la primera ronda para hacer operaciones favorables antes de que alguien te arrebata recursos importantes. [NEWLINE]4) Fortifica unidades con el ascenso lealtad en ciudades con esclavos asentados para prevenir revueltas de escalvos. [NEWLINE]5) Ten suficientes fondos para pagar a tus gobernadores proviniciales y alejarlos de maquinaciones contra ti. [NEWLINE]6) No apiles demasiadas unidades militares en un solo lugar, porque parte de tu ej&#233;rcito puede desertar para luchar contra ti. [NEWLINE]7) &#161;Familiar&#237;zate con los conceptos b&#225;sicos de PAE antes de jugar! [NEWLINE] [NEWLINE]Encuentra todas las explicaciones detalladas en la civilopedia, busca por los conceptos del Mod Pie.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_SCENARIO_FIRST_PUNIC_WAR</Tag>
+     <English>Created by Keinpferd![NEWLINE][NEWLINE]The First Punic War (264 -241 BC) with 18 Civs on a new huge Western Mediterranean map. Turns proceed in monthly increments.</English>
+     <French>Cr&#233;&#233; par Keinpferd![NEWLINE][NEWLINE]La premi&#232;re guerre punique (264 -241 avant JC) avec 18 civilisations sur une tr&#232;s grande carte de la M&#233;diterran&#233;e. Les tours sont par mois.</French>
+     <German>Erstellt von Keinpferd![NEWLINE][NEWLINE]Der erste Punische Krieg mit 18 V&#246;lkern von 264 bis 241 v. Chr.. Kartengr&#246;&#223;e Riesig. Runden entsprechen Monaten.</German>
+     <Italian>Created by Keinpferd![NEWLINE][NEWLINE]The First Punic War (264 -241 BC) with 18 Civs on a new huge Western Mediterranean map. Turns proceed in monthly increments.</Italian>
+     <Spanish>&#161;Creado por Keinpferd![NEWLINE][NEWLINE]La Primera Guerra P&#250;nica (264 -241 a.C.) con 18 Civs en un nuevo mapa enorme del Mediterr&#225;neo Occidental. Cada turno son incrementos mes a mes.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_MESSANA_PLAYER_ALL</Tag>
+     <English>[H1]265 BC[\H1][NEWLINE]The citizens of the Sicilian city Messana are tired of being bullied by the Punics and moreover afraid of losing their freedom to Hieron, tyrant of Syracuse. Their appeal for help has been approved by the senate and people of Rome. This city is from now on under Rome's protection. The augures gave their green light, too. Consul Appius Claudius Caudex is warranted to secure Messana's freedom by all means necessary.</English>
+     <French>[H1]265 avant JC[\H1][NEWLINE]Les citoyens de la ville sicilienne de Messana en ont marre des pressions de Carthage, et craignent d'&#234;tre conquis par Hieron, tyran de Syracuse. Leur appel a l'aide a &#233;t&#233; entendu par le s&#233;nat et le peuple de Rome, qui prot&#232;gent maintenant la ville. Les augures l'ont aussi recommand&#233;. Le consul Appius Claidus Caudex a garanti la libert&#233; de Messana par tous les moyens n&#233;cessaires.</French>
+     <German>[H1]265 v.Chr.[\H1][NEWLINE]Die B&#252;rger der sizilianischen Stadt Messana sind nicht mehr bereit, sich von den Puniern wie Lakaien behandeln zu lassen und f&#252;rchten au&#223;erdem, ihre Freiheit an den Tyrannen Hieron von Syrakus zu verlieren. Ihr Hilfegesuch der Stadt Messana hat nun bei Senat und Volk Roms Geh&#246;r gefunden. Die Stadt steht ab sofort unter r&#246;mischem Schutz. Auch die Auguren haben gr&#252;nes Licht gegeben. Der Konsul Appius Claudius Caudex hat fortan alle Vollmachten, die Freiheit von Messana mit allen Mitteln, die ihm n&#246;tig erscheinen, zu wahren.</German>
+     <Italian>[H1]265 BC[\H1][NEWLINE]The citizens of the Sicilian city Messana are tired of being bullied by the Punics and moreover afraid of losing their freedom to Hieron, tyrant of Syracuse. Their appeal for help has been approved by the senate and people of Rome. This city is from now on under Rome's protection. The augures gave their green light, too. Consul Appius Claudius Caudex is warranted to secure Messana's freedom by all means necessary.</Italian>
+     <Spanish>[H1]265 a.C.[\H1][NEWLINE]Los ciudadanos de la ciudad siciliana de Messana est&#225;n cansandos de ser intimidados por los P&#250;nicos y adem&#225;s tienen miedo de perder su libertad a Hier&#243;n, tirano de Siracusa. Su solictud de ayuda ha sido aprobada por el pueblo y senado de Roma. Esta ciudad est&#225; ahora bajo la protecci&#243;n de Roma. Los augures dieron luz verde tambi&#233;n. El C&#243;nsul Apio Claudio C&#225;udice est&#225; autorizado para asegurar la libertad de Messana por todos los medios necesarios.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_MESSANA_PLAYER_CARTHAGE</Tag>
+     <English>[H1]265 BC[\H1][NEWLINE]The Sicilian city of Messana has renounced our pledge of protection against her enemies, bowing to Rome instead. Rome should never had concured with that, thus perjuring themselves, for we had an agreement, that they should keep out of Sicilian affairs, while we weren't interfering in Italy. By decision of the Carthaginian senate all our generals may take all appropriate action to defend Sicily from Roman expansion.</English>
+     <French>[H1]265 avant JC[\H1][NEWLINE]La ville de Messana a renonc&#233; a notre protection, pr&#233;f&#233;rant se tourner vers Rome. Les romains n'auraient jamais d&#251; s'en m&#234;ler et trahir leur engagement de ne pas interf&#233;rer dans les affaires siciliennes comme nous leur laissons l'Italie. Par d&#233;cision du s&#233;nat carthaginois toutes nos flottes et arm&#233;es peuvent utiliser tous les moyens pour emp&#234;cher l'expansion romaine en Sicile.</French>
+     <German>[H1]265 v.Chr.[\H1][NEWLINE]Die sizilianische Stadt Messana verzichtet k&#252;nftig auf unser Schutzversprechen und hat sich statt dessen Rom unterworfen. Die R&#246;mer h&#228;tten sich darauf nicht einlassen d&#252;rfen, denn so werden sie eidbr&#252;chig. Rom hatte vertraglich zugesichert, sich aus sizilianischen Angelegenheiten herauszuhalten, und wir wollten uns daf&#252;r nicht in italienische Angelegenheiten einmischen. Auf Beschlu&#223; des karthagischen Senates d&#252;rfen Flotte und Streitmacht jedes geeignete Mittel anwenden, um die die R&#246;mer an der Expansion nach Sizilien zu hindern.</German>
+     <Italian>[H1]265 BC[\H1][NEWLINE]The Sicilian city of Messana has renounced our pledge of protection against her enemies, bowing to Rome instead. Rome should never had concured with that, thus perjuring themselves, for we had an agreement, that they should keep out of Sicilian affairs, while we weren't interfering in Italy. By decision of the Carthaginian senate all our generals may take all appropriate action to defend Sicily from Roman expansion.</Italian>
+     <Spanish>[H1]265 a.C.[\H1][NEWLINE]La ciudad siciliana de Messana ha renunciado a nuestra promesa de protecci&#243;n contra sus enemigos, inclin&#225;ndose hacia Roma en vez de eso. Roma nunca debi&#243; de estar de acuerdo con eso, tambi&#233;n se perjuran ellos mismos, porque ten&#237;amos un acuerdo, que ellos se mantendr&#237;an alejados de los asuntos sicilianos, mientras no interfiri&#233;ramos en Italia. Por decisi&#243;n del senado cartagin&#233;s todos nuestros generales pueden tomar las acciones apropiadas para defender Sicilia de la expansi&#243;n romana.</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_WAR_PLAYER_ROME</Tag>
+     <English>[H1]WAR![\H1][NEWLINE]Senate and people of Rome were insulted by a Punic legation with the demand to withdraw our once given pledge of protection from the city of Messana. Of course, Rome still feels obliged to help the citizens of Messana in their struggle against their enemies. Thus, an ultimatum of the Punics had to expire unanswered. Let arms talk. Mars be with us!</English>
+     <French>[H1]LA GUERRE ![\H1][NEWLINE]Le s&#233;nat et le peuple romain ont &#233;t&#233; insult&#233;s par la demande punique de retirer notre protection &#224; la ville de Messana. Rome honorera bien s&#251;r son engagement d'aider les citoyens de Messana contre leurs ennemis. L'ultimatum de Carthage a expir&#233; sans r&#233;ponse, les armes vont parler. Que Mars soit avec nous !</French>
+     <German>[H1]KRIEG![\H1][NEWLINE]Senat und Volk Roms wurde von einer punischen Gesandtschaft mit der Forderung beleidigt, der Stadt Messana unser einmal gew&#228;hrtes Schutzversprechen wieder zu entziehen. Selbstverst&#228;ndlich f&#252;hlt sich Rom auch weiterhin verpflichtet, den B&#252;rgern von Messana gegen ihre Feinde beizustehen. Ein Ultimatum der Punier mu&#223;te daher unbeantwortet bleiben. Sollen die Waffen sprechen. Mars besch&#252;tze uns!</German>
+     <Italian>[H1]WAR![\H1][NEWLINE]Senate and people of Rome were insulted by a Punic legation with the demand to withdraw our once given pledge of protection from the city of Messana. Of course, Rome still feels obliged to help the citizens of Messana in their struggle against their enemies. Thus, an ultimatum of the Punics had to expire unanswered. Let arms talk. Mars be with us!</Italian>
+     <Spanish>[H1]&#161;GUERRA![\H1][NEWLINE]El pueblo y senado de Roma fueron insultados por una delegaci&#243;n p&#250;nica con la demanda de retirar nuestra ya dada promesa de protecci&#243;n de la ciudad de Messana. Por supuesto, Roma se sigue sintiendo obligada a ayudar a los ciudadanos de Messana en su lucha contra sus enemigos. Por lo tanto, el ultim&#225;tum de los p&#250;nicos tiene que expirar sin respuesta. Dejemos que las armas hablen. &#161;Que Marte est&#233; con nosotros!</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_WAR_PLAYER_CARTHAGE</Tag>
+     <English>[H1]WAR![\H1][NEWLINE]The senate of the Punics has decided to counter all Roman contrary to contract expansion in Sicily by all means. After the Romans let expire the ultimatum of our senatorial emissaries, they should now feel the effects of forcing us into a war. Negotiations are over. Baal Melqart help us!</English>
+     <French>[H1]LA GUERRE ![\H1][NEWLINE]Le s&#233;nat de Carthage a d&#233;cid&#233; d'emp&#234;cher l'expansion romaine en Sicile par tous les moyens. Les romains ont laiss&#233; expirer notre ultimatum sans r&#233;ponse, ils vont maintenant assumer les cons&#233;quences de la guerre. Les n&#233;gociations sont termin&#233;es. Que Baal soit avec nous !</French>
+     <German>[H1]KRIEG![\H1][NEWLINE]Der Senat von Karthago hat beschlossen, der vertragswidrigen Ausweitung des r&#246;mischen Einflusses in Sizilien mit Entschiedenheit entgegenzutreten. Nachdem die R&#246;mer das Ultimatum unserer senatorischen Gesandtschaft haben verstreichen lassen, sollen sie zu sp&#252;ren bekommen, was es hei&#223;t, uns zum Krieg gen&#246;tigt zu haben. Die Zeit des Verhandelns ist vorbei. Baal Melkart helfe uns!</German>
+     <Italian>[H1]WAR![\H1][NEWLINE]The senate of the Punics has decided to counter all Roman contrary to contract expansion in Sicily by all means. After the Romans let expire the ultimatum of our senatorial emissaries, they should now feel the effects of forcing us into a war. Negotiations are over. Baal Melqart help us!</Italian>
+     <Spanish>[H1]&#161;GUERRA![\H1][NEWLINE]El senado de los P&#250;nicos ha decidido luchar contra los Romanos para frenar su expanxi&#243;n en Sicilia por todos los medios. Ya que han dejado expirar el ultim&#225;tum de nuestros emisarios senatoriales, sentir&#225;n ahora los efectos de llevarnos a la guerra. Las negociaciones se acabaron. &#161;Que Baal Merkart nos ayude!</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER1</Tag>
+     <English>Marcus Atilius Regulus</English>
+     <French>Marcus Atilius Regulus</French>
+     <German>Marcus Atilius Regulus</German>
+     <Italian>Marco Atilio Regolo</Italian>
+     <Spanish>Marco Atilio R&#233;gulo</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_VICTORY_SCREEN_FIRSTPUNICWAR_CAPITAL</Tag>
+     <English>CAPITAL CONQUEST</English>
+     <French>CONQU&#202;TE DE CAPITALE</French>
+     <German>HAUPTSTADTEROBERUNG</German>
+     <Italian>CAPITALE CONQUISTA</Italian>
+     <Spanish>CONQUISTA DE LA CAPITAL</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_VICTORY_SCREEN_FIRSTPUNICWAR_CAPITAL_2</Tag>
+     <English>Conquer the enemy city of:</English>
+     <French>Prenez la ville adverse de : </French>
+     <German>Erobere die gegnerische Stadt:</German>
+     <Italian>Conquistare la citt&#224; nemica:</Italian>
+     <Spanish>Conquista la ciudad enemiga de:</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_GAMESPEED_PUNIC</Tag>
+     <English>Punic</English>
+     <French><Text>Punique</Text> <Gender>Female</Gender> <Plural>0</Plural></French>
+     <German><Text>Punisch</Text> <Gender>Male</Gender> <Plural>0</Plural></German>
+     <Italian><Text>Puniche</Text> <Gender>Female</Gender> <Plural>0</Plural></Italian>
+     <Spanish><Text>P&#250;nica</Text> <Gender>Female</Gender> <Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BRUTTII_ET_LUCANI_DESC</Tag>
+     <English>Bruttians</English>
+     <French>Bruttiens</French>
+     <German>Bruttier</German>
+     <Italian>Bruzi e Lucani</Italian>
+     <Spanish><Text>Brucios</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BRUTTII_ET_LUCANI_SHORT_DESC</Tag>
+     <English>Bruttium</English>
+     <French>Bruttium</French>
+     <German>Bruttium</German>
+     <Italian>Brutium</Italian>
+     <Spanish><Text>Brucia</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BRUTTII_ET_LUCANI_ADJECTIVE</Tag>
+     <English>Bruttian</English>
+     <French>brutte</French>
+     <German><Text>bruttisch:bruttischen:bruttisches</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>brucio:brucia:bruci:brucie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>brucio:brucia:brucios:brucias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LUCANI_DESC</Tag>
+     <English>Lucans</English>
+     <French>Lucanes</French>
+     <German>Lukanier</German>
+     <Italian>Lucani</Italian>
+     <Spanish><Text>Lucanos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LUCANI_SHORT_DESC</Tag>
+     <English>Lucany</English>
+     <French>Lucanie</French>
+     <German>Lukanien</German>
+     <Italian>Lucania</Italian>
+     <Spanish><Text>Lucania</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LUCANI_ADJECTIVE</Tag>
+     <English>Lucan</English>
+     <French>lucanienne</French>
+     <German><Text>lukanisch:lukanischen:lukanisches</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>lucano:lucana:lucani:lucane</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>lucano:lucana:lucanos:lucanas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SAMNITES_DESC</Tag>
+     <English>Samnite Empire</English>
+     <French>Empire Samnite</French>
+     <German>Samnitenreich</German>
+     <Italian>Impero sannita</Italian>
+     <Spanish>Imperio Samnita</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SAMNITES_SHORT_DESC</Tag>
+     <English>Samnite</English>
+     <French>Samnite</French>
+     <German>Samniten</German>
+     <Italian>Sanniti</Italian>
+     <Spanish><Text>Samnitas</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SAMNITES_ADJECTIVE</Tag>
+     <English>Samnite</English>
+     <French>samnite</French>
+     <German><Text>samnitisch:samnitischen:samnitisches</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>sannita:sannita:sanniti:sannite</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>samnita:samnita:samnitas:samnitas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_GAIUS_PONTIUS_TELESINUS</Tag>
+     <English>Gaius Pontius Telesinus</English>
+     <French>Gaius Pontius Telesinus</French>
+     <German>Gaius Pontius Telesinus</German>
+     <Italian>Gaius Pontius Telesinus</Italian>
+     <Spanish>Cayo Poncio Telesino</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_STATIUS_STATILIUS</Tag>
+     <English>Statius Statilius</English>
+     <French>Statius Statilius</French>
+     <German>Statius Statilius</German>
+     <Italian>Statius Statilius</Italian>
+     <Spanish>Statius Statilius </Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_LEADER_ALEXANDER_II</Tag>
+     <English>Alexander II</English>
+     <French>Alexandre II.</French>
+     <German>Alexander II.</German>
+     <Italian>Alessandro II</Italian>
+     <Spanish>Alejandro II</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MESSANA_DESC</Tag>
+     <English>Mamertines</English>
+     <French>Mamertins</French>
+     <German>Mamertiner</German>
+     <Italian>Mamertini</Italian>
+     <Spanish><Text>Mamertinos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MESSANA_SHORT_DESC</Tag>
+     <English>Messana</English>
+     <French>Messana</French>
+     <German>Messana</German>
+     <Italian>Messana</Italian>
+     <Spanish>Messana</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MESSANA_ADJECTIVE</Tag>
+     <English>Mamertine</English>
+     <French>Prison Mamertine</French>
+     <German><Text>mamertinisch:mamertinischen:mamertinische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>mamertino:mamertina:mamertini:mamertine</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>mamertino:mamertina:mamertinos:mamertinas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_CAPUA_DESC</Tag>
+     <English>Capua</English>
+     <French>Capua</French>
+     <German>Capua</German>
+     <Italian>Capua</Italian>
+     <Spanish>Capua</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_CAPUA_SHORT_DESC</Tag>
+     <English>Capua</English>
+     <French>Capua</French>
+     <German>Capua</German>
+     <Italian>Capua</Italian>
+     <Spanish>Capua</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_CAPUA_ADJECTIVE</Tag>
+     <English>Capuan</English>
+     <French>Capoue</French>
+     <German><Text>capuanisch:capuanischen:capuanische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>capuano:capuana:capuani:capuane</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>capuano:capuana:capuanos:capuanas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_TARENTUM_DESC</Tag>
+     <English>Taranto</English>
+     <French>Tarente</French>
+     <German>Tarent</German>
+     <Italian>Taranto</Italian>
+     <Spanish>Tarento</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_TARENTUM_SHORT_DESC</Tag>
+     <English>Taranto</English>
+     <French>Taranto</French>
+     <German>Tarent</German>
+     <Italian>Tarento</Italian>
+     <Spanish>Tarento</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_TARENTUM_ADJECTIVE</Tag>
+     <English>Tarentian</English>
+     <French>Tarentin</French>
+     <German><Text>tarentinisch:tarentinischen:tarentinisches</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>tarentino:tarentina:tarentini:tarentine</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>tarentino:tarentina:tarentinos:tarentinas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SYRACUSAE_DESC</Tag>
+     <English>Syracuse</English>
+     <French>Syracuse</French>
+     <German>Syrakus</German>
+     <Italian>Siracusa</Italian>
+     <Spanish>Siracusa</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SYRACUSAE_SHORT_DESC</Tag>
+     <English>Syracuse</English>
+     <French>Syracuse</French>
+     <German>Syrakus</German>
+     <Italian>Siracusa</Italian>
+     <Spanish>Siracusa</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_SYRACUSAE_ADJECTIVE</Tag>
+     <English>Syracusan</English>
+     <French>Syracusien</French>
+     <German><Text>syrakusanisch:syrakusanischen:syrakusanische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>siracusano:siracusana:siracusani:siracusane</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>siracusano:siracusana:siracusanos:siracusanas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MAGNA_GRAECIA_DESC</Tag>
+     <English>Magna Graecia</English>
+     <French>Magna Graecia</French>
+     <German><Text>Magna Graecia</Text><Gender>Female</Gender><Plural>0</Plural></German>
+     <Italian>Magna Graecia</Italian>
+     <Spanish><Text>Magna Grecia</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MAGNA_GRAECIA_SHORT_DESC</Tag>
+     <English>Magna Graecia</English>
+     <French>Magna Graecia</French>
+     <German>Magna Graecia</German>
+     <Italian><Text>Magna Graecia</Text><Gender>Female</Gender><Plural>0</Plural></Italian>
+     <Spanish><Text>Magna Grecia</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_MAGNA_GRAECIA_ADJECTIVE</Tag>
+     <English>Greek</English>
+     <French>grecien</French>
+     <German><Text>griechisch:griechischen:griechische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:1</Plural></German>
+     <Italian><Text>greco:greca:grechi:greche</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>greco:greca:grecos:grecas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_WESTERN_GREEK_COLONIES_DESC</Tag>
+     <English>Greek Colonies</English>
+     <French>Colonies grecques</French>
+     <German>Griechische Kolonien</German>
+     <Italian>colonie greche</Italian>
+     <Spanish><Text>Colonias Griegas</Text><Gender>Female</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_WESTERN_GREEK_COLONIES_SHORT_DESC</Tag>
+     <English>Greek Colonies</English>
+     <French>Colonies grecques</French>
+     <German>Griechische Kolonien</German>
+     <Italian>colonie greche</Italian>
+     <Spanish><Text>Colonias Griegas</Text><Gender>Female</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_WESTERN_GREEK_COLONIES_ADJECTIVE</Tag>
+     <English>Greek</English>
+     <French>Grec</French>
+     <German><Text>griechisch:griechischen:griechische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:1</Plural></German>
+     <Italian><Text>greco:greca:grechi:greche</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>griego:griega:griegos:griegas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BOII_DESC</Tag>
+     <English>Tribe of the Boii</English>
+     <French>Tribu des Bo&#239;ens</French>
+     <German>Stamm der Boier</German>
+     <Italian>Tribu di Boi</Italian>
+     <Spanish><Text>Tribu de los Boios</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BOII_SHORT_DESC</Tag>
+     <English>Boii</English>
+     <French>Bo&#239;en</French>
+     <German>Boier</German>
+     <Italian>Boi</Italian>
+     <Spanish><Text>Boios</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_BOII_ADJECTIVE</Tag>
+     <English>Boian</English>
+     <French>Bo&#239;en</French>
+     <German><Text>boisch:boischen:boische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>boio:boia:boii:boie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>boio:boia:boios:boias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_INSUBRES_DESC</Tag>
+     <English>Tribe of the Insubres</English>
+     <French>Tribu des Insubres</French>
+     <German>Stamm der Insubrer</German>
+     <Italian>Tribu di Insubri</Italian>
+     <Spanish><Text>Tribu de los &#205;nsubres</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_INSUBRES_SHORT_DESC</Tag>
+     <English>Insubres</English>
+     <French>Insubres</French>
+     <German>Insubrer</German>
+     <Italian>Insubri</Italian>
+     <Spanish><Text>&#205;nsubres</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_INSUBRES_ADJECTIVE</Tag>
+     <English>Insubrian</English>
+     <French>Insubres</French>
+     <German><Text>insubrisch:insubrischen:insubrische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>insubre:insubra:insubri:insubre</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>&#237;nsubre:&#237;nsubre:&#237;nsubres:&#237;nsubres</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LIGURES_DESC</Tag>
+     <English>Tribe of the Ligurans</English>
+     <French>Tribe of the Ligures</French>
+     <German>Ligurer</German>
+     <Italian>Tribe of the Ligures</Italian>
+     <Spanish><Text>Tribu de los Ligures</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LIGURES_SHORT_DESC</Tag>
+     <English>Ligurans</English>
+     <French>Liguriens</French>
+     <German>Ligurer</German>
+     <Italian>Liguri</Italian>
+     <Spanish><Text>Liguria</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_LIGURES_ADJECTIVE</Tag>
+     <English>Liguran</English>
+     <French>Ligurian</French>
+     <German><Text>ligurisch:ligurischen:ligurische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>liguro:ligura:liguri:ligure</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>ligur:ligur:ligures:ligures</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ALLOBROGES_DESC</Tag>
+     <English>Allobroges</English>
+     <French>Allobroges</French>
+     <German>Allobroger</German>
+     <Italian>Allobrogi</Italian>
+     <Spanish><Text>Al&#243;broges</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ALLOBROGES_SHORT_DESC</Tag>
+     <English>Allobroges</English>
+     <French>Allobroges</French>
+     <German>Allobroger</German>
+     <Italian>Allobrogi</Italian>
+     <Spanish><Text>Al&#243;broges</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ALLOBROGES_ADJECTIVE</Tag>
+     <English>Allobrogan</English>
+     <French>Allobroge</French>
+     <German><Text>allobrogisch:allobrogischen:allobrogische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>allobrogo:allobroga:allobrogi:allobroge</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>al&#243;broge:al&#243;broges:al&#243;broges:al&#243;broges</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ARVERNI_DESC</Tag>
+     <English>Arverni</English>
+     <French>Averne</French>
+     <German>Arverner</German>
+     <Italian>Arverni</Italian>
+     <Spanish><Text>Arvernos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ARVERNI_SHORT_DESC</Tag>
+     <English>Arverni</English>
+     <French>Averne</French>
+     <German>Arverner</German>
+     <Italian>Arverni</Italian>
+     <Spanish><Text>Arvernos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_ARVERNI_ADJECTIVE</Tag>
+     <English>Arvernian</English>
+     <French>Averne</French>
+     <German><Text>arvernisch:arvernischen:arvernische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>arverno:arverna:arverni:arverne</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>arverno:arverna:arvernos:arvernas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_VOCONTII_DESC</Tag>
+     <English>Vocontii</English>
+     <French>Voconce</French>
+     <German>Vokonter</German>
+     <Italian>Vokonter</Italian>
+     <Spanish><Text>Voconcios</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_VOCONTII_SHORT_DESC</Tag>
+     <English>Vocontii</English>
+     <French>Voconce</French>
+     <German>Vokonter</German>
+     <Italian>Vokonter</Italian>
+     <Spanish><Text>Voconcios</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_VOCONTII_ADJECTIVE</Tag>
+     <English>Vocontian</English>
+     <French>Voconce</French>
+     <German><Text>vokontisch:vokontischen:vokontische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>voconcio:voconcia:voconci:voconcie</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>voconcio:voconcia:voconios:voconcias</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_EPEIROS_DESC</Tag>
+     <English>Epirotes</English>
+     <French>Epirots</French>
+     <German>Epiroten</German>
+     <Italian>Epirots</Italian>
+     <Spanish><Text>Epirotes</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_EPEIROS_SHORT_DESC</Tag>
+     <English>Epirotian</English>
+     <French>Epirotiens</French>
+     <German>Epirus</German>
+     <Italian>Epiro</Italian>
+     <Spanish>Epiro</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_CIV_EPEIROS_ADJECTIVE</Tag>
+     <English>Epirotian</English>
+     <French>epirotien</French>
+     <German><Text>epirotisch:epirotischen:epirotische</Text><Gender>Neuter:Neuter:Neuter</Gender><Plural>0:0:0</Plural></German>
+     <Italian><Text>epirote:epirota:epiroti:epirote</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Italian>
+     <Spanish><Text>epirote:epirota:epirotes:epirotas</Text><Gender>Male:Female:Male:Female</Gender><Plural>0:0:1:1</Plural></Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_TEMPLE_PAESTUM</Tag>
+     <English>Sanctuary of Paestum</English>
+     <French>Sanctuaire de Paestum</French>
+     <German>Heiligtum von Paestum</German>
+     <Italian>Santuario di Paestum</Italian>
+     <Spanish>Santuario de Paestum</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER2</Tag>
+     <English>Gala</English>
+     <French>Ga&#239;a</French>
+     <German>Gala</German>
+     <Italian>Gaia</Italian>
+     <Spanish>Gaia</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER3</Tag>
+     <English>Viridomarus</English>
+     <French>Viridomaros</French>
+     <German>Viridomarus</German>
+     <Italian>Viridomaro</Italian>
+     <Spanish>Virid&#243;maro</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER4</Tag>
+     <English>Bituitus</English>
+     <French>Bituitos</French>
+     <German>Bituitos</German>
+     <Italian>Bituito</Italian>
+     <Spanish>Bituito</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER5</Tag>
+     <English>Phalanthus</English>
+     <French>Phalanthos</French>
+     <German>Phalantos</German>
+     <Italian>Falanto</Italian>
+     <Spanish>Falanto</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER6</Tag>
+     <English>Hiero II</English>
+     <French>Hi&#233;ron II</French>
+     <German>Hieron II.</German>
+     <Italian>Gerone II</Italian>
+     <Spanish>Hier&#243;n II</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER7</Tag>
+     <English>Ofilius Calavius</English>
+     <French>Ofilius Calavius</French>
+     <German>Ofilius Calavius</German>
+     <Italian>Ofilius Calavius</Italian>
+     <Spanish>Ofilius Calavius</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER8</Tag>
+     <English>Anaeroestos</English>
+     <French>Anaeroestos</French>
+     <German>Anaeroestos</German>
+     <Italian>Anaeroesto</Italian>
+     <Spanish>Anaeroesto</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER9</Tag>
+     <English>Calatius Rufus</English>
+     <French>Calatius Rufus</French>
+     <German>Calatius Rufus</German>
+     <Italian>Calatius Rufus</Italian>
+     <Spanish>Calatius Rufus</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER10</Tag>
+     <English>Samuco</English>
+     <French>Samuco</French>
+     <German>Samuco</German>
+     <Italian>Samuco</Italian>
+     <Spanish>Samuco</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER11</Tag>
+     <English>Pusinna</English>
+     <French>Pusinna</French>
+     <German>Pusinna</German>
+     <Italian>Pusinna</Italian>
+     <Spanish>Pusinna</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER12</Tag>
+     <English>Elviomar</English>
+     <French>Elviomar</French>
+     <German>Elviomar</German>
+     <Italian>Elviomar</Italian>
+     <Spanish>Elviomar</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_CIV1</Tag>
+     <English>Capua</English>
+     <French>Capoue</French>
+     <German>Capua</German>
+     <Italian>Capua</Italian>
+     <Spanish>Capua</Spanish>
+   </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_FIRSTPUNIC_LEADER13</Tag>
+     <English>Agenor</English>
+     <French>Agenor</French>
+     <German>Agenor</German>
+     <Italian>Agenore</Italian>
+     <Spanish>Agenor</Spanish>
+   </TEXT>
+</Civ4GameText>

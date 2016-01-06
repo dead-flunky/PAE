@@ -1,0 +1,8 @@
+
+// *** Control Bitmap Theme file
+
+// Set the resource
+resource_path        "Mods/PieAncientEuropeV/Resource";
+
+// Setup common properties
+include                        "Mods/PieAncientEuropeV/Resource/Themes/Civ4/Civ4Theme.thm";

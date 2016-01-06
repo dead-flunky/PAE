@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- edited by Pierre Voak (pie), Austria -->
+<!-- Special Building -->
+<Civ4SpecialBuildingInfos xmlns="x-schema:CIV4BuildingsSchema.xml">
+  <SpecialBuildingInfos>
+    <SpecialBuildingInfo>
+      <Type>SPECIALBUILDING_TEMPLE</Type>
+      <Description>TXT_KEY_SPECIALBUILDING_TEMPLE</Description>
+      <ObsoleteTech>NONE</ObsoleteTech>
+      <TechPrereq>TECH_TEMPELWIRTSCHAFT</TechPrereq>
+      <TechPrereqAnyone>NONE</TechPrereqAnyone>
+      <bValid>1</bValid>
+      <ProductionTraits>
+        <ProductionTrait>
+          <ProductionTraitType>TRAIT_SPIRITUAL</ProductionTraitType>
+          <iProductionTrait>100</iProductionTrait>
+        </ProductionTrait>
+      </ProductionTraits>
+      <Button>Art/Interface/Buttons/Buildings/Temple.dds</Button>
+    </SpecialBuildingInfo>
+    <SpecialBuildingInfo>
+      <Type>SPECIALBUILDING_CHRISTIAN_MONASTERY</Type>
+      <Description>TXT_KEY_BUILDING_CHRISTIAN_MONASTERY</Description>
+      <ObsoleteTech>NONE</ObsoleteTech>
+      <TechPrereq>NONE</TechPrereq>
+      <TechPrereqAnyone>NONE</TechPrereqAnyone>
+      <bValid>0</bValid>
+      <ProductionTraits/>
+      <Button>Art/Interface/Buttons/Buildings/Monastery_Christian.dds</Button>
+    </SpecialBuildingInfo>
+    <SpecialBuildingInfo>
+      <Type>SPECIALBUILDING_TRADEPOST</Type>
+      <Description>TXT_KEY_BUILDING_TRADEPOST</Description>
+      <ObsoleteTech>NONE</ObsoleteTech>
+      <TechPrereq>NONE</TechPrereq>
+      <TechPrereqAnyone>NONE</TechPrereqAnyone>
+      <bValid>0</bValid>
+      <ProductionTraits/>
+      <Button>Art/Interface/Buttons/Builds/button_tradepost.dds</Button>
+    </SpecialBuildingInfo>
+    <SpecialBuildingInfo>
+      <Type>SPECIALBUILDING_BIBEL</Type>
+      <Description>TXT_KEY_BUILDING_BIBEL</Description>
+      <ObsoleteTech>NONE</ObsoleteTech>
+      <TechPrereq>NONE</TechPrereq>
+      <TechPrereqAnyone>NONE</TechPrereqAnyone>
+      <bValid>0</bValid>
+      <ProductionTraits/>
+      <Button>Art/Interface/Buttons/Builds/button_bibel.dds</Button>
+    </SpecialBuildingInfo>
+    <SpecialBuildingInfo>
+      <Type>SPECIALBUILDING_PALMBLATT</Type>
+      <Description>TXT_KEY_BUILDING_PALMBLATT</Description>
+      <ObsoleteTech>NONE</ObsoleteTech>
+      <TechPrereq>NONE</TechPrereq>
+      <TechPrereqAnyone>NONE</TechPrereqAnyone>
+      <bValid>0</bValid>
+      <ProductionTraits/>
+      <Button>Art/Interface/Buttons/Buildings/button_x.dds</Button>
+    </SpecialBuildingInfo>
+  </SpecialBuildingInfos>
+</Civ4SpecialBuildingInfos>
