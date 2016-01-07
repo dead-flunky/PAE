@@ -42,6 +42,7 @@ public:
 	bool isHuman();
 	bool isBarbarian();
 	std::wstring getName();
+	void setName(std::wstring szNewValue);
 	std::wstring getNameForm(int iForm);
 	std::wstring getNameKey();
 	std::wstring getCivilizationDescription(int iForm);
@@ -351,6 +352,7 @@ public:
 	int getPlayerTextColorG();
 	int getPlayerTextColorB();
 	int getPlayerTextColorA();
+	void setPlayerColor(int /*PlayerColorTypes*/ eColor);
 
 	int getSeaPlotYield(YieldTypes eIndex);
 	int getYieldRateModifier(YieldTypes eIndex);

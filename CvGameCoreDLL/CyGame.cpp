@@ -5,6 +5,8 @@
 #include "CvGameCoreDLL.h"
 #include "CyGame.h"
 #include "CvGameAI.h"
+#include "CvInitCore.h"
+
 #include "CyGlobalContext.h"
 #include "CyPlayer.h"
 //#include "CvEnums.h"
@@ -388,6 +390,16 @@ int CyGame::getTurnSlice() const
 	return (NULL != m_pGame ? m_pGame->getTurnSlice() : -1);
 }
 
+//PB Mod, for increment and decrement
+void CyGame::incrementTurnTimer(int iNumTurnSlices){
+	if( m_pGame != NULL){
+		if (isMPOption(MPOPTION_TURN_TIMER)){
+			m_pGame->incrementTurnTimer(iNumTurnSlices);
+		}
+	}
+}
+//END PB Mod
+
 int CyGame::getMinutesPlayed() const
 {
 	return (NULL != m_pGame ? m_pGame->getMinutesPlayed() : 0);
@@ -615,6 +627,16 @@ bool CyGame::isPitboss()
 {
 	return m_pGame ? m_pGame->isPitboss() : false;
 }
+bool CyGame::isPitbossShortNames() const
+{
+	return m_pGame ? CvInitCore::isPitbossShortNames() : false;
+}
+
+void CyGame::setPitbossShortNames(bool bShort, int maxLenName, int maxLenDesc){
+	if( m_pGame != NULL ){
+		CvInitCore::setPitbossShortNames( bShort, maxLenName, maxLenDesc );
+	}
+}
 
 bool CyGame::isSimultaneousTeamTurns()
 {
@@ -640,6 +662,12 @@ void CyGame::setActivePlayer(int /*PlayerTypes*/ eNewValue, bool bForceHotSeat)
 int CyGame::getPausePlayer()
 {
 	return m_pGame ? m_pGame->getPausePlayer() : -1;
+}
+
+void CyGame::setPausePlayer(int /*PlayerTypes*/ eNewValue)
+{
+	if (m_pGame)
+		m_pGame->setPausePlayer((PlayerTypes)eNewValue);
 }
 
 bool CyGame::isPaused()
@@ -1152,4 +1180,26 @@ void CyGame::doControl(int iControl)
 	{
 		m_pGame->doControl((ControlTypes) iControl);
 	}
+}
+
+/* Check if corrent admin password is given and set player password to new value.
+ * I do not test specical chars in passwords. Simply omit them...
+ * */
+int CyGame::setCivPassword(int ePlayer, const char *szNewPw, const char *szAdminPw)
+{
+	//convert adminpassword to CvString
+	CvString adminPW;
+	adminPW.Convert ( GC.getInitCore().getAdminPassword() );
+	if( strcmp( adminPW.GetCString(), szAdminPw ) == 0 ){
+		CvWString newCivPW( szNewPw );
+		GC.getInitCore().setCivPassword((PlayerTypes)ePlayer, newCivPW );
+	}else{
+		return -1;
+	}
+	return 0;
+}
+
+bool CyGame::isDiploScreenUp() const
+{
+	return (NULL != m_pGame ? m_pGame->isDiploScreenUp() : false);
 }

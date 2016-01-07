@@ -1855,16 +1855,30 @@ CvWString CvPlayer::getNewCityName() const
 		}
 	}
 
+	/* OOS-Fix: Role dice regardless if szName is empty or not. The emptyness of the string depends on the language!
+	 */
 	if (szName.empty())
 	{
 		getCivilizationCityName(szName, getCivilizationType());
+	}else{
+		if (isBarbarian() || isMinorCiv())
+		{
+			GC.getGameINLINE().getSorenRandNum(GC.getCivilizationInfo(getCivilizationType()).getNumCityNames(), "getNewCityName 1 (Player)");
+		}
 	}
 
+	/* OOS-Fix: The following code free's the number of getSorenRandNum calls from the emptyness-condition of szName, too.
+	 * Thus, it will be languange independent.
+	 * numCityNameCalls defines the (maximal) number of getCivilizationCityName calls and exact number of getSorenRandNum
+	 * calls (in the isBarbarian() case).
+	 */
+	int numCityNameCalls = std::min(5, GC.getNumCivilizationInfos());
+
+	int iRandOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumCivilizationInfos(), "getNewCityName 2 (Player)");
 	if (szName.empty())
 	{
 		// Pick a name from another random civ
-		int iRandOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumCivilizationInfos(), "Place Units (Player)");
-		for (iI = 0; iI < GC.getNumCivilizationInfos(); iI++)
+		for (iI = 0; iI < numCityNameCalls; iI++)
 		{
 			int iLoopName = ((iI + iRandOffset) % GC.getNumCivilizationInfos());
 
@@ -1872,7 +1886,21 @@ CvWString CvPlayer::getNewCityName() const
 
 			if (!szName.empty())
 			{
+				++iI;
 				break;
+			}
+		}
+		for (iI; iI < numCityNameCalls; iI++){
+			if(isBarbarian() || isMinorCiv()){
+				int iLoopName = ((iI + iRandOffset) % GC.getNumCivilizationInfos());
+				GC.getGameINLINE().getSorenRandNum(GC.getCivilizationInfo(((CivilizationTypes)iLoopName)).getNumCityNames(), "getNewCityName 3A (Player)");
+			}
+		}
+	}else{
+		for (iI = 0; iI < numCityNameCalls; iI++){
+			if(isBarbarian() || isMinorCiv()){
+				int iLoopName = ((iI + iRandOffset) % GC.getNumCivilizationInfos());
+				GC.getGameINLINE().getSorenRandNum(GC.getCivilizationInfo(((CivilizationTypes)iLoopName)).getNumCityNames(), "getNewCityName 3B (Player)");
 			}
 		}
 	}
@@ -2339,6 +2367,10 @@ const wchar* CvPlayer::getName(uint uiForm) const
 	}
 }
 
+void CvPlayer::setName(const wchar* szNewValue)
+{
+	GC.getInitCore().setLeaderName(getID(), szNewValue);
+}
 
 const wchar* CvPlayer::getNameKey() const
 {
@@ -10392,6 +10424,13 @@ int CvPlayer::getPlayerTextColorA() const
 	return ((int)(GC.getColorInfo((ColorTypes) GC.getPlayerColorInfo(getPlayerColor()).getTextColorType()).getColor().a * 255));
 }
 
+void CvPlayer::setPlayerColor(PlayerColorTypes eColor)
+{
+	FAssertMsg(eColor != NO_PLAYERCOLOR, "getPlayerColor() is not expected to be equal with NO_PLAYERCOLOR");
+	if( eColor < GC.getNumPlayerColorInfos() ){
+		GC.getInitCore().setColor(getID(), eColor);
+	}
+}
 
 int CvPlayer::getSeaPlotYield(YieldTypes eIndex) const
 {
@@ -19761,7 +19800,9 @@ void CvPlayer::launch(VictoryTypes eVictory)
 	kTeam.finalizeProjectArtTypes();
 	kTeam.setVictoryCountdown(eVictory, kTeam.getVictoryDelay(eVictory));
 
-	gDLL->getEngineIFace()->AddLaunch(getID());
+	if ( GC.IsGraphicsInitialized()){
+		gDLL->getEngineIFace()->AddLaunch(getID());
+	}
 
 	kTeam.setCanLaunch(eVictory, false);
 

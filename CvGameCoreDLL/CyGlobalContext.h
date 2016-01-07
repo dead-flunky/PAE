@@ -316,6 +316,14 @@ public:
 	int getINVALID_PLOT_COORD() const { return GC.getINVALID_PLOT_COORD(); }
 	int getNUM_CITY_PLOTS() const { return GC.getNUM_CITY_PLOTS(); }
 	int getCITY_HOME_PLOT() const { return GC.getCITY_HOME_PLOT(); }
+
+	mutable CvString tmp;
+	const char * getAltrootDir( ) const { 
+		tmp.Convert( gDLL->GetPitbossSmtpLogin() );
+		return tmp.GetCString();
+	}
+	void sendChat(std::wstring szString, int targetType);
+	void sendPause(int iPauseID);
 };
 
 #endif	// CyGlobalContext_h
