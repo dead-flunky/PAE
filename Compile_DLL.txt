@@ -1,0 +1,14 @@
+1. Install Visual C++ 2010 Express or newer.
+2. Install „Microsoft Visual C++ Toolkit 2003“ and Windows SDK, Version 7.0A(!).
+   Do not use newer version of both.
+
+Search for houres the installation files for above steps? Thanks MS... 
+I would paste the download links here if I had someone.
+
+3. Open CvGameCoreDLL/Makefile and adapt the two lines
+   TOOLKIT=C:\Programme\Microsoft Visual C++ Toolkit 2003
+   PSDK=C:\Programme\Microsoft SDKs\Windows\v7.0A
+
+4. Open CvGameCoreDLL/CvGameCoreDLL.sln with Visual Studio
+   and press F7 to start the build process.
+   

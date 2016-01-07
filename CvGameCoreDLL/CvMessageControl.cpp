@@ -33,6 +33,17 @@ void CvMessageControl::sendTurnComplete()
 	}
 }
 
+void CvMessageControl::sendTurnCompleteAll()
+{
+	//Finish turn for all players
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive()){
+			gDLL->sendMessageData(new CvNetTurnComplete((PlayerTypes)iI));
+		}
+	}
+}
+
 void CvMessageControl::sendPushOrder(int iCityID, OrderTypes eOrder, int iData, bool bAlt, bool bShift, bool bCtrl)
 {
 	if (NO_PLAYER != GC.getGameINLINE().getActivePlayer())

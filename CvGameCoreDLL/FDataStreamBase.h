@@ -1,5 +1,3 @@
-#pragma once
-
 //	$Revision: #4 $		$Author: mbreitkreutz $ 	$DateTime: 2005/06/13 13:35:55 $
 //---------------------------------------------------------------------------------------
 //  Copyright (c) 2004 Firaxis Games, Inc. All rights reserved.
@@ -109,6 +107,7 @@ public:
 
 	virtual void		Write(double value) = 0;
 	virtual void		Write(int count, const double values[]) = 0;
+
 };
 
 #endif	//FDATASTREAMBASE_H

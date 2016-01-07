@@ -10,7 +10,18 @@
 #include "CvGameAI.h"
 #include "CvGameCoreUtils.h"
 
+
+#define PBMOD_FRAME_POINTER_ENABLED 1
 // Public Functions...
+
+//PB Mod, to fix crash in BASE use static variables instead of member variables in CvInitCore.
+struct pbmod_t {
+	bool bShortNames;
+	size_t iMaxLenName;
+	size_t iMaxLenDesc;
+};
+static pbmod_t pbmod = {false, 1, 4};
+//PB Mod End
 
 CvInitCore::CvInitCore()
 {
@@ -101,6 +112,7 @@ void CvInitCore::uninit()
 {
 	clearCustomMapOptions();
 	clearVictories();
+	pbmod.bShortNames = false;
 }
 
 
@@ -238,7 +250,6 @@ bool CvInitCore::getPbem() const
 {
 	return ( (getType() == GAME_PBEM_NEW) || (getType() == GAME_PBEM_SCENARIO) || (getType() == GAME_PBEM_LOAD) );
 }
-
 
 bool CvInitCore::checkBounds( int iValue, int iLower, int iUpper ) const
 {
@@ -723,7 +734,7 @@ void CvInitCore::resetPlayer(PlayerTypes eID, CvInitCore * pSource, bool bClear,
 
 
 CvWString CvInitCore::getMapScriptName() const
-{ 
+{
 	if (gDLL->getTransferredMap())
 	{
 		if (!getWBMapScript())
@@ -732,7 +743,7 @@ CvWString CvInitCore::getMapScriptName() const
 			return ( m_szMapScriptName + CvWString(MAP_TRANSFER_EXT) );
 		}
 	}
-	return m_szMapScriptName; 
+	return m_szMapScriptName;
 }	
 
 void CvInitCore::setMapScriptName(const CvWString & szMapScriptName)
@@ -1201,12 +1212,47 @@ void CvInitCore::setMode(GameMode eMode)
 }
 
 
+static const void *CriticalParent_LeaderName = (void*) 0x0046aba8;
+
 const CvWString & CvInitCore::getLeaderName(PlayerTypes eID, uint uiForm) const
 {
 	FASSERT_BOUNDS(0, MAX_PLAYERS, eID, "CvInitCore::getLeaderName");
 	if ( checkBounds(eID, 0, MAX_PLAYERS) )
 	{
 		m_szTemp = gDLL->getObjectText(CvString(m_aszLeaderName[eID]).GetCString(), uiForm, true);
+
+		if( isPitbossShortNames()
+				&& gDLL->IsPitbossHost() ){
+
+#if PBMOD_FRAME_POINTER_ENABLED
+			void ** volatile puEBP = NULL;
+			__asm { mov puEBP, ebp };
+			void * pvReturn1 = puEBP[1]; // this is the caller of my function
+#else
+			void * pvReturn1 = (void*) -1;//CriticalParent_LeaderName++;
+#endif
+
+			if( pvReturn1 == CriticalParent_LeaderName ){
+				if( !getSlotVacant(eID) ){ m_szTemp.resize(0); }
+				if( m_szTemp.length() == 0 ) { return m_szTemp; }
+				if( pbmod.iMaxLenName == 1 /*|| m_szTemp.length() == 0*/ ){
+					unsigned short lKey = 65U;
+					lKey += eID;
+					if( lKey > 90U ) lKey += 6U;
+					m_szTemp.resize(1);
+					m_szTemp[0] = (wchar)lKey;
+					return m_szTemp;
+				}else{
+					if( m_szTemp.length() > pbmod.iMaxLenName){
+						m_szTemp.resize(pbmod.iMaxLenName, ' ');
+					}
+					return m_szTemp;
+				}
+			}
+		}else{
+			m_szTemp = gDLL->getObjectText(CvString(m_aszLeaderName[eID]).GetCString(), uiForm, true);
+		}
+
 	}
 	else
 	{
@@ -1242,13 +1288,51 @@ const CvWString & CvInitCore::getLeaderNameKey(PlayerTypes eID) const
 	}
 }
 
-const CvWString & CvInitCore::getCivDescription(PlayerTypes eID, uint uiForm) const
+static const void *CriticalParent_CivDesc = (void*) 0x0046ab8e;
+
+/*__declspec(noinline)*/ const CvWString & CvInitCore::getCivDescription(PlayerTypes eID, uint uiForm) const
 {
 	FASSERT_BOUNDS(0, MAX_PLAYERS, eID, "CvInitCore::getCivDescription");
 
 	if ( checkBounds(eID, 0, MAX_PLAYERS) )
 	{
 		m_szTemp = gDLL->getObjectText(CvString(m_aszCivDescription[eID]).GetCString(), uiForm, true);
+		if( isPitbossShortNames()
+				&& gDLL->IsPitbossHost() ){
+			/* The return of "" forces a lookup into the local Civ decription. Unfortunealy, there
+			 * is a bug(?) and not the civ decription, but the leader name will be readed. */
+
+#if PBMOD_FRAME_POINTER_ENABLED
+			void ** volatile puEBP = NULL;
+			__asm { mov puEBP, ebp }; //current frame pointer
+			//__asm { mov puEBP, esp }; //current stack pointer
+			void * pvReturn1 = puEBP[1]; // this is the caller of my function
+#else
+			void * pvReturn1 = (void*) -1;//CriticalParent_CivDesc+1;
+#endif
+
+			if( pvReturn1 == CriticalParent_CivDesc ){
+
+				/* It's not possible to send the empty string because for "" the default civ desc will be send.
+				 * Thus, the first connection for a fresh(!) game could fail. Second attempt will work.
+				 */
+				if( !getSlotVacant(eID) ){ m_szTemp.resize(0); }
+				if( m_szTemp.length() == 0 ) { return m_szTemp; }
+				if( pbmod.iMaxLenDesc == 1 /*|| m_szTemp.length() == 0*/ ){
+					unsigned short lKey = 65U;
+					lKey += eID;
+					if( lKey > 90U ) lKey += 6U;
+					m_szTemp.resize(1);
+					m_szTemp[0] = (wchar)lKey;
+					return m_szTemp;
+				}else{
+					if( m_szTemp.length() > pbmod.iMaxLenDesc){
+						m_szTemp.resize(pbmod.iMaxLenDesc, ' ');
+					}
+					return m_szTemp;
+				}
+			}
+		}
 	}
 	else
 	{
@@ -1997,7 +2081,7 @@ void CvInitCore::write(FDataStreamBase* pStream)
 
 	pStream->Write(m_eWorldSize);
 	pStream->Write(m_eClimate);
-	pStream->Write(m_eSeaLevel);
+	pStream->Write(m_eSeaLevel);	
 	pStream->Write(m_eEra);
 	pStream->Write(m_eGameSpeed);
 	pStream->Write(m_eTurnTimer);
@@ -2047,4 +2131,20 @@ void CvInitCore::write(FDataStreamBase* pStream)
 
 	pStream->Write(MAX_PLAYERS, m_abPlayableCiv);
 	pStream->Write(MAX_PLAYERS, m_abMinorNationCiv);
+}
+
+//bool CvInitCore::isPitbossShortNames() const
+bool CvInitCore::isPitbossShortNames() 
+{
+	return pbmod.bShortNames;
+}
+
+//void CvInitCore::setPitbossShortNames( bool bShort, int maxLenName, int maxLenDesc )
+void CvInitCore::setPitbossShortNames( bool bShort, int maxLenName, int maxLenDesc )
+{
+	if( gDLL->IsPitbossHost() ){
+		pbmod.bShortNames = bShort;
+		pbmod.iMaxLenName = maxLenName>0?maxLenName:0;
+		pbmod.iMaxLenDesc = maxLenDesc>0?maxLenDesc:0;
+	}
 }

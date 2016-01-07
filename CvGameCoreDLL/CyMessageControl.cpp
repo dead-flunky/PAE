@@ -19,6 +19,11 @@ void CyMessageControl::sendTurnComplete()
 	CvMessageControl::getInstance().sendTurnComplete();
 }
 
+void CyMessageControl::sendTurnCompleteAll()
+{
+	CvMessageControl::getInstance().sendTurnCompleteAll();
+}
+
 void CyMessageControl::sendUpdateCivics(boost::python::list& iCivics)
 {
 	int *PYiCivics = NULL;		//	do not delete this memory
