@@ -83,6 +83,27 @@ CvPlayer::CvPlayer()
 	m_ppaaiSpecialistExtraYield = NULL;
 	m_ppaaiImprovementYieldChange = NULL;
 
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                        09/01/07                                MRGENIE      */
+/*                                                                                              */
+/*                                                                                              */
+/************************************************************************************************/
+	m_bDisableHuman = false;
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                        END                                                  */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       12/07/09                             EmperorFool      */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+	// Free Tech Popup Fix
+	m_bChoosingFreeTech = false;
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
+
 	reset(NO_PLAYER, true);
 }
 
@@ -476,6 +497,27 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bExtendedGame = false;
 	m_bFoundedFirstCity = false;
 	m_bStrike = false;
+
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                        09/01/07                            MRGENIE          */
+/*                                                                                              */
+/*                                                                                              */
+/************************************************************************************************/
+	m_bDisableHuman = false;
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                        END                                                  */
+/************************************************************************************************/
+
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       12/07/09                            Emperor Fool      */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+	// Free Tech Popup Fix
+	m_bChoosingFreeTech = false;
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 
 	m_eID = eID;
 	updateTeamType();
@@ -1022,7 +1064,7 @@ int CvPlayer::startingPlotRange() const
 
 bool CvPlayer::startingPlotWithinRange(CvPlot* pPlot, PlayerTypes ePlayer, int iRange, int iPass) const
 {
-	PROFILE_FUNC();
+	//PROFILE_FUNC();
 
 	//XXX changes to AI_foundValue (which are far more flexible) make this function 
 	//    redundant but it is still called from Python. 
@@ -2225,6 +2267,24 @@ bool CvPlayer::hasTrait(TraitTypes eTrait) const
 	return GC.getLeaderHeadInfo(getLeaderType()).hasTrait(eTrait);
 }
 
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                           07/09/08                            jdog5000      */
+/*                                                                                              */
+/*                                                                                              */
+/************************************************************************************************/
+void CvPlayer::setHumanDisabled( bool newVal )
+{
+	m_bDisableHuman = newVal;
+	updateHuman();
+}
+bool CvPlayer::isHumanDisabled( )
+{
+	return m_bDisableHuman;
+}
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                            END                                              */
+/************************************************************************************************/
+
 bool CvPlayer::isHuman() const
 {
 	return m_bHuman;
@@ -2238,7 +2298,25 @@ void CvPlayer::updateHuman()
 	}
 	else
 	{
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                            09/01/07                        MRGENIE          */
+/*                                                                                              */
+/*                                                                                              */
+/************************************************************************************************/
+/*
 		m_bHuman = GC.getInitCore().getHuman(getID());
+*/
+		if( m_bDisableHuman )
+		{
+			m_bHuman = false;
+		}
+		else
+		{
+			m_bHuman = GC.getInitCore().getHuman(getID());
+		}
+/************************************************************************************************/
+/* AI_AUTO_PLAY_MOD                            END                                              */
+/************************************************************************************************/	
 	}
 }
 
@@ -3002,10 +3080,41 @@ bool CvPlayer::hasBusyUnit() const
 
 	return false;
 }
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       12/07/09                             EmperorFool      */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+// Free Tech Popup Fix
+bool CvPlayer::isChoosingFreeTech() const
+{
+	return m_bChoosingFreeTech;
+}
 
+void CvPlayer::setChoosingFreeTech(bool bValue)
+{
+	m_bChoosingFreeTech = bValue;
+}
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 
 void CvPlayer::chooseTech(int iDiscover, CvWString szText, bool bFront)
 {
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       12/07/09                             EmperorFool      */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+	// Free Tech Popup Fix
+	if (iDiscover > 0)
+	{
+		setChoosingFreeTech(true);
+	}
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
+
 	CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CHOOSETECH);
 	if (NULL != pInfo)
 	{
@@ -3959,7 +4068,18 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		break;
 
 	case TRADE_CIVIC:
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       10/22/09                          denev & jdog5000    */
+/*                                                                                              */
+/* Diplomacy                                                                                    */
+/************************************************************************************************/
+/* original bts code
 		if (!(GET_TEAM(getTeam()).isHuman()))
+*/
+		if (!(GET_TEAM(getTeam()).isHuman()) || (getTeam() == GET_PLAYER(eWhoTo).getTeam()))
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 		{
 			if (GET_PLAYER(eWhoTo).isCivic((CivicTypes)(item.m_iData)))
 			{
@@ -3975,7 +4095,18 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 		break;
 
 	case TRADE_RELIGION:
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       10/22/09                          denev & jdog5000    */
+/*                                                                                              */
+/* Diplomacy                                                                                    */
+/************************************************************************************************/
+/* original bts code
 		if (!(GET_TEAM(getTeam()).isHuman()))
+*/
+		if (!(GET_TEAM(getTeam()).isHuman()) || (getTeam() == GET_PLAYER(eWhoTo).getTeam()))
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 		{
 			if (GET_PLAYER(eWhoTo).getStateReligion() == ((ReligionTypes)(item.m_iData)))
 			{
@@ -4972,26 +5103,33 @@ bool CvPlayer::canFound(int iX, int iY, bool bTestVisible) const
 		}
 	}
 
-	if(GC.getUSE_CAN_FOUND_CITIES_ON_WATER_CALLBACK())
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       02/16/10                    EmperorFool & jdog5000    */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+	// EF: canFoundCitiesOnWater callback handling was incorrect and ignored isWater() if it returned true
+	if (pPlot->isWater())
 	{
-		CyArgsList argsList2;
-		argsList2.add(iX);
-		argsList2.add(iY);
-		lResult=0;
-		gDLL->getPythonIFace()->callFunction(PYGameModule, "canFoundCitiesOnWater", argsList2.makeFunctionArgs(), &lResult);
-	}
-
-	if (lResult == 1)
-	{
-		bValid = true;
-	}
-	else
-	{
-		if (pPlot->isWater())
+		if(GC.getUSE_CAN_FOUND_CITIES_ON_WATER_CALLBACK())
 		{
-			return false;
+			bValid = false;
+
+			CyArgsList argsList2;
+			argsList2.add(iX);
+			argsList2.add(iY);
+			lResult=0;
+			gDLL->getPythonIFace()->callFunction(PYGameModule, "canFoundCitiesOnWater", argsList2.makeFunctionArgs(), &lResult);
+
+			if (lResult == 1)
+			{
+				bValid = true;
+			}
 		}
 	}
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 
 	if (!bValid)
 	{
@@ -5846,7 +5984,18 @@ void CvPlayer::removeBuildingClass(BuildingClassTypes eBuildingClass)
 		{
 			if (pLoopCity->getNumRealBuilding(eBuilding) > 0)
 			{
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       02/16/10                          EmperorFool         */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+/* original bts code
 				pLoopCity->setNumRealBuilding(eBuilding, 0);
+*/
+				pLoopCity->setNumRealBuilding(eBuilding, pLoopCity->getNumRealBuilding(eBuilding) - 1);
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 				break;
 			}
 		}
@@ -6752,6 +6901,20 @@ bool CvPlayer::isCivic(CivicTypes eCivic) const
 bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 {
 	PROFILE_FUNC();
+
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       02/16/10                                jdog5000      */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+	// Circumvents second crash bug in simultaneous turns MP games
+	if( eCivic == NO_CIVIC )
+	{
+		return true;
+	}
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/	
 
 	if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)(GC.getCivicInfo(eCivic).getCivicOptionType())))
 	{

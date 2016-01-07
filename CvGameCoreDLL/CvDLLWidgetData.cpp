@@ -1226,6 +1226,30 @@ void CvDLLWidgetData::doResearch(CvWidgetDataStruct &widgetDataStruct)
 		}
 	}
 
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       12/07/09                             EmperorFool      */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+	// Free Tech Popup Fix
+	if (widgetDataStruct.m_iData2 > 0)
+	{
+		CvPlayer& kPlayer = GET_PLAYER(GC.getGameINLINE().getActivePlayer());
+
+		if (!kPlayer.isChoosingFreeTech())
+		{
+			gDLL->getInterfaceIFace()->addMessage(GC.getGameINLINE().getActivePlayer(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_CHEATERS_NEVER_PROSPER"), NULL, MESSAGE_TYPE_MAJOR_EVENT);
+			return;
+		}
+		else
+		{
+			kPlayer.setChoosingFreeTech(false);
+		}
+	}
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
+
 	CvMessageControl::getInstance().sendResearch(((TechTypes)widgetDataStruct.m_iData1), widgetDataStruct.m_iData2, bShift);
 }
 
@@ -2662,6 +2686,20 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 
 						szBuffer.append(NEWLINE);
 						szBuffer.append(gDLL->getText("TXT_KEY_ACTION_REMOVE_FEATURE", GC.getFeatureInfo(pMissionPlot->getFeatureType()).getTextKeyWide()));
+
+/*************************************************************************************************/
+/* UNOFFICIAL_PATCH                       06/10/10                           EmperorFool         */
+/*                                                                                               */
+/* Bugfix                                                                                        */
+/*************************************************************************************************/
+						if (eImprovement == NO_IMPROVEMENT && pMissionPlot->getImprovementType() != NO_IMPROVEMENT && GC.getImprovementInfo(pMissionPlot->getImprovementType()).getFeatureMakesValid(pMissionPlot->getFeatureType()))
+						{
+							szBuffer.append(NEWLINE);
+							szBuffer.append(gDLL->getText("TXT_KEY_ACTION_WILL_DESTROY_IMP", GC.getImprovementInfo(pMissionPlot->getImprovementType()).getTextKeyWide()));
+						}
+/*************************************************************************************************/
+/* UNOFFICIAL_PATCH                         END                                                  */
+/*************************************************************************************************/
 					}
 
 				}
@@ -3517,6 +3555,20 @@ void CvDLLWidgetData::parseUnitModelHelp(CvWidgetDataStruct &widgetDataStruct, C
 void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
 	CvWString szTempBuffer;
+
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                      03/04/10                                jdog5000       */
+/*                                                                                              */
+/*                                                                                              */
+/************************************************************************************************/
+	// Add string showing version number
+	szTempBuffer.Format(L"%S", "Unofficial 3.19 Patch v1.60");
+	szBuffer.append(szTempBuffer);
+	szBuffer.append(NEWLINE);
+	szBuffer.append(NEWLINE);
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       END                                                   */
+/************************************************************************************************/
 
 	szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"), GC.getCivilizationInfo(GC.getGameINLINE().getActiveCivilizationType()).getDescription());
 	szBuffer.append(szTempBuffer);

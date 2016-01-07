@@ -428,10 +428,29 @@ void CvPlot::doImprovement()
 			{
 				if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo((BonusTypes) iI).getTechReveal())))
 				{
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       03/04/10                                jdog5000      */
+/*                                                                                              */
+/* Gamespeed scaling                                                                            */
+/************************************************************************************************/
+/* original bts code
 					if (GC.getImprovementInfo(getImprovementType()).getImprovementBonusDiscoverRand(iI) > 0)
 					{
 						if (GC.getGameINLINE().getSorenRandNum(GC.getImprovementInfo(getImprovementType()).getImprovementBonusDiscoverRand(iI), "Bonus Discovery") == 0)
 						{
+*/
+					int iOdds = GC.getImprovementInfo(getImprovementType()).getImprovementBonusDiscoverRand(iI);
+
+					if( iOdds > 0 )
+					{
+						iOdds *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
+						iOdds /= 100;
+
+						if( GC.getGameINLINE().getSorenRandNum(iOdds, "Bonus Discovery") == 0)
+						{
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 							setBonusType((BonusTypes)iI);
 
 							pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
@@ -3735,6 +3754,12 @@ bool CvPlot::at(int iX, int iY) const
 
 int CvPlot::getLatitude() const
 {
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       07/12/09                       Temudjin & jdog5000    */
+/*                                                                                              */
+/* Bugfix                                                                                       */
+/************************************************************************************************/
+/* orginal bts code		
 	int iLatitude;
 
 	if (GC.getMapINLINE().isWrapXINLINE() || !(GC.getMapINLINE().isWrapYINLINE()))
@@ -3749,6 +3774,26 @@ int CvPlot::getLatitude() const
 	iLatitude = ((iLatitude * (GC.getMapINLINE().getTopLatitude() - GC.getMapINLINE().getBottomLatitude())) / 100);
 
 	return abs(iLatitude + GC.getMapINLINE().getBottomLatitude());
+*/
+	int iLatitude;
+	double fLatitude;
+
+	if (GC.getMapINLINE().isWrapXINLINE() || !(GC.getMapINLINE().isWrapYINLINE()))
+	{
+		fLatitude = ((getY_INLINE() * 1.0) / (GC.getMapINLINE().getGridHeightINLINE()-1));
+	}
+	else
+	{
+		fLatitude = ((getX_INLINE() * 1.0) / (GC.getMapINLINE().getGridWidthINLINE()-1));
+	}
+
+	fLatitude = fLatitude * (GC.getMapINLINE().getTopLatitude() - GC.getMapINLINE().getBottomLatitude());
+
+	iLatitude =(int)(fLatitude + 0.5);
+	return abs( (iLatitude + GC.getMapINLINE().getBottomLatitude()));
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 }
 
 
@@ -5860,7 +5905,21 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 		}
 	}
 
+/*************************************************************************************************/
+/* UNOFFICIAL_PATCH                       06/02/10                     Afforess & jdog5000       */
+/*                                                                                               */
+/* Bugfix                                                                                        */
+/*************************************************************************************************/
+/* original bts code
 	return iYield;
+*/
+	// Improvement cannot actually produce negative yield
+	int iCurrYield = calculateNatureYield(eYield, (ePlayer == NO_PLAYER) ? NO_TEAM : GET_PLAYER(ePlayer).getTeam(), bOptimal);
+
+	return std::max( -iCurrYield, iYield );
+/*************************************************************************************************/
+/* UNOFFICIAL_PATCH                         END                                                  */
+/*************************************************************************************************/
 }
 
 
@@ -8108,7 +8167,19 @@ void CvPlot::doFeature()
 
 		if (iProbability > 0)
 		{
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       03/04/10                                jdog5000      */
+/*                                                                                              */
+/* Gamespeed scaling                                                                            */
+/************************************************************************************************/
+/* original bts code
 			if (GC.getGameINLINE().getSorenRandNum(10000, "Feature Disappearance") < iProbability)
+*/
+			int iOdds = (10000*GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent())/100;
+			if (GC.getGameINLINE().getSorenRandNum(iOdds, "Feature Disappearance") < iProbability)
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 			{
 				setFeatureType(NO_FEATURE);
 			}
@@ -8159,7 +8230,19 @@ void CvPlot::doFeature()
 
 							if (iProbability > 0)
 							{
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       03/04/10                                jdog5000      */
+/*                                                                                              */
+/* Gamespeed scaling                                                                            */
+/************************************************************************************************/
+/* original bts code
 								if (GC.getGameINLINE().getSorenRandNum(10000, "Feature Growth") < iProbability)
+*/
+								int iOdds = (10000*GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent())/100;
+								if( GC.getGameINLINE().getSorenRandNum(iOdds, "Feature Growth") < iProbability )
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/
 								{
 									setFeatureType((FeatureTypes)iI);
 

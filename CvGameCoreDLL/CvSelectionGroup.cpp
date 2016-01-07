@@ -1693,7 +1693,28 @@ void CvSelectionGroup::continueMission(int iSteps)
 					}
 				}
 
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                       08/04/09                                jdog5000      */
+/*                                                                                              */
+/* Player interface                                                                             */
+/************************************************************************************************/
+/* original bts code
 				deleteMissionQueueNode(headMissionQueueNode());
+*/
+				if (!isHuman() || (headMissionQueueNode()->m_data.eMissionType != MISSION_MOVE_TO))
+				{
+					deleteMissionQueueNode(headMissionQueueNode());
+				}
+				else
+				{
+					if (canAllMove() || (nextMissionQueueNode(headMissionQueueNode()) == NULL))
+					{
+						deleteMissionQueueNode(headMissionQueueNode());
+					}
+				}
+/************************************************************************************************/
+/* UNOFFICIAL_PATCH                        END                                                  */
+/************************************************************************************************/				
 			}
 		}
 		else
