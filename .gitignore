@@ -4,3 +4,13 @@ Art
 Sounds
 PAE_Structures.FPK
 PAE_Extras
+/CvGameCoreDLL/Makefile
+*.obj
+*.suo
+*.sdf
+*.user
+*.log
+*.pch
+*.res
+*.pdb
+/CvGameCoreDLL/depends
