@@ -219,7 +219,8 @@ class WBUnitScreen:
 
 		iY += 30
 		sColor = CyTranslator().getText("[COLOR_WARNING_TEXT]", ())
-		if pUnit.canSleep(pUnit.plot()):
+		#if pUnit.canSleep(pUnit.plot()):
+		if pUnit.isPromotionReady():
 			sColor = CyTranslator().getText("[COLOR_POSITIVE_TEXT]", ())
 		sText = CyTranslator().getText("TXT_KEY_WB_PROMOTION_READY", ())
 		screen.setText("PromotionReadyText", "Background", "<font=3>" + sColor + sText + "</color></font>", CvUtil.FONT_CENTER_JUSTIFY, screen.getXResolution()/2, iY + 1, -0.1, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
@@ -409,11 +410,13 @@ class WBUnitScreen:
 		pGroup.clearMissionQueue()
 		if( ( eType != None and eType not in holdActivities) or
 			( eType == None and pGroup.getActivityType() in holdActivities ) ):
-			#pGroup.pushMission (MissionTypes.MISSION_IDLE,0,0,0,
-			#		False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit )
+			# pGroup.pushMission (MissionTypes.MISSION_IDLE,0,0,0,
+			# False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit )
 			pUnit.getGroup().setActivityType(ActivityTypes.ACTIVITY_AWAKE)
 		elif pUnit.canFortify(pUnit.plot()):
 			pUnit.getGroup().setActivityType(ActivityTypes.ACTIVITY_HOLD)
+			#pUnit.getGroup().setActivityType(ActivityTypes.ACTIVITY_HOLD) #wrong, hold just operate in same turn
+			pUnit.getGroup().pushMission(MissionTypes.MISSION_FORTIFY,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit)
 		elif pUnit.canSleep(pUnit.plot()):
 			pUnit.getGroup().setActivityType(ActivityTypes.ACTIVITY_SLEEP)
 		else:
