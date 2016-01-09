@@ -15105,7 +15105,6 @@ BeginPlot
 		CityOwner=1
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
 	EndCity
 	TeamReveal=1,
@@ -20508,7 +20507,6 @@ BeginPlot
 		CityOwner=6
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 	EndCity
 	TeamReveal=6,
 	Player6Culture=2

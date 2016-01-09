@@ -4115,7 +4115,6 @@ BeginPlot
 		BuildingType=BUILDING_PHOEN_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_PHOEN
 		Player10Culture=80
 	EndCity
@@ -6960,7 +6959,6 @@ BeginPlot
 		BuildingType=BUILDING_GREEK_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		Player1Culture=102
 	EndCity
@@ -8729,7 +8727,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_PHOEN
 		HolyCityReligionType=RELIGION_PHOEN
 		CorporationType=CORPORATION_2
@@ -8807,7 +8804,6 @@ BeginPlot
 		BuildingType=BUILDING_PHOEN_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_PHOEN
 		Player10Culture=80
 	EndCity
@@ -9199,7 +9195,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_PHOEN
 		Player10Culture=80
 	EndCity
@@ -9919,7 +9914,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		FreeSpecialistType=SPECIALIST_GREAT_MERCHANT
 		FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -10634,7 +10628,6 @@ BeginPlot
 		BuildingType=BUILDING_PHOEN_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_PHOEN
 		Player10Culture=60
 	EndCity
@@ -10727,7 +10720,6 @@ BeginPlot
 		BuildingType=BUILDING_GREEK_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		Player1Culture=80
 	EndCity
@@ -11037,7 +11029,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		Player1Culture=111
 	EndCity
@@ -12386,7 +12377,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_8
@@ -12468,7 +12458,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_8
@@ -13299,7 +13288,6 @@ BeginPlot
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
 		BuildingType=BUILDING_PROVINZ
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -14423,7 +14411,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		Player1Culture=150
 	EndCity
@@ -14508,7 +14495,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		HeadquarterCorporationType=CORPORATION_3
@@ -15126,7 +15112,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_8
@@ -15657,7 +15642,6 @@ BeginPlot
 		BuildingType=BUILDING_GREEK_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		FreeSpecialistType=SPECIALIST_GREAT_MERCHANT
 		FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -16911,7 +16895,6 @@ BeginPlot
 		BuildingType=BUILDING_GREEK_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		Player1Culture=80
 	EndCity
@@ -17034,7 +17017,6 @@ BeginPlot
 		BuildingType=BUILDING_COURTHOUSE
 		BuildingType=BUILDING_GREEK_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
 		ReligionType=RELIGION_GREEK
 		Player1Culture=80
 	EndCity

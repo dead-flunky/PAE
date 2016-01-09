@@ -163,6 +163,9 @@ public:
 	// loads the local yield from the xml file
 	int SetYields(int** ppiYield);
 
+	// Flunky
+	int SetSpecialists(int** ppiSpecialist);
+
 #ifdef _USRDLL
 	template <class T>
 	int SetCommerce(T** ppiCommerce);

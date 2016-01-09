@@ -5535,6 +5535,20 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changeExtraHealth(GC.getTechInfo(eTech).getHealth() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeExtraHappiness(GC.getTechInfo(eTech).getHappiness() * iChange);
 
+			// Begin Flunky
+			int iI, iJ;
+			for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
+			{
+				if(GET_PLAYER((PlayerTypes)iI).hasTrait((TraitTypes)iI))
+				{
+					for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+					{	
+						GET_PLAYER((PlayerTypes)iI).changeMaxSpecialistCount((SpecialistTypes)iJ, GC.getTraitInfo((TraitTypes)iI).getTechSpecialistNum(eTech, (SpecialistTypes)iJ) * iChange);
+					}
+				}
+			}
+			// End Flunky
+
 			GET_PLAYER((PlayerTypes)iI).changeAssets(GC.getTechInfo(eTech).getAssetValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changePower(GC.getTechInfo(eTech).getPowerValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);

@@ -9702,14 +9702,14 @@ class CvEventManager:
 
     # ----------------------------------
     # Trait Creative: Bei Alphabet in jede Stadt Trait-Gebaeude setzen
-    if iTechType == gc.getInfoTypeForString("TECH_ALPHABET") and gc.getPlayer(iPlayer).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")) and iPlayer > -1:
-      lCities = PyPlayer(iPlayer).getCityList()
-      pPlayer = gc.getPlayer(iPlayer)
-      iRangeCities = len(lCities)
-      iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL")
-      for iCity in range(iRangeCities):
-        pCity = pPlayer.getCity(lCities[iCity].getID())
-        pCity.setNumRealBuilding(iBuilding, 1)
+    # if iTechType == gc.getInfoTypeForString("TECH_ALPHABET") and gc.getPlayer(iPlayer).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")) and iPlayer > -1:
+      # lCities = PyPlayer(iPlayer).getCityList()
+      # pPlayer = gc.getPlayer(iPlayer)
+      # iRangeCities = len(lCities)
+      # iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL")
+      # for iCity in range(iRangeCities):
+        # pCity = pPlayer.getCity(lCities[iCity].getID())
+        # pCity.setNumRealBuilding(iBuilding, 1)
     #-----------------------------
     # Tech und freie Einheit / Free Unit
     bNewUnit = False
@@ -13212,8 +13212,7 @@ class CvEventManager:
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iOldCulture",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         # Trait-Gebaeude sicherheitshalber entfernen...
-        # pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"),0)
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"),0)
+        # pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"),0)
         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"),0)
         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"),0)
 
@@ -15538,7 +15537,6 @@ class CvEventManager:
     lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_STADT"))
     lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_PROVINZ"))
     lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_METROPOLE"))
-    # lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
     # PAE IV Update: Palast darf zerstoert werden... hehe ;)
     #iBuildingPalace = gc.getInfoTypeForString('BUILDING_PALACE')
 
@@ -18511,23 +18509,21 @@ class CvEventManager:
       pOwner = gc.getPlayer(iOwner)
       # Trait-Gebaeude
       lTraitBuildings = []
-      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"))
       lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"))
       lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
-      # lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
-      # Tech, ab der Creative_Local gesetzt wird
-      iTechCreativeLocal = gc.getInfoTypeForString("TECH_ALPHABET")
+      # lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"))
+      # # Tech, ab der Creative_Local gesetzt wird
+      # iTechCreativeLocal = gc.getInfoTypeForString("TECH_ALPHABET")
       # Alle nicht passenden Gebaeude entfernen
       # Nur lokale hinzufuegen, globale nicht
       if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")):
+          # pCity.setNumRealBuilding(lTraitBuildings[2], 0)
           pCity.setNumRealBuilding(lTraitBuildings[0], 0)
-          pCity.setNumRealBuilding(lTraitBuildings[1], 0)
-      else:
-          if gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal): pCity.setNumRealBuilding(lTraitBuildings[0], 1)
-          else: pCity.setNumRealBuilding(lTraitBuildings[0], 0)
-      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")): pCity.setNumRealBuilding(lTraitBuildings[2], 0)
-	  # if pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(lTraitBuildings[3], 1)
-      # else: pCity.setNumRealBuilding(lTraitBuildings[3], 0)
+      # else:
+          # if gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal): pCity.setNumRealBuilding(lTraitBuildings[2], 1)
+          # else: pCity.setNumRealBuilding(lTraitBuildings[2], 0)
+      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")): pCity.setNumRealBuilding(lTraitBuildings[1], 0)
+
   def doCheckGlobalTraitBuildings (self, iPlayer):
       pPlayer = gc.getPlayer(iPlayer)
 

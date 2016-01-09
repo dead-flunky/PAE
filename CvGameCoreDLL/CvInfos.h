@@ -423,7 +423,6 @@ protected:
 
 	bool* m_pbCommerceFlexible;
 	bool* m_pbTerrainTrade;
-
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -4188,6 +4187,9 @@ public:
 	int* getGlobalSeaPlotYieldChangeArray() const;
 	int getDomainFreeExperience(int i) const; // Exposed to Python
 	int getDomainProductionModifier(int i) const; // Exposed to Python
+	
+	int getTechSpecialistNum(int i, int j) const; // TODO expose to python
+
 	// End Flunky
 	bool read(CvXMLLoadUtility* pXML);
 
@@ -4222,6 +4224,7 @@ protected:
 	int* m_piGlobalSeaPlotYieldChange;
 	int* m_piDomainFreeExperience;
 	int* m_piDomainProductionModifier;
+	int** m_ppaiTechSpecialist;
 	// End Flunky
 };
 

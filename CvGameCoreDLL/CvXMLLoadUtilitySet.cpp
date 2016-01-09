@@ -1693,6 +1693,65 @@ int CvXMLLoadUtility::SetYields(int** ppiYield)
 	return iNumSibs;
 }
 
+//
+////------------------------------------------------------------------------------------------------------
+//// Flunky
+////  FUNCTION:   SetSpecialists(int** ppiYield)
+////
+////  PURPOSE :   Allocate memory for the yield parameter and set it to the values
+////				in the xml file.  The current/last located node must be the first child of the
+////				yield changes node
+////
+////------------------------------------------------------------------------------------------------------
+//int CvXMLLoadUtility::SetSpecialists(int** ppiSpecialist)
+//{
+//	int i=0;			//loop counter
+//	int iNumSibs=0;		// the number of siblings the current xml node has
+//	int *piSpecialist;	// local pointer for the yield memory
+//
+//	// Skip any comments and stop at the next value we might want
+//	if (SkipToNextVal())
+//	{
+//		// get the total number of children the current xml node has
+//		iNumSibs = gDLL->getXMLIFace()->GetNumChildren(m_pFXml);
+//
+//		InitList(ppiSpecialist, GC.getNumSpecialistInfos());
+//
+//		// set the local pointer to the memory we just allocated
+//		piSpecialist = *ppiSpecialist;
+//
+//		if (0 < iNumSibs)
+//		{
+//			// if the call to the function that sets the current xml node to it's first non-comment
+//			// child and sets the parameter with the new node's value succeeds
+//			if (GetChildXmlVal(&piSpecialist[0]))
+//			{
+//				if(!(iNumSibs <= GC.getNumSpecialistInfos()))
+//				{
+//					char	szMessage[1024];
+//					sprintf( szMessage, "For loop iterator is greater than array size \n Current XML file is: %s", GC.getCurrentXMLFile().GetCString());
+//					gDLL->MessageBox(szMessage, "XML Error");
+//				}
+//				// loop through all the siblings, we start at 1 since we already have the first value
+//				for (i=1;i<iNumSibs;i++)
+//				{
+//					// if the call to the function that sets the current xml node to it's first non-comment
+//					// sibling and sets the parameter with the new node's value does not succeed
+//					// we will break out of this for loop
+//					if (!GetNextXmlVal(&piSpecialist[i]))
+//					{
+//						break;
+//					}
+//				}
+//				// set the current xml node to it's parent node
+//				gDLL->getXMLIFace()->SetToParent(m_pFXml);
+//			}
+//		}
+//	}
+//
+//	return iNumSibs;
+//}
+
 //------------------------------------------------------------------------------------------------------
 //
 //  FUNCTION:   SetFeatureStruct(int** ppiFeatureTech, int** ppiFeatureTime, int** ppiFeatureProduction, bool** ppbFeatureRemove)

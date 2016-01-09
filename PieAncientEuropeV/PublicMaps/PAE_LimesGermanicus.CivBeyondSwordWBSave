@@ -5354,7 +5354,6 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
     BuildingType=BUILDING_CORP6
     ReligionType=RELIGION_ROME
@@ -10012,7 +10011,6 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     BuildingType=BUILDING_CORP6
     ReligionType=RELIGION_ROME
     ReligionType=RELIGION_CHRISTIANITY
@@ -13055,7 +13053,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
@@ -16134,7 +16131,6 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -20701,7 +20697,6 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE
@@ -20984,7 +20979,6 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     BuildingType=BUILDING_CORP5
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
@@ -22764,7 +22758,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -24106,7 +24099,6 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE
@@ -38359,7 +38351,6 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
     BuildingType=BUILDING_CORP6
     ReligionType=RELIGION_ROME
     ReligionType=RELIGION_CHRISTIANITY

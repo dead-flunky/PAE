@@ -16245,6 +16245,15 @@ int CvTraitInfo::getDomainProductionModifier(int i) const
 	FAssertMsg(i > -1, "Index out of bounds");
 	return m_piDomainProductionModifier ? m_piDomainProductionModifier[i] : -1;
 }
+
+int CvTraitInfo::getTechSpecialistNum(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumTechInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < GC.getNumSpecialistInfos(), "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppaiTechSpecialist ? m_ppaiTechSpecialist[i][j] : -1;
+}
 // End Flunky
 
 bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
@@ -16330,7 +16339,61 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->SetVariableListTagPair(&m_piDomainFreeExperience, "DomainFreeExperiences", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 	pXML->SetVariableListTagPair(&m_piDomainProductionModifier, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
-	
+
+	// Flunky - Specialist slots with Technology and Trait
+	int j=0;						//loop counter
+	int k=0;						//trait index
+	int l=0;						//specialist index
+	int m=0;						//value
+	int iNumSibs=0;				// the number of siblings the current xml node has
+	int iNumChildren;				// the number of children the current node has
+
+	pXML->Init2DIntList(&m_ppaiTechSpecialist, GC.getNumTechInfos(), GC.getNumSpecialistInfos());
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechSpecialists"))
+	{
+		iNumChildren = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechSpecialist"))
+		{
+			for(j=0;j<iNumChildren;j++)
+			{
+				pXML->GetChildXmlValByName(szTextVal, "TechType");
+				k = pXML->FindInInfoClass(szTextVal);
+				if (k > -1)
+				{
+					if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistCount"))
+					{
+						pXML->GetChildXmlValByName(szTextVal, "SpecialistType");
+						l = pXML->FindInInfoClass(szTextVal);
+						if (l > -1)
+						{
+							// set the specialist slots
+							pXML->GetChildXmlValByName(szTextVal, "iSpecialistCount");
+							m = pXML->FindInInfoClass(szTextVal);
+							m_ppaiTechSpecialist[k][l] = m;
+						}
+						gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+					}
+					else
+					{
+						pXML->InitList(&m_ppaiTechSpecialist[k], GC.getNumSpecialistInfos());
+					}
+
+				}
+
+				if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+				{
+					break;
+				}
+			}
+
+			// set the current xml node to it's parent node
+			gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+		}
+
+		// set the current xml node to it's parent node
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
 	// End Flunky
 	return true;
 }

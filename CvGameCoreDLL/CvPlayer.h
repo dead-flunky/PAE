@@ -54,20 +54,20 @@ public:
 
 	CvPlotGroup* initPlotGroup(CvPlot* pPlot);													
 
-	CvCity* initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGroups);																																// Exposed to Python
-	void acquireCity(CvCity* pCity, bool bConquest, bool bTrade, bool bUpdatePlotGroups);																							// Exposed to Python
-	void killCities();																																												// Exposed to Python
-	CvWString getNewCityName() const;																																								// Exposed to Python
+	CvCity* initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGroups);																					// Exposed to Python
+	void acquireCity(CvCity* pCity, bool bConquest, bool bTrade, bool bUpdatePlotGroups);																		// Exposed to Python
+	void killCities();																																			// Exposed to Python
+	CvWString getNewCityName() const;																															// Exposed to Python
 	void getCivilizationCityName(CvWString& szBuffer, CivilizationTypes eCivilization) const;
 	bool isCityNameValid(CvWString& szName, bool bTestDestroyed = true) const;
 
 	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
-	void disbandUnit(bool bAnnounce);																																					// Exposed to Python
-	void killUnits();																																													// Exposed to Python
+	void disbandUnit(bool bAnnounce);																															// Exposed to Python
+	void killUnits();																																			// Exposed to Python
 
 	CvSelectionGroup* cycleSelectionGroups(CvUnit* pUnit, bool bForward, bool bWorkers, bool* pbWrap);
 
-	bool hasTrait(TraitTypes eTrait) const;																																			// Exposed to Python						
+	bool hasTrait(TraitTypes eTrait) const;																														// Exposed to Python						
 /************************************************************************************************/
 /* AI_AUTO_PLAY_MOD                       07/09/08                                jdog5000      */
 /*                                                                                              */
@@ -78,28 +78,28 @@ public:
 /************************************************************************************************/
 /* AI_AUTO_PLAY_MOD                        END                                                  */
 /************************************************************************************************/
-	DllExport bool isHuman() const;																																							// Exposed to Python						
+	DllExport bool isHuman() const;																																// Exposed to Python						
 	DllExport void updateHuman();
-	DllExport bool isBarbarian() const;																																					// Exposed to Python						
+	DllExport bool isBarbarian() const;																															// Exposed to Python						
 
-	DllExport const wchar* getName(uint uiForm = 0) const;																											// Exposed to Python
+	DllExport const wchar* getName(uint uiForm = 0) const;																										// Exposed to Python
 	void setName(const wchar* szNewValue);		// Exposed to Python
-	DllExport const wchar* getNameKey() const;																																	// Exposed to Python
-	DllExport const wchar* getCivilizationDescription(uint uiForm = 0) const;																		// Exposed to Python
+	DllExport const wchar* getNameKey() const;																													// Exposed to Python
+	DllExport const wchar* getCivilizationDescription(uint uiForm = 0) const;																					// Exposed to Python
 	DllExport const wchar* getCivilizationDescriptionKey() const;																								// Exposed to Python
-	DllExport const wchar* getCivilizationShortDescription(uint uiForm = 0) const;															// Exposed to Python 
-	DllExport const wchar* getCivilizationShortDescriptionKey() const;																					// Exposed to Python 
-	DllExport const wchar* getCivilizationAdjective(uint uiForm = 0) const;																			// Exposed to Python
+	DllExport const wchar* getCivilizationShortDescription(uint uiForm = 0) const;																				// Exposed to Python 
+	DllExport const wchar* getCivilizationShortDescriptionKey() const;																							// Exposed to Python 
+	DllExport const wchar* getCivilizationAdjective(uint uiForm = 0) const;																						// Exposed to Python
 	DllExport const wchar* getCivilizationAdjectiveKey() const;																									// Exposed to Python
-	DllExport CvWString getFlagDecal() const;																																		// Exposed to Python
-	DllExport bool isWhiteFlag() const;																																					// Exposed to Python
-	DllExport const wchar* getStateReligionName(uint uiForm = 0) const;																					// Exposed to Python
-	DllExport const wchar* getStateReligionKey() const;																													// Exposed to Python
-	DllExport const CvWString getBestAttackUnitName(uint uiForm = 0) const;																								// Exposed to Python
-	DllExport const CvWString getWorstEnemyName() const;																																	// Exposed to Python
-	const wchar* getBestAttackUnitKey() const;																																	// Exposed to Python
-	DllExport ArtStyleTypes getArtStyleType() const;																														// Exposed to Python
-	DllExport const TCHAR* getUnitButton(UnitTypes eUnit) const;																														// Exposed to Python
+	DllExport CvWString getFlagDecal() const;																													// Exposed to Python
+	DllExport bool isWhiteFlag() const;																															// Exposed to Python
+	DllExport const wchar* getStateReligionName(uint uiForm = 0) const;																							// Exposed to Python
+	DllExport const wchar* getStateReligionKey() const;																											// Exposed to Python
+	DllExport const CvWString getBestAttackUnitName(uint uiForm = 0) const;																						// Exposed to Python
+	DllExport const CvWString getWorstEnemyName() const;																										// Exposed to Python
+	const wchar* getBestAttackUnitKey() const;																													// Exposed to Python
+	DllExport ArtStyleTypes getArtStyleType() const;																											// Exposed to Python
+	DllExport const TCHAR* getUnitButton(UnitTypes eUnit) const;																								// Exposed to Python
 
 	void doTurn();
 	void doTurnUnits();
@@ -810,7 +810,11 @@ public:
 	int getSpecialistValidCount(SpecialistTypes eIndex) const;
 	DllExport bool isSpecialistValid(SpecialistTypes eIndex) const;																		// Exposed to Python					
 	void changeSpecialistValidCount(SpecialistTypes eIndex, int iChange);												
-																																															
+														
+	// Begin Flunky
+	int getMaxSpecialistCount(SpecialistTypes eIndex) const;  // TODO expose to Python
+	void changeMaxSpecialistCount(SpecialistTypes eIndex, int iChange);
+	// End Flunky
 	DllExport bool isResearchingTech(TechTypes eIndex) const;																					// Exposed to Python					
 	void setResearchingTech(TechTypes eIndex, bool bNewValue);																	
 																																															
@@ -1254,6 +1258,10 @@ protected:
 	int* m_paiHasCorporationCount;
 	int* m_paiUpkeepCount;
 	int* m_paiSpecialistValidCount;
+
+	//Begin Flunky
+	int* m_paiMaxSpecialistCount;
+	// End Flunky
 
 	bool* m_pabResearchingTech;
 	bool* m_pabLoyalMember;

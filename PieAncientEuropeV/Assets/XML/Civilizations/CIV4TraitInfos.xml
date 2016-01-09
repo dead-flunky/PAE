@@ -209,6 +209,15 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TraitSpecialists>
+		<TraitSpecialist>
+			<TraitType>TECH_ALPHABET</TraitType>
+			<SpecialistCount>
+				<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+				<iSpecialistCount>1</iSpecialistCount>
+			</SpecialistCount>
+		</TraitSpecialist>
+	  </TraitSpecialists>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_FINANCIAL</Type>

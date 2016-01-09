@@ -75,6 +75,10 @@ CvPlayer::CvPlayer()
 	m_paiUpkeepCount = NULL;
 	m_paiSpecialistValidCount = NULL;
 
+	//Begin Flunky
+	m_paiMaxSpecialistCount = NULL;
+	// End Flunky
+
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
 
@@ -346,6 +350,9 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiHasCorporationCount);
 	SAFE_DELETE_ARRAY(m_paiUpkeepCount);
 	SAFE_DELETE_ARRAY(m_paiSpecialistValidCount);
+	//Begin Flunky
+	SAFE_DELETE_ARRAY(m_paiMaxSpecialistCount);
+	//End Flunky
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
@@ -746,6 +753,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 		{
 			m_paiSpecialistValidCount[iI] = 0;
+		}
+
+		FAssertMsg(0 < GC.getNumSpecialistInfos(), "GC.getNumSpecialistInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
+		FAssertMsg(m_paiMaxSpecialistCount==NULL, "about to leak memory, CvPlayer::m_paiSpecialistValidCount");
+		m_paiMaxSpecialistCount = new int[GC.getNumSpecialistInfos()];
+		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+		{
+			m_paiMaxSpecialistCount[iI] = 0;
 		}
 
 		FAssertMsg(0 < GC.getNumSpecialistInfos(), "GC.getNumSpecialistInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
@@ -2309,7 +2324,6 @@ CvSelectionGroup* CvPlayer::cycleSelectionGroups(CvUnit* pUnit, bool bForward, b
 
 	return NULL;
 }
-
 
 bool CvPlayer::hasTrait(TraitTypes eTrait) const
 {
@@ -11637,6 +11651,32 @@ void CvPlayer::changeSpecialistValidCount(SpecialistTypes eIndex, int iChange)
 }
 
 
+// Begin Flunky
+
+int CvPlayer::getMaxSpecialistCount(SpecialistTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(m_paiMaxSpecialistCount != NULL, "m_paiMaxSpecialistCount is not expected to be equal with NULL");
+	return m_paiMaxSpecialistCount[eIndex];
+}
+
+void CvPlayer::changeMaxSpecialistCount(SpecialistTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		FAssertMsg(m_paiMaxSpecialistCount != NULL, "m_paiMaxSpecialistCount is not expected to be equal with NULL");
+		m_paiMaxSpecialistCount[eIndex] = (m_paiMaxSpecialistCount[eIndex] + iChange);
+		FAssertMsg(getMaxSpecialistCount(eIndex) >= 0, "getMaxSpecialistCount(eIndex) is expected to be non-negative (invalid Index)");
+
+		AI_makeAssignWorkDirty();
+	}
+}
+// End Flunky
+
 bool CvPlayer::isResearchingTech(TechTypes eIndex) const	
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -15991,6 +16031,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 
 	// Begin Flunky
+	pStream->Read(GC.getNumSpecialistInfos(), m_paiMaxSpecialistCount);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	// End Flunky
@@ -16458,6 +16499,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	
 	// Begin Flunky
+	pStream->Write(GC.getNumSpecialistInfos(), m_paiMaxSpecialistCount);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	// End Flunky

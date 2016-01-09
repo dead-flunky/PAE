@@ -345,6 +345,20 @@
 	<ElementType name="DomainProductionModifiers" content="eltOnly">
 		<element type="DomainProductionModifier" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="SpecialistType" content="textOnly"/>
+	<ElementType name="iSpecialistCount" content="textOnly" dt:type="int"/>
+	<ElementType name="SpecialistCount" content="eltOnly">
+		<element type="SpecialistType"/>
+		<element type="iSpecialistCount"/>
+	</ElementType>
+	<ElementType name="TraitType" content="textOnly"/>
+	<ElementType name="TraitSpecialist" content="eltOnly">
+		<element type="TraitType"/>
+		<element type="SpecialistCount"/>
+	</ElementType>
+	<ElementType name="TraitSpecialists" content="eltOnly">
+		<element type="TraitSpecialist" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<!-- End Flunky -->
 	<ElementType name="TraitInfo" content="eltOnly">
 		<element type="Type"/>
@@ -372,6 +386,7 @@
 		<element type="GlobalSeaPlotYieldChanges"/>
 		<element type="DomainFreeExperiences"/>
 		<element type="DomainProductionModifiers"/>
+		<element type="TraitSpecialists" minOccurs="0"  maxOccurs="1"/>
 		<!-- End Flunky -->
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">

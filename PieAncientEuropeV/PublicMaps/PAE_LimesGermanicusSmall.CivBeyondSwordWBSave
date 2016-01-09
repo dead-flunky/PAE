@@ -3745,7 +3745,6 @@ BeginPlot
 		CityName=Provincia Lugdunenses
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		ReligionType=RELIGION_ROME
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_4
@@ -3848,7 +3847,6 @@ BeginPlot
 		CityName=Provincia Belgica
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		ReligionType=RELIGION_ROME
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_4
@@ -7908,7 +7906,6 @@ BeginPlot
 		BuildingType=BUILDING_NORDIC_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		ReligionType=RELIGION_NORDIC
 		FreeSpecialistType=SPECIALIST_SLAVE_FOOD
 		FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -10276,7 +10273,6 @@ BeginPlot
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
 		BuildingType=BUILDING_PROVINZ
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		ReligionType=RELIGION_NORDIC
 		CorporationType=CORPORATION_2
 		CorporationType=CORPORATION_5
@@ -12630,7 +12626,6 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
 		ReligionType=RELIGION_NORDIC
 		FreeSpecialistType=SPECIALIST_SLAVE
@@ -15198,7 +15193,6 @@ BeginPlot
 		BuildingType=BUILDING_THE_COLOSSEUM
 		BuildingType=BUILDING_FORUM_ROMANUM
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
 		ReligionType=RELIGION_ROME
 		HolyCityReligionType=RELIGION_ROME
@@ -25782,7 +25776,6 @@ BeginPlot
 		CityName=Provincia Panonium
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_CREATIVE_LOCAL
 		ReligionType=RELIGION_ROME
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_4

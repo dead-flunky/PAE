@@ -9626,7 +9626,7 @@ int CvCity::getMaxSpecialistCount(SpecialistTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex expected to be < GC.getNumSpecialistInfos()");
-	return m_paiMaxSpecialistCount[eIndex];
+	return m_paiMaxSpecialistCount[eIndex] + GET_PLAYER(getOwnerINLINE()).getMaxSpecialistCount(eIndex);
 }
 
 
