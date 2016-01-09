@@ -296,6 +296,13 @@ void CyInfoPythonInterface3()
 		.def("getCommerceModifier", &CvTraitInfo::getCommerceModifier, "int (int i)")
 
 		.def("isFreePromotion", &CvTraitInfo::isFreePromotion, "int (int i)")
+		
+	// Begin Flunky
+		.def("isFreePromotionUnitCombat", &CvTraitInfo::isFreePromotionUnitCombat, "int (int i)")
+		.def("getGlobalSeaPlotYieldChange", &CvTraitInfo::getGlobalSeaPlotYieldChange, "int (int i)")
+		.def("getDomainFreeExperience", &CvTraitInfo::getDomainFreeExperience, "int (int i)")
+		.def("getDomainProductionModifier", &CvTraitInfo::getDomainProductionModifier, "int (int i)")
+	// End Flunky
 		;
 
 	// CvWorldInfo

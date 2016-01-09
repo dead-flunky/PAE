@@ -491,6 +491,7 @@ void CvPlayerAI::AI_doTurnUnitsPost()
 							int iCityExp = 0;
 							iCityExp += pPlotCity->getFreeExperience();
 							iCityExp += pPlotCity->getDomainFreeExperience(pLoopUnit->getDomainType());
+							iCityExp += GET_PLAYER(pPlotCity->getOwnerINLINE()).getDomainFreeExperience(pLoopUnit->getDomainType());
 							iCityExp += pPlotCity->getUnitCombatFreeExperience(pLoopUnit->getUnitCombatType());
 							if (iCityExp > 0)
 							{

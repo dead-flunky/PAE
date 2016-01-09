@@ -16091,7 +16091,12 @@ m_paiTradeYieldModifier(NULL),
 m_paiCommerceChange(NULL),
 m_paiCommerceModifier(NULL),
 m_pabFreePromotionUnitCombat(NULL),
-m_pabFreePromotion(NULL)
+m_pabFreePromotion(NULL),
+// Begin Flunky - new Trait tags
+m_piGlobalSeaPlotYieldChange(NULL),
+m_piDomainFreeExperience(NULL),
+m_piDomainProductionModifier(NULL)
+// End Flunky
 {
 }
 
@@ -16110,6 +16115,11 @@ CvTraitInfo::~CvTraitInfo()
 	SAFE_DELETE_ARRAY(m_paiCommerceModifier);
 	SAFE_DELETE_ARRAY(m_pabFreePromotionUnitCombat);
 	SAFE_DELETE_ARRAY(m_pabFreePromotion);
+	// Begin Flunky - new Trait tags
+	SAFE_DELETE_ARRAY(m_piGlobalSeaPlotYieldChange);
+	SAFE_DELETE_ARRAY(m_piDomainFreeExperience);
+	SAFE_DELETE_ARRAY(m_piDomainProductionModifier);
+	// End Flunky
 }
 
 int CvTraitInfo::getHealth() const									
@@ -16209,6 +16219,34 @@ int CvTraitInfo::isFreePromotionUnitCombat(int i) const
 	return m_pabFreePromotionUnitCombat ? m_pabFreePromotionUnitCombat[i] : -1; 
 }
 
+// Begin Flunky - new Trait tags
+int CvTraitInfo::getGlobalSeaPlotYieldChange(int i) const
+{
+	FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piGlobalSeaPlotYieldChange ? m_piGlobalSeaPlotYieldChange[i] : -1;
+}
+
+int* CvTraitInfo::getGlobalSeaPlotYieldChangeArray() const
+{
+	return m_piGlobalSeaPlotYieldChange;
+}
+
+int CvTraitInfo::getDomainFreeExperience(int i) const
+{
+	FAssertMsg(i < NUM_DOMAIN_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piDomainFreeExperience ? m_piDomainFreeExperience[i] : -1;
+}
+
+int CvTraitInfo::getDomainProductionModifier(int i) const
+{
+	FAssertMsg(i < NUM_DOMAIN_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piDomainProductionModifier ? m_piDomainProductionModifier[i] : -1;
+}
+// End Flunky
+
 bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 {
 	CvString szTextVal;
@@ -16275,7 +16313,25 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_pabFreePromotion, "FreePromotions", sizeof(GC.getPromotionInfo((PromotionTypes)0)), GC.getNumPromotionInfos());
 
 	pXML->SetVariableListTagPair(&m_pabFreePromotionUnitCombat, "FreePromotionUnitCombats", sizeof(GC.getUnitCombatInfo((UnitCombatTypes)0)), GC.getNumUnitCombatInfos());
+	
+	// Begin Flunky - new Trait tags
 
+	// if we can set the current xml node to it's next sibling
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GlobalSeaPlotYieldChanges"))
+	{
+		// call the function that sets the yield change variable
+		pXML->SetYields(&m_piGlobalSeaPlotYieldChange);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piGlobalSeaPlotYieldChange, NUM_YIELD_TYPES);
+	}
+
+	pXML->SetVariableListTagPair(&m_piDomainFreeExperience, "DomainFreeExperiences", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
+	pXML->SetVariableListTagPair(&m_piDomainProductionModifier, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
+	
+	// End Flunky
 	return true;
 }
 

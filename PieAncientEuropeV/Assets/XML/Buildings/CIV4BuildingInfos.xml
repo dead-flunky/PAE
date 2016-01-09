@@ -40363,7 +40363,7 @@
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
     </BuildingInfo>
-    <BuildingInfo>
+    <!-- <BuildingInfo>
       <BuildingClass>BUILDINGCLASS_TRAIT_MARITIME_LOCAL</BuildingClass>
       <Type>BUILDING_TRAIT_MARITIME_LOCAL</Type>
       <SpecialBuildingType>NONE</SpecialBuildingType>
@@ -40533,7 +40533,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-    </BuildingInfo>
+    </BuildingInfo> -->
     <BuildingInfo>
       <BuildingClass>BUILDINGCLASS_TRAIT_CREATIVE_LOCAL</BuildingClass>
       <Type>BUILDING_TRAIT_CREATIVE_LOCAL</Type>

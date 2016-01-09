@@ -9149,6 +9149,17 @@ int CvPlot::calculateMaxYield(YieldTypes eYield) const
 			iBuildingYield = std::max(building.getSeaPlotYieldChange(eYield) + building.getGlobalSeaPlotYieldChange(eYield), iBuildingYield);
 		}
 		iMaxYield += iBuildingYield;
+		
+		// Begin Flunky - new Trait tags
+		int iTraitYield = 0;
+		for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
+		{
+			CvTraitInfo& trait = GC.getTraitInfo((TraitTypes)iTrait);
+			iTraitYield  = std::max(trait.getGlobalSeaPlotYieldChange(eYield), iTraitYield);
+		}
+		iMaxYield += iTraitYield;
+		// End Flunky
+
 	}
 
 	if (isRiver())

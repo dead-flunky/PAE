@@ -1046,12 +1046,12 @@
      <Spanish>Mar</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_TRAIT_MARITIME_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Sea plots generate +1 [ICON_COMMERCE]</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]+1 [ICON_COMMERCE] sur les cases de mer</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Meeresfelder erwirtschaften +1 [ICON_COMMERCE]</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Giacimenti del Mare generano +1 [ICON_COMMERCE]</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Casillas de mar generan +1 [ICON_COMMERCE]</Spanish>
+     <Tag>TXT_KEY_TRAIT_GLOBAL_SEA_PLOT_YIELD_CHANGE</Tag>
+     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Sea plots generate %D1 %F2_yield</English>
+     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1 %F2_yield sur les cases de mer</French>
+     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Meeresfelder erwirtschaften %D1 %F2_yield</German>
+     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Giacimenti del Mare generano %D1 %F2_yield</Italian>
+     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Casillas de mar generan %D1 %F2_yield</Spanish>
    </TEXT>
    <TEXT>
      <Tag>TXT_KEY_TRAIT_INDUSTRIOUS</Tag>

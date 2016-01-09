@@ -2359,8 +2359,9 @@ int CvCity::getProductionExperience(UnitTypes eUnit)
 		{
 			iExperience += getUnitCombatFreeExperience((UnitCombatTypes)(GC.getUnitInfo(eUnit).getUnitCombatType()));
 		}
+		
 		iExperience += getDomainFreeExperience((DomainTypes)(GC.getUnitInfo(eUnit).getDomainType()));
-
+		iExperience += GET_PLAYER(getOwnerINLINE()).getDomainFreeExperience((DomainTypes)(GC.getUnitInfo(eUnit).getDomainType()));
 		iExperience += getSpecialistFreeExperience();
 	}
 
@@ -3086,6 +3087,7 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 	int iMultiplier = GET_PLAYER(getOwnerINLINE()).getProductionModifier(eUnit);
 
 	iMultiplier += getDomainProductionModifier((DomainTypes)(GC.getUnitInfo(eUnit).getDomainType()));
+	iMultiplier +=  GET_PLAYER(getOwnerINLINE()).getDomainProductionModifier((DomainTypes)(GC.getUnitInfo(eUnit).getDomainType()));
 
 	if (GC.getUnitInfo(eUnit).isMilitaryProduction())
 	{
@@ -8677,6 +8679,7 @@ int CvCity::getDomainFreeExperience(DomainTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_DOMAIN_TYPES, "eIndex expected to be < NUM_DOMAIN_TYPES");
+	
 	return m_aiDomainFreeExperience[eIndex];
 }
 

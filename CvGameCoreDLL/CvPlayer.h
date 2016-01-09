@@ -404,6 +404,14 @@ public:
 	int getFreeExperience() const;																																				// Exposed to Python
 	void changeFreeExperience(int iChange);
 
+	// Begin Flunky
+	int getDomainFreeExperience(DomainTypes eIndex) const;
+	void changeDomainFreeExperience(DomainTypes eIndex, int iChange);
+
+	int getDomainProductionModifier(DomainTypes eIndex) const;
+	void changeDomainProductionModifier(DomainTypes eIndex, int iChange);
+	// End Flunky
+
 	int getFeatureProductionModifier() const;																															// Exposed to Python
 	void changeFeatureProductionModifier(int iChange);
 
@@ -1193,7 +1201,10 @@ protected:
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
-
+	// Begin Flunky
+	int* m_aiDomainFreeExperience;
+	int* m_aiDomainProductionModifier;
+	// End Flunky
 	PlayerTypes m_eID;
 	LeaderHeadTypes m_ePersonalityType;
 	EraTypes m_eCurrentEra;

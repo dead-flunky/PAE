@@ -3351,9 +3351,9 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 			}
 		}
 
-		// ExtraYieldThresholds
 		for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 		{
+			// ExtraYieldThresholds
 			if (GC.getTraitInfo(eTrait).getExtraYieldThreshold(iI) > 0)
 			{
 				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_EXTRA_YIELD_THRESHOLDS", GC.getYieldInfo((YieldTypes) iI).getChar(), GC.getTraitInfo(eTrait).getExtraYieldThreshold(iI), GC.getYieldInfo((YieldTypes) iI).getChar()));
@@ -3363,6 +3363,12 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 			{
 				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_TRADE_YIELD_MODIFIERS", GC.getTraitInfo(eTrait).getTradeYieldModifier(iI), GC.getYieldInfo((YieldTypes) iI).getChar(), "YIELD"));
 			}
+			// Begin Flunky - Yield changes
+			if (GC.getTraitInfo(eTrait).getGlobalSeaPlotYieldChange(iI) > 0)
+			{
+				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_GLOBAL_SEA_PLOT_YIELD_CHANGE", GC.getTraitInfo(eTrait).getGlobalSeaPlotYieldChange(iI), GC.getYieldInfo((YieldTypes) iI).getChar()));
+			}
+			// End Flunky
 		}
 
 		// CommerceChanges
@@ -3418,6 +3424,27 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_NO_UPKEEP", GC.getCivicOptionInfo((CivicOptionTypes)iI).getTextKeyWide()));
 			}
 		}
+
+		// Begin Flunky TODO
+		for (iI = 0; iI < NUM_DOMAIN_TYPES; ++iI)
+		{
+			if (GC.getTraitInfo(eTrait).getDomainFreeExperience(iI) != 0)
+			{
+				szHelpString.append(NEWLINE);
+				szHelpString.append(gDLL->getText("TXT_KEY_BUILDING_FREE_XP", GC.getDomainInfo((DomainTypes)iI).getTextKeyWide(), GC.getTraitInfo(eTrait).getDomainFreeExperience(iI)));
+			}
+		}
+
+		for (iI = 0; iI < NUM_DOMAIN_TYPES; ++iI)
+		{
+			if (GC.getTraitInfo(eTrait).getDomainProductionModifier(iI) != 0)
+			{
+				szHelpString.append(NEWLINE);
+				szHelpString.append(gDLL->getText("TXT_KEY_BUILDING_BUILDS_FASTER_DOMAIN", GC.getDomainInfo((DomainTypes)iI).getTextKeyWide(), GC.getTraitInfo(eTrait).getDomainProductionModifier(iI)));
+			}
+		}
+
+		// End Flunky TODO
 
 		// Increase Building/Unit Production Speeds
 		iLast = 0;
@@ -11407,6 +11434,8 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 
 		// Domain
 		int iDomainMod = city.getDomainProductionModifier((DomainTypes)unit.getDomainType());
+		iDomainMod +=  GET_PLAYER(city.getOwnerINLINE()).getDomainProductionModifier((DomainTypes)(GC.getUnitInfo(eUnit).getDomainType()));
+
 		if (0 != iDomainMod)
 		{
 			szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_DOMAIN", iDomainMod, GC.getDomainInfo((DomainTypes)unit.getDomainType()).getTextKeyWide()));

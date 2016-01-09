@@ -28,6 +28,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_AGGRESSIVE</Type>
@@ -101,6 +104,9 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_SPIRITUAL</Type>
@@ -123,6 +129,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EXPANSIVE</Type>
@@ -145,6 +154,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_INDUSTRIOUS</Type>
@@ -168,6 +180,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CREATIVE</Type>
@@ -191,6 +206,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_FINANCIAL</Type>
@@ -209,14 +227,17 @@
       <iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
       <ExtraYieldThresholds/>
       <TradeYieldModifiers>
-  <iYield>0</iYield>
-  <iYield>0</iYield>
-  <iYield>50</iYield>
+		<iYield>0</iYield>
+		<iYield>0</iYield>
+		<iYield>50</iYield>
       </TradeYieldModifiers>
       <CommerceChanges/>
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_ORGANIZED</Type>
@@ -240,6 +261,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CHARISMATIC</Type>
@@ -263,6 +287,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_PROTECTIVE</Type>
@@ -320,6 +347,9 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_IMPERIALIST</Type>
@@ -343,12 +373,14 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_MARITIME</Type>
       <Description>TXT_KEY_TRAIT_MARITIME</Description>
       <ShortDescription>TXT_KEY_TRAIT_MARITIME_SHORT</ShortDescription>
-      <Help>TXT_KEY_TRAIT_MARITIME_HELP</Help>
       <iHealth>1</iHealth>
       <iHappiness>0</iHappiness>
       <iMaxAnarchy>-1</iMaxAnarchy>
@@ -376,6 +408,23 @@
               <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
           </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
+	  <GlobalSeaPlotYieldChanges>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
+      </GlobalSeaPlotYieldChanges>
+	  <DomainFreeExperiences>
+        <DomainFreeExperience>
+          <DomainType>DOMAIN_SEA</DomainType>
+          <iExperience>4</iExperience>
+        </DomainFreeExperience>
+      </DomainFreeExperiences>
+      <DomainProductionModifiers>
+        <DomainProductionModifier>
+          <DomainType>DOMAIN_SEA</DomainType>
+          <iProductionModifier>20</iProductionModifier>
+        </DomainProductionModifier>
+      </DomainProductionModifiers>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_STRATEGE</Type>
@@ -399,6 +448,9 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EROBERER</Type>
@@ -444,6 +496,9 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
+	  <GlobalSeaPlotYieldChanges/>
+	  <DomainFreeExperiences/>
+	  <DomainProductionModifiers/>
     </TraitInfo>
   </TraitInfos>
 </Civ4TraitInfos>

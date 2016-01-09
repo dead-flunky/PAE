@@ -2245,7 +2245,7 @@
       <DefaultBuilding>BUILDING_PROVINZPALAST</DefaultBuilding>
       <VictoryThresholds/>
     </BuildingClassInfo>
-    <BuildingClassInfo>
+<!--     <BuildingClassInfo>
       <Type>BUILDINGCLASS_TRAIT_MARITIME_LOCAL</Type>
       <Description>NONE</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -2256,7 +2256,7 @@
       <bMonument>0</bMonument>
       <DefaultBuilding>BUILDING_TRAIT_MARITIME_LOCAL</DefaultBuilding>
       <VictoryThresholds/>
-    </BuildingClassInfo>
+    </BuildingClassInfo> -->
     <BuildingClassInfo>
       <Type>BUILDINGCLASS_TRAIT_CREATIVE_LOCAL</Type>
       <Description>NONE</Description>

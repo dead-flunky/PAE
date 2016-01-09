@@ -4181,8 +4181,14 @@ public:
 	int getCommerceModifier(int i) const;				// Exposed to Python
 
 	int isFreePromotion(int i) const;				// Exposed to Python
-	int isFreePromotionUnitCombat(int i) const;			
+	int isFreePromotionUnitCombat(int i) const;	 // Exposed to Python		
 
+	// Begin Flunky
+	int getGlobalSeaPlotYieldChange(int i) const; // Exposed to Python
+	int* getGlobalSeaPlotYieldChangeArray() const;
+	int getDomainFreeExperience(int i) const; // Exposed to Python
+	int getDomainProductionModifier(int i) const; // Exposed to Python
+	// End Flunky
 	bool read(CvXMLLoadUtility* pXML);
 
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
@@ -4212,6 +4218,11 @@ protected:
 	bool* m_pabFreePromotion;
 	bool* m_pabFreePromotionUnitCombat;
 
+	// Begin Flunky
+	int* m_piGlobalSeaPlotYieldChange;
+	int* m_piDomainFreeExperience;
+	int* m_piDomainProductionModifier;
+	// End Flunky
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

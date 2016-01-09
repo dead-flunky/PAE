@@ -104,6 +104,10 @@ CvPlayer::CvPlayer()
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
 
+	// Begin Flunky
+	m_aiDomainFreeExperience = new int[NUM_DOMAIN_TYPES];
+	m_aiDomainProductionModifier = new int[NUM_DOMAIN_TYPES];
+	// End Flunky
 	reset(NO_PLAYER, true);
 }
 
@@ -129,6 +133,8 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiEspionageSpendingWeightAgainstTeam);
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
+	SAFE_DELETE_ARRAY(m_aiDomainFreeExperience);
+	SAFE_DELETE_ARRAY(m_aiDomainProductionModifier);
 }
 
 
@@ -251,6 +257,9 @@ void CvPlayer::init(PlayerTypes eID)
 
 				for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 				{
+					// Begin Flunky
+					changeSeaPlotYield(((YieldTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getGlobalSeaPlotYieldChange(iJ));
+					// End Flunky
 					changeTradeYieldModifier(((YieldTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getTradeYieldModifier(iJ));
 				}
 
@@ -258,6 +267,12 @@ void CvPlayer::init(PlayerTypes eID)
 				{
 					changeFreeCityCommerce(((CommerceTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getCommerceChange(iJ));
 					changeCommerceRateModifier(((CommerceTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getCommerceModifier(iJ));
+				}
+
+				for (iJ = 0; iJ < NUM_DOMAIN_TYPES; iJ++)
+				{
+					changeDomainFreeExperience(((DomainTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getDomainFreeExperience(iJ));
+					changeDomainProductionModifier(((DomainTypes)iJ), GC.getTraitInfo((TraitTypes)iI).getDomainProductionModifier(iJ));
 				}
 
 				for (iJ = 0; iJ < GC.getNumCivicOptionInfos(); iJ++)
@@ -555,6 +570,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiSpecialistExtraCommerce[iI] = 0;
 		m_aiCommerceFlexibleCount[iI] = 0;
 	}
+
+	// Begin Flunky
+	for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
+	{
+		m_aiDomainFreeExperience[iI] = 0;
+		m_aiDomainProductionModifier[iI] = 0;
+	}
+	// End Flunky
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
@@ -8270,6 +8293,41 @@ void CvPlayer::changeFreeExperience(int iChange)
 }
 
 
+// Begin Flunky
+int CvPlayer::getDomainFreeExperience(DomainTypes eIndex) const													 
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_DOMAIN_TYPES, "eIndex expected to be < NUM_DOMAIN_TYPES");
+	return m_aiDomainFreeExperience[eIndex];
+}
+
+
+void CvPlayer::changeDomainFreeExperience(DomainTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_DOMAIN_TYPES, "eIndex expected to be < NUM_DOMAIN_TYPES");
+	m_aiDomainFreeExperience[eIndex] = (m_aiDomainFreeExperience[eIndex] + iChange);
+	FAssert(getDomainFreeExperience(eIndex) >= 0);
+}
+
+
+int CvPlayer::getDomainProductionModifier(DomainTypes eIndex) const										 
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_DOMAIN_TYPES, "eIndex expected to be < NUM_DOMAIN_TYPES");
+	return m_aiDomainProductionModifier[eIndex];
+}
+
+
+void CvPlayer::changeDomainProductionModifier(DomainTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_DOMAIN_TYPES, "eIndex expected to be < NUM_DOMAIN_TYPES");
+	m_aiDomainProductionModifier[eIndex] = (m_aiDomainProductionModifier[eIndex] + iChange);
+}
+
+// End Flunky
+
 int CvPlayer::getFeatureProductionModifier() const
 {
 	return m_iFeatureProductionModifier;
@@ -15932,6 +15990,11 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 
+	// Begin Flunky
+	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
+	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
+	// End Flunky
+
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
 	pStream->Read(GC.getNumTechInfos(), m_pabResearchingTech);
 
@@ -16393,6 +16456,11 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumCorporationInfos(), m_paiHasCorporationCount);
 	pStream->Write(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
+	
+	// Begin Flunky
+	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
+	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
+	// End Flunky
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);

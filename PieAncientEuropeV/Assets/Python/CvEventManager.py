@@ -10101,20 +10101,6 @@ class CvEventManager:
     self.doCheckGlobalTraitBuildings(city.getOwner())
     # ----------------------------
 
-#    # Trait Maritim (The_J) -------- (durch neue Trait-Gebaeude ersetzt)
-#    pPlayer = gc.getPlayer(city.getOwner())
-#    if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")):
-#      pPlot = CyMap().plot(city.getX(),city.getY())
-#      if pPlot.isCoastalLand ():
-#         # Class
-#         #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_MARITIME"))
-#         iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL")
-#         city.setNumRealBuilding(iBuilding,1)
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Neue Kolonie (Zeile 3041)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
   def onCityRazed(self, argsList):
     'City Razed'
     city, iPlayer = argsList
@@ -10321,17 +10307,6 @@ class CvEventManager:
       if NewCityName == "" and sScenarioScriptData == "":
          pCity.setName(gc.getPlayer(iNewOwner).getNewCityName(),0)
 # ---------------
-
-## Trait Maritim (The_J) -------- (durch neue Trait-Gebaeude ersetzt)
-#    pPlayer = gc.getPlayer(iNewOwner)
-#    pPlot = CyMap().plot(pCity.getX(),pCity.getY())
-#    if pPlot.isCoastalLand():
-#      # Class
-##      iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_MARITIME"))
-#      iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL")
-#      if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(iBuilding,1)
-#      else: pCity.setNumRealBuilding(iBuilding,0)
-
 
 # Provinzpalast muss raus
     iBuilding = gc.getInfoTypeForString("BUILDING_PROVINZPALAST")
@@ -13237,7 +13212,7 @@ class CvEventManager:
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iOldCulture",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         # Trait-Gebaeude sicherheitshalber entfernen...
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"),0)
+        # pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"),0)
         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"),0)
         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"),0)
         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"),0)
@@ -15563,7 +15538,7 @@ class CvEventManager:
     lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_STADT"))
     lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_PROVINZ"))
     lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_METROPOLE"))
-    lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
+    # lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
     # PAE IV Update: Palast darf zerstoert werden... hehe ;)
     #iBuildingPalace = gc.getInfoTypeForString('BUILDING_PALACE')
 
@@ -18532,30 +18507,27 @@ class CvEventManager:
           pPlayer.getUnit(i).setHasPromotion(iPromoFort2, False)
 
   # --------------------------------
-  # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
   def doCheckTraitBuildings (self, pCity, iOwner):
       pOwner = gc.getPlayer(iOwner)
       # Trait-Gebaeude
       lTraitBuildings = []
-      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
       lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"))
       lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"))
       lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
+      # lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
       # Tech, ab der Creative_Local gesetzt wird
       iTechCreativeLocal = gc.getInfoTypeForString("TECH_ALPHABET")
       # Alle nicht passenden Gebaeude entfernen
       # Nur lokale hinzufuegen, globale nicht
-      if pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(lTraitBuildings[0], 1)
-      else: pCity.setNumRealBuilding(lTraitBuildings[0], 0)
       if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")):
+          pCity.setNumRealBuilding(lTraitBuildings[0], 0)
           pCity.setNumRealBuilding(lTraitBuildings[1], 0)
-          pCity.setNumRealBuilding(lTraitBuildings[2], 0)
       else:
-          if gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal): pCity.setNumRealBuilding(lTraitBuildings[1], 1)
-          else: pCity.setNumRealBuilding(lTraitBuildings[1], 0)
-      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")): pCity.setNumRealBuilding(lTraitBuildings[3], 0)
-
-  # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
+          if gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal): pCity.setNumRealBuilding(lTraitBuildings[0], 1)
+          else: pCity.setNumRealBuilding(lTraitBuildings[0], 0)
+      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")): pCity.setNumRealBuilding(lTraitBuildings[2], 0)
+	  # if pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(lTraitBuildings[3], 1)
+      # else: pCity.setNumRealBuilding(lTraitBuildings[3], 0)
   def doCheckGlobalTraitBuildings (self, iPlayer):
       pPlayer = gc.getPlayer(iPlayer)
 
