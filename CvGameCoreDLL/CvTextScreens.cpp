@@ -253,6 +253,48 @@ CvString CvTextScreen::buildLeaderInfoHelp( LeaderTypes eLeader, CivilizationTyp
 					}
 				}
 			}
+			//Begin Flunky
+
+			vector<intPair> SpecialistInfos;												// intPair Vector for handling Specialist Infos
+			vector<intPair>::iterator specialistIter;								// its iterator
+			int iLastTech = -1;
+			// Free SpecialistSlots
+			SpecialistInfos.reserve(GC.getNumSpecialistInfos());
+			for (iI = 0; iI < GC.getNumTechInfos(); iI++)
+			{
+				for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+				{
+					if (pTraitInfo.m_ppaiFreeSpecialistSlot[iI][iJ])
+					{
+						SpecialistInfos.push_back(intPair(iI,iJ));
+					}
+				}
+			}
+			// Adding Specialist Text
+			if (!SpecialistInfos.empty())
+			{
+				for (specialistIter = SpecialistInfos.begin(); specialistIter != SpecialistInfos.end(); ++specialistIter)
+				{
+					int iLoopTech = specialistIter->first;
+					int iLoopSpecialist = specialistIter->second;
+					if (iLastTech == iLoopTech)
+					{
+						sprintf(szTempBuffer, "\n    %c%s", FC_BULLETPOINT, 
+							GC.getSpecialistInfo()[iLoopSpecialist].getDescription());
+						strcat(szHelpString, szTempBuffer);
+					}
+					else
+					{
+						sprintf(szTempBuffer, "\n  %c Free Specialist Slots with Tech %s:\n    %c%s", FC_BULLETPOINT, 
+							GC.getTechInfo()[iLoopTech].getDescription(), 
+							FC_BULLETPOINT,
+							GC.getSpecialistInfo()[iLoopSpecialist].getDescription());
+						strcat(szHelpString, szTempBuffer);
+						iLastTech = iLoopTech;
+					}
+				}
+			}
+			// End Flunky
 			// No Civic Maintenance
 			for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 			{

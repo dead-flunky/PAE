@@ -4188,8 +4188,8 @@ public:
 	int getDomainFreeExperience(int i) const; // Exposed to Python
 	int getDomainProductionModifier(int i) const; // Exposed to Python
 	
-	int getTechSpecialistNum(int i, int j) const; // TODO expose to python
-
+	int getFreeSpecialistSlot(int i, int j) const;	 // TODO Exposed to Python
+	bool isAnyFreeSpecialistSlot() const;
 	// End Flunky
 	bool read(CvXMLLoadUtility* pXML);
 
@@ -4224,7 +4224,9 @@ protected:
 	int* m_piGlobalSeaPlotYieldChange;
 	int* m_piDomainFreeExperience;
 	int* m_piDomainProductionModifier;
-	int** m_ppaiTechSpecialist;
+
+	int** m_ppaiFreeSpecialistSlot;
+	bool m_bAnyFreeSpecialistSlot;
 	// End Flunky
 };
 

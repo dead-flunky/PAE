@@ -16095,7 +16095,9 @@ m_pabFreePromotion(NULL),
 // Begin Flunky - new Trait tags
 m_piGlobalSeaPlotYieldChange(NULL),
 m_piDomainFreeExperience(NULL),
-m_piDomainProductionModifier(NULL)
+m_piDomainProductionModifier(NULL),
+m_ppaiFreeSpecialistSlot(NULL),
+m_bAnyFreeSpecialistSlot(false)
 // End Flunky
 {
 }
@@ -16119,6 +16121,15 @@ CvTraitInfo::~CvTraitInfo()
 	SAFE_DELETE_ARRAY(m_piGlobalSeaPlotYieldChange);
 	SAFE_DELETE_ARRAY(m_piDomainFreeExperience);
 	SAFE_DELETE_ARRAY(m_piDomainProductionModifier);
+	int i;
+	if (m_ppaiFreeSpecialistSlot != NULL)
+	{
+		for(i=0;i<GC.getNumTechInfos();i++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaiFreeSpecialistSlot[i]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaiFreeSpecialistSlot);
+	}
 	// End Flunky
 }
 
@@ -16246,13 +16257,18 @@ int CvTraitInfo::getDomainProductionModifier(int i) const
 	return m_piDomainProductionModifier ? m_piDomainProductionModifier[i] : -1;
 }
 
-int CvTraitInfo::getTechSpecialistNum(int i, int j) const
+int CvTraitInfo::getFreeSpecialistSlot(int i, int j) const
 {
 	FAssertMsg(i < GC.getNumTechInfos(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
 	FAssertMsg(j < GC.getNumSpecialistInfos(), "Index out of bounds");
 	FAssertMsg(j > -1, "Index out of bounds");
-	return m_ppaiTechSpecialist ? m_ppaiTechSpecialist[i][j] : -1;
+	return m_ppaiFreeSpecialistSlot ? m_ppaiFreeSpecialistSlot[i][j]:-1; 
+}
+
+bool CvTraitInfo::isAnyFreeSpecialistSlot() const
+{
+	return m_bAnyFreeSpecialistSlot;
 }
 // End Flunky
 
@@ -16340,21 +16356,24 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piDomainFreeExperience, "DomainFreeExperiences", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 	pXML->SetVariableListTagPair(&m_piDomainProductionModifier, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 
+	//pXML->SetVariableListTagPair(&m_paiFreeSpecialistSlot, "FreeSpecialistSlots", sizeof(GC.getSpecialistInfo((SpecialistTypes)0)), GC.getNumSpecialistInfos());
+	//pXML->SetVariableListTagPair(&m_pabFreeSpecialistSlotTech, "FreeSpecialistSlotTechs", sizeof(GC.getTechInfo((TechTypes)0)), GC.getNumTechInfos());
+
 	// Flunky - Specialist slots with Technology and Trait
 	int j=0;						//loop counter
 	int k=0;						//trait index
 	int l=0;						//specialist index
-	int m=0;						//value
+	int piSlots=0;						//value
 	int iNumSibs=0;				// the number of siblings the current xml node has
-	int iNumChildren;				// the number of children the current node has
+	int iNumChildren = 0;				// the number of children the current node has
+	m_bAnyFreeSpecialistSlot = false;
 
-	pXML->Init2DIntList(&m_ppaiTechSpecialist, GC.getNumTechInfos(), GC.getNumSpecialistInfos());
-	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechSpecialists"))
+	pXML->Init2DIntList(&m_ppaiFreeSpecialistSlot, GC.getNumTechInfos(), GC.getNumSpecialistInfos());
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"FreeSpecialistSlots"))
 	{
 		iNumChildren = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
-		FAssertMsg(iNumChildren==0, "Je suis ici");
 
-		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechSpecialist"))
+		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"FreeSpecialistSlot"))
 		{
 			for(j=0;j<iNumChildren;j++)
 			{
@@ -16368,16 +16387,20 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 						l = pXML->FindInInfoClass(szTextVal);
 						if (l > -1)
 						{
-							// set the specialist slots
-							pXML->GetChildXmlValByName(szTextVal, "iSpecialistCount");
-							m = pXML->FindInInfoClass(szTextVal);
-							m_ppaiTechSpecialist[k][l] = m;
+							// get the total number of children the current xml node has
+							iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+							if (0 < iNumSibs){
+								// set the specialist slots
+								pXML->GetNextXmlVal(&piSlots, 1);
+								m_ppaiFreeSpecialistSlot[k][l] = piSlots;
+							}
 						}
 						gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 					}
 					else
 					{
-						pXML->InitList(&m_ppaiTechSpecialist[k], GC.getNumSpecialistInfos());
+						pXML->InitList(&m_ppaiFreeSpecialistSlot[k], GC.getNumSpecialistInfos());
 					}
 
 				}
@@ -16385,6 +16408,17 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 				if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
 				{
 					break;
+				}
+			}
+			for(int ii=0;(!m_bAnyFreeSpecialistSlot) && ii<GC.getNumTechInfos();ii++)
+			{
+				for(int ij=0; ij < GC.getNumSpecialistInfos(); ij++ )
+				{
+					if( m_ppaiFreeSpecialistSlot[ii][ij] != 0 )
+					{
+						m_bAnyFreeSpecialistSlot = true;
+						break;
+					}
 				}
 			}
 
