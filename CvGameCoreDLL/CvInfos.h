@@ -4189,7 +4189,7 @@ public:
 	int getDomainProductionModifier(int i) const; // Exposed to Python
 	
 	int getFreeSpecialistSlot(int i, int j) const;	 // TODO Exposed to Python
-	bool isAnyFreeSpecialistSlot() const;
+	bool isAnyFreeSpecialistSlot() const; // TODO Exposed to Python
 	// End Flunky
 	bool read(CvXMLLoadUtility* pXML);
 
