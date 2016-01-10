@@ -351,13 +351,13 @@
 		<element type="SpecialistType"/>
 		<element type="iSpecialistCount"/>
 	</ElementType>
-	<ElementType name="TraitType" content="textOnly"/>
-	<ElementType name="TraitSpecialist" content="eltOnly">
-		<element type="TraitType"/>
+	<ElementType name="TechType" content="textOnly"/>
+	<ElementType name="TechSpecialist" content="eltOnly">
+		<element type="TechType"/>
 		<element type="SpecialistCount"/>
 	</ElementType>
-	<ElementType name="TraitSpecialists" content="eltOnly">
-		<element type="TraitSpecialist" minOccurs="0" maxOccurs="*"/>
+	<ElementType name="TechSpecialists" content="eltOnly">
+		<element type="TechSpecialist" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	<!-- End Flunky -->
 	<ElementType name="TraitInfo" content="eltOnly">
@@ -386,7 +386,7 @@
 		<element type="GlobalSeaPlotYieldChanges"/>
 		<element type="DomainFreeExperiences"/>
 		<element type="DomainProductionModifiers"/>
-		<element type="TraitSpecialists" minOccurs="0"  maxOccurs="1"/>
+		<element type="TechSpecialists"/>
 		<!-- End Flunky -->
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">

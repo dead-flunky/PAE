@@ -31,6 +31,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_AGGRESSIVE</Type>
@@ -107,6 +108,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_SPIRITUAL</Type>
@@ -132,6 +134,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EXPANSIVE</Type>
@@ -157,6 +160,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_INDUSTRIOUS</Type>
@@ -183,6 +187,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CREATIVE</Type>
@@ -209,15 +214,15 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
-	  <TraitSpecialists>
-		<TraitSpecialist>
-			<TraitType>TECH_ALPHABET</TraitType>
+	  <TechSpecialists>
+		<TechSpecialist>
+			<TechType>TECH_ALPHABET</TechType>
 			<SpecialistCount>
 				<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
 				<iSpecialistCount>1</iSpecialistCount>
 			</SpecialistCount>
-		</TraitSpecialist>
-	  </TraitSpecialists>
+		</TechSpecialist>
+	  </TechSpecialists>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_FINANCIAL</Type>
@@ -247,6 +252,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_ORGANIZED</Type>
@@ -273,6 +279,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CHARISMATIC</Type>
@@ -299,6 +306,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_PROTECTIVE</Type>
@@ -359,6 +367,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_IMPERIALIST</Type>
@@ -385,6 +394,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_MARITIME</Type>
@@ -434,6 +444,7 @@
           <iProductionModifier>20</iProductionModifier>
         </DomainProductionModifier>
       </DomainProductionModifiers>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_STRATEGE</Type>
@@ -460,6 +471,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EROBERER</Type>
@@ -508,6 +520,7 @@
 	  <GlobalSeaPlotYieldChanges/>
 	  <DomainFreeExperiences/>
 	  <DomainProductionModifiers/>
+	  <TechSpecialists/>
     </TraitInfo>
   </TraitInfos>
 </Civ4TraitInfos>

@@ -16352,6 +16352,7 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechSpecialists"))
 	{
 		iNumChildren = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+		FAssertMsg(iNumChildren==0, "Je suis ici");
 
 		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechSpecialist"))
 		{
