@@ -28,10 +28,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_AGGRESSIVE</Type>
@@ -105,10 +105,10 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_SPIRITUAL</Type>
@@ -131,10 +131,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EXPANSIVE</Type>
@@ -157,10 +157,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_INDUSTRIOUS</Type>
@@ -184,10 +184,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CREATIVE</Type>
@@ -211,18 +211,18 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists>
-		<TechSpecialist>
-			<TechType>TECH_ALPHABET</TechType>
-			<SpecialistCount>
-				<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
-				<iSpecialistCount>1</iSpecialistCount>
-			</SpecialistCount>
-		</TechSpecialist>
-	  </TechSpecialists>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots>
+        <FreeSpecialistSlot>
+          <TechType>TECH_ALPHABET</TechType>
+		  <SpecialistCount>
+			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
+			<iSpecialistCount>1</iSpecialistCount>
+		  </SpecialistCount>
+        </FreeSpecialistSlot>
+      </FreeSpecialistSlots>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_FINANCIAL</Type>
@@ -241,18 +241,18 @@
       <iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
       <ExtraYieldThresholds/>
       <TradeYieldModifiers>
-		<iYield>0</iYield>
-		<iYield>0</iYield>
-		<iYield>50</iYield>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>50</iYield>
       </TradeYieldModifiers>
       <CommerceChanges/>
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_ORGANIZED</Type>
@@ -276,10 +276,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CHARISMATIC</Type>
@@ -303,10 +303,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_PROTECTIVE</Type>
@@ -364,10 +364,10 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_IMPERIALIST</Type>
@@ -391,10 +391,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_MARITIME</Type>
@@ -427,12 +427,12 @@
               <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
           </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-	  <GlobalSeaPlotYieldChanges>
+      <GlobalSeaPlotYieldChanges>
         <iYield>0</iYield>
         <iYield>0</iYield>
         <iYield>1</iYield>
       </GlobalSeaPlotYieldChanges>
-	  <DomainFreeExperiences>
+      <DomainFreeExperiences>
         <DomainFreeExperience>
           <DomainType>DOMAIN_SEA</DomainType>
           <iExperience>4</iExperience>
@@ -444,7 +444,7 @@
           <iProductionModifier>20</iProductionModifier>
         </DomainProductionModifier>
       </DomainProductionModifiers>
-	  <TechSpecialists/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_STRATEGE</Type>
@@ -468,10 +468,10 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EROBERER</Type>
@@ -517,10 +517,10 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-	  <GlobalSeaPlotYieldChanges/>
-	  <DomainFreeExperiences/>
-	  <DomainProductionModifiers/>
-	  <TechSpecialists/>
+      <GlobalSeaPlotYieldChanges/>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
+      <FreeSpecialistSlots/>
     </TraitInfo>
   </TraitInfos>
 </Civ4TraitInfos>

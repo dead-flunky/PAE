@@ -344,21 +344,40 @@
 	</ElementType>
 	<ElementType name="DomainProductionModifiers" content="eltOnly">
 		<element type="DomainProductionModifier" minOccurs="0" maxOccurs="*"/>
-	</ElementType>
+	</ElementType>	
+	
 	<ElementType name="SpecialistType" content="textOnly"/>
-	<ElementType name="iSpecialistCount" content="textOnly" dt:type="int"/>
+	<ElementType name="iSpecialistCount" content="textOnly" dt:type="boolean"/>
 	<ElementType name="SpecialistCount" content="eltOnly">
 		<element type="SpecialistType"/>
 		<element type="iSpecialistCount"/>
 	</ElementType>
 	<ElementType name="TechType" content="textOnly"/>
-	<ElementType name="TechSpecialist" content="eltOnly">
+	<ElementType name="FreeSpecialistSlot" content="eltOnly">
 		<element type="TechType"/>
 		<element type="SpecialistCount"/>
 	</ElementType>
-	<ElementType name="TechSpecialists" content="eltOnly">
-		<element type="TechSpecialist" minOccurs="0" maxOccurs="*"/>
+	<ElementType name="FreeSpecialistSlots" content="eltOnly">
+		<element type="FreeSpecialistSlot" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+<!-- 	<ElementType name="SpecialistType" content="textOnly"/>
+	<ElementType name="iSpecialistCount" content="textOnly" dt:type="boolean"/>
+	<ElementType name="FreeSpecialistSlot" content="eltOnly">
+		<element type="SpecialistType"/>
+		<element type="iSpecialistCount"/>
+	</ElementType>
+	<ElementType name="FreeSpecialistSlots" content="eltOnly">
+		<element type="FreeSpecialistSlot" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="TechType" content="textOnly"/>
+	<ElementType name="bFreeSpecialistSlotTech" content="textOnly" dt:type="boolean"/>
+	<ElementType name="FreeSpecialistSlotTech" content="eltOnly">
+		<element type="TechType"/>
+		<element type="bFreeSpecialistSlotTech"/>
+	</ElementType>
+	<ElementType name="FreeSpecialistSlotTechs" content="eltOnly">
+		<element type="FreeSpecialistSlotTech" minOccurs="0" maxOccurs="*"/>
+	</ElementType> -->
 	<!-- End Flunky -->
 	<ElementType name="TraitInfo" content="eltOnly">
 		<element type="Type"/>
@@ -386,7 +405,7 @@
 		<element type="GlobalSeaPlotYieldChanges"/>
 		<element type="DomainFreeExperiences"/>
 		<element type="DomainProductionModifiers"/>
-		<element type="TechSpecialists"/>
+		<element type="FreeSpecialistSlots"/>
 		<!-- End Flunky -->
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">

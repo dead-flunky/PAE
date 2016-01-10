@@ -5543,7 +5543,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 				{
 					for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
 					{	
-						GET_PLAYER((PlayerTypes)iI).changeMaxSpecialistCount((SpecialistTypes)iJ, GC.getTraitInfo((TraitTypes)iI).getTechSpecialistNum(eTech, (SpecialistTypes)iJ) * iChange);
+						GET_PLAYER((PlayerTypes)iI).changeMaxSpecialistCount((SpecialistTypes)iJ, GC.getTraitInfo((TraitTypes)iI).getFreeSpecialistSlot(eTech, (SpecialistTypes)iJ) * iChange);
 					}
 				}
 			}
