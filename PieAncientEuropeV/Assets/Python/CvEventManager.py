@@ -3746,24 +3746,12 @@ class CvEventManager:
           #   player.getUnit(j).kill(1,player.getUnit(j).getOwner())
           (unit, iter) = player.nextUnit(iter, false)
 
-        ##Flunky: Einrueckung angepasst
-        # Trait-Gebaeude ueberpruefen
-        self.doCheckGlobalTraitBuildings(iPlayer)
-
         ##Flunky: (city, iter) statt for range
         # +++++ Check city status
-        # und Trait-Gebaeude / trait buildings
         (city, iter) = player.firstCity(false)
         while city:
           self.doCheckCityState(city)
-          self.doCheckTraitBuildings(city, iPlayer)
           (city,iter) = player.nextCity(iter, false)
-        # iNumCities = player.getNumCities()
-        # for i in range (iNumCities):
-          # city = player.getCity(iPlayer)
-          # if not city.isNone():
-            # self.doCheckCityState(city)
-            # self.doCheckTraitBuildings(city, city.getOwner())
         ##/Flunky
 
         #Start in spaeterer Aera -> unerforschbare und Relitechs entfernen
@@ -9700,16 +9688,6 @@ class CvEventManager:
           popupInfo.setText(u"showTechSplash")
           popupInfo.addPopup(iPlayer)
 
-    # ----------------------------------
-    # Trait Creative: Bei Alphabet in jede Stadt Trait-Gebaeude setzen
-    # if iTechType == gc.getInfoTypeForString("TECH_ALPHABET") and gc.getPlayer(iPlayer).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")) and iPlayer > -1:
-      # lCities = PyPlayer(iPlayer).getCityList()
-      # pPlayer = gc.getPlayer(iPlayer)
-      # iRangeCities = len(lCities)
-      # iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL")
-      # for iCity in range(iRangeCities):
-        # pCity = pPlayer.getCity(lCities[iCity].getID())
-        # pCity.setNumRealBuilding(iBuilding, 1)
     #-----------------------------
     # Tech und freie Einheit / Free Unit
     bNewUnit = False
@@ -10095,10 +10073,8 @@ class CvEventManager:
     CvUtil.pyPrint('City Built Event: %s' %(city.getName()))
 
     # Kolonie / Provinz ----------
-    # Stadt bekommt automatisch das Koloniegebaeude und Trait-Gebaeude
+    # Stadt bekommt automatisch das Koloniegebaeude
     self.doCheckCityState(city)
-    self.doCheckTraitBuildings(city, city.getOwner())
-    self.doCheckGlobalTraitBuildings(city.getOwner())
     # ----------------------------
 
   def onCityRazed(self, argsList):
@@ -10225,10 +10201,6 @@ class CvEventManager:
     CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
     pPlayer = gc.getPlayer(iNewOwner)
     pPlot = CyMap().plot(pCity.getX(),pCity.getY())
-    # Trait-Gebaeude anpassen
-    self.doCheckTraitBuildings(pCity, iNewOwner)
-    self.doCheckGlobalTraitBuildings(iPreviousOwner)
-    self.doCheckGlobalTraitBuildings(iNewOwner)
     # Szenarien
     sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
 
@@ -11249,7 +11221,6 @@ class CvEventManager:
     'City Lost'
     city = argsList[0]
     player = PyPlayer(city.getOwner())
-    self.doCheckGlobalTraitBuildings(city.getOwner())
     if (not self.__LOG_CITYLOST):
       return
     CvUtil.pyPrint('City %s was lost by Player %d Civilization %s'
@@ -13211,13 +13182,8 @@ class CvEventManager:
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iOldCulture",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-        # Trait-Gebaeude sicherheitshalber entfernen...
-        # pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"),0)
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"),0)
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"),0)
 
         # Einheiten auslesen bevor die Stadt ueberlaeuft
-
         UnitArray = []
         j = 0
         iRange = pPlot.getNumUnits()
@@ -13847,13 +13813,12 @@ class CvEventManager:
 
     if len(TempleArray) > 0:
       iBuilding = self.myRandom(len(TempleArray), None)
-      iCulture = pCity.getBuildingCommerceByBuilding(2, TempleArray[iBuilding])
-      # Trait Creative: 3 Kultur pro Sklave / 3 culture per slave
-      if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")): iCulture += 2
-      #iCulture += 1
-      pCity.setBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
+      iCulture = 1
+      # Trait Creative: +2 Kultur pro Sklave / +2 culture per slave
+      if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")): 
+        iCulture += 2
+      pCity.changeBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
       pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Temple (Zeile 6282)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -17502,7 +17467,8 @@ class CvEventManager:
             else: iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1")
             iChanceUnitType = iChanceUnitType / 2
             # Trait Conquereror / Eroberer: Automatische Heilung bei Stadtangriffs-Promo / auto-healing when receiving city raider promo
-            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")): pUnitTarget.setDamage(0, -1)
+            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")): 
+              pUnitTarget.setDamage(0, -1)
         # Defender
       else:
         if iChanceCityDefense > iRand:
@@ -17514,7 +17480,8 @@ class CvEventManager:
             else: iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1")
             iChanceUnitType = iChanceUnitType / 2
             # Trait Protective: Automatische Heilung bei Stadtverteidigungs-Promo / auto-healing when receiving city garrison promo
-            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")): pUnitTarget.setDamage(0, -1)
+            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")): 
+              pUnitTarget.setDamage(0, -1)
 
     # on open field
     else:
@@ -18503,51 +18470,6 @@ class CvEventManager:
         for i in range(iNumUnits):
           pPlayer.getUnit(i).setHasPromotion(iPromoFort, False)
           pPlayer.getUnit(i).setHasPromotion(iPromoFort2, False)
-
-  # --------------------------------
-  def doCheckTraitBuildings (self, pCity, iOwner):
-      pOwner = gc.getPlayer(iOwner)
-      # Trait-Gebaeude
-      lTraitBuildings = []
-      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"))
-      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
-      # lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"))
-      # # Tech, ab der Creative_Local gesetzt wird
-      # iTechCreativeLocal = gc.getInfoTypeForString("TECH_ALPHABET")
-      # Alle nicht passenden Gebaeude entfernen
-      # Nur lokale hinzufuegen, globale nicht
-      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")):
-          # pCity.setNumRealBuilding(lTraitBuildings[2], 0)
-          pCity.setNumRealBuilding(lTraitBuildings[0], 0)
-      # else:
-          # if gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal): pCity.setNumRealBuilding(lTraitBuildings[2], 1)
-          # else: pCity.setNumRealBuilding(lTraitBuildings[2], 0)
-      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")): pCity.setNumRealBuilding(lTraitBuildings[1], 0)
-
-  def doCheckGlobalTraitBuildings (self, iPlayer):
-      pPlayer = gc.getPlayer(iPlayer)
-
-      lTraitBuildings = []
-      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"))
-      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
-      lTraits = []
-      lTraits.append(gc.getInfoTypeForString("TRAIT_CREATIVE"))
-      lTraits.append(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL"))
-      iRangeTraitBuildings = len(lTraitBuildings)
-
-      lCities = PyPlayer(iPlayer).getCityList()
-      iRangeCities = len(lCities)
-
-      for i in range(iRangeTraitBuildings):
-          if not pPlayer.hasTrait(lTraits [i]): continue
-          iTraitBuilding = lTraitBuildings [i]
-          iCount = 0
-          for iCity in range(iRangeCities):
-             pCity = pPlayer.getCity(lCities[iCity].getID())
-             if pCity.getNumRealBuilding(iTraitBuilding) > 0:
-                 iCount += 1
-                 if iCount > 1: pCity.setNumRealBuilding(iTraitBuilding, 0)
-          if iCount == 0 and iRangeCities > 0: pPlayer.getCity(lCities[0].getID()).setNumRealBuilding(iTraitBuilding, 1)
 
   # Handelsposten errichten
   def doBuildHandelsposten(self, pUnit):

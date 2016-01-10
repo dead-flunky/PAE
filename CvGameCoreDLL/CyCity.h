@@ -464,6 +464,7 @@ public:
 	void setBuildingYieldChange(int /*BuildingClassTypes*/ eBuildingClass, int /*YieldTypes*/ eYield, int iChange);
 	int getBuildingCommerceChange(int /*BuildingClassTypes*/ eBuildingClass, int /*CommerceTypes*/ eCommerce) const;
 	void setBuildingCommerceChange(int /*BuildingClassTypes*/ eBuildingClass, int /*CommerceTypes*/ eCommerce, int iChange);
+	void changeBuildingCommerceChange(int /*BuildingClassTypes*/ eBuildingClass, int /*CommerceTypes*/ eCommerce, int iChange);
 	int getBuildingHappyChange(int /*BuildingClassTypes*/ eBuildingClass) const;
 	void setBuildingHappyChange(int /*BuildingClassTypes*/ eBuildingClass, int iChange);
 	int getBuildingHealthChange(int /*BuildingClassTypes*/ eBuildingClass) const;

@@ -2218,6 +2218,14 @@ void CyCity::setBuildingCommerceChange(int /*BuildingClassTypes*/ eBuildingClass
 	}
 }
 
+void CyCity::changeBuildingCommerceChange(int /*BuildingClassTypes*/ eBuildingClass, int /*CommerceTypes*/ eCommerce, int iChange)
+{
+	if (m_pCity)
+	{
+		m_pCity->changeBuildingCommerceChange((BuildingClassTypes)eBuildingClass, (CommerceTypes)eCommerce, iChange);
+	}
+}
+
 int CyCity::getBuildingHappyChange(int /*BuildingClassTypes*/ eBuildingClass) const
 {
 	return m_pCity ? m_pCity->getBuildingHappyChange((BuildingClassTypes)eBuildingClass) : 0;
