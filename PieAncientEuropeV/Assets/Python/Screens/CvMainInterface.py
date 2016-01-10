@@ -161,13 +161,6 @@ g_pSelectedUnit = 0
 
 m_iNumPlotListButtons = 0
 
-# PAE - No Cults INFO BUTTON: First(!) units that spread cults
-Cultists = []
-Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_1"))
-Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_2"))
-Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_3"))
-# PAE - No Cults INFO BUTTON end
-
 class CvMainInterface:
   "Main Interface Screen"
 
@@ -2039,6 +2032,14 @@ class CvMainInterface:
             # Cultist cannot spread cult due to civic (738:1)
             # in city
             if bCity:
+              # PAE - No Cults INFO BUTTON: First(!) units that spread cults
+              # Flunky-Patch: Initialize Cultists list after XML file reading.
+              Cultists = []
+              Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_1"))
+              Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_2"))
+              Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_3"))
+              # PAE - No Cults INFO BUTTON end
+
               if iUnitType in Cultists:
                 if pUnitOwner.isCivic(gc.getInfoTypeForString("CIVIC_ANIMISM")):
                   screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_cult_grey.dds", 0, WidgetTypes.WIDGET_GENERAL, 738, 1, False )
