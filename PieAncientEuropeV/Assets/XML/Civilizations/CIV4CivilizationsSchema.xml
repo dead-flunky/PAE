@@ -324,7 +324,6 @@
 	<ElementType name="FreePromotionUnitCombats" content="eltOnly">
 		<element type="FreePromotionUnitCombat" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-		<!-- Begin Flunky -->
 	<ElementType name="GlobalSeaPlotYieldChanges" content="eltOnly">
 		<element type="iYield" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
@@ -345,9 +344,8 @@
 	<ElementType name="DomainProductionModifiers" content="eltOnly">
 		<element type="DomainProductionModifier" minOccurs="0" maxOccurs="*"/>
 	</ElementType>	
-	
 	<ElementType name="SpecialistType" content="textOnly"/>
-	<ElementType name="iSpecialistCount" content="textOnly" dt:type="boolean"/>
+	<ElementType name="iSpecialistCount" content="textOnly" dt:type="int"/>
 	<ElementType name="SpecialistCount" content="eltOnly">
 		<element type="SpecialistType"/>
 		<element type="iSpecialistCount"/>
@@ -360,25 +358,6 @@
 	<ElementType name="FreeSpecialistSlots" content="eltOnly">
 		<element type="FreeSpecialistSlot" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-<!-- 	<ElementType name="SpecialistType" content="textOnly"/>
-	<ElementType name="iSpecialistCount" content="textOnly" dt:type="boolean"/>
-	<ElementType name="FreeSpecialistSlot" content="eltOnly">
-		<element type="SpecialistType"/>
-		<element type="iSpecialistCount"/>
-	</ElementType>
-	<ElementType name="FreeSpecialistSlots" content="eltOnly">
-		<element type="FreeSpecialistSlot" minOccurs="0" maxOccurs="*"/>
-	</ElementType>
-	<ElementType name="TechType" content="textOnly"/>
-	<ElementType name="bFreeSpecialistSlotTech" content="textOnly" dt:type="boolean"/>
-	<ElementType name="FreeSpecialistSlotTech" content="eltOnly">
-		<element type="TechType"/>
-		<element type="bFreeSpecialistSlotTech"/>
-	</ElementType>
-	<ElementType name="FreeSpecialistSlotTechs" content="eltOnly">
-		<element type="FreeSpecialistSlotTech" minOccurs="0" maxOccurs="*"/>
-	</ElementType> -->
-	<!-- End Flunky -->
 	<ElementType name="TraitInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -401,12 +380,10 @@
 		<element type="CommerceModifiers"/>
 		<element type="FreePromotions"/>
 		<element type="FreePromotionUnitCombats"/>
-		<!-- Begin Flunky -->
 		<element type="GlobalSeaPlotYieldChanges"/>
 		<element type="DomainFreeExperiences"/>
 		<element type="DomainProductionModifiers"/>
 		<element type="FreeSpecialistSlots"/>
-		<!-- End Flunky -->
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">
 		<element type="TraitInfo" maxOccurs="*"/>
@@ -453,7 +430,7 @@
 	<ElementType name="FreeBuildingClasses" content="eltOnly">
 		<element type="FreeBuildingClass" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-	<ElementType name="TechType" content="textOnly"/>
+  <!--Begin Flunky-->
 	<ElementType name="bFreeTech" content="textOnly" dt:type="boolean"/>
 	<ElementType name="FreeTech" content="eltOnly">
 		<element type="TechType"/>

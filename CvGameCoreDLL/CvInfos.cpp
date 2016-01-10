@@ -16363,17 +16363,15 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	int j=0;						//loop counter
 	int k=0;						//trait index
 	int l=0;						//specialist index
-	int m=0;						//value
+	int piSlots=0;						//value
 	int iNumSibs=0;				// the number of siblings the current xml node has
 	int iNumChildren = 0;				// the number of children the current node has
 	m_bAnyFreeSpecialistSlot = false;
-		FAssertMsg(iNumChildren!=0, "Here I am");
 
 	pXML->Init2DIntList(&m_ppaiFreeSpecialistSlot, GC.getNumTechInfos(), GC.getNumSpecialistInfos());
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"FreeSpecialistSlots"))
 	{
 		iNumChildren = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
-		FAssertMsg(iNumChildren==0, "Je suis ici");
 
 		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"FreeSpecialistSlot"))
 		{
@@ -16383,23 +16381,20 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 				k = pXML->FindInInfoClass(szTextVal);
 				if (k > -1)
 				{
-					//// ??? delete the array since it will be reallocated
-					//SAFE_DELETE_ARRAY(m_ppaiFreeSpecialistSlot[k]);
-
 					if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistCount"))
 					{
 						pXML->GetChildXmlValByName(szTextVal, "SpecialistType");
 						l = pXML->FindInInfoClass(szTextVal);
 						if (l > -1)
 						{
-						//// call the function that sets the yield change variable
-						//pXML->SetYields(&m_ppaiSpecialistYieldChange[k]);
-						//gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							// get the total number of children the current xml node has
+							iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
 
-							// set the specialist slots
-							pXML->GetChildXmlValByName(szTextVal, "iSpecialistCount");
-							m = pXML->FindInInfoClass(szTextVal);
-							m_ppaiFreeSpecialistSlot[k][l] = m;
+							if (0 < iNumSibs){
+								// set the specialist slots
+								pXML->GetNextXmlVal(&piSlots, 1);
+								m_ppaiFreeSpecialistSlot[k][l] = piSlots;
+							}
 						}
 						gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 					}
@@ -16415,7 +16410,6 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 					break;
 				}
 			}
-			// TODO gucken ob noetig
 			for(int ii=0;(!m_bAnyFreeSpecialistSlot) && ii<GC.getNumTechInfos();ii++)
 			{
 				for(int ij=0; ij < GC.getNumSpecialistInfos(); ij++ )
