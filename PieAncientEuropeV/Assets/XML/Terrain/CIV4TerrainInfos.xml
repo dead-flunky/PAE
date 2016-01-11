@@ -32,6 +32,7 @@
       <iSeeThrough>1</iSeeThrough>
       <iBuildModifier>0</iBuildModifier>
       <iDefense>0</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Grass.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -188,6 +189,7 @@
       <iSeeThrough>1</iSeeThrough>
       <iBuildModifier>0</iBuildModifier>
       <iDefense>0</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Plains.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -340,6 +342,7 @@
       <iSeeThrough>1</iSeeThrough>
       <iBuildModifier>50</iBuildModifier>
       <iDefense>-25</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Desert.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -496,6 +499,7 @@
       <iSeeThrough>1</iSeeThrough>
       <iBuildModifier>25</iBuildModifier>
       <iDefense>-25</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Tundra.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -644,6 +648,7 @@
       <iSeeThrough>1</iSeeThrough>
       <iBuildModifier>50</iBuildModifier>
       <iDefense>-25</iDefense>
+      <iTurnDamage>10</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Ice.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -796,6 +801,7 @@
       <iSeeThrough>0</iSeeThrough>
       <iBuildModifier>0</iBuildModifier>
       <iDefense>10</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Coast.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -948,6 +954,7 @@
       <iSeeThrough>0</iSeeThrough>
       <iBuildModifier>0</iBuildModifier>
       <iDefense>-10</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Ocean.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -1096,6 +1103,7 @@
       <iSeeThrough>0</iSeeThrough>
       <iBuildModifier>0</iBuildModifier>
       <iDefense>0</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Peak.dds</Button>
       <FootstepSounds>
         <FootstepSound>
@@ -1243,6 +1251,7 @@
       <iSeeThrough>0</iSeeThrough>
       <iBuildModifier>100</iBuildModifier>
       <iDefense>25</iDefense>
+      <iTurnDamage>0</iTurnDamage>
       <Button>Art/Interface\Buttons\WorldBuilder\Terrain_Hill.dds</Button>
       <FootstepSounds>
         <FootstepSound>
