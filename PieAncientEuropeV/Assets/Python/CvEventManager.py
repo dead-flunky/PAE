@@ -3677,6 +3677,7 @@ class CvEventManager:
       elif sScenarioScriptData == "SchmelzEuro": MapName = "StartingPoints_EuropeLarge.xml"
       elif sScenarioScriptData == "EuropeXL": MapName = "StartingPoints_EuropeXL.xml"
       elif sScenarioScriptData == "Eurasia": MapName = "StartingPoints_Eurasia.xml"
+      elif sScenarioScriptData == "PAE_PB": MapName = "StartingPoints_PAE_PB.xml"
       #elif sScenarioScriptData == "EasternMed":
       #    MapName = "StartingPoints_EasternMed.xml"
       #    bPlaceCivs = False
@@ -9718,6 +9719,43 @@ class CvEventManager:
           iY = pPlayer.getCity(lCities[iRand].getID()).getY()
           NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
           bNewUnit = True
+
+#      #freier Siedler
+#      iUnit = -1
+#      pPlayer = gc.getPlayer(iPlayer)
+#      if not pPlayer.isHuman():
+#          if iTechType == gc.getInfoTypeForString("TECH_GEOMETRIE"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_SCHIFFSBAU"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_DUALISMUS"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_CELTIC"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_NORDIC"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_COLONIZATION2"):
+#              if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON") \
+#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
+#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA") \
+#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MACEDONIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA") \
+#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ASSYRIA") \
+#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_LYDIA") \
+#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
+#                  iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_ROME"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#          elif iTechType == gc.getInfoTypeForString("TECH_PERSIAN_ROAD"):
+#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+#
+#      # Einheit erstellen
+#      if iUnit > -1:
+#        #pPlayer = gc.getPlayer(iPlayer)
+#        pCapital = pPlayer.getCapitalCity()
+#        if pCapital != None and not pCapital.isNone():
+#          iX = pCapital.getX()
+#          iY = pCapital.getY()
+#          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
 
     # Matriarchist
     if bNewUnit and iTechType == gc.getInfoTypeForString("TECH_FRUCHTBARKEIT"):
@@ -16752,8 +16790,8 @@ class CvEventManager:
     iBuildingMetropole = gc.getInfoTypeForString("BUILDING_METROPOLE")
 	    # PAE Debug mark
     #"""
-    if gc.getPlayer(pCity.getOwner()).isHuman():
-      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("X",iBuildingSiedlung)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+#    if gc.getPlayer(pCity.getOwner()).isHuman():
+#      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("X",iBuildingSiedlung)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 #      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Y",pPlot.getY())), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     if pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
@@ -18153,24 +18191,24 @@ class CvEventManager:
               pPlot.getUnit(i).setHasPromotion(iPromoMercenary, True)
 
         # Cities: Stadtaufruhr
-        iTeam = pPlayer.getTeam()
-        pTeam = gc.getTeam(iTeam)
-        lCities = PyPlayer(iPlayer).getCityList()
-
-        iRange = len(lCities)
-        i=0
-        for i in range(iRange):
-
-          if 0 == self.myRandom(iLeader, None):
-            loopCity = pPlayer.getCity(lCities[i].getID())
-            iRand = 2 + self.myRandom(3, None)
-            loopCity.changeHurryAngerTimer (iRand)
-            # 2 bis 4 Runden Aufstand!
-            iRand = 2 + self.myRandom(3, None)
-            loopCity.setOccupationTimer(iRand)
-            if pPlayer.isHuman():
-               CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MAIN_CITY_RIOT",(loopCity.getName(),)), "AS2D_REVOLTSTART", 2, ",Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10", ColorTypes(7), loopCity.getX(), loopCity.getY(), True, True)
-
+#        iTeam = pPlayer.getTeam()
+#        pTeam = gc.getTeam(iTeam)
+#        lCities = PyPlayer(iPlayer).getCityList()
+#
+#        iRange = len(lCities)
+#        i=0
+#        for i in range(iRange):
+#
+#          if 0 == self.myRandom(iLeader, None):
+#            loopCity = pPlayer.getCity(lCities[i].getID())
+#            iRand = 2 + self.myRandom(3, None)
+#            loopCity.changeHurryAngerTimer (iRand)
+#            # 2 bis 4 Runden Aufstand!
+#            iRand = 2 + self.myRandom(3, None)
+#            loopCity.setOccupationTimer(iRand)
+#            if pPlayer.isHuman():
+#               CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MAIN_CITY_RIOT",(loopCity.getName(),)), "AS2D_REVOLTSTART", 2, ",Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10", ColorTypes(7), loopCity.getX(), loopCity.getY(), True, True)
+#
         # PopUp
         if pPlayer.isHuman():
           popupInfo = CyPopupInfo()

@@ -5,7 +5,7 @@
                         <StartX>39</StartX>
                         <StartY>62</StartY>
                         <StartX>31</StartX>
-                        <StartY>70</StartY>
+                        <StartY>63</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_GALLIEN</Type>
@@ -17,14 +17,9 @@
                         <StartY>56</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
-                        <Type>CIVILIZATION_BRITEN</Type>
-                        <StartX>20</StartX>
-                        <StartY>72</StartY>
-                </CivilizationInfo>
-                <CivilizationInfo>
                         <Type>CIVILIZATION_GERMANEN</Type>
-                        <StartX>38</StartX>
-                        <StartY>73</StartY>
+                        <StartX>32</StartX>
+                        <StartY>68</StartY>
                         <StartX>43</StartX>
                         <StartY>67</StartY>
                 </CivilizationInfo>
@@ -62,8 +57,8 @@
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_THEBAI</Type>
-                        <StartX>49</StartX>
-                        <StartY>41</StartY>
+                        <StartX>50</StartX>
+                        <StartY>39</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_SPARTA</Type>
@@ -165,8 +160,6 @@
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_PARTHER</Type>
-                        <StartX>116</StartX>
-                        <StartY>31</StartY>
                         <StartX>106</StartX>
                         <StartY>43</StartY>
                 </CivilizationInfo>
@@ -174,13 +167,6 @@
                         <Type>CIVILIZATION_HUNNEN</Type>
                         <StartX>78</StartX>
                         <StartY>58</StartY>
-                </CivilizationInfo>
-                <CivilizationInfo>
-                        <Type>CIVILIZATION_INDIA</Type>
-                        <StartX>134</StartX>
-                        <StartY>18</StartY>
-                        <StartX>129</StartX>
-                        <StartY>31</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_VANDALS</Type>

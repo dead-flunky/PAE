@@ -3,7 +3,7 @@
 <!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <Civ4GameText xmlns="http://www.firaxis.com">
- <TEXT>
+  <TEXT>
      <Tag>TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_FIRST_PUNIC_WAR</Tag>
      <English>Pie's Ancient Europe - The 1. Punic War</English>
      <French>Pie's Ancient Europe - La premi&#232;re Guerre Punique</French>
@@ -182,7 +182,7 @@
    <TEXT>
      <Tag>TXT_KEY_LEADER_ALEXANDER_II</Tag>
      <English>Alexander II</English>
-     <French>Alexandre II.</French>
+     <French>Alexandre II</French>
      <German>Alexander II.</German>
      <Italian>Alessandro II</Italian>
      <Spanish>Alejandro II</Spanish>
