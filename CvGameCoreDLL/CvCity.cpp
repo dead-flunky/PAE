@@ -3641,7 +3641,7 @@ int CvCity::getBonusYieldRateModifier(YieldTypes eIndex, BonusTypes eBonus) cons
 	return iModifier;
 }
 
-
+// wird nur aufgerufen, wenn sich der Bonus jetzt neu oder jetzt nicht mehr vorhanden ist.
 void CvCity::processBonus(BonusTypes eBonus, int iChange)
 {
 	int iI;
@@ -3699,6 +3699,39 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange)
 	{
 		changeBonusYieldRateModifier(((YieldTypes)iI), (getBonusYieldRateModifier(((YieldTypes)iI), eBonus) * iChange));
 	}
+
+	// Flunky
+	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+	{
+		int numActiveBuilding = getNumActiveBuilding((BuildingTypes)iI);
+		BonusTypes eFreeBonus = (BonusTypes) GC.getBuildingInfo((BuildingTypes)iI).getFreeBonus();
+		if(numActiveBuilding > 0 && eFreeBonus != NO_BONUS){
+			bool bAndPrereq = false;
+			bool bHasAllOtherAndPrereq = true;
+			bool bOrPrereq = false;
+			bool bHasAnyOtherOrPrereq = false;
+			BonusTypes currentPrereq;
+			int iP;
+			for (iP = 0; iP < GC.getNUM_GOODS_PREREQ_AND_BONUSES(); iP++){
+				currentPrereq = (BonusTypes) GC.getBonusInfo(eFreeBonus).getPrereqAndBonuses(iP);
+				bAndPrereq |= (eBonus == currentPrereq);
+				if(currentPrereq != -1 && currentPrereq != eBonus)
+					bHasAllOtherAndPrereq &= hasBonus(currentPrereq);
+			}
+			for (iP = 0; iP < GC.getNUM_GOODS_PREREQ_OR_BONUSES(); iP++){
+				currentPrereq = (BonusTypes) GC.getBonusInfo(eFreeBonus).getPrereqOrBonuses(iP);
+				bOrPrereq |= (eBonus == currentPrereq);
+				if(currentPrereq != -1 && currentPrereq != eBonus)
+					bHasAnyOtherOrPrereq |= hasBonus(currentPrereq);
+			}
+			if(bHasAllOtherAndPrereq){
+				if(bAndPrereq && bHasAnyOtherOrPrereq || bOrPrereq && !bHasAnyOtherOrPrereq) 
+				{
+				changeFreeBonus(eFreeBonus, (GC.getGameINLINE().getNumFreeBonuses((BuildingTypes)iI) * iChange));
+				}
+			}
+		}
+	}
 }
 
 
@@ -3722,10 +3755,31 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		{
 			changeNoBonusCount(((BonusTypes)(GC.getBuildingInfo(eBuilding).getNoBonus())), iChange);
 		}
-
-		if (GC.getBuildingInfo(eBuilding).getFreeBonus() != NO_BONUS)
+		
+		BonusTypes eFreeBonus = (BonusTypes)GC.getBuildingInfo(eBuilding).getFreeBonus();
+		if (eFreeBonus != NO_BONUS)
 		{
-			changeFreeBonus(((BonusTypes)(GC.getBuildingInfo(eBuilding).getFreeBonus())), (GC.getGameINLINE().getNumFreeBonuses(eBuilding) * iChange));
+			// Flunky - conditional bonuses
+			bool bHasAllAndPrereq = true;
+			bool bHasAnyOrPrereq = false;
+			int iP;
+			for (iP = 0; iP < GC.getNUM_GOODS_PREREQ_AND_BONUSES(); iP++){
+				BonusTypes eBonus = (BonusTypes) GC.getBonusInfo(eFreeBonus).getPrereqAndBonuses(iP);
+				if(eBonus != -1)
+					bHasAllAndPrereq &= hasBonus(eBonus);
+			}
+			for (iP = 0; iP < GC.getNUM_GOODS_PREREQ_OR_BONUSES(); iP++){
+				BonusTypes eBonus = (BonusTypes) GC.getBonusInfo(eFreeBonus).getPrereqOrBonuses(iP);
+				if(eBonus != -1)
+					bHasAnyOrPrereq |= hasBonus(eBonus);
+			}
+			if(bHasAllAndPrereq && bHasAnyOrPrereq)
+			{
+				changeFreeBonus(eFreeBonus, GC.getGameINLINE().getNumFreeBonuses(eBuilding) * iChange);
+			}
+
+			// original BTS
+			//changeFreeBonus(((BonusTypes)(GC.getBuildingInfo(eBuilding).getFreeBonus())), (GC.getGameINLINE().getNumFreeBonuses(eBuilding) * iChange));
 		}
 
 		if (GC.getBuildingInfo(eBuilding).getFreePromotion() != NO_PROMOTION)

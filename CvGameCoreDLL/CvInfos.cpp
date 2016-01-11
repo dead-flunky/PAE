@@ -12338,7 +12338,11 @@ m_piYieldChange(NULL),
 m_piImprovementChange(NULL),
 m_pbTerrain(NULL),
 m_pbFeature(NULL),
-m_pbFeatureTerrain(NULL)
+m_pbFeatureTerrain(NULL),
+// Begin Flunky
+m_piPrereqOrBonuses(NULL),
+m_piPrereqAndBonuses(NULL)
+// End Flunky
 {
 }
 
@@ -12356,6 +12360,9 @@ CvBonusInfo::~CvBonusInfo()
 	SAFE_DELETE_ARRAY(m_pbTerrain);
 	SAFE_DELETE_ARRAY(m_pbFeature);
 	SAFE_DELETE_ARRAY(m_pbFeatureTerrain);	// free memory - MT
+	// Flunky
+	SAFE_DELETE_ARRAY(m_piPrereqOrBonuses);
+	SAFE_DELETE_ARRAY(m_piPrereqAndBonuses);
 }
 
 int CvBonusInfo::getBonusClassType() const
@@ -12574,6 +12581,17 @@ const TCHAR* CvBonusInfo::getButton() const
 	}
 }
 
+// Flunky
+int CvBonusInfo::getPrereqOrBonuses(int i) const	
+{
+	return m_piPrereqOrBonuses ? m_piPrereqOrBonuses[i] : -1;
+}
+
+int CvBonusInfo::getPrereqAndBonuses(int i) const
+{
+	return m_piPrereqAndBonuses ? m_piPrereqAndBonuses[i] : -1;
+}
+
 void CvBonusInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -12635,6 +12653,14 @@ void CvBonusInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_pbFeatureTerrain);
 	m_pbFeatureTerrain = new bool[GC.getNumTerrainInfos()];
 	stream->Read(GC.getNumTerrainInfos(), m_pbFeatureTerrain);
+
+	SAFE_DELETE_ARRAY(m_piPrereqOrBonuses);
+	m_piPrereqOrBonuses = new int[GC.getNUM_GOODS_PREREQ_OR_BONUSES()];
+	stream->Read(GC.getNUM_GOODS_PREREQ_OR_BONUSES(), m_piPrereqOrBonuses);
+
+	SAFE_DELETE_ARRAY(m_piPrereqAndBonuses);
+	m_piPrereqAndBonuses = new int[GC.getNUM_GOODS_PREREQ_AND_BONUSES()];
+	stream->Read(GC.getNUM_GOODS_PREREQ_AND_BONUSES(), m_piPrereqAndBonuses);
 }
 
 void CvBonusInfo::write(FDataStreamBase* stream)
@@ -12684,6 +12710,11 @@ void CvBonusInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumTerrainInfos(), m_pbTerrain);
 	stream->Write(GC.getNumFeatureInfos(), m_pbFeature);
 	stream->Write(GC.getNumTerrainInfos(), m_pbFeatureTerrain);
+
+	// Flunky
+	
+	stream->Write(GC.getNUM_GOODS_PREREQ_OR_BONUSES(), m_piPrereqOrBonuses);
+	stream->Write(GC.getNUM_GOODS_PREREQ_AND_BONUSES(), m_piPrereqAndBonuses);
 }
 
 bool CvBonusInfo::read(CvXMLLoadUtility* pXML)
@@ -12756,7 +12787,68 @@ bool CvBonusInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_pbTerrain, "TerrainBooleans", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
 	pXML->SetVariableListTagPair(&m_pbFeature, "FeatureBooleans", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
 	pXML->SetVariableListTagPair(&m_pbFeatureTerrain, "FeatureTerrainBooleans", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
+	
+	// Begin Flunky
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"PrereqOrBonuses"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			FAssertMsg((0 < GC.getNUM_GOODS_PREREQ_OR_BONUSES()) ,"Allocating zero or less memory in SetGlobalUnitInfo");
+			pXML->InitList(&m_piPrereqOrBonuses, GC.getNUM_GOODS_PREREQ_OR_BONUSES(), -1);
 
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					FAssertMsg((iNumSibs <= GC.getNUM_GOODS_PREREQ_OR_BONUSES()) ,"There are more siblings than memory allocated for them in SetGlobalUnitInfo");
+					for (int j = 0; j < iNumSibs; ++j)
+					{
+						m_piPrereqOrBonuses[j] = GC.getInfoTypeForString(szTextVal);
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"PrereqAndBonuses"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			int iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			FAssertMsg((0 < GC.getNUM_GOODS_PREREQ_AND_BONUSES()) ,"Allocating zero or less memory in SetGlobalUnitInfo");
+			pXML->InitList(&m_piPrereqAndBonuses, GC.getNUM_GOODS_PREREQ_AND_BONUSES(), -1);
+
+			if (0 < iNumSibs)
+			{
+				if (pXML->GetChildXmlVal(szTextVal))
+				{
+					FAssertMsg((iNumSibs <= GC.getNUM_GOODS_PREREQ_AND_BONUSES()) ,"There are more siblings than memory allocated for them in SetGlobalUnitInfo");
+					for (int j = 0; j < iNumSibs; ++j)
+					{
+						m_piPrereqAndBonuses[j] = GC.getInfoTypeForString(szTextVal);
+						if (!pXML->GetNextXmlVal(szTextVal))
+						{
+							break;
+						}
+					}
+
+					gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+				}
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	// End Flunky
 	return true;
 }
 

@@ -16750,8 +16750,12 @@ class CvEventManager:
     iBuildingCity = gc.getInfoTypeForString("BUILDING_STADT")
     iBuildingProvinz = gc.getInfoTypeForString("BUILDING_PROVINZ")
     iBuildingMetropole = gc.getInfoTypeForString("BUILDING_METROPOLE")
-    ##doch eigentlich immer?
-    #if pCity.getPopulation() <= 2 and pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
+	    # PAE Debug mark
+    #"""
+    if gc.getPlayer(pCity.getOwner()).isHuman():
+      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("X",iBuildingSiedlung)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+#      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Y",pPlot.getY())), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
     if pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
       pCity.setNumRealBuilding(iBuildingSiedlung,1)
 
@@ -16788,18 +16792,6 @@ class CvEventManager:
     # AI and its slaves
     if not gc.getPlayer(pCity.getOwner()).isHuman():
        self.doAIReleaseSlaves(pCity)
-
-
-    #if pCity.getPopulation() < 5 and pCity.getNumRealBuilding(iBuildingKolonie) == 0:
-    #  if pCity.getNumRealBuilding(iBuildingProvinz) == 0:
-    #    pCity.setNumRealBuilding(iBuildingKolonie,1)
-    #elif pCity.getPopulation() > 4 and pCity.getNumRealBuilding(iBuildingProvinz) == 0:
-    #  # Ab Groesse 5 wird die Kolonie zur Provinz
-    #  pCity.setNumRealBuilding(iBuildingKolonie,0)
-    #  pCity.setNumRealBuilding(iBuildingProvinz,1)
-    #  if gc.getPlayer(pCity.getOwner()).isHuman():
-    #    CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_COLONY2PROVINCE",(pCity.getName(),0)), "AS2D_WELOVEKING", 2, gc.getBuildingInfo(iBuildingProvinz).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-
 
   # PAE UNIT FORMATIONS ------------------------------
   def canDoFormation (self, pUnit, iFormation):

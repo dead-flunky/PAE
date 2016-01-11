@@ -3050,6 +3050,10 @@ public:
 	bool isFeature(int i) const;				// Exposed to Python
 	bool isFeatureTerrain(int i) const;				// Exposed to Python
 
+	// Flunky
+	int getPrereqOrBonuses(int i) const;		// Exposed to Python
+	int getPrereqAndBonuses(int i) const;		// Exposed to Python
+
 	// Other
 
 	const TCHAR* getButton() const; // Exposed to Python
@@ -3105,6 +3109,11 @@ protected:
 	bool* m_pbTerrain;
 	bool* m_pbFeature;
 	bool* m_pbFeatureTerrain;
+
+	// Flunky
+	
+	int* m_piPrereqOrBonuses;
+	int* m_piPrereqAndBonuses;
 
 };
 

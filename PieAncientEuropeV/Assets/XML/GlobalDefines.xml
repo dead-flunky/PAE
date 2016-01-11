@@ -305,6 +305,16 @@
     <DefineName>NUM_ROUTE_PREREQ_OR_BONUSES</DefineName>
     <iDefineIntVal>2</iDefineIntVal>
   </Define>
+  <!-- BEGIN Flunky -->
+  <Define>
+    <DefineName>NUM_GOODS_PREREQ_OR_BONUSES</DefineName>
+    <iDefineIntVal>5</iDefineIntVal>
+  </Define>
+  <Define>
+    <DefineName>NUM_GOODS_PREREQ_AND_BONUSES</DefineName>
+    <iDefineIntVal>2</iDefineIntVal>
+  </Define>
+  <!-- END Flunky -->
   <Define>
     <DefineName>MAX_WORLD_WONDERS_PER_CITY</DefineName>
     <iDefineIntVal>-1</iDefineIntVal>

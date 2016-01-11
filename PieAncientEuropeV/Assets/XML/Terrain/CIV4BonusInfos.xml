@@ -51,6 +51,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ROMAN</Type>
@@ -95,6 +97,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_NUMID</Type>
@@ -139,6 +143,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_NUBIA</Type>
@@ -183,6 +189,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GREEK</Type>
@@ -227,6 +235,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_PERSIA</Type>
@@ -271,6 +281,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GERMAN</Type>
@@ -315,6 +327,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_INDIA</Type>
@@ -359,6 +373,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_COAL</Type>
@@ -412,6 +428,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ZINN</Type>
@@ -477,6 +495,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ZINK</Type>
@@ -534,6 +554,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MAGNETIT</Type>
@@ -599,6 +621,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_OBSIDIAN</Type>
@@ -656,6 +680,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ZEDERNHOLZ</Type>
@@ -710,6 +736,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_COPPER</Type>
@@ -775,6 +803,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_BRONZE</Type>
@@ -819,6 +849,13 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+	  <PrereqOrBonuses>
+        <BonusType>BONUS_COAL</BonusType>
+        <BonusType>BONUS_ZINN</BonusType>
+	  </PrereqOrBonuses>
+	  <PrereqAndBonuses>
+		<BonusType>BONUS_COPPER</BonusType>
+	  </PrereqAndBonuses>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_IRON</Type>
@@ -884,6 +921,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MARBLE</Type>
@@ -941,6 +980,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_STONE</Type>
@@ -994,6 +1035,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_OREICHALKOS</Type>
@@ -1059,86 +1102,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
-    </BonusInfo>
-    <BonusInfo>
-      <Type>BONUS_MESSING</Type>
-      <Description>TXT_KEY_BONUS_MESSING</Description>
-      <Civilopedia>TXT_KEY_BONUS_MESSING_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_GENERAL</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_MESSING</ArtDefineTag>
-      <TechReveal>TECH_BRONZE_WORKING</TechReveal>
-      <TechCityTrade>NONE</TechCityTrade>
-      <TechObsolete>NONE</TechObsolete>
-      <YieldChanges/>
-      <iAITradeModifier>10</iAITradeModifier>
-      <iAIObjective>0</iAIObjective>
-      <iHealth>0</iHealth>
-      <iHappiness>1</iHappiness>
-      <iPlacementOrder>-1</iPlacementOrder>
-      <iConstAppearance>0</iConstAppearance>
-      <iMinAreaSize>-1</iMinAreaSize>
-      <iMinLatitude>0</iMinLatitude>
-      <iMaxLatitude>90</iMaxLatitude>
-      <Rands>
-        <iRandApp1>0</iRandApp1>
-        <iRandApp2>0</iRandApp2>
-        <iRandApp3>0</iRandApp3>
-        <iRandApp4>0</iRandApp4>
-      </Rands>
-      <iPlayer>0</iPlayer>
-      <iTilesPer>0</iTilesPer>
-      <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>0</iUnique>
-      <iGroupRange>0</iGroupRange>
-      <iGroupRand>0</iGroupRand>
-      <bArea>0</bArea>
-      <bHills>0</bHills>
-      <bFlatlands>0</bFlatlands>
-      <bNoRiverSide>1</bNoRiverSide>
-      <bNormalize>0</bNormalize>
-      <TerrainBooleans/>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
-    </BonusInfo>
-    <BonusInfo>
-      <Type>BONUS_BIER</Type>
-      <Description>TXT_KEY_BONUS_BIER</Description>
-      <Civilopedia>TXT_KEY_BONUS_BIER_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_GENERAL</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_BIER</ArtDefineTag>
-      <TechReveal>TECH_GAERUNG</TechReveal>
-      <TechCityTrade>NONE</TechCityTrade>
-      <TechObsolete>NONE</TechObsolete>
-      <YieldChanges/>
-      <iAITradeModifier>10</iAITradeModifier>
-      <iAIObjective>0</iAIObjective>
-      <iHealth>1</iHealth>
-      <iHappiness>0</iHappiness>
-      <iPlacementOrder>-1</iPlacementOrder>
-      <iConstAppearance>0</iConstAppearance>
-      <iMinAreaSize>-1</iMinAreaSize>
-      <iMinLatitude>0</iMinLatitude>
-      <iMaxLatitude>90</iMaxLatitude>
-      <Rands>
-        <iRandApp1>0</iRandApp1>
-        <iRandApp2>0</iRandApp2>
-        <iRandApp3>0</iRandApp3>
-        <iRandApp4>0</iRandApp4>
-      </Rands>
-      <iPlayer>0</iPlayer>
-      <iTilesPer>0</iTilesPer>
-      <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>0</iUnique>
-      <iGroupRange>0</iGroupRange>
-      <iGroupRand>0</iGroupRand>
-      <bArea>0</bArea>
-      <bHills>0</bHills>
-      <bFlatlands>0</bFlatlands>
-      <bNoRiverSide>1</bNoRiverSide>
-      <bNormalize>0</bNormalize>
-      <TerrainBooleans/>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GLAS</Type>
@@ -1179,6 +1144,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_BERNSTEIN</Type>
@@ -1228,6 +1195,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ELEKTRON</Type>
@@ -1281,6 +1250,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GOLD</Type>
@@ -1334,6 +1305,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SILVER</Type>
@@ -1387,6 +1360,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_PEARL</Type>
@@ -1436,6 +1411,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_HORSE</Type>
@@ -1493,6 +1470,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_CAMEL</Type>
@@ -1542,6 +1521,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_HUNDE</Type>
@@ -1599,6 +1580,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_LION</Type>
@@ -1662,6 +1645,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SALT</Type>
@@ -1711,6 +1696,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GRAPES</Type>
@@ -1760,6 +1747,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>1</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -1810,6 +1799,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_BANANA</Type>
@@ -1864,6 +1855,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_COW</Type>
@@ -1917,6 +1910,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_CRAB</Type>
@@ -1966,6 +1961,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_DEER</Type>
@@ -2020,6 +2017,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_FISH</Type>
@@ -2069,6 +2068,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_CLAM</Type>
@@ -2118,6 +2119,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_PIG</Type>
@@ -2172,6 +2175,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SHEEP</Type>
@@ -2221,6 +2226,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_WALRUS</Type>
@@ -2274,6 +2281,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_WHEAT</Type>
@@ -2327,6 +2336,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>0</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -2377,6 +2388,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>0</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -2427,6 +2440,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>0</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -2477,6 +2492,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>0</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -2531,6 +2548,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>0</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -2586,6 +2605,8 @@
                                         <bFeatureTerrain>1</bFeatureTerrain>
                                 </FeatureTerrainBoolean>
                         </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_DYE</Type>
@@ -2648,6 +2669,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_FUR</Type>
@@ -2710,6 +2733,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GEMS</Type>
@@ -2769,6 +2794,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_INCENSE</Type>
@@ -2818,6 +2845,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MYRRHE</Type>
@@ -2867,6 +2896,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_DATTELN</Type>
@@ -2916,6 +2947,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_IVORY</Type>
@@ -2974,6 +3007,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SILK</Type>
@@ -3032,6 +3067,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
       <bUseLSystem>1</bUseLSystem>
     </BonusInfo>
     <BonusInfo>
@@ -3095,6 +3132,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_PAPYRUS</Type>
@@ -3149,6 +3188,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SILPHIUM</Type>
@@ -3207,6 +3248,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_PAPYRUS_PAPER</Type>
@@ -3247,6 +3290,10 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+	  <PrereqOrBonuses/>
+	  <PrereqAndBonuses>
+        <BonusType>BONUS_PAPYRUS</BonusType>
+	  </PrereqAndBonuses>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_WINE</Type>
@@ -3287,6 +3334,10 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+	  <PrereqOrBonuses/>
+	  <PrereqAndBonuses>
+        <BonusType>BONUS_GRAPES</BonusType>
+	  </PrereqAndBonuses>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MUSIC</Type>
@@ -3327,6 +3378,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_TERRACOTTA</Type>
@@ -3367,6 +3420,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SLAVES</Type>
@@ -3407,6 +3462,8 @@
       <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_BALEAREN</Type>
@@ -3457,6 +3514,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_TEUTONEN</Type>
@@ -3507,6 +3566,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_BAKTRIEN</Type>
@@ -3557,6 +3618,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_KRETA</Type>
@@ -3607,6 +3670,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_KILIKIEN</Type>
@@ -3652,6 +3717,8 @@
       </TerrainBooleans>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MARS</Type>
@@ -3702,6 +3769,8 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_THRAKIEN</Type>
@@ -3752,6 +3821,101 @@
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
+      <PrereqOrBonuses/>
+	  <PrereqAndBonuses/>
+    </BonusInfo>
+    <BonusInfo>
+      <Type>BONUS_MESSING</Type>
+      <Description>TXT_KEY_BONUS_MESSING</Description>
+      <Civilopedia>TXT_KEY_BONUS_MESSING_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_GENERAL</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_MESSING</ArtDefineTag>
+      <TechReveal>TECH_BRONZE_WORKING</TechReveal>
+      <TechCityTrade>NONE</TechCityTrade>
+      <TechObsolete>NONE</TechObsolete>
+      <YieldChanges/>
+      <iAITradeModifier>10</iAITradeModifier>
+      <iAIObjective>0</iAIObjective>
+      <iHealth>0</iHealth>
+      <iHappiness>1</iHappiness>
+      <iPlacementOrder>-1</iPlacementOrder>
+      <iConstAppearance>0</iConstAppearance>
+      <iMinAreaSize>-1</iMinAreaSize>
+      <iMinLatitude>0</iMinLatitude>
+      <iMaxLatitude>90</iMaxLatitude>
+      <Rands>
+        <iRandApp1>0</iRandApp1>
+        <iRandApp2>0</iRandApp2>
+        <iRandApp3>0</iRandApp3>
+        <iRandApp4>0</iRandApp4>
+      </Rands>
+      <iPlayer>0</iPlayer>
+      <iTilesPer>0</iTilesPer>
+      <iMinLandPercent>0</iMinLandPercent>
+      <iUnique>0</iUnique>
+      <iGroupRange>0</iGroupRange>
+      <iGroupRand>0</iGroupRand>
+      <bArea>0</bArea>
+      <bHills>0</bHills>
+      <bFlatlands>0</bFlatlands>
+      <bNoRiverSide>1</bNoRiverSide>
+      <bNormalize>0</bNormalize>
+      <TerrainBooleans/>
+      <FeatureBooleans/>
+      <FeatureTerrainBooleans/>
+	  <PrereqOrBonuses/>
+	  <PrereqAndBonuses>
+		<BonusType>BONUS_COPPER</BonusType>
+        <BonusType>BONUS_ZINK</BonusType>
+	  </PrereqAndBonuses>
+    </BonusInfo>
+    <BonusInfo>
+      <Type>BONUS_BIER</Type>
+      <Description>TXT_KEY_BONUS_BIER</Description>
+      <Civilopedia>TXT_KEY_BONUS_BIER_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_GENERAL</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_BIER</ArtDefineTag>
+      <TechReveal>TECH_GAERUNG</TechReveal>
+      <TechCityTrade>NONE</TechCityTrade>
+      <TechObsolete>NONE</TechObsolete>
+      <YieldChanges/>
+      <iAITradeModifier>10</iAITradeModifier>
+      <iAIObjective>0</iAIObjective>
+      <iHealth>1</iHealth>
+      <iHappiness>0</iHappiness>
+      <iPlacementOrder>-1</iPlacementOrder>
+      <iConstAppearance>0</iConstAppearance>
+      <iMinAreaSize>-1</iMinAreaSize>
+      <iMinLatitude>0</iMinLatitude>
+      <iMaxLatitude>90</iMaxLatitude>
+      <Rands>
+        <iRandApp1>0</iRandApp1>
+        <iRandApp2>0</iRandApp2>
+        <iRandApp3>0</iRandApp3>
+        <iRandApp4>0</iRandApp4>
+      </Rands>
+      <iPlayer>0</iPlayer>
+      <iTilesPer>0</iTilesPer>
+      <iMinLandPercent>0</iMinLandPercent>
+      <iUnique>0</iUnique>
+      <iGroupRange>0</iGroupRange>
+      <iGroupRand>0</iGroupRand>
+      <bArea>0</bArea>
+      <bHills>0</bHills>
+      <bFlatlands>0</bFlatlands>
+      <bNoRiverSide>1</bNoRiverSide>
+      <bNormalize>0</bNormalize>
+      <TerrainBooleans/>
+      <FeatureBooleans/>
+      <FeatureTerrainBooleans/>
+	  <PrereqOrBonuses>
+        <BonusType>BONUS_WHEAT</BonusType>
+        <BonusType>BONUS_GERSTE</BonusType>
+        <BonusType>BONUS_HAFER</BonusType>
+        <BonusType>BONUS_ROGGEN</BonusType>
+        <BonusType>BONUS_HIRSE</BonusType>
+	  </PrereqOrBonuses>
+	  <PrereqAndBonuses/>
     </BonusInfo>
   </BonusInfos>
 </Civ4BonusInfos>
