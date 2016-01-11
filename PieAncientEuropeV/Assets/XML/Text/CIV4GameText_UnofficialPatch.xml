@@ -8,18 +8,18 @@
 	<TEXT>
 		<Tag>TXT_KEY_TERRAIN_TURN_DAMAGE</Tag>
 		<English>[NEWLINE][ICON_BULLET]%D1%% damage/turn</English>
-		<French>NEWLINE][ICON_BULLET]%D1%% dommage/tour</French>
-		<German>NEWLINE][ICON_BULLET]%D1%% schaden/runde</German>
-		<Italian>NEWLINE][ICON_BULLET]%D1%% danni/turno</Italian>
-		<Spanish>NEWLINE][ICON_BULLET]%D1%% da&#241;o/turno</Spanish>
+		<French>[NEWLINE][ICON_BULLET]%D1%% dommage/tour</French>
+		<German>[NEWLINE][ICON_BULLET]%D1%% Schaden/Runde</German>
+		<Italian>[NEWLINE][ICON_BULLET]%D1%% danni/turno</Italian>
+		<Spanish>[NEWLINE][ICON_BULLET]%D1%% da&#241;o/turno</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TERRAIN_TURN_HEALING</Tag>
 		<English>[NEWLINE][ICON_BULLET]%D1%% healing/turn</English>
-		<French>NEWLINE][ICON_BULLET]%D1%% soigner/tour</French>
-		<German>NEWLINE][ICON_BULLET]%D1%% heilen/runde</German>
-		<Italian>NEWLINE][ICON_BULLET]%D1%% cura/turno</Italian>
-		<Spanish>NEWLINE][ICON_BULLET]%D1%% cura/turno</Spanish>
+		<French>[NEWLINE][ICON_BULLET]%D1%% soigner/tour</French>
+		<German>[NEWLINE][ICON_BULLET]%D1%% Heilen/Runde</German>
+		<Italian>[NEWLINE][ICON_BULLET]%D1%% cura/turno</Italian>
+		<Spanish>[NEWLINE][ICON_BULLET]%D1%% cura/turno</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_NUM_SPECIAL_BUILDINGS</Tag>
