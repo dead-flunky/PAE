@@ -1157,7 +1157,8 @@ class CvUnitDesc:
 					unit.setExperience(self.experience, -1)
 				for promo in self.promotionType:
 					promotionTypeNum = CvUtil.findInfoTypeNum(gc.getPromotionInfo, gc.getNumPromotionInfos(), promo)
-					unit.setHasPromotion(promotionTypeNum, True)
+					if promotionTypeNum > -1:
+						unit.setHasPromotion(promotionTypeNum, True)
 				if self.isSleep:
 					if unit.canFortify(unit.plot()):
 						unit.getGroup().setActivityType(ActivityTypes.ACTIVITY_HOLD)
