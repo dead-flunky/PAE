@@ -5536,14 +5536,19 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changeExtraHappiness(GC.getTechInfo(eTech).getHappiness() * iChange);
 
 			// Begin Flunky
-			int iI, iJ;
-			for (iI = 0; iI < GC.getNumTraitInfos(); iI++)
-			{
-				if(GET_PLAYER((PlayerTypes)iI).hasTrait((TraitTypes)iI))
+			if(GET_PLAYER((PlayerTypes)iI).getLeaderType() >= 0){
+				int iTrait, iSpecialist;
+				for (iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
 				{
-					for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
-					{	
-						GET_PLAYER((PlayerTypes)iI).changeMaxSpecialistCount((SpecialistTypes)iJ, GC.getTraitInfo((TraitTypes)iI).getFreeSpecialistSlot(eTech, (SpecialistTypes)iJ) * iChange);
+					if(GET_PLAYER((PlayerTypes)iI).hasTrait((TraitTypes)iTrait))
+					{
+						if(GC.getTraitInfo((TraitTypes)iTrait).isAnyFreeSpecialistSlot())
+						{
+							for (iSpecialist = 0; iSpecialist < GC.getNumSpecialistInfos(); iSpecialist++)
+							{	
+								GET_PLAYER((PlayerTypes)iI).changeMaxSpecialistCount((SpecialistTypes)iSpecialist, GC.getTraitInfo((TraitTypes)iTrait).getFreeSpecialistSlot(eTech, (SpecialistTypes)iSpecialist) * iChange);
+							}
+						}
 					}
 				}
 			}

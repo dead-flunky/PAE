@@ -286,6 +286,23 @@ void CvPlayer::init(PlayerTypes eID)
 						changeNoCivicUpkeepCount(((CivicOptionTypes)iJ), 1);
 					}
 				}
+
+				// Begin Flunky
+				if( GC.getTraitInfo((TraitTypes)iI).isAnySpecialistYieldChange()){
+					int iYield;
+					int iSpecialist;
+					for (iSpecialist = 0; iSpecialist < GC.getNumSpecialistInfos(); iSpecialist++)
+					{
+						for (iYield = 0; iYield < NUM_YIELD_TYPES; iYield++)
+						{
+							changeSpecialistExtraYield(((SpecialistTypes)iSpecialist), ((YieldTypes)iYield), (GC.getTraitInfo((TraitTypes)iI).getSpecialistYieldChange(iSpecialist, iYield)));
+						}
+					}
+				}
+
+				
+				changeGoldenAgeModifier(GC.getTraitInfo((TraitTypes)iI).getGoldenAgeModifier());
+				// End Flunky
 			}
 		}
 

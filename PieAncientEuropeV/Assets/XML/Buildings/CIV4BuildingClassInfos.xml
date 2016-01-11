@@ -2245,19 +2245,7 @@
       <DefaultBuilding>BUILDING_PROVINZPALAST</DefaultBuilding>
       <VictoryThresholds/>
     </BuildingClassInfo>
-<!--     <BuildingClassInfo>
-      <Type>BUILDINGCLASS_TRAIT_CREATIVE_LOCAL</Type>
-      <Description>NONE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iExtraPlayerInstances>0</iExtraPlayerInstances>
-      <bNoLimit>0</bNoLimit>
-      <bMonument>0</bMonument>
-      <DefaultBuilding>BUILDING_TRAIT_CREATIVE_LOCAL</DefaultBuilding>
-      <VictoryThresholds/>
-    </BuildingClassInfo> -->
-    <BuildingClassInfo>
+    <!-- <BuildingClassInfo>
       <Type>BUILDINGCLASS_TRAIT_CREATIVE_GLOBAL</Type>
       <Description>NONE</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -2268,19 +2256,7 @@
       <bMonument>0</bMonument>
       <DefaultBuilding>BUILDING_TRAIT_CREATIVE_GLOBAL</DefaultBuilding>
       <VictoryThresholds/>
-    </BuildingClassInfo>
-    <BuildingClassInfo>
-      <Type>BUILDINGCLASS_TRAIT_PHILOSOPHICAL_GLOBAL</Type>
-      <Description>NONE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iExtraPlayerInstances>0</iExtraPlayerInstances>
-      <bNoLimit>0</bNoLimit>
-      <bMonument>0</bMonument>
-      <DefaultBuilding>BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL</DefaultBuilding>
-      <VictoryThresholds/>
-    </BuildingClassInfo>
+    </BuildingClassInfo>´ -->
     <BuildingClassInfo>
       <Type>BUILDINGCLASS_PLAGUE</Type>
       <Description>TXT_KEY_BUILDING_PLAGUE</Description>

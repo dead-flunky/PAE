@@ -16097,7 +16097,10 @@ m_piGlobalSeaPlotYieldChange(NULL),
 m_piDomainFreeExperience(NULL),
 m_piDomainProductionModifier(NULL),
 m_ppaiFreeSpecialistSlot(NULL),
-m_bAnyFreeSpecialistSlot(false)
+m_bAnyFreeSpecialistSlot(false),
+m_ppaiSpecialistYieldChange(NULL),
+m_bAnySpecialistYieldChange(false),						
+m_iGoldenAgeModifier(0)
 // End Flunky
 {
 }
@@ -16129,6 +16132,14 @@ CvTraitInfo::~CvTraitInfo()
 			SAFE_DELETE_ARRAY(m_ppaiFreeSpecialistSlot[i]);
 		}
 		SAFE_DELETE_ARRAY(m_ppaiFreeSpecialistSlot);
+	}
+	if (m_ppaiSpecialistYieldChange != NULL)
+	{
+		for(int i=0;i<GC.getNumSpecialistInfos();i++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaiSpecialistYieldChange[i]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaiSpecialistYieldChange);
 	}
 	// End Flunky
 }
@@ -16270,6 +16281,34 @@ bool CvTraitInfo::isAnyFreeSpecialistSlot() const
 {
 	return m_bAnyFreeSpecialistSlot;
 }
+
+int CvTraitInfo::getSpecialistYieldChange(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumSpecialistInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppaiSpecialistYieldChange ? m_ppaiSpecialistYieldChange[i][j] : -1;
+}
+
+int* CvTraitInfo::getSpecialistYieldChangeArray(int i) const
+{
+	FAssertMsg(i < GC.getNumSpecialistInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_ppaiSpecialistYieldChange[i];
+}
+
+
+bool CvTraitInfo::isAnySpecialistYieldChange() const
+{
+	return m_bAnySpecialistYieldChange;
+}
+
+int CvTraitInfo::getGoldenAgeModifier() const		
+{
+	return m_iGoldenAgeModifier;
+}
+
 // End Flunky
 
 bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
@@ -16356,9 +16395,6 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piDomainFreeExperience, "DomainFreeExperiences", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 	pXML->SetVariableListTagPair(&m_piDomainProductionModifier, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 
-	//pXML->SetVariableListTagPair(&m_paiFreeSpecialistSlot, "FreeSpecialistSlots", sizeof(GC.getSpecialistInfo((SpecialistTypes)0)), GC.getNumSpecialistInfos());
-	//pXML->SetVariableListTagPair(&m_pabFreeSpecialistSlotTech, "FreeSpecialistSlotTechs", sizeof(GC.getTechInfo((TechTypes)0)), GC.getNumTechInfos());
-
 	// Flunky - Specialist slots with Technology and Trait
 	int j=0;						//loop counter
 	int k=0;						//trait index
@@ -16429,6 +16465,62 @@ bool CvTraitInfo::read(CvXMLLoadUtility* pXML)
 		// set the current xml node to it's parent node
 		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
 	}
+
+	m_bAnySpecialistYieldChange = false;
+	pXML->Init2DIntList(&m_ppaiSpecialistYieldChange, GC.getNumSpecialistInfos(), NUM_YIELD_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistYieldChanges"))
+	{
+		iNumChildren = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistYieldChange"))
+		{
+			for(j=0;j<iNumChildren;j++)
+			{
+				pXML->GetChildXmlValByName(szTextVal, "SpecialistType");
+				k = pXML->FindInInfoClass(szTextVal);
+				if (k > -1)
+				{
+					// delete the array since it will be reallocated
+					SAFE_DELETE_ARRAY(m_ppaiSpecialistYieldChange[k]);
+					if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"YieldChanges"))
+					{
+						// call the function that sets the yield change variable
+						pXML->SetYields(&m_ppaiSpecialistYieldChange[k]);
+						gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+					}
+					else
+					{
+						pXML->InitList(&m_ppaiSpecialistYieldChange[k], NUM_YIELD_TYPES);
+					}
+				}
+
+				if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+				{
+					break;
+				}
+			}
+
+			for(int ii=0;(!m_bAnySpecialistYieldChange) && ii<GC.getNumSpecialistInfos();ii++)
+			{
+				for(int ij=0; ij < NUM_YIELD_TYPES; ij++ )
+				{
+					if( m_ppaiSpecialistYieldChange[ii][ij] != 0 )
+					{
+						m_bAnySpecialistYieldChange = true;
+						break;
+					}
+				}
+			}
+
+			// set the current xml node to it's parent node
+			gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+		}
+
+		// set the current xml node to it's parent node
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	
+	pXML->GetChildXmlValByName(&m_iGoldenAgeModifier, "iGoldenAgeModifier");
 	// End Flunky
 	return true;
 }

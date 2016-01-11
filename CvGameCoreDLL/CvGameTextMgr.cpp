@@ -3444,6 +3444,20 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 			}
 		}
 
+		if( GC.getTraitInfo(eTrait).isAnySpecialistYieldChange() )
+		{
+			for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
+			{
+				setYieldChangeHelp(szHelpString, L"", L"", gDLL->getText("TXT_KEY_BUILDING_FROM_IN_ALL_CITIES", GC.getSpecialistInfo((SpecialistTypes) iI).getTextKeyWide()).GetCString(), GC.getTraitInfo(eTrait).getSpecialistYieldChangeArray(iI), true);
+			}
+		}
+
+		// iGoldenAgeModifier
+		if (GC.getTraitInfo(eTrait).getGoldenAgeModifier() != 0)
+		{
+			szHelpString.append(gDLL->getText("TXT_KEY_BUILDING_GOLDENAGE_MOD", GC.getTraitInfo(eTrait).getGoldenAgeModifier()));
+		}
+
 		// End Flunky TODO
 
 		// Increase Building/Unit Production Speeds
@@ -7288,11 +7302,11 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 */
 	if( kBuilding.isAnySpecialistYieldChange() )
 	{
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
-	{
-		szFirstBuffer = gDLL->getText("TXT_KEY_BUILDING_FROM_IN_ALL_CITIES", GC.getSpecialistInfo((SpecialistTypes) iI).getTextKeyWide());
-		setYieldChangeHelp(szBuffer, L"", L"", szFirstBuffer, kBuilding.getSpecialistYieldChangeArray(iI));
-	}
+		for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
+		{
+			szFirstBuffer = gDLL->getText("TXT_KEY_BUILDING_FROM_IN_ALL_CITIES", GC.getSpecialistInfo((SpecialistTypes) iI).getTextKeyWide());
+			setYieldChangeHelp(szBuffer, L"", L"", szFirstBuffer, kBuilding.getSpecialistYieldChangeArray(iI));
+		}
 	}
 
 	if( kBuilding.isAnyBonusYieldModifier() )

@@ -358,6 +358,17 @@
 	<ElementType name="FreeSpecialistSlots" content="eltOnly">
 		<element type="FreeSpecialistSlot" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="YieldChanges" content="eltOnly">
+		<element type="iYield" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="SpecialistYieldChange" content="eltOnly">
+		<element type="SpecialistType"/>
+		<element type="YieldChanges"/>
+	</ElementType>
+	<ElementType name="SpecialistYieldChanges" content="eltOnly">
+		<element type="SpecialistYieldChange" minOccurs="0" maxOccurs="*"/>
+	</ElementType>	
+	<ElementType name="iGoldenAgeModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="TraitInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -384,6 +395,8 @@
 		<element type="DomainFreeExperiences"/>
 		<element type="DomainProductionModifiers"/>
 		<element type="FreeSpecialistSlots"/>
+		<element type="SpecialistYieldChanges"/>
+		<element type="iGoldenAgeModifier"/>
 	</ElementType>
 	<ElementType name="TraitInfos" content="eltOnly">
 		<element type="TraitInfo" maxOccurs="*"/>
@@ -430,7 +443,6 @@
 	<ElementType name="FreeBuildingClasses" content="eltOnly">
 		<element type="FreeBuildingClass" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
-  <!--Begin Flunky-->
 	<ElementType name="bFreeTech" content="textOnly" dt:type="boolean"/>
 	<ElementType name="FreeTech" content="eltOnly">
 		<element type="TechType"/>

@@ -4189,7 +4189,13 @@ public:
 	int getDomainProductionModifier(int i) const; // Exposed to Python
 	
 	int getFreeSpecialistSlot(int i, int j) const;	 // TODO Exposed to Python
-	bool isAnyFreeSpecialistSlot() const;
+	bool isAnyFreeSpecialistSlot() const; // TODO Exposed to Python
+
+	int getSpecialistYieldChange(int i, int j) const; // TODO Exposed to Python
+	int* getSpecialistYieldChangeArray(int i) const; // TODO Exposed to Python
+	bool isAnySpecialistYieldChange() const; // TODO Exposed to Python
+	
+	int getGoldenAgeModifier() const; // TODO Exposed to Python
 	// End Flunky
 	bool read(CvXMLLoadUtility* pXML);
 
@@ -4227,6 +4233,10 @@ protected:
 
 	int** m_ppaiFreeSpecialistSlot;
 	bool m_bAnyFreeSpecialistSlot;
+
+	int** m_ppaiSpecialistYieldChange;
+	bool m_bAnySpecialistYieldChange;
+	int m_iGoldenAgeModifier;
 	// End Flunky
 };
 
