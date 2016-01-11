@@ -258,6 +258,7 @@ public:
 
 	std::string getScriptData() const;
 	void setScriptData(std::string szNewValue);
+	int getTurnDamage() const;																							
 
 private:
 	CvPlot* m_pPlot;

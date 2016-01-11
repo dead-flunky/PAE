@@ -716,13 +716,10 @@ void CvUnit::doTurn()
 
 	if (baseCombatStr() > 0)
 	{
-		FeatureTypes eFeature = plot()->getFeatureType();
-		if (NO_FEATURE != eFeature)
+		const int iTurnDamage = pPlot->getTurnDamage();
+		if (0 != iTurnDamage)
 		{
-			if (0 != GC.getFeatureInfo(eFeature).getTurnDamage())
-			{
-				changeDamage(GC.getFeatureInfo(eFeature).getTurnDamage(), NO_PLAYER);
-			}
+			changeDamage(iTurnDamage, NO_PLAYER);
 		}
 	}
 
@@ -3674,11 +3671,7 @@ int CvUnit::healTurns(const CvPlot* pPlot) const
 /* Bugfix                                                                                        */
 /*************************************************************************************************/
 	// Mongoose FeatureDamageFix
-	FeatureTypes eFeature = pPlot->getFeatureType();
-	if (eFeature != NO_FEATURE)
-	{
-		iHeal -= GC.getFeatureInfo(eFeature).getTurnDamage();
-	}
+	iHeal -= pPlot->getTurnDamage();
 /*************************************************************************************************/
 /* UNOFFICIAL_PATCH                         END                                                  */
 /*************************************************************************************************/

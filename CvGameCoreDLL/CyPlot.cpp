@@ -1035,3 +1035,8 @@ void CyPlot::setScriptData(std::string szNewValue)
 	if (m_pPlot)
 		m_pPlot->setScriptData(szNewValue.c_str());
 }
+
+int CyPlot::getTurnDamage() const
+{
+	return m_pPlot ? m_pPlot->getTurnDamage() : 0;
+}

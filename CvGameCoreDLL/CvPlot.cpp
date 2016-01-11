@@ -9935,3 +9935,11 @@ bool CvPlot::checkLateEra() const
 	return (GET_PLAYER(ePlayer).getCurrentEra() > GC.getNumEraInfos() / 2);
 }
 
+int CvPlot::getTurnDamage() const
+{
+	if(getFeatureType() == NO_FEATURE ){
+		return GC.getFeatureInfo(getFeatureType()).getTurnDamage();
+	}else{
+		return GC.getTerrainInfo(getTerrainType()).getTurnDamage();
+	}
+}
