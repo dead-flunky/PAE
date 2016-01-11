@@ -3053,7 +3053,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	{
 		szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_NEGATIVE_TEXT")));
 		szString.append(NEWLINE);
-		szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iDamage));
+		szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iTurnDamage));
 		szString.append(CvWString::format( ENDCOLR));
 	}
 	/**********************************************************************************************/
@@ -3062,18 +3062,17 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 	/* User interface                                                                             */
 	/**********************************************************************************************/
 	// Mongoose FeatureDamageFix
-	else if (iDamage < 0)
+	else if (iTurnDamage < 0)
 	{
 		szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_POSITIVE_TEXT")));
 		szString.append(NEWLINE);
-		szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iDamage));
+		szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iTurnDamage));
 		szString.append(CvWString::format( ENDCOLR));
 	}
 	/**********************************************************************************************/
 	/* UNOFFICIAL_PATCH                         END                                               */
 	/**********************************************************************************************/
 
-}
 }
 
 

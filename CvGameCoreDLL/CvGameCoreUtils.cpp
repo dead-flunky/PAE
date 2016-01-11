@@ -1413,10 +1413,11 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 					// Damage caused by features (mods)
 					if (0 != GC.getPATH_DAMAGE_WEIGHT())
 					{
-						if (pToPlot->getFeatureType() != NO_FEATURE)
-						{
+						// Flunky - nicht nur features koennen weh tun
+						//if (pToPlot->getFeatureType() != NO_FEATURE)
+						//{
 							iCost += (GC.getPATH_DAMAGE_WEIGHT() * std::max(0, pToPlot->getTurnDamage())) / GC.getMAX_HIT_POINTS();
-						}
+						//}
 
 						if (pToPlot->getExtraMovePathCost() > 0)
 						{

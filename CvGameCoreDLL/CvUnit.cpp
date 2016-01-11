@@ -716,7 +716,7 @@ void CvUnit::doTurn()
 
 	if (baseCombatStr() > 0)
 	{
-		const int iTurnDamage = pPlot->getTurnDamage();
+		const int iTurnDamage = plot()->getTurnDamage();
 		if (0 != iTurnDamage)
 		{
 			changeDamage(iTurnDamage, NO_PLAYER);

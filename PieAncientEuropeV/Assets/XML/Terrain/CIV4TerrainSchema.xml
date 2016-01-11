@@ -118,7 +118,6 @@
 	<ElementType name="iAppearance" content="textOnly" dt:type="int"/>
 	<ElementType name="iDisappearance" content="textOnly" dt:type="int"/>
 	<ElementType name="iGrowth" content="textOnly" dt:type="int"/>
-	<ElementType name="iTurnDamage" content="textOnly" dt:type="int"/>
 	<ElementType name="bNoCoast" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoRiver" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoAdjacent" content="textOnly" dt:type="boolean"/>

@@ -9937,9 +9937,17 @@ bool CvPlot::checkLateEra() const
 
 int CvPlot::getTurnDamage() const
 {
-	if(getFeatureType() == NO_FEATURE ){
-		return GC.getFeatureInfo(getFeatureType()).getTurnDamage();
-	}else{
-		return GC.getTerrainInfo(getTerrainType()).getTurnDamage();
+	//if(getFeatureType() != NO_FEATURE ){
+	//	return GC.getFeatureInfo(getFeatureType()).getTurnDamage();
+	//}else{
+	//	return GC.getTerrainInfo(getTerrainType()).getTurnDamage();
+	//}
+	int iDamage = 0;
+
+	// Flunky - auf Pies Wunsch macht das Feature zusaetzlich zum Terrain Schaden.
+	if(getFeatureType() != NO_FEATURE ){
+		iDamage = GC.getFeatureInfo(getFeatureType()).getTurnDamage();
 	}
+	
+	return iDamage + GC.getTerrainInfo(getTerrainType()).getTurnDamage();
 }
