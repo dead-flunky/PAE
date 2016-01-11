@@ -12952,7 +12952,7 @@ int CvFeatureInfo::getAdvancedStartRemoveCost() const
 
 int CvFeatureInfo::getTurnDamage() const			
 {
-	return m_iTurnDamage; 
+	return m_iTurnDamage;
 }
 
 bool CvFeatureInfo::isNoCoast() const	
@@ -13456,6 +13456,7 @@ m_iSeeFromLevel(0),
 m_iSeeThroughLevel(0),
 m_iBuildModifier(0),
 m_iDefenseModifier(0),
+m_iTurnDamage(0),
 m_bWater(false),
 m_bImpassable(false),
 m_bFound(false),
@@ -13507,6 +13508,11 @@ int CvTerrainInfo::getBuildModifier() const
 int CvTerrainInfo::getDefenseModifier() const
 {
 	return m_iDefenseModifier; 
+}
+
+int CvTerrainInfo::getTurnDamage() const
+{
+	return m_iTurnDamage;
 }
 
 bool CvTerrainInfo::isWater() const				
@@ -13631,6 +13637,7 @@ bool CvTerrainInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iSeeThroughLevel, "iSeeThrough");
 	pXML->GetChildXmlValByName(&m_iBuildModifier, "iBuildModifier");
 	pXML->GetChildXmlValByName(&m_iDefenseModifier, "iDefense");
+	pXML->GetChildXmlValByName(&m_iTurnDamage, "iTurnDamage");
 
 	pXML->SetVariableListTagPairForAudioScripts(&m_pi3DAudioScriptFootstepIndex, "FootstepSounds", GC.getFootstepAudioTypes(), GC.getNumFootstepAudioTypes());
 

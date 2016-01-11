@@ -3138,7 +3138,7 @@ void CvUnitAI::AI_exploreMove()
 
 	if (getDamage() > 0)
 	{
-		if ((plot()->getFeatureType() == NO_FEATURE) || (GC.getFeatureInfo(plot()->getFeatureType()).getTurnDamage() == 0))
+		if (plot()->getTurnDamage() <= 0)
 		{
 			getGroup()->pushMission(MISSION_HEAL);
 			return;
@@ -4651,7 +4651,7 @@ void CvUnitAI::AI_exploreSeaMove()
 
 	if (getDamage() > 0)
 	{
-		if ((plot()->getFeatureType() == NO_FEATURE) || (GC.getFeatureInfo(plot()->getFeatureType()).getTurnDamage() == 0))
+		if (plot()->getTurnDamage() <= 0)
 		{
 			getGroup()->pushMission(MISSION_HEAL);
 			return;
@@ -8172,7 +8172,7 @@ bool CvUnitAI::AI_heal(int iDamagePercent, int iMaxPath)
 	
 	if (plot()->getFeatureType() != NO_FEATURE)
 	{
-		if (GC.getFeatureInfo(plot()->getFeatureType()).getTurnDamage() != 0)
+		if (plot()->getTurnDamage() > 0)
 		{
 			//Pass through
 			//(actively seeking a safe spot may result in unit getting stuck)

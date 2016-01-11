@@ -476,6 +476,8 @@ public:
 	DllExport bool shouldDisplayBridge(CvPlot* pToPlot, PlayerTypes ePlayer) const;
 	DllExport bool checkLateEra() const;
 
+	DllExport int getTurnDamage() const;	// Exposed to Python
+
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
 

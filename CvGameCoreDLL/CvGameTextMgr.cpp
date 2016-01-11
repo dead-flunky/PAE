@@ -3048,35 +3048,32 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 	}
 
-	if (pPlot->getFeatureType() != NO_FEATURE)
+	int iTurnDamage = pPlot->getTurnDamage();
+	if (iTurnDamage > 0)
 	{
-		int iDamage = GC.getFeatureInfo(pPlot->getFeatureType()).getTurnDamage();
-
-		if (iDamage > 0)
-		{
-			szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_NEGATIVE_TEXT")));
-			szString.append(NEWLINE);
-			szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iDamage));
-			szString.append(CvWString::format( ENDCOLR));
-		}
-/*************************************************************************************************/
-/* UNOFFICIAL_PATCH                       06/02/10                           LunarMongoose       */
-/*                                                                                               */
-/* User interface                                                                                */
-/*************************************************************************************************/
-		// Mongoose FeatureDamageFix
-		else if (iDamage < 0)
-		{
-			szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_POSITIVE_TEXT")));
-			szString.append(NEWLINE);
-			szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iDamage));
-			szString.append(CvWString::format( ENDCOLR));
-		}
-/*************************************************************************************************/
-/* UNOFFICIAL_PATCH                         END                                                  */
-/*************************************************************************************************/
-
+		szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_NEGATIVE_TEXT")));
+		szString.append(NEWLINE);
+		szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iDamage));
+		szString.append(CvWString::format( ENDCOLR));
 	}
+	/**********************************************************************************************/
+	/* UNOFFICIAL_PATCH                       06/02/10                           LunarMongoose    */
+	/*                                                                                            */
+	/* User interface                                                                             */
+	/**********************************************************************************************/
+	// Mongoose FeatureDamageFix
+	else if (iDamage < 0)
+	{
+		szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_POSITIVE_TEXT")));
+		szString.append(NEWLINE);
+		szString.append(gDLL->getText("TXT_KEY_PLOT_DAMAGE", iDamage));
+		szString.append(CvWString::format( ENDCOLR));
+	}
+	/**********************************************************************************************/
+	/* UNOFFICIAL_PATCH                         END                                               */
+	/**********************************************************************************************/
+
+}
 }
 
 
@@ -3085,17 +3082,17 @@ void CvGameTextMgr::setCityPlotYieldValueString(CvWStringBuffer &szString, CvCit
 	PROFILE_FUNC();
 
 	CvPlot* pPlot = NULL;
-	
+
 	if (iIndex >= 0 && iIndex < NUM_CITY_PLOTS)
 		pPlot = pCity->getCityIndexPlot(iIndex);
-	
+
 	if (pPlot != NULL)
 	{
 		CvCityAI* pCityAI = static_cast<CvCityAI*>(pCity);
 		bool bWorkingPlot = pCity->isWorkingPlot(iIndex);
 
 		int iValue = pCityAI->AI_plotValue(pPlot, bAvoidGrowth, /*bRemove*/ bWorkingPlot, bIgnoreFood, bIgnoreGrowth);
-		
+
 		setYieldValueString(szString, iValue, /*bActive*/ bWorkingPlot);
 	}
 	else
@@ -3107,7 +3104,7 @@ void CvGameTextMgr::setYieldValueString(CvWStringBuffer &szString, int iValue, b
 	PROFILE_FUNC();
 
 	static bool bUseFloats = false;
-	
+
 	if (bActive)
 		szString.append(CvWString::format(SETCOLR, TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT")));
 	else
@@ -11236,6 +11233,15 @@ void CvGameTextMgr::setTerrainHelp(CvWStringBuffer &szBuffer, TerrainTypes eTerr
 	{
 		szBuffer.append(gDLL->getText("TXT_KEY_TERRAIN_IMPASSABLE"));
 	}
+
+	if (terrain.getTurnDamage() > 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_TERRAIN_TURN_DAMAGE", terrain.getTurnDamage()));
+	}else if (terrain.getTurnDamage() < 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_TERRAIN_TURN_HEALING", -terrain.getTurnDamage()));
+	}
+
 	if (!terrain.isFound())
 	{
 		szBuffer.append(gDLL->getText("TXT_KEY_TERRAIN_NO_CITIES"));

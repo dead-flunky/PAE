@@ -3348,6 +3348,7 @@ public:
 	int getSeeThroughLevel() const;			// Exposed to Python
 	int getBuildModifier() const;				// Exposed to Python
 	int getDefenseModifier() const;			// Exposed to Python
+	int getTurnDamage() const;					// Exposed to Python
 
 	bool isWater() const;								// Exposed to Python
 	bool isImpassable() const;					// Exposed to Python
@@ -3382,6 +3383,7 @@ protected:
 	int m_iSeeThroughLevel;		
 	int m_iBuildModifier;				
 	int m_iDefenseModifier;	
+	int m_iTurnDamage;
 
 	bool m_bWater;					
 	bool m_bImpassable;

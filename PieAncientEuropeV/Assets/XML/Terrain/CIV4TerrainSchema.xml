@@ -30,6 +30,7 @@
 	<ElementType name="iSeeThrough" content="textOnly" dt:type="int"/>
 	<ElementType name="iBuildModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iDefense" content="textOnly" dt:type="int"/>
+	<ElementType name="iTurnDamage" content="textOnly" dt:type="int"/>
 	<ElementType name="Button" content="textOnly"/>
 	<ElementType name="FootstepAudioType" content="textOnly"/>
 	<ElementType name="FootstepAudioScript" content="textOnly"/>
@@ -61,6 +62,7 @@
 		<element type="iSeeThrough"/>
 		<element type="iBuildModifier"/>
 		<element type="iDefense"/>
+		<element type="iTurnDamage"/>
 		<element type="Button"/>
 		<element type="FootstepSounds"/>
 		<element type="WorldSoundscapeAudioScript" minOccurs="0"/>
