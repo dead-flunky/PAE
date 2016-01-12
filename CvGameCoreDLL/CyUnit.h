@@ -322,6 +322,8 @@ public:
 	int getExtraFirstStrikes();
 	int getExtraChanceFirstStrikes();															 
 	int getExtraWithdrawal();
+	//Flunky
+	int getExtraLoyalty();
 	int getExtraCollateralDamage();
 	int getExtraEnemyHeal();
 	int getExtraNeutralHeal();

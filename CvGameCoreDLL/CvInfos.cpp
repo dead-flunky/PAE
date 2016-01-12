@@ -1958,6 +1958,11 @@ bool CvPromotionInfo::getUnitCombat(int i) const
 	return m_pbUnitCombat ? m_pbUnitCombat[i] : false;
 }
 
+// Flunky TODO meaningful value
+int CvPromotionInfo::getLoyaltyChange() const{
+	return 0;
+}
+
 void CvPromotionInfo::read(FDataStreamBase* stream)
 {
 	CvHotkeyInfo::read(stream);
@@ -4025,6 +4030,11 @@ int CvUnitInfo::getLeaderPromotion() const
 int CvUnitInfo::getLeaderExperience() const
 {
 	return m_iLeaderExperience;
+}
+
+// Flunky TODO meaningful value
+int CvUnitInfo::getLoyaltyProbability() const{
+	return 0;
 }
 
 const TCHAR* CvUnitInfo::getEarlyArtDefineTag(int i, UnitArtStyleTypes eStyle) const

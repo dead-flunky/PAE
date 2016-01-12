@@ -6105,6 +6105,30 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		}
 	}
 
+	//Flunky
+	iTemp = GC.getPromotionInfo(ePromotion).getLoyaltyChange();
+	if (iTemp != 0)
+	{
+		iExtra = (m_pUnitInfo->getLoyaltyProbability() + (getExtraLoyalty() * 4));
+		iTemp *= (100 + iExtra);
+		iTemp /= 100;
+		if ((AI_getUnitAIType() == UNITAI_ATTACK_CITY))
+		{
+			iValue += (iTemp * 4) / 3;
+		}
+		else if ((AI_getUnitAIType() == UNITAI_COLLATERAL) ||
+			  (AI_getUnitAIType() == UNITAI_RESERVE) ||
+			  (AI_getUnitAIType() == UNITAI_RESERVE_SEA) ||
+			  getLeaderUnitType() != NO_UNIT)
+		{
+			iValue += iTemp * 1;
+		}
+		else
+		{
+			iValue += (iTemp / 4);
+		}
+	}
+
 	iTemp = GC.getPromotionInfo(ePromotion).getCollateralDamageChange();
 	if (iTemp != 0)
 	{

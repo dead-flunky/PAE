@@ -490,6 +490,10 @@ public:
 	bool isHillsDoubleMove() const;				// Exposed to Python
 	bool isImmuneToFirstStrikes() const;				// Exposed to Python
 
+	// Flunky
+	int getLoyaltyChange() const;
+
+
 	const TCHAR* getSound() const;				// Exposed to Python
 	void setSound(const TCHAR* szVal);
 
@@ -962,6 +966,10 @@ public:
 	bool getFreePromotions(int i) const;		// Exposed to Python
 	int getLeaderPromotion() const;   // Exposed to Python
 	int getLeaderExperience() const;				// Exposed to Python
+
+	
+	// Flunky
+	int getLoyaltyProbability() const;
 
 	const TCHAR* getEarlyArtDefineTag(int i, UnitArtStyleTypes eStyle) const;				// Exposed to Python
 	void setEarlyArtDefineTag(int i, const TCHAR* szVal);

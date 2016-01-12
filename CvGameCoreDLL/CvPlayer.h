@@ -410,6 +410,8 @@ public:
 
 	int getDomainProductionModifier(DomainTypes eIndex) const;
 	void changeDomainProductionModifier(DomainTypes eIndex, int iChange);
+
+	bool canEnslave();
 	// End Flunky
 
 	int getFeatureProductionModifier() const;																															// Exposed to Python
@@ -1208,6 +1210,7 @@ protected:
 	// Begin Flunky
 	int* m_aiDomainFreeExperience;
 	int* m_aiDomainProductionModifier;
+	bool m_bCanEnslave;
 	// End Flunky
 	PlayerTypes m_eID;
 	LeaderHeadTypes m_ePersonalityType;

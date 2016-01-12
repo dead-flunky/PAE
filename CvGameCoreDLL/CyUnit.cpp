@@ -1331,6 +1331,12 @@ int CyUnit::getExtraWithdrawal()
 	return m_pUnit ? m_pUnit->getExtraWithdrawal() : -1;
 }
 
+//Flunky
+int CyUnit::getExtraLoyalty()
+{
+	return m_pUnit ? m_pUnit->getExtraLoyalty() : -1;
+}
+
 int CyUnit::getExtraCollateralDamage()
 {
 	return m_pUnit ? m_pUnit->getExtraCollateralDamage() : -1;
