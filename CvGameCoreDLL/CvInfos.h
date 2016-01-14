@@ -491,6 +491,7 @@ public:
 	bool isImmuneToFirstStrikes() const;				// Exposed to Python
 
 	// Flunky
+	int getFlightChange() const;
 	int getLoyaltyChange() const;
 
 
@@ -533,7 +534,11 @@ protected:
 	int m_iAirRangeChange;
 	int m_iInterceptChange;
 	int m_iEvasionChange;
-	int m_iWithdrawalChange;				
+	int m_iWithdrawalChange;	
+	// Flunky
+	int m_iFlightChange;
+	int m_iLoyaltyChange;
+	// End Flunky
 	int m_iCargoChange;				
 	int m_iCollateralDamageChange;	
 	int m_iBombardRateChange;			
@@ -886,7 +891,7 @@ public:
 	bool isFoodProduction() const;				// Exposed to Python
 	bool isNoBadGoodies() const;				// Exposed to Python
 	bool isOnlyDefensive() const;				// Exposed to Python
-	bool isNoCapture() const;				// Exposed to Python
+	bool isNoCityCapture() const;				// Exposed to Python
 	bool isQuickCombat() const;				// Exposed to Python
 	bool isRivalTerritory() const;				// Exposed to Python
 	bool isMilitaryHappiness() const;				// Exposed to Python
@@ -969,6 +974,7 @@ public:
 
 	
 	// Flunky
+	int getFlightProbability() const;
 	int getLoyaltyProbability() const;
 
 	const TCHAR* getEarlyArtDefineTag(int i, UnitArtStyleTypes eStyle) const;				// Exposed to Python
@@ -1025,6 +1031,10 @@ protected:
 	int m_iInterceptionProbability;
 	int m_iEvasionProbability;
 	int m_iWithdrawalProbability;
+	//Flunky
+	int m_iFlightProbability;
+	int m_iLoyaltyProbability;
+
 	int m_iCollateralDamage;
 	int m_iCollateralDamageLimit;
 	int m_iCollateralDamageMaxUnits;
@@ -1072,7 +1082,7 @@ protected:
 	bool m_bFoodProduction;
 	bool m_bNoBadGoodies;
 	bool m_bOnlyDefensive;
-	bool m_bNoCapture;
+	bool m_bNoCityCapture;
 	bool m_bQuickCombat;
 	bool m_bRivalTerritory;
 	bool m_bMilitaryHappiness;

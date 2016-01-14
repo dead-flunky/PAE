@@ -7639,7 +7639,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			{
 				if (!(GC.getUnitInfo(eUnit).isOnlyDefensive()))
 				{
-					if (!(GC.getUnitInfo(eUnit).isNoCapture()))
+					if (!(GC.getUnitInfo(eUnit).isNoCityCapture()))
 					{
 						bValid = true;
 					}

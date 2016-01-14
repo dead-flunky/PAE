@@ -580,9 +580,9 @@ bool CyUnit::isOnlyDefensive()
 	return m_pUnit ? m_pUnit->isOnlyDefensive() : false;
 }
 
-bool CyUnit::isNoCapture()
+bool CyUnit::isNoCityCapture()
 {
-	return m_pUnit ? m_pUnit->isNoCapture() : false;
+	return m_pUnit ? m_pUnit->isNoCityCapture() : false;
 }
 
 bool CyUnit::isRivalTerritory()

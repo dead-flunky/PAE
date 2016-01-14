@@ -4103,6 +4103,18 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WITHDRAWAL_TEXT", GC.getPromotionInfo(ePromotion).getWithdrawalChange()));
 	}
 
+	//Flunky
+	if (GC.getPromotionInfo(ePromotion).getFlightChange() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FLIGHT_TEXT", GC.getPromotionInfo(ePromotion).getFlightChange()));
+	}
+	if (GC.getPromotionInfo(ePromotion).getLoyaltyChange() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RENEGADE_TEXT", -GC.getPromotionInfo(ePromotion).getLoyaltyChange()));
+	}
+
 	if (GC.getPromotionInfo(ePromotion).getCargoChange() != 0)
 	{
 		szBuffer.append(pcNewline);
@@ -5675,7 +5687,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ONLY_DEFENSIVE"));
 	}
 
-	if (GC.getUnitInfo(eUnit).isNoCapture())
+	if (GC.getUnitInfo(eUnit).isNoCityCapture())
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CANNOT_CAPTURE"));
@@ -5797,6 +5809,24 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_WITHDRAWL_PROBABILITY", GC.getUnitInfo(eUnit).getWithdrawalProbability()));
+	}
+
+	if (GC.getUnitInfo(eUnit).getFlightProbability() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY", GC.getUnitInfo(eUnit).getFlightProbability()));
+	}	
+		
+	if (GC.getUnitInfo(eUnit).getLoyaltyProbability() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_LOYALTY_PROBABILITY", GC.getUnitInfo(eUnit).getLoyaltyProbability()));
+	}
+
+	else if (GC.getUnitInfo(eUnit).getLoyaltyProbability() < 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY", GC.getUnitInfo(eUnit).getLoyaltyProbability()));
 	}
 
 	if (GC.getUnitInfo(eUnit).getCombatLimit() < GC.getMAX_HIT_POINTS() && GC.getUnitInfo(eUnit).getCombat() > 0 && !GC.getUnitInfo(eUnit).isOnlyDefensive())

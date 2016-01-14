@@ -300,7 +300,7 @@ public:
 	bool isAnimal() const;																								// Exposed to Python
 	bool isNoBadGoodies() const;																					// Exposed to Python
 	bool isOnlyDefensive() const;																					// Exposed to Python
-	bool isNoCapture() const;																							// Exposed to Python 
+	bool isNoCityCapture() const;																							// Exposed to Python 
 	bool isRivalTerritory() const;																				// Exposed to Python 
 	bool isMilitaryHappiness() const;																			// Exposed to Python
 	bool isInvestigate() const;																						// Exposed to Python
@@ -381,6 +381,7 @@ public:
 	int evasionProbability() const;																										// Exposed to Python
 	int withdrawalProbability() const;																			// Exposed to Python
 	// Flunky
+	int flightProbability() const;
 	int loyaltyProbability() const;
 	int slaveryProbability() const;
 
@@ -555,6 +556,8 @@ public:
 	void changeExtraWithdrawal(int iChange);
 
 	// Flunky
+	int getExtraFlight() const;
+	void changeExtraFlight(int iChange);
 	int getExtraLoyalty() const;
 	void changeExtraLoyalty(int iChange);
 
@@ -817,7 +820,9 @@ protected:
 	int m_iExtraChanceFirstStrikes;
 	int m_iExtraWithdrawal;
 	// Flunky
+	int m_iExtraFlight;
 	int m_iExtraLoyalty;
+
 	int m_iExtraCollateralDamage;
 	int m_iExtraBombardRate;
 	int m_iExtraEnemyHeal;
@@ -849,6 +854,7 @@ protected:
 	bool m_bBlockading;
 	bool m_bAirCombat;
 	// Flunky
+	bool m_bFlight;
 	bool m_bRenegade;
 	bool m_bSlavery;
 	int m_iRenegadePlotX;
@@ -883,8 +889,11 @@ protected:
 	void flankingStrikeCombat(const CvPlot* pPlot, int iAttackerStrength, int iAttackerFirepower, int iDefenderOdds, int iDefenderDamage, CvUnit* pSkipUnit = NULL);
 
 	// Flunky
-	void renegade(const CvPlot* pPlot);
+	void setFlight();
+	bool isFlight();
+	void setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot);
 	bool isRenegade();
+	void setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot);
 	bool isSlavery();
 	CvPlot* getRenegadePlot();
 

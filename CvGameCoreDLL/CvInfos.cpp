@@ -1586,6 +1586,10 @@ m_iAirRangeChange(0),
 m_iInterceptChange(0),
 m_iEvasionChange(0),
 m_iWithdrawalChange(0),
+// Flunky
+m_iFlightChange(0),
+m_iLoyaltyChange(0),
+// End Flunky
 m_iCargoChange(0),
 m_iCollateralDamageChange(0),
 m_iBombardRateChange(0),	
@@ -1727,6 +1731,16 @@ int CvPromotionInfo::getWithdrawalChange() const
 {
 	return m_iWithdrawalChange;
 }
+
+// Flunky
+int CvPromotionInfo::getFlightChange() const{
+	return m_iFlightChange;
+}
+
+int CvPromotionInfo::getLoyaltyChange() const{
+	return m_iLoyaltyChange;
+}
+// End Flunky
 
 int CvPromotionInfo::getCargoChange() const
 {
@@ -1958,11 +1972,6 @@ bool CvPromotionInfo::getUnitCombat(int i) const
 	return m_pbUnitCombat ? m_pbUnitCombat[i] : false;
 }
 
-// Flunky TODO meaningful value
-int CvPromotionInfo::getLoyaltyChange() const{
-	return 0;
-}
-
 void CvPromotionInfo::read(FDataStreamBase* stream)
 {
 	CvHotkeyInfo::read(stream);
@@ -1983,7 +1992,11 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iAirRangeChange);						
 	stream->Read(&m_iInterceptChange);						
 	stream->Read(&m_iEvasionChange);						
-	stream->Read(&m_iWithdrawalChange);				
+	stream->Read(&m_iWithdrawalChange);	
+	//Flunky					
+	stream->Read(&m_iFlightChange);						
+	stream->Read(&m_iLoyaltyChange);	
+
 	stream->Read(&m_iCargoChange);				
 	stream->Read(&m_iCollateralDamageChange);	
 	stream->Read(&m_iBombardRateChange);			
@@ -2077,7 +2090,11 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iAirRangeChange);						
 	stream->Write(m_iInterceptChange);						
 	stream->Write(m_iEvasionChange);						
-	stream->Write(m_iWithdrawalChange);				
+	stream->Write(m_iWithdrawalChange);	
+	//Flunky
+	stream->Write(m_iFlightChange);						
+	stream->Write(m_iLoyaltyChange);		
+
 	stream->Write(m_iCargoChange);				
 	stream->Write(m_iCollateralDamageChange);	
 	stream->Write(m_iBombardRateChange);			
@@ -2164,6 +2181,10 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iInterceptChange, "iInterceptChange");
 	pXML->GetChildXmlValByName(&m_iEvasionChange, "iEvasionChange");
 	pXML->GetChildXmlValByName(&m_iWithdrawalChange, "iWithdrawalChange");
+	//Flunky
+	pXML->GetChildXmlValByName(&m_iFlightChange, "m_iFlightChange");
+	pXML->GetChildXmlValByName(&m_iLoyaltyChange, "iLoyaltyChange");
+
 	pXML->GetChildXmlValByName(&m_iCargoChange, "iCargoChange");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageChange, "iCollateralDamageChange");
 	pXML->GetChildXmlValByName(&m_iBombardRateChange, "iBombardRateChange");
@@ -3011,6 +3032,9 @@ m_iChanceFirstStrikes(0),
 m_iInterceptionProbability(0),
 m_iEvasionProbability(0),
 m_iWithdrawalProbability(0),
+//Flunky
+m_iFlightProbability(0),
+m_iLoyaltyProbability(0),
 m_iCollateralDamage(0),
 m_iCollateralDamageLimit(0),
 m_iCollateralDamageMaxUnits(0),
@@ -3055,7 +3079,7 @@ m_bAnimal(false),
 m_bFoodProduction(false),
 m_bNoBadGoodies(false),
 m_bOnlyDefensive(false),
-m_bNoCapture(false),
+m_bNoCityCapture(false),
 m_bQuickCombat(false),
 m_bRivalTerritory(false),
 m_bMilitaryHappiness(false),
@@ -3345,6 +3369,16 @@ int CvUnitInfo::getWithdrawalProbability() const
 	return m_iWithdrawalProbability;
 }
 
+// Flunky TODO meaningful value
+int CvUnitInfo::getFlightProbability() const{
+	return m_iFlightProbability;
+}
+
+// Flunky TODO meaningful value
+int CvUnitInfo::getLoyaltyProbability() const{
+	return m_iLoyaltyProbability;
+}
+
 int CvUnitInfo::getCollateralDamage() const		
 {
 	return m_iCollateralDamage;
@@ -3572,9 +3606,9 @@ bool CvUnitInfo::isOnlyDefensive() const
 	return m_bOnlyDefensive;
 }
 
-bool CvUnitInfo::isNoCapture() const	
+bool CvUnitInfo::isNoCityCapture() const	
 {
-	return m_bNoCapture;
+	return m_bNoCityCapture;
 }
 
 bool CvUnitInfo::isQuickCombat() const	
@@ -4032,11 +4066,6 @@ int CvUnitInfo::getLeaderExperience() const
 	return m_iLeaderExperience;
 }
 
-// Flunky TODO meaningful value
-int CvUnitInfo::getLoyaltyProbability() const{
-	return 0;
-}
-
 const TCHAR* CvUnitInfo::getEarlyArtDefineTag(int i, UnitArtStyleTypes eStyle) const
 {
 	FAssertMsg(i < getGroupDefinitions(), "Index out of bounds");
@@ -4199,6 +4228,9 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iInterceptionProbability);
 	stream->Read(&m_iEvasionProbability);
 	stream->Read(&m_iWithdrawalProbability);
+	//Flunky
+	stream->Read(&m_iFlightProbability);
+	stream->Read(&m_iLoyaltyProbability);
 	stream->Read(&m_iCollateralDamage);
 	stream->Read(&m_iCollateralDamageLimit);
 	stream->Read(&m_iCollateralDamageMaxUnits);
@@ -4254,7 +4286,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bFoodProduction);
 	stream->Read(&m_bNoBadGoodies);
 	stream->Read(&m_bOnlyDefensive);
-	stream->Read(&m_bNoCapture);
+	stream->Read(&m_bNoCityCapture);
 	stream->Read(&m_bQuickCombat);
 	stream->Read(&m_bRivalTerritory);
 	stream->Read(&m_bMilitaryHappiness);
@@ -4498,6 +4530,9 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iInterceptionProbability);
 	stream->Write(m_iEvasionProbability);
 	stream->Write(m_iWithdrawalProbability);
+	//Flunky
+	stream->Write(m_iFlightProbability);
+	stream->Write(m_iLoyaltyProbability);
 	stream->Write(m_iCollateralDamage);
 	stream->Write(m_iCollateralDamageLimit);
 	stream->Write(m_iCollateralDamageMaxUnits);
@@ -4550,7 +4585,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bFoodProduction);
 	stream->Write(m_bNoBadGoodies);
 	stream->Write(m_bOnlyDefensive);
-	stream->Write(m_bNoCapture);
+	stream->Write(m_bNoCityCapture);
 	stream->Write(m_bQuickCombat);
 	stream->Write(m_bRivalTerritory);
 	stream->Write(m_bMilitaryHappiness);
@@ -4692,7 +4727,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bFoodProduction, "bFood");
 	pXML->GetChildXmlValByName(&m_bNoBadGoodies, "bNoBadGoodies");
 	pXML->GetChildXmlValByName(&m_bOnlyDefensive, "bOnlyDefensive");
-	pXML->GetChildXmlValByName(&m_bNoCapture, "bNoCapture");
+	pXML->GetChildXmlValByName(&m_bNoCityCapture, "bNoCityCapture");
 	pXML->GetChildXmlValByName(&m_bQuickCombat, "bQuickCombat");
 	pXML->GetChildXmlValByName(&m_bRivalTerritory, "bRivalTerritory");
 	pXML->GetChildXmlValByName(&m_bMilitaryHappiness, "bMilitaryHappiness");
@@ -4886,6 +4921,10 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iInterceptionProbability, "iInterceptionProbability");
 	pXML->GetChildXmlValByName(&m_iEvasionProbability, "iEvasionProbability");
 	pXML->GetChildXmlValByName(&m_iWithdrawalProbability, "iWithdrawalProb");
+	//Flunky
+	pXML->GetChildXmlValByName(&m_iFlightProbability, "iFlightProb");
+	pXML->GetChildXmlValByName(&m_iLoyaltyProbability, "iLoyaltyProb");
+
 	pXML->GetChildXmlValByName(&m_iCollateralDamage, "iCollateralDamage");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageLimit, "iCollateralDamageLimit");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageMaxUnits, "iCollateralDamageMaxUnits");

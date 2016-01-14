@@ -280,7 +280,7 @@ void CyInfoPythonInterface1()
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
-		.def("isNoCapture", &CvUnitInfo::isNoCapture, "bool ()")
+		.def("isNoCapture", &CvUnitInfo::isNoCityCapture, "bool ()")
 		.def("isRivalTerritory", &CvUnitInfo::isRivalTerritory, "bool ()")
 		.def("isMilitaryHappiness", &CvUnitInfo::isMilitaryHappiness, "bool ()")
 		.def("isMilitarySupport", &CvUnitInfo::isMilitarySupport, "bool ()")

@@ -161,7 +161,7 @@ public:
 	bool isNoBadGoodies();
 	bool isOnlyDefensive();
 
-	bool isNoCapture();
+	bool isNoCityCapture();
 	bool isRivalTerritory();
 	bool isMilitaryHappiness();
 	bool isInvestigate();

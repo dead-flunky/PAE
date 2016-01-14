@@ -312,7 +312,9 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iExtraChanceFirstStrikes = 0;
 	m_iExtraWithdrawal = 0;
 	//Flunky
+	m_iExtraFlight = 0;
 	m_iExtraLoyalty = 0;
+
 	m_iExtraCollateralDamage = 0;
 	m_iExtraBombardRate = 0;
 	m_iExtraEnemyHeal = 0;
@@ -344,6 +346,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_bAirCombat = false;
 	
 	//Flunky
+	m_bFlight = false;
 	m_bRenegade = false;
 	m_bSlavery = false;
 	m_iRenegadePlotX = INVALID_PLOT_COORD;
@@ -684,15 +687,16 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 				{
 					for(int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 					{
-						setHasPromotion((PromotionTypes)iI, m_pabRenegadePromotions[iI]);
+						pkCapturedUnit->setHasPromotion((PromotionTypes)iI, m_pabRenegadePromotions[iI]);
 					}
 					SAFE_DELETE_ARRAY(m_pabRenegadePromotions);
 				}
 
-
-				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
-				gDLL->getInterfaceIFace()->addMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-
+				
+				if (!isRenegade() && !isSlavery()){
+					szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
+					gDLL->getInterfaceIFace()->addMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				}
 				// Add a captured mission
 				CvMissionDefinition kMission;
 				kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
@@ -704,15 +708,12 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 				pkCapturedUnit->finishMoves();
 
-				if (!GET_PLAYER(eCapturingPlayer).isHuman())
+				if (!GET_PLAYER(eCapturingPlayer).isHuman() && /*Flunky - cheap tests first*/ GC.getDefineINT("AI_CAN_DISBAND_UNITS") && /*Flunky - don't disband military units*/ !pkCapturedUnit->canDefend())
 				{
 					CvPlot* pPlot = pkCapturedUnit->plot();
-					if (pPlot && !pPlot->isCity(false))
+					if (pPlot && !pPlot->isCity(false) && GET_PLAYER(eCapturingPlayer).AI_getPlotDanger(pPlot))
 					{
-						if (GET_PLAYER(eCapturingPlayer).AI_getPlotDanger(pPlot) && GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
-						{
-							pkCapturedUnit->kill(false);
-						}
+						pkCapturedUnit->kill(false);
 					}
 				}
 			}
@@ -1152,24 +1153,27 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 						break;
 					}
 
-					// Flunky - Angreifer desertiert lieber statt zu sterben
-					if (GC.getGameINLINE().getSorenRandNum(100, "Renegade") > loyaltyProbability())
+					// Flunky - Angreifer kann auch weglaufen - wie Rückzug nur ohne EP und Flankenschaden
+					if (GC.getGameINLINE().getSorenRandNum(100, "Flight") < flightProbability() /*&& canFlee()*/)
 					{
-						setCapturingPlayer(pDefender->getOwnerINLINE());
-						m_iRenegadePlotX = pPlot->getX_INLINE();
-						m_iRenegadePlotY = pPlot->getY_INLINE();
-						m_bRenegade = true;
+						setFlight();
+						break;
+					}
+
+					// Flunky - Angreifer desertiert lieber statt zu sterben
+					if (GC.getGameINLINE().getSorenRandNum(100, "Renegade") < 100 - loyaltyProbability() /*&& canRenegade()*/)
+					{
+						setRenegade(pDefender->getOwnerINLINE(), pPlot);
+						changeDamage(iAttackerDamage, pDefender->getOwnerINLINE());
 						
 						break;
 					} 
 
 					// manchmal wird man dann auch gefangen genommen
-					if(GC.getGameINLINE().getSorenRandNum(100, "Slave") < slaveryProbability())
+					if(GC.getGameINLINE().getSorenRandNum(100, "Slave") < slaveryProbability() /*&& canBeEnslaved() && pDefender->canEnslave()*/)
 					{
-						setCapturingPlayer(pDefender->getOwnerINLINE());
-						m_iRenegadePlotX = pPlot->getX_INLINE();
-						m_iRenegadePlotY = pPlot->getY_INLINE();
-						m_bSlavery = true;
+						setSlavery(pDefender->getOwnerINLINE(), pPlot);
+						changeDamage(iAttackerDamage, pDefender->getOwnerINLINE());
 						
 						break;
 					}
@@ -1206,23 +1210,30 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 					pDefender->setDamage(combatLimit(), getOwnerINLINE());
 					break;
 				}
-				
-				//// Flunky - Verteidiger kann auch weglaufen
-				//if (pDefender->getDamage() + iDefenderDamage >= pDefender->maxHitPoints() && GC.getGameINLINE().getSorenRandNum(100, "Flight") < pDefender->flightProbability() && pDefender->canFlee())
-				//{
-				//	pDefender->flight(pPlot, this);
+				if (pDefender->getDamage() + iDefenderDamage >= pDefender->maxHitPoints())
+				{
+					// Flunky - Verteidiger kann auch weglaufen
+					if (GC.getGameINLINE().getSorenRandNum(100, "Flight") < pDefender->flightProbability() /*&& pDefender->canFlee()*/)
+					{
+						pDefender->setFlight();
+						break;
+					}
 
-				//	break;
-				//}
+					// Flunky - Verteidiger desertiert lieber statt zu sterben
+					if (GC.getGameINLINE().getSorenRandNum(100, "DefenderRenegade") < 100 - pDefender->loyaltyProbability() /*&& pDefender->canRenegade()*/)
+					{
+						pDefender->setRenegade(getOwnerINLINE(), plot());
+						pDefender->changeDamage(iDefenderDamage, getOwnerINLINE());
+						break;
+					}
+					if(GC.getGameINLINE().getSorenRandNum(100, "DefenderSlavery") < pDefender->slaveryProbability() /*&& pDefender->canBeEnslaved() && canEnslave()*/)
+					{
+						pDefender->setSlavery(getOwnerINLINE(), plot());
+						pDefender->changeDamage(iDefenderDamage, getOwnerINLINE());
 
-				//// Flunky - Verteidiger desertiert lieber statt zu sterben
-				//if (pDefender->getDamage() + iDefenderDamage >= pDefender->maxHitPoints() && GC.getGameINLINE().getSorenRandNum(100, "DefenderRenegade") > pDefender->loyaltyProbability())
-				//{
-				//	pDefender->renegade(pPlot, this);
-
-				//	break;
-				//}
-
+						break;
+					}
+				}
 
 				pDefender->changeDamage(iDefenderDamage, getOwnerINLINE());
 
@@ -1517,12 +1528,24 @@ void CvUnit::updateCombat(bool bQuick)
 				GET_TEAM(pDefender->getTeam()).changeWarWeariness(getTeam(), *pPlot, GC.getDefineINT("WW_KILLED_UNIT_DEFENDING"));
 				GET_TEAM(pDefender->getTeam()).AI_changeWarSuccess(getTeam(), GC.getDefineINT("WAR_SUCCESS_DEFENDING"));
 			}
-
-			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DIED_ATTACKING", getNameKey(), pDefender->getNameKey());
-			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT", pDefender->getNameKey(), getNameKey(), getVisualCivAdjective(pDefender->getTeam()));
-			gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-
+			if (isRenegade()){
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_UNIT_RENEGADE_FROM_YOU", getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_UNIT_RENEGADE_TO_YOU", getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			}
+			else if (isSlavery()){
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_FROM_YOU", getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_TO_YOU", getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			}
+			else{
+				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DIED_ATTACKING", getNameKey(), pDefender->getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitDefeatScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT", pDefender->getNameKey(), getNameKey(), getVisualCivAdjective(pDefender->getTeam()));
+				gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			}
 			// report event to Python, along with some other key state
 			CvEventReporter::getInstance().combatResult(pDefender, this);
 		}
@@ -1570,7 +1593,7 @@ void CvUnit::updateCombat(bool bQuick)
 
 				if (bAdvance)
 				{
-					if (!isNoCapture())
+					if (!isNoCityCapture())
 					{
 						pDefender->setCapturingPlayer(getOwnerINLINE());
 					}
@@ -1598,12 +1621,35 @@ void CvUnit::updateCombat(bool bQuick)
 		}
 		else
 		{
+			if(isFlight()){
+
+				finishMoves();
+
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_YOU_UNIT_ESCAPE", getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_OUR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pDefender->plot()->getX_INLINE(), pDefender->plot()->getY_INLINE());
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_THEIR_UNIT_ESCAPE", getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_THEIR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			
+			}
+			else if (pDefender->isFlight()){	
+				if (pPlot->getNumUnits() == 1 && !pPlot->isCity())
+				{
+					pDefender->jumpToNearestValidPlot();
+					pDefender->changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(pDefender, pDefender->plot())));
+				}
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_YOU_UNIT_ESCAPE", pDefender->getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_OUR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pDefender->plot()->getX_INLINE(), pDefender->plot()->getY_INLINE());
+				szBuffer = gDLL->getText("TXT_KEY_MESSAGE_THEIR_UNIT_ESCAPE", pDefender->getNameKey());
+				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_THEIR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			}
+			else{
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_WITHDRAW", getNameKey(), pDefender->getNameKey());
 			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_OUR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 			szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_UNIT_WITHDRAW", getNameKey(), pDefender->getNameKey());
 			gDLL->getInterfaceIFace()->addMessage(pDefender->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_THEIR_WITHDRAWL", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
 			changeMoves(std::max(GC.getMOVE_DENOMINATOR(), pPlot->movementCost(this, plot())));
+			}
 			checkRemoveSelectionAfterAttack();
 
 			getGroup()->clearMissionQueue();
@@ -2536,7 +2582,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 		}
 	}
 
-	if (isNoCapture())
+	if (isNoCityCapture())
 	{
 		if (!bAttack)
 		{
@@ -2607,7 +2653,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 					if (pPlot->isVisibleEnemyUnit(this) != bAttack)
 					{
 						//FAssertMsg(isHuman() || (!bDeclareWar || (pPlot->isVisibleOtherUnit(getOwnerINLINE()) != bAttack)), "hopefully not an issue, but tracking how often this is the case when we dont want to really declare war");
-						if (!bDeclareWar || (pPlot->isVisibleOtherUnit(getOwnerINLINE()) != bAttack && !(bAttack && pPlot->getPlotCity() && !isNoCapture())))
+						if (!bDeclareWar || (pPlot->isVisibleOtherUnit(getOwnerINLINE()) != bAttack && !(bAttack && pPlot->getPlotCity() && !isNoCityCapture())))
 						{
 							return false;
 						}
@@ -7544,9 +7590,9 @@ bool CvUnit::isOnlyDefensive() const
 }
 
 
-bool CvUnit::isNoCapture() const
+bool CvUnit::isNoCityCapture() const
 {
-	return m_pUnitInfo->isNoCapture();
+	return m_pUnitInfo->isNoCityCapture();
 }
 
 
@@ -8793,13 +8839,23 @@ int CvUnit::withdrawalProbability() const
 	return std::max(0, (m_pUnitInfo->getWithdrawalProbability() + getExtraWithdrawal()));
 }
 
-// ueberlaufen kann auch, wer vom Schiff aus angreift.
+// Flunky - zurueck aufs Schiff fliehen bei amphibischen Angriffen ist nicht. Oder doch?
+int CvUnit::flightProbability() const
+{
+	if (getDomainType() == DOMAIN_LAND && plot()->isWater())
+	{
+		return 0;
+	}
+	return std::max(0, (m_pUnitInfo->getFlightProbability() + getExtraFlight()));
+}
+
+// Flunky - ueberlaufen kann auch, wer vom Schiff aus angreift.
 int CvUnit::loyaltyProbability() const
 {
 	return std::max(0, (m_pUnitInfo->getLoyaltyProbability() + getExtraLoyalty()));
 }
 
-// TODO meaningful value. Maybe depending on Civic
+// Flunky - TODO meaningful value. Maybe depending on Civic
 int CvUnit::slaveryProbability() const
 {
 	return GET_PLAYER(getOwnerINLINE()).canEnslave()? 100:0;
@@ -9414,7 +9470,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 									GET_TEAM(getTeam()).AI_changeWarSuccess(pLoopUnit->getTeam(), GC.getDefineINT("WAR_SUCCESS_UNIT_CAPTURING"));
 								}
 
-								if (!isNoCapture())
+								if (!isNoCityCapture())
 								{
 									pLoopUnit->setCapturingPlayer(getOwnerINLINE());
 								}
@@ -10358,6 +10414,16 @@ void CvUnit::changeExtraWithdrawal(int iChange)
 }
 
 //Flunky
+int CvUnit::getExtraFlight() const
+{
+	return m_iExtraFlight;
+}
+
+void CvUnit::changeExtraFlight(int iChange)															
+{
+	m_iExtraFlight += iChange;
+}
+
 int CvUnit::getExtraLoyalty() const
 {
 	return m_iExtraLoyalty;
@@ -11454,6 +11520,8 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeExtraFirstStrikes(GC.getPromotionInfo(eIndex).getFirstStrikesChange() * iChange);
 		changeExtraChanceFirstStrikes(GC.getPromotionInfo(eIndex).getChanceFirstStrikesChange() * iChange);
 		changeExtraWithdrawal(GC.getPromotionInfo(eIndex).getWithdrawalChange() * iChange);
+		changeExtraFlight(GC.getPromotionInfo(eIndex).getFlightChange() * iChange);
+		changeExtraLoyalty(GC.getPromotionInfo(eIndex).getLoyaltyChange() * iChange);
 		changeExtraCollateralDamage(GC.getPromotionInfo(eIndex).getCollateralDamageChange() * iChange);
 		changeExtraBombardRate(GC.getPromotionInfo(eIndex).getBombardRateChange() * iChange);
 		changeExtraEnemyHeal(GC.getPromotionInfo(eIndex).getEnemyHealChange() * iChange);
@@ -11607,6 +11675,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iExtraChanceFirstStrikes);
 	pStream->Read(&m_iExtraWithdrawal);
 	//Flunky
+	pStream->Read(&m_iExtraFlight);
 	pStream->Read(&m_iExtraLoyalty);
 	pStream->Read(&m_iExtraCollateralDamage);
 	pStream->Read(&m_iExtraBombardRate);
@@ -11641,7 +11710,8 @@ void CvUnit::read(FDataStreamBase* pStream)
 	{
 		pStream->Read(&m_bAirCombat);
 	}
-
+	//Flunky
+	pStream->Read(&m_bFlight);
 	pStream->Read(&m_bRenegade);
 	pStream->Read(&m_bSlavery);
 	pStream->Read(&m_iRenegadePlotX);
@@ -11718,7 +11788,9 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iExtraChanceFirstStrikes);
 	pStream->Write(m_iExtraWithdrawal);
 	//Flunky
+	pStream->Write(m_iExtraFlight);
 	pStream->Write(m_iExtraLoyalty);
+
 	pStream->Write(m_iExtraCollateralDamage);
 	pStream->Write(m_iExtraBombardRate);
 	pStream->Write(m_iExtraEnemyHeal);
@@ -11750,6 +11822,8 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_bBlockading);
 	pStream->Write(m_bAirCombat);
 	
+	//Flunky
+	pStream->Write(m_bFlight);
 	pStream->Write(m_bRenegade);
 	pStream->Write(m_bSlavery);
 	pStream->Write(m_iRenegadePlotX);
@@ -11795,7 +11869,7 @@ bool CvUnit::canAdvance(const CvPlot* pPlot, int iThreshold) const
 		return false;
 	}
 
-	if (isNoCapture())
+	if (isNoCityCapture())
 	{
 		if (pPlot->isEnemyCity(*this))
 		{
@@ -12026,9 +12100,34 @@ void CvUnit::flankingStrikeCombat(const CvPlot* pPlot, int iAttackerStrength, in
 	}
 }
 
+void CvUnit::setFlight()
+{	
+	m_bFlight = true;
+}
+
+bool CvUnit::isFlight()
+{
+	return m_bFlight;
+}
+void CvUnit::setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot)
+{
+	setCapturingPlayer(capturingPlayer);
+	m_iRenegadePlotX = pPlot->getX_INLINE();
+	m_iRenegadePlotY = pPlot->getY_INLINE();
+	m_bRenegade = true;
+}
+
 bool CvUnit::isRenegade()
 {
 	return m_bRenegade;
+}
+
+void CvUnit::setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot)
+{
+	setCapturingPlayer(capturingPlayer);
+	m_iRenegadePlotX = pPlot->getX_INLINE();
+	m_iRenegadePlotY = pPlot->getY_INLINE();
+	m_bSlavery = true;
 }
 
 bool CvUnit::isSlavery()
