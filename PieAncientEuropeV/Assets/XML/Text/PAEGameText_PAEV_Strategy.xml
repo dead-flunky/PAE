@@ -8,867 +8,867 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <Civ4GameText xmlns="http://www.firaxis.com">
   <TEXT>
-     <Tag>TXT_KEY_UNIT_BEDUINE_STRATEGY</Tag>
-     <English>Bedouin camel-riders are barbarian units that can occur in deserts. Only renegaded Bedouins can fight for your cause.</English>
-     <French>Le chameau b&#233;douin est une unit&#233; barbare qui apparait dans les zones de d&#233;sert. Seul les b&#233;douins ren&#233;gats peuvent combattre pour vous.</French>
-     <German>Beduinen sind ausschlie&#223;lich barbarische Kamelreiter, die in W&#252;sten auftauchen k&#246;nnen. Nur &#252;bergelaufene Beduinen k&#246;nnen f&#252;r die eigene Sache k&#228;mpfen.</German>
-     <Italian>Beduini sono esclusivamente barbari cavalieri sul cammello che possono apparire nei deserti. Solo beduini disertati possono combattere per la loro causa.</Italian>
-     <Spanish>Los jinetes de camellos beduinos son solo unidades b&#225;rbaras que pueden aparecer en desiertos. Solo Jinetes de camellos renegadas pueden luchar para ti en tu causa.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_KAMPFHUND_STRATEGY</Tag>
-     <English>Use this unit with withdrawal promotions, so that it can be used optimally to weaken much stronger units even without losing it.</English>
-     <French>Use this unit with withdrawal promotions, so that it can be used optimally to weaken much stronger units even without losing it.</French>
-     <German>Mit R&#252;ckzugsbef&#246;rderungen kann diese Einheit optimal verwendet werden, um viel st&#228;rkere Einheiten zu schw&#228;chen ohne dass sie selbst dabei verloren geht.</German>
-     <Italian>Use this unit with withdrawal promotions, so that it can be used optimally to weaken much stronger units even without losing it.</Italian>
-     <Spanish>Usa esta unidad con ascensos de retirada, as&#237; puede ser usada &#243;ptimamente para debilitar unidades mucho mas fuertes sin perderla.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_BRAHMANE_STRATEGY</Tag>
-     <English>This unit can boost healing to all units on the same plot.</English>
-     <French>Cette unit&#233; am&#233;liore la vitesse de gu&#233;rison des unit&#233;s dans la m&#234;me case.</French>
-     <German>Diese Einheit kann den Heilungsprozess aller am selben Feld stehenden Einheiten beschleunigen.</German>
-     <Italian>Questa &#232; l'unit&#224; che pu&#242; aumentare la guarigione.</Italian>
-     <Spanish>Esta unidad puede acelerar el proceso de curaci&#243;n de todas las unidades en la misma casilla.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_GERMAN_DOUBLEFIGHTER_STRATEGY</Tag>
-     <English>This Germanic special unit is one of the strongest mounted unit of his time and perfect against melee.</English>
-     <French>Ces unit&#233; sp&#233;ciale germanique est l'un des plus forts r&#233;giments de cavalerie de son temps et id&#233;al contre m&#234;l&#233;e.</French>
-     <German>Diese germanische Spezialeinheit ist eine der st&#228;rksten Reitereinheiten seiner Zeit und ideal gegen Nahk&#228;mpfer.</German>
-     <Italian>Queste unit&#224; speciale germanico &#232; uno dei pi&#249; forti reggimenti di cavalleria del suo tempo e ideale contro mischia.</Italian>
-     <Spanish>Esta unidad especial germ&#225;nica es una de las unidades montadas m&#225;s fuertes de su tiempo y es perfecto contra cuerpo a cuerpo.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_HORSEMAN_CELTIC_STRATEGY</Tag>
-     <English>This Celtic special unit is one of the strongest mounted unit of his time and perfect against melee.</English>
-     <French>Cette unit&#233; sp&#233;ciale celtique est l'un des plus forts r&#233;giments de cavalerie de son temps et parfaite contre m&#234;l&#233;e.</French>
-     <German>Diese keltische Spezialeinheit ist eine der st&#228;rksten Reitereinheiten seiner Zeit und ideal gegen Nahk&#228;mpfer.</German>
-     <Italian>Questa unit&#224; speciale celtica &#232; uno dei pi&#249; forti reggimenti di cavalleria del suo tempo e perfetta contro mischia.</Italian>
-     <Spanish>Esta unidad especial celta es unida de las unidades montadas m&#225;s fuertes de su momento y perfecta contra cuerpo a cuerpo.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_CELTIC_FIANNA_STRATEGY</Tag>
-     <English>This strong special unit can be used for any type of battle. Unfortunately, it also tends to defect easily.</English>
-     <French>Cette unit&#233; sp&#233;ciale est tr&#232;s puissante et peut &#234;tre utilis&#233;e pour tous les types de combat. Malheureusement, elle a aussi tendance &#224; passer &#224; l'ennemi souvent.</French>
-     <German>Diese starke Spezialeinheit kann f&#252;r jede Art von Kampf eingesetzt werden. Sie neigt aber leider auch dazu leicht die Seiten zu wechseln.</German>
-     <Italian>Questa unit&#224; speciale forte pu&#242; essere utilizzato per qualsiasi tipo di battaglia. Ma tende purtroppo anche facile passare i lati.</Italian>
-     <Spanish>Esta fuerte unidad especial puede eser usada para cualquier forma de combate. Desafortunadamente, tiende a desertar con facilidad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_MONGOL_KESHIK_STRATEGY</Tag>
-     <English>The hunic raider is the most powerful mounted unit of the late antiquity.</English>
-     <French>Le maraudeur hun est l'unit&#233; mont&#233;e la plus puissante de l'antiquit&#233; tardive.</French>
-     <German>Der hunnische Marodeur ist die st&#228;rkste berittene Einheit der Sp&#228;tantike.</German>
-     <Italian>Il Hun Marauder &#232; il pi&#249; forte unit&#224; di cavalleria della tarda antichit&#224;.</Italian>
-     <Spanish>El jinete huno es la unidad montada m&#225;s poderosa de la antig&#252;edad tard&#237;a.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_INDIAN_LONGBOW_STRATEGY</Tag>
-     <English>This is the strongest ranged combat unit in the game and is best used against infantry.</English>
-     <French>Il s'agit de la plus forte unit&#233; de temps d'attaque de gamme dans le jeu et est mieux utilis&#233; contre l'infanterie.</French>
-     <German>Dies ist die st&#228;rkste Fernangriffseinheit im Spiel und eignet sich am besten gegen Infanterie.</German>
-     <Italian>Questo &#232; il pi&#249; forte unit&#224; lungo attacco di serie nel gioco e viene utilizzato al meglio contro la fanteria.</Italian>
-     <Spanish>Esta es la unidad de combate a distancia m&#225;s fuerte en el juego y se usa mejor contra la infanter&#237;a.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_INDIAN_NAYAR_STRATEGY</Tag>
-     <English>This elite unit is only available for the Indians and can be commended from a shield bearer, which has acquired the status of a veteran.</English>
-     <French>Cette unit&#233; d'&#233;lite est que les Indiens sont disponibles et peuvent &#234;tre cr&#233;&#233;s &#224; partir d'un support de plaque, qui a obtenu le statut de v&#233;t&#233;ran.</French>
-     <German>Diese Eliteeinheit steht nur den Indern zur Verf&#252;gung und kann aus einem Schildtr&#228;ger erstellt werden, der den Status eines Veterans erreicht hat.</German>
-     <Italian>Questa unit&#224; d'elite solo gli indiani sono disponibili e possono essere creati da un vettore piatto, che ha raggiunto lo status di un veterano.</Italian>
-     <Spanish>Esta unidad &#233;lite s&#243;lo est&#225; disponible para los indios y puede ser promovida desde un soldado con escudo, que ha conseguido el estatus de veterano.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_IBERIAN_CAVALRY_STRATEGY</Tag>
-     <English>In the Early Classic this unit is one of the strongest units and fits perfect against melee units.</English>
-     <French>Au d&#233;but de l'Antiquit&#233;, cette unit&#233; est l'une des plus puissantes et convient parfaitement aux combats rapproch&#233;s.</French>
-     <German>Diese Einheit ist in der fr&#252;hen Klassik eine der st&#228;rksten Einheiten und eignet sich bestens gegen Nahkampfeinheiten.</German>
-     <Italian>Questa unit&#224; &#232; uno dei pi&#249; forti unit&#224; nel Early Classic ed &#232; perfetto contro le unit&#224; da mischia.</Italian>
-     <Spanish>Al principio de la era cl&#225;sica esta unidad es una de las m&#225;s fuertes y es perfectamente adecuada contra unidades cuerpo a cuerpo.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_KERMA_WARRIOR_STRATEGY</Tag>
-     <English>This unit is the strongest Spearman unit this time and can be used universally.</English>
-     <French>Cette unit&#233; est l'unit&#233; de support de lance, cette fois plus forte et peut &#234;tre utilis&#233;e de mani&#232;re universelle.</French>
-     <German>Diese Einheit ist die st&#228;rkste Speertr&#228;gereinheit dieser Zeit und kann universell eingesetzt werden.</German>
-     <Italian>Questa unit&#224; &#232; il pi&#249; forte unit&#224; vettore lancia questo momento e pu&#242; essere usato universalmente.</Italian>
-     <Spanish>Esta unidad es la unidad con lanza m&#225;s fuerte de su tiempo y puede ser usada universalmente.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_NUBIAFUERST_STRATEGY</Tag>
-     <English>This elite unit is only available for the Nubians and can be commended from a shield bearer, which has acquired the status of a veteran.</English>
-     <French>This elite unit is only available for the Nubians and can be commended from a shield bearer, which has acquired the status of a veteran.</French>
-     <German>Diese Eliteeinheit steht nur den Nubiern zur Verf&#252;gung und kann aus einem Schildtr&#228;ger erstellt werden, der den Status eines Veterans erreicht hat.</German>
-     <Italian>This elite unit is only available for the Nubians and can be commended from a shield bearer, which has acquired the status of a veteran.</Italian>
-     <Spanish>Esta unidad de &#233;lite s&#243;lo esta disponible para los nubios y puede ser promovida desde un soldado con escudo, que ha conseguido el estatus de veterano.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_LIBYAN_AMAZON_STRATEGY</Tag>
-     <English>The Libyan Amazons are best suited for city defense.</English>
-     <French>Les Amazones libyennes sont les mieux adapt&#233;s pour la d&#233;fense de la ville.</French>
-     <German>Die Libyschen Amazonen eignen sich am besten f&#252;r die Stadtverteidigung.</German>
-     <Italian>Le Amazzoni libiche sono pi&#249; adatti per la difesa della citt&#224;.</Italian>
-     <Spanish>La amazona libia se usa mejor para la defensa de la ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_RADSCHA_STRATEGY</Tag>
-     <English>This elite unit is well suited for the attack and defense of cities.</English>
-     <French>Cette unit&#233; d'&#233;lite convient parfaitement pour attaquer ou d&#233;fendre les villes.</French>
-     <German>Diese Eliteeinheit eignet sich gut f&#252;r den Angriff und die Verteidung von St&#228;dten.</German>
-     <Italian>Questa unit&#224; d'elite &#232; adatto per l'attacco e la difesa delle citt&#224;.</Italian>
-     <Spanish>Esta unidad &#233;lite es muy adecuada para el ataque y la defensa de las ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_HORSEMAN_SKYTHEN_STRATEGY</Tag>
-     <English>This is the first mounted unit, which can represent a serious threat for the opponent on open field early in the game.</English>
-     <French>C'est la premi&#232;re unit&#233; mont&#233;e. Elle peut repr&#233;senter une &#233;norme menace au d&#233;but du jeu contre un adversaire en terrain d&#233;couvert.</French>
-     <German>Dies ist die erste berittene Einheit, die fr&#252;h im Spiel auf offenem Feld eine ernste Bedrohung f&#252;r den Gegner bedeuten kann.</German>
-     <Italian>Questa &#232; la prima unit&#224; montata che all'inizio del gioco pu&#242; significare una seria minaccia per il nemico in campo aperto.</Italian>
-     <Spanish>Esta es la primera unidad montada, que puede representar una seria amenaza para el enemigo en terreno abierto al principio del juego.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_WAR_HORSE_THRAKER_STRATEGY</Tag>
-     <English>This unit ignores terrain movement costs, making it one of the most effective mounted units.</English>
-     <French>Cette unit&#233; est extr&#234;ment effective car elle ignore les c&#244;uts de d&#233;placement li&#233;s au terrain.</French>
-     <German>Diese Einheit ignoriert Gel&#228;ndefortbewegungskosten und ist somit eine der effektivsten berittenen Einheiten.</German>
-     <Italian>Questa unit&#224; ignora i costi di movimento del terreno, che lo rende una delle unit&#224; montate pi&#249; efficaci.</Italian>
-     <Spanish>Esta unidad ignora los costes por movimiento de terreno, haci&#233;ndola una de las unidad montadas m&#225;s efectivas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_GREAT_WALL_GORGAN_STRATEGY</Tag>
-     <English>This wonder prevents Barbarians crossing the cultural borders.</English>
-     <French>Cette merveille emp&#234;che les barbares de franchir les fronti&#232;res culturelles.</French>
-     <German>Dieses Wunder hindert Barbaren am &#220;berqueren der Grenzen. [NEWLINE]</German>
-     <Italian>Questo miracolo impedisce barbari che attraversano le frontiere.</Italian>
-     <Spanish>Esta maravilla previene que los b&#225;rbaros crucen las fronteras culturales.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_HADRIAN_WALLS_STRATEGY</Tag>
-     <English>+1 [ICON_HAPPY] in all cities of the continent</English>
-     <French>+1 [ICON_HAPPY] dans toutes les villes du continent</French>
-     <German>+1 [ICON_HAPPY] in allen St&#228;dten des Kontinents [NEWLINE]</German>
-     <Italian>+1 [ICON_HAPPY] in tutte le citt&#224; del continente</Italian>
-     <Spanish>+1 [ICON_HAPPY] en todas las ciudades del continente</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_MISSIONARY_JAINISMUS_STRATEGY</Tag>
-     <English>With this missionary the [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] can be actively spread in other cities.</English>
-     <French>Avec ce missionnaire le [COLOR_HIGHLIGHT_TEXT]Ja&#239;nisme[COLOR_REVERT] peut &#234;tre r&#233;pandu de fa&#231;on active dans d'autres villes.</French>
-     <German>Mit diesem Missionar kann der [COLOR_HIGHLIGHT_TEXT]Jainismus[COLOR_REVERT] in anderen St&#228;dten verbreitet werden.</German>
-     <Italian>Con questi missionario [COLOR_HIGHLIGHT_TEXT] Jainismo [COLOR_REVERT] pu&#242; essere utilizzato in altre citt&#224;.</Italian>
-     <Spanish>Con este misionero el [COLOR_HIGHLIGHT_TEXT]Jainismo[COLOR_REVERT] puede ser difundido r&#225;pidamente en otras ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_BURNING_PIGS_STRATEGY</Tag>
-     <English>Use [COLOR_UNIT_TEXT]Burning Pigs[COLOR_REVERT] to directly attack [COLOR_UNIT_TEXT]War Elephant[COLOR_REVERT] units and cause collateral damage to a stack of units. The [COLOR_UNIT_TEXT]Burning Pigs[COLOR_REVERT] unit will die after combat.</English>
-     <French>Utilisez les [COLOR_UNIT_TEXT]porcs incendiaires[COLOR_REVERT] pour attaquer directement les [COLOR_UNIT_TEXT]&#233;l&#233;phants de guerre[COLOR_REVERT] et faire des dommages collat&#233;raux aux unit&#233;s empil&#233;es. Les [COLOR_UNIT_TEXT]porcs de guerre[COLOR_REVERT] mourront apr&#232;s le combat.</French>
-     <German>Verwende [COLOR_UNIT_TEXT]Brennende Schweine[COLOR_REVERT] um [COLOR_UNIT_TEXT]Kriegselefanten[COLOR_REVERT] direkt zu schaden und Kollateralschaden zu verursachen. Die Einheit stirbt nach dem Angriff.</German>
-     <Italian>Usare [COLOR_UNIT_TEXT] Bruciare suini [COLOR_REVERT] a [COLOR_UNIT_TEXT] elefanti da guerra [COLOR_REVERT] per danneggiare direttamente e causare danni collaterali. L'unit&#224; &#232; morto dopo l'attacco.</Italian>
-     <Spanish>Usa los [COLOR_UNIT_TEXT]Cerdos Ardientes[COLOR_REVERT] para atacar directamente a los [COLOR_UNIT_TEXT]elefantes de guerra[COLOR_REVERT] y causar da&#241;os colaterales a una pila de unidades. El [COLOR_UNIT_TEXT]Cerdo de Guerra[COLOR_REVERT] morir&#225; despu&#233;s del combate.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_ARGYRASPIDAI_STRATEGY</Tag>
-     <English>This elite unit of the Macedonians suits best against [COLOR_UNIT_TEXT]Axemen[COLOR_REVERT], [COLOR_UNIT_TEXT]Chariots[COLOR_REVERT] and [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</English>
-     <French>Cette unit&#233; d'&#233;lite mac&#233;donienne convient mieux contre le [COLOR_UNIT_TEXT]lancier[COLOR_REVERT].</French>
-     <German>Diese Eliteeinheit der Makedonier eignet sich am besten gegen [COLOR_UNIT_TEXT]Axtk&#228;mpfer[COLOR_REVERT], [COLOR_UNIT_TEXT]Streitwagen[COLOR_REVERT] und [COLOR_UNIT_TEXT]Berittene[COLOR_REVERT].</German>
-     <Italian>Questa unit&#224; d'elite dei macedoni &#232; meglio utilizzato contro [COLOR_UNIT_TEXT] Spearman [COLOR_REVERT].</Italian>
-     <Spanish>Esta unidad de &#233;lite de los macedonios se adapta mejor contra [COLOR_UNIT_TEXT]Unidades con hacha[COLOR_REVERT], [COLOR_UNIT_TEXT]unidades de carros[COLOR_REVERT],y [COLOR_UNIT_TEXT]unidades montadas[COLOR_REVERT].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_THORAKITAI_STRATEGY</Tag>
-     <English>This unit is one of the strongest units against mounted units and is also suitable in the fight against foot soldiers.</English>
-     <French>Cette unit&#233; est l'une des meilleures contre les unit&#233;s mont&#233;es et fonctionnent &#233;galement bien contre l'infanterie.</French>
-     <German>Diese Einheit ist eine der st&#228;rksten Einheiten gegen Reiter und eignet sich auch im Kampf gegen Fu&#223;soldaten.</German>
-     <Italian>Questa unit&#224; &#232; uno dei pi&#249; forti unit&#224; contro i piloti ed &#232; anche nella lotta contro soldati a piedi.</Italian>
-     <Spanish>Esta unidad es una de las unidades mas fuertes contra unidades montadas y tambi&#233;n se adapta en la lucha contra soldados de a pie.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_PILUM_STRATEGY</Tag>
-     <English>This technology can produce the first pilum draft unit and is a prerequisite for the later coming legionary units!</English>
-     <French>Cette technologie permet de produire la premi&#232;re unit&#233; &#224; javelot. C'est &#233;galement un pr&#233;requis pour les l&#233;gions romaines !</French>
-     <German>Diese Technologie kann die erste Pilumswurfeinheit erzeugen und ist Voraussetzung f&#252;r die sp&#228;ter kommenden Legion&#228;rseinheiten!</German>
-     <Italian>Cette technologie peut produire le premier projet de pilum unit&#233; et est une condition pr&#233;alable pour les unit&#233;s de l&#233;gionnaires &#224; venir plus tard!</Italian>
-     <Spanish>&#161;Esta tecnolog&#237;a puede producir la primera unidad reclutada con el pilum y es un requisito para las posteriores unidades legionarias!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_ROMAN_OR_PERSIAN_ROADS_STRATEGY</Tag>
-     <English>With this technology, you are able to build roads with an additional bonus of movement.</English>
-     <French>Cette technologie permet de construire des routes avec un bonus de mouvement suppl&#233;mentaire.</French>
-     <German>Mit dieser Technologie k&#246;nnen Stra&#223;en gebaut werden, die einen zus&#228;tzlichen Fortbewegungsbonus liefern.</German>
-     <Italian>Con questa tecnologia, le strade possono essere costruiti, che forniscono un bonus extra movimento.</Italian>
-     <Spanish>Con esta tecnolog&#237;a, podr&#225;s construir caminos con un bonus adicional de movimiento.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_HASTATI_STRATEGY</Tag>
-     <English>Hastati are cheap but effective units (first strike) and are suitable to fight on the front line to weaken the enemy. They can also be used to build a [COLOR_HIGHLIGHT_TEXT] Roman road [COLOR_REVERT] as well as [COLOR_HIGHLIGHT_TEXT] forts [COLOR_REVERT] and can clear forests/jungles.</English>
-     <French>Les Hastati sont des unit&#233;s peu ch&#232;res mais efficaces (attaque en premier). Ils sont efficaces en premi&#232;re ligne pour affaiblir l'ennemi. Ils peuvent aussi &#234;tre utilis&#233;s pour construire une [COLOR_HIGHLIGHT_TEXT] route romaine [COLOR_REVERT] ou des [COLOR_HIGHLIGHT_TEXT] forts [COLOR_REVERT]. Ils peuvent aussi couper les for&#234;ts et les jungles.</French>
-     <German>Hastati sind billige aber effektive Einheiten (Erstangriff) und eignen sich dazu an vorderster Front zu k&#228;mpfen und den Gegner zu schw&#228;chen. Sie sind weiters in der Lage eine [COLOR_HIGHLIGHT_TEXT]R&#246;mische Stra&#223;e[COLOR_REVERT] sowie [COLOR_HIGHLIGHT_TEXT]Festungen[COLOR_REVERT] zu bauen und Wald/Dschungel zu roden.</German>
-     <Italian>Astati sono unit&#224; economiche ma efficaci (primo attacco) e sono adatte a combattere in prima linea e indebolire il nemico. Sono, inoltre, in una posizione a [COLOR_HIGHLIGHT_TEXT] strada romana [COLOR_REVERT] e [COLOR_HIGHLIGHT_TEXT] fortezze [COLOR_REVERT] per costruire e per cancellare foresta / giungla.</Italian>
-     <Spanish>Los Hastati son unidades baratas pero efectivas (ataque de iniciativa) y est&#225; capacitada para luchar en el frente para debilitar al enemigo. Puede ser usado tambi&#233;n para construir una [COLOR_HIGHLIGHT_TEXT] V&#237;a romana [COLOR_REVERT] como tambi&#233;n [COLOR_HIGHLIGHT_TEXT] fuertes [COLOR_REVERT] y puede limpiar bosques/selvas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_PILUMNI_STRATEGY</Tag>
-     <English>This first unit equipped with a pilum (first strike), is suitable to fight on the front line to weaken the enemy. It can also be used to build a [COLOR_HIGHLIGHT_TEXT] Roman Road [COLOR_REVERT] as well as [COLOR_HIGHLIGHT_TEXT] Forts [COLOR_REVERT] and can clear forests/jungles.</English>
-     <French>La premi&#232;re unit&#233; &#233;quip&#233;e d'un Pilum (attaque en premier). Elle est efficace en premi&#232;re ligne pour affaiblir l'ennemi. Elle peut &#233;galement &#234;tre utilis&#233;e pour construire une [COLOR_HIGHLIGHT_TEXT] voie romaine [COLOR_REVERT] ou des [COLOR_HIGHLIGHT_TEXT] forts [COLOR_REVERT]. Elle peut aussi couper les for&#234;ts et les jungles.</French>
-     <German>Diese, erstmals mit einem Pilum ausgestattete Einheit (Erstangriff), eignet sich dazu an vorderster Front zu k&#228;mpfen und den Gegner zu schw&#228;chen. Sie ist weiters in der Lage eine [COLOR_HIGHLIGHT_TEXT]r&#246;mische Stra&#223;e[COLOR_REVERT] sowie [COLOR_HIGHLIGHT_TEXT]Festungen[COLOR_REVERT] zu bauen und Wald/Dschungel zu roden.</German>
-     <Italian>Questo, per la prima volta munito di un'unit&#224; pilum (primo attacco), &#232; di combattere in prima linea e indebolire il nemico. E 'inoltre in grado di [COLOR_HIGHLIGHT_TEXT] strada romana [COLOR_REVERT] e [COLOR_HIGHLIGHT_TEXT] fortezze [COLOR_REVERT] per costruire e per cancellare foresta / giungla.</Italian>
-     <Spanish>La primera unidad equipada con un pilum (ataque de iniciativa), est&#225; capacitada para luchar en el frente para debilitar al enemigo. Puede ser usado tambi&#233;n para construir una [COLOR_HIGHLIGHT_TEXT] V&#237;a romana [COLOR_REVERT] como tambi&#233;n [COLOR_HIGHLIGHT_TEXT] fuertes [COLOR_REVERT] y puede limpiar bosques/selvas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_PRINCIPES_STRATEGY</Tag>
-     <English>Principes are strong melee units and can be used in attacking cities.</English>
-     <French>Les principes sont des unit&#233;s de m&#234;l&#233;es puissantes et peuvent &#234;tre utilis&#233;es pour attaquer les villes.</French>
-     <German>Principes sind starke Nahkampfeinheiten und eigenen sich f&#252;r Stadteroberungen.</German>
-     <Italian>Principes sono forti le unit&#224; da mischia e sono adatti per la conquista della citt&#224;.</Italian>
-     <Spanish>Los Principes son unidades cuerpo a cuerpo fuertes y pueden ser usados para atacar ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_TRIARII_STRATEGY</Tag>
-     <English>Triarii Legionis can be created by Principes Legionis and Hastati Legionis and are best suited against mounted units. For this you need the technology of [COLOR_TECH_TEXT]Iron Weaponry[COLOR_REVERT] and those units have to be veteran ranked.</English>
-     <French>Les Legionis Triarii peuvent &#234;tre cr&#233;es par les Legionis Principes ou Hastati et sont efficaces contre les unit&#233;s mont&#233;es. Cela demande d'avoir d&#233;bloqu&#233; la technologie [COLOR_TECH_TEXT]Armes de Fer[COLOR_REVERT] et une unit&#233; v&#233;t&#233;rante.</French>
-     <German>Triarii k&#246;nnen nur von Principes und Hastati gebildet werden und eignen sich am besten im Kampf gegen Reiter. Dazu ben&#246;tigt man die Technologie [COLOR_TECH_TEXT]Eisenwaffen[COLOR_REVERT] und die Einheiten m&#252;ssen den Rang Veteran vorweisen.</German>
-     <Italian>Triarii Legionis pu&#242; essere formata solo da Principes Legionis e Astati Legionis e sono meglio utilizzato nella lotta contro cavalieri. Per questo &#232; necessario la tecnologia [COLOR_TECH_TEXT]Armi di Ferro[COLOR_REVERT] e le unit&#224; deve avere il rango di Veterano.</Italian>
-     <Spanish>Los Triarii Legionis pueden ser creados por Principes Legionis y Hastati Legionis y est&#225;n mejor prepadas contra unidades montadas. Para esto necesitas la tecnolog&#237;a [COLOR_TECH_TEXT]Armas de Hierro[COLOR_REVERT] y esas unidades tienen que tener el rango de veteranas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_ROME_PRAETORIAN_RIDER_STRATEGY</Tag>
-     <English>The Mounted Praetorian is on the one hand, one of the strongest cavalry unit of late antiquity, but also the most expensive.</English>
-     <French>Le pr&#233;torien mont&#233; est l'une des unit&#233;s mont&#233;es les plus puissantes de l'Antiquit&#233; tardive mais c'est &#233;galement la plus ch&#232;re.</French>
-     <German>Der Berittene Pr&#228;torianer ist einerseits eine der st&#228;rksten berittenen Einheiten der Sp&#228;tantike, aber daf&#252;r auch die teuerste.</German>
-     <Italian>Il Pretorio Montato, da un lato uno dei pi&#249; forti unit&#224; montata tarda antichit&#224;, ma anche il pi&#249; costoso.</Italian>
-     <Spanish>El Pretoriano Montado es por un lado, una de las unidades de caballer&#237;as mas fuertes de la antig&#252;edad tard&#237;a, pero tambi&#233;n de las m&#225;s caras.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_ARVERNER_STRATEGY</Tag>
-     <English>This very strong elite unit was trained as a general protection.</English>
-     <French>Cette unit&#233; d'&#233;lite extr&#234;mement puissante &#233;tait entra&#238;n&#233;e pour prot&#233;ger les g&#233;n&#233;raux.</French>
-     <German>Diese sehr starke Eliteeinheit wurde zum allgemeinen Schutz ausgebildet.</German>
-     <Italian>Questo molto forte unit&#224; d'elite &#232; stato addestrato come una protezione generale.</Italian>
-     <Spanish>Esta unidad de &#233;lite muy fuerte fue entrenada como protecci&#243;n de un general.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_CAMEL_STRATEGY</Tag>
-     <English>[COLOR_UNIT_TEXT]Camels[COLOR_REVERT] can be used to accelerate production in weak cities.</English>
-     <French>Les [COLOR_UNIT_TEXT]Chameaux[COLOR_REVERT] peuvent &#234;tre utilis&#233;s pour acc&#233;l&#233;rer la production des villes.</French>
-     <German>[COLOR_UNIT_TEXT]Kamele[COLOR_REVERT] k&#246;nnen dazu verwendet werden, in schwachen St&#228;dten die Produktion zu beschleunigen.</German>
-     <Italian>[COLOR_UNIT_TEXT] Cammelli [COLOR_REVERT] possono essere utilizzati per accelerare la produzione in citt&#224; deboli.</Italian>
-     <Spanish>Los [COLOR_UNIT_TEXT]Camellos[COLOR_REVERT] pueden ser usados para acelerar la producc&#243;n en ciudades d&#233;biles.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_BELGIER_STRATEGY</Tag>
-     <English>This unit is one of the strongest units of its time and can be used for every form of attack.</English>
-     <French>Cette unit&#233; est l'une des plus puissantes de son temps et peut &#234;tre utilis&#233;e pour toute forme d'attaque.</French>
-     <German>Diese Einheit ist eine der st&#228;rksten Einheiten seiner Zeit und kann f&#252;r jeden Angriff eingesetzt werden.</German>
-     <Italian>Cette unit&#233; est l'une des unit&#233;s les plus forts de son temps et peut &#234;tre utilis&#233; pour toute attaque</Italian>
-     <Spanish>Esta unidad es una de las unidades m&#225;s fuertes de su tiempo y puede ser usada para todas las formas de ataque.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_WURFAXT_STRATEGY</Tag>
-     <English>The Axe Thrower is one of the most dangerous units of late antiquity.</English>
-     <French>Le lanceur de hache est l'une des unit&#233;s les plus dangereuses de l'Antiquit&#233; tardive.</French>
-     <German>Der Axtwerfer ist eine der gef&#228;hrlichsten Kampfeinheiten der Sp&#228;tantike.</German>
-     <Italian>L'Axe Thrower &#232; una delle unit&#224; combattenti pi&#249; pericolosi della tarda antichit&#224;.</Italian>
-     <Spanish>El Lanzador de Hacha es una de las unidades m&#225;s peligrosas de la antig&#252;edad tard&#237;a.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_WURFAXT_STRATEGY</Tag>
-     <English>This technology is subject to the Celtic and Germanic tribes. Axe Throwers can be trained.</English>
-     <French>Cette technologie est r&#233;serv&#233;e aux tribus celtes et germaniques. Elle permet le recrutement de lanceurs de haches.</French>
-     <German>Diese Technologie ist den keltischen und germanischen St&#228;mmen vorbehalten. Mit ihr k&#246;nnen Axtwerfer ausgebildet werden.</German>
-     <Italian>Questa tecnologia &#232; il celtico e trib&#249; germaniche riservati, con i suoi lanciatori d'ascia possono essere formate.</Italian>
-     <Spanish>Esta tecnolog&#237;a est&#225; asignada a las tribus celtas y germanas, y por tanto pueden formarse Lanzador de Hacha.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_LORICA_SEGMENTATA_STRATEGY</Tag>
-     <English>With this technology, the most vigorous stage of the Legion can be built.</English>
-     <French>Cette technologie permet de cr&#233;er les L&#233;gions les plus puissantes du jeu.</French>
-     <German>Mit dieser Technologie kann die kr&#228;ftigste Ausbaustufe der Legion gebaut werden.</German>
-     <Italian>Con questa tecnologia, la fase di espansione pi&#249; forte della Legione pu&#242; essere costruito.</Italian>
-     <Spanish>Con esta tecnolog&#237;a, la forma m&#225;s vigorosa de la Legi&#243;n puede ser constru&#237;da.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_BEWEIS_STRATEGY</Tag>
-     <English>With this technology you are able to construct [COLOR_BUILDING_TEXT]The School of Pythagoras[COLOR_REVERT] wonder with a Great Scientist.</English>
-     <French>Cette technologie permet de construire l'[COLOR_BUILDING_TEXT]&#201;cole de Pythagore[COLOR_REVERT] avec un Grand Scientifique.</French>
-     <German>Mit dieser Technologie kann mit Hilfe eines Gro&#223;en Wissenschaftlers die [COLOR_BUILDING_TEXT]Schule des Pythagoras[COLOR_REVERT] errichtet werden.</German>
-     <Italian>Questa tecnologia pu&#242; essere costruito con l'aiuto di un grande scienziato, la [COLOR_BUILDING_TEXT]Scuola di Pitagora[COLOR_REVERT].</Italian>
-     <Spanish>Con esta tecnolog&#237;a puedes construir la [COLOR_BUILDING_TEXT]Escuela de Pit&#225;goras[COLOR_REVERT] con un Gran Cient&#237;fico.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_BABYLON_GARDEN_STRATEGY</Tag>
-     <English>The [COLOR_BUILDING_TEXT]Garden[COLOR_REVERT] provides +1[ICON_FOOD] in addition to the usual happiness bonus.</English>
-     <French>Le [COLOR_BUILDING_TEXT]Jardin[COLOR_REVERT] conf&#232;re +1[ICON_FOOD] suppl&#233;mentaires en plus du bonus de bonheur habituel.</French>
-     <German>Der [COLOR_BUILDING_TEXT]Garten[COLOR_REVERT] gew&#228;hrt neben dem &#252;blichen Zufriedenheitsbonus auch +1[ICON_FOOD].</German>
-     <Italian>Il [COLOR_BUILDING_TEXT]Giardino[COLOR_REVERT] d&#224; +1[ICON_FOOD] oltre al classico bonus di felicit&#224;.</Italian>
-     <Spanish>El [COLOR_BUILDING_TEXT]Jard&#237;n[COLOR_REVERT] proporciona +1[ICON_FOOD], adem&#225;s de la habitual bonificaci&#243;n a la felicidad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_GERMAN_BERSERK_STRATEGY</Tag>
-     <English>This Germanic special unit is a powerful melee unit.</English>
-     <French>Cette unit&#233; sp&#233;ciale germanique est une unit&#233; de m&#234;l&#233;e puissante.</French>
-     <German>Diese germanische Spezialeinheit ist eine m&#228;chtige Nahkampfeinheit.</German>
-     <Italian>Queste unit&#224; speciale germanica &#232; una potente unit&#224; da mischia.</Italian>
-     <Spanish>La unidad especial germ&#225;nica es una unidad cuerpo a cuerpo poderosa.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_HEILIGER_ORT_STRATEGY</Tag>
-     <English>With this technology you are able to construct the[COLOR_BUILDING_TEXT]Holy Shrines[COLOR_REVERT] of the nordic and celtic religions.</English>
-     <French>Avec cette technologie, vous pourrez construire de nombreux [COLOR_BUILDING_TEXT]B&#226;timents Sacr&#233;s[COLOR_REVERT] comme des temples, l'Oracle ou des Autel Sacr&#233;s.</French>
-     <German>Mit dieser Technologie k&#246;nnen die [COLOR_BUILDING_TEXT]Schreine[COLOR_REVERT] der nordischen und keltischen Religionen errichtet werden.</German>
-     <Italian>Con questa tecnologia, un certo numero di [COLOR_BUILDING_TEXT] Sacred Immobile [COLOR_REVERT] pu&#242; essere costruita, come templi, oracoli e santuari.</Italian>
-     <Spanish>Con esta tecnolog&#237;a podr&#225;s construir varios [COLOR_BUILDING_TEXT]Edificios Sagrados[COLOR_REVERT], de las religiones n&#243;rdica y celta.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_POLYTHEISM_STRATEGY</Tag>
-     <English>[COLOR_UNIT_TEXT]Brahmans[COLOR_REVERT] can be send out to supply your troops and the [COLOR_BUILDING_TEXT]Small Oracle[COLOR_REVERT] can be built.</English>
-     <French>Les [COLOR_UNIT_TEXT]missionnaires[COLOR_REVERT] celtes et nordiques peuvent &#234;tre envoy&#233;s.</French>
-     <German>Hiermit k&#246;nnen [COLOR_UNIT_TEXT]Brahmanen[COLOR_REVERT] ausgesandt und ein [COLOR_BUILDING_TEXT]Kleines Orakel [COLOR_REVERT] errichtet werden.</German>
-     <Italian>Lascia per celtici e nordici [COLOR_UNIT_TEXT] Missionari [COLOR_REVERT] vengono emessi.</Italian>
-     <Spanish>[COLOR_UNIT_TEXT]Brahmanes[COLOR_REVERT] pueden ser enviados fuera para ayudar a las tropas y el [COLOR_BUILDING_TEXT]Peque&#241;o Or&#225;culo[COLOR_REVERT] puede ser construido.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_GREAT_LIGHTHOUSE_STRATEGY</Tag>
-     <English>The [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] gets build automatically when finishing the project [COLOR_PROJECT_TEXT]The Great Lighthouse[COLOR_REVERT] and adds one additional trade route in all coastal cities. The [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] also increases its city's odds of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
-     <French>Le [COLOR_BUILDING_TEXT]Grand phare[COLOR_REVERT] gets build automatically when finishing the project [COLOR_PROJECT_TEXT]Le Grand phare[COLOR_REVERT] and ajoute 1 route commerciale &#224; toutes les villes c&#244;ti&#232;res et augmente les chances d'apparition d'un [COLOR_UNIT_TEXT]marchand illustre[COLOR_REVERT].</French>
-     <German>Der [COLOR_BUILDING_TEXT]Gro&#223;e Leuchtturm[COLOR_REVERT] wird automatisch erstellt, wenn das Projekt [COLOR_PROJECT_TEXT]Der Gro&#223;e Leuchtturm[COLOR_REVERT] abgeschlossen wird und erschlie&#223;t einen zus&#228;tzlichen Handelsweg in allen K&#252;stenst&#228;dten. Dar&#252;ber hinaus erh&#246;hen sich durch einen [COLOR_BUILDING_TEXT]Gro&#223;en Leuchtturm[COLOR_REVERT] die Chancen der Stadt, einen [COLOR_UNIT_TEXT]Gro&#223;en H&#228;ndler[COLOR_REVERT] hervorzubringen.</German>
-     <Italian>Il [COLOR_BUILDING_TEXT]Grande Faro[COLOR_REVERT] gets build automatically when finishing the project [COLOR_PROJECT_TEXT]Il Grande Faro[COLOR_REVERT] and aggiunge uno rotta commerciale a tutte le citt&#224; costiere. Il [COLOR_BUILDING_TEXT]Grande Faro[COLOR_REVERT] aumenta la probabilit&#224; di generare un [COLOR_UNIT_TEXT]Grande Mercante[COLOR_REVERT].</Italian>
-     <Spanish>El [COLOR_BUILDING_TEXT]Gran Faro[COLOR_REVERT] se construye autom&#225;ticamente cuando se finaliza el proyecto [COLOR_PROJECT_TEXT]El Gran Faro[COLOR_REVERT] y a&#241;ade una ruta comercial a todas las ciudades costeras. El [COLOR_BUILDING_TEXT]Gran Faro[COLOR_REVERT] tambi&#233;n aumenta las probabilidades de que en su ciudad se genere un [COLOR_UNIT_TEXT]Gran mercader[COLOR_REVERT].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_PROJECT_LIGHTHOUSE_STRATEGY</Tag>
-     <English>This project creates the [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] in the city and enables the building of a [COLOR_BUILDING_TEXT]lighthouse[COLOR_REVERT] for everyone.</English>
-     <French>Ce projet cr&#233;e le [COLOR_BUILDING_TEXT]Grand Phare[COLOR_REVERT] dans la ville et rend accessible la construction des [COLOR_BUILDING_TEXT]phares[COLOR_REVERT] pour tous les joueurs.</French>
-     <German>Dieses Projekt erstellt automatisch den [COLOR_BUILDING_TEXT]Gro&#223;en Leuchtturm[COLOR_REVERT] in der Stadt und erm&#246;glicht den Bau eines [COLOR_BUILDING_TEXT]Leuchtturms[COLOR_REVERT] f&#252;r alle.</German>
-     <Italian>Questo progetto crea automaticamente la [COLOR_BUILDING_TEXT] Great Lighthouse [COLOR_REVERT] in citt&#224; e permette la costruzione di un [COLOR_BUILDING_TEXT] faro [COLOR_REVERT] per tutti.</Italian>
-     <Spanish>Este proyecto crea el [COLOR_BUILDING_TEXT]Gran Faro[COLOR_REVERT] en la ciudad y permite la construcci&#243;n de un [COLOR_BUILDING_TEXT]faro[COLOR_REVERT] para todos.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_THING_STRATEGY</Tag>
-     <English>The [COLOR_BUILDING_TEXT]Thing[COLOR_REVERT] lowers city maintenance costs, provides you with a bonus to espionage and +1[ICON_HAPPY]. [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] help manage the cost of controlling large empires.</English>
-     <French>Les [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] r&#233;duisent le co&#251;t d'entretien des villes, procurent un bonus en espionnage et +1[ICON_HAPPY]. Ils facilitent la gestion des grands empires.</French>
-     <German>Das [COLOR_BUILDING_TEXT]Thing[COLOR_REVERT] senkt die Verwaltungskosten einer Stadt, gew&#228;hrt einen Spionagebonus und liefert +1[ICON_HAPPY]. [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] erleichtern die Verwaltung der Kosten gro&#223;er Reiche.</German>
-     <Italian>I [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] riducono i costi di mantenimento e danno un bonus di Spionaggio e +1[ICON_HAPPY]. I [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] aiutano a ridurre il costo del controllo sugli imperi pi&#249; vasti.</Italian>
-     <Spanish>Los [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] reducen los costes de mantenimiento de la ciudad y proporcionan una bonificaci&#243;n al espionaje y +1[ICON_HAPPY]. Things ayudan a gestionar el coste que supone controlar un gran imperio.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_TROCKENDOCK_STRATEGY</Tag>
-     <English>A [COLOR_BUILDING_TEXT]drydock[COLOR_REVERT] heals units faster and provides an experience bonus.</English>
-     <French>Une [COLOR_BUILDING_TEXT]cale s&#232;che[COLOR_REVERT] gu&#233;rit les unit&#233;s plus rapidement et donne de l'exp&#233;rience suppl&#233;mentaire.</French>
-     <German>Ein [COLOR_BUILDING_TEXT]Trockendock[COLOR_REVERT] heilt Einheiten schneller und liefert Schiffen einen Erfahrungsbonus.</German>
-     <Italian>A [COLOR_BUILDING_TEXT] asciutto [COLOR_REVERT] guarire le navi le unit&#224; pi&#249; veloci e fornisce un bonus esperienza.</Italian>
-     <Spanish>Un [COLOR_BUILDING_TEXT]dique seco[COLOR_REVERT] cura unidades m&#225;s r&#225;pido y proporciona un bonus de experiencia.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_WERFT_STRATEGY</Tag>
-     <English>In a [COLOR_BUILDING_TEXT]shipyard[COLOR_REVERT] ships can be built faster and gain an experience bonus.</English>
-     <French>Avec un [COLOR_BUILDING_TEXT]chantier naval[COLOR_REVERT] les navires sont construits plus rapidement et gagnent des points d'exp&#233;rience suppl&#233;mentaires.</French>
-     <German>In einer [COLOR_BUILDING_TEXT]Werft[COLOR_REVERT] produzierte Schiffe werden schneller gebaut und erhalten einen Erfahrungsbonus.</German>
-     <Italian>In un cantiere [COLOR_BUILDING_TEXT] [COLOR_REVERT] navi prodotte saranno costruite pi&#249; velocemente ed ottenere un bonus XP.</Italian>
-     <Spanish>En un [COLOR_BUILDING_TEXT]astillero[COLOR_REVERT] los barcos pueden ser constru&#237;dos m&#225;s r&#225;pido y ganan un bonus de experiencia.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_CELTIC_SHRINE_STRATEGY</Tag>
-     <English>This holy shrine of the Celtic gods can be build by a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT], produces 4 [ICON_CULTURE], +1 [ICON_HAPPY] und +1 [ICON_BULLET] and spreads the Celtic religion.</English>
-     <French>Cet autel sacr&#233; pour les dieux celtes peut &#234;tre construit par un [COLOR_UNIT_TEXT]Grand Proph&#232;te[COLOR_REVERT]. Il produit 4[ICON_CULTURE], +1 [ICON_HAPPY], +1 [ICON_BULLET] et r&#233;pand la religion celte.</French>
-     <German>Diese heilige St&#228;tte des keltischen Glaubens kann von einem [COLOR_UNIT_TEXT]Gro&#223;en Propheten[COLOR_REVERT] gebaut werden, erzeugt 4 [ICON_CULTURE], +1 [ICON_HAPPY] und verbreitet die keltische Religion.</German>
-     <Italian>Questo luogo sacro della fede celtica pu&#242; essere costruito da un [COLOR_UNIT_TEXT] Grande Profeta [COLOR_REVERT], genera 4 [ICON_CULTURE], +1 [ICON_HAPPY] e diffondere la religione celtica.</Italian>
-     <Spanish>Este santuario sagrado de los dioses celtas puede ser constru&#237;do por un [COLOR_UNIT_TEXT]Gran Profeta[COLOR_REVERT], produce 4 [ICON_CULTURE], +1 [ICON_HAPPY] y +1 [ICON_BULLET] y propaga la religi&#243;n celta.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_SCHMIEDE_MESSING_STRATEGY</Tag>
-     <English>The [COLOR_BUILDING_TEXT]Brass smeltery[COLOR_REVERT] produces brass (+1[ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT]Brass[COLOR_REVERT] or [COLOR_HIGHLIGHT_TEXT]Orichalcum[COLOR_REVERT] is prerequired for the construction of a [COLOR_HIGHLIGHT_TEXT]Noble Armor[COLOR_REVERT] (promotion).</English>
-     <French>La [COLOR_BUILDING_TEXT]fonderie laiton[COLOR_REVERT] produit du laiton (+1[ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT]Laiton[COLOR_REVERT] ou [COLOR_HIGHLIGHT_TEXT]Orichalque[COLOR_REVERT] est pr&#233;requis pour la construction d'une [COLOR_HIGHLIGHT_TEXT]Armure Noble[COLOR_REVERT] (promotion).</French>
-     <German>Die [COLOR_BUILDING_TEXT]Messingh&#252;tte[COLOR_REVERT] erzeugt [COLOR_HIGHLIGHT_TEXT]Messing[COLOR_REVERT] (+1[ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT]Messing[COLOR_REVERT] oder [COLOR_HIGHLIGHT_TEXT]Oreichalkos[COLOR_REVERT] ist Vorraussetzung f&#252;r den Bau einer [COLOR_HIGHLIGHT_TEXT]Edlen R&#252;stung[COLOR_REVERT] (Bef&#246;rderung).</German>
-     <Italian>Il [COLOR_BUILDING_TEXT] capanna ottone [COLOR_REVERT] generato [COLOR_HIGHLIGHT_TEXT] Brass [COLOR_REVERT] (+1 [ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT] Brass [COLOR_REVERT] o [COLOR_HIGHLIGHT_TEXT] Oriharukon [COLOR_REVERT] &#232; un prerequisito per la costruzione di un [COLOR_HIGHLIGHT_TEXT] Noble Armatura [COLOR_REVERT] (trasporti).</Italian>
-     <Spanish>La [COLOR_BUILDING_TEXT]fundici&#243;n de lat&#243;n[COLOR_REVERT] produce lat&#243;n (+1[ICON_HAPPY]). El [COLOR_HIGHLIGHT_TEXT]lat&#243;n[COLOR_REVERT] o el [COLOR_HIGHLIGHT_TEXT]oricalco[COLOR_REVERT] es requerido para la construcci&#243;n de una [COLOR_HIGHLIGHT_TEXT]armadura de noble[COLOR_REVERT] (ascenso).</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_GAERUNG_STRATEGY</Tag>
-     <English>With this technology the owner of a cereal is able to build a [COLOR_BUILDING_TEXT]Brewery[COLOR_REVERT] (+25%[ICON_FOOD] food storage) which produces the bonus resource [COLOR_HIGHLIGHT_TEXT]Beer[COLOR_REVERT] (+1[ICON_HEALTHY]).</English>
-     <French>Avec cette technologie, le possesseur de c&#233;r&#233;ale peut construire une [COLOR_BUILDING_TEXT]brasserie[COLOR_REVERT] (+25%[ICON_FOOD] stockage de nourriture) qui produit la ressource [COLOR_HIGHLIGHT_TEXT]bi&#232;re[COLOR_REVERT] (+1[ICON_HEALTHY]).</French>
-     <German>Mit dieser Technologie k&#246;nnen Besitzer einer Getreideart mit der [COLOR_BUILDING_TEXT]Braust&#228;tte[COLOR_REVERT] (+25%[ICON_FOOD] Nahrungsspeicherung) das Bonusgut [COLOR_HIGHLIGHT_TEXT]Bier[COLOR_REVERT] (+1[ICON_HEALTHY]) erzeugen.</German>
-     <Italian>Con questa tecnologia il proprietario di un cereale &#232; in grado di costruire un [COLOR_BUILDING_TEXT] birreria [COLOR_REVERT] (+25% [ICON_FOOD] conservazione di alimenti) che produce la risorsa bonus [COLOR_HIGHLIGHT_TEXT] birra [COLOR_REVERT] (+1 [ICON_HEALTHY]).</Italian>
-     <Spanish>Con esta tecnolog&#237;a el poseedor de un tipo de cereal podr&#225; construir una [COLOR_BUILDING_TEXT]cervecer&#237;a[COLOR_REVERT] (+25%[ICON_FOOD] de almacenamiento de comida) que produce el recurso [COLOR_HIGHLIGHT_TEXT]cerveza[COLOR_REVERT] (+1[ICON_HEALTHY]).</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_BRAUSTAETTE_STRATEGY</Tag>
-     <English>The [COLOR_BUILDING_TEXT]Brewery[COLOR_REVERT] requires one sort of [COLOR_HIGHLIGHT_TEXT]cereal[COLOR_REVERT], can storage +15%[ICON_FOOD] and produces the bonus resource [COLOR_HIGHLIGHT_TEXT]beer[COLOR_REVERT] (+1[ICON_HEALTHY]).</English>
-     <French>La [COLOR_BUILDING_TEXT]Brasserie[COLOR_REVERT] requiert un [COLOR_HIGHLIGHT_TEXT]c&#233;r&#233;ale[COLOR_REVERT], permet de stocker +15%[ICON_FOOD] et produit la ressource [COLOR_HIGHLIGHT_TEXT]bi&#232;re[COLOR_REVERT] (+1[ICON_HEALTHY]).</French>
-     <German>Die [COLOR_BUILDING_TEXT]Braust&#228;tte[COLOR_REVERT] ben&#246;tigt eine [COLOR_HIGHLIGHT_TEXT]Getreideart[COLOR_REVERT], kann 15%[ICON_FOOD] speichern und erzeugt das Bonusgut [COLOR_HIGHLIGHT_TEXT]Bier[COLOR_REVERT] (+1[ICON_HEALTHY]).</German>
-     <Italian>The [COLOR_BUILDING_TEXT]Brewery[COLOR_REVERT] requires one sort of [COLOR_HIGHLIGHT_TEXT]cereal[COLOR_REVERT], can storage +15%[ICON_FOOD] and produces the bonus resource [COLOR_HIGHLIGHT_TEXT]beer[COLOR_REVERT] (+1[ICON_HEALTHY]).</Italian>
-     <Spanish>La [COLOR_BUILDING_TEXT]Cervecer&#237;a[COLOR_REVERT] requiere un tipo de [COLOR_HIGHLIGHT_TEXT]cereal[COLOR_REVERT], puede almacenar +25%[ICON_FOOD] y produce el recurso [COLOR_HIGHLIGHT_TEXT]cerveza[COLOR_REVERT] (+1[ICON_HEALTHY]).</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_KOLONIE_PROVINZ_STRATEGY</Tag>
-     <English>The status of a city is assigned automatically. Many buildings require a specific city status.</English>
-     <French>Le statut d'une ville est donn&#233; automatiquement. Certains b&#226;timents n&#233;cessitent un certain statut pour votre ville.</French>
-     <German>Der Status einer Stadt wird automatisch vergeben. Viele Geb&#228;ude ben&#246;tigen einen bestimmten Stadtstatus.</German>
-     <Italian>Lo status di una citt&#224; viene assegnato automaticamente. Molti edifici richiedono un certo status di citt&#224;.</Italian>
-     <Spanish>El estatus de ciudad es asignado autom&#225;ticamente. Muchos edificios requieren un estatus de ciudad espec&#237;fico.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_TOLERANZ_STRATEGY</Tag>
-     <English>With this form of government all religions are officially tolerated.</English>
-     <French>Avec ce r&#233;gime politique tous les religions sont toler&#233;es</French>
-     <German>Mit dieser Regierungsform werden nun alle Religionen offiziell geduldet.</German>
-     <Italian>With this form of government all religions are officially tolerated.</Italian>
-     <Spanish>Con esta forma de gobierno, todas las religiones son toleradas oficialmente.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_FUTURE_TECH_STRATEGY</Tag>
-     <English>The [COLOR_TECH_TEXT]Dark Ages[COLOR_REVERT] decreases health in your cities.</English>
-     <French>The [COLOR_TECH_TEXT]Dark Ages[COLOR_REVERT] decreases health in your cities.</French>
-     <German>Das [COLOR_TECH_TEXT]Dunkle Zeitalter[COLOR_REVERT] verschlechtert die Gesundheit Ihrer St&#228;dte.</German>
-     <Italian>The [COLOR_TECH_TEXT]Dark Ages[COLOR_REVERT] decreases health in your cities.</Italian>
-     <Spanish>La [COLOR_TECH_TEXT]edad oscura[COLOR_REVERT] disminuye la salud de tus ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_PARKANLAGEN_STRATEGY</Tag>
-     <English>With this technology, public parks can be built, which provide happiness.</English>
-     <French>With this technology, public parks can be built, which provide happiness.</French>
-     <German>Mit dieser Technologie k&#246;nnen &#246;ffentliche Parkanlagen errichtet werden, die f&#252;r Zufriedenheit sorgen.</German>
-     <Italian>With this technology, public parks can be built, which provide happiness.</Italian>
-     <Spanish>Con esta tecnolog&#237;a, pueden ser construidos los parques p&#250;blicos, los cuales proporcionan felicidad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_LIMES_STRATEGY</Tag>
-     <English>This technology enables the Romans to fortify their [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (borders) and the construction of the world wonder [COLOR_BUILDING_TEXT]The Great Wall of Gorgan[COLOR_REVERT].</English>
-     <French>This technology enables the Romans to fortify their [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (borders) and the construction of the world wonder [COLOR_BUILDING_TEXT]The Great Wall of Gorgan[COLOR_REVERT].</French>
-     <German>Diese Technologie erm&#246;glicht den R&#246;mern die Befestigung ihres [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (Grenze) sowie den Bau des Wunders [COLOR_BUILDING_TEXT]Die Gro&#223;e Mauer von Gorgan[COLOR_REVERT].</German>
-     <Italian>This technology enables the Romans to fortify their [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (borders) and the construction of the world wonder [COLOR_BUILDING_TEXT]The Great Wall of Gorgan[COLOR_REVERT].</Italian>
-     <Spanish>Esta tecnolog&#237;a permite a los romanos fortificar sus [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (fronteras) y la construcci&#243;n de la maravilla mundial [COLOR_BUILDING_TEXT]La gran muralla de Gorgan[COLOR_REVERT].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_GRANARY2_STRATEGY</Tag>
-     <English>[COLOR_BUILDING_TEXT]Rice Barn[COLOR_REVERT] stores food to help increase a city's growth rate. It can be built if your city has access to [COLOR_HIGHLIGHT_TEXT]Rice[COLOR_REVERT].</English>
-     <French>[COLOR_BUILDING_TEXT]Rice storages[COLOR_REVERT] store food to help increase a city's growth rate. They can be built if your city has access to [COLOR_HIGHLIGHT_TEXT]Rice[COLOR_REVERT].</French>
-     <German>[COLOR_BUILDING_TEXT]Reisspeicher[COLOR_REVERT] speichern Reisk&#246;rner und beschleunigen so das Bev&#246;lkerungswachstum. Sie k&#246;nnen in St&#228;dten erbaut werden, die &#252;ber [COLOR_HIGHLIGHT_TEXT]Reis[COLOR_REVERT] verf&#252;gt.</German>
-     <Italian>[COLOR_BUILDING_TEXT]Rice storages[COLOR_REVERT] store food to help increase a city's growth rate. They can be built if your city has access to [COLOR_HIGHLIGHT_TEXT]Rice[COLOR_REVERT].</Italian>
-     <Spanish>Los [COLOR_BUILDING_TEXT]almacenes de arroz[COLOR_REVERT] almacenan arroz, lo que ayuda a aumentar el ritmo de crecimiento de la ciudad. Pueden ser constru&#237;dos si la ciudad tiene acceso al [COLOR_HIGHLIGHT_TEXT]arroz[COLOR_REVERT].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_GREAT_PANTHEON_STRATEGY</Tag>
-     <English>This wonder increases the cultural value and the birth rate of the city.</English>
-     <French>Cette merveille augmente la culture et le taux de naissance de la ville.</French>
-     <German>Dieses Wunder erh&#246;ht den Kulturaussto&#223; und die Geburtenrate der Stadt.</German>
-     <Italian>Questa meraviglia aumenta la produzione culturale e la nascita della citt&#224;.</Italian>
-     <Spanish>Esta maravilla aumenta el valor cultural y la tasa de crecimiento de la ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_HUNDEZUCHT_STRATEGY</Tag>
-     <English>This national wonder produces the bonus resource War Dogs and adds a War Dogs bonus resource in the surroundings.</English>
-     <French>Cette merveille nationale produit la ressource Chien de Guerre et ajoute une ressource Chien de Guerre dans les environs.</French>
-     <German>Dieses Nationalwunder liefert das Bonusgut Kampfhunde und erzeugt um die Stadt eine Hunderesource.</German>
-     <Italian>Questo miracolo Nazionale fornisce i cani da combattimento Bonusgut e prodotti per la citt&#224; una risorsa cane.</Italian>
-     <Spanish>Esta maravilla nacional produce el recurso perros de guerra y a&#241;ade un recurso de perros de guerra en los alrededores.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_LIMES_STRATEGY</Tag>
-     <English>+1 [ICON_HAPPY] in all cities</English>
-     <French>+1 [ICON_HAPPY] dans toutes les villes</French>
-     <German>+1 [ICON_HAPPY] in allen St&#228;dten</German>
-     <Italian>+1 [ICON_HAPPY] in tutte le citt&#224;</Italian>
-     <Spanish>+1 [ICON_HAPPY] en todas las ciudades</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_LUXOR_STRATEGY</Tag>
-     <English>This wonder increases the cultural value of the city.</English>
-     <French>Cette merveille augmente la culture de la ville.</French>
-     <German>Dieses Wunder steigert den kulturellen Wert der Stadt. [NEWLINE]</German>
-     <Italian>Questa meraviglia aumenta il valore culturale della citt&#224;.</Italian>
-     <Spanish>Esta maravilla aumenta el valor cultual de la ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_PEARL_OF_HELLAS_STRATEGY</Tag>
-     <English>This national wonder produces +1 [ICON_PRODUCTION] on sea plots and provides the bonus resource pearls.</English>
-     <French>Cette merveille nationale produit une [ICON_PRODUCTION] sur des parcelles de mer et offre des perles de ressources de bonification.</French>
-     <German>Dieses Nationalwunder erzeugt +1 [ICON_PRODUCTION] auf Wasserfelder und liefert das Bonusgut Perlen. [NEWLINE]</German>
-     <Italian>Questa meraviglia nazionale produce +1 [ICON_PRODUCTION] su parcelle mare e fornisce le perle di risorse bonus.</Italian>
-     <Spanish>Esta maravilla nacional produce +1 [ICON_PRODUCTION] en casillas de mar y proporciona el recurso perlas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_PFERDEZUCHT_STRATEGY</Tag>
-     <English>This national wonder produces the bonus resource horse.</English>
-     <French>Cette merveille nationale fournit une ressource de Cheval.</French>
-     <German>Dieses Nationalwunder liefert das Bonusgut Pferde. [NEWLINE]</German>
-     <Italian>Questa meraviglia nazionale produce il cavallo risorsa bonus.</Italian>
-     <Spanish>Esta maravilla nacional produce el recurso caballos.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_PROJECT_AKASHA_CHRONIK_STRATEGY</Tag>
-     <English>This project allows the palm leaf library (Prerequisite: Hinduism) for all players.</English>
-     <French>Ce projet d&#233;bloque la biblioth&#232;que de feuille de palmier pour tous les joueurs (pr&#233;requis : Hindou&#239;sme).</French>
-     <German>Dieses Projekt erm&#246;glicht die Palmblatt-Bibliothek (Vorraussetzung: Hinduismus) f&#252;r alle Spieler. [NEWLINE]</German>
-     <Italian>This project allows the palm leaf library (Prerequisite: Hinduism) for all players.</Italian>
-     <Spanish>Este proyecto permite la biblioteca de hoja de palma (Requisito: Hinduismo) a todos los jugadores.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_PROJECT_ANTONIUS_KLOSTER_STRATEGY</Tag>
-     <English>This project will enable Christian monasteries (prerequisite: Christianity) for all players.</English>
-     <French>Ce projet va d&#233;bloquer les monast&#232;res chr&#233;tiens pour tous les joueurs (pr&#233;requis : Christianisme)</French>
-     <German>Dieses Projekt erm&#246;glicht Christliche Kl&#246;ster (Vorraussetzung: Christentum) f&#252;r alle Spieler.</German>
-     <Italian>This project will enable Christian monasteries (prerequisite: Christianity) for all players.</Italian>
-     <Spanish>Este proyecto permitir&#225; los monasterios cristianos (requisito: Cristianismo) a todos los jugadores.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_ARENA_STRATEGY</Tag>
-     <English>This building provides less war weariness and can make the citizens more happy.</English>
-     <French>Ce b&#226;timent r&#233;duit la lassitude de guerre et peut rendre plus de citoyens heureux.</French>
-     <German>Dieses Geb&#228;ude sorgt f&#252;r weniger Kriegsverdruss und kann die Stadtbewohner gl&#252;cklicher machen. [NEWLINE]</German>
-     <Italian>This building provides less war weariness and can make the citizens more happy.</Italian>
-     <Spanish>Este edificio proporciona menos hast&#237;o b&#233;lico y puede hacer a los ciudadanos m&#225;s felices.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_NUBIAN_DEFFUFA_STRATEGY</Tag>
-     <English>This building increases the city's defense, and can increase the happiness of the public with certain forms of government.</English>
-     <French>Ce b&#226;timent augmente la d&#233;fense de la ville et &#224; certaines formes de gouvernement peut augmenter la satisfaction de la population.</French>
-     <German>Dieses Geb&#228;ude erh&#246;ht die Stadtverteidigung und kann mit bestimmten Staatsformen die Zufriedenheit der Bev&#246;lkerung erh&#246;hen.</German>
-     <Italian>Questo edificio aumenta la difesa della citt&#224; e con alcune forme di governo pu&#242; aumentare la soddisfazione della popolazione.</Italian>
-     <Spanish>Este edificio aumenta la defensa de la ciudad, y puede aumentar la felicidad de la gente con ciertas formas de gobierno.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_PALMBLATT_STRATEGY</Tag>
-     <English>The palm leaf library increases the research, culture and satisfaction of the urban population.</English>
-     <French>La biblioth&#232;que de feuilles de palmier augmente la recherche, la culture et la satisfaction de la population de la ville.</French>
-     <German>Die Palmblattbibliothek erh&#246;ht die Forschung, Kultur und Zufriedenheit der Stadtbev&#246;lkerung.</German>
-     <Italian>La biblioteca foglia di palma aumenta la ricerca, la cultura e la soddisfazione della popolazione della citt&#224;.</Italian>
-     <Spanish>La biblioteca de hoja de palma aumenta la investigaci&#243;n, cultura y satisfacci&#243;n de la poblaci&#243;n urbana.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_ASKESE_STRATEGY</Tag>
-     <English>The [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] is founded.</English>
-     <French>The [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] is founded.</French>
-     <German>Der [COLOR_HIGHLIGHT_TEXT]Jainismus[COLOR_REVERT] wird gegr&#252;ndet.</German>
-     <Italian>The [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] is founded.</Italian>
-     <Spanish>El [COLOR_HIGHLIGHT_TEXT]Jainismo[COLOR_REVERT] es fundado.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_SKIRMISH_TACTICS_STRATEGY</Tag>
-     <English>This technology allows skirmishers and burning pigs.</English>
-     <French>Cette technologie permet de tirailleurs, et flamboyant porcs.</French>
-     <German>Diese Technologie erm&#246;glicht Pl&#228;nkler und brennende Schweine.</German>
-     <Italian>Questa tecnologia permette di schermagliatori e maiali in fiamme.</Italian>
-     <Spanish>Esta tecnolog&#237;a permite los hostigadores y los cerdos ardientes.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_CAVALRY_STRATEGY</Tag>
-     <English>This technology allows the construction of strong cavalry units.</English>
-     <French>Cette technologie permet la construction d'unit&#233;s mont&#233;es puissantes.</French>
-     <German>Diese Technologie erm&#246;glicht den Bau von starken Kavallerieinheiten. [NEWLINE]</German>
-     <Italian> [NEWLINE]</Italian>
-     <Spanish>Esta tecnolog&#237;a permite la construcci&#243;n de poderosas unidades de caballer&#237;a.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_MOENCHTUM_STRATEGY</Tag>
-     <English>This technology enables the construction of monasteries.</English>
-     <French>Cette technologie permet la construction de monast&#232;res.</French>
-     <German>Diese Technologie erm&#246;glicht den Bau von Kl&#246;stern.</German>
-     <Italian>This technology enables the construction of monasteries.</Italian>
-     <Spanish>Esta tecnolog&#237;a activa la construcci&#243;n de monasterios.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_KARTOGRAPHIE2_STRATEGY</Tag>
-     <English>With road maps, the map no longer obscured 100% black. Only the gray fog of war remains in unattended areas.</English>
-     <French>Avec les cartes de routes, la carte ne devient plus noire &#224; 100%. Seul le brouillard de guerre apparaitra dans les zones non visibles.</French>
-     <German>Mit Stra&#223;enkarten verdunkelt sich die Karte nicht mehr 100% schwarz. Nur der graue Kriegsnebel bleibt aber in unbeaufsichtigen Gebieten.</German>
-     <Italian>With road maps, the map no longer obscured 100% black. Only the gray fog of war remains in unattended areas.</Italian>
-     <Spanish>Con mapas de caminos, el mapa no estar&#225; ya oscuro al 100%. Solo la niebla gris de guerra permanecer&#225; en &#225;reas no atendidas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_MEMNONIUM_STRATEGY</Tag>
-     <English>+1 [ICON_HAPPY] in all cities of the continent</English>
-     <French>+1 [ICON_HAPPY] dans toutes les villes du continent</French>
-     <German>+1 [ICON_HAPPY] in allen St&#228;dten des Kontinents [NEWLINE]</German>
-     <Italian>+1 [ICON_HAPPY] in tutte le citt&#224; del continente</Italian>
-     <Spanish>+1 [ICON_HAPPY] en todas las ciudades del continente</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_KARTEN_STRATEGY</Tag>
-     <English>With this technology, you are able to commission customized maps by selecting a unit in your capital city.</English>
-     <French>With this technology, you are able to commission customized maps by selecting a unit in your capital city.</French>
-     <German>Mit dieser Technologie k&#246;nnen von Euch beauftragte Karten angefertigt werden, indem ihr in Eurer Hauptstadt eine Einheit ausw&#228;hlt.</German>
-     <Italian>With this technology, you are able to commission customized maps by selecting a unit in your capital city.</Italian>
-     <Spanish>Con esta tecnolog&#237;a, ser&#225; capaz de encargar mapas personalizados, seleccionando un unidad en tu capital.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_ELITE_HOPLIT_STRATEGY</Tag>
-     <English>This elite unit can only be formed from Hoplites, who attain the rank of veterans.</English>
-     <French>Cette unit&#233; d'&#233;lite ne peut &#234;tre cr&#233;&#233;e qu'en promouvant un hoplite ayant atteint le statut de v&#233;t&#233;ran.</French>
-     <German>Diese Eliteeinheit kann nur aus Hopliten gebildet werden, die sich den Rang eines Veteranen erk&#228;mpft haben.</German>
-     <Italian>Questa unit&#224; d'elite pu&#242; essere formata solo da opliti che hanno combattuto per il rango di veterani.</Italian>
-     <Spanish>Este unidad &#233;lite s&#243;lo puede ser formadas de Hoplitas, que logran el rango de veteranos.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_PROZESSION_STRATEGY</Tag>
-     <English>This new custom provides +1 [ICON_HAPPY] in all your cities.</English>
-     <French>This new custom provides +1 [ICON_HAPPY] in all your cities.</French>
-     <German>Dieser neue Brauch sorgt f&#252;r +1 [ICON_HAPPY] in all euren St&#228;dten.</German>
-     <Italian>This new custom provides +1 [ICON_HAPPY] in all your cities.</Italian>
-     <Spanish>Esta nueva pr&#225;ctica proporciona +1 [ICON_HAPPY] en todas tus ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_KAMPFHUNDE_STRATEGY</Tag>
-     <English>With this technology it is possible to breed strong War Dog to use them as a weapon.</English>
-     <French>With this technology it is possible to breed strong War Dog to use them as a weapon.</French>
-     <German>Mit dieser Technologie ist es m&#246;glich starke Kampfhunde zu z&#252;chten und als Waffe einzusetzen.</German>
-     <Italian>With this technology it is possible to breed strong War Dog to use them as a weapon.</Italian>
-     <Spanish>Con esta tecnolog&#237;a es posible criar poderosos perros de ataque para usarlos como armas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_LEVEE_STRATEGY</Tag>
-     <English>Irrigation canals can only be built in cities next to rivers and provide even better yield and health. However, the maintenance of such canal systems has its price.</English>
-     <French>Irrigation canals can only be built in cities next to rivers and provide even better yield and health. However, the maintenance of such canal systems has its price.</French>
-     <German>Bew&#228;sserungskan&#228;le k&#246;nnen nur in St&#228;dten mit Fl&#252;ssen gebaut werden und sorgen f&#252;r noch besseren Ertrag und Gesundheit. Die Instandhaltung solcher Kanalsysteme hat aber auch ihren Preis.</German>
-     <Italian>Irrigation canals can only be built in cities next to rivers and provide even better yield and health. However, the maintenance of such canal systems has its price.</Italian>
-     <Spanish>Los canales de irrigaci&#243;n s&#243;lo pueden ser construidos en ciudades pr&#243;ximas a r&#237;os y proporcionan unas mejores cosechas y salud. Aunque, el mantenimiento de dichos sistemas de canales tienen su precio.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_BUND_STRATEGY</Tag>
-     <English>A [COLOR_BUILDING_TEXT]League of Towns[COLOR_REVERT] improves the relationships in the whole kingdom, and therefore provides +1[ICON_HAPPY] in each city.</English>
-     <French>Une [COLOR_BUILDING_TEXT]Coalition de villes[COLOR_REVERT] am&#233;liore la coh&#233;sion dans tout le royaume et fournit ainsi +1 [ICON_HAPPY] dans chaque ville.</French>
-     <German>Ein [COLOR_BUILDING_TEXT]St&#228;dtebund[COLOR_REVERT] verbessert die Beziehungen im eigenen Reich und liefert daher +1[ICON_HAPPY] in jeder Stadt. </German>
-     <Italian>A [COLOR_BUILDING_TEXT] Citt&#224; e paesi [COLOR_REVERT] migliora le relazioni nel proprio regno, e quindi fornisce +1 [ICON_HAPPY] in ogni citt&#224;.</Italian>
-     <Spanish>Una [COLOR_BUILDING_TEXT]Liga de Ciudades[COLOR_REVERT] mejora las relaciones en el reino entero, y por lo tanto proporciona +1[ICON_HAPPY] en cada ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_TREIBGUT_STRATEGY</Tag>
-     <English>Flotsam can occur (chance of 50%) when a ship sinks. If you want to capture a flotsam, the ship must have a free cargo space. From the flotsam arise slaves or treasure.</English>
-     <French>Une &#233;pave peut appara&#238;tre (50% de chances) quand un bateau coule. Si vous voulez capturer un reste d'&#233;pave avec un bateau, il doit avoir un espace libre. Vous pourrez r&#233;cup&#233;rer un esclave ou un tr&#233;sor.</French>
-     <German>Treibgut kann entstehen (50% Chance), wenn ein Schiff sinkt. Um ein Treibgut zu erobern, muss das Schiff eine freie Ladungsfl&#228;che besitzen. Aus dem Treibgut werden dann Sklaven oder Beutegold.</German>
-     <Italian>Flotsam can occur (chance of 50%) when a ship sinks. If you want to capture a flotsam, the ship must have a free cargo space. From the flotsam arise slaves or treasure.</Italian>
-     <Spanish>El pecio puede aparecer (probabilidad del 50%) cuando un barco se hunde. Si quieres capturar un pecio, el barco debe tener un espacio de carga libre. Del pecio puede surgir esclavos o tesoros.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_SUPPLY_FOOD_STRATEGY</Tag>
-     <English>This unit can deliver food from one city to another and it can spread certain bonus resources.</English>
-     <French>Cette unit&#233; peut transporter de la nourriture d'une ville &#224; une autre et permettre l'implantation de certaines ressources autour des villes.</French>
-     <German>Diese Einheit kann Nahrung von einer Stadt in die andere Stadt liefern und bestimmte Bonusresourcen verbreiten.</German>
-     <Italian>This unit can deliver food from one city to another and it can spread certain bonus resources.</Italian>
-     <Spanish>Esta unidad puede distribuir comida de una ciudad a otra y puede propagar ciertos recursos.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_SPECIALIST_RESERVIST_STRATEGY</Tag>
-     <English>[COLOR_HIGHLIGHT_TEXT]Veteran units[COLOR_REVERT] can join a city as [COLOR_HIGHLIGHT_TEXT]reservists[COLOR_REVERT] (+1[ICON_FOOD], +1 [ICON_CULTURE] and +1[ICON_COMMERCE]).</English>
-     <French>[COLOR_HIGHLIGHT_TEXT]Les unit&#233;s de v&#233;t&#233;rans[COLOR_REVERT] peuvent &#234;tre affect&#233;s comme [COLOR_HIGHLIGHT_TEXT]r&#233;servistes[COLOR_REVERT] dans une ville (+1[ICON_FOOD], +1[ICON_CULTURE] et +1[ICON_COMMERCE]).</French>
-     <German>[COLOR_HIGHLIGHT_TEXT]Veteraneinheiten[COLOR_REVERT] k&#246;nnen sich als [COLOR_HIGHLIGHT_TEXT]Reservist[COLOR_REVERT] einer Stadt anschlie&#223;en (+1[ICON_FOOD], +1 [ICON_CULTURE] und +1[ICON_COMMERCE]).</German>
-     <Italian>[COLOR_HIGHLIGHT_TEXT]Unit&#224; veterane[COLOR_REVERT] possono aderire come [COLOR_HIGHLIGHT_TEXT]riservista[COLOR_REVERT] una citt&#224; (+1 [ICON_FOOD], +1 [ICON_CULTURE] e +1 [ICON_COMMERCE]).</Italian>
-     <Spanish>[COLOR_HIGHLIGHT_TEXT]Las unidades veteranas[COLOR_REVERT] pueden unirse a una ciudad como [COLOR_HIGHLIGHT_TEXT]reservistas[COLOR_REVERT] (+1[ICON_FOOD], +1 [ICON_CULTURE] y +1[ICON_COMMERCE]).</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_STEINKREIS_STRATEGY</Tag>
-     <English>This building provides a small amount of culture and increases happiness in a city.</English>
-     <French>This building provides a small amount of culture and increases happiness in a city.</French>
-     <German>Dieses Geb&#228;ude erh&#246;ht den kulturellen Wert und die Zufriedenheit einer Stadt.</German>
-     <Italian>This building provides a small amount of culture and increases happiness in a city.</Italian>
-     <Spanish>Este edificio proporciona una peque&#241;a cantidad de cultura y aumenta la felicidad en una ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_COLONIA_STRATEGY</Tag>
-     <English>This building gives new founded cities a strong head start.</English>
-     <French>Ce b&#226;timent donne de solides bases aux villes nouvellement fond&#233;es.</French>
-     <German>Dieses Geb&#228;ude bringt neugegr&#252;ndeten St&#228;dten einen starken Startvorteil. </German>
-     <Italian>Questo edificio ospita le citt&#224; di nuova fondazione di un forte vantaggio.</Italian>
-     <Spanish>Este edificio da a las nuevas ciudades fundadas un buen punto de partida.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_WARBAND_STRATEGY</Tag>
-     <English>This unit offers strength and loyalty.</English>
-     <French>Cet appareil offre une r&#233;sistance et la loyaut&#233;.</French>
-     <German>Diese Einheit besticht durch St&#228;rke und Loyalit&#228;t.</German>
-     <Italian>Questa unit&#224; offre forza e lealt&#224;.</Italian>
-     <Spanish>Esta unidad ofrece fuerza y lealtad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_EGYPT_RAM_CHARIOT_STRATEGY</Tag>
-     <English>This type of chariot has a malus against other mounted units but a big bonus against infantry.</English>
-     <French>Ce type de char a un malus contre d'autres unit&#233;s mont&#233;es mais un gros bonus contre l'infanterie.</French>
-     <German>Diese Streitwagenart hat einen Malus gegen andere berittene Einheiten, daf&#252;r aber einen gro&#223;en Bonus gegen&#252;ber Infanterie.</German>
-     <Italian>Questo tipo di carro ha un malus contro le altre unit&#224; montate, ma un grande bonus contro la fanteria.</Italian>
-     <Spanish>Este tipo de carro tiene penalizaci&#243;n contra otras unidades montadas pero tiene una gran bonificaci&#243;n contra la infanter&#237;a.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_WAR_CHARIOT_STRATEGY</Tag>
-     <English>This strong chariot unit is not buildable, but can be upgraded from regular "seasoned" chariots.</English>
-     <French>Cette unit&#233; de char forte n'est pas constructible, mais peut &#234;tre mis &#224; niveau &#224; partir r&#233;guli&#232;re "bataille" char.</French>
-     <German>Diese starke Streitwageneinheit ist nicht baubar, sondern kann aus regul&#228;ren "kampferfahrenen" Streitwagen aufger&#252;stet werden.</German>
-     <Italian>Questa forte unit&#224; carro non &#232; edificabile, ma pu&#242; essere aggiornato da regolare "battaglia" carro.</Italian>
-     <Spanish>Esta fuerte unidad de carro no es construible, pero puede ser modernizado de carros normales "veteranos".</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_PHOEN_SHRINE_STRATEGY</Tag>
-     <English>This holy shrine of the Phoenician gods can be build by a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT], produces 4 [ICON_CULTURE], +1 [ICON_HAPPY] und +1 [ICON_BULLET] and spreads the Phoenician religion.</English>
-     <French>Cet autel sacr&#233; pour les dieux m&#233;sopotamien peut &#234;tre construit par un [COLOR_UNIT_TEXT]Grand Proph&#232;te[COLOR_REVERT]. Il produit 4[ICON_CULTURE], +1 [ICON_HAPPY], +1 [ICON_BULLET] et r&#233;pand la religion m&#233;sopotamien.</French>
-     <German>Diese heilige St&#228;tte des ph&#246;nizischen Glaubens kann von einem [COLOR_UNIT_TEXT]Gro&#223;en Propheten[COLOR_REVERT] gebaut werden, erzeugt 4 [ICON_CULTURE], +1 [ICON_HAPPY] und verbreitet die ph&#246;nizische Religion.</German>
-     <Italian>Questo luogo sacro della fede fenicia pu&#242; essere costruito da un [COLOR_UNIT_TEXT] Grande Profeta [COLOR_REVERT], genera 4 [ICON_CULTURE], +1 [ICON_HAPPY] e diffondere la religione fenicio.</Italian>
-     <Spanish>Este santuario sagrado de los dioses fenicios puede ser constru&#237;do por un [COLOR_UNIT_TEXT]Gran Profeta[COLOR_REVERT], produce 4 [ICON_CULTURE], +1 [ICON_HAPPY] y +1 [ICON_BULLET] y propaga la religi&#243;n fenicio.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_REFORM_STRATEGY</Tag>
-     <English>This new reform provides +1 [ICON_HAPPY] in all your cities.</English>
-     <French>This new reform provides +1 [ICON_HAPPY] in all your cities.</French>
-     <German>Diese neue Reform sorgt f&#252;r +1 [ICON_HAPPY] in all euren St&#228;dten.</German>
-     <Italian>This new reform provides +1 [ICON_HAPPY] in all your cities.</Italian>
-     <Spanish>Esta nueva reforma proporciona +1 [ICON_HAPPY] en todas tus ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_FORM_STRATEGY</Tag>
-     <English>With this technology, a new formation can be used.</English>
-     <French>With this technology, a new formation can be used.</French>
-     <German>Mit dieser Technologie kann einen neue Formation genutzt werden.</German>
-     <Italian>With this technology, a new formation can be used.</Italian>
-     <Spanish>Con esta tecnolog&#237;a, una nueva formaci&#243;n puede ser utilizada.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_HORSE_ARMOR_STRATEGY</Tag>
-     <English>This technology enables the construction of [COLOR_UNIT_TEXT]heavy armored horsemen[COLOR_REVERT].</English>
-     <French>This technology enables the construction of [COLOR_UNIT_TEXT]heavy armored horsemen[COLOR_REVERT].</French>
-     <German>Diese Technologie erm&#246;glicht den Bau von [COLOR_UNIT_TEXT]schwergepanzerten Reitern[COLOR_REVERT].</German>
-     <Italian>This technology enables the construction of [COLOR_UNIT_TEXT]heavy armored horsemen[COLOR_REVERT].</Italian>
-     <Spanish>Esta tecnolog&#237;a permite la construcci&#243;n de [COLOR_UNIT_TEXT]jinetes acorazados pesados[COLOR_REVERT].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TECH_DEZIMATION_STRATEGY</Tag>
-     <English>From this technology on, units can be decimated in order to strengthen their fighting spirit.</English>
-     <French>From this technology on, units can be decimated in order to strengthen their fighting spirit.</French>
-     <German>Ab dieser Technologie k&#246;nnen Einheiten dezimiert werden, um deren Kampfgeist zu st&#228;rken.</German>
-     <Italian>From this technology on, units can be decimated in order to strengthen their fighting spirit.</Italian>
-     <Spanish>A partir de esta tecnolog&#237;a, las unidades pueden ser diezmadas para aumentar su esp&#237;ritu de lucha.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_STRANDGUT_STRATEGY</Tag>
-     <English>Jetsam occures when flotsam is washed up on the coast. Jetsam is immobile and will become to a trading cart (merchant) when conquered, which you can use to speed up production of your own cities or as a source of income in foreign cities.</English>
-     <French>Jetsam occures when flotsam is washed up on the coast. Jetsam is immobile and will become to a trading cart (merchant) when conquered, which you can use to speed up production of your own cities or as a source of income in foreign cities.</French>
-     <German>Strandgut entsteht wenn Treibgut an die K&#252;ste geschwemmt wird. Treibgut ist unbeweglich und wird bei Eroberung zu einem Handelskarren, den man zur Produktionsbeschleunigung eigener St&#228;dte oder als Geldeinnahmequelle in fremden St&#228;dten nutzen kann.</German>
-     <Italian>Jetsam occures when flotsam is washed up on the coast. Jetsam is immobile and will become to a trading cart (merchant) when conquered, which you can use to speed up production of your own cities or as a source of income in foreign cities.</Italian>
-     <Spanish>Los cargamentos varados ocurren cuando los pecios terminan varados en la costa. Los cargamentos varados son inmobiles y se volver&#225;n en un carro comerciante (mercader) cuando es conquistado, el cual puede ser usado para acelerar la producci&#243;n de las ciudades o como fuente de ingresos en ciudades extranjeras.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_STRATEGE</Tag>
-     <English>Strategist</English>
-     <French>Strat&#232;ge </French>
-     <German>Stratege</German>
-     <Italian>Stratega</Italian>
-     <Spanish>Estratega</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_PHILOSOPHICAL_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance that slaves become free citizen due to the Civil Rights/International Law civic is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] per scientist, great scientist</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance that slaves become free citizen due to the Civil Rights/International Law civic is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] per scientist, great scientist</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Doppelte Chance, dass Sklaven mit B&#252;rger-/V&#246;lkerrecht zu freien B&#252;rgern werden[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] f&#252;r Wissenschaftler, Gro&#223;er Wissenschaftler</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance that slaves become free citizen due to the Civil Rights/International Law civic is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] per scientist, great scientist</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Es doblada la probabilidad de que los esclavos se vuelvan ciudadanos libres debido a los principios derechos civiles/ley internacional. [NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] por cient&#237;fico, gran cient&#237;fico</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_AGGRESSIVE_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% production cost for military units (naval units excluded)[NEWLINE][SPACE][SPACE][ICON_BULLET]Twice as many slaves when conquering cities</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% production cost for military units (naval units excluded)[NEWLINE][SPACE][SPACE][ICON_BULLET]Twice as many slaves when conquering cities</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% Produktionskosten f&#252;r Milit&#228;reinheiten (au&#223;er Marineeinheiten)[NEWLINE][SPACE][SPACE][ICON_BULLET]Doppelt so viele Sklaven bei Stadteroberungen</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% production cost for military units (naval units excluded)[NEWLINE][SPACE][SPACE][ICON_BULLET]Twice as many slaves when conquering cities</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% al coste de producci&#243;n de unidades militares (unidades navales excluidas)[NEWLINE][SPACE][SPACE][ICON_BULLET]Doble de esclavos cuando se conquiste ciudades</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_INDUSTRIOUS_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% production cost of buildings[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% production cost of wonders</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% production cost of buildings[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% production cost of wonders</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% Produktionskosten f&#252;r Geb&#228;ude[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% Produktionskosten f&#252;r Wunder</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% production cost of buildings[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% production cost of wonders</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% al coste de producci&#243;n de edificios[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% al coste de producci&#243;n de maravillas</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_CREATIVE_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Slaves settled down in temples yield +3[ICON_CULTURE] (instead of +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Can employ one additional artist specialist in each city (from the tech alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% length of golden ages</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Slaves settled down in temples yield +3[ICON_CULTURE] (instead of +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Can employ one additional artist specialist in each city (from the tech alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% length of golden ages</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]In Tempeln angesiedelte Sklaven bringen +3[ICON_CULTURE] (statt +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Kann in jeder Stadt einen zus&#228;tzlichen K&#252;nstler einstellen (ab der Tech Alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% L&#228;nge von Goldenen Zeitaltern</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Slaves settled down in temples yield +3[ICON_CULTURE] (instead of +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Can employ one additional artist specialist in each city (from the tech alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% length of golden ages</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Los esclavos asentados en templos rinden +3[ICON_CULTURE] (en vez de +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Puede asignar un artista especialista adicional en cada ciudad (a partir de la tecnolog&#237;a alfabeto)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% a la duraci&#243;n de las edades de oro</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_ORGANIZED_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% cost of upgrading units</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% cost of upgrading units</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% Kosten zum Aufstufen von Einheiten</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% cost of upgrading units</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% al coste de modernizar unidades</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_CHARISMATIC_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Enemy units renegade more often, own units less often</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Enemy units renegade more often, own units less often</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Gegnerische Einheiten laufen h&#228;ufiger &#252;ber, eigene weniger h&#228;ufig</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Enemy units renegade more often, own units less often</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Las unidades enemigas desertar&#225;n con m&#225;s facilidad, mientras que las propias lo har&#225;n con menos frecuencia</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_PROTECTIVE_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Own cities never renegade to the enemy [LINK=CONCEPT_CITIES]due to siege[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Garrison promotion in combat will be healed completely</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Own cities never renegade to the enemy [LINK=CONCEPT_CITIES]due to siege[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Garrison promotion in combat will be healed completely</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Eigene St&#228;dte laufen niemals [LINK=CONCEPT_CITIES]durch Belagerung[\LINK] zum Gegner &#252;ber[NEWLINE][SPACE][SPACE][ICON_BULLET]Einheiten, die im Kampf die Garnison-Bef&#246;rderung erhalten, werden vollst&#228;ndig geheilt</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Own cities never renegade to the enemy [LINK=CONCEPT_CITIES]due to siege[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Garrison promotion in combat will be healed completely</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]La ciudades propias no se rinden al enemigo[LINK=CONCEPT_CITIES] debido al asedio[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Las unidades que reciben el ascenso guarnici&#243;n de ciudad en combate ser&#225; curada completamente</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_IMPERIALIST_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Can use the civic Ruler Cult from the beginning</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Can use the civic Ruler Cult from the beginning</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Kann die Staatsform Herrscherkult von Beginn an nutzen</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Can use the civic Ruler Cult from the beginning</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Puede usar el principio culto al gobernante desde el principio</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_EROBERER_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance to receive the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] will be healed completely</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance to receive the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] will be healed completely</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Doppelte Chance, [LINK=CONCEPT_PROMOTIONS]im Kampf[\LINK] die H&#228;userkampf-Bef&#246;rderung zu erhalten[NEWLINE][SPACE][SPACE][ICON_BULLET]Einheiten, die [LINK=CONCEPT_PROMOTIONS]im Kampf[\LINK] die H&#228;userkampf-Bef&#246;rderung erhalten, werden vollst&#228;ndig geheilt</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance to receive the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] will be healed completely</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Es doblada la probabilidad de recibir el ascenso asalto de ciudades [LINK=CONCEPT_PROMOTIONS]en combate[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Las unidades que reciben el ascenso asalto de ciudades [LINK=CONCEPT_PROMOTIONS]en combate[\LINK] ser&#225; completamente curada</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_STRATEGE_HELP</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Supply units[\LINK] have +50% capacity</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Supply units[\LINK] have +50% capacity</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Versorgungseinheiten[\LINK] haben +50% Kapazit&#228;t</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Supply units[\LINK] have +50% capacity</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Las [LINK=CONCEPT_PAE_SUPPLY]unidades de abastecimiento[\LINK] tienen +50% de capacidad</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_STRATEGE_SHORT</Tag>
-     <English>Str</English>
-     <French>Str</French>
-     <German>Str</German>
-     <Italian>Str</Italian>
-     <Spanish>Est</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_EROBERER</Tag>
-     <English>Conqueror</English>
-     <French>Conqu&#233;rant</French>
-     <German>Eroberer</German>
-     <Italian>Conquistatore </Italian>
-     <Spanish>Conquistador</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_EROBERER_SHORT</Tag>
-     <English>Con</English>
-     <French>Con</French>
-     <German>Ero</German>
-     <Italian>Con</Italian>
-     <Spanish>Con</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_FINANCIAL</Tag>
-     <English>Commercially oriented</English>
-     <French>Vocation commerciale</French>
-     <German>Handelsorientiert</German>
-     <Italian>Orientata commercialmente</Italian>
-     <Spanish>Orientaci&#243;n comercial</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_FINANCIAL_SHORT</Tag>
-     <English>Merchant</English>
-     <French>Merchant</French>
-     <German>H&#228;ndler</German>
-     <Italian>Commerciante</Italian>
-     <Spanish>Comerciante</Spanish>
-   </TEXT>
+    <Tag>TXT_KEY_UNIT_BEDUINE_STRATEGY</Tag>
+    <English>Bedouin camel-riders are barbarian units that can occur in deserts. Only renegaded Bedouins can fight for your cause.</English>
+    <French>Le chameau b&#233;douin est une unit&#233; barbare qui apparait dans les zones de d&#233;sert. Seul les b&#233;douins ren&#233;gats peuvent combattre pour vous.</French>
+    <German>Beduinen sind ausschlie&#223;lich barbarische Kamelreiter, die in W&#252;sten auftauchen k&#246;nnen. Nur &#252;bergelaufene Beduinen k&#246;nnen f&#252;r die eigene Sache k&#228;mpfen.</German>
+    <Italian>Beduini sono esclusivamente barbari cavalieri sul cammello che possono apparire nei deserti. Solo beduini disertati possono combattere per la loro causa.</Italian>
+    <Spanish>Los jinetes de camellos beduinos son solo unidades b&#225;rbaras que pueden aparecer en desiertos. Solo Jinetes de camellos renegadas pueden luchar para ti en tu causa.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_KAMPFHUND_STRATEGY</Tag>
+    <English>Use this unit with withdrawal promotions, so that it can be used optimally to weaken much stronger units even without losing it.</English>
+    <French>Use this unit with withdrawal promotions, so that it can be used optimally to weaken much stronger units even without losing it.</French>
+    <German>Mit R&#252;ckzugsbef&#246;rderungen kann diese Einheit optimal verwendet werden, um viel st&#228;rkere Einheiten zu schw&#228;chen ohne dass sie selbst dabei verloren geht.</German>
+    <Italian>Use this unit with withdrawal promotions, so that it can be used optimally to weaken much stronger units even without losing it.</Italian>
+    <Spanish>Usa esta unidad con ascensos de retirada, as&#237; puede ser usada &#243;ptimamente para debilitar unidades mucho mas fuertes sin perderla.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_BRAHMANE_STRATEGY</Tag>
+    <English>This unit can boost healing to all units on the same plot.</English>
+    <French>Cette unit&#233; am&#233;liore la vitesse de gu&#233;rison des unit&#233;s dans la m&#234;me case.</French>
+    <German>Diese Einheit kann den Heilungsprozess aller am selben Feld stehenden Einheiten beschleunigen.</German>
+    <Italian>Questa &#232; l'unit&#224; che pu&#242; aumentare la guarigione.</Italian>
+    <Spanish>Esta unidad puede acelerar el proceso de curaci&#243;n de todas las unidades en la misma casilla.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_GERMAN_DOUBLEFIGHTER_STRATEGY</Tag>
+    <English>This Germanic special unit is one of the strongest mounted unit of his time and perfect against melee.</English>
+    <French>Ces unit&#233; sp&#233;ciale germanique est l'un des plus forts r&#233;giments de cavalerie de son temps et id&#233;al contre m&#234;l&#233;e.</French>
+    <German>Diese germanische Spezialeinheit ist eine der st&#228;rksten Reitereinheiten seiner Zeit und ideal gegen Nahk&#228;mpfer.</German>
+    <Italian>Queste unit&#224; speciale germanico &#232; uno dei pi&#249; forti reggimenti di cavalleria del suo tempo e ideale contro mischia.</Italian>
+    <Spanish>Esta unidad especial germ&#225;nica es una de las unidades montadas m&#225;s fuertes de su tiempo y es perfecto contra cuerpo a cuerpo.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_HORSEMAN_CELTIC_STRATEGY</Tag>
+    <English>This Celtic special unit is one of the strongest mounted unit of his time and perfect against melee.</English>
+    <French>Cette unit&#233; sp&#233;ciale celtique est l'un des plus forts r&#233;giments de cavalerie de son temps et parfaite contre m&#234;l&#233;e.</French>
+    <German>Diese keltische Spezialeinheit ist eine der st&#228;rksten Reitereinheiten seiner Zeit und ideal gegen Nahk&#228;mpfer.</German>
+    <Italian>Questa unit&#224; speciale celtica &#232; uno dei pi&#249; forti reggimenti di cavalleria del suo tempo e perfetta contro mischia.</Italian>
+    <Spanish>Esta unidad especial celta es unida de las unidades montadas m&#225;s fuertes de su momento y perfecta contra cuerpo a cuerpo.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_CELTIC_FIANNA_STRATEGY</Tag>
+    <English>This strong special unit can be used for any type of battle. Unfortunately, it also tends to defect easily.</English>
+    <French>Cette unit&#233; sp&#233;ciale est tr&#232;s puissante et peut &#234;tre utilis&#233;e pour tous les types de combat. Malheureusement, elle a aussi tendance &#224; passer &#224; l'ennemi souvent.</French>
+    <German>Diese starke Spezialeinheit kann f&#252;r jede Art von Kampf eingesetzt werden. Sie neigt aber leider auch dazu leicht die Seiten zu wechseln.</German>
+    <Italian>Questa unit&#224; speciale forte pu&#242; essere utilizzato per qualsiasi tipo di battaglia. Ma tende purtroppo anche facile passare i lati.</Italian>
+    <Spanish>Esta fuerte unidad especial puede eser usada para cualquier forma de combate. Desafortunadamente, tiende a desertar con facilidad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_MONGOL_KESHIK_STRATEGY</Tag>
+    <English>The hunic raider is the most powerful mounted unit of the late antiquity.</English>
+    <French>Le maraudeur hun est l'unit&#233; mont&#233;e la plus puissante de l'antiquit&#233; tardive.</French>
+    <German>Der hunnische Marodeur ist die st&#228;rkste berittene Einheit der Sp&#228;tantike.</German>
+    <Italian>Il Hun Marauder &#232; il pi&#249; forte unit&#224; di cavalleria della tarda antichit&#224;.</Italian>
+    <Spanish>El jinete huno es la unidad montada m&#225;s poderosa de la antig&#252;edad tard&#237;a.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_INDIAN_LONGBOW_STRATEGY</Tag>
+    <English>This is the strongest ranged combat unit in the game and is best used against infantry.</English>
+    <French>Il s'agit de la plus forte unit&#233; de temps d'attaque de gamme dans le jeu et est mieux utilis&#233; contre l'infanterie.</French>
+    <German>Dies ist die st&#228;rkste Fernangriffseinheit im Spiel und eignet sich am besten gegen Infanterie.</German>
+    <Italian>Questo &#232; il pi&#249; forte unit&#224; lungo attacco di serie nel gioco e viene utilizzato al meglio contro la fanteria.</Italian>
+    <Spanish>Esta es la unidad de combate a distancia m&#225;s fuerte en el juego y se usa mejor contra la infanter&#237;a.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_INDIAN_NAYAR_STRATEGY</Tag>
+    <English>This elite unit is only available for the Indians and can be commended from a shield bearer, which has acquired the status of a veteran.</English>
+    <French>Cette unit&#233; d'&#233;lite est que les Indiens sont disponibles et peuvent &#234;tre cr&#233;&#233;s &#224; partir d'un support de plaque, qui a obtenu le statut de v&#233;t&#233;ran.</French>
+    <German>Diese Eliteeinheit steht nur den Indern zur Verf&#252;gung und kann aus einem Schildtr&#228;ger erstellt werden, der den Status eines Veterans erreicht hat.</German>
+    <Italian>Questa unit&#224; d'elite solo gli indiani sono disponibili e possono essere creati da un vettore piatto, che ha raggiunto lo status di un veterano.</Italian>
+    <Spanish>Esta unidad &#233;lite s&#243;lo est&#225; disponible para los indios y puede ser promovida desde un soldado con escudo, que ha conseguido el estatus de veterano.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_IBERIAN_CAVALRY_STRATEGY</Tag>
+    <English>In the Early Classic this unit is one of the strongest units and fits perfect against melee units.</English>
+    <French>Au d&#233;but de l'Antiquit&#233;, cette unit&#233; est l'une des plus puissantes et convient parfaitement aux combats rapproch&#233;s.</French>
+    <German>Diese Einheit ist in der fr&#252;hen Klassik eine der st&#228;rksten Einheiten und eignet sich bestens gegen Nahkampfeinheiten.</German>
+    <Italian>Questa unit&#224; &#232; uno dei pi&#249; forti unit&#224; nel Early Classic ed &#232; perfetto contro le unit&#224; da mischia.</Italian>
+    <Spanish>Al principio de la era cl&#225;sica esta unidad es una de las m&#225;s fuertes y es perfectamente adecuada contra unidades cuerpo a cuerpo.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_KERMA_WARRIOR_STRATEGY</Tag>
+    <English>This unit is the strongest Spearman unit this time and can be used universally.</English>
+    <French>Cette unit&#233; est l'unit&#233; de support de lance, cette fois plus forte et peut &#234;tre utilis&#233;e de mani&#232;re universelle.</French>
+    <German>Diese Einheit ist die st&#228;rkste Speertr&#228;gereinheit dieser Zeit und kann universell eingesetzt werden.</German>
+    <Italian>Questa unit&#224; &#232; il pi&#249; forte unit&#224; vettore lancia questo momento e pu&#242; essere usato universalmente.</Italian>
+    <Spanish>Esta unidad es la unidad con lanza m&#225;s fuerte de su tiempo y puede ser usada universalmente.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_NUBIAFUERST_STRATEGY</Tag>
+    <English>This elite unit is only available for the Nubians and can be commended from a shield bearer, which has acquired the status of a veteran.</English>
+    <French>This elite unit is only available for the Nubians and can be commended from a shield bearer, which has acquired the status of a veteran.</French>
+    <German>Diese Eliteeinheit steht nur den Nubiern zur Verf&#252;gung und kann aus einem Schildtr&#228;ger erstellt werden, der den Status eines Veterans erreicht hat.</German>
+    <Italian>This elite unit is only available for the Nubians and can be commended from a shield bearer, which has acquired the status of a veteran.</Italian>
+    <Spanish>Esta unidad de &#233;lite s&#243;lo esta disponible para los nubios y puede ser promovida desde un soldado con escudo, que ha conseguido el estatus de veterano.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_LIBYAN_AMAZON_STRATEGY</Tag>
+    <English>The Libyan Amazons are best suited for city defense.</English>
+    <French>Les Amazones libyennes sont les mieux adapt&#233;s pour la d&#233;fense de la ville.</French>
+    <German>Die Libyschen Amazonen eignen sich am besten f&#252;r die Stadtverteidigung.</German>
+    <Italian>Le Amazzoni libiche sono pi&#249; adatti per la difesa della citt&#224;.</Italian>
+    <Spanish>La amazona libia se usa mejor para la defensa de la ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_RADSCHA_STRATEGY</Tag>
+    <English>This elite unit is well suited for the attack and defense of cities.</English>
+    <French>Cette unit&#233; d'&#233;lite convient parfaitement pour attaquer ou d&#233;fendre les villes.</French>
+    <German>Diese Eliteeinheit eignet sich gut f&#252;r den Angriff und die Verteidung von St&#228;dten.</German>
+    <Italian>Questa unit&#224; d'elite &#232; adatto per l'attacco e la difesa delle citt&#224;.</Italian>
+    <Spanish>Esta unidad &#233;lite es muy adecuada para el ataque y la defensa de las ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_HORSEMAN_SKYTHEN_STRATEGY</Tag>
+    <English>This is the first mounted unit, which can represent a serious threat for the opponent on open field early in the game.</English>
+    <French>C'est la premi&#232;re unit&#233; mont&#233;e. Elle peut repr&#233;senter une &#233;norme menace au d&#233;but du jeu contre un adversaire en terrain d&#233;couvert.</French>
+    <German>Dies ist die erste berittene Einheit, die fr&#252;h im Spiel auf offenem Feld eine ernste Bedrohung f&#252;r den Gegner bedeuten kann.</German>
+    <Italian>Questa &#232; la prima unit&#224; montata che all'inizio del gioco pu&#242; significare una seria minaccia per il nemico in campo aperto.</Italian>
+    <Spanish>Esta es la primera unidad montada, que puede representar una seria amenaza para el enemigo en terreno abierto al principio del juego.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_WAR_HORSE_THRAKER_STRATEGY</Tag>
+    <English>This unit ignores terrain movement costs, making it one of the most effective mounted units.</English>
+    <French>Cette unit&#233; est extr&#234;ment effective car elle ignore les c&#244;uts de d&#233;placement li&#233;s au terrain.</French>
+    <German>Diese Einheit ignoriert Gel&#228;ndefortbewegungskosten und ist somit eine der effektivsten berittenen Einheiten.</German>
+    <Italian>Questa unit&#224; ignora i costi di movimento del terreno, che lo rende una delle unit&#224; montate pi&#249; efficaci.</Italian>
+    <Spanish>Esta unidad ignora los costes por movimiento de terreno, haci&#233;ndola una de las unidad montadas m&#225;s efectivas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_GREAT_WALL_GORGAN_STRATEGY</Tag>
+    <English>This wonder prevents Barbarians crossing the cultural borders.</English>
+    <French>Cette merveille emp&#234;che les barbares de franchir les fronti&#232;res culturelles.</French>
+    <German>Dieses Wunder hindert Barbaren am &#220;berqueren der Grenzen. [NEWLINE]</German>
+    <Italian>Questo miracolo impedisce barbari che attraversano le frontiere.</Italian>
+    <Spanish>Esta maravilla previene que los b&#225;rbaros crucen las fronteras culturales.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_HADRIAN_WALLS_STRATEGY</Tag>
+    <English>+1 [ICON_HAPPY] in all cities of the continent</English>
+    <French>+1 [ICON_HAPPY] dans toutes les villes du continent</French>
+    <German>+1 [ICON_HAPPY] in allen St&#228;dten des Kontinents [NEWLINE]</German>
+    <Italian>+1 [ICON_HAPPY] in tutte le citt&#224; del continente</Italian>
+    <Spanish>+1 [ICON_HAPPY] en todas las ciudades del continente</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_MISSIONARY_JAINISMUS_STRATEGY</Tag>
+    <English>With this missionary the [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] can be actively spread in other cities.</English>
+    <French>Avec ce missionnaire le [COLOR_HIGHLIGHT_TEXT]Ja&#239;nisme[COLOR_REVERT] peut &#234;tre r&#233;pandu de fa&#231;on active dans d'autres villes.</French>
+    <German>Mit diesem Missionar kann der [COLOR_HIGHLIGHT_TEXT]Jainismus[COLOR_REVERT] in anderen St&#228;dten verbreitet werden.</German>
+    <Italian>Con questi missionario [COLOR_HIGHLIGHT_TEXT] Jainismo [COLOR_REVERT] pu&#242; essere utilizzato in altre citt&#224;.</Italian>
+    <Spanish>Con este misionero el [COLOR_HIGHLIGHT_TEXT]Jainismo[COLOR_REVERT] puede ser difundido r&#225;pidamente en otras ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_BURNING_PIGS_STRATEGY</Tag>
+    <English>Use [COLOR_UNIT_TEXT]Burning Pigs[COLOR_REVERT] to directly attack [COLOR_UNIT_TEXT]War Elephant[COLOR_REVERT] units and cause collateral damage to a stack of units. The [COLOR_UNIT_TEXT]Burning Pigs[COLOR_REVERT] unit will die after combat.</English>
+    <French>Utilisez les [COLOR_UNIT_TEXT]porcs incendiaires[COLOR_REVERT] pour attaquer directement les [COLOR_UNIT_TEXT]&#233;l&#233;phants de guerre[COLOR_REVERT] et faire des dommages collat&#233;raux aux unit&#233;s empil&#233;es. Les [COLOR_UNIT_TEXT]porcs de guerre[COLOR_REVERT] mourront apr&#232;s le combat.</French>
+    <German>Verwende [COLOR_UNIT_TEXT]Brennende Schweine[COLOR_REVERT] um [COLOR_UNIT_TEXT]Kriegselefanten[COLOR_REVERT] direkt zu schaden und Kollateralschaden zu verursachen. Die Einheit stirbt nach dem Angriff.</German>
+    <Italian>Usare [COLOR_UNIT_TEXT] Bruciare suini [COLOR_REVERT] a [COLOR_UNIT_TEXT] elefanti da guerra [COLOR_REVERT] per danneggiare direttamente e causare danni collaterali. L'unit&#224; &#232; morto dopo l'attacco.</Italian>
+    <Spanish>Usa los [COLOR_UNIT_TEXT]Cerdos Ardientes[COLOR_REVERT] para atacar directamente a los [COLOR_UNIT_TEXT]elefantes de guerra[COLOR_REVERT] y causar da&#241;os colaterales a una pila de unidades. El [COLOR_UNIT_TEXT]Cerdo de Guerra[COLOR_REVERT] morir&#225; despu&#233;s del combate.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_ARGYRASPIDAI_STRATEGY</Tag>
+    <English>This elite unit of the Macedonians suits best against [COLOR_UNIT_TEXT]Axemen[COLOR_REVERT], [COLOR_UNIT_TEXT]Chariots[COLOR_REVERT] and [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</English>
+    <French>Cette unit&#233; d'&#233;lite mac&#233;donienne convient mieux contre le [COLOR_UNIT_TEXT]lancier[COLOR_REVERT].</French>
+    <German>Diese Eliteeinheit der Makedonier eignet sich am besten gegen [COLOR_UNIT_TEXT]Axtk&#228;mpfer[COLOR_REVERT], [COLOR_UNIT_TEXT]Streitwagen[COLOR_REVERT] und [COLOR_UNIT_TEXT]Berittene[COLOR_REVERT].</German>
+    <Italian>Questa unit&#224; d'elite dei macedoni &#232; meglio utilizzato contro [COLOR_UNIT_TEXT] Spearman [COLOR_REVERT].</Italian>
+    <Spanish>Esta unidad de &#233;lite de los macedonios se adapta mejor contra [COLOR_UNIT_TEXT]Unidades con hacha[COLOR_REVERT], [COLOR_UNIT_TEXT]unidades de carros[COLOR_REVERT],y [COLOR_UNIT_TEXT]unidades montadas[COLOR_REVERT].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_THORAKITAI_STRATEGY</Tag>
+    <English>This unit is one of the strongest units against mounted units and is also suitable in the fight against foot soldiers.</English>
+    <French>Cette unit&#233; est l'une des meilleures contre les unit&#233;s mont&#233;es et fonctionnent &#233;galement bien contre l'infanterie.</French>
+    <German>Diese Einheit ist eine der st&#228;rksten Einheiten gegen Reiter und eignet sich auch im Kampf gegen Fu&#223;soldaten.</German>
+    <Italian>Questa unit&#224; &#232; uno dei pi&#249; forti unit&#224; contro i piloti ed &#232; anche nella lotta contro soldati a piedi.</Italian>
+    <Spanish>Esta unidad es una de las unidades mas fuertes contra unidades montadas y tambi&#233;n se adapta en la lucha contra soldados de a pie.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_PILUM_STRATEGY</Tag>
+    <English>This technology can produce the first pilum draft unit and is a prerequisite for the later coming legionary units!</English>
+    <French>Cette technologie permet de produire la premi&#232;re unit&#233; &#224; javelot. C'est &#233;galement un pr&#233;requis pour les l&#233;gions romaines !</French>
+    <German>Diese Technologie kann die erste Pilumswurfeinheit erzeugen und ist Voraussetzung f&#252;r die sp&#228;ter kommenden Legion&#228;rseinheiten!</German>
+    <Italian>Cette technologie peut produire le premier projet de pilum unit&#233; et est une condition pr&#233;alable pour les unit&#233;s de l&#233;gionnaires &#224; venir plus tard!</Italian>
+    <Spanish>&#161;Esta tecnolog&#237;a puede producir la primera unidad reclutada con el pilum y es un requisito para las posteriores unidades legionarias!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_ROMAN_OR_PERSIAN_ROADS_STRATEGY</Tag>
+    <English>With this technology, you are able to build roads with an additional bonus of movement.</English>
+    <French>Cette technologie permet de construire des routes avec un bonus de mouvement suppl&#233;mentaire.</French>
+    <German>Mit dieser Technologie k&#246;nnen Stra&#223;en gebaut werden, die einen zus&#228;tzlichen Fortbewegungsbonus liefern.</German>
+    <Italian>Con questa tecnologia, le strade possono essere costruiti, che forniscono un bonus extra movimento.</Italian>
+    <Spanish>Con esta tecnolog&#237;a, podr&#225;s construir caminos con un bonus adicional de movimiento.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_HASTATI_STRATEGY</Tag>
+    <English>Hastati are cheap but effective units (first strike) and are suitable to fight on the front line to weaken the enemy. They can also be used to build a [COLOR_HIGHLIGHT_TEXT] Roman road [COLOR_REVERT] as well as [COLOR_HIGHLIGHT_TEXT] forts [COLOR_REVERT] and can clear forests/jungles.</English>
+    <French>Les Hastati sont des unit&#233;s peu ch&#232;res mais efficaces (attaque en premier). Ils sont efficaces en premi&#232;re ligne pour affaiblir l'ennemi. Ils peuvent aussi &#234;tre utilis&#233;s pour construire une [COLOR_HIGHLIGHT_TEXT] route romaine [COLOR_REVERT] ou des [COLOR_HIGHLIGHT_TEXT] forts [COLOR_REVERT]. Ils peuvent aussi couper les for&#234;ts et les jungles.</French>
+    <German>Hastati sind billige aber effektive Einheiten (Erstangriff) und eignen sich dazu an vorderster Front zu k&#228;mpfen und den Gegner zu schw&#228;chen. Sie sind weiters in der Lage eine [COLOR_HIGHLIGHT_TEXT]R&#246;mische Stra&#223;e[COLOR_REVERT] sowie [COLOR_HIGHLIGHT_TEXT]Festungen[COLOR_REVERT] zu bauen und Wald/Dschungel zu roden.</German>
+    <Italian>Astati sono unit&#224; economiche ma efficaci (primo attacco) e sono adatte a combattere in prima linea e indebolire il nemico. Sono, inoltre, in una posizione a [COLOR_HIGHLIGHT_TEXT] strada romana [COLOR_REVERT] e [COLOR_HIGHLIGHT_TEXT] fortezze [COLOR_REVERT] per costruire e per cancellare foresta / giungla.</Italian>
+    <Spanish>Los Hastati son unidades baratas pero efectivas (ataque de iniciativa) y est&#225; capacitada para luchar en el frente para debilitar al enemigo. Puede ser usado tambi&#233;n para construir una [COLOR_HIGHLIGHT_TEXT] V&#237;a romana [COLOR_REVERT] como tambi&#233;n [COLOR_HIGHLIGHT_TEXT] fuertes [COLOR_REVERT] y puede limpiar bosques/selvas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_PILUMNI_STRATEGY</Tag>
+    <English>This first unit equipped with a pilum (first strike), is suitable to fight on the front line to weaken the enemy. It can also be used to build a [COLOR_HIGHLIGHT_TEXT] Roman Road [COLOR_REVERT] as well as [COLOR_HIGHLIGHT_TEXT] Forts [COLOR_REVERT] and can clear forests/jungles.</English>
+    <French>La premi&#232;re unit&#233; &#233;quip&#233;e d'un Pilum (attaque en premier). Elle est efficace en premi&#232;re ligne pour affaiblir l'ennemi. Elle peut &#233;galement &#234;tre utilis&#233;e pour construire une [COLOR_HIGHLIGHT_TEXT] voie romaine [COLOR_REVERT] ou des [COLOR_HIGHLIGHT_TEXT] forts [COLOR_REVERT]. Elle peut aussi couper les for&#234;ts et les jungles.</French>
+    <German>Diese, erstmals mit einem Pilum ausgestattete Einheit (Erstangriff), eignet sich dazu an vorderster Front zu k&#228;mpfen und den Gegner zu schw&#228;chen. Sie ist weiters in der Lage eine [COLOR_HIGHLIGHT_TEXT]r&#246;mische Stra&#223;e[COLOR_REVERT] sowie [COLOR_HIGHLIGHT_TEXT]Festungen[COLOR_REVERT] zu bauen und Wald/Dschungel zu roden.</German>
+    <Italian>Questo, per la prima volta munito di un'unit&#224; pilum (primo attacco), &#232; di combattere in prima linea e indebolire il nemico. E 'inoltre in grado di [COLOR_HIGHLIGHT_TEXT] strada romana [COLOR_REVERT] e [COLOR_HIGHLIGHT_TEXT] fortezze [COLOR_REVERT] per costruire e per cancellare foresta / giungla.</Italian>
+    <Spanish>La primera unidad equipada con un pilum (ataque de iniciativa), est&#225; capacitada para luchar en el frente para debilitar al enemigo. Puede ser usado tambi&#233;n para construir una [COLOR_HIGHLIGHT_TEXT] V&#237;a romana [COLOR_REVERT] como tambi&#233;n [COLOR_HIGHLIGHT_TEXT] fuertes [COLOR_REVERT] y puede limpiar bosques/selvas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_PRINCIPES_STRATEGY</Tag>
+    <English>Principes are strong melee units and can be used in attacking cities.</English>
+    <French>Les principes sont des unit&#233;s de m&#234;l&#233;es puissantes et peuvent &#234;tre utilis&#233;es pour attaquer les villes.</French>
+    <German>Principes sind starke Nahkampfeinheiten und eigenen sich f&#252;r Stadteroberungen.</German>
+    <Italian>Principes sono forti le unit&#224; da mischia e sono adatti per la conquista della citt&#224;.</Italian>
+    <Spanish>Los Principes son unidades cuerpo a cuerpo fuertes y pueden ser usados para atacar ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_TRIARII_STRATEGY</Tag>
+    <English>Triarii Legionis can be created by Principes Legionis and Hastati Legionis and are best suited against mounted units. For this you need the technology of [COLOR_TECH_TEXT]Iron Weaponry[COLOR_REVERT] and those units have to be veteran ranked.</English>
+    <French>Les Legionis Triarii peuvent &#234;tre cr&#233;es par les Legionis Principes ou Hastati et sont efficaces contre les unit&#233;s mont&#233;es. Cela demande d'avoir d&#233;bloqu&#233; la technologie [COLOR_TECH_TEXT]Armes de Fer[COLOR_REVERT] et une unit&#233; v&#233;t&#233;rante.</French>
+    <German>Triarii k&#246;nnen nur von Principes und Hastati gebildet werden und eignen sich am besten im Kampf gegen Reiter. Dazu ben&#246;tigt man die Technologie [COLOR_TECH_TEXT]Eisenwaffen[COLOR_REVERT] und die Einheiten m&#252;ssen den Rang Veteran vorweisen.</German>
+    <Italian>Triarii Legionis pu&#242; essere formata solo da Principes Legionis e Astati Legionis e sono meglio utilizzato nella lotta contro cavalieri. Per questo &#232; necessario la tecnologia [COLOR_TECH_TEXT]Armi di Ferro[COLOR_REVERT] e le unit&#224; deve avere il rango di Veterano.</Italian>
+    <Spanish>Los Triarii Legionis pueden ser creados por Principes Legionis y Hastati Legionis y est&#225;n mejor prepadas contra unidades montadas. Para esto necesitas la tecnolog&#237;a [COLOR_TECH_TEXT]Armas de Hierro[COLOR_REVERT] y esas unidades tienen que tener el rango de veteranas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_ROME_PRAETORIAN_RIDER_STRATEGY</Tag>
+    <English>The Mounted Praetorian is on the one hand, one of the strongest cavalry unit of late antiquity, but also the most expensive.</English>
+    <French>Le pr&#233;torien mont&#233; est l'une des unit&#233;s mont&#233;es les plus puissantes de l'Antiquit&#233; tardive mais c'est &#233;galement la plus ch&#232;re.</French>
+    <German>Der Berittene Pr&#228;torianer ist einerseits eine der st&#228;rksten berittenen Einheiten der Sp&#228;tantike, aber daf&#252;r auch die teuerste.</German>
+    <Italian>Il Pretorio Montato, da un lato uno dei pi&#249; forti unit&#224; montata tarda antichit&#224;, ma anche il pi&#249; costoso.</Italian>
+    <Spanish>El Pretoriano Montado es por un lado, una de las unidades de caballer&#237;as mas fuertes de la antig&#252;edad tard&#237;a, pero tambi&#233;n de las m&#225;s caras.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_ARVERNER_STRATEGY</Tag>
+    <English>This very strong elite unit was trained as a general protection.</English>
+    <French>Cette unit&#233; d'&#233;lite extr&#234;mement puissante &#233;tait entra&#238;n&#233;e pour prot&#233;ger les g&#233;n&#233;raux.</French>
+    <German>Diese sehr starke Eliteeinheit wurde zum allgemeinen Schutz ausgebildet.</German>
+    <Italian>Questo molto forte unit&#224; d'elite &#232; stato addestrato come una protezione generale.</Italian>
+    <Spanish>Esta unidad de &#233;lite muy fuerte fue entrenada como protecci&#243;n de un general.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_CAMEL_STRATEGY</Tag>
+    <English>[COLOR_UNIT_TEXT]Camels[COLOR_REVERT] can be used to accelerate production in weak cities.</English>
+    <French>Les [COLOR_UNIT_TEXT]Chameaux[COLOR_REVERT] peuvent &#234;tre utilis&#233;s pour acc&#233;l&#233;rer la production des villes.</French>
+    <German>[COLOR_UNIT_TEXT]Kamele[COLOR_REVERT] k&#246;nnen dazu verwendet werden, in schwachen St&#228;dten die Produktion zu beschleunigen.</German>
+    <Italian>[COLOR_UNIT_TEXT] Cammelli [COLOR_REVERT] possono essere utilizzati per accelerare la produzione in citt&#224; deboli.</Italian>
+    <Spanish>Los [COLOR_UNIT_TEXT]Camellos[COLOR_REVERT] pueden ser usados para acelerar la producc&#243;n en ciudades d&#233;biles.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_BELGIER_STRATEGY</Tag>
+    <English>This unit is one of the strongest units of its time and can be used for every form of attack.</English>
+    <French>Cette unit&#233; est l'une des plus puissantes de son temps et peut &#234;tre utilis&#233;e pour toute forme d'attaque.</French>
+    <German>Diese Einheit ist eine der st&#228;rksten Einheiten seiner Zeit und kann f&#252;r jeden Angriff eingesetzt werden.</German>
+    <Italian>Cette unit&#233; est l'une des unit&#233;s les plus forts de son temps et peut &#234;tre utilis&#233; pour toute attaque</Italian>
+    <Spanish>Esta unidad es una de las unidades m&#225;s fuertes de su tiempo y puede ser usada para todas las formas de ataque.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_WURFAXT_STRATEGY</Tag>
+    <English>The Axe Thrower is one of the most dangerous units of late antiquity.</English>
+    <French>Le lanceur de hache est l'une des unit&#233;s les plus dangereuses de l'Antiquit&#233; tardive.</French>
+    <German>Der Axtwerfer ist eine der gef&#228;hrlichsten Kampfeinheiten der Sp&#228;tantike.</German>
+    <Italian>L'Axe Thrower &#232; una delle unit&#224; combattenti pi&#249; pericolosi della tarda antichit&#224;.</Italian>
+    <Spanish>El Lanzador de Hacha es una de las unidades m&#225;s peligrosas de la antig&#252;edad tard&#237;a.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_WURFAXT_STRATEGY</Tag>
+    <English>This technology is subject to the Celtic and Germanic tribes. Axe Throwers can be trained.</English>
+    <French>Cette technologie est r&#233;serv&#233;e aux tribus celtes et germaniques. Elle permet le recrutement de lanceurs de haches.</French>
+    <German>Diese Technologie ist den keltischen und germanischen St&#228;mmen vorbehalten. Mit ihr k&#246;nnen Axtwerfer ausgebildet werden.</German>
+    <Italian>Questa tecnologia &#232; il celtico e trib&#249; germaniche riservati, con i suoi lanciatori d'ascia possono essere formate.</Italian>
+    <Spanish>Esta tecnolog&#237;a est&#225; asignada a las tribus celtas y germanas, y por tanto pueden formarse Lanzador de Hacha.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_LORICA_SEGMENTATA_STRATEGY</Tag>
+    <English>With this technology, the most vigorous stage of the Legion can be built.</English>
+    <French>Cette technologie permet de cr&#233;er les L&#233;gions les plus puissantes du jeu.</French>
+    <German>Mit dieser Technologie kann die kr&#228;ftigste Ausbaustufe der Legion gebaut werden.</German>
+    <Italian>Con questa tecnologia, la fase di espansione pi&#249; forte della Legione pu&#242; essere costruito.</Italian>
+    <Spanish>Con esta tecnolog&#237;a, la forma m&#225;s vigorosa de la Legi&#243;n puede ser constru&#237;da.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_BEWEIS_STRATEGY</Tag>
+    <English>With this technology you are able to construct [COLOR_BUILDING_TEXT]The School of Pythagoras[COLOR_REVERT] wonder with a Great Scientist.</English>
+    <French>Cette technologie permet de construire l'[COLOR_BUILDING_TEXT]&#201;cole de Pythagore[COLOR_REVERT] avec un Grand Scientifique.</French>
+    <German>Mit dieser Technologie kann mit Hilfe eines Gro&#223;en Wissenschaftlers die [COLOR_BUILDING_TEXT]Schule des Pythagoras[COLOR_REVERT] errichtet werden.</German>
+    <Italian>Questa tecnologia pu&#242; essere costruito con l'aiuto di un grande scienziato, la [COLOR_BUILDING_TEXT]Scuola di Pitagora[COLOR_REVERT].</Italian>
+    <Spanish>Con esta tecnolog&#237;a puedes construir la [COLOR_BUILDING_TEXT]Escuela de Pit&#225;goras[COLOR_REVERT] con un Gran Cient&#237;fico.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_BABYLON_GARDEN_STRATEGY</Tag>
+    <English>The [COLOR_BUILDING_TEXT]Garden[COLOR_REVERT] provides +1[ICON_FOOD] in addition to the usual happiness bonus.</English>
+    <French>Le [COLOR_BUILDING_TEXT]Jardin[COLOR_REVERT] conf&#232;re +1[ICON_FOOD] suppl&#233;mentaires en plus du bonus de bonheur habituel.</French>
+    <German>Der [COLOR_BUILDING_TEXT]Garten[COLOR_REVERT] gew&#228;hrt neben dem &#252;blichen Zufriedenheitsbonus auch +1[ICON_FOOD].</German>
+    <Italian>Il [COLOR_BUILDING_TEXT]Giardino[COLOR_REVERT] d&#224; +1[ICON_FOOD] oltre al classico bonus di felicit&#224;.</Italian>
+    <Spanish>El [COLOR_BUILDING_TEXT]Jard&#237;n[COLOR_REVERT] proporciona +1[ICON_FOOD], adem&#225;s de la habitual bonificaci&#243;n a la felicidad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_GERMAN_BERSERK_STRATEGY</Tag>
+    <English>This Germanic special unit is a powerful melee unit.</English>
+    <French>Cette unit&#233; sp&#233;ciale germanique est une unit&#233; de m&#234;l&#233;e puissante.</French>
+    <German>Diese germanische Spezialeinheit ist eine m&#228;chtige Nahkampfeinheit.</German>
+    <Italian>Queste unit&#224; speciale germanica &#232; una potente unit&#224; da mischia.</Italian>
+    <Spanish>La unidad especial germ&#225;nica es una unidad cuerpo a cuerpo poderosa.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_HEILIGER_ORT_STRATEGY</Tag>
+    <English>With this technology you are able to construct the[COLOR_BUILDING_TEXT]Holy Shrines[COLOR_REVERT] of the nordic and celtic religions.</English>
+    <French>Avec cette technologie, vous pourrez construire de nombreux [COLOR_BUILDING_TEXT]B&#226;timents Sacr&#233;s[COLOR_REVERT] comme des temples, l'Oracle ou des Autel Sacr&#233;s.</French>
+    <German>Mit dieser Technologie k&#246;nnen die [COLOR_BUILDING_TEXT]Schreine[COLOR_REVERT] der nordischen und keltischen Religionen errichtet werden.</German>
+    <Italian>Con questa tecnologia, un certo numero di [COLOR_BUILDING_TEXT] Sacred Immobile [COLOR_REVERT] pu&#242; essere costruita, come templi, oracoli e santuari.</Italian>
+    <Spanish>Con esta tecnolog&#237;a podr&#225;s construir varios [COLOR_BUILDING_TEXT]Edificios Sagrados[COLOR_REVERT], de las religiones n&#243;rdica y celta.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_POLYTHEISM_STRATEGY</Tag>
+    <English>[COLOR_UNIT_TEXT]Brahmans[COLOR_REVERT] can be send out to supply your troops and the [COLOR_BUILDING_TEXT]Small Oracle[COLOR_REVERT] can be built.</English>
+    <French>Les [COLOR_UNIT_TEXT]missionnaires[COLOR_REVERT] celtes et nordiques peuvent &#234;tre envoy&#233;s.</French>
+    <German>Hiermit k&#246;nnen [COLOR_UNIT_TEXT]Brahmanen[COLOR_REVERT] ausgesandt und ein [COLOR_BUILDING_TEXT]Kleines Orakel [COLOR_REVERT] errichtet werden.</German>
+    <Italian>Lascia per celtici e nordici [COLOR_UNIT_TEXT] Missionari [COLOR_REVERT] vengono emessi.</Italian>
+    <Spanish>[COLOR_UNIT_TEXT]Brahmanes[COLOR_REVERT] pueden ser enviados fuera para ayudar a las tropas y el [COLOR_BUILDING_TEXT]Peque&#241;o Or&#225;culo[COLOR_REVERT] puede ser construido.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_GREAT_LIGHTHOUSE_STRATEGY</Tag>
+    <English>The [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] gets build automatically when finishing the project [COLOR_PROJECT_TEXT]The Great Lighthouse[COLOR_REVERT] and adds one additional trade route in all coastal cities. The [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] also increases its city's odds of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+    <French>Le [COLOR_BUILDING_TEXT]Grand phare[COLOR_REVERT] gets build automatically when finishing the project [COLOR_PROJECT_TEXT]Le Grand phare[COLOR_REVERT] and ajoute 1 route commerciale &#224; toutes les villes c&#244;ti&#232;res et augmente les chances d'apparition d'un [COLOR_UNIT_TEXT]marchand illustre[COLOR_REVERT].</French>
+    <German>Der [COLOR_BUILDING_TEXT]Gro&#223;e Leuchtturm[COLOR_REVERT] wird automatisch erstellt, wenn das Projekt [COLOR_PROJECT_TEXT]Der Gro&#223;e Leuchtturm[COLOR_REVERT] abgeschlossen wird und erschlie&#223;t einen zus&#228;tzlichen Handelsweg in allen K&#252;stenst&#228;dten. Dar&#252;ber hinaus erh&#246;hen sich durch einen [COLOR_BUILDING_TEXT]Gro&#223;en Leuchtturm[COLOR_REVERT] die Chancen der Stadt, einen [COLOR_UNIT_TEXT]Gro&#223;en H&#228;ndler[COLOR_REVERT] hervorzubringen.</German>
+    <Italian>Il [COLOR_BUILDING_TEXT]Grande Faro[COLOR_REVERT] gets build automatically when finishing the project [COLOR_PROJECT_TEXT]Il Grande Faro[COLOR_REVERT] and aggiunge uno rotta commerciale a tutte le citt&#224; costiere. Il [COLOR_BUILDING_TEXT]Grande Faro[COLOR_REVERT] aumenta la probabilit&#224; di generare un [COLOR_UNIT_TEXT]Grande Mercante[COLOR_REVERT].</Italian>
+    <Spanish>El [COLOR_BUILDING_TEXT]Gran Faro[COLOR_REVERT] se construye autom&#225;ticamente cuando se finaliza el proyecto [COLOR_PROJECT_TEXT]El Gran Faro[COLOR_REVERT] y a&#241;ade una ruta comercial a todas las ciudades costeras. El [COLOR_BUILDING_TEXT]Gran Faro[COLOR_REVERT] tambi&#233;n aumenta las probabilidades de que en su ciudad se genere un [COLOR_UNIT_TEXT]Gran mercader[COLOR_REVERT].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_PROJECT_LIGHTHOUSE_STRATEGY</Tag>
+    <English>This project creates the [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] in the city and enables the building of a [COLOR_BUILDING_TEXT]lighthouse[COLOR_REVERT] for everyone.</English>
+    <French>Ce projet cr&#233;e le [COLOR_BUILDING_TEXT]Grand Phare[COLOR_REVERT] dans la ville et rend accessible la construction des [COLOR_BUILDING_TEXT]phares[COLOR_REVERT] pour tous les joueurs.</French>
+    <German>Dieses Projekt erstellt automatisch den [COLOR_BUILDING_TEXT]Gro&#223;en Leuchtturm[COLOR_REVERT] in der Stadt und erm&#246;glicht den Bau eines [COLOR_BUILDING_TEXT]Leuchtturms[COLOR_REVERT] f&#252;r alle.</German>
+    <Italian>Questo progetto crea automaticamente la [COLOR_BUILDING_TEXT] Great Lighthouse [COLOR_REVERT] in citt&#224; e permette la costruzione di un [COLOR_BUILDING_TEXT] faro [COLOR_REVERT] per tutti.</Italian>
+    <Spanish>Este proyecto crea el [COLOR_BUILDING_TEXT]Gran Faro[COLOR_REVERT] en la ciudad y permite la construcci&#243;n de un [COLOR_BUILDING_TEXT]faro[COLOR_REVERT] para todos.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_THING_STRATEGY</Tag>
+    <English>The [COLOR_BUILDING_TEXT]Thing[COLOR_REVERT] lowers city maintenance costs, provides you with a bonus to espionage and +1[ICON_HAPPY]. [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] help manage the cost of controlling large empires.</English>
+    <French>Les [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] r&#233;duisent le co&#251;t d'entretien des villes, procurent un bonus en espionnage et +1[ICON_HAPPY]. Ils facilitent la gestion des grands empires.</French>
+    <German>Das [COLOR_BUILDING_TEXT]Thing[COLOR_REVERT] senkt die Verwaltungskosten einer Stadt, gew&#228;hrt einen Spionagebonus und liefert +1[ICON_HAPPY]. [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] erleichtern die Verwaltung der Kosten gro&#223;er Reiche.</German>
+    <Italian>I [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] riducono i costi di mantenimento e danno un bonus di Spionaggio e +1[ICON_HAPPY]. I [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] aiutano a ridurre il costo del controllo sugli imperi pi&#249; vasti.</Italian>
+    <Spanish>Los [COLOR_BUILDING_TEXT]Things[COLOR_REVERT] reducen los costes de mantenimiento de la ciudad y proporcionan una bonificaci&#243;n al espionaje y +1[ICON_HAPPY]. Things ayudan a gestionar el coste que supone controlar un gran imperio.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_TROCKENDOCK_STRATEGY</Tag>
+    <English>A [COLOR_BUILDING_TEXT]drydock[COLOR_REVERT] heals units faster and provides an experience bonus.</English>
+    <French>Une [COLOR_BUILDING_TEXT]cale s&#232;che[COLOR_REVERT] gu&#233;rit les unit&#233;s plus rapidement et donne de l'exp&#233;rience suppl&#233;mentaire.</French>
+    <German>Ein [COLOR_BUILDING_TEXT]Trockendock[COLOR_REVERT] heilt Einheiten schneller und liefert Schiffen einen Erfahrungsbonus.</German>
+    <Italian>A [COLOR_BUILDING_TEXT] asciutto [COLOR_REVERT] guarire le navi le unit&#224; pi&#249; veloci e fornisce un bonus esperienza.</Italian>
+    <Spanish>Un [COLOR_BUILDING_TEXT]dique seco[COLOR_REVERT] cura unidades m&#225;s r&#225;pido y proporciona un bonus de experiencia.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_WERFT_STRATEGY</Tag>
+    <English>In a [COLOR_BUILDING_TEXT]shipyard[COLOR_REVERT] ships can be built faster and gain an experience bonus.</English>
+    <French>Avec un [COLOR_BUILDING_TEXT]chantier naval[COLOR_REVERT] les navires sont construits plus rapidement et gagnent des points d'exp&#233;rience suppl&#233;mentaires.</French>
+    <German>In einer [COLOR_BUILDING_TEXT]Werft[COLOR_REVERT] produzierte Schiffe werden schneller gebaut und erhalten einen Erfahrungsbonus.</German>
+    <Italian>In un cantiere [COLOR_BUILDING_TEXT] [COLOR_REVERT] navi prodotte saranno costruite pi&#249; velocemente ed ottenere un bonus XP.</Italian>
+    <Spanish>En un [COLOR_BUILDING_TEXT]astillero[COLOR_REVERT] los barcos pueden ser constru&#237;dos m&#225;s r&#225;pido y ganan un bonus de experiencia.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_CELTIC_SHRINE_STRATEGY</Tag>
+    <English>This holy shrine of the Celtic gods can be build by a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT], produces 4 [ICON_CULTURE], +1 [ICON_HAPPY] und +1 [ICON_BULLET] and spreads the Celtic religion.</English>
+    <French>Cet autel sacr&#233; pour les dieux celtes peut &#234;tre construit par un [COLOR_UNIT_TEXT]Grand Proph&#232;te[COLOR_REVERT]. Il produit 4[ICON_CULTURE], +1 [ICON_HAPPY], +1 [ICON_BULLET] et r&#233;pand la religion celte.</French>
+    <German>Diese heilige St&#228;tte des keltischen Glaubens kann von einem [COLOR_UNIT_TEXT]Gro&#223;en Propheten[COLOR_REVERT] gebaut werden, erzeugt 4 [ICON_CULTURE], +1 [ICON_HAPPY] und verbreitet die keltische Religion.</German>
+    <Italian>Questo luogo sacro della fede celtica pu&#242; essere costruito da un [COLOR_UNIT_TEXT] Grande Profeta [COLOR_REVERT], genera 4 [ICON_CULTURE], +1 [ICON_HAPPY] e diffondere la religione celtica.</Italian>
+    <Spanish>Este santuario sagrado de los dioses celtas puede ser constru&#237;do por un [COLOR_UNIT_TEXT]Gran Profeta[COLOR_REVERT], produce 4 [ICON_CULTURE], +1 [ICON_HAPPY] y +1 [ICON_BULLET] y propaga la religi&#243;n celta.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_SCHMIEDE_MESSING_STRATEGY</Tag>
+    <English>The [COLOR_BUILDING_TEXT]Brass smeltery[COLOR_REVERT] produces brass (+1[ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT]Brass[COLOR_REVERT] or [COLOR_HIGHLIGHT_TEXT]Orichalcum[COLOR_REVERT] is prerequired for the construction of a [COLOR_HIGHLIGHT_TEXT]Noble Armor[COLOR_REVERT] (promotion).</English>
+    <French>La [COLOR_BUILDING_TEXT]fonderie laiton[COLOR_REVERT] produit du laiton (+1[ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT]Laiton[COLOR_REVERT] ou [COLOR_HIGHLIGHT_TEXT]Orichalque[COLOR_REVERT] est pr&#233;requis pour la construction d'une [COLOR_HIGHLIGHT_TEXT]Armure Noble[COLOR_REVERT] (promotion).</French>
+    <German>Die [COLOR_BUILDING_TEXT]Messingh&#252;tte[COLOR_REVERT] erzeugt [COLOR_HIGHLIGHT_TEXT]Messing[COLOR_REVERT] (+1[ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT]Messing[COLOR_REVERT] oder [COLOR_HIGHLIGHT_TEXT]Oreichalkos[COLOR_REVERT] ist Vorraussetzung f&#252;r den Bau einer [COLOR_HIGHLIGHT_TEXT]Edlen R&#252;stung[COLOR_REVERT] (Bef&#246;rderung).</German>
+    <Italian>Il [COLOR_BUILDING_TEXT] capanna ottone [COLOR_REVERT] generato [COLOR_HIGHLIGHT_TEXT] Brass [COLOR_REVERT] (+1 [ICON_HAPPY]). [COLOR_HIGHLIGHT_TEXT] Brass [COLOR_REVERT] o [COLOR_HIGHLIGHT_TEXT] Oriharukon [COLOR_REVERT] &#232; un prerequisito per la costruzione di un [COLOR_HIGHLIGHT_TEXT] Noble Armatura [COLOR_REVERT] (trasporti).</Italian>
+    <Spanish>La [COLOR_BUILDING_TEXT]fundici&#243;n de lat&#243;n[COLOR_REVERT] produce lat&#243;n (+1[ICON_HAPPY]). El [COLOR_HIGHLIGHT_TEXT]lat&#243;n[COLOR_REVERT] o el [COLOR_HIGHLIGHT_TEXT]oricalco[COLOR_REVERT] es requerido para la construcci&#243;n de una [COLOR_HIGHLIGHT_TEXT]armadura de noble[COLOR_REVERT] (ascenso).</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_GAERUNG_STRATEGY</Tag>
+    <English>With this technology the owner of a cereal is able to build a [COLOR_BUILDING_TEXT]Brewery[COLOR_REVERT] (+25%[ICON_FOOD] food storage) which produces the bonus resource [COLOR_HIGHLIGHT_TEXT]Beer[COLOR_REVERT] (+1[ICON_HEALTHY]).</English>
+    <French>Avec cette technologie, le possesseur de c&#233;r&#233;ale peut construire une [COLOR_BUILDING_TEXT]brasserie[COLOR_REVERT] (+25%[ICON_FOOD] stockage de nourriture) qui produit la ressource [COLOR_HIGHLIGHT_TEXT]bi&#232;re[COLOR_REVERT] (+1[ICON_HEALTHY]).</French>
+    <German>Mit dieser Technologie k&#246;nnen Besitzer einer Getreideart mit der [COLOR_BUILDING_TEXT]Braust&#228;tte[COLOR_REVERT] (+25%[ICON_FOOD] Nahrungsspeicherung) das Bonusgut [COLOR_HIGHLIGHT_TEXT]Bier[COLOR_REVERT] (+1[ICON_HEALTHY]) erzeugen.</German>
+    <Italian>Con questa tecnologia il proprietario di un cereale &#232; in grado di costruire un [COLOR_BUILDING_TEXT] birreria [COLOR_REVERT] (+25% [ICON_FOOD] conservazione di alimenti) che produce la risorsa bonus [COLOR_HIGHLIGHT_TEXT] birra [COLOR_REVERT] (+1 [ICON_HEALTHY]).</Italian>
+    <Spanish>Con esta tecnolog&#237;a el poseedor de un tipo de cereal podr&#225; construir una [COLOR_BUILDING_TEXT]cervecer&#237;a[COLOR_REVERT] (+25%[ICON_FOOD] de almacenamiento de comida) que produce el recurso [COLOR_HIGHLIGHT_TEXT]cerveza[COLOR_REVERT] (+1[ICON_HEALTHY]).</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_BRAUSTAETTE_STRATEGY</Tag>
+    <English>The [COLOR_BUILDING_TEXT]Brewery[COLOR_REVERT] requires one sort of [COLOR_HIGHLIGHT_TEXT]cereal[COLOR_REVERT], can storage +15%[ICON_FOOD] and produces the bonus resource [COLOR_HIGHLIGHT_TEXT]beer[COLOR_REVERT] (+1[ICON_HEALTHY]).</English>
+    <French>La [COLOR_BUILDING_TEXT]Brasserie[COLOR_REVERT] requiert un [COLOR_HIGHLIGHT_TEXT]c&#233;r&#233;ale[COLOR_REVERT], permet de stocker +15%[ICON_FOOD] et produit la ressource [COLOR_HIGHLIGHT_TEXT]bi&#232;re[COLOR_REVERT] (+1[ICON_HEALTHY]).</French>
+    <German>Die [COLOR_BUILDING_TEXT]Braust&#228;tte[COLOR_REVERT] ben&#246;tigt eine [COLOR_HIGHLIGHT_TEXT]Getreideart[COLOR_REVERT], kann 15%[ICON_FOOD] speichern und erzeugt das Bonusgut [COLOR_HIGHLIGHT_TEXT]Bier[COLOR_REVERT] (+1[ICON_HEALTHY]).</German>
+    <Italian>The [COLOR_BUILDING_TEXT]Brewery[COLOR_REVERT] requires one sort of [COLOR_HIGHLIGHT_TEXT]cereal[COLOR_REVERT], can storage +15%[ICON_FOOD] and produces the bonus resource [COLOR_HIGHLIGHT_TEXT]beer[COLOR_REVERT] (+1[ICON_HEALTHY]).</Italian>
+    <Spanish>La [COLOR_BUILDING_TEXT]Cervecer&#237;a[COLOR_REVERT] requiere un tipo de [COLOR_HIGHLIGHT_TEXT]cereal[COLOR_REVERT], puede almacenar +25%[ICON_FOOD] y produce el recurso [COLOR_HIGHLIGHT_TEXT]cerveza[COLOR_REVERT] (+1[ICON_HEALTHY]).</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_KOLONIE_PROVINZ_STRATEGY</Tag>
+    <English>The status of a city is assigned automatically. Many buildings require a specific city status.</English>
+    <French>Le statut d'une ville est donn&#233; automatiquement. Certains b&#226;timents n&#233;cessitent un certain statut pour votre ville.</French>
+    <German>Der Status einer Stadt wird automatisch vergeben. Viele Geb&#228;ude ben&#246;tigen einen bestimmten Stadtstatus.</German>
+    <Italian>Lo status di una citt&#224; viene assegnato automaticamente. Molti edifici richiedono un certo status di citt&#224;.</Italian>
+    <Spanish>El estatus de ciudad es asignado autom&#225;ticamente. Muchos edificios requieren un estatus de ciudad espec&#237;fico.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_TOLERANZ_STRATEGY</Tag>
+    <English>With this form of government all religions are officially tolerated.</English>
+    <French>Avec ce r&#233;gime politique tous les religions sont toler&#233;es</French>
+    <German>Mit dieser Regierungsform werden nun alle Religionen offiziell geduldet.</German>
+    <Italian>With this form of government all religions are officially tolerated.</Italian>
+    <Spanish>Con esta forma de gobierno, todas las religiones son toleradas oficialmente.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_FUTURE_TECH_STRATEGY</Tag>
+    <English>The [COLOR_TECH_TEXT]Dark Ages[COLOR_REVERT] decreases health in your cities.</English>
+    <French>The [COLOR_TECH_TEXT]Dark Ages[COLOR_REVERT] decreases health in your cities.</French>
+    <German>Das [COLOR_TECH_TEXT]Dunkle Zeitalter[COLOR_REVERT] verschlechtert die Gesundheit Ihrer St&#228;dte.</German>
+    <Italian>The [COLOR_TECH_TEXT]Dark Ages[COLOR_REVERT] decreases health in your cities.</Italian>
+    <Spanish>La [COLOR_TECH_TEXT]edad oscura[COLOR_REVERT] disminuye la salud de tus ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_PARKANLAGEN_STRATEGY</Tag>
+    <English>With this technology, public parks can be built, which provide happiness.</English>
+    <French>With this technology, public parks can be built, which provide happiness.</French>
+    <German>Mit dieser Technologie k&#246;nnen &#246;ffentliche Parkanlagen errichtet werden, die f&#252;r Zufriedenheit sorgen.</German>
+    <Italian>With this technology, public parks can be built, which provide happiness.</Italian>
+    <Spanish>Con esta tecnolog&#237;a, pueden ser construidos los parques p&#250;blicos, los cuales proporcionan felicidad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_LIMES_STRATEGY</Tag>
+    <English>This technology enables the Romans to fortify their [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (borders) and the construction of the world wonder [COLOR_BUILDING_TEXT]The Great Wall of Gorgan[COLOR_REVERT].</English>
+    <French>This technology enables the Romans to fortify their [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (borders) and the construction of the world wonder [COLOR_BUILDING_TEXT]The Great Wall of Gorgan[COLOR_REVERT].</French>
+    <German>Diese Technologie erm&#246;glicht den R&#246;mern die Befestigung ihres [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (Grenze) sowie den Bau des Wunders [COLOR_BUILDING_TEXT]Die Gro&#223;e Mauer von Gorgan[COLOR_REVERT].</German>
+    <Italian>This technology enables the Romans to fortify their [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (borders) and the construction of the world wonder [COLOR_BUILDING_TEXT]The Great Wall of Gorgan[COLOR_REVERT].</Italian>
+    <Spanish>Esta tecnolog&#237;a permite a los romanos fortificar sus [COLOR_BUILDING_TEXT]Limes[COLOR_REVERT] (fronteras) y la construcci&#243;n de la maravilla mundial [COLOR_BUILDING_TEXT]La gran muralla de Gorgan[COLOR_REVERT].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_GRANARY2_STRATEGY</Tag>
+    <English>[COLOR_BUILDING_TEXT]Rice Barn[COLOR_REVERT] stores food to help increase a city's growth rate. It can be built if your city has access to [COLOR_HIGHLIGHT_TEXT]Rice[COLOR_REVERT].</English>
+    <French>[COLOR_BUILDING_TEXT]Rice storages[COLOR_REVERT] store food to help increase a city's growth rate. They can be built if your city has access to [COLOR_HIGHLIGHT_TEXT]Rice[COLOR_REVERT].</French>
+    <German>[COLOR_BUILDING_TEXT]Reisspeicher[COLOR_REVERT] speichern Reisk&#246;rner und beschleunigen so das Bev&#246;lkerungswachstum. Sie k&#246;nnen in St&#228;dten erbaut werden, die &#252;ber [COLOR_HIGHLIGHT_TEXT]Reis[COLOR_REVERT] verf&#252;gt.</German>
+    <Italian>[COLOR_BUILDING_TEXT]Rice storages[COLOR_REVERT] store food to help increase a city's growth rate. They can be built if your city has access to [COLOR_HIGHLIGHT_TEXT]Rice[COLOR_REVERT].</Italian>
+    <Spanish>Los [COLOR_BUILDING_TEXT]almacenes de arroz[COLOR_REVERT] almacenan arroz, lo que ayuda a aumentar el ritmo de crecimiento de la ciudad. Pueden ser constru&#237;dos si la ciudad tiene acceso al [COLOR_HIGHLIGHT_TEXT]arroz[COLOR_REVERT].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_GREAT_PANTHEON_STRATEGY</Tag>
+    <English>This wonder increases the cultural value and the birth rate of the city.</English>
+    <French>Cette merveille augmente la culture et le taux de naissance de la ville.</French>
+    <German>Dieses Wunder erh&#246;ht den Kulturaussto&#223; und die Geburtenrate der Stadt.</German>
+    <Italian>Questa meraviglia aumenta la produzione culturale e la nascita della citt&#224;.</Italian>
+    <Spanish>Esta maravilla aumenta el valor cultural y la tasa de crecimiento de la ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_HUNDEZUCHT_STRATEGY</Tag>
+    <English>This national wonder produces the bonus resource War Dogs and adds a War Dogs bonus resource in the surroundings.</English>
+    <French>Cette merveille nationale produit la ressource Chien de Guerre et ajoute une ressource Chien de Guerre dans les environs.</French>
+    <German>Dieses Nationalwunder liefert das Bonusgut Kampfhunde und erzeugt um die Stadt eine Hunderesource.</German>
+    <Italian>Questo miracolo Nazionale fornisce i cani da combattimento Bonusgut e prodotti per la citt&#224; una risorsa cane.</Italian>
+    <Spanish>Esta maravilla nacional produce el recurso perros de guerra y a&#241;ade un recurso de perros de guerra en los alrededores.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_LIMES_STRATEGY</Tag>
+    <English>+1 [ICON_HAPPY] in all cities</English>
+    <French>+1 [ICON_HAPPY] dans toutes les villes</French>
+    <German>+1 [ICON_HAPPY] in allen St&#228;dten</German>
+    <Italian>+1 [ICON_HAPPY] in tutte le citt&#224;</Italian>
+    <Spanish>+1 [ICON_HAPPY] en todas las ciudades</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_LUXOR_STRATEGY</Tag>
+    <English>This wonder increases the cultural value of the city.</English>
+    <French>Cette merveille augmente la culture de la ville.</French>
+    <German>Dieses Wunder steigert den kulturellen Wert der Stadt. [NEWLINE]</German>
+    <Italian>Questa meraviglia aumenta il valore culturale della citt&#224;.</Italian>
+    <Spanish>Esta maravilla aumenta el valor cultual de la ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_PEARL_OF_HELLAS_STRATEGY</Tag>
+    <English>This national wonder produces +1 [ICON_PRODUCTION] on sea plots and provides the bonus resource pearls.</English>
+    <French>Cette merveille nationale produit une [ICON_PRODUCTION] sur des parcelles de mer et offre des perles de ressources de bonification.</French>
+    <German>Dieses Nationalwunder erzeugt +1 [ICON_PRODUCTION] auf Wasserfelder und liefert das Bonusgut Perlen. [NEWLINE]</German>
+    <Italian>Questa meraviglia nazionale produce +1 [ICON_PRODUCTION] su parcelle mare e fornisce le perle di risorse bonus.</Italian>
+    <Spanish>Esta maravilla nacional produce +1 [ICON_PRODUCTION] en casillas de mar y proporciona el recurso perlas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_PFERDEZUCHT_STRATEGY</Tag>
+    <English>This national wonder produces the bonus resource horse.</English>
+    <French>Cette merveille nationale fournit une ressource de Cheval.</French>
+    <German>Dieses Nationalwunder liefert das Bonusgut Pferde. [NEWLINE]</German>
+    <Italian>Questa meraviglia nazionale produce il cavallo risorsa bonus.</Italian>
+    <Spanish>Esta maravilla nacional produce el recurso caballos.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PROJECT_AKASHA_CHRONIK_STRATEGY</Tag>
+    <English>This project allows the palm leaf library (Prerequisite: Hinduism) for all players.</English>
+    <French>Ce projet d&#233;bloque la biblioth&#232;que de feuille de palmier pour tous les joueurs (pr&#233;requis : Hindou&#239;sme).</French>
+    <German>Dieses Projekt erm&#246;glicht die Palmblatt-Bibliothek (Vorraussetzung: Hinduismus) f&#252;r alle Spieler. [NEWLINE]</German>
+    <Italian>This project allows the palm leaf library (Prerequisite: Hinduism) for all players.</Italian>
+    <Spanish>Este proyecto permite la biblioteca de hoja de palma (Requisito: Hinduismo) a todos los jugadores.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PROJECT_ANTONIUS_KLOSTER_STRATEGY</Tag>
+    <English>This project will enable Christian monasteries (prerequisite: Christianity) for all players.</English>
+    <French>Ce projet va d&#233;bloquer les monast&#232;res chr&#233;tiens pour tous les joueurs (pr&#233;requis : Christianisme)</French>
+    <German>Dieses Projekt erm&#246;glicht Christliche Kl&#246;ster (Vorraussetzung: Christentum) f&#252;r alle Spieler.</German>
+    <Italian>This project will enable Christian monasteries (prerequisite: Christianity) for all players.</Italian>
+    <Spanish>Este proyecto permitir&#225; los monasterios cristianos (requisito: Cristianismo) a todos los jugadores.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_ARENA_STRATEGY</Tag>
+    <English>This building provides less war weariness and can make the citizens more happy.</English>
+    <French>Ce b&#226;timent r&#233;duit la lassitude de guerre et peut rendre plus de citoyens heureux.</French>
+    <German>Dieses Geb&#228;ude sorgt f&#252;r weniger Kriegsverdruss und kann die Stadtbewohner gl&#252;cklicher machen. [NEWLINE]</German>
+    <Italian>This building provides less war weariness and can make the citizens more happy.</Italian>
+    <Spanish>Este edificio proporciona menos hast&#237;o b&#233;lico y puede hacer a los ciudadanos m&#225;s felices.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_NUBIAN_DEFFUFA_STRATEGY</Tag>
+    <English>This building increases the city's defense, and can increase the happiness of the public with certain forms of government.</English>
+    <French>Ce b&#226;timent augmente la d&#233;fense de la ville et &#224; certaines formes de gouvernement peut augmenter la satisfaction de la population.</French>
+    <German>Dieses Geb&#228;ude erh&#246;ht die Stadtverteidigung und kann mit bestimmten Staatsformen die Zufriedenheit der Bev&#246;lkerung erh&#246;hen.</German>
+    <Italian>Questo edificio aumenta la difesa della citt&#224; e con alcune forme di governo pu&#242; aumentare la soddisfazione della popolazione.</Italian>
+    <Spanish>Este edificio aumenta la defensa de la ciudad, y puede aumentar la felicidad de la gente con ciertas formas de gobierno.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_PALMBLATT_STRATEGY</Tag>
+    <English>The palm leaf library increases the research, culture and satisfaction of the urban population.</English>
+    <French>La biblioth&#232;que de feuilles de palmier augmente la recherche, la culture et la satisfaction de la population de la ville.</French>
+    <German>Die Palmblattbibliothek erh&#246;ht die Forschung, Kultur und Zufriedenheit der Stadtbev&#246;lkerung.</German>
+    <Italian>La biblioteca foglia di palma aumenta la ricerca, la cultura e la soddisfazione della popolazione della citt&#224;.</Italian>
+    <Spanish>La biblioteca de hoja de palma aumenta la investigaci&#243;n, cultura y satisfacci&#243;n de la poblaci&#243;n urbana.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_ASKESE_STRATEGY</Tag>
+    <English>The [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] is founded.</English>
+    <French>The [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] is founded.</French>
+    <German>Der [COLOR_HIGHLIGHT_TEXT]Jainismus[COLOR_REVERT] wird gegr&#252;ndet.</German>
+    <Italian>The [COLOR_HIGHLIGHT_TEXT]Jainism[COLOR_REVERT] is founded.</Italian>
+    <Spanish>El [COLOR_HIGHLIGHT_TEXT]Jainismo[COLOR_REVERT] es fundado.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_SKIRMISH_TACTICS_STRATEGY</Tag>
+    <English>This technology allows skirmishers and burning pigs.</English>
+    <French>Cette technologie permet de tirailleurs, et flamboyant porcs.</French>
+    <German>Diese Technologie erm&#246;glicht Pl&#228;nkler und brennende Schweine.</German>
+    <Italian>Questa tecnologia permette di schermagliatori e maiali in fiamme.</Italian>
+    <Spanish>Esta tecnolog&#237;a permite los hostigadores y los cerdos ardientes.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_CAVALRY_STRATEGY</Tag>
+    <English>This technology allows the construction of strong cavalry units.</English>
+    <French>Cette technologie permet la construction d'unit&#233;s mont&#233;es puissantes.</French>
+    <German>Diese Technologie erm&#246;glicht den Bau von starken Kavallerieinheiten. [NEWLINE]</German>
+    <Italian> [NEWLINE]</Italian>
+    <Spanish>Esta tecnolog&#237;a permite la construcci&#243;n de poderosas unidades de caballer&#237;a.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_MOENCHTUM_STRATEGY</Tag>
+    <English>This technology enables the construction of monasteries.</English>
+    <French>Cette technologie permet la construction de monast&#232;res.</French>
+    <German>Diese Technologie erm&#246;glicht den Bau von Kl&#246;stern.</German>
+    <Italian>This technology enables the construction of monasteries.</Italian>
+    <Spanish>Esta tecnolog&#237;a activa la construcci&#243;n de monasterios.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_KARTOGRAPHIE2_STRATEGY</Tag>
+    <English>With road maps, the map no longer obscured 100% black. Only the gray fog of war remains in unattended areas.</English>
+    <French>Avec les cartes de routes, la carte ne devient plus noire &#224; 100%. Seul le brouillard de guerre apparaitra dans les zones non visibles.</French>
+    <German>Mit Stra&#223;enkarten verdunkelt sich die Karte nicht mehr 100% schwarz. Nur der graue Kriegsnebel bleibt aber in unbeaufsichtigen Gebieten.</German>
+    <Italian>With road maps, the map no longer obscured 100% black. Only the gray fog of war remains in unattended areas.</Italian>
+    <Spanish>Con mapas de caminos, el mapa no estar&#225; ya oscuro al 100%. Solo la niebla gris de guerra permanecer&#225; en &#225;reas no atendidas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_MEMNONIUM_STRATEGY</Tag>
+    <English>+1 [ICON_HAPPY] in all cities of the continent</English>
+    <French>+1 [ICON_HAPPY] dans toutes les villes du continent</French>
+    <German>+1 [ICON_HAPPY] in allen St&#228;dten des Kontinents [NEWLINE]</German>
+    <Italian>+1 [ICON_HAPPY] in tutte le citt&#224; del continente</Italian>
+    <Spanish>+1 [ICON_HAPPY] en todas las ciudades del continente</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_KARTEN_STRATEGY</Tag>
+    <English>With this technology, you are able to commission customized maps by selecting a unit in your capital city.</English>
+    <French>With this technology, you are able to commission customized maps by selecting a unit in your capital city.</French>
+    <German>Mit dieser Technologie k&#246;nnen von Euch beauftragte Karten angefertigt werden, indem ihr in Eurer Hauptstadt eine Einheit ausw&#228;hlt.</German>
+    <Italian>With this technology, you are able to commission customized maps by selecting a unit in your capital city.</Italian>
+    <Spanish>Con esta tecnolog&#237;a, ser&#225; capaz de encargar mapas personalizados, seleccionando un unidad en tu capital.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_ELITE_HOPLIT_STRATEGY</Tag>
+    <English>This elite unit can only be formed from Hoplites, who attain the rank of veterans.</English>
+    <French>Cette unit&#233; d'&#233;lite ne peut &#234;tre cr&#233;&#233;e qu'en promouvant un hoplite ayant atteint le statut de v&#233;t&#233;ran.</French>
+    <German>Diese Eliteeinheit kann nur aus Hopliten gebildet werden, die sich den Rang eines Veteranen erk&#228;mpft haben.</German>
+    <Italian>Questa unit&#224; d'elite pu&#242; essere formata solo da opliti che hanno combattuto per il rango di veterani.</Italian>
+    <Spanish>Este unidad &#233;lite s&#243;lo puede ser formadas de Hoplitas, que logran el rango de veteranos.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_PROZESSION_STRATEGY</Tag>
+    <English>This new custom provides +1 [ICON_HAPPY] in all your cities.</English>
+    <French>This new custom provides +1 [ICON_HAPPY] in all your cities.</French>
+    <German>Dieser neue Brauch sorgt f&#252;r +1 [ICON_HAPPY] in all euren St&#228;dten.</German>
+    <Italian>This new custom provides +1 [ICON_HAPPY] in all your cities.</Italian>
+    <Spanish>Esta nueva pr&#225;ctica proporciona +1 [ICON_HAPPY] en todas tus ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_KAMPFHUNDE_STRATEGY</Tag>
+    <English>With this technology it is possible to breed strong War Dog to use them as a weapon.</English>
+    <French>With this technology it is possible to breed strong War Dog to use them as a weapon.</French>
+    <German>Mit dieser Technologie ist es m&#246;glich starke Kampfhunde zu z&#252;chten und als Waffe einzusetzen.</German>
+    <Italian>With this technology it is possible to breed strong War Dog to use them as a weapon.</Italian>
+    <Spanish>Con esta tecnolog&#237;a es posible criar poderosos perros de ataque para usarlos como armas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_LEVEE_STRATEGY</Tag>
+    <English>Irrigation canals can only be built in cities next to rivers and provide even better yield and health. However, the maintenance of such canal systems has its price.</English>
+    <French>Irrigation canals can only be built in cities next to rivers and provide even better yield and health. However, the maintenance of such canal systems has its price.</French>
+    <German>Bew&#228;sserungskan&#228;le k&#246;nnen nur in St&#228;dten mit Fl&#252;ssen gebaut werden und sorgen f&#252;r noch besseren Ertrag und Gesundheit. Die Instandhaltung solcher Kanalsysteme hat aber auch ihren Preis.</German>
+    <Italian>Irrigation canals can only be built in cities next to rivers and provide even better yield and health. However, the maintenance of such canal systems has its price.</Italian>
+    <Spanish>Los canales de irrigaci&#243;n s&#243;lo pueden ser construidos en ciudades pr&#243;ximas a r&#237;os y proporcionan unas mejores cosechas y salud. Aunque, el mantenimiento de dichos sistemas de canales tienen su precio.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_BUND_STRATEGY</Tag>
+    <English>A [COLOR_BUILDING_TEXT]League of Towns[COLOR_REVERT] improves the relationships in the whole kingdom, and therefore provides +1[ICON_HAPPY] in each city.</English>
+    <French>Une [COLOR_BUILDING_TEXT]Coalition de villes[COLOR_REVERT] am&#233;liore la coh&#233;sion dans tout le royaume et fournit ainsi +1 [ICON_HAPPY] dans chaque ville.</French>
+    <German>Ein [COLOR_BUILDING_TEXT]St&#228;dtebund[COLOR_REVERT] verbessert die Beziehungen im eigenen Reich und liefert daher +1[ICON_HAPPY] in jeder Stadt. </German>
+    <Italian>A [COLOR_BUILDING_TEXT] Citt&#224; e paesi [COLOR_REVERT] migliora le relazioni nel proprio regno, e quindi fornisce +1 [ICON_HAPPY] in ogni citt&#224;.</Italian>
+    <Spanish>Una [COLOR_BUILDING_TEXT]Liga de Ciudades[COLOR_REVERT] mejora las relaciones en el reino entero, y por lo tanto proporciona +1[ICON_HAPPY] en cada ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_TREIBGUT_STRATEGY</Tag>
+    <English>Flotsam can occur (chance of 50%) when a ship sinks. If you want to capture a flotsam, the ship must have a free cargo space. From the flotsam arise slaves or treasure.</English>
+    <French>Une &#233;pave peut appara&#238;tre (50% de chances) quand un bateau coule. Si vous voulez capturer un reste d'&#233;pave avec un bateau, il doit avoir un espace libre. Vous pourrez r&#233;cup&#233;rer un esclave ou un tr&#233;sor.</French>
+    <German>Treibgut kann entstehen (50% Chance), wenn ein Schiff sinkt. Um ein Treibgut zu erobern, muss das Schiff eine freie Ladungsfl&#228;che besitzen. Aus dem Treibgut werden dann Sklaven oder Beutegold.</German>
+    <Italian>Flotsam can occur (chance of 50%) when a ship sinks. If you want to capture a flotsam, the ship must have a free cargo space. From the flotsam arise slaves or treasure.</Italian>
+    <Spanish>El pecio puede aparecer (probabilidad del 50%) cuando un barco se hunde. Si quieres capturar un pecio, el barco debe tener un espacio de carga libre. Del pecio puede surgir esclavos o tesoros.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_SUPPLY_FOOD_STRATEGY</Tag>
+    <English>This unit can deliver food from one city to another and it can spread certain bonus resources.</English>
+    <French>Cette unit&#233; peut transporter de la nourriture d'une ville &#224; une autre et permettre l'implantation de certaines ressources autour des villes.</French>
+    <German>Diese Einheit kann Nahrung von einer Stadt in die andere Stadt liefern und bestimmte Bonusresourcen verbreiten.</German>
+    <Italian>This unit can deliver food from one city to another and it can spread certain bonus resources.</Italian>
+    <Spanish>Esta unidad puede distribuir comida de una ciudad a otra y puede propagar ciertos recursos.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_SPECIALIST_RESERVIST_STRATEGY</Tag>
+    <English>[COLOR_HIGHLIGHT_TEXT]Veteran units[COLOR_REVERT] can join a city as [COLOR_HIGHLIGHT_TEXT]reservists[COLOR_REVERT] (+1[ICON_FOOD], +1 [ICON_CULTURE] and +1[ICON_COMMERCE]).</English>
+    <French>[COLOR_HIGHLIGHT_TEXT]Les unit&#233;s de v&#233;t&#233;rans[COLOR_REVERT] peuvent &#234;tre affect&#233;s comme [COLOR_HIGHLIGHT_TEXT]r&#233;servistes[COLOR_REVERT] dans une ville (+1[ICON_FOOD], +1[ICON_CULTURE] et +1[ICON_COMMERCE]).</French>
+    <German>[COLOR_HIGHLIGHT_TEXT]Veteraneinheiten[COLOR_REVERT] k&#246;nnen sich als [COLOR_HIGHLIGHT_TEXT]Reservist[COLOR_REVERT] einer Stadt anschlie&#223;en (+1[ICON_FOOD], +1 [ICON_CULTURE] und +1[ICON_COMMERCE]).</German>
+    <Italian>[COLOR_HIGHLIGHT_TEXT]Unit&#224; veterane[COLOR_REVERT] possono aderire come [COLOR_HIGHLIGHT_TEXT]riservista[COLOR_REVERT] una citt&#224; (+1 [ICON_FOOD], +1 [ICON_CULTURE] e +1 [ICON_COMMERCE]).</Italian>
+    <Spanish>[COLOR_HIGHLIGHT_TEXT]Las unidades veteranas[COLOR_REVERT] pueden unirse a una ciudad como [COLOR_HIGHLIGHT_TEXT]reservistas[COLOR_REVERT] (+1[ICON_FOOD], +1 [ICON_CULTURE] y +1[ICON_COMMERCE]).</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_STEINKREIS_STRATEGY</Tag>
+    <English>This building provides a small amount of culture and increases happiness in a city.</English>
+    <French>This building provides a small amount of culture and increases happiness in a city.</French>
+    <German>Dieses Geb&#228;ude erh&#246;ht den kulturellen Wert und die Zufriedenheit einer Stadt.</German>
+    <Italian>This building provides a small amount of culture and increases happiness in a city.</Italian>
+    <Spanish>Este edificio proporciona una peque&#241;a cantidad de cultura y aumenta la felicidad en una ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_COLONIA_STRATEGY</Tag>
+    <English>This building gives new founded cities a strong head start.</English>
+    <French>Ce b&#226;timent donne de solides bases aux villes nouvellement fond&#233;es.</French>
+    <German>Dieses Geb&#228;ude bringt neugegr&#252;ndeten St&#228;dten einen starken Startvorteil. </German>
+    <Italian>Questo edificio ospita le citt&#224; di nuova fondazione di un forte vantaggio.</Italian>
+    <Spanish>Este edificio da a las nuevas ciudades fundadas un buen punto de partida.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_WARBAND_STRATEGY</Tag>
+    <English>This unit offers strength and loyalty.</English>
+    <French>Cet appareil offre une r&#233;sistance et la loyaut&#233;.</French>
+    <German>Diese Einheit besticht durch St&#228;rke und Loyalit&#228;t.</German>
+    <Italian>Questa unit&#224; offre forza e lealt&#224;.</Italian>
+    <Spanish>Esta unidad ofrece fuerza y lealtad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_EGYPT_RAM_CHARIOT_STRATEGY</Tag>
+    <English>This type of chariot has a malus against other mounted units but a big bonus against infantry.</English>
+    <French>Ce type de char a un malus contre d'autres unit&#233;s mont&#233;es mais un gros bonus contre l'infanterie.</French>
+    <German>Diese Streitwagenart hat einen Malus gegen andere berittene Einheiten, daf&#252;r aber einen gro&#223;en Bonus gegen&#252;ber Infanterie.</German>
+    <Italian>Questo tipo di carro ha un malus contro le altre unit&#224; montate, ma un grande bonus contro la fanteria.</Italian>
+    <Spanish>Este tipo de carro tiene penalizaci&#243;n contra otras unidades montadas pero tiene una gran bonificaci&#243;n contra la infanter&#237;a.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_WAR_CHARIOT_STRATEGY</Tag>
+    <English>This strong chariot unit is not buildable, but can be upgraded from regular "seasoned" chariots.</English>
+    <French>Cette unit&#233; de char forte n'est pas constructible, mais peut &#234;tre mis &#224; niveau &#224; partir r&#233;guli&#232;re "bataille" char.</French>
+    <German>Diese starke Streitwageneinheit ist nicht baubar, sondern kann aus regul&#228;ren "kampferfahrenen" Streitwagen aufger&#252;stet werden.</German>
+    <Italian>Questa forte unit&#224; carro non &#232; edificabile, ma pu&#242; essere aggiornato da regolare "battaglia" carro.</Italian>
+    <Spanish>Esta fuerte unidad de carro no es construible, pero puede ser modernizado de carros normales "veteranos".</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_PHOEN_SHRINE_STRATEGY</Tag>
+    <English>This holy shrine of the Phoenician gods can be build by a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT], produces 4 [ICON_CULTURE], +1 [ICON_HAPPY] und +1 [ICON_BULLET] and spreads the Phoenician religion.</English>
+    <French>Cet autel sacr&#233; pour les dieux m&#233;sopotamien peut &#234;tre construit par un [COLOR_UNIT_TEXT]Grand Proph&#232;te[COLOR_REVERT]. Il produit 4[ICON_CULTURE], +1 [ICON_HAPPY], +1 [ICON_BULLET] et r&#233;pand la religion m&#233;sopotamien.</French>
+    <German>Diese heilige St&#228;tte des ph&#246;nizischen Glaubens kann von einem [COLOR_UNIT_TEXT]Gro&#223;en Propheten[COLOR_REVERT] gebaut werden, erzeugt 4 [ICON_CULTURE], +1 [ICON_HAPPY] und verbreitet die ph&#246;nizische Religion.</German>
+    <Italian>Questo luogo sacro della fede fenicia pu&#242; essere costruito da un [COLOR_UNIT_TEXT] Grande Profeta [COLOR_REVERT], genera 4 [ICON_CULTURE], +1 [ICON_HAPPY] e diffondere la religione fenicio.</Italian>
+    <Spanish>Este santuario sagrado de los dioses fenicios puede ser constru&#237;do por un [COLOR_UNIT_TEXT]Gran Profeta[COLOR_REVERT], produce 4 [ICON_CULTURE], +1 [ICON_HAPPY] y +1 [ICON_BULLET] y propaga la religi&#243;n fenicio.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_REFORM_STRATEGY</Tag>
+    <English>This new reform provides +1 [ICON_HAPPY] in all your cities.</English>
+    <French>This new reform provides +1 [ICON_HAPPY] in all your cities.</French>
+    <German>Diese neue Reform sorgt f&#252;r +1 [ICON_HAPPY] in all euren St&#228;dten.</German>
+    <Italian>This new reform provides +1 [ICON_HAPPY] in all your cities.</Italian>
+    <Spanish>Esta nueva reforma proporciona +1 [ICON_HAPPY] en todas tus ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_FORM_STRATEGY</Tag>
+    <English>With this technology, a new formation can be used.</English>
+    <French>With this technology, a new formation can be used.</French>
+    <German>Mit dieser Technologie kann einen neue Formation genutzt werden.</German>
+    <Italian>With this technology, a new formation can be used.</Italian>
+    <Spanish>Con esta tecnolog&#237;a, una nueva formaci&#243;n puede ser utilizada.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_HORSE_ARMOR_STRATEGY</Tag>
+    <English>This technology enables the construction of [COLOR_UNIT_TEXT]heavy armored horsemen[COLOR_REVERT].</English>
+    <French>This technology enables the construction of [COLOR_UNIT_TEXT]heavy armored horsemen[COLOR_REVERT].</French>
+    <German>Diese Technologie erm&#246;glicht den Bau von [COLOR_UNIT_TEXT]schwergepanzerten Reitern[COLOR_REVERT].</German>
+    <Italian>This technology enables the construction of [COLOR_UNIT_TEXT]heavy armored horsemen[COLOR_REVERT].</Italian>
+    <Spanish>Esta tecnolog&#237;a permite la construcci&#243;n de [COLOR_UNIT_TEXT]jinetes acorazados pesados[COLOR_REVERT].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_DEZIMATION_STRATEGY</Tag>
+    <English>From this technology on, units can be decimated in order to strengthen their fighting spirit.</English>
+    <French>From this technology on, units can be decimated in order to strengthen their fighting spirit.</French>
+    <German>Ab dieser Technologie k&#246;nnen Einheiten dezimiert werden, um deren Kampfgeist zu st&#228;rken.</German>
+    <Italian>From this technology on, units can be decimated in order to strengthen their fighting spirit.</Italian>
+    <Spanish>A partir de esta tecnolog&#237;a, las unidades pueden ser diezmadas para aumentar su esp&#237;ritu de lucha.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STRANDGUT_STRATEGY</Tag>
+    <English>Jetsam occures when flotsam is washed up on the coast. Jetsam is immobile and will become to a trading cart (merchant) when conquered, which you can use to speed up production of your own cities or as a source of income in foreign cities.</English>
+    <French>Jetsam occures when flotsam is washed up on the coast. Jetsam is immobile and will become to a trading cart (merchant) when conquered, which you can use to speed up production of your own cities or as a source of income in foreign cities.</French>
+    <German>Strandgut entsteht wenn Treibgut an die K&#252;ste geschwemmt wird. Treibgut ist unbeweglich und wird bei Eroberung zu einem Handelskarren, den man zur Produktionsbeschleunigung eigener St&#228;dte oder als Geldeinnahmequelle in fremden St&#228;dten nutzen kann.</German>
+    <Italian>Jetsam occures when flotsam is washed up on the coast. Jetsam is immobile and will become to a trading cart (merchant) when conquered, which you can use to speed up production of your own cities or as a source of income in foreign cities.</Italian>
+    <Spanish>Los cargamentos varados ocurren cuando los pecios terminan varados en la costa. Los cargamentos varados son inmobiles y se volver&#225;n en un carro comerciante (mercader) cuando es conquistado, el cual puede ser usado para acelerar la producci&#243;n de las ciudades o como fuente de ingresos en ciudades extranjeras.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_STRATEGE</Tag>
+    <English>Strategist</English>
+    <French>Strat&#232;ge </French>
+    <German>Stratege</German>
+    <Italian>Stratega</Italian>
+    <Spanish>Estratega</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_PHILOSOPHICAL_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance that slaves become free citizen due to the Civil Rights/International Law civic is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] per scientist, great scientist</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance that slaves become free citizen due to the Civil Rights/International Law civic is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] per scientist, great scientist</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Doppelte Chance, dass Sklaven mit B&#252;rger-/V&#246;lkerrecht zu freien B&#252;rgern werden[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] f&#252;r Wissenschaftler, Gro&#223;er Wissenschaftler</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance that slaves become free citizen due to the Civil Rights/International Law civic is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] per scientist, great scientist</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Es doblada la probabilidad de que los esclavos se vuelvan ciudadanos libres debido a los principios derechos civiles/ley internacional. [NEWLINE][SPACE][SPACE][ICON_BULLET]+2[ICON_COMMERCE] por cient&#237;fico, gran cient&#237;fico</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_AGGRESSIVE_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% production cost for military units (naval units excluded)[NEWLINE][SPACE][SPACE][ICON_BULLET]Twice as many slaves when conquering cities</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% production cost for military units (naval units excluded)[NEWLINE][SPACE][SPACE][ICON_BULLET]Twice as many slaves when conquering cities</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% Produktionskosten f&#252;r Milit&#228;reinheiten (au&#223;er Marineeinheiten)[NEWLINE][SPACE][SPACE][ICON_BULLET]Doppelt so viele Sklaven bei Stadteroberungen</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% production cost for military units (naval units excluded)[NEWLINE][SPACE][SPACE][ICON_BULLET]Twice as many slaves when conquering cities</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]-20% al coste de producci&#243;n de unidades militares (unidades navales excluidas)[NEWLINE][SPACE][SPACE][ICON_BULLET]Doble de esclavos cuando se conquiste ciudades</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_INDUSTRIOUS_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% production cost of buildings[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% production cost of wonders</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% production cost of buildings[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% production cost of wonders</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% Produktionskosten f&#252;r Geb&#228;ude[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% Produktionskosten f&#252;r Wunder</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% production cost of buildings[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% production cost of wonders</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]-15% al coste de producci&#243;n de edificios[NEWLINE][SPACE][SPACE][ICON_BULLET]-25% al coste de producci&#243;n de maravillas</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_CREATIVE_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Slaves settled down in temples yield +3[ICON_CULTURE] (instead of +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Can employ one additional artist specialist in each city (from the tech alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% length of golden ages</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Slaves settled down in temples yield +3[ICON_CULTURE] (instead of +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Can employ one additional artist specialist in each city (from the tech alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% length of golden ages</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]In Tempeln angesiedelte Sklaven bringen +3[ICON_CULTURE] (statt +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Kann in jeder Stadt einen zus&#228;tzlichen K&#252;nstler einstellen (ab der Tech Alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% L&#228;nge von Goldenen Zeitaltern</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Slaves settled down in temples yield +3[ICON_CULTURE] (instead of +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Can employ one additional artist specialist in each city (from the tech alphabet)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% length of golden ages</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Los esclavos asentados en templos rinden +3[ICON_CULTURE] (en vez de +1)[NEWLINE][SPACE][SPACE][ICON_BULLET]Puede asignar un artista especialista adicional en cada ciudad (a partir de la tecnolog&#237;a alfabeto)[NEWLINE][SPACE][SPACE][ICON_BULLET]+50% a la duraci&#243;n de las edades de oro</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_ORGANIZED_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% cost of upgrading units</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% cost of upgrading units</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% Kosten zum Aufstufen von Einheiten</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% cost of upgrading units</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]-50% al coste de modernizar unidades</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_CHARISMATIC_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Enemy units renegade more often, own units less often</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Enemy units renegade more often, own units less often</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Gegnerische Einheiten laufen h&#228;ufiger &#252;ber, eigene weniger h&#228;ufig</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Enemy units renegade more often, own units less often</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Las unidades enemigas desertar&#225;n con m&#225;s facilidad, mientras que las propias lo har&#225;n con menos frecuencia</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_PROTECTIVE_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Own cities never renegade to the enemy [LINK=CONCEPT_CITIES]due to siege[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Garrison promotion in combat will be healed completely</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Own cities never renegade to the enemy [LINK=CONCEPT_CITIES]due to siege[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Garrison promotion in combat will be healed completely</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Eigene St&#228;dte laufen niemals [LINK=CONCEPT_CITIES]durch Belagerung[\LINK] zum Gegner &#252;ber[NEWLINE][SPACE][SPACE][ICON_BULLET]Einheiten, die im Kampf die Garnison-Bef&#246;rderung erhalten, werden vollst&#228;ndig geheilt</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Own cities never renegade to the enemy [LINK=CONCEPT_CITIES]due to siege[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Garrison promotion in combat will be healed completely</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]La ciudades propias no se rinden al enemigo[LINK=CONCEPT_CITIES] debido al asedio[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Las unidades que reciben el ascenso guarnici&#243;n de ciudad en combate ser&#225; curada completamente</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_IMPERIALIST_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Can use the civic Ruler Cult from the beginning</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Can use the civic Ruler Cult from the beginning</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Kann die Staatsform Herrscherkult von Beginn an nutzen</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Can use the civic Ruler Cult from the beginning</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Puede usar el principio culto al gobernante desde el principio</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_EROBERER_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance to receive the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] will be healed completely</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance to receive the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] will be healed completely</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Doppelte Chance, [LINK=CONCEPT_PROMOTIONS]im Kampf[\LINK] die H&#228;userkampf-Bef&#246;rderung zu erhalten[NEWLINE][SPACE][SPACE][ICON_BULLET]Einheiten, die [LINK=CONCEPT_PROMOTIONS]im Kampf[\LINK] die H&#228;userkampf-Bef&#246;rderung erhalten, werden vollst&#228;ndig geheilt</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Chance to receive the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] is doubled[NEWLINE][SPACE][SPACE][ICON_BULLET]Units receiving the City Raider promotion [LINK=CONCEPT_PROMOTIONS]in combat[\LINK] will be healed completely</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Es doblada la probabilidad de recibir el ascenso asalto de ciudades [LINK=CONCEPT_PROMOTIONS]en combate[\LINK][NEWLINE][SPACE][SPACE][ICON_BULLET]Las unidades que reciben el ascenso asalto de ciudades [LINK=CONCEPT_PROMOTIONS]en combate[\LINK] ser&#225; completamente curada</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_STRATEGE_HELP</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Supply units[\LINK] have +50% capacity</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Supply units[\LINK] have +50% capacity</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Versorgungseinheiten[\LINK] haben +50% Kapazit&#228;t</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET][LINK=CONCEPT_PAE_SUPPLY]Supply units[\LINK] have +50% capacity</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Las [LINK=CONCEPT_PAE_SUPPLY]unidades de abastecimiento[\LINK] tienen +50% de capacidad</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_STRATEGE_SHORT</Tag>
+    <English>Str</English>
+    <French>Str</French>
+    <German>Str</German>
+    <Italian>Str</Italian>
+    <Spanish>Est</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_EROBERER</Tag>
+    <English>Conqueror</English>
+    <French>Conqu&#233;rant</French>
+    <German>Eroberer</German>
+    <Italian>Conquistatore </Italian>
+    <Spanish>Conquistador</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_EROBERER_SHORT</Tag>
+    <English>Con</English>
+    <French>Con</French>
+    <German>Ero</German>
+    <Italian>Con</Italian>
+    <Spanish>Con</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_FINANCIAL</Tag>
+    <English>Commercially oriented</English>
+    <French>Vocation commerciale</French>
+    <German>Handelsorientiert</German>
+    <Italian>Orientata commercialmente</Italian>
+    <Spanish>Orientaci&#243;n comercial</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_FINANCIAL_SHORT</Tag>
+    <English>Merchant</English>
+    <French>Merchant</French>
+    <German>H&#228;ndler</German>
+    <Italian>Commerciante</Italian>
+    <Spanish>Comerciante</Spanish>
+  </TEXT>
 </Civ4GameText>

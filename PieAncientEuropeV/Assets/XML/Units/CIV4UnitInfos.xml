@@ -7,6 +7,278 @@
 <Civ4UnitInfos xmlns="x-schema:CIV4UnitSchema.xml">
   <UnitInfos>
     <UnitInfo>
+      <Class>UNITCLASS_SLAVE</Class>
+      <Type>UNIT_SLAVE</Type>
+      <UniqueNames/>
+      <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
+      <Capture>UNIT_SLAVE</Capture>
+      <Combat>NONE</Combat>
+      <Domain>DOMAIN_LAND</Domain>
+      <DefaultUnitAI>UNITAI_WORKER</DefaultUnitAI>
+      <Invisible>NONE</Invisible>
+      <SeeInvisible>NONE</SeeInvisible>
+      <Description>TXT_KEY_UNIT_SLAVE</Description>
+      <Civilopedia>TXT_KEY_UNIT_SLAVE_PEDIA</Civilopedia>
+      <Strategy>TXT_KEY_UNIT_SLAVE_STRATEGY</Strategy>
+      <Advisor>ADVISOR_ECONOMY</Advisor>
+      <bAnimal>0</bAnimal>
+      <bFood>0</bFood>
+      <bNoBadGoodies>0</bNoBadGoodies>
+      <bOnlyDefensive>0</bOnlyDefensive>
+      <bNoCityCapture>0</bNoCityCapture>
+      <bQuickCombat>0</bQuickCombat>
+      <bRivalTerritory>0</bRivalTerritory>
+      <bMilitaryHappiness>0</bMilitaryHappiness>
+      <bMilitarySupport>0</bMilitarySupport>
+      <bMilitaryProduction>0</bMilitaryProduction>
+      <bPillage>0</bPillage>
+      <bSpy>0</bSpy>
+      <bSabotage>0</bSabotage>
+      <bDestroy>0</bDestroy>
+      <bStealPlans>0</bStealPlans>
+      <bInvestigate>0</bInvestigate>
+      <bCounterSpy>0</bCounterSpy>
+      <bFound>0</bFound>
+      <bGoldenAge>0</bGoldenAge>
+      <bInvisible>0</bInvisible>
+      <bFirstStrikeImmune>0</bFirstStrikeImmune>
+      <bNoDefensiveBonus>0</bNoDefensiveBonus>
+      <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
+      <bCanMoveImpassable>0</bCanMoveImpassable>
+      <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
+      <bFlatMovementCost>0</bFlatMovementCost>
+      <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
+      <bNukeImmune>0</bNukeImmune>
+      <bPrereqBonuses>0</bPrereqBonuses>
+      <bPrereqReligion>0</bPrereqReligion>
+      <bMechanized>0</bMechanized>
+      <bSuicide>0</bSuicide>
+      <bHiddenNationality>0</bHiddenNationality>
+      <bAlwaysHostile>0</bAlwaysHostile>
+      <UnitClassUpgrades/>
+      <UnitClassTargets/>
+      <UnitCombatTargets/>
+      <UnitClassDefenders/>
+      <UnitCombatDefenders/>
+      <FlankingStrikes/>
+      <UnitAIs>
+        <UnitAI>
+          <UnitAIType>UNITAI_WORKER</UnitAIType>
+          <bUnitAI>1</bUnitAI>
+        </UnitAI>
+        <UnitAI>
+          <UnitAIType>UNITAI_ENGINEER</UnitAIType>
+          <bUnitAI>1</bUnitAI>
+        </UnitAI>
+        <UnitAI>
+          <UnitAIType>UNITAI_MERCHANT</UnitAIType>
+          <bUnitAI>1</bUnitAI>
+        </UnitAI>
+      </UnitAIs>
+      <NotUnitAIs/>
+      <Builds>
+        <Build>
+          <BuildType>BUILD_ROAD</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_BRUNNEN</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_FARM</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_MINE</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_SALTMINE</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_WATERMILL</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_PLANTATION</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_QUARRY</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_PASTURE</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_CAMP</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_LUMBER_CAMP</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_WINERY</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_COTTAGE</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_COTTAGE_HILL</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_TURM</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_TURM2</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_FORT</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_FORT2</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_REMOVE_JUNGLE</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_REMOVE_FOREST</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+        <Build>
+          <BuildType>BUILD_REMOVE_FOREST_BURNT</BuildType>
+          <bBuild>1</bBuild>
+        </Build>
+      </Builds>
+      <ReligionSpreads/>
+      <CorporationSpreads/>
+      <GreatPeoples>
+        <GreatPeople>
+          <GreatPeopleType>SPECIALIST_SLAVE</GreatPeopleType>
+          <bGreatPeople>1</bGreatPeople>
+        </GreatPeople>
+      </GreatPeoples>
+      <Buildings>
+        <Building>
+          <BuildingType>BUILDING_SKLAVENMARKT</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+      </Buildings>
+      <ForceBuildings/>
+      <HolyCity>NONE</HolyCity>
+      <ReligionType>NONE</ReligionType>
+      <StateReligion>NONE</StateReligion>
+      <PrereqReligion>NONE</PrereqReligion>
+      <PrereqCorporation>NONE</PrereqCorporation>
+      <PrereqBuilding>NONE</PrereqBuilding>
+      <PrereqTech>TECH_ENSLAVEMENT</PrereqTech>
+      <TechTypes/>
+      <BonusType>NONE</BonusType>
+      <PrereqBonuses/>
+      <ProductionTraits/>
+      <Flavors/>
+      <iAIWeight>0</iAIWeight>
+      <iCost>-1</iCost>
+      <iHurryCostModifier>0</iHurryCostModifier>
+      <iAdvancedStartCost>100</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <iMinAreaSize>-1</iMinAreaSize>
+      <iMoves>2</iMoves>
+      <bNoRevealMap>0</bNoRevealMap>
+      <iAirRange>0</iAirRange>
+      <iAirUnitCap>0</iAirUnitCap>
+      <iDropRange>0</iDropRange>
+      <iNukeRange>-1</iNukeRange>
+      <iWorkRate>100</iWorkRate>
+      <iBaseDiscover>0</iBaseDiscover>
+      <iDiscoverMultiplier>0</iDiscoverMultiplier>
+      <iBaseHurry>40</iBaseHurry>
+      <iHurryMultiplier>2</iHurryMultiplier>
+      <iBaseTrade>6</iBaseTrade>
+      <iTradeMultiplier>10</iTradeMultiplier>
+      <iGreatWorkCulture>0</iGreatWorkCulture>
+      <iEspionagePoints>0</iEspionagePoints>
+      <TerrainImpassables/>
+      <FeatureImpassables/>
+      <TerrainPassableTechs/>
+      <FeaturePassableTechs/>
+      <iCombat>0</iCombat>
+      <iCombatLimit>0</iCombatLimit>
+      <iAirCombat>0</iAirCombat>
+      <iAirCombatLimit>0</iAirCombatLimit>
+      <iXPValueAttack>0</iXPValueAttack>
+      <iXPValueDefense>0</iXPValueDefense>
+      <iFirstStrikes>0</iFirstStrikes>
+      <iChanceFirstStrikes>0</iChanceFirstStrikes>
+      <iInterceptionProbability>0</iInterceptionProbability>
+      <iEvasionProbability>0</iEvasionProbability>
+      <iWithdrawalProb>0</iWithdrawalProb>
+      <iFlightProb>0</iFlightProb>
+      <iLoyaltyProb>0</iLoyaltyProb>
+      <iCollateralDamage>0</iCollateralDamage>
+      <iCollateralDamageLimit>0</iCollateralDamageLimit>
+      <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
+      <iCityAttack>0</iCityAttack>
+      <iCityDefense>0</iCityDefense>
+      <iAnimalCombat>0</iAnimalCombat>
+      <iHillsAttack>0</iHillsAttack>
+      <iHillsDefense>0</iHillsDefense>
+      <TerrainNatives/>
+      <FeatureNatives/>
+      <TerrainAttacks/>
+      <TerrainDefenses/>
+      <FeatureAttacks/>
+      <FeatureDefenses/>
+      <UnitClassAttackMods/>
+      <UnitClassDefenseMods/>
+      <UnitCombatMods/>
+      <UnitCombatCollateralImmunes/>
+      <DomainMods/>
+      <BonusProductionModifiers/>
+      <iBombRate>0</iBombRate>
+      <iBombardRate>0</iBombardRate>
+      <SpecialCargo>NONE</SpecialCargo>
+      <DomainCargo>NONE</DomainCargo>
+      <iCargo>0</iCargo>
+      <iConscription>0</iConscription>
+      <iCultureGarrison>0</iCultureGarrison>
+      <iExtraCost>0</iExtraCost>
+      <iAsset>2</iAsset>
+      <iPower>0</iPower>
+      <UnitMeshGroups>
+        <iGroupSize>2</iGroupSize>
+        <fMaxSpeed>1.75</fMaxSpeed>
+        <fPadTime>1</fPadTime>
+        <iMeleeWaveSize>2</iMeleeWaveSize>
+        <iRangedWaveSize>0</iRangedWaveSize>
+        <UnitMeshGroup>
+          <iRequired>2</iRequired>
+          <EarlyArtDefineTag>ART_DEF_UNIT_SLAVE</EarlyArtDefineTag>
+        </UnitMeshGroup>
+      </UnitMeshGroups>
+      <FormationType>FORMATION_TYPE_DEFAULT</FormationType>
+      <HotKey/>
+      <bAltDown>0</bAltDown>
+      <bShiftDown>0</bShiftDown>
+      <bCtrlDown>0</bCtrlDown>
+      <iHotKeyPriority>0</iHotKeyPriority>
+      <FreePromotions/>
+      <LeaderPromotion>NONE</LeaderPromotion>
+      <iLeaderExperience>0</iLeaderExperience>
+    </UnitInfo>
+    <UnitInfo>
       <Class>UNITCLASS_LION</Class>
       <Type>UNIT_LION</Type>
       <UniqueNames/>
@@ -21,7 +293,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -232,7 +504,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -433,7 +705,7 @@
       <Civilopedia>TXT_KEY_UNIT_UR_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -626,7 +898,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -819,7 +1091,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -1396,7 +1668,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -1594,7 +1866,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -1787,7 +2059,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>0</bOnlyDefensive>
@@ -1985,7 +2257,7 @@
       <Civilopedia>TXT_KEY_CONCEPT_ANIMALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_ANIMAL_STRATEGY</Strategy>
       <Advisor>NONE</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>1</bOnlyDefensive>
@@ -2172,7 +2444,7 @@
       <Type>UNIT_SETTLER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_SETTLE</DefaultUnitAI>
@@ -2354,7 +2626,7 @@
       <Type>UNIT_EMIGRANT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_SETTLE</DefaultUnitAI>
@@ -2536,7 +2808,7 @@
       <Type>UNIT_WORKER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_WORKER</DefaultUnitAI>
@@ -2795,7 +3067,7 @@
       <Type>UNIT_PERSIAN_WORKER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_WORKER</DefaultUnitAI>
@@ -3058,7 +3330,7 @@
       <Type>UNIT_ROMAN_WORKER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_WORKER</DefaultUnitAI>
@@ -3397,7 +3669,7 @@
       <Type>UNIT_SUPPLY_WAGON</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_SUPPLY_WAGON</Capture>
+      <Capture>UNIT_SUPPLY_WAGON</Capture>
       <Combat>UNITCOMBAT_HEALER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -3571,7 +3843,7 @@
       <Type>UNIT_DRUIDE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>UNITCOMBAT_HEALER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -3745,7 +4017,7 @@
       <Type>UNIT_BRAHMANE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>UNITCOMBAT_HEALER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -3919,7 +4191,7 @@
       <Type>UNIT_SUPPLY_FOOD</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_SUPPLY_FOOD</Capture>
+      <Capture>UNIT_SUPPLY_FOOD</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
@@ -4083,7 +4355,7 @@
       <Type>UNIT_GOLDKARREN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_GOLDKARREN</Capture>
+      <Capture>UNIT_GOLDKARREN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
@@ -4252,7 +4524,7 @@
       <Type>UNIT_TREIBGUT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_EXPLORE_SEA</DefaultUnitAI>
@@ -4421,7 +4693,7 @@
       <Type>UNIT_STRANDGUT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_TRADE_MERCHANT</Capture>
+      <Capture>UNIT_TRADE_MERCHANT</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_IMMOBILE</Domain>
       <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
@@ -4585,7 +4857,7 @@
       <Type>UNIT_CARAVAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_CARAVAN</Capture>
+      <Capture>UNIT_CARAVAN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MERCHANT</DefaultUnitAI>
@@ -4764,7 +5036,7 @@
       <Type>UNIT_TRADE_MERCHANT</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_TRADE_MERCHANT</Capture>
+      <Capture>UNIT_TRADE_MERCHANT</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MERCHANT</DefaultUnitAI>
@@ -4943,7 +5215,7 @@
       <Type>UNIT_TRADE_MERCHANTMAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_TRADE_MERCHANTMAN</Capture>
+      <Capture>UNIT_TRADE_MERCHANTMAN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_MERCHANT</DefaultUnitAI>
@@ -5127,7 +5399,7 @@
       <Type>UNIT_SCOUT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SCOUT</Capture>
       <Combat>UNITCOMBAT_RECON</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
@@ -5306,7 +5578,7 @@
       <Type>UNIT_SCOUT_GREEK</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SCOUT_GREEK</Capture>
       <Combat>UNITCOMBAT_RECON</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
@@ -5485,7 +5757,7 @@
       <Type>UNIT_MOUNTED_SCOUT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MOUNTED_SCOUT</Capture>
       <Combat>UNITCOMBAT_RECON</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
@@ -5838,7 +6110,7 @@
       <Type>UNIT_ROME_COHORTES_URBANAE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_ROME_COHORTES_URBANAE</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -6033,7 +6305,7 @@
       <Type>UNIT_WARBAND</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WARBAND</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -6226,7 +6498,7 @@
       <Type>UNIT_ARVERNER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARVERNER</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -6427,7 +6699,7 @@
       <Type>UNIT_KERMA_WARRIOR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_KERMA_WARRIOR</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -6622,7 +6894,7 @@
       <Type>UNIT_HOPLIT</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HOPLIT</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -6834,7 +7106,7 @@
       <Type>UNIT_ELITE_HOPLIT</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ELITE_HOPLIT</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -7037,7 +7309,7 @@
       <Type>UNIT_HOPLIT_PERSIA</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HOPLIT_PERSIA</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -7249,7 +7521,7 @@
       <Type>UNIT_HOPLIT_SPARTA</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HOPLIT_SPARTA</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -7461,7 +7733,7 @@
       <Type>UNIT_SPARTAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SPARTAN</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -7664,7 +7936,7 @@
       <Type>UNIT_STADTWACHE_ISRAEL</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_STADTWACHE_ISRAEL</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -7863,7 +8135,7 @@
       <Type>UNIT_GEPANZERTER_ASSYRIA</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GEPANZERTER_ASSYRIA</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -8049,7 +8321,7 @@
       <Type>UNIT_INDIAN_LONGBOW</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_INDIAN_LONGBOW</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -8277,7 +8549,7 @@
       <Type>UNIT_ROME_NUMERI</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ROME_NUMERI</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -8473,7 +8745,7 @@
       <Type>UNIT_CELTIC_FIANNA</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CELTIC_FIANNA</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -8672,7 +8944,7 @@
       <Type>UNIT_SACRED_BAND</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SACRED_BAND</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -8875,7 +9147,7 @@
       <Type>UNIT_SACRED_BAND_CARTHAGE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SACRED_BAND_CARTHAGE</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -9074,7 +9346,7 @@
       <Type>UNIT_SARISSA_MACEDON</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SARISSA_MACEDON</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -9299,7 +9571,7 @@
       <Type>UNIT_STAMMESFUERST</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_STAMMESFUERST</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -9485,7 +9757,7 @@
       <Type>UNIT_FUERST_DAKER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_FUERST_DAKER</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -9671,7 +9943,7 @@
       <Type>UNIT_SYRIAN_GARDE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SYRIAN_GARDE</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -9862,7 +10134,7 @@
       <Type>UNIT_GAUFUERST</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GAUFUERST</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -10050,7 +10322,7 @@
       <Type>UNIT_NUBIAFUERST</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_NUBIAFUERST</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -10236,7 +10508,7 @@
       <Type>UNIT_MARDUK_PRIEST</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MARDUK_PRIEST</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -10423,7 +10695,7 @@
       <Type>UNIT_MACCABEE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MACCABEE</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -10609,7 +10881,7 @@
       <Type>UNIT_PHARAONENGARDE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PHARAONENGARDE</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -10795,7 +11067,7 @@
       <Type>UNIT_ARGYRASPIDAI</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARGYRASPIDAI</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -10997,7 +11269,7 @@
       <Type>UNIT_ARGYRASPIDAI2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARGYRASPIDAI2</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -11184,7 +11456,7 @@
       <Type>UNIT_THORAKITAI</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_THORAKITAI</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -11379,7 +11651,7 @@
       <Type>UNIT_UNSTERBLICH_2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_UNSTERBLICH_2</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -11577,7 +11849,7 @@
       <Type>UNIT_PHILISTER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PHILISTER</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -11792,7 +12064,7 @@
       <Type>UNIT_AMAZONE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AMAZONE</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -12013,7 +12285,7 @@
       <Type>UNIT_WARRIOR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WARRIOR</Capture>
       <Combat>UNITCOMBAT_MELEE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -12199,7 +12471,7 @@
       <Type>UNIT_HUNTER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HUNTER</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_EXPLORE</DefaultUnitAI>
@@ -12391,7 +12663,7 @@
       <Type>UNIT_AXEWARRIOR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AXEWARRIOR</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -12600,7 +12872,7 @@
       <Type>UNIT_AXEMAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AXEMAN</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -12812,7 +13084,7 @@
       <Type>UNIT_SUMERIAN_VULTURE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SUMERIAN_VULTURE</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -13001,7 +13273,7 @@
       <Type>UNIT_AXEMAN2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AXEMAN2</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -13205,7 +13477,7 @@
       <Type>UNIT_WURFAXT</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WURFAXT</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -13391,7 +13663,7 @@
       <Type>UNIT_CELTIC_GALLIC_WARRIOR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CELTIC_GALLIC_WARRIOR</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -13611,7 +13883,7 @@
       <Type>UNIT_BELGIER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BELGIER</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -13824,7 +14096,7 @@
       <Type>UNIT_BERSERKER_GERMAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BERSERKER_GERMAN</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -14028,7 +14300,7 @@
       <Type>UNIT_GERMAN_HARIER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GERMAN_HARIER</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -14214,7 +14486,7 @@
       <Type>UNIT_KURZSCHWERT</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_KURZSCHWERT</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -14401,7 +14673,7 @@
       <Type>UNIT_KRUMMSAEBEL</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_KRUMMSAEBEL</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -14588,7 +14860,7 @@
       <Type>UNIT_FALCATA_IBERIA</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_FALCATA_IBERIA</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -14778,7 +15050,7 @@
       <Type>UNIT_SCHILDTRAEGER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SCHILDTRAEGER</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -14972,7 +15244,7 @@
       <Type>UNIT_HYPASPIST</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HYPASPIST</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -15176,7 +15448,7 @@
       <Type>UNIT_PRINCIPES2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PRINCIPES2</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -15360,7 +15632,7 @@
       <Type>UNIT_LEGION</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LEGION</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -15745,7 +16017,7 @@
         <UniqueName>Legio Thebaica</UniqueName>
       </UniqueNames>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LEGION2</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -16058,7 +16330,7 @@
       <Type>UNIT_SICHELKRIEGER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SICHELKRIEGER</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -16261,7 +16533,7 @@
       <Type>UNIT_FALXMAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_FALXMAN</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -16456,7 +16728,7 @@
       <Type>UNIT_BERGKRIEGER</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BERGKRIEGER</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -16650,7 +16922,7 @@
       <Type>UNIT_SWORDSMAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SWORDSMAN</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -16836,7 +17108,7 @@
       <Type>UNIT_INDIAN_NAYAR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_INDIAN_NAYAR</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -17022,7 +17294,7 @@
       <Type>UNIT_SAMNIT</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SAMNIT</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -17217,7 +17489,7 @@
       <Type>UNIT_CELERES</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CELERES</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -17416,7 +17688,7 @@
       <Type>UNIT_TRIARII2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_TRIARII2</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -17635,7 +17907,7 @@
       <Type>UNIT_PRAETORIAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PRAETORIAN</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -17821,7 +18093,7 @@
       <Type>UNIT_PRAETORIAN2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PRAETORIAN2</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -18007,7 +18279,7 @@
       <Type>UNIT_PRAETORIAN3</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PRAETORIAN3</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -18189,7 +18461,7 @@
       <Type>UNIT_TEUTONEN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_TEUTONEN</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -18384,7 +18656,7 @@
       <Type>UNIT_THRAKIEN_WARRIOR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_THRAKIEN_WARRIOR</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -18579,7 +18851,7 @@
       <Type>UNIT_MARS</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MARS</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -18761,7 +19033,7 @@
       <Type>UNIT_LIGHT_SPEARMAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LIGHT_SPEARMAN</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -18968,7 +19240,7 @@
       <Type>UNIT_SPEARMAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SPEARMAN</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -19166,7 +19438,7 @@
       <Type>UNIT_HASTATI1</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HASTATI1</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -19369,7 +19641,7 @@
       <Type>UNIT_HASTATI2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HASTATI2</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -19607,7 +19879,7 @@
       <Type>UNIT_HASTATI2_ETRUSCAN</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HASTATI2_ETRUSCAN</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -19845,7 +20117,7 @@
       <Type>UNIT_RADSCHA</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_RADSCHA</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -20042,7 +20314,7 @@
       <Type>UNIT_AUXILIAR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AUXILIAR</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -20224,7 +20496,7 @@
       <Type>UNIT_AUXILIAR_ROME</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AUXILIAR_ROME</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -20515,7 +20787,7 @@
       <Type>UNIT_AUXILIAR_MACEDON</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AUXILIAR_MACEDON</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -20697,7 +20969,7 @@
       <Type>UNIT_LIGHT_ARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LIGHT_ARCHER</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -20887,7 +21159,7 @@
       <Type>UNIT_ARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -21102,7 +21374,7 @@
       <Type>UNIT_ARCHER_NUBIA</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_NUBIA</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -21312,7 +21584,7 @@
       <Type>UNIT_COMPOSITE_ARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_COMPOSITE_ARCHER</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -21543,7 +21815,7 @@
       <Type>UNIT_REFLEX_ARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_REFLEX_ARCHER</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -21761,7 +22033,7 @@
       <Type>UNIT_ARCHER_ROME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_ROME</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -21976,7 +22248,7 @@
       <Type>UNIT_ARCHER_LEGION</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_LEGION</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -22189,7 +22461,7 @@
       <Type>UNIT_ARCHER_REFLEX_GREEK</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_REFLEX_GREEK</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -22402,7 +22674,7 @@
       <Type>UNIT_ARCHER_REFLEX_GREEK2</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_REFLEX_GREEK2</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -22617,7 +22889,7 @@
       <Type>UNIT_ARCHER_KRETA</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_KRETA</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -22845,7 +23117,7 @@
       <Type>UNIT_LIBYAN_AMAZON</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LIBYAN_AMAZON</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -23073,7 +23345,7 @@
       <Type>UNIT_PELTIST</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PELTIST</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -23276,7 +23548,7 @@
       <Type>UNIT_PELTIST_ROME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PELTIST_ROME</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -23479,7 +23751,7 @@
       <Type>UNIT_THRAKIEN_PELTAST</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_THRAKIEN_PELTAST</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -23679,7 +23951,7 @@
       <Type>UNIT_BALEAREN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BALEAREN</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -23887,7 +24159,7 @@
       <Type>UNIT_SKIRMISHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SKIRMISHER</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -24087,7 +24359,7 @@
       <Type>UNIT_SKIRMISHER_MACEDON</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SKIRMISHER_MACEDON</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -24287,7 +24559,7 @@
       <Type>UNIT_SKIRMISHER_ROME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SKIRMISHER_ROME</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -24492,7 +24764,7 @@
       <Type>UNIT_GERMANNE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GERMANNE</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -24687,7 +24959,7 @@
       <Type>UNIT_UNSTERBLICH</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_UNSTERBLICH</Capture>
       <Combat>UNITCOMBAT_SKIRMISHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -24874,7 +25146,7 @@
       <Type>UNIT_LIGHT_CHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LIGHT_CHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -25120,7 +25392,7 @@
       <Type>UNIT_CHARIOT_ARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CHARIOT_ARCHER</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -25381,7 +25653,7 @@
       <Type>UNIT_CHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -25655,7 +25927,7 @@
       <Type>UNIT_EGYPT_WARCHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_EGYPT_WARCHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -25933,7 +26205,7 @@
       <Type>UNIT_HETHIT_WARCHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HETHIT_WARCHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -26215,7 +26487,7 @@
       <Type>UNIT_PERSIAN_WARCHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PERSIAN_WARCHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -26493,7 +26765,7 @@
       <Type>UNIT_INDIAN_WARCHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_INDIAN_WARCHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -26771,7 +27043,7 @@
       <Type>UNIT_EGYPT_RAM_CHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_EGYPT_RAM_CHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -27050,7 +27322,7 @@
       <Type>UNIT_WAR_CHARIOT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WAR_CHARIOT</Capture>
       <Combat>UNITCOMBAT_CHARIOT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -27325,7 +27597,7 @@
       <Type>UNIT_HORSEMAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSEMAN</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -27592,7 +27864,7 @@
       <Type>UNIT_HORSEMAN_SKYTHEN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSEMAN_SKYTHEN</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -27854,7 +28126,7 @@
       <Type>UNIT_HORSEMAN_NUMIDIA</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSEMAN_NUMIDIA</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -28116,7 +28388,7 @@
       <Type>UNIT_HORSEMAN_MACEDON</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSEMAN_MACEDON</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -28383,7 +28655,7 @@
       <Type>UNIT_EQUES</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_EQUES</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -28652,7 +28924,7 @@
       <Type>UNIT_HORSEMAN_CELTIC</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSEMAN_CELTIC</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -28926,7 +29198,7 @@
       <Type>UNIT_GERMAN_DOUBLEFIGHTER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GERMAN_DOUBLEFIGHTER</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -29173,7 +29445,7 @@
       <Type>UNIT_MERC_HORSEMAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MERC_HORSEMAN</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -29449,7 +29721,7 @@
       <Type>UNIT_HORSE_ARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSE_ARCHER</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -29729,7 +30001,7 @@
       <Type>UNIT_HORSE_ARCHER_ROMAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSE_ARCHER_ROMAN</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -30009,7 +30281,7 @@
       <Type>UNIT_HORSE_ARCHER_SCYTHS</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HORSE_ARCHER_SCYTHS</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -30247,7 +30519,7 @@
       <Type>UNIT_BAKTRIEN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BAKTRIEN</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -30526,7 +30798,7 @@
       <Type>UNIT_IBERIAN_CAVALRY</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_IBERIAN_CAVALRY</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -30793,7 +31065,7 @@
       <Type>UNIT_AUXILIAR_HORSE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_AUXILIAR_HORSE</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -31060,7 +31332,7 @@
       <Type>UNIT_COMPANION_CAVALRY</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_COMPANION_CAVALRY</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -31329,7 +31601,7 @@
       <Type>UNIT_WAR_HORSE_THRAKER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WAR_HORSE_THRAKER</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -31595,7 +31867,7 @@
       <Type>UNIT_EQUITES</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_EQUITES</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -31866,7 +32138,7 @@
       <Type>UNIT_MOUNTED_SACRED_BAND_CARTHAGE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MOUNTED_SACRED_BAND_CARTHAGE</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -32137,7 +32409,7 @@
       <Type>UNIT_CATAPHRACT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CATAPHRACT</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -32401,7 +32673,7 @@
       <Type>UNIT_CATAPHRACT_PERSIA</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CATAPHRACT_PERSIA</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -32665,7 +32937,7 @@
       <Type>UNIT_CELTIBERIAN_CAVALRY</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CELTIBERIAN_CAVALRY</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -32931,7 +33203,7 @@
       <Type>UNIT_MONGOL_KESHIK</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MONGOL_KESHIK</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -33204,7 +33476,7 @@
       <Type>UNIT_PRAETORIAN_RIDER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PRAETORIAN_RIDER</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -33471,7 +33743,7 @@
       <Type>UNIT_PRAETORIAN2_RIDER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PRAETORIAN2_RIDER</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -33738,7 +34010,7 @@
       <Type>UNIT_HEAVY_HORSEMAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HEAVY_HORSEMAN</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -34003,7 +34275,7 @@
       <Type>UNIT_ARABIA_CAMELARCHER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARABIA_CAMELARCHER</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -34293,7 +34565,7 @@
       <Type>UNIT_CAMEL_CATAPHRACT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CAMEL_CATAPHRACT</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -34571,7 +34843,7 @@
       <Type>UNIT_WAR_ELEPHANT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WAR_ELEPHANT</Capture>
       <Combat>UNITCOMBAT_ELEPHANT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -34783,7 +35055,7 @@
       <Type>UNIT_WAR_ELEPHANT_GILDE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WAR_ELEPHANT_GILDE</Capture>
       <Combat>UNITCOMBAT_ELEPHANT</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -35008,7 +35280,7 @@
       <Type>UNIT_RAM</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_RAM</Capture>
+      <Capture>UNIT_RAM</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
@@ -35187,7 +35459,7 @@
       <Type>UNIT_BATTERING_RAM</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_BATTERING_RAM</Capture>
+      <Capture>UNIT_BATTERING_RAM</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
@@ -35371,7 +35643,7 @@
       <Type>UNIT_BATTERING_RAM2</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_BATTERING_RAM2</Capture>
+      <Capture>UNIT_BATTERING_RAM2</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
@@ -35550,7 +35822,7 @@
       <Type>UNIT_ONAGER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_ONAGER</Capture>
+      <Capture>UNIT_ONAGER</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -35732,7 +36004,7 @@
       <Type>UNIT_CATAPULT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_CATAPULT</Capture>
+      <Capture>UNIT_CATAPULT</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
@@ -35923,7 +36195,7 @@
       <Type>UNIT_FIRE_CATAPULT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_FIRE_CATAPULT</Capture>
+      <Capture>UNIT_FIRE_CATAPULT</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
@@ -36109,7 +36381,7 @@
       <Type>UNIT_BALLISTA</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_BALLISTA</Capture>
+      <Capture>UNIT_BALLISTA</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -37333,7 +37605,7 @@
       <Type>UNIT_BURNING_PIGS</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_BURNING_PIGS</Capture>
+      <Capture>UNIT_BURNING_PIGS</Capture>
       <Combat>UNITCOMBAT_MELEE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COLLATERAL</DefaultUnitAI>
@@ -37533,7 +37805,7 @@
       <Type>UNIT_TROJAN_HORSE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_TROJAN_HORSE</Capture>
+      <Capture>UNIT_TROJAN_HORSE</Capture>
       <Combat>UNITCOMBAT_SIEGE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_CITY</DefaultUnitAI>
@@ -37711,7 +37983,7 @@
       <Type>UNIT_WORKBOAT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_WORKBOAT</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_WORKER_SEA</DefaultUnitAI>
@@ -37913,7 +38185,7 @@
       <Type>UNIT_CARVEL_TRADE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CARVEL_TRADE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_SETTLER_SEA</DefaultUnitAI>
@@ -38110,7 +38382,7 @@
       <Type>UNIT_CARVEL_WAR</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CARVEL_WAR</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_SEA</DefaultUnitAI>
@@ -38299,7 +38571,7 @@
       <Type>UNIT_KONTERE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_KONTERE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -38488,7 +38760,7 @@
       <Type>UNIT_GAULOS</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GAULOS</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -38685,7 +38957,7 @@
       <Type>UNIT_PIRAT_KONTERE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_KONTERE</Capture>
+      <Capture>UNIT_KONTERE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
@@ -38883,7 +39155,7 @@
       <Type>UNIT_BIREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BIREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -39075,7 +39347,7 @@
       <Type>UNIT_PIRAT_BIREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_BIREME</Capture>
+      <Capture>UNIT_BIREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
@@ -39270,7 +39542,7 @@
       <Type>UNIT_TRIREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_TRIREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -39460,7 +39732,7 @@
       <Type>UNIT_PIRAT_TRIREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_TRIREME</Capture>
+      <Capture>UNIT_TRIREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
@@ -39658,7 +39930,7 @@
       <Type>UNIT_GALLEY</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GALLEY</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -39845,7 +40117,7 @@
       <Type>UNIT_QUADRIREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_QUADRIREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -40034,7 +40306,7 @@
       <Type>UNIT_QUINQUEREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_QUINQUEREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_SEA</DefaultUnitAI>
@@ -40217,7 +40489,7 @@
       <Type>UNIT_ROME_DECAREME</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ROME_DECAREME</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ATTACK_SEA</DefaultUnitAI>
@@ -40406,7 +40678,7 @@
       <Type>UNIT_LIBURNE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LIBURNE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_ASSAULT_SEA</DefaultUnitAI>
@@ -40593,7 +40865,7 @@
       <Type>UNIT_PIRAT_LIBURNE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_LIBURNE</Capture>
+      <Capture>UNIT_LIBURNE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
@@ -40788,7 +41060,7 @@
       <Type>UNIT_KILIKIEN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LIBURNE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
@@ -40985,7 +41257,7 @@
       <Type>UNIT_CARTHAGE_NUMIDIAN_CAVALRY</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CARTHAGE_NUMIDIAN_CAVALRY</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -41251,7 +41523,7 @@
       <Type>UNIT_ARCHER_GILDE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ARCHER_GILDE</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -41467,7 +41739,7 @@
       <Type>UNIT_COMPOSITE_ARCHER_GILDE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_COMPOSITE_ARCHER_GILDE</Capture>
       <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -41703,7 +41975,7 @@
       <Type>UNIT_LEGION_GILDE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_LEGION_GILDE</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -41942,7 +42214,7 @@
       <Type>UNIT_PHALANX_GILDE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PHALANX_GILDE</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -42153,7 +42425,7 @@
       <Type>UNIT_GALLIER_GILDE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GALLIER_GILDE</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -42360,7 +42632,7 @@
       <Type>UNIT_GERMAN_GILDE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GERMAN_GILDE</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_COUNTER</DefaultUnitAI>
@@ -42632,7 +42904,7 @@
         <UniqueName>Jeremia</UniqueName>
       </UniqueNames>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_PROPHET</Capture>
+      <Capture>UNIT_PROPHET</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_PROPHET</DefaultUnitAI>
@@ -42927,7 +43199,7 @@
         <UniqueName>Zeuxis</UniqueName>
       </UniqueNames>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_ARTIST</Capture>
+      <Capture>UNIT_ARTIST</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ARTIST</DefaultUnitAI>
@@ -43193,7 +43465,7 @@
         <UniqueName>TXT_KEY_GREAT_PERSON_HYPATIA</UniqueName>
       </UniqueNames>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_SCIENTIST</Capture>
+      <Capture>UNIT_SCIENTIST</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_SCIENTIST</DefaultUnitAI>
@@ -43454,7 +43726,7 @@
         <UniqueName>Zoilos</UniqueName>
       </UniqueNames>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_MERCHANT</Capture>
+      <Capture>UNIT_MERCHANT</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MERCHANT</DefaultUnitAI>
@@ -43744,7 +44016,7 @@
         <UniqueName>Zenon</UniqueName>
       </UniqueNames>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_ENGINEER</Capture>
+      <Capture>UNIT_ENGINEER</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
@@ -43928,7 +44200,7 @@
       <Type>UNIT_GREAT_GENERAL</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_GREAT_GENERAL</Capture>
+      <Capture>UNIT_GREAT_GENERAL</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_GENERAL</DefaultUnitAI>
@@ -44375,7 +44647,7 @@
       <Type>UNIT_JEWISH_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_JEWISH_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -44553,7 +44825,7 @@
       <Type>UNIT_CHRISTIAN_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CHRISTIAN_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -44731,7 +45003,7 @@
       <Type>UNIT_MISSIONARY_JAINISMUS</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_MISSIONARY_JAINISMUS</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -44909,7 +45181,7 @@
       <Type>UNIT_ROME_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ROME_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -45087,7 +45359,7 @@
       <Type>UNIT_SUMER_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SUMER_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -45265,7 +45537,7 @@
       <Type>UNIT_HINDU_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_HINDU_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -45443,7 +45715,7 @@
       <Type>UNIT_BUDDHIST_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_BUDDHIST_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -45621,7 +45893,7 @@
       <Type>UNIT_ZORO_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_ZORO_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -45799,7 +46071,7 @@
       <Type>UNIT_PHOEN_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_PHOEN_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -45977,7 +46249,7 @@
       <Type>UNIT_GREEK_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_GREEK_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -46155,7 +46427,7 @@
       <Type>UNIT_CELTIC_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_CELTIC_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -46333,7 +46605,7 @@
       <Type>UNIT_EGYPT_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_EGYPT_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -46511,7 +46783,7 @@
       <Type>UNIT_NORDIC_MISSIONARY</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_NORDIC_MISSIONARY</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -46689,7 +46961,7 @@
       <Type>UNIT_INQUISITOR</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_INQUISITOR</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -46862,7 +47134,7 @@
       <Type>UNIT_EXECUTIVE_1</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_1</Capture>
+      <Capture>UNIT_EXECUTIVE_1</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -47032,7 +47304,7 @@
       <Type>UNIT_EXECUTIVE_2</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_2</Capture>
+      <Capture>UNIT_EXECUTIVE_2</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -47202,7 +47474,7 @@
       <Type>UNIT_EXECUTIVE_3</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_3</Capture>
+      <Capture>UNIT_EXECUTIVE_3</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -47372,7 +47644,7 @@
       <Type>UNIT_EXECUTIVE_4</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_4</Capture>
+      <Capture>UNIT_EXECUTIVE_4</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -47542,7 +47814,7 @@
       <Type>UNIT_EXECUTIVE_5</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_5</Capture>
+      <Capture>UNIT_EXECUTIVE_5</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -47712,7 +47984,7 @@
       <Type>UNIT_EXECUTIVE_6</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_6</Capture>
+      <Capture>UNIT_EXECUTIVE_6</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -47882,7 +48154,7 @@
       <Type>UNIT_EXECUTIVE_7</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_7</Capture>
+      <Capture>UNIT_EXECUTIVE_7</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -48052,7 +48324,7 @@
       <Type>UNIT_EXECUTIVE_8</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_8</Capture>
+      <Capture>UNIT_EXECUTIVE_8</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -48222,7 +48494,7 @@
       <Type>UNIT_EXECUTIVE_9</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_EXECUTIVE_9</Capture>
+      <Capture>UNIT_EXECUTIVE_9</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_MISSIONARY</DefaultUnitAI>
@@ -48388,283 +48660,11 @@
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
     <UnitInfo>
-      <Class>UNITCLASS_SLAVE</Class>
-      <Type>UNIT_SLAVE</Type>
-      <UniqueNames/>
-      <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
-      <Combat>NONE</Combat>
-      <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_WORKER</DefaultUnitAI>
-      <Invisible>NONE</Invisible>
-      <SeeInvisible>NONE</SeeInvisible>
-      <Description>TXT_KEY_UNIT_SLAVE</Description>
-      <Civilopedia>TXT_KEY_UNIT_SLAVE_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_UNIT_SLAVE_STRATEGY</Strategy>
-      <Advisor>ADVISOR_ECONOMY</Advisor>
-      <bAnimal>0</bAnimal>
-      <bFood>0</bFood>
-      <bNoBadGoodies>0</bNoBadGoodies>
-      <bOnlyDefensive>0</bOnlyDefensive>
-      <bNoCityCapture>0</bNoCityCapture>
-      <bQuickCombat>0</bQuickCombat>
-      <bRivalTerritory>0</bRivalTerritory>
-      <bMilitaryHappiness>0</bMilitaryHappiness>
-      <bMilitarySupport>0</bMilitarySupport>
-      <bMilitaryProduction>0</bMilitaryProduction>
-      <bPillage>0</bPillage>
-      <bSpy>0</bSpy>
-      <bSabotage>0</bSabotage>
-      <bDestroy>0</bDestroy>
-      <bStealPlans>0</bStealPlans>
-      <bInvestigate>0</bInvestigate>
-      <bCounterSpy>0</bCounterSpy>
-      <bFound>0</bFound>
-      <bGoldenAge>0</bGoldenAge>
-      <bInvisible>0</bInvisible>
-      <bFirstStrikeImmune>0</bFirstStrikeImmune>
-      <bNoDefensiveBonus>0</bNoDefensiveBonus>
-      <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
-      <bCanMoveImpassable>0</bCanMoveImpassable>
-      <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
-      <bFlatMovementCost>0</bFlatMovementCost>
-      <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
-      <bNukeImmune>0</bNukeImmune>
-      <bPrereqBonuses>0</bPrereqBonuses>
-      <bPrereqReligion>0</bPrereqReligion>
-      <bMechanized>0</bMechanized>
-      <bSuicide>0</bSuicide>
-      <bHiddenNationality>0</bHiddenNationality>
-      <bAlwaysHostile>0</bAlwaysHostile>
-      <UnitClassUpgrades/>
-      <UnitClassTargets/>
-      <UnitCombatTargets/>
-      <UnitClassDefenders/>
-      <UnitCombatDefenders/>
-      <FlankingStrikes/>
-      <UnitAIs>
-        <UnitAI>
-          <UnitAIType>UNITAI_WORKER</UnitAIType>
-          <bUnitAI>1</bUnitAI>
-        </UnitAI>
-        <UnitAI>
-          <UnitAIType>UNITAI_ENGINEER</UnitAIType>
-          <bUnitAI>1</bUnitAI>
-        </UnitAI>
-        <UnitAI>
-          <UnitAIType>UNITAI_MERCHANT</UnitAIType>
-          <bUnitAI>1</bUnitAI>
-        </UnitAI>
-      </UnitAIs>
-      <NotUnitAIs/>
-      <Builds>
-        <Build>
-          <BuildType>BUILD_ROAD</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_BRUNNEN</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_FARM</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_MINE</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_SALTMINE</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_WATERMILL</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_PLANTATION</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_QUARRY</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_PASTURE</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_CAMP</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_LUMBER_CAMP</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_WINERY</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_COTTAGE</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_COTTAGE_HILL</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_TURM</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_TURM2</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_FORT</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_FORT2</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_REMOVE_JUNGLE</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_REMOVE_FOREST</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-        <Build>
-          <BuildType>BUILD_REMOVE_FOREST_BURNT</BuildType>
-          <bBuild>1</bBuild>
-        </Build>
-      </Builds>
-      <ReligionSpreads/>
-      <CorporationSpreads/>
-      <GreatPeoples>
-        <GreatPeople>
-          <GreatPeopleType>SPECIALIST_SLAVE</GreatPeopleType>
-          <bGreatPeople>1</bGreatPeople>
-        </GreatPeople>
-      </GreatPeoples>
-      <Buildings>
-        <Building>
-          <BuildingType>BUILDING_SKLAVENMARKT</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-      </Buildings>
-      <ForceBuildings/>
-      <HolyCity>NONE</HolyCity>
-      <ReligionType>NONE</ReligionType>
-      <StateReligion>NONE</StateReligion>
-      <PrereqReligion>NONE</PrereqReligion>
-      <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>NONE</PrereqBuilding>
-      <PrereqTech>TECH_ENSLAVEMENT</PrereqTech>
-      <TechTypes/>
-      <BonusType>NONE</BonusType>
-      <PrereqBonuses/>
-      <ProductionTraits/>
-      <Flavors/>
-      <iAIWeight>0</iAIWeight>
-      <iCost>-1</iCost>
-      <iHurryCostModifier>0</iHurryCostModifier>
-      <iAdvancedStartCost>100</iAdvancedStartCost>
-      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iMinAreaSize>-1</iMinAreaSize>
-      <iMoves>2</iMoves>
-      <bNoRevealMap>0</bNoRevealMap>
-      <iAirRange>0</iAirRange>
-      <iAirUnitCap>0</iAirUnitCap>
-      <iDropRange>0</iDropRange>
-      <iNukeRange>-1</iNukeRange>
-      <iWorkRate>100</iWorkRate>
-      <iBaseDiscover>0</iBaseDiscover>
-      <iDiscoverMultiplier>0</iDiscoverMultiplier>
-      <iBaseHurry>40</iBaseHurry>
-      <iHurryMultiplier>2</iHurryMultiplier>
-      <iBaseTrade>6</iBaseTrade>
-      <iTradeMultiplier>10</iTradeMultiplier>
-      <iGreatWorkCulture>0</iGreatWorkCulture>
-      <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
-      <FeatureImpassables/>
-      <TerrainPassableTechs/>
-      <FeaturePassableTechs/>
-      <iCombat>0</iCombat>
-      <iCombatLimit>0</iCombatLimit>
-      <iAirCombat>0</iAirCombat>
-      <iAirCombatLimit>0</iAirCombatLimit>
-      <iXPValueAttack>0</iXPValueAttack>
-      <iXPValueDefense>0</iXPValueDefense>
-      <iFirstStrikes>0</iFirstStrikes>
-      <iChanceFirstStrikes>0</iChanceFirstStrikes>
-      <iInterceptionProbability>0</iInterceptionProbability>
-      <iEvasionProbability>0</iEvasionProbability>
-      <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
-      <iCollateralDamage>0</iCollateralDamage>
-      <iCollateralDamageLimit>0</iCollateralDamageLimit>
-      <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
-      <iCityAttack>0</iCityAttack>
-      <iCityDefense>0</iCityDefense>
-      <iAnimalCombat>0</iAnimalCombat>
-      <iHillsAttack>0</iHillsAttack>
-      <iHillsDefense>0</iHillsDefense>
-      <TerrainNatives/>
-      <FeatureNatives/>
-      <TerrainAttacks/>
-      <TerrainDefenses/>
-      <FeatureAttacks/>
-      <FeatureDefenses/>
-      <UnitClassAttackMods/>
-      <UnitClassDefenseMods/>
-      <UnitCombatMods/>
-      <UnitCombatCollateralImmunes/>
-      <DomainMods/>
-      <BonusProductionModifiers/>
-      <iBombRate>0</iBombRate>
-      <iBombardRate>0</iBombardRate>
-      <SpecialCargo>NONE</SpecialCargo>
-      <DomainCargo>NONE</DomainCargo>
-      <iCargo>0</iCargo>
-      <iConscription>0</iConscription>
-      <iCultureGarrison>0</iCultureGarrison>
-      <iExtraCost>0</iExtraCost>
-      <iAsset>2</iAsset>
-      <iPower>0</iPower>
-      <UnitMeshGroups>
-        <iGroupSize>2</iGroupSize>
-        <fMaxSpeed>1.75</fMaxSpeed>
-        <fPadTime>1</fPadTime>
-        <iMeleeWaveSize>2</iMeleeWaveSize>
-        <iRangedWaveSize>0</iRangedWaveSize>
-        <UnitMeshGroup>
-          <iRequired>2</iRequired>
-          <EarlyArtDefineTag>ART_DEF_UNIT_SLAVE</EarlyArtDefineTag>
-        </UnitMeshGroup>
-      </UnitMeshGroups>
-      <FormationType>FORMATION_TYPE_DEFAULT</FormationType>
-      <HotKey/>
-      <bAltDown>0</bAltDown>
-      <bShiftDown>0</bShiftDown>
-      <bCtrlDown>0</bCtrlDown>
-      <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions/>
-      <LeaderPromotion>NONE</LeaderPromotion>
-      <iLeaderExperience>0</iLeaderExperience>
-    </UnitInfo>
-    <UnitInfo>
       <Class>UNITCLASS_FREED_SLAVE</Class>
       <Type>UNIT_FREED_SLAVE</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
@@ -48838,7 +48838,7 @@
       <Type>UNIT_HORSE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_HORSE</Capture>
+      <Capture>UNIT_HORSE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
@@ -49012,7 +49012,7 @@
       <Type>UNIT_WILD_HORSE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_HORSE</Capture>
+      <Capture>UNIT_HORSE</Capture>
       <Combat>UNITCOMBAT_MELEE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
@@ -49022,7 +49022,7 @@
       <Civilopedia>TXT_KEY_UNIT_HORSE_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_HORSE_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>1</bOnlyDefensive>
@@ -49191,7 +49191,7 @@
       <Type>UNIT_CAMEL</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_CAMEL</Capture>
+      <Capture>UNIT_CAMEL</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
@@ -49360,7 +49360,7 @@
       <Type>UNIT_WILD_CAMEL</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_CAMEL</Capture>
+      <Capture>UNIT_CAMEL</Capture>
       <Combat>UNITCOMBAT_MELEE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
@@ -49370,7 +49370,7 @@
       <Civilopedia>TXT_KEY_UNIT_CAMEL_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_CAMEL_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
-      <bAnimal>0</bAnimal>
+      <bAnimal>1</bAnimal>
       <bFood>0</bFood>
       <bNoBadGoodies>0</bNoBadGoodies>
       <bOnlyDefensive>1</bOnlyDefensive>
@@ -49539,7 +49539,7 @@
       <Type>UNIT_ELEFANT</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_ELEFANT</Capture>
+      <Capture>UNIT_ELEFANT</Capture>
       <Combat>UNITCOMBAT_MELEE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ENGINEER</DefaultUnitAI>
@@ -49727,7 +49727,7 @@
       <Type>UNIT_REBELL</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_SLAVE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>UNITCOMBAT_AXEMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -49923,7 +49923,7 @@
       <Type>UNIT_FREEDOM_FIGHTER</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>UNITCOMBAT_SPEARMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_CITY_DEFENSE</DefaultUnitAI>
@@ -50126,7 +50126,7 @@
       <Type>UNIT_BEDUINE</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>NONE</Capture>
+      <Capture>UNIT_SLAVE</Capture>
       <Combat>UNITCOMBAT_MOUNTED</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
@@ -50399,7 +50399,7 @@
       <Type>UNIT_GLADIATOR</Type>
       <UniqueNames/>
       <Special>SPECIALUNIT_FUSSTRUPPEN</Special>
-      <Capture>UNITCLASS_GLADIATOR</Capture>
+      <Capture>UNIT_GLADIATOR</Capture>
       <Combat>UNITCOMBAT_SWORDSMAN</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>

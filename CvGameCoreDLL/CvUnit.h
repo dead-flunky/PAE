@@ -270,7 +270,10 @@ public:
 	CivilizationTypes getCivilizationType() const;							// Exposed to Python								
 	const wchar* getVisualCivAdjective(TeamTypes eForTeam) const;
 	SpecialUnitTypes getSpecialUnitType() const;								// Exposed to Python								 
-	UnitTypes getCaptureUnitType(CivilizationTypes eCivilization) const;	// Exposed to Python								
+	//Orig
+	//UnitTypes getCaptureUnitType(CivilizationTypes eCivilization) const;	// Exposed to Python									 
+	//Flunky
+	UnitTypes getCaptureUnitType() const;	// Exposed to Python								
 	UnitCombatTypes getUnitCombatType() const;									// Exposed to Python								
 	DllExport DomainTypes getDomainType() const;													// Exposed to Python								
 	InvisibleTypes getInvisibleType() const;										// Exposed to Python								
@@ -384,6 +387,8 @@ public:
 	int flightProbability() const;
 	int loyaltyProbability() const;
 	int slaveryProbability() const;
+	bool canRenegadeTo(const CvUnit* pOther) const;
+	bool canBeEnslavedBy(const CvUnit* pOther) const;
 
 	int collateralDamage() const;																						// Exposed to Python
 	int collateralDamageLimit() const;																								// Exposed to Python

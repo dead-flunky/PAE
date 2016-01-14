@@ -4589,7 +4589,7 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
-       </Buildings>
+      </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
@@ -7419,7 +7419,7 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
-       </Buildings>
+      </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
@@ -8745,7 +8745,7 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
-       </Buildings>
+      </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
@@ -10309,7 +10309,7 @@
         <City>TXT_KEY_CITY_NAME_MAGYAR</City>
         <City>TXT_KEY_CITY_NAME_KHAZAK</City>
         <City>TXT_KEY_CITY_NAME_BULGAR</City>
-         <City>TXT_KEY_CITY_NAME_ESTRUSCAN</City>
+        <City>TXT_KEY_CITY_NAME_ESTRUSCAN</City>
         <City>TXT_KEY_CITY_NAME_PHRYGIAN</City>
         <City>TXT_KEY_CITY_NAME_GAUL</City>
         <City>TXT_KEY_CITY_NAME_MINOAN</City>
@@ -10603,7 +10603,7 @@
           <BuildingClassType>BUILDINGCLASS_PYRAMID</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
-       <Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_ARTEMIS</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>

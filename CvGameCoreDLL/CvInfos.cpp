@@ -3055,7 +3055,8 @@ m_iAssetValue(0),
 m_iPowerValue(0),						
 m_iUnitClassType(NO_UNITCLASS),
 m_iSpecialUnitType(NO_SPECIALUNIT),
-m_iUnitCaptureClassType(NO_UNITCLASS),
+/*m_iUnitCaptureClassType(NO_UNITCLASS),*/
+m_iUnitCaptureType(NO_UNIT),
 m_iUnitCombatType(NO_UNITCOMBAT),
 m_iDomainType(NO_DOMAIN),
 m_iDefaultUnitAIType(NO_UNITAI),
@@ -3479,10 +3480,16 @@ int CvUnitInfo::getSpecialUnitType() const
 	return m_iSpecialUnitType;
 }
 
-int CvUnitInfo::getUnitCaptureClassType() const
+//int CvUnitInfo::getUnitCaptureClassType() const
+//{	
+//	return m_iUnitCaptureClassType;
+//}
+
+int CvUnitInfo::getUnitCaptureType() const
 {
-	return m_iUnitCaptureClassType;
+	return m_iUnitCaptureType;
 }
+
 
 int CvUnitInfo::getUnitCombatType() const			
 {
@@ -4231,6 +4238,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	//Flunky
 	stream->Read(&m_iFlightProbability);
 	stream->Read(&m_iLoyaltyProbability);
+
 	stream->Read(&m_iCollateralDamage);
 	stream->Read(&m_iCollateralDamageLimit);
 	stream->Read(&m_iCollateralDamageMaxUnits);
@@ -4251,7 +4259,8 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPowerValue);
 	stream->Read(&m_iUnitClassType);
 	stream->Read(&m_iSpecialUnitType);
-	stream->Read(&m_iUnitCaptureClassType);
+	//stream->Read(&m_iUnitCaptureClassType);
+	stream->Read(&m_iUnitCaptureType);
 	stream->Read(&m_iUnitCombatType);
 	stream->Read(&m_iDomainType);
 	stream->Read(&m_iDefaultUnitAIType);
@@ -4533,6 +4542,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	//Flunky
 	stream->Write(m_iFlightProbability);
 	stream->Write(m_iLoyaltyProbability);
+
 	stream->Write(m_iCollateralDamage);
 	stream->Write(m_iCollateralDamageLimit);
 	stream->Write(m_iCollateralDamageMaxUnits);
@@ -4553,7 +4563,8 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPowerValue);
 	stream->Write(m_iUnitClassType);
 	stream->Write(m_iSpecialUnitType);
-	stream->Write(m_iUnitCaptureClassType);
+	//stream->Write(m_iUnitCaptureClassType);
+	stream->Write(m_iUnitCaptureType);
 	stream->Write(m_iUnitCombatType);
 	stream->Write(m_iDomainType);
 	stream->Write(m_iDefaultUnitAIType);
@@ -4671,6 +4682,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->WriteString(m_szFormationType);
 }
 
+
 //
 // read from xml
 //
@@ -4693,8 +4705,9 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "Special");
 	m_iSpecialUnitType = pXML->FindInInfoClass(szTextVal);
 
-	pXML->GetChildXmlValByName(szTextVal, "Capture");
-	m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+	//pXML->GetChildXmlValByName(szTextVal, "Capture");
+	////m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+	//m_iUnitCaptureType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "Combat");
 	m_iUnitCombatType = pXML->FindInInfoClass(szTextVal);
@@ -5015,6 +5028,16 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iLeaderExperience, "iLeaderExperience");
 
 	updateArtDefineButton();
+
+	return true;
+}
+
+// stuff that refers to unit types
+bool CvUnitInfo::readPass2(CvXMLLoadUtility* pXML) {
+	CvString szTextVal;
+	pXML->GetChildXmlValByName(szTextVal, "Capture");
+	//m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+	m_iUnitCaptureType = pXML->FindInInfoClass(szTextVal);
 
 	return true;
 }

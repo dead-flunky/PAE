@@ -368,15 +368,15 @@
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
-         <BonusType>BONUS_RICE</BonusType>
-         <bBonusMakesValid>1</bBonusMakesValid>
-         <bBonusTrade>1</bBonusTrade>
-         <iDiscoverRand>0</iDiscoverRand>
-         <YieldChanges>
-          <iYieldChange>1</iYieldChange>
-          <iYieldChange>0</iYieldChange>
-          <iYieldChange>0</iYieldChange>
-         </YieldChanges>
+          <BonusType>BONUS_RICE</BonusType>
+          <bBonusMakesValid>1</bBonusMakesValid>
+          <bBonusTrade>1</bBonusTrade>
+          <iDiscoverRand>0</iDiscoverRand>
+          <YieldChanges>
+            <iYieldChange>1</iYieldChange>
+            <iYieldChange>0</iYieldChange>
+            <iYieldChange>0</iYieldChange>
+          </YieldChanges>
         </BonusTypeStruct>
       </BonusTypeStructs>
       <ImprovementPillage/>
@@ -2394,7 +2394,7 @@
       <RouteYieldChanges/>
       <bGraphicalOnly>0</bGraphicalOnly>
     </ImprovementInfo>
-   <ImprovementInfo>
+    <ImprovementInfo>
       <Type>IMPROVEMENT_LATIFUNDIUM1</Type>
       <Description>TXT_KEY_IMPROVEMENT_LATIFUNDIUM1</Description>
       <Civilopedia>TXT_KEY_IMPROVEMENT_LATIFUNDIUM_PEDIA</Civilopedia>

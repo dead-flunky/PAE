@@ -691,8 +691,8 @@
       <SpecialBuildingNotRequireds/>
       <SpecialistValids>
         <SpecialistValid>
-         <SpecialistType>SPECIALIST_SPY</SpecialistType>
-         <bValid>1</bValid>
+          <SpecialistType>SPECIALIST_SPY</SpecialistType>
+          <bValid>1</bValid>
         </SpecialistValid>
       </SpecialistValids>
       <BuildingHappinessChanges/>
@@ -1397,8 +1397,8 @@
       <SpecialBuildingNotRequireds/>
       <SpecialistValids>
         <SpecialistValid>
-         <SpecialistType>SPECIALIST_PRIEST</SpecialistType>
-         <bValid>1</bValid>
+          <SpecialistType>SPECIALIST_PRIEST</SpecialistType>
+          <bValid>1</bValid>
         </SpecialistValid>
       </SpecialistValids>
       <BuildingHappinessChanges/>

@@ -421,7 +421,7 @@
             <Text>AI_DIPLO_REFUSE_TO_TALK_LEADER_HANNIBAL_1</Text>
           </DiplomacyText>
         </Response>
-       <Response>
+        <Response>
           <Civilizations/>
           <Leaders>
             <Leader>

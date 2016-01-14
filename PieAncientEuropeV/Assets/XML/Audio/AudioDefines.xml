@@ -10170,7 +10170,7 @@
       <bIsCompressed>1</bIsCompressed>
       <bInGeneric>1</bInGeneric>
     </SoundData>
-        <SoundData>
+    <SoundData>
       <SoundID>SND_TECH_PAE_QUOTE_81</SoundID>
       <Filename>Sounds/Tech/Zitat81</Filename>
       <LoadType>DYNAMIC_RES</LoadType>
@@ -11934,7 +11934,7 @@
       <bIsCompressed>1</bIsCompressed>
       <bInGeneric>1</bInGeneric>
     </SoundData>
-     <SoundData>
+    <SoundData>
       <SoundID>SONG_ANCIENT_SOUNDTRACK_X2</SoundID>
       <Filename>Sounds/Soundtrack/AuchEarlyBronze</Filename>
       <LoadType>STREAMED</LoadType>

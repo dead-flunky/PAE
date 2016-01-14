@@ -13,3 +13,13 @@ PAE_Extras
 *.res
 *.pdb
 /CvGameCoreDLL/depends
+/PieAncientEuropeV/Assets/XML/CIV4GlobalDefinesSchema.xml
+/PieAncientEuropeV/Assets/XML/CIV4GlobalTypesSchema.xml
+/PieAncientEuropeV/Assets/XML/Audio/AudioScriptSchema.xml
+/PieAncientEuropeV/Assets/XML/BasicInfos/CIV4BasicInfoSchema.xml
+/PieAncientEuropeV/Assets/XML/Events/CIV4EventSchema.xml
+/PieAncientEuropeV/Assets/XML/Interface/CIV4InterfaceSchema.xml
+/PieAncientEuropeV/Assets/XML/Misc/CIV4MiscSchema.xml
+/PieAncientEuropeV/Assets/XML/Buildings/CIV4LSystemSchema.xml
+/PieAncientEuropeV/Assets/XML/Audio/AudioDefinesSchema.xml
+/PieAncientEuropeV/Assets/XML/Art/CIV4ArtDefinesSchema.xml

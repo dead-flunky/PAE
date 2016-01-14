@@ -33,10 +33,10 @@
       <iInflationPercent>5</iInflationPercent>
       <iInflationOffset>-400</iInflationOffset>
       <iVictoryDelayPercent>200</iVictoryDelayPercent>
-<!-- 25 Jahre: -5000 bis -3200 -->
-<!-- 10 Jahre: -3200 bis -1200 -->
-<!-- 5 Jahre:  -1200 bis  -700 -->
-<!-- 2 Jahre:   -700 bis   500 -->
+      <!-- 25 Jahre: -5000 bis -3200 -->
+      <!-- 10 Jahre: -3200 bis -1200 -->
+      <!-- 5 Jahre:  -1200 bis  -700 -->
+      <!-- 2 Jahre:   -700 bis   500 -->
       <GameTurnInfos>
         <GameTurnInfo>
           <iMonthIncrement>300</iMonthIncrement>
@@ -82,12 +82,12 @@
       <iInflationPercent>5</iInflationPercent>
       <iInflationOffset>-350</iInflationOffset>
       <iVictoryDelayPercent>100</iVictoryDelayPercent>
-<!-- 25 Jahre: -5000 bis -3800 -->
-<!-- 10 Jahre: -3800 bis -2800 -->
-<!--  8 Jahre: -2800 bis -1200 -->
-<!--  5 Jahre: -1200 bis  -600 -->
-<!--  3 Jahre:  -600 bis  -300 -->
-<!--  2 Jahre:  -300 bis   500 -->
+      <!-- 25 Jahre: -5000 bis -3800 -->
+      <!-- 10 Jahre: -3800 bis -2800 -->
+      <!--  8 Jahre: -2800 bis -1200 -->
+      <!--  5 Jahre: -1200 bis  -600 -->
+      <!--  3 Jahre:  -600 bis  -300 -->
+      <!--  2 Jahre:  -300 bis   500 -->
       <GameTurnInfos>
         <GameTurnInfo>
           <iMonthIncrement>300</iMonthIncrement>
@@ -141,12 +141,12 @@
       <iInflationPercent>10</iInflationPercent>
       <iInflationOffset>-300</iInflationOffset>
       <iVictoryDelayPercent>100</iVictoryDelayPercent>
-<!-- 50 Jahre: -5000 bis -4000 -->
-<!-- 25 Jahre: -4000 bis -3000 -->
-<!-- 10 Jahre: -3000 bis -1200 -->
-<!--  5 Jahre: -1200 bis  -600 -->
-<!--  3 Jahre:  -500 bis   400 -->
-<!--  2 Jahre:   400 bis   500 -->
+      <!-- 50 Jahre: -5000 bis -4000 -->
+      <!-- 25 Jahre: -4000 bis -3000 -->
+      <!-- 10 Jahre: -3000 bis -1200 -->
+      <!--  5 Jahre: -1200 bis  -600 -->
+      <!--  3 Jahre:  -500 bis   400 -->
+      <!--  2 Jahre:   400 bis   500 -->
       <GameTurnInfos>
         <GameTurnInfo>
           <iMonthIncrement>600</iMonthIncrement>
@@ -200,10 +200,10 @@
       <iInflationPercent>10</iInflationPercent>
       <iInflationOffset>-250</iInflationOffset>
       <iVictoryDelayPercent>67</iVictoryDelayPercent>
-<!-- 20 Jahre: -5000 bis -3000 -->
-<!-- 15 Jahre: -3000 bis -990 -->
-<!--  5 Jahre: -990 bis  -300 -->
-<!--  4 Jahre:  -300 bis   500 -->
+      <!-- 20 Jahre: -5000 bis -3000 -->
+      <!-- 15 Jahre: -3000 bis -990 -->
+      <!--  5 Jahre: -990 bis  -300 -->
+      <!--  4 Jahre:  -300 bis   500 -->
       <GameTurnInfos>
         <GameTurnInfo>
           <iMonthIncrement>240</iMonthIncrement>
@@ -249,10 +249,10 @@
       <iInflationPercent>10</iInflationPercent>
       <iInflationOffset>-280</iInflationOffset>
       <iVictoryDelayPercent>200</iVictoryDelayPercent>
-<!-- 25 Jahre: -5000 bis -3200 -->
-<!-- 10 Jahre: -3200 bis  -1200 -->
-<!-- 5 Jahre : -1200 bis  -700 -->
-<!-- 1 Jahr:    -700 bis   500 -->
+      <!-- 25 Jahre: -5000 bis -3200 -->
+      <!-- 10 Jahre: -3200 bis  -1200 -->
+      <!-- 5 Jahre : -1200 bis  -700 -->
+      <!-- 1 Jahr:    -700 bis   500 -->
       <GameTurnInfos>
         <GameTurnInfo>
           <iMonthIncrement>300</iMonthIncrement>
@@ -298,10 +298,10 @@
       <iInflationPercent>5</iInflationPercent>
       <iInflationOffset>-400</iInflationOffset>
       <iVictoryDelayPercent>200</iVictoryDelayPercent>
-<!-- 25 Jahre: -5000 bis -3200 -->
-<!-- 10 Jahre: -3200 bis  -1200 -->
-<!-- 5 Jahre : -1200 bis   180 -->
-<!-- 1 Monat:    180 bis   500 -->
+      <!-- 25 Jahre: -5000 bis -3200 -->
+      <!-- 10 Jahre: -3200 bis  -1200 -->
+      <!-- 5 Jahre : -1200 bis   180 -->
+      <!-- 1 Monat:    180 bis   500 -->
       <GameTurnInfos>
         <GameTurnInfo>
           <iMonthIncrement>300</iMonthIncrement>

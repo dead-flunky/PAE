@@ -11490,95 +11490,95 @@ class CvEventManager:
                    lUnits.remove(lUnits[iRandUnit])
 
 
-    # ++++++++++++++++++++++++++++++++++++++++
-    # Buildings with prereq bonus gets checked : remove chance 10%
-    building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_BRONZE")
-    if pCity.isHasBuilding(building):
-      iRand = self.myRandom(10, None)
-      if iRand == 1:
-        bonus = gc.getInfoTypeForString("BONUS_COPPER")
-        bonus1 = gc.getInfoTypeForString("BONUS_COAL")
-        bonus2 = gc.getInfoTypeForString("BONUS_ZINN")
-        if not pCity.hasBonus(bonus) or not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2)):
-          pCity.setNumRealBuilding(building,0)
-          # Welche Resi
-          if not pCity.hasBonus(bonus): szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1"
-          else: szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_2"
-          # Meldung
-          if pPlayer.isHuman():
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            popupInfo.addPopup(pCity.getOwner())
+    # # ++++++++++++++++++++++++++++++++++++++++
+    # # Buildings with prereq bonus gets checked : remove chance 10%
+    # building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_BRONZE")
+    # if pCity.isHasBuilding(building):
+      # iRand = self.myRandom(10, None)
+      # if iRand == 1:
+        # bonus = gc.getInfoTypeForString("BONUS_COPPER")
+        # bonus1 = gc.getInfoTypeForString("BONUS_COAL")
+        # bonus2 = gc.getInfoTypeForString("BONUS_ZINN")
+        # if not pCity.hasBonus(bonus) or not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2)):
+          # pCity.setNumRealBuilding(building,0)
+          # # Welche Resi
+          # if not pCity.hasBonus(bonus): szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1"
+          # else: szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_2"
+          # # Meldung
+          # if pPlayer.isHuman():
+            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            # popupInfo = CyPopupInfo()
+            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            # popupInfo.setText(CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            # popupInfo.addPopup(pCity.getOwner())
 
-    building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_MESSING")
-    if pCity.isHasBuilding(building):
-      iRand = self.myRandom(10, None)
-      if iRand == 1:
-        bonus1 = gc.getInfoTypeForString("BONUS_COPPER")
-        bonus2 = gc.getInfoTypeForString("BONUS_ZINK")
-        if not pCity.hasBonus(bonus1) or not pCity.hasBonus(bonus2):
-          pCity.setNumRealBuilding(building,0)
-          # Welche Resi
-          if not pCity.hasBonus(bonus1): bonus = bonus1
-          elif not pCity.hasBonus(bonus2): bonus = bonus2
-          # Meldung
-          if pPlayer.isHuman():
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            popupInfo.addPopup(pCity.getOwner())
+    # building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_MESSING")
+    # if pCity.isHasBuilding(building):
+      # iRand = self.myRandom(10, None)
+      # if iRand == 1:
+        # bonus1 = gc.getInfoTypeForString("BONUS_COPPER")
+        # bonus2 = gc.getInfoTypeForString("BONUS_ZINK")
+        # if not pCity.hasBonus(bonus1) or not pCity.hasBonus(bonus2):
+          # pCity.setNumRealBuilding(building,0)
+          # # Welche Resi
+          # if not pCity.hasBonus(bonus1): bonus = bonus1
+          # elif not pCity.hasBonus(bonus2): bonus = bonus2
+          # # Meldung
+          # if pPlayer.isHuman():
+            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            # popupInfo = CyPopupInfo()
+            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            # popupInfo.addPopup(pCity.getOwner())
 
-    building = gc.getInfoTypeForString("BUILDING_BRAUSTAETTE")
-    if pCity.isHasBuilding(building):
-      iRand = self.myRandom(10, None)
-      if iRand == 1:
-        bonus1 = gc.getInfoTypeForString("BONUS_WHEAT")
-        bonus2 = gc.getInfoTypeForString("BONUS_GERSTE")
-        bonus3 = gc.getInfoTypeForString("BONUS_HAFER")
-        bonus4 = gc.getInfoTypeForString("BONUS_ROGGEN")
-        bonus5 = gc.getInfoTypeForString("BONUS_HIRSE")
-        if not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2) or pCity.hasBonus(bonus3) or pCity.hasBonus(bonus4) or pCity.hasBonus(bonus5)):
-          pCity.setNumRealBuilding(building,0)
-          # Meldung
-          if pPlayer.isHuman():
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())))
-            popupInfo.addPopup(pCity.getOwner())
+    # building = gc.getInfoTypeForString("BUILDING_BRAUSTAETTE")
+    # if pCity.isHasBuilding(building):
+      # iRand = self.myRandom(10, None)
+      # if iRand == 1:
+        # bonus1 = gc.getInfoTypeForString("BONUS_WHEAT")
+        # bonus2 = gc.getInfoTypeForString("BONUS_GERSTE")
+        # bonus3 = gc.getInfoTypeForString("BONUS_HAFER")
+        # bonus4 = gc.getInfoTypeForString("BONUS_ROGGEN")
+        # bonus5 = gc.getInfoTypeForString("BONUS_HIRSE")
+        # if not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2) or pCity.hasBonus(bonus3) or pCity.hasBonus(bonus4) or pCity.hasBonus(bonus5)):
+          # pCity.setNumRealBuilding(building,0)
+          # # Meldung
+          # if pPlayer.isHuman():
+            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            # popupInfo = CyPopupInfo()
+            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())))
+            # popupInfo.addPopup(pCity.getOwner())
 
-    building = gc.getInfoTypeForString("BUILDING_WINERY")
-    if pCity.isHasBuilding(building):
-      iRand = self.myRandom(10, None)
-      if iRand == 1:
-        bonus = gc.getInfoTypeForString("BONUS_GRAPES")
-        if not pCity.hasBonus(bonus):
-          pCity.setNumRealBuilding(building,0)
-          # Meldung
-          if pPlayer.isHuman():
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            popupInfo.addPopup(pCity.getOwner())
+    # building = gc.getInfoTypeForString("BUILDING_WINERY")
+    # if pCity.isHasBuilding(building):
+      # iRand = self.myRandom(10, None)
+      # if iRand == 1:
+        # bonus = gc.getInfoTypeForString("BONUS_GRAPES")
+        # if not pCity.hasBonus(bonus):
+          # pCity.setNumRealBuilding(building,0)
+          # # Meldung
+          # if pPlayer.isHuman():
+            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            # popupInfo = CyPopupInfo()
+            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            # popupInfo.addPopup(pCity.getOwner())
 
-    building = gc.getInfoTypeForString("BUILDING_PAPYRUSPOST")
-    if pCity.isHasBuilding(building):
-      iRand = self.myRandom(10, None)
-      if iRand == 1:
-        bonus = gc.getInfoTypeForString("BONUS_PAPYRUS")
-        if not pCity.hasBonus(bonus):
-          pCity.setNumRealBuilding(building,0)
-          # Meldung
-          if pPlayer.isHuman():
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            popupInfo.addPopup(pCity.getOwner())
+    # building = gc.getInfoTypeForString("BUILDING_PAPYRUSPOST")
+    # if pCity.isHasBuilding(building):
+      # iRand = self.myRandom(10, None)
+      # if iRand == 1:
+        # bonus = gc.getInfoTypeForString("BONUS_PAPYRUS")
+        # if not pCity.hasBonus(bonus):
+          # pCity.setNumRealBuilding(building,0)
+          # # Meldung
+          # if pPlayer.isHuman():
+            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            # popupInfo = CyPopupInfo()
+            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            # popupInfo.addPopup(pCity.getOwner())
 
     # ++++++++++++++++++++++++++++++++++++++++
 

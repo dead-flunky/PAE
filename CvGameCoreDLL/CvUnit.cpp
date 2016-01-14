@@ -641,7 +641,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	eOwner = getOwnerINLINE();
 	eCapturingPlayer = getCapturingPlayer();
-	eCaptureUnitType = ((eCapturingPlayer != NO_PLAYER) ? getCaptureUnitType(GET_PLAYER(eCapturingPlayer).getCivilizationType()) : NO_UNIT);
+	eCaptureUnitType = ((eCapturingPlayer != NO_PLAYER) ? getCaptureUnitType() : NO_UNIT);
 
 	setXY(INVALID_PLOT_COORD, INVALID_PLOT_COORD, true);
 
@@ -650,12 +650,13 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	// Flunky - include slaves and renegades
 	bool* m_pabRenegadePromotions = NULL;
+	int m_iRenegadeDamage = 0;
 	if (eCapturingPlayer != NO_PLAYER)
 	{
 		if(isRenegade()){
 			pPlot = getRenegadePlot();
 			eCaptureUnitType = getUnitType();
-
+			m_iRenegadeDamage = getDamage();
 			m_pabRenegadePromotions = new bool[GC.getNumPromotionInfos()];
 			for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 			{
@@ -682,6 +683,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 			if (pkCapturedUnit != NULL)
 			{
+				pkCapturedUnit->setDamage(m_iRenegadeDamage);
 				// Flunky - copy promotions
 				if(m_pabRenegadePromotions != NULL)
 				{
@@ -1161,7 +1163,7 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 					}
 
 					// Flunky - Angreifer desertiert lieber statt zu sterben
-					if (GC.getGameINLINE().getSorenRandNum(100, "Renegade") < 100 - loyaltyProbability() /*&& canRenegade()*/)
+					if (GC.getGameINLINE().getSorenRandNum(100, "Renegade") < 100 - loyaltyProbability() && canRenegadeTo(pDefender))
 					{
 						setRenegade(pDefender->getOwnerINLINE(), pPlot);
 						changeDamage(iAttackerDamage, pDefender->getOwnerINLINE());
@@ -1170,7 +1172,7 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 					} 
 
 					// manchmal wird man dann auch gefangen genommen
-					if(GC.getGameINLINE().getSorenRandNum(100, "Slave") < slaveryProbability() /*&& canBeEnslaved() && pDefender->canEnslave()*/)
+					if(GC.getGameINLINE().getSorenRandNum(100, "Slave") < slaveryProbability() && canBeEnslavedBy(pDefender))
 					{
 						setSlavery(pDefender->getOwnerINLINE(), pPlot);
 						changeDamage(iAttackerDamage, pDefender->getOwnerINLINE());
@@ -2558,10 +2560,10 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 
 	if (isAnimal())
 	{
-		if (pPlot->isOwned())
-		{
-			return false;
-		}
+		//if (pPlot->isOwned())
+		//{
+		//	return false;
+		//}
 
 		if (!bAttack)
 		{
@@ -7338,11 +7340,17 @@ SpecialUnitTypes CvUnit::getSpecialUnitType() const
 	return ((SpecialUnitTypes)(m_pUnitInfo->getSpecialUnitType()));
 }
 
+// Orig
+//UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
+//{
+//	FAssert(eCivilization != NO_CIVILIZATION);
+//	return ((m_pUnitInfo->getUnitCaptureClassType() == NO_UNITCLASS) ? NO_UNIT : (UnitTypes)GC.getCivilizationInfo(eCivilization).getCivilizationUnits(m_pUnitInfo->getUnitCaptureClassType()));
+//}
 
-UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
+//Flunky
+UnitTypes CvUnit::getCaptureUnitType() const
 {
-	FAssert(eCivilization != NO_CIVILIZATION);
-	return ((m_pUnitInfo->getUnitCaptureClassType() == NO_UNITCLASS) ? NO_UNIT : (UnitTypes)GC.getCivilizationInfo(eCivilization).getCivilizationUnits(m_pUnitInfo->getUnitCaptureClassType()));
+	return (UnitTypes)m_pUnitInfo->getUnitCaptureType();
 }
 
 
@@ -8861,6 +8869,29 @@ int CvUnit::slaveryProbability() const
 	return GET_PLAYER(getOwnerINLINE()).canEnslave()? 100:0;
 }
 
+
+bool CvUnit::canRenegadeTo(const CvUnit* pOther) const {
+	
+	bool bCan = true;
+	bCan &= pOther->canAttack();
+	bCan &= !isAnimal();
+	bCan &= !pOther->isAnimal();
+	bCan &= getCaptureUnitType() != NO_UNIT;
+
+	return bCan;
+}
+
+bool CvUnit::canBeEnslavedBy(const CvUnit* pOther) const {
+	
+	bool bCan = true;
+	bCan &= pOther->canAttack();
+	bCan &= !isAnimal();
+	bCan &= !pOther->isAnimal();
+	bCan &= getCaptureUnitType() != NO_UNIT;
+
+	return bCan;
+}
+
 int CvUnit::collateralDamage() const
 {
 	return std::max(0, (m_pUnitInfo->getCollateralDamage()));
@@ -9457,7 +9488,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					{
 						if (!pLoopUnit->canCoexistWithEnemyUnit(getTeam()))
 						{
-							if (NO_UNITCLASS == pLoopUnit->getUnitInfo().getUnitCaptureClassType() && pLoopUnit->canDefend(pNewPlot))
+							if (pLoopUnit->canDefend(pNewPlot))
 							{
 								pLoopUnit->jumpToNearestValidPlot(); // can kill unit
 							}

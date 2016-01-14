@@ -999,88 +999,88 @@
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_JAIN_TEMPLE</Type>
-                        <Description>TXT_KEY_BUILDING_JAIN_TEMPLE</Description>
-                        <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>1</bMonument>
-                        <DefaultBuilding>BUILDING_JAIN_TEMPLE</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_JAIN_TEMPLE</Type>
+      <Description>TXT_KEY_BUILDING_JAIN_TEMPLE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_JAIN_TEMPLE</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_HINDU_TEMPLE</Type>
-                        <Description>TXT_KEY_BUILDING_HINDU_MANDIR</Description>
-                        <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>1</bMonument>
-                        <DefaultBuilding>BUILDING_HINDU_TEMPLE</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_HINDU_TEMPLE</Type>
+      <Description>TXT_KEY_BUILDING_HINDU_MANDIR</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_HINDU_TEMPLE</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_HINDU_MONASTERY</Type>
-                        <Description>TXT_KEY_BUILDING_HINDU_ASHRAM</Description>
-                        <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>0</bMonument>
-                        <DefaultBuilding>BUILDING_HINDU_MONASTERY</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_HINDU_MONASTERY</Type>
+      <Description>TXT_KEY_BUILDING_HINDU_ASHRAM</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>0</bMonument>
+      <DefaultBuilding>BUILDING_HINDU_MONASTERY</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_HINDU_SHRINE</Type>
-                        <Description>TXT_KEY_BUILDING_HINDU_SHRINE</Description>
-                        <iMaxGlobalInstances>1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>0</bMonument>
-                        <DefaultBuilding>BUILDING_HINDU_SHRINE</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_HINDU_SHRINE</Type>
+      <Description>TXT_KEY_BUILDING_HINDU_SHRINE</Description>
+      <iMaxGlobalInstances>1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>0</bMonument>
+      <DefaultBuilding>BUILDING_HINDU_SHRINE</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_BUDDHIST_TEMPLE</Type>
-                        <Description>TXT_KEY_BUILDING_BUDDHIST_STUPA</Description>
-                        <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>1</bMonument>
-                        <DefaultBuilding>BUILDING_BUDDHIST_TEMPLE</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_BUDDHIST_TEMPLE</Type>
+      <Description>TXT_KEY_BUILDING_BUDDHIST_STUPA</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_BUDDHIST_TEMPLE</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_BUDDHIST_MONASTERY</Type>
-                        <Description>TXT_KEY_BUILDING_BUDDHIST_MONASTERY</Description>
-                        <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>0</bMonument>
-                        <DefaultBuilding>BUILDING_BUDDHIST_MONASTERY</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_BUDDHIST_MONASTERY</Type>
+      <Description>TXT_KEY_BUILDING_BUDDHIST_MONASTERY</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>0</bMonument>
+      <DefaultBuilding>BUILDING_BUDDHIST_MONASTERY</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_BUDDHIST_SHRINE</Type>
-                        <Description>TXT_KEY_BUILDING_BUDDHIST_SHRINE</Description>
-                        <iMaxGlobalInstances>1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>0</bMonument>
-                        <DefaultBuilding>BUILDING_BUDDHIST_SHRINE</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_BUDDHIST_SHRINE</Type>
+      <Description>TXT_KEY_BUILDING_BUDDHIST_SHRINE</Description>
+      <iMaxGlobalInstances>1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>0</bMonument>
+      <DefaultBuilding>BUILDING_BUDDHIST_SHRINE</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
       <Type>BUILDINGCLASS_JEWISH_TEMPLE</Type>
@@ -1587,16 +1587,16 @@
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-        <Type>BUILDINGCLASS_DAMM_MARIB</Type>
-        <Description>TXT_KEY_BUILDING_DAMM_MARIB</Description>
-        <iMaxGlobalInstances>1</iMaxGlobalInstances>
-        <iMaxTeamInstances>-1</iMaxTeamInstances>
-        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-        <bNoLimit>0</bNoLimit>
-        <bMonument>0</bMonument>
-        <DefaultBuilding>BUILDING_DAMM_MARIB</DefaultBuilding>
-        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_DAMM_MARIB</Type>
+      <Description>TXT_KEY_BUILDING_DAMM_MARIB</Description>
+      <iMaxGlobalInstances>1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>0</bMonument>
+      <DefaultBuilding>BUILDING_DAMM_MARIB</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
       <Type>BUILDINGCLASS_HALLOF100COLUMNS</Type>
@@ -1755,16 +1755,16 @@
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-                        <Type>BUILDINGCLASS_GREAT_WALL_GORGAN</Type>
-                        <Description>TXT_KEY_BUILDING_GREAT_WALL_GORGAN</Description>
-                        <iMaxGlobalInstances>1</iMaxGlobalInstances>
-                        <iMaxTeamInstances>-1</iMaxTeamInstances>
-                        <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-                        <iExtraPlayerInstances>0</iExtraPlayerInstances>
-                        <bNoLimit>0</bNoLimit>
-                        <bMonument>0</bMonument>
-                        <DefaultBuilding>BUILDING_GREAT_WALL_GORGAN</DefaultBuilding>
-                        <VictoryThresholds/>
+      <Type>BUILDINGCLASS_GREAT_WALL_GORGAN</Type>
+      <Description>TXT_KEY_BUILDING_GREAT_WALL_GORGAN</Description>
+      <iMaxGlobalInstances>1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>0</bMonument>
+      <DefaultBuilding>BUILDING_GREAT_WALL_GORGAN</DefaultBuilding>
+      <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
       <Type>BUILDINGCLASS_GREAT_PANTHEON</Type>

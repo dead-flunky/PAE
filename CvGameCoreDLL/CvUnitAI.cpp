@@ -8679,8 +8679,8 @@ bool CvUnitAI::AI_spreadCorporation()
 	PROFILE_FUNC();
 
 	CorporationTypes eCorporation = NO_CORPORATION;	
-
-	for (int iI = 0; iI < GC.getNumCorporationInfos(); ++iI)
+	int iI = 0;
+	for (iI = 0; iI < GC.getNumCorporationInfos(); ++iI)
 	{
 		if (m_pUnitInfo->getCorporationSpreads((CorporationTypes)iI) > 0)
 		{
@@ -17012,7 +17012,7 @@ bool CvUnitAI::AI_poach()
 						{
 							if (!pLoopUnit->canDefend())
 							{
-								if (pLoopUnit->getCaptureUnitType(getCivilizationType()) != NO_UNIT)
+								if (pLoopUnit->getCaptureUnitType() != NO_UNIT)
 								{
 									iPoachCount++;
 									pPoachUnit = pLoopUnit;						

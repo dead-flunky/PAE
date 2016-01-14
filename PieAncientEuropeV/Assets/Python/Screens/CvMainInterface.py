@@ -4770,7 +4770,7 @@ class CvMainInterface:
           if szBuffer == "":
             if pPlayer.getAnarchyTurns() > 0:
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_ANARCHY", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
-            elif not pCity.isHasReligion(pPlayer.getStateReligion()):
+            elif pPlayer.getStateReligion() != -1 and not pCity.isHasReligion(pPlayer.getStateReligion()):
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_RELIGION", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
             elif pCity.unhappyLevel(0) > pCity.happyLevel():
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_UNHAPPY", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
@@ -4935,7 +4935,7 @@ class CvMainInterface:
 #
 #          if gc.getPlayer(iPlayer).getCapitalCity().getOccupationTimer() > 0: iChanceOfRebellion += pCity.getOccupationTimer() * 20
 #
-#          if not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
+#          if pPlayer.getStateReligion() != -1 and not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
 #
 #          if pPlayer.isCivic(1)  or   pPlayer.isCivic(2): iChanceOfRebellion += 10
 #          if pPlayer.isCivic(18): iChanceOfRebellion += 10

@@ -863,7 +863,10 @@ public:
 	int getPowerValue() const;								// Exposed to Python
 	int getUnitClassType() const;							// Exposed to Python
 	int getSpecialUnitType() const;						// Exposed to Python
-	int getUnitCaptureClassType() const;			// Exposed to Python
+	//Orig
+	//int getUnitCaptureClassType() const;			// Exposed to Python
+	//Flunky
+	int getUnitCaptureType() const;			// Exposed to Python
 	int getUnitCombatType() const;						// Exposed to Python
 	int getDomainType() const;								// Exposed to Python
 	int getDefaultUnitAIType() const;					// Exposed to Python
@@ -996,6 +999,8 @@ public:
 
 	bool read(CvXMLLoadUtility* pXML);
 
+	bool readPass2(CvXMLLoadUtility* pXML);
+
 	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
 
 protected:
@@ -1056,7 +1061,11 @@ protected:
 	int m_iPowerValue;						
 	int m_iUnitClassType;
 	int m_iSpecialUnitType;				
-	int m_iUnitCaptureClassType;		
+	//orig
+	//int m_iUnitCaptureClassType;
+	//flunky
+	int m_iUnitCaptureType;
+
 	int m_iUnitCombatType;				
 	int m_iDomainType;
 	int m_iDefaultUnitAIType;
