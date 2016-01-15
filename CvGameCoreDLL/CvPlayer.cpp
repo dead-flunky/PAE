@@ -8364,6 +8364,10 @@ void CvPlayer::changeDomainProductionModifier(DomainTypes eIndex, int iChange)
 bool CvPlayer::canEnslave(){
 	return m_bCanEnslave;
 }
+
+void CvPlayer::canEnslave(bool bCan) {
+	m_bCanEnslave = bCan;
+}
 // End Flunky
 
 int CvPlayer::getFeatureProductionModifier() const

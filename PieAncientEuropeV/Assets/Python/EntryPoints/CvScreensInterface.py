@@ -76,12 +76,12 @@ import WBTradeScreen
 
 def toggleSetNoScreens():
         global g_bIsScreenActive
-        print "SCREEN OFF"
+        print ("SCREEN OFF")
         g_bIsScreenActive = -1
 
 def toggleSetScreenOn(argsList):
         global g_bIsScreenActive
-        print "%s SCREEN TURNED ON" %(argsList[0],)
+        print ("%s SCREEN TURNED ON" %(argsList[0],))
         g_bIsScreenActive = argsList[0]
 
 #diplomacyScreen = CvDiplomacy.CvDiplomacy()
@@ -849,7 +849,7 @@ def handleBack(screens):
                 if (HandleNavigationMap.has_key(iScreen)):
                         screen = HandleNavigationMap.get( iScreen )
                         screen.back()
-        print "Mouse BACK"
+        print ("Mouse BACK")
         return 0
 
 def handleForward(screens):
@@ -857,7 +857,7 @@ def handleForward(screens):
                 if (HandleNavigationMap.has_key(iScreen)):
                         screen = HandleNavigationMap.get( iScreen )
                         screen.forward()
-        print "Mouse FWD"
+        print ("Mouse FWD")
         return 0
 
 def refreshMilitaryAdvisor (argsList):

@@ -412,6 +412,7 @@ public:
 	void changeDomainProductionModifier(DomainTypes eIndex, int iChange);
 
 	bool canEnslave();
+	void canEnslave(bool bCan);
 	// End Flunky
 
 	int getFeatureProductionModifier() const;																															// Exposed to Python

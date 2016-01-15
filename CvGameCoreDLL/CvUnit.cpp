@@ -2560,6 +2560,7 @@ bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bo
 
 	if (isAnimal())
 	{
+		// Flunky - in PAE duerfen Tiere Kultur betreten.
 		//if (pPlot->isOwned())
 		//{
 		//	return false;
@@ -8866,7 +8867,7 @@ int CvUnit::loyaltyProbability() const
 // Flunky - TODO meaningful value. Maybe depending on Civic
 int CvUnit::slaveryProbability() const
 {
-	return GET_PLAYER(getOwnerINLINE()).canEnslave()? 100:0;
+	return 100;
 }
 
 
@@ -8883,13 +8884,17 @@ bool CvUnit::canRenegadeTo(const CvUnit* pOther) const {
 
 bool CvUnit::canBeEnslavedBy(const CvUnit* pOther) const {
 	
-	bool bCan = true;
-	bCan &= pOther->canAttack();
-	bCan &= !isAnimal();
-	bCan &= !pOther->isAnimal();
-	bCan &= getCaptureUnitType() != NO_UNIT;
-
-	return bCan;
+	if (isAnimal())
+		return false;
+	if (pOther->isAnimal())
+		return false;
+	if (!pOther->canAttack())
+		return false;
+	if (getCaptureUnitType() == NO_UNIT)
+		return false;
+	if (!GET_PLAYER(pOther->getOwnerINLINE()).canEnslave())
+		return false;
+	return true;
 }
 
 int CvUnit::collateralDamage() const

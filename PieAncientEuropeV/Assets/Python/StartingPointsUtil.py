@@ -19,7 +19,7 @@ def ReadMyFile(MyFile,Debuging,AddPositionsToMap,bPlaceCivs,bPlaceBarbCities):
         del BarbCityList[:]
         CurCiv = None
         BarbCity = None
-        if Debuging:print "preparing to read"
+        if Debuging:print ("preparing to read")
         for CurString in MyFile.readlines():
                 if "CIVILIZATION_" in CurString:
                         if CurCiv != None: SpawnCivList.append(CurCiv)
@@ -44,7 +44,7 @@ def ReadMyFile(MyFile,Debuging,AddPositionsToMap,bPlaceCivs,bPlaceBarbCities):
                         BarbCityList.append(BarbCity)
         #add last Civ to SpawnCivList
         if CurCiv != None: SpawnCivList.append(CurCiv)
-        if Debuging: print "all civs have been read"
+        if Debuging: print ("all civs have been read")
         if bPlaceCivs: ResortCivs(Debuging)
         if bPlaceBarbCities: PlaceBarbarianCities(Debuging)
         if AddPositionsToMap:AddCoordinateSignsToMap()
@@ -62,7 +62,7 @@ def ResortCivs(Debuging):
                     lHumanPlayers.append(ip)
 
     if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Beginning to resort civs",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-    if Debuging:print "Beginning to resort civs"
+    if Debuging:print ("Beginning to resort civs")
     if not HumanPlayerIsValidCiv(lHumanPlayers,iMaxLoadedPlayer):
             CyInterface().addMessage(lHumanPlayers[0],False,15,"Invalid Civ for map has been chosen!!!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
             CyInterface().addMessage(lHumanPlayers[0],False,15,"Civs will not start at correct positions!!!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
@@ -89,15 +89,15 @@ def ResortCivs(Debuging):
       if i != gc.getBARBARIAN_PLAYER():
         pLoopCiv = gc.getPlayer(i)
         if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Got a civ!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-        if Debuging:print "Got a civ!"
+        if Debuging:print ("Got a civ!")
         if not pLoopCiv.isAlive():continue
         iLoopCivName = pLoopCiv.getCivilizationType ()
         for j in xrange(iMaxLoadedPlayer):
                 if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Cycling loaded coordinates!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-                if Debuging:print "Cycling loaded coordinates!"
+                if Debuging:print ("Cycling loaded coordinates!")
                 if iLoopCivName == gc.getInfoTypeForString(SpawnCivList[j].CivString):
                         if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Preparing for re-placing current units!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-                        if Debuging:print "Preparing for re-placing current units!"
+                        if Debuging:print ("Preparing for re-placing current units!")
                         if SpawnCivList[j].SpawnX[0] ==-1 or SpawnCivList[j].SpawnY[0]==-1:
                                 CounterInvalid += 1
                                 if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Counter invalid civs "+str(CounterInvalid),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
@@ -125,7 +125,7 @@ def ResortCivs(Debuging):
                                         loopUnit.setXY(iX, iY, False,False,False)
                                         if Debuging:
                                                 idstring = pLoopCiv.getCivilizationAdjective(0)+"unit moved to X="+str(iX)+"and Y="+str(iY)
-                                                print idstring
+                                                print (idstring)
                                                 CyInterface().addMessage(iHumanPlayer,False,15,idstring,'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), iY, iY, True,True)
                                 (loopUnit, iter) = pLoopCiv.nextUnit(iter, false)
     # PAE change: check if CounterInvalid > 0
@@ -203,15 +203,15 @@ def AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debuging):
                 else:
                         iMaxValid = iMaxValid+1
         if Debuging:
-                print "valid civs for this map: "+str( iMaxValid)
-                print "max civs: "+str(iMaxPlayer)
+                print ("valid civs for this map: "+str( iMaxValid))
+                print ("max civs: "+str(iMaxPlayer))
         while True:
-                if Debuging: print "trying to add a civ"
+                if Debuging: print ("trying to add a civ")
                 CounterCycles = CounterCycles+1
                 if CounterCycles >=100:break
                 if AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Debuging):
                         CounterInvalid = CounterInvalid-1
-                        if Debuging: print "added 1 civ"
+                        if Debuging: print ("added 1 civ")
                 if CounterInvalid<=0:
                         return
 
@@ -236,7 +236,7 @@ def AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Deb
                         continue
                 if not IsInList:
                         if Debuging:
-                                print "adding new civ"
+                                print ("adding new civ")
                         for j in xrange(iMaxLoadedPlayer):
                                 if gc.getInfoTypeForString(SpawnCivList[j].CivString)==iCivs:
                                         if SpawnCivList[j].SpawnX[0] ==-1 or SpawnCivList[j].SpawnY[0]==-1:
@@ -302,7 +302,7 @@ def AddTechsAndUnits(iCivID,j,CurCiv):
 ###first < and > at the end are cut of, then the other
 ###> and < are searched, and what is between is used as value
 def CutString(string):
-        print "Cutting"
+        print ("Cutting")
         string = str(string)
         string = string.strip()
         string = string[2:-1]

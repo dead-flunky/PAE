@@ -1916,12 +1916,12 @@ class CvWorldBuilderScreen:
 		return
 
 	def showMultipleReveal(self):
-		print "showMultipleReveal"
+		print ("showMultipleReveal")
 		self.refreshReveal()
 		return
 
 	def setMultipleReveal(self, bReveal):
-		print "setMultipleReveal"
+		print ("setMultipleReveal")
 		bInsideForLoop = False
 		permCurrentPlot = self.m_pCurrentPlot
 		for i in range( (self.m_iBrushWidth-1) ):

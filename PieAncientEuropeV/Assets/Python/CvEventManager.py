@@ -2730,7 +2730,7 @@ class CvEventManager:
            txtBonus = " " + CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_TRAITBONUS",("", ))
          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_3",(iGold,iChance))+txtBonus, ",Art/Interface/Buttons/Builds/BuildCityRuins.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,3,10")
 
-         # Große Handelsstaedte: 400 [ICON_GOLD]/70% (Bonus) TRAIT_FINANCIAL
+         # Grosse Handelsstaedte: 400 [ICON_GOLD]/70% (Bonus) TRAIT_FINANCIAL
          txtBonus = ""
          iChance = 70
          iGold = 400
@@ -2847,7 +2847,7 @@ class CvEventManager:
              else:
                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_FAILED",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
 
-         # Große Handelsstaedte (Traderoutes > 5): 400 [ICON_GOLD]/70% (Bonus) TRAIT_FINANCIAL
+         # Grosse Handelsstaedte (Traderoutes > 5): 400 [ICON_GOLD]/70% (Bonus) TRAIT_FINANCIAL
          elif iData2 == 3:
            iChance = 70
            iGold = 400
@@ -8074,7 +8074,7 @@ class CvEventManager:
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Palast erbaut (Zeile 2206)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-    # Der Apostolische Palast verlegt das Zentrum des Christentums (doch nicht, er soll nur den +1 Kommerzbonus für jede christl. Stadt haben (XML))
+    # Der Apostolische Palast verlegt das Zentrum des Christentums (doch nicht, er soll nur den +1 Kommerzbonus fuer jede christl. Stadt haben (XML))
     #if iBuildingType == gc.getInfoTypeForString("BUILDING_APOSTOLIC_PALACE"):
     #  iReligion = gc.getInfoTypeForString("RELIGION_CHRISTIANITY")
     #  pHolyCity = gc.getGame().getHolyCity(iReligion)
@@ -8505,7 +8505,7 @@ class CvEventManager:
       for i in listUnitIds:
         unit = pPlayer.getUnit(i)
         if unit.isRanged():
-           # Liste für Kosten
+           # Liste fuer Kosten
            lUnits.append(unit)
 
            # Nicht fuer Plaenklereinheiten
@@ -8532,7 +8532,7 @@ class CvEventManager:
             iUnitClass = unit.getUnitClassType()
             iUnitCombat = unit.getUnitCombatType()
 
-            # Individuelle Kosten für iAirRange-Units
+            # Individuelle Kosten fuer iAirRange-Units
             #if iUnitClass == gc.getInfoTypeForString("UNITCLASS_HUNTER"): iGold += 1
             if iUnitClass == gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"): iGold += 1
             elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_GILDE"): iGold += 3
@@ -8559,7 +8559,7 @@ class CvEventManager:
       #(unit, iter) = pPlayer.nextUnit(iter, false)
 
 
-    # Wenn die Mission nicht ausgeführt werden soll
+    # Wenn die Mission nicht ausgefuehrt werden soll
     #unit.getGroup().clearMissionQueue()
 
 
@@ -9936,14 +9936,14 @@ class CvEventManager:
     # Christentum
     elif iReligion == gc.getInfoTypeForString("RELIGION_CHRISTIANITY"):
       iJudentum = gc.getInfoTypeForString("RELIGION_JUDAISM")
-      # In der heiligen jüdischen Stadt, wenn der Gründer der Besitzer ist
+      # In der heiligen juedischen Stadt, wenn der Gruender der Besitzer ist
       pHolyCityJudentum = gc.getGame().getHolyCity(iJudentum)
       if pHolyCityJudentum.getOwner() == iFounder:
         if iCityId != pHolyCityJudentum.getID():
           gc.getGame().getHolyCity(iReligion).setHasReligion(iReligion,0,0,0)
           gc.getGame().setHolyCity (iReligion, pHolyCityJudentum, 0)
           iCityId = pHolyCityJudentum.getID()
-      # in der größten jüdischen Stadt des Besitzers
+      # in der groessten juedischen Stadt des Besitzers
       else:
         pNewCity = None
         iNewCityPop = 0
@@ -18463,7 +18463,7 @@ class CvEventManager:
           iSlaves += iCitySlavesProd
           pCity.setFreeSpecialistCount(18,0)
 
-        # Spezialisten von der Stadt auf 0 setzen. Flüchtende Sklaven rund um den verheerenden Plot verteilen
+        # Spezialisten von der Stadt auf 0 setzen. Fluechtende Sklaven rund um den verheerenden Plot verteilen
         if iSlaves > 0:
           lFluchtPlots = []
           iX = pPlot.getX()

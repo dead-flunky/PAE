@@ -683,7 +683,7 @@ class CvGameUtils:
         if pPlayer.canResearch(iTech, False):
           return iTech
 
-    # Römer
+    # Roemer
     if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ROMAN')):
       iTech = gc.getInfoTypeForString('TECH_CORVUS')
       if not eTeam.isHasTech(iTech):
@@ -808,7 +808,7 @@ class CvGameUtils:
     # Aber erst ab Pop 5
     if pCity.getPopulation() > 4:
 
-     # Bei Goldknappheit, Händler in Auftrag geben (50%)
+     # Bei Goldknappheit, Haendler in Auftrag geben (50%)
      if pCity.getPopulation() > 5:
        if pPlayer.getGold() < 500:
          if pPlayer.calculateGoldRate() < 5:
@@ -831,9 +831,9 @@ class CvGameUtils:
      if iRand < 2:
       # Inquisitor
       Unit1 = CvUtil.findInfoTypeNum(gc.getUnitInfo,gc.getNumUnitInfos(), "UNIT_INQUISITOR" )
-      # Händler zu Land
+      # Haendler zu Land
       Unit2 = CvUtil.findInfoTypeNum(gc.getUnitInfo,gc.getNumUnitInfos(), "UNIT_TRADE_MERCHANT" )
-      # Händler zu Meer
+      # Haendler zu Meer
       Unit3 = CvUtil.findInfoTypeNum(gc.getUnitInfo,gc.getNumUnitInfos(), "UNIT_TRADE_MERCHANTMAN" )
       # Versorgungswagen
       Unit4 = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SUPPLY_WAGON"))
@@ -1541,7 +1541,7 @@ class CvGameUtils:
 
 # Trojanisches Pferd
       if iUnitType == gc.getInfoTypeForString("UNIT_TROJAN_HORSE") and iOwner != gc.getBARBARIAN_PLAYER():
-        # 1: wenn das pferd in der nähe einer feindlichen stadt ist und diese über 100% defense hat -> anwenden
+        # 1: wenn das pferd in der naehe einer feindlichen stadt ist und diese ueber 100% defense hat -> anwenden
 
         iX = pUnit.getX()
         iY = pUnit.getY()
@@ -2190,7 +2190,7 @@ class CvGameUtils:
       # Auswanderer / Emigrant
       if (iData1 == 672):
         return CyTranslator().getText("TXT_KEY_BUTTON_EMIGRANT",())
-      # Stadt auflösen / disband city
+      # Stadt aufloesen / disband city
       if (iData1 == 673):
         if bOption: return CyTranslator().getText("TXT_KEY_BUTTON_DISBAND_CITY",())
         else: return CyTranslator().getText("TXT_KEY_BUTTON_DISBAND_CITY2",())
