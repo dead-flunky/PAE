@@ -128,9 +128,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>3</iMovement>
@@ -245,9 +245,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>1</iMovement>
@@ -362,9 +362,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>2</iMovement>
@@ -487,9 +487,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>3</iMovement>
@@ -717,9 +717,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>2</iMovement>
@@ -833,9 +833,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>3</iMovement>

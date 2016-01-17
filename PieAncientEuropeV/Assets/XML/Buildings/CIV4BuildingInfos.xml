@@ -6743,11 +6743,11 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_FISH</BonusType>
-        <BonusType>BONUS_COW</BonusType>
-        <BonusType>BONUS_DEER</BonusType>
-        <BonusType>BONUS_PIG</BonusType>
-        <BonusType>BONUS_SHEEP</BonusType>
+        <Bonus>BONUS_FISH</Bonus>
+        <Bonus>BONUS_COW</Bonus>
+        <Bonus>BONUS_DEER</Bonus>
+        <Bonus>BONUS_PIG</Bonus>
+        <Bonus>BONUS_SHEEP</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -6923,11 +6923,11 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_WHEAT</BonusType>
-        <BonusType>BONUS_GERSTE</BonusType>
-        <BonusType>BONUS_HAFER</BonusType>
-        <BonusType>BONUS_ROGGEN</BonusType>
-        <BonusType>BONUS_HIRSE</BonusType>
+        <Bonus>BONUS_WHEAT</Bonus>
+        <Bonus>BONUS_GERSTE</Bonus>
+        <Bonus>BONUS_HAFER</Bonus>
+        <Bonus>BONUS_ROGGEN</Bonus>
+        <Bonus>BONUS_HIRSE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -7113,7 +7113,7 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_RICE</BonusType>
+        <Bonus>BONUS_RICE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -7481,10 +7481,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -7669,10 +7669,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -7857,9 +7857,9 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_GOLD</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_ELEKTRON</BonusType>
+        <Bonus>BONUS_GOLD</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_ELEKTRON</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -8044,10 +8044,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
      <ProductionTraits>
       <ProductionTrait>
@@ -8232,10 +8232,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -8420,10 +8420,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -8608,9 +8608,9 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_HORSE</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_HORSE</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -8795,9 +8795,9 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_GOLD</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_GOLD</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -8982,10 +8982,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -9170,10 +9170,10 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
-        <BonusType>BONUS_COPPER</BonusType>
-        <BonusType>BONUS_BRONZE</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
+        <Bonus>BONUS_COPPER</Bonus>
+        <Bonus>BONUS_BRONZE</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -12141,8 +12141,8 @@
       <TechTypes/>
       <Bonus>BONUS_COPPER</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_COAL</BonusType>
-        <BonusType>BONUS_ZINN</BonusType>
+        <Bonus>BONUS_COAL</Bonus>
+        <Bonus>BONUS_ZINN</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -12327,7 +12327,7 @@
       <TechTypes/>
       <Bonus>BONUS_COPPER</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_ZINK</BonusType>
+        <Bonus>BONUS_ZINK</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -17922,11 +17922,11 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_WHEAT</BonusType>
-        <BonusType>BONUS_GERSTE</BonusType>
-        <BonusType>BONUS_HAFER</BonusType>
-        <BonusType>BONUS_ROGGEN</BonusType>
-        <BonusType>BONUS_HIRSE</BonusType>
+        <Bonus>BONUS_WHEAT</Bonus>
+        <Bonus>BONUS_GERSTE</Bonus>
+        <Bonus>BONUS_HAFER</Bonus>
+        <Bonus>BONUS_ROGGEN</Bonus>
+        <Bonus>BONUS_HIRSE</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -20367,8 +20367,8 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_BIER</BonusType>
-        <BonusType>BONUS_WINE</BonusType>
+        <Bonus>BONUS_BIER</Bonus>
+        <Bonus>BONUS_WINE</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -26909,9 +26909,9 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_BRONZE</BonusType>
-        <BonusType>BONUS_GOLD</BonusType>
-        <BonusType>BONUS_SILVER</BonusType>
+        <Bonus>BONUS_BRONZE</Bonus>
+        <Bonus>BONUS_GOLD</Bonus>
+        <Bonus>BONUS_SILVER</Bonus>
       </PrereqBonuses>
     <ProductionTraits>
       <ProductionTrait>
@@ -31326,8 +31326,8 @@
                         <TechTypes/>
                         <Bonus>BONUS_OLIVES</Bonus>
                         <PrereqBonuses>
-                             <BonusType>BONUS_FISH</BonusType>
-                             <BonusType>BONUS_CLAM</BonusType>
+                          <Bonus>BONUS_FISH</Bonus>
+                          <Bonus>BONUS_CLAM</Bonus>
                         </PrereqBonuses>
                         <ProductionTraits/>
                         <HappinessTraits/>
@@ -34413,8 +34413,8 @@
       <TechTypes/>
       <Bonus>BONUS_STONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_ELEKTRON</BonusType>
-        <BonusType>BONUS_GOLD</BonusType>
+        <Bonus>BONUS_ELEKTRON</Bonus>
+        <Bonus>BONUS_GOLD</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -34931,7 +34931,7 @@
       <TechTypes/>
       <Bonus>NONE</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_HORSE</BonusType>
+        <Bonus>BONUS_HORSE</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
@@ -38670,7 +38670,7 @@
       <TechTypes/>
       <Bonus>BONUS_GOLD</Bonus>
       <PrereqBonuses>
-        <BonusType>BONUS_IVORY</BonusType>
+        <Bonus>BONUS_IVORY</Bonus>
       </PrereqBonuses>
       <ProductionTraits/>
       <HappinessTraits/>
