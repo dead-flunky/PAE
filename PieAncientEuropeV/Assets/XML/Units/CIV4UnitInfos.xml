@@ -2423,7 +2423,7 @@
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
       <PrereqBuilding>NONE</PrereqBuilding>
-      <PrereqTech>TECH_COLONIZATION2</PrereqTech>
+      <PrereqTech>TECH_FUTURE_TECH</PrereqTech>
       <TechTypes/>
       <BonusType>NONE</BonusType>
       <PrereqBonuses/>

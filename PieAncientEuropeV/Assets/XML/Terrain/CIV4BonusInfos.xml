@@ -52,7 +52,7 @@
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
       <PrereqOrBonuses/>
-	  <PrereqAndBonuses/>
+      <PrereqAndBonuses/>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ROMAN</Type>
