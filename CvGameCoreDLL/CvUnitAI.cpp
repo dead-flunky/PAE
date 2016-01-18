@@ -6105,6 +6105,56 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		}
 	}
 
+	//Flunky
+	iTemp = GC.getPromotionInfo(ePromotion).getFlightChange();
+	if (iTemp != 0)
+	{
+		iExtra = (m_pUnitInfo->getFlightProbability() + (getExtraFlight() * 4));
+		iTemp *= (100 + iExtra);
+		iTemp /= 100;
+		if ((AI_getUnitAIType() == UNITAI_ANIMAL) || 
+			(AI_getUnitAIType() == UNITAI_CITY_DEFENSE) || 
+			(AI_getUnitAIType() == UNITAI_EXPLORE) ||
+			(AI_getUnitAIType() == UNITAI_ATTACK_CITY_LEMMING) ||
+			(AI_getUnitAIType() == UNITAI_PILLAGE))
+		{
+			iValue += (iTemp * 2) / 3;
+		}
+		else if ((AI_getUnitAIType() == UNITAI_RESERVE_SEA) || 
+			(AI_getUnitAIType() == UNITAI_EXPLORE_SEA) ||
+			(AI_getUnitAIType() == UNITAI_PIRATE_SEA) ||
+			  getLeaderUnitType() != NO_UNIT)
+		{
+			iValue += (iTemp / 2);
+		}
+		else
+		{
+			iValue += (iTemp / 4);
+		}
+	}
+
+	iTemp = GC.getPromotionInfo(ePromotion).getLoyaltyChange();
+	if (iTemp != 0)
+	{
+		iExtra = (m_pUnitInfo->getLoyaltyProbability() + (getExtraLoyalty() * 4));
+		iTemp *= (100 + iExtra);
+		iTemp /= 100;
+		if (AI_getUnitAIType() == UNITAI_ATTACK_CITY)
+		{
+			iValue += (iTemp * 4) / 3;
+		}
+		else if ((AI_getUnitAIType() == UNITAI_COLLATERAL) ||
+			  (AI_getUnitAIType() == UNITAI_RESERVE) ||
+			  (AI_getUnitAIType() == UNITAI_RESERVE_SEA))
+		{
+			iValue += iTemp;
+		}
+		else if(getLeaderUnitType() == NO_UNIT)
+		{
+			iValue += (iTemp / 4);
+		}
+	}
+
 	iTemp = GC.getPromotionInfo(ePromotion).getCollateralDamageChange();
 	if (iTemp != 0)
 	{
@@ -8630,7 +8680,8 @@ bool CvUnitAI::AI_spreadCorporation()
 
 	CorporationTypes eCorporation = NO_CORPORATION;	
 
-	for (int iI = 0; iI < GC.getNumCorporationInfos(); ++iI)
+	int iI = 0;
+	for (iI = 0; iI < GC.getNumCorporationInfos(); ++iI)
 	{
 		if (m_pUnitInfo->getCorporationSpreads((CorporationTypes)iI) > 0)
 		{
@@ -16962,7 +17013,7 @@ bool CvUnitAI::AI_poach()
 						{
 							if (!pLoopUnit->canDefend())
 							{
-								if (pLoopUnit->getCaptureUnitType(getCivilizationType()) != NO_UNIT)
+								if (pLoopUnit->getCaptureUnitType() != NO_UNIT)
 								{
 									iPoachCount++;
 									pPoachUnit = pLoopUnit;						

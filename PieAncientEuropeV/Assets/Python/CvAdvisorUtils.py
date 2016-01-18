@@ -200,23 +200,22 @@ def unitBuiltFeats(pCity, pUnit):
 				popupInfo.addPythonButton(localText.getText("TXT_KEY_FEAT_ACCOMPLISHED_MORE", ()), "")
 				popupInfo.addPopup(pCity.getOwner())
 
-	if (not gc.getPlayer(pCity.getOwner()).isFeatAccomplished(FeatTypes.FEAT_UNIT_PRIVATEER)):
-
-		if (pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PRIVATEER")):
-		
-			gc.getPlayer(pCity.getOwner()).setFeatAccomplished(FeatTypes.FEAT_UNIT_PRIVATEER, True)
-			
-			if (featPopup(pCity.getOwner()) and (gc.getGame().getStartYear() == gc.getDefineINT("START_YEAR"))):
-				popupInfo = CyPopupInfo()
-				popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-				popupInfo.setData1(FeatTypes.FEAT_UNIT_PRIVATEER)
-				popupInfo.setData2(pCity.getID())
-				popupInfo.setText(localText.getText("TXT_KEY_FEAT_UNIT_PRIVATEER", (pUnit.getNameKey(), pCity.getNameKey(), )))
-				popupInfo.setOnClickedPythonCallback("featAccomplishedOnClickedCallback")
-				popupInfo.setOnFocusPythonCallback("featAccomplishedOnFocusCallback")
-				popupInfo.addPythonButton(localText.getText("TXT_KEY_FEAT_ACCOMPLISHED_OK", ()), "")
-				popupInfo.addPythonButton(localText.getText("TXT_KEY_FEAT_ACCOMPLISHED_MORE", ()), "")
-				popupInfo.addPopup(pCity.getOwner())
+				# Flunky TODO rewrite to Pirates
+	# if (not gc.getPlayer(pCity.getOwner()).isFeatAccomplished(FeatTypes.FEAT_UNIT_PRIVATEER)):
+		# if (pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PRIVATEER")):
+	
+			# gc.getPlayer(pCity.getOwner()).setFeatAccomplished(FeatTypes.FEAT_UNIT_PRIVATEER, True)		
+			# if (featPopup(pCity.getOwner()) and (gc.getGame().getStartYear() == gc.getDefineINT("START_YEAR"))):
+				# popupInfo = CyPopupInfo()
+				# popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
+				# popupInfo.setData1(FeatTypes.FEAT_UNIT_PRIVATEER)
+				# popupInfo.setData2(pCity.getID())
+				# popupInfo.setText(localText.getText("TXT_KEY_FEAT_UNIT_PRIVATEER", (pUnit.getNameKey(), pCity.getNameKey(), )))
+				# popupInfo.setOnClickedPythonCallback("featAccomplishedOnClickedCallback")
+				# popupInfo.setOnFocusPythonCallback("featAccomplishedOnFocusCallback")
+				# popupInfo.addPythonButton(localText.getText("TXT_KEY_FEAT_ACCOMPLISHED_OK", ()), "")
+				# popupInfo.addPythonButton(localText.getText("TXT_KEY_FEAT_ACCOMPLISHED_MORE", ()), "")
+				# popupInfo.addPopup(pCity.getOwner())
 
 	if (not gc.getPlayer(pCity.getOwner()).isFeatAccomplished(FeatTypes.FEAT_UNIT_SPY)):
 

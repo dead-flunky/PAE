@@ -1479,14 +1479,5 @@
       <iInstanceCostModifier>0</iInstanceCostModifier>
       <DefaultUnit>UNIT_BERGZIEGE</DefaultUnit>
     </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_PRIVATEER</Type>
-      <Description>TXT_KEY_UNIT_PRIVATEER</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>0</iInstanceCostModifier>
-      <DefaultUnit>UNIT_PRIVATEER</DefaultUnit>
-    </UnitClassInfo>
   </UnitClassInfos>
 </Civ4UnitClassInfos>

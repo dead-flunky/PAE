@@ -1166,7 +1166,7 @@
      <Spanish>&#161;Nuestra unidad %s1 corri&#243; sin control alimentado por el p&#225;nico a trav&#233;s de nuestros propios soldados antes de morir!</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_MESSAGE_UNIT_ESCAPE</Tag>
+    <Tag>TXT_KEY_MESSAGE_YOU_UNIT_ESCAPE</Tag>
      <English>Our %s1 barely escaped!</English>
      <French>Notre unit&#233; (%s1) a pu s'&#233;chapper de justesse !</French>
      <German>Unsere Einheit %s1 konnte sich gerade noch in die Flucht schlagen!</German>
@@ -1174,7 +1174,7 @@
      <Spanish>&#161;Nuestra unidad %s1 escap&#243; por poco!</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_MESSAGE_UNIT_ESCAPE_2</Tag>
+    <Tag>TXT_KEY_MESSAGE_THEIR_UNIT_ESCAPE</Tag>
      <English>The enemy %s1 barely escaped!</English>
      <French>L'unit&#233; ennemie (%s1) a pu s'&#233;chapper de justesse !</French>
      <German>Die gegnerische Einheit %s1 konnte sich gerade noch in die Flucht schlagen!</German>
@@ -1206,7 +1206,7 @@
      <Spanish>&#161;La unidad fue destruida, s&#243;lo los caballos pudieron escapar!</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_MESSAGE_UNIT_DESERTION_1</Tag>
+    <Tag>TXT_KEY_MESSAGE_UNIT_RENEGADE_TO_YOU</Tag>
      <English>An enemy %s1 has defected to you and now fights on your side!</English>
      <French>Une unit&#233; ennemie vaincue (%s1) s'est soumise &#224; votre autorit&#233; et combat d&#233;sormais &#224; vos c&#244;t&#233;s !</French>
      <German>Eine abtr&#252;nnige gegnerische Einheit %s1 hat sich Euch unterworfen und k&#228;mpft von nun an an Eurer Seite!</German>
@@ -1214,7 +1214,7 @@
      <Spanish>&#161;Una unidad enemiga desertada %s1 se ha sometido a tu mando y ahora lucha de nuestro lado!</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_MESSAGE_UNIT_DESERTION_2</Tag>
+    <Tag>TXT_KEY_MESSAGE_UNIT_RENEGADE_FROM_YOU</Tag>
      <English>One of your units (%s1) has defected to your enemy and now fights on their side!</English>
      <French>Une unit&#233; vaincue (%s1) s'est soumise &#224; l'autorit&#233; de l'ennemi et combat maintenant &#224; ses c&#244;t&#233;s !</French>
      <German>Eine abtr&#252;nnige Einheit %s1 hat sich dem Gegner unterworfen und k&#228;mpft von nun an an seiner Seite!</German>
@@ -1222,7 +1222,7 @@
      <Spanish>&#161;Una unidad desertada %s1 se ha sometido a tu enemigo y ahora lucha de su lado!</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_MESSAGE_UNIT_SLAVERY_1</Tag>
+    <Tag>TXT_KEY_MESSAGE_UNIT_SLAVERY_TO_YOU</Tag>
      <English>You have captured and enslaved an enemy %s1!</English>
      <French>Vous avez captur&#233; et r&#233;duit en esclavage une unit&#233; ennemie (%s1) !</French>
      <German>Ihr habt eine gegnerische Einheit %s1 gefangen genommen und versklavt!</German>
@@ -1230,7 +1230,7 @@
      <Spanish>&#161;Has capturado y esclavizado un %s1 enemigo!</Spanish>
    </TEXT>
    <TEXT>
-     <Tag>TXT_KEY_MESSAGE_UNIT_SLAVERY_2</Tag>
+    <Tag>TXT_KEY_MESSAGE_UNIT_SLAVERY_FROM_YOU</Tag>
      <English>The enemy has captured and enslaved your %s1!</English>
      <French>L'ennemi a captur&#233; et r&#233;duit en esclavage votre unit&#233; (%s1) !</French>
      <German>Der Gegner hat Eure Einheit %s1 gefangen genommen und versklavt!</German>
@@ -1951,27 +1951,27 @@
    </TEXT>
    <TEXT>
      <Tag>TXT_KEY_BUTTON_PROMO_FLUCHT1</Tag>
-     <English>[NEWLINE][ICON_BULLET]40% chance to flee in a lost battle! Unit survives with 40% damage.</English>
+     <English>[ICON_BULLET]40% chance to flee in a lost battle! Unit survives with 40% damage.</English>
      <French>[ICON_BULLET]40% de chances de fuir une bataille perdue (L'unit&#233; survit avec un maximum de 10% de sa sant&#233; maximale)</French>
-     <German>[NEWLINE][ICON_BULLET]40% Chance in einem verlorenen Kampf zu fl&#252;chten! Einheit &#252;berlebt mit 40% Schaden.</German>
-     <Italian>[NEWLINE][ICON_BULLET]40% chance to flee in a lost battle! Unit survives with 40% damage.</Italian>
-     <Spanish>[NEWLINE][ICON_BULLET]&#161;Probabilidad del 40% de huir de una batalla perdida! La unidad sobrevive con un da&#241;o del 40%.</Spanish>
+     <German>[ICON_BULLET]40% Chance in einem verlorenen Kampf zu fl&#252;chten! Einheit &#252;berlebt mit 40% Schaden.</German>
+     <Italian>[ICON_BULLET]40% chance to flee in a lost battle! Unit survives with 40% damage.</Italian>
+     <Spanish>[ICON_BULLET]&#161;Probabilidad del 40% de huir de una batalla perdida! La unidad sobrevive con un da&#241;o del 40%.</Spanish>
    </TEXT>
    <TEXT>
      <Tag>TXT_KEY_BUTTON_PROMO_FLUCHT2</Tag>
-     <English>[NEWLINE][ICON_BULLET]60% chance to flee in a lost battle! Unit survives with 30% damage.</English>
+     <English>[ICON_BULLET]60% chance to flee in a lost battle! Unit survives with 30% damage.</English>
      <French>[ICON_BULLET]60% de chances de fuir une bataille perdue (L'unit&#233; survit avec un maximum de 15% de sa sant&#233; maximale)</French>
-     <German>[NEWLINE][ICON_BULLET]60% Chance in einem verlorenen Kampf zu fl&#252;chten! Einheit &#252;berlebt mit 30% Schaden.</German>
-     <Italian>[NEWLINE][ICON_BULLET]60% chance to flee in a lost battle! Unit survives with 30% damage.</Italian>
-     <Spanish>[NEWLINE][ICON_BULLET]&#161;Probabilidad del 60% de huir de una batalla perdida! La unidad sobrevive con un da&#241;o del 30%.</Spanish>
+     <German>[ICON_BULLET]60% Chance in einem verlorenen Kampf zu fl&#252;chten! Einheit &#252;berlebt mit 30% Schaden.</German>
+     <Italian>[ICON_BULLET]60% chance to flee in a lost battle! Unit survives with 30% damage.</Italian>
+     <Spanish>[ICON_BULLET]&#161;Probabilidad del 60% de huir de una batalla perdida! La unidad sobrevive con un da&#241;o del 30%.</Spanish>
    </TEXT>
    <TEXT>
      <Tag>TXT_KEY_BUTTON_PROMO_FLUCHT3</Tag>
-     <English>[NEWLINE][ICON_BULLET]80% chance to flee in a lost battle! Unit survives with 20% damage.</English>
+     <English>[ICON_BULLET]80% chance to flee in a lost battle! Unit survives with 20% damage.</English>
      <French>[ICON_BULLET]80% de chances de fuir une bataille perdue (L'unit&#233; survit avec un maximum de 20% de sa sant&#233; maximale)</French>
-     <German>[NEWLINE][ICON_BULLET]80% Chance in einem verlorenen Kampf zu fl&#252;chten! Einheit &#252;berlebt mit nur 20% Schaden.</German>
-     <Italian>[NEWLINE][ICON_BULLET]80% chance to flee in a lost battle! Unit survives with 20% damage.</Italian>
-     <Spanish>[NEWLINE][ICON_BULLET]&#161;Probabilidad del 80% de huir de una batalla perdida! La unidad sobrevive con un da&#241;o del 20%.</Spanish>
+     <German>[ICON_BULLET]80% Chance in einem verlorenen Kampf zu fl&#252;chten! Einheit &#252;berlebt mit nur 20% Schaden.</German>
+     <Italian>[ICON_BULLET]80% chance to flee in a lost battle! Unit survives with 20% damage.</Italian>
+     <Spanish>[ICON_BULLET]&#161;Probabilidad del 80% de huir de una batalla perdida! La unidad sobrevive con un da&#241;o del 20%.</Spanish>
    </TEXT>
    <TEXT>
      <Tag>TXT_KEY_BUTTON_DISBAND_CITY</Tag>
@@ -7525,4 +7525,20 @@
      <Italian>Difendendo, la tua unit&#224; %s1_UnitName &#232; stata distrutta dall'unit&#224; nemica %s2_EnUName (%s3_owner_adjective)!</Italian>
      <Spanish>Mientras se [NUM1:defend&#237;a:defend&#237;a:defend&#237;an:defend&#237;an], [NUM1:vuestro:vuestra:vuestros:vuestras] %s1_UnitName [NUM1:ha sido derrotado:ha sido derrotada:han sido derrotados:han sido derrotadas] por [NUM2:un:una:unos:unas] %s2_EnUName (%s3_owner_adjective).</Spanish>
    </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_RELI</Tag>
+		<English>Religion: %s1</English>
+		<French>Religion: %s1</French>
+		<German>Religion: %s1</German>
+		<Italian>Religione: %s1</Italian>
+		<Spanish>Religión: %s1</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ETHNIE</Tag>
+		<English>Ethnic group: %s1</English>
+		<French>Ethnie: %s1</French>
+		<German>Ethnie: %s1</German>
+		<Italian>Etnia: %s1</Italian>
+		<Spanish>Etnia: %s1</Spanish>
+	</TEXT> 
 </Civ4GameText>

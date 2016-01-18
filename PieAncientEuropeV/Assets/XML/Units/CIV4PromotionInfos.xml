@@ -32,6 +32,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -135,6 +137,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -243,6 +247,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>20</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -350,6 +356,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -417,6 +425,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -528,6 +538,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -639,6 +651,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -750,6 +764,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -861,6 +877,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -972,6 +990,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1083,6 +1103,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1182,6 +1204,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1281,6 +1305,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1380,6 +1406,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1479,6 +1507,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1578,6 +1608,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1690,6 +1722,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1802,6 +1836,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -1914,6 +1950,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2026,6 +2064,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2138,6 +2178,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2250,6 +2292,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2362,6 +2406,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2474,6 +2520,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2586,6 +2634,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2698,6 +2748,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2810,6 +2862,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -2922,6 +2976,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3034,6 +3090,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3146,6 +3204,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3258,6 +3318,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3370,6 +3432,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3482,6 +3546,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3594,6 +3660,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3661,6 +3729,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>10</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3728,6 +3798,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>10</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3807,6 +3879,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>10</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3886,6 +3960,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3998,6 +4074,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4105,6 +4183,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4180,6 +4260,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4247,6 +4329,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4346,6 +4430,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4445,6 +4531,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4544,6 +4632,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4615,6 +4705,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4686,6 +4778,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4793,6 +4887,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -4900,6 +4996,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5007,6 +5105,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5114,6 +5214,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5221,6 +5323,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5320,6 +5424,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5428,6 +5534,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5561,6 +5669,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5686,6 +5796,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5811,6 +5923,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -5944,6 +6058,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6077,6 +6193,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6203,6 +6321,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6320,6 +6440,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6437,6 +6559,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6554,6 +6678,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6671,6 +6797,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6788,6 +6916,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -6902,6 +7032,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7019,6 +7151,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7136,6 +7270,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7253,6 +7389,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7370,6 +7508,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7487,6 +7627,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7601,6 +7743,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7708,6 +7852,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7815,6 +7961,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -7922,6 +8070,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8029,6 +8179,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8136,6 +8288,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8243,6 +8397,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8350,6 +8506,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8457,6 +8615,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8564,6 +8724,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8671,6 +8833,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8778,6 +8942,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8885,6 +9051,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8992,6 +9160,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9099,6 +9269,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9174,6 +9346,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9249,6 +9423,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9324,6 +9500,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9399,6 +9577,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>20</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9474,6 +9654,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>2</iBombardRateChange>
@@ -9541,6 +9723,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>2</iBombardRateChange>
@@ -9608,6 +9792,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>2</iBombardRateChange>
@@ -9675,6 +9861,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>20</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9754,6 +9942,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>20</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9833,6 +10023,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>20</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -9912,6 +10104,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10000,6 +10194,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10088,6 +10284,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10176,6 +10374,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10255,6 +10455,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10330,6 +10532,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10397,6 +10601,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10464,6 +10670,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10531,6 +10739,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10598,6 +10808,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10701,6 +10913,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10804,6 +11018,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -10907,6 +11123,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11010,6 +11228,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11113,6 +11333,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11216,6 +11438,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11319,6 +11543,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11422,6 +11648,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11525,6 +11753,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11642,6 +11872,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11759,6 +11991,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11876,6 +12110,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -11993,6 +12229,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12110,6 +12348,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12225,6 +12465,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>40</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12333,6 +12575,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>60</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12441,6 +12685,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>80</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12548,6 +12794,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12655,6 +12903,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12746,6 +12996,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>999</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12813,6 +13065,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12885,6 +13139,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -12961,6 +13217,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13037,6 +13295,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13112,6 +13372,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13174,6 +13436,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13236,6 +13500,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13299,6 +13565,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13361,6 +13629,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13472,6 +13742,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13581,6 +13853,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13710,6 +13984,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13844,6 +14120,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -13978,6 +14256,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14112,6 +14392,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14246,6 +14528,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14388,6 +14672,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14518,6 +14804,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14644,6 +14932,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14769,6 +15059,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14878,6 +15170,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -14966,6 +15260,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15046,6 +15342,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15134,6 +15432,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>10</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15230,6 +15530,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15301,6 +15603,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15377,6 +15681,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15453,6 +15759,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15548,6 +15856,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15647,6 +15957,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15722,6 +16034,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -15797,6 +16111,8 @@
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
       <iWithdrawalChange>0</iWithdrawalChange>
+      <iFlightChange>0</iFlightChange>
+      <iLoyaltyChange>0</iLoyaltyChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>

@@ -1424,6 +1424,14 @@
     <iDefineIntVal>90</iDefineIntVal>
   </Define>
   <Define>
+    <DefineName>MAX_FLIGHT_PROBABILITY</DefineName>
+    <iDefineIntVal>90</iDefineIntVal>
+  </Define>
+  <Define>
+    <DefineName>MAX_LOYALTY_PROBABILITY</DefineName>
+    <iDefineIntVal>100</iDefineIntVal>
+  </Define>
+  <Define>
     <DefineName>MAX_INTERCEPTION_PROBABILITY</DefineName>
     <iDefineIntVal>100</iDefineIntVal>
   </Define>

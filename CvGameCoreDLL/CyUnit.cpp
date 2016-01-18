@@ -467,7 +467,7 @@ int /*SpecialUnitTypes*/ CyUnit::getSpecialUnitType()
 
 int /*UnitTypes*/ CyUnit::getCaptureUnitType(int /*CivilizationTypes*/ eCivilization)
 {
-	return m_pUnit ? m_pUnit->getCaptureUnitType((CivilizationTypes)eCivilization) : -1;
+	return m_pUnit ? m_pUnit->getCaptureUnitType() : -1;
 }
 
 int /*UnitCombatTypes*/ CyUnit::getUnitCombatType()
@@ -1329,6 +1329,17 @@ int CyUnit::getExtraChanceFirstStrikes()
 int CyUnit::getExtraWithdrawal()
 {
 	return m_pUnit ? m_pUnit->getExtraWithdrawal() : -1;
+}
+
+//Flunky
+int CyUnit::getExtraFlight()
+{
+	return m_pUnit ? m_pUnit->getExtraFlight() : -1;
+}
+
+int CyUnit::getExtraLoyalty()
+{
+	return m_pUnit ? m_pUnit->getExtraLoyalty() : -1;
 }
 
 int CyUnit::getExtraCollateralDamage()

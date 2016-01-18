@@ -833,6 +833,34 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 		}
 
+		if (pUnit->flightProbability() > 0)
+		{
+			if (bShort)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY_SHORT", pUnit->flightProbability()));
+			}
+			else
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY", pUnit->flightProbability()));
+			}
+		}
+
+		if (pUnit->loyaltyProbability() > 0)
+		{
+			if (bShort)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY_SHORT", GC.getDefineINT("MAX_LOYALTY_PROBABILITY") -pUnit->loyaltyProbability()));
+			}
+			else
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY", GC.getDefineINT("MAX_LOYALTY_PROBABILITY")-pUnit->loyaltyProbability()));
+			}
+		}
+
 		if (pUnit->combatLimit() < GC.getMAX_HIT_POINTS() && pUnit->canAttack())
 		{
 			szString.append(NEWLINE);
@@ -4103,6 +4131,17 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_WITHDRAWAL_TEXT", GC.getPromotionInfo(ePromotion).getWithdrawalChange()));
 	}
 
+	//Flunky
+	if (GC.getPromotionInfo(ePromotion).getFlightChange() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FLIGHT_TEXT", GC.getPromotionInfo(ePromotion).getFlightChange()));
+	}
+	if (GC.getPromotionInfo(ePromotion).getLoyaltyChange() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RENEGADE_TEXT", -GC.getPromotionInfo(ePromotion).getLoyaltyChange()));
+	}
 	if (GC.getPromotionInfo(ePromotion).getCargoChange() != 0)
 	{
 		szBuffer.append(pcNewline);
@@ -5797,6 +5836,25 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_WITHDRAWL_PROBABILITY", GC.getUnitInfo(eUnit).getWithdrawalProbability()));
+	}
+
+	if (GC.getUnitInfo(eUnit).getFlightProbability() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY", GC.getUnitInfo(eUnit).getFlightProbability()));
+	}	
+		
+        // Flunky TODO loyalty value range
+	if (GC.getUnitInfo(eUnit).getLoyaltyProbability() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_LOYALTY_PROBABILITY", GC.getUnitInfo(eUnit).getLoyaltyProbability()));
+	}
+
+	else if (GC.getUnitInfo(eUnit).getLoyaltyProbability() < 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY", GC.getUnitInfo(eUnit).getLoyaltyProbability()));
 	}
 
 	if (GC.getUnitInfo(eUnit).getCombatLimit() < GC.getMAX_HIT_POINTS() && GC.getUnitInfo(eUnit).getCombat() > 0 && !GC.getUnitInfo(eUnit).isOnlyDefensive())
@@ -14501,9 +14559,9 @@ void CvGameTextMgr::getFontSymbols(std::vector< std::vector<wchar> >& aacSymbols
 void CvGameTextMgr::assignFontIds(int iFirstSymbolCode, int iPadAmount)
 {
 	int iCurSymbolID = iFirstSymbolCode;
-
+	int i = 0;
 	// set yield symbols
-	for (int i = 0; i < NUM_YIELD_TYPES; i++)
+	for (i = 0; i < NUM_YIELD_TYPES; i++)
 	{
 		GC.getYieldInfo((YieldTypes) i).setChar(iCurSymbolID);  
 		++iCurSymbolID;
@@ -14534,7 +14592,7 @@ void CvGameTextMgr::assignFontIds(int iFirstSymbolCode, int iPadAmount)
 		} while (iCurSymbolID % iPadAmount != 0);
 	}
 
-	for (int i = 0; i < GC.getNumReligionInfos(); i++)
+	for (i = 0; i < GC.getNumReligionInfos(); i++)
 	{
 		GC.getReligionInfo((ReligionTypes) i).setChar(iCurSymbolID);
 		++iCurSymbolID;
@@ -14577,7 +14635,7 @@ void CvGameTextMgr::assignFontIds(int iFirstSymbolCode, int iPadAmount)
 /*************************************************************************************************/
 /* UNOFFICIAL_PATCH                         END                                                  */
 /*************************************************************************************************/
-	for (int i = 0; i < GC.getNumBonusInfos(); i++)
+	for (i = 0; i < GC.getNumBonusInfos(); i++)
 	{
 		int bonusID = bonusBaseID + GC.getBonusInfo((BonusTypes) i).getArtInfo()->getFontButtonIndex();
 		GC.getBonusInfo((BonusTypes) i).setChar(bonusID);
@@ -14606,7 +14664,7 @@ void CvGameTextMgr::assignFontIds(int iFirstSymbolCode, int iPadAmount)
 	}
 
 	// set extra symbols
-	for (int i=0; i < MAX_NUM_SYMBOLS; i++)
+	for (i=0; i < MAX_NUM_SYMBOLS; i++)
 	{
 		gDLL->setSymbolID(i, iCurSymbolID);
 		++iCurSymbolID;

@@ -866,7 +866,7 @@
       <KFM/>
       <Button>Art/Interface/Buttons/Builds/button_curinghut.dds</Button>
     </BuildingArtInfo>
-     <BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_DOLMEN</Type>
       <LSystem>LSYSTEM_1x1</LSystem>
       <bAnimated>0</bAnimated>

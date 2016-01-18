@@ -1586,6 +1586,8 @@ m_iAirRangeChange(0),
 m_iInterceptChange(0),
 m_iEvasionChange(0),
 m_iWithdrawalChange(0),
+m_iFlightChange(0),
+m_iLoyaltyChange(0),
 m_iCargoChange(0),
 m_iCollateralDamageChange(0),
 m_iBombardRateChange(0),	
@@ -1727,6 +1729,16 @@ int CvPromotionInfo::getWithdrawalChange() const
 {
 	return m_iWithdrawalChange;
 }
+
+// Flunky
+int CvPromotionInfo::getFlightChange() const{
+	return m_iFlightChange;
+}
+
+int CvPromotionInfo::getLoyaltyChange() const{
+	return m_iLoyaltyChange;
+}
+// End Flunky
 
 int CvPromotionInfo::getCargoChange() const
 {
@@ -1978,7 +1990,10 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iAirRangeChange);						
 	stream->Read(&m_iInterceptChange);						
 	stream->Read(&m_iEvasionChange);						
-	stream->Read(&m_iWithdrawalChange);				
+	stream->Read(&m_iWithdrawalChange);	
+	//Flunky					
+	stream->Read(&m_iFlightChange);						
+	stream->Read(&m_iLoyaltyChange);	
 	stream->Read(&m_iCargoChange);				
 	stream->Read(&m_iCollateralDamageChange);	
 	stream->Read(&m_iBombardRateChange);			
@@ -2072,7 +2087,10 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iAirRangeChange);						
 	stream->Write(m_iInterceptChange);						
 	stream->Write(m_iEvasionChange);						
-	stream->Write(m_iWithdrawalChange);				
+	stream->Write(m_iWithdrawalChange);	
+	//Flunky
+	stream->Write(m_iFlightChange);						
+	stream->Write(m_iLoyaltyChange);		
 	stream->Write(m_iCargoChange);				
 	stream->Write(m_iCollateralDamageChange);	
 	stream->Write(m_iBombardRateChange);			
@@ -2159,6 +2177,9 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iInterceptChange, "iInterceptChange");
 	pXML->GetChildXmlValByName(&m_iEvasionChange, "iEvasionChange");
 	pXML->GetChildXmlValByName(&m_iWithdrawalChange, "iWithdrawalChange");
+	//Flunky
+	pXML->GetChildXmlValByName(&m_iFlightChange, "iFlightChange");
+	pXML->GetChildXmlValByName(&m_iLoyaltyChange, "iLoyaltyChange");
 	pXML->GetChildXmlValByName(&m_iCargoChange, "iCargoChange");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageChange, "iCollateralDamageChange");
 	pXML->GetChildXmlValByName(&m_iBombardRateChange, "iBombardRateChange");
@@ -3006,6 +3027,8 @@ m_iChanceFirstStrikes(0),
 m_iInterceptionProbability(0),
 m_iEvasionProbability(0),
 m_iWithdrawalProbability(0),
+m_iFlightProbability(0),
+m_iLoyaltyProbability(0),
 m_iCollateralDamage(0),
 m_iCollateralDamageLimit(0),
 m_iCollateralDamageMaxUnits(0),
@@ -3026,7 +3049,8 @@ m_iAssetValue(0),
 m_iPowerValue(0),						
 m_iUnitClassType(NO_UNITCLASS),
 m_iSpecialUnitType(NO_SPECIALUNIT),
-m_iUnitCaptureClassType(NO_UNITCLASS),
+/*m_iUnitCaptureClassType(NO_UNITCLASS),*/
+m_iUnitCaptureType(NO_UNIT),
 m_iUnitCombatType(NO_UNITCOMBAT),
 m_iDomainType(NO_DOMAIN),
 m_iDefaultUnitAIType(NO_UNITAI),
@@ -3340,6 +3364,14 @@ int CvUnitInfo::getWithdrawalProbability() const
 	return m_iWithdrawalProbability;
 }
 
+int CvUnitInfo::getFlightProbability() const{
+	return m_iFlightProbability;
+}
+
+// Flunky TODO meaningful value
+int CvUnitInfo::getLoyaltyProbability() const{
+	return m_iLoyaltyProbability;
+}
 int CvUnitInfo::getCollateralDamage() const		
 {
 	return m_iCollateralDamage;
@@ -3440,9 +3472,9 @@ int CvUnitInfo::getSpecialUnitType() const
 	return m_iSpecialUnitType;
 }
 
-int CvUnitInfo::getUnitCaptureClassType() const
+int CvUnitInfo::getUnitCaptureType() const
 {
-	return m_iUnitCaptureClassType;
+	return m_iUnitCaptureType;
 }
 
 int CvUnitInfo::getUnitCombatType() const			
@@ -4189,6 +4221,9 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iInterceptionProbability);
 	stream->Read(&m_iEvasionProbability);
 	stream->Read(&m_iWithdrawalProbability);
+	//Flunky
+	stream->Read(&m_iFlightProbability);
+	stream->Read(&m_iLoyaltyProbability);
 	stream->Read(&m_iCollateralDamage);
 	stream->Read(&m_iCollateralDamageLimit);
 	stream->Read(&m_iCollateralDamageMaxUnits);
@@ -4209,7 +4244,8 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPowerValue);
 	stream->Read(&m_iUnitClassType);
 	stream->Read(&m_iSpecialUnitType);
-	stream->Read(&m_iUnitCaptureClassType);
+	//stream->Read(&m_iUnitCaptureClassType);
+	stream->Read(&m_iUnitCaptureType);
 	stream->Read(&m_iUnitCombatType);
 	stream->Read(&m_iDomainType);
 	stream->Read(&m_iDefaultUnitAIType);
@@ -4488,6 +4524,9 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iInterceptionProbability);
 	stream->Write(m_iEvasionProbability);
 	stream->Write(m_iWithdrawalProbability);
+	//Flunky
+	stream->Write(m_iFlightProbability);
+	stream->Write(m_iLoyaltyProbability);
 	stream->Write(m_iCollateralDamage);
 	stream->Write(m_iCollateralDamageLimit);
 	stream->Write(m_iCollateralDamageMaxUnits);
@@ -4508,7 +4547,8 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPowerValue);
 	stream->Write(m_iUnitClassType);
 	stream->Write(m_iSpecialUnitType);
-	stream->Write(m_iUnitCaptureClassType);
+	//stream->Write(m_iUnitCaptureClassType);
+	stream->Write(m_iUnitCaptureType);
 	stream->Write(m_iUnitCombatType);
 	stream->Write(m_iDomainType);
 	stream->Write(m_iDefaultUnitAIType);
@@ -4648,8 +4688,9 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "Special");
 	m_iSpecialUnitType = pXML->FindInInfoClass(szTextVal);
 
-	pXML->GetChildXmlValByName(szTextVal, "Capture");
-	m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+	//pXML->GetChildXmlValByName(szTextVal, "Capture");
+	////m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+	//m_iUnitCaptureType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "Combat");
 	m_iUnitCombatType = pXML->FindInInfoClass(szTextVal);
@@ -4876,6 +4917,9 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iInterceptionProbability, "iInterceptionProbability");
 	pXML->GetChildXmlValByName(&m_iEvasionProbability, "iEvasionProbability");
 	pXML->GetChildXmlValByName(&m_iWithdrawalProbability, "iWithdrawalProb");
+	//Flunky
+	pXML->GetChildXmlValByName(&m_iFlightProbability, "iFlightProb");
+	pXML->GetChildXmlValByName(&m_iLoyaltyProbability, "iLoyaltyProb");
 	pXML->GetChildXmlValByName(&m_iCollateralDamage, "iCollateralDamage");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageLimit, "iCollateralDamageLimit");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageMaxUnits, "iCollateralDamageMaxUnits");
@@ -4966,6 +5010,15 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iLeaderExperience, "iLeaderExperience");
 
 	updateArtDefineButton();
+	return true;
+}
+
+// stuff that refers to unit types
+bool CvUnitInfo::readPass2(CvXMLLoadUtility* pXML) {
+	CvString szTextVal;
+	pXML->GetChildXmlValByName(szTextVal, "Capture");
+	//m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+	m_iUnitCaptureType = pXML->FindInInfoClass(szTextVal);
 
 	return true;
 }

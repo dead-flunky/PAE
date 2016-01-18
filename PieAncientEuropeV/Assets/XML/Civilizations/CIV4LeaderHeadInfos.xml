@@ -84122,7 +84122,7 @@
      <iDemandRebukedSneakProb>90</iDemandRebukedSneakProb>
      <iDemandRebukedWarProb>20</iDemandRebukedWarProb>
      <iRazeCityProb>0</iRazeCityProb>
-     <iBuildUnitProb>20</iBuildUnitProb>
+      <iBuildUnitProb>15</iBuildUnitProb>
      <iBaseAttackOddsChange>6</iBaseAttackOddsChange>
      <iAttackOddsChangeRand>10</iAttackOddsChangeRand>
      <iWorseRankDifferenceAttitudeChange>-1</iWorseRankDifferenceAttitudeChange>

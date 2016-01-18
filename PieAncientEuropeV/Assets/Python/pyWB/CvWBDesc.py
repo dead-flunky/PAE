@@ -1557,7 +1557,7 @@ class CvCityDesc:
 				for item in self.lNoBonus:
 					self.city.changeNoBonusCount(item, 1)
 
-			except Exception, e:
+			except (Exception, e):
 				pass
 
 
@@ -1877,7 +1877,7 @@ class CvMapDesc:
 		self.__init__()
 		parser = CvWBParser()
 		if parser.findNextToken(f, "BeginMap")==false:
-			print "can't find map"
+			print ("can't find map")
 			return
 		while (true):
 			nextLine = parser.getNextLine(f)
@@ -1978,7 +1978,7 @@ class CvSignDesc:
 		self.__init__()
 		parser = CvWBParser()
 		if parser.findNextToken(f, "BeginSign")==false:
-			print "can't find sign"
+			print ("can't find sign")
 			return
 		while (true):
 			nextLine = parser.getNextLine(f)
@@ -2148,22 +2148,22 @@ class CvWBDesc:
 		seaLevelType = CvUtil.findInfoTypeNum(gc.getSeaLevelInfo, gc.getNumSeaLevelInfos(), self.mapDesc.seaLevel)
 		CyMap().rebuild(self.mapDesc.iGridW, self.mapDesc.iGridH, self.mapDesc.iTopLatitude, self.mapDesc.iBottomLatitude, self.mapDesc.bWrapX, self.mapDesc.bWrapY, WorldSizeTypes(worldSizeType), ClimateTypes(climateType), SeaLevelTypes(seaLevelType), 0, None)
 
-		print "preapply plots"
+		print ("preapply plots")
 		for pDesc in self.plotDesc:
 			pDesc.preApply()	# set plot type / terrain type
 
 		print("map apply - recalc areas/regions")
 		CyMap().recalculateAreas()
 
-		print "apply plots"
+		print ("apply plots")
 		for pDesc in self.plotDesc:
 			pDesc.apply()
 
-		print "apply signs"
+		print ("apply signs")
 		for pDesc in self.signDesc:
 			pDesc.apply()
 
-		print "Randomize Resources"
+		print ("Randomize Resources")
 		if (self.mapDesc.bRandomizeResources != "false"):
 			for iPlotLoop in range(CyMap().numPlots()):
 				pPlot = CyMap().plotByIndex(iPlotLoop)
@@ -2359,10 +2359,10 @@ class CvWBDesc:
 			CvUtil.pyPrint("Error: wrong WorldBuilder save version.  Expected %d, got %d" %(self.getVersion(), version))
 			return -1	# failed
 
-		print "Reading game desc"
+		print ("Reading game desc")
 		self.gameDesc.read(f)	# read game info
 
-		print "Reading teams desc"
+		print ("Reading teams desc")
 		filePos = f.tell()
 		self.teamsDesc = []
 		numTeams = 0
@@ -2384,7 +2384,7 @@ class CvWBDesc:
 				self.teamsDesc.append(teamDesc)
 
 
-		print "Reading players desc"
+		print ("Reading players desc")
 		self.playersDesc = []
 		numPlayers = 0
 		for i in range(iNumPlayers):
@@ -2463,7 +2463,7 @@ class CvWBDesc:
 
 	## Platy Builder ##
 
-		print "Reading map desc"
+		print ("Reading map desc")
 		self.mapDesc.read(f)	# read map info
 
 		print("Reading/creating %d plot descs" %(self.mapDesc.numPlotsWritten,))

@@ -1722,15 +1722,15 @@ class CvMainInterface:
         - Unterteilung in in linken und rechten Block.
         - Maximale Anzahl von Icons pro Zeile: N.
         - Normale Aufteilung Links/Rechts: Jeweils N/2. ( links + N%2 )
-        - Links und rechts werden zeilenweise Listen angelegt. Die Zeilen können beliebig lang sein.
-        - Beginnt eine Zeile mit 'None', so erzwingt das immer eine neue Zeile für das folgende Icon.
-          (Beispiel: Sprung von Gebäuden zu Wundern)
-        - Danach werden Icons zeilenweise durchlaufen. Sind zu viele für die Maximalbreite angegeben,
-          werden die überschüssigen in die nächste Zeile verschoben.
+        - Links und rechts werden zeilenweise Listen angelegt. Die Zeilen koennen beliebig lang sein.
+        - Beginnt eine Zeile mit 'None', so erzwingt das immer eine neue Zeile fuer das folgende Icon.
+          (Beispiel: Sprung von Gebaeuden zu Wundern)
+        - Danach werden Icons zeilenweise durchlaufen. Sind zu viele fuer die Maximalbreite angegeben,
+          werden die ueberschuessigen in die naechste Zeile verschoben.
         - Falls links die Maximalbreite (N/2) nicht erreicht wird, wird der rechten Seite mehr Platz
-          eingeräumt (sofern notwendig).
-        - Am Ende werden die beiden Listen nebeneinander in den "BottomButtonContainer" eingefügt, wobei
-          die Freistellen mit Platzhaltern gefüllt werden.
+          eingeraeumt (sofern notwendig).
+        - Am Ende werden die beiden Listen nebeneinander in den "BottomButtonContainer" eingefuegt, wobei
+          die Freistellen mit Platzhaltern gefuellt werden.
         """
         #numIcons = 23
         numIcons = max(2,self.m_iNumMenuButtons) - 1
@@ -2578,7 +2578,7 @@ class CvMainInterface:
                           screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_EDLE_RUESTUNG2").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 699, -1, False )
                         screen.show( "BottomButtonContainer" )
                         iCount = iCount + 1
-                # Ende Kauf einer Edlen Rüstung
+                # Ende Kauf einer Edlen Ruestung
 
                 # Terrain Promos - Ausbildner / Trainer (in City) ID 719
                 if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN5")):
@@ -2639,7 +2639,7 @@ class CvMainInterface:
 
                 # Auswanderer / Emigrant -> in der eigenen Stadt
                 if iUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT"):
-                  # Stadt auflösen / disband city
+                  # Stadt aufloesen / disband city
                   if pUnitOwner.getNumCities() > 1 and pCity.getPopulation() < 3 and not pCity.isCapital():
                     screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_DISBAND_CITY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 673, 673, True )
                   else:
@@ -2704,7 +2704,7 @@ class CvMainInterface:
               # ---- ENDE if Einheit -> in der eigenen Stadt
 
               # ++++++++++++++++++++++++++++++++
-              # In eigenen und fremden Städten:
+              # In eigenen und fremden Staedten:
               # ++++++++++++++++++++++++++++++++
 
               # Verkauf von Einheiten
@@ -2771,7 +2771,7 @@ class CvMainInterface:
                     iCount = iCount + 1
 
               # Piraten-Feature
-              # Nur für bestimmte Nationen (ab PAE V Patch 3)
+              # Nur fuer bestimmte Nationen (ab PAE V Patch 3)
               if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
                 if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
 
@@ -4734,7 +4734,7 @@ class CvMainInterface:
         # Religion und Corporation END
 
 
-        # Allgemeine Variablen für Revolten und Rebellionen
+        # Allgemeine Variablen fuer Revolten und Rebellionen
         pCity = pHeadSelectedCity
         pPlot = gc.getMap().plot(pCity.getX(), pCity.getY())
         iPlayer = pHeadSelectedCity.getOwner()
@@ -4770,7 +4770,7 @@ class CvMainInterface:
           if szBuffer == "":
             if pPlayer.getAnarchyTurns() > 0:
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_ANARCHY", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
-            elif not pCity.isHasReligion(pPlayer.getStateReligion()):
+            elif pPlayer.getStateReligion() != -1 and not pCity.isHasReligion(pPlayer.getStateReligion()):
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_RELIGION", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
             elif pCity.unhappyLevel(0) > pCity.happyLevel():
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_UNHAPPY", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
@@ -4935,7 +4935,7 @@ class CvMainInterface:
 #
 #          if gc.getPlayer(iPlayer).getCapitalCity().getOccupationTimer() > 0: iChanceOfRebellion += pCity.getOccupationTimer() * 20
 #
-#          if not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
+#          if pPlayer.getStateReligion() != -1 and not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
 #
 #          if pPlayer.isCivic(1)  or   pPlayer.isCivic(2): iChanceOfRebellion += 10
 #          if pPlayer.isCivic(18): iChanceOfRebellion += 10
@@ -4950,7 +4950,7 @@ class CvMainInterface:
 #
 #          if pPlayer.getCommercePercent(0) > 50: iChanceOfRebellion += pPlayer.getCommercePercent(0) - 50
 #
-#          # Verstärkung, weil nur jede 4te Runde check
+#          # Verstaerkung, weil nur jede 4te Runde check
 #          iChanceOfRebellion = iChanceOfRebellion * 3
 #
 #          fPercent = iChanceOfRebellion / 10.0
@@ -5004,7 +5004,7 @@ class CvMainInterface:
               if pPlot.getUnit(i).isHasPromotion(0): iChanceUnits += 3
               else: iChanceUnits += 1
 
-          # Verhältnis 1:4
+          # Verhaeltnis 1:4
           # gemeinsamen Nenner herausfinden
           if iUnitAnzahl == iUnitCity:
            iV1 = iV2 = 1
@@ -6260,7 +6260,7 @@ class CvMainInterface:
         CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_SETTLER')
         CyMessageControl().sendModNetMessage( 672, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
-      # Stadt auflösen / disband city
+      # Stadt aufloesen / disband city
       if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 673 and inputClass.getData2() == 673 and inputClass.getOption()):
         CyMessageControl().sendModNetMessage( 673, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
@@ -6577,7 +6577,7 @@ class CvMainInterface:
         numRows -= 1
         continue
 
-      # Entfernte None-Einträge nach ihrer Benutzung und bevor die Länge der Liste benutzt wird.
+      # Entfernte None-Eintraege nach ihrer Benutzung und bevor die Laenge der Liste benutzt wird.
       if buttons[iRow][0] == None:
         del buttons[iRow][0]
         continue
@@ -6597,7 +6597,7 @@ class CvMainInterface:
 
 
   # Ermittle, ob links weniger genutzt wird als vorhanden ist
-  # und gebe es der rechten Seite, falls es dort benötigt wird.
+  # und gebe es der rechten Seite, falls es dort benoetigt wird.
   def optimalPartition( self, numIconsLeft, numIconsRight, leftButtons, rightButtons):
     if len(leftButtons) > 0:
       maxUsedWidthLeft = max( [ len(x) for x in leftButtons ] )
@@ -6636,7 +6636,7 @@ class CvMainInterface:
           if iconData == None:
             continue
           # Die Liste iconData[0] entspricht fast der Argumentliste von appendMultiListButton.
-          # Es muss aber noch das dritte Argument eingefügt werden
+          # Es muss aber noch das dritte Argument eingefuegt werden
           iconData[0].insert(1,iRow)
           screen.appendMultiListButton( "BottomButtonContainer", *(iconData[0]) )
           if not iconData[1]:
@@ -6654,7 +6654,7 @@ class CvMainInterface:
         for iconData in rightButtons[iRow]:
           if iconData == None:
             continue
-          if len(iconData[0]) != 5: # Ursache für teilweise falsche Listenlänge unbekannt.
+          if len(iconData[0]) != 5: # Ursache fuer teilweise falsche Listenlaenge unbekannt.
             continue
           iconData[0].insert(1,iRow)
           screen.appendMultiListButton( "BottomButtonContainer", *(iconData[0]) )
@@ -6682,7 +6682,7 @@ class CvMainInterface:
     return len(buttons)
 
   # Achtung, in iconData[0] wird in der insertButtons-Methode
-  # vorne ein Element eingefügt. Das verschiebt Listenelemente nach hinten.
+  # vorne ein Element eingefuegt. Das verschiebt Listenelemente nach hinten.
   def findIconRow(self, buildType, index ):
     offset = 0
     if buildType == WidgetTypes.WIDGET_TRAIN:
@@ -6702,8 +6702,8 @@ class CvMainInterface:
 
 
   """PAE, Ramk:
-    Die ursprünglichen CITY_TAB-Buttons koennen nur auf die Zeilen 0,1 und 2 springen und
-    diese stehen immer für Einheiten, Gebaeude und Wunder.
+    Die urspruenglichen CITY_TAB-Buttons koennen nur auf die Zeilen 0,1 und 2 springen und
+    diese stehen immer fuer Einheiten, Gebaeude und Wunder.
     Daher sind die Buttons durch eigene (WIDGET_GENERAL) ausgetauscht worden.
   """
   def updateCityTabs(self, screen):

@@ -1046,7 +1046,7 @@ class CvExoticForeignAdvisor (CvForeignAdvisor.CvForeignAdvisor):
 			 
 		elif (inputClass.getNotifyCode() == NotifyCode.NOTIFY_LISTBOX_ITEM_SELECTED):
 			if (inputClass.getFunctionName() + str(inputClass.getID()) == self.getWidgetName(self.DEBUG_DROPDOWN_ID)):
-				print 'debug dropdown event'
+				print ('debug dropdown event')
 				szName = self.getWidgetName(self.DEBUG_DROPDOWN_ID)
 				iIndex = self.getScreen().getSelectedPullDownID(szName)
 				#self.iActiveLeader = self.getScreen().getPullDownData(szName, iIndex)

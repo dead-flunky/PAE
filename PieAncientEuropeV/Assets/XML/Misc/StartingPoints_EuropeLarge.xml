@@ -9,16 +9,26 @@
                         <Type>CIVILIZATION_CELT</Type>
                         <StartX>27</StartX>
                         <StartY>38</StartY>
+      <StartX>24</StartX>
+      <StartY>47</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_GALLIEN</Type>
                         <StartX>18</StartX>
                         <StartY>35</StartY>
+      <StartX>14</StartX>
+      <StartY>37</StartY>
+      <StartX>10</StartX>
+      <StartY>33</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_GERMANEN</Type>
                         <StartX>32</StartX>
                         <StartY>48</StartY>
+      <StartX>45</StartX>
+      <StartY>53</StartY>
+      <StartX>29</StartX>
+      <StartY>53</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_DAKER</Type>
@@ -74,6 +84,8 @@
                         <Type>CIVILIZATION_PHON</Type>
                         <StartX>58</StartX>
                         <StartY>22</StartY>
+      <StartX>70</StartX>
+      <StartY>3</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_ROME</Type>
@@ -124,6 +136,8 @@
                         <Type>CIVILIZATION_IBERER</Type>
                         <StartX>11</StartX>
                         <StartY>23</StartY>
+      <StartX>3</StartX>
+      <StartY>18</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_NUMIDIA</Type>
@@ -134,6 +148,8 @@
                         <Type>CIVILIZATION_BERBER</Type>
                         <StartX>3</StartX>
                         <StartY>3</StartY>
+      <StartX>2</StartX>
+      <StartY>10</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_LIBYA</Type>
@@ -144,11 +160,17 @@
                         <Type>CIVILIZATION_SKYTHEN</Type>
                         <StartX>48</StartX>
                         <StartY>44</StartY>
+      <StartX>57</StartX>
+      <StartY>45</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_PARTHER</Type>
                         <StartX>80</StartX>
                         <StartY>25</StartY>
+      <StartX>76</StartX>
+      <StartY>35</StartY>
+      <StartX>66</StartX>
+      <StartY>38</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_HUNNEN</Type>

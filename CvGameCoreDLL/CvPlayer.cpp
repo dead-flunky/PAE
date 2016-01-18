@@ -111,6 +111,7 @@ CvPlayer::CvPlayer()
 	// Begin Flunky
 	m_aiDomainFreeExperience = new int[NUM_DOMAIN_TYPES];
 	m_aiDomainProductionModifier = new int[NUM_DOMAIN_TYPES];
+	m_bCanEnslave = false;
 	// End Flunky
 	reset(NO_PLAYER, true);
 }
@@ -601,6 +602,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiDomainFreeExperience[iI] = 0;
 		m_aiDomainProductionModifier[iI] = 0;
 	}
+	m_bCanEnslave = false;
 	// End Flunky
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
@@ -8357,6 +8359,13 @@ void CvPlayer::changeDomainProductionModifier(DomainTypes eIndex, int iChange)
 	m_aiDomainProductionModifier[eIndex] = (m_aiDomainProductionModifier[eIndex] + iChange);
 }
 
+bool CvPlayer::canEnslave(){
+	return m_bCanEnslave;
+}
+
+void CvPlayer::canEnslave(bool bCan) {
+	m_bCanEnslave = bCan;
+}
 // End Flunky
 
 int CvPlayer::getFeatureProductionModifier() const
