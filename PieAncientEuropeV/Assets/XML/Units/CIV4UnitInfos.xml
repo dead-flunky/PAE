@@ -12,7 +12,7 @@
       <UniqueNames/>
       <Special>NONE</Special>
       <Capture>NONE</Capture>
-      <Combat>UNITCOMBAT_MELEE</Combat>
+      <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ANIMAL</DefaultUnitAI>
       <Invisible>NONE</Invisible>
@@ -135,8 +135,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -333,8 +333,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -534,8 +534,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>80</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>25</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -727,8 +727,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -920,8 +920,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -1126,8 +1126,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -1314,8 +1314,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -1497,8 +1497,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>30</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -1695,8 +1695,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -1888,8 +1888,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -2099,8 +2099,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -2288,8 +2288,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -2470,8 +2470,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -2737,8 +2737,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -3000,8 +3000,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -3339,8 +3339,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -3508,8 +3508,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -3682,8 +3682,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -3856,8 +3856,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -4025,8 +4025,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -4194,8 +4194,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -4363,8 +4363,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -4527,8 +4527,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -4706,8 +4706,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -4885,8 +4885,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -5064,8 +5064,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -5243,8 +5243,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -5422,8 +5422,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -5596,8 +5596,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>80</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -5775,8 +5775,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -5957,8 +5957,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -6158,8 +6158,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -6214,7 +6214,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -6351,8 +6351,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -6415,7 +6415,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -6551,8 +6551,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -6750,8 +6750,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -6822,7 +6822,7 @@
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -6957,8 +6957,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -7165,8 +7165,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -7237,7 +7237,7 @@
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -7377,8 +7377,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -7449,7 +7449,7 @@
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -7584,8 +7584,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -7787,8 +7787,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -7986,8 +7986,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -8176,8 +8176,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -8402,8 +8402,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -8596,8 +8596,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -8795,8 +8795,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -8863,7 +8863,7 @@
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -8998,8 +8998,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -9062,7 +9062,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -9197,8 +9197,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -9422,8 +9422,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -9608,8 +9608,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -9794,8 +9794,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -9987,8 +9987,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -10173,8 +10173,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -10355,8 +10355,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -10546,8 +10546,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -10732,8 +10732,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -10921,8 +10921,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11116,8 +11116,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11307,8 +11307,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11506,8 +11506,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11703,8 +11703,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11911,8 +11911,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -12141,8 +12141,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -12323,8 +12323,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>40</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -12519,8 +12519,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -12731,8 +12731,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -12938,8 +12938,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -13124,8 +13124,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -13328,8 +13328,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -13517,8 +13517,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -13734,8 +13734,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -13947,8 +13947,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -14151,8 +14151,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -14338,8 +14338,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -14525,8 +14525,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -14715,8 +14715,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -14909,8 +14909,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -15096,8 +15096,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -15302,8 +15302,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -15601,8 +15601,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -15986,8 +15986,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -16189,8 +16189,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -16384,8 +16384,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -16582,8 +16582,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -16773,8 +16773,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -16959,8 +16959,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -17154,8 +17154,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -17345,8 +17345,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -17546,8 +17546,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -17758,8 +17758,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -17944,8 +17944,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -18126,8 +18126,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -18312,8 +18312,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -18507,8 +18507,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -18698,8 +18698,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -18885,8 +18885,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -19087,8 +19087,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -19290,8 +19290,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -19532,8 +19532,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -19770,8 +19770,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -19967,8 +19967,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -20161,8 +20161,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -20452,8 +20452,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -20634,8 +20634,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -20829,8 +20829,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -21019,8 +21019,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -21229,8 +21229,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -21447,8 +21447,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -21673,8 +21673,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -21893,8 +21893,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -22106,8 +22106,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -22319,8 +22319,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -22534,8 +22534,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -22744,8 +22744,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -22972,8 +22972,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -23061,7 +23061,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -23200,8 +23200,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>25</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -23403,8 +23403,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>25</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -23594,8 +23594,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -23806,8 +23806,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>25</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -24002,8 +24002,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -24202,8 +24202,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -24407,8 +24407,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -24607,8 +24607,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -24802,8 +24802,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -25002,8 +25002,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -25258,8 +25258,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -25545,8 +25545,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -25824,8 +25824,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -26106,8 +26106,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -26384,8 +26384,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -26662,8 +26662,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -26937,8 +26937,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -27216,8 +27216,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -27491,8 +27491,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -27753,8 +27753,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -28015,8 +28015,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -28282,8 +28282,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -28551,8 +28551,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>10</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -28821,8 +28821,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -29101,8 +29101,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -29339,8 +29339,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -29619,8 +29619,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -29899,8 +29899,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -30137,8 +30137,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -30412,8 +30412,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>60</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -30692,8 +30692,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -30954,8 +30954,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -31228,8 +31228,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -31494,8 +31494,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -31765,8 +31765,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -32031,8 +32031,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -32125,7 +32125,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -32300,8 +32300,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -32564,8 +32564,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -32830,8 +32830,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -33094,8 +33094,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -33370,8 +33370,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -33637,8 +33637,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -33902,8 +33902,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -34173,8 +34173,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -34456,8 +34456,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -34691,8 +34691,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>10</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -34903,8 +34903,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>10</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -35129,8 +35129,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -35308,8 +35308,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -35487,8 +35487,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -35669,8 +35669,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>60</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -35860,8 +35860,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>60</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -36046,8 +36046,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>60</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -36237,8 +36237,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>60</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -36449,8 +36449,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -36509,7 +36509,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -36652,8 +36652,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -36712,7 +36712,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -36855,8 +36855,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -36915,7 +36915,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -37058,8 +37058,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -37118,7 +37118,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -37261,8 +37261,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>1</iCollateralDamageMaxUnits>
@@ -37321,7 +37321,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -37462,8 +37462,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -37653,8 +37653,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -37855,8 +37855,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -38047,8 +38047,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -38236,8 +38236,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -38425,8 +38425,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -38622,8 +38622,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -38815,8 +38815,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -39012,8 +39012,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
@@ -39202,8 +39202,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -39397,8 +39397,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -39590,8 +39590,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -39782,8 +39782,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -39971,8 +39971,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -40154,8 +40154,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -40343,8 +40343,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>60</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -40530,8 +40530,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -40720,8 +40720,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -40913,8 +40913,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -41146,8 +41146,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
@@ -41383,8 +41383,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -41594,8 +41594,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>15</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>50</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>2</iCollateralDamageMaxUnits>
@@ -41867,8 +41867,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -42065,8 +42065,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -42276,8 +42276,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -42483,8 +42483,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -42798,8 +42798,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -43065,8 +43065,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -43339,8 +43339,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -43580,8 +43580,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -43870,8 +43870,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -44078,8 +44078,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -44317,8 +44317,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -44495,8 +44495,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -44673,8 +44673,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -44851,8 +44851,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -45029,8 +45029,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -45207,8 +45207,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -45385,8 +45385,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -45563,8 +45563,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -45741,8 +45741,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -45919,8 +45919,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -46097,8 +46097,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -46275,8 +46275,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -46453,8 +46453,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -46631,8 +46631,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -46804,8 +46804,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -46973,8 +46973,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -47143,8 +47143,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -47313,8 +47313,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -47483,8 +47483,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -47653,8 +47653,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -47823,8 +47823,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -47993,8 +47993,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -48163,8 +48163,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -48333,8 +48333,8 @@
                         <iInterceptionProbability>0</iInterceptionProbability>
                         <iEvasionProbability>0</iEvasionProbability>
                         <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
                         <iCollateralDamage>0</iCollateralDamage>
                         <iCollateralDamageLimit>0</iCollateralDamageLimit>
                         <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -48606,8 +48606,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -48780,8 +48780,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -48954,8 +48954,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -49128,8 +49128,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -49302,8 +49302,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -49471,8 +49471,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -49654,8 +49654,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -49847,8 +49847,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -49903,7 +49903,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
@@ -50046,8 +50046,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -50106,7 +50106,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
@@ -50287,8 +50287,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>20</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -50515,8 +50515,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -50693,8 +50693,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -50857,8 +50857,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -51021,8 +51021,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -51185,8 +51185,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -51349,8 +51349,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -51513,8 +51513,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -51677,8 +51677,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -51841,8 +51841,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -52015,8 +52015,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>50</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -52066,7 +52066,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -52202,8 +52202,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -52266,7 +52266,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
@@ -52418,8 +52418,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -52474,7 +52474,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions>
         <FreePromotion>
-          <PromotionType>PROMOTION_LOYALITAT</PromotionType>
+          <PromotionType>PROMOTION_LOYAL</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
@@ -52610,8 +52610,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>50</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>100</iCollateralDamage>
       <iCollateralDamageLimit>80</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>5</iCollateralDamageMaxUnits>
@@ -52787,8 +52787,8 @@
       <iInterceptionProbability>0</iInterceptionProbability>
       <iEvasionProbability>0</iEvasionProbability>
       <iWithdrawalProb>0</iWithdrawalProb>
-      <iFlightProb>0</iFlightProb>
-      <iLoyaltyProb>0</iLoyaltyProb>
+      <!-- <iFlightProb>0</iFlightProb> -->
+      <!-- <iLoyaltyProb>0</iLoyaltyProb> -->
       <iCollateralDamage>0</iCollateralDamage>
       <iCollateralDamageLimit>0</iCollateralDamageLimit>
       <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>

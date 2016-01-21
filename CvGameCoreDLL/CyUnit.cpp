@@ -1337,9 +1337,9 @@ int CyUnit::getExtraFlight()
 	return m_pUnit ? m_pUnit->getExtraFlight() : -1;
 }
 
-int CyUnit::getExtraLoyalty()
+bool CyUnit::isLoyal()
 {
-	return m_pUnit ? m_pUnit->getExtraLoyalty() : -1;
+	return m_pUnit ? m_pUnit->isLoyal() : false;
 }
 
 int CyUnit::getExtraCollateralDamage()

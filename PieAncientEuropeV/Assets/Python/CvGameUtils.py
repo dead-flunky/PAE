@@ -470,19 +470,13 @@ class CvGameUtils:
       if not eTeam.isHasTech(iTech):
         return iTech
 
-<<<<<<< HEAD
-      # Fuer Abu Simbel beim Nubier
-=======
+
       # Fuer Abu Simbel beimm Nubier
->>>>>>> 02a4c25a6c6a98ac935f272f4e05ebbd65a3ca1e
       if iCiv == gc.getInfoTypeForString('CIVILIZATION_NUBIA'):
         iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
         if not eTeam.isHasTech(iTech):
           return iTech
-<<<<<<< HEAD
-=======
-
->>>>>>> 02a4c25a6c6a98ac935f272f4e05ebbd65a3ca1e
+		  
       # 10. Kurzbogen beeline ueber Speerspitzen
       iTech = gc.getInfoTypeForString('TECH_ARCHERY2')
       if not eTeam.isHasTech(iTech):
@@ -543,10 +537,6 @@ class CvGameUtils:
       if pPlayer.countNumCoastalCities() > 0:
         if pPlayer.canResearch(iTech, False):
           return iTech
-<<<<<<< HEAD
-
-=======
->>>>>>> 02a4c25a6c6a98ac935f272f4e05ebbd65a3ca1e
 
     iTech = gc.getInfoTypeForString('TECH_KUESTE')
     if not eTeam.isHasTech(iTech):
@@ -687,10 +677,7 @@ class CvGameUtils:
       if not eTeam.isHasTech(iTech):
         if pPlayer.canResearch(iTech, False):
           return iTech
-<<<<<<< HEAD
-=======
-
->>>>>>> 02a4c25a6c6a98ac935f272f4e05ebbd65a3ca1e
+		  
     if eTeam.isHasTech(gc.getInfoTypeForString('TECH_GREEK')):
       iTech = gc.getInfoTypeForString('TECH_PHALANX')
       if not eTeam.isHasTech(iTech):

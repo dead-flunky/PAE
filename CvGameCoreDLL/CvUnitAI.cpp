@@ -6109,7 +6109,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	iTemp = GC.getPromotionInfo(ePromotion).getFlightChange();
 	if (iTemp != 0)
 	{
-		iExtra = (m_pUnitInfo->getFlightProbability() + (getExtraFlight() * 4));
+		iExtra = (getExtraFlight() * 4);
 		iTemp *= (100 + iExtra);
 		iTemp /= 100;
 		if ((AI_getUnitAIType() == UNITAI_ANIMAL) || 
@@ -6133,26 +6133,9 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		}
 	}
 
-	iTemp = GC.getPromotionInfo(ePromotion).getLoyaltyChange();
-	if (iTemp != 0)
+	if (GC.getPromotionInfo(ePromotion).isLoyal()  && !isLoyal())
 	{
-		iExtra = (m_pUnitInfo->getLoyaltyProbability() + (getExtraLoyalty() * 4));
-		iTemp *= (100 + iExtra);
-		iTemp /= 100;
-		if (AI_getUnitAIType() == UNITAI_ATTACK_CITY)
-		{
-			iValue += (iTemp * 4) / 3;
-		}
-		else if ((AI_getUnitAIType() == UNITAI_COLLATERAL) ||
-			  (AI_getUnitAIType() == UNITAI_RESERVE) ||
-			  (AI_getUnitAIType() == UNITAI_RESERVE_SEA))
-		{
-			iValue += iTemp;
-		}
-		else if(getLeaderUnitType() == NO_UNIT)
-		{
-			iValue += (iTemp / 4);
-		}
+		iValue += 20;
 	}
 
 	iTemp = GC.getPromotionInfo(ePromotion).getCollateralDamageChange();

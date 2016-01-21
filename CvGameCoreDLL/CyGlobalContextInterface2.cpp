@@ -31,6 +31,10 @@ void CyGlobalContextPythonInterface2(python::class_<CyGlobalContext>& x)
 		.def("getNUM_UNIT_PREREQ_OR_BONUSES", &CyGlobalContext::getNUM_UNIT_PREREQ_OR_BONUSES, "int ()")
 		.def("getNUM_BUILDING_PREREQ_OR_BONUSES", &CyGlobalContext::getNUM_BUILDING_PREREQ_OR_BONUSES, "int ()")
 		.def("getFOOD_CONSUMPTION_PER_POPULATION", &CyGlobalContext::getFOOD_CONSUMPTION_PER_POPULATION, "int ()")
+		// Flunky
+		.def("getHEALTH_PER_POPULATION", &CyGlobalContext::getHEALTH_PER_POPULATION, "int ()")
+		.def("getHAPPY_PER_POPULATION", &CyGlobalContext::getHAPPY_PER_POPULATION, "int ()")
+		// End Flunky
 		.def("getMAX_HIT_POINTS", &CyGlobalContext::getMAX_HIT_POINTS, "int ()")
 		.def("getHILLS_EXTRA_DEFENSE", &CyGlobalContext::getHILLS_EXTRA_DEFENSE, "int ()")
 		.def("getRIVER_ATTACK_MODIFIER", &CyGlobalContext::getRIVER_ATTACK_MODIFIER, "int ()")

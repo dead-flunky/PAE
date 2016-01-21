@@ -383,12 +383,6 @@ public:
 	int currInterceptionProbability() const;																// Exposed to Python
 	int evasionProbability() const;																										// Exposed to Python
 	int withdrawalProbability() const;																			// Exposed to Python
-	// Flunky
-	int flightProbability() const;
-	int loyaltyProbability() const;
-	int slaveryProbability() const;
-	bool canRenegadeTo(const CvUnit* pOther) const;
-	bool canBeEnslavedBy(const CvUnit* pOther) const;
 
 	int collateralDamage() const;																						// Exposed to Python
 	int collateralDamageLimit() const;																								// Exposed to Python
@@ -561,10 +555,27 @@ public:
 	void changeExtraWithdrawal(int iChange);
 
 	// Flunky
+	int flightProbability(const CvUnit* pOther) const;
+	int renegadeProbability(const CvUnit* pOther) const;
+	int slaveryProbability(const CvUnit* pOther) const;
+	bool canRenegadeTo(const CvUnit* pOther) const;
+	bool canBeEnslavedBy(const CvUnit* pOther) const;
 	int getExtraFlight() const;
 	void changeExtraFlight(int iChange);
-	int getExtraLoyalty() const;
-	void changeExtraLoyalty(int iChange);
+	int getLoyalCount() const;
+	bool isLoyal() const;
+	void changeLoyalCount(int iChange);
+	void setFlight();
+	bool isFlight();
+	void setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot);
+	bool isRenegade();
+	void setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot);
+	bool isSlavery();
+	CvPlot* getRenegadePlot();
+	ReligionTypes getReligion() const;
+	CivilizationTypes getEthnic() const;
+
+
 	int getExtraCollateralDamage() const;																											// Exposed to Python
 	void changeExtraCollateralDamage(int iChange);
 
@@ -823,9 +834,6 @@ protected:
 	int m_iExtraFirstStrikes;
 	int m_iExtraChanceFirstStrikes;
 	int m_iExtraWithdrawal;
-	// Flunky
-	int m_iExtraFlight;
-	int m_iExtraLoyalty;
 	int m_iExtraCollateralDamage;
 	int m_iExtraBombardRate;
 	int m_iExtraEnemyHeal;
@@ -857,6 +865,8 @@ protected:
 	bool m_bBlockading;
 	bool m_bAirCombat;
 	// Flunky
+	int m_iExtraFlight;
+	int m_iLoyalCount;
 	bool m_bFlight;
 	bool m_bRenegade;
 	bool m_bSlavery;
@@ -895,14 +905,6 @@ protected:
 	bool canAdvance(const CvPlot* pPlot, int iThreshold) const;
 	void collateralCombat(const CvPlot* pPlot, CvUnit* pSkipUnit = NULL);
 	void flankingStrikeCombat(const CvPlot* pPlot, int iAttackerStrength, int iAttackerFirepower, int iDefenderOdds, int iDefenderDamage, CvUnit* pSkipUnit = NULL);
-	// Flunky
-	void setFlight();
-	bool isFlight();
-	void setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot);
-	bool isRenegade();
-	void setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot);
-	bool isSlavery();
-	CvPlot* getRenegadePlot();
 
 	bool interceptTest(const CvPlot* pPlot);
 	CvUnit* airStrikeTarget(const CvPlot* pPlot) const;

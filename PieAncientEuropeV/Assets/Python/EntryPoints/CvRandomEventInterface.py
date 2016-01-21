@@ -3229,8 +3229,7 @@ def canTriggerMeuterei(argsList):
   if unit.isNone():
     return False
 
-  iLoyal = CvUtil.findInfoTypeNum(gc.getPromotionInfo,gc.getNumPromotionInfos(),'PROMOTION_LOYALITAT')
-  if unit.isHasPromotion(iLoyal):
+  if unit.isLoyal():
     return False
 
   return True

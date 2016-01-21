@@ -4150,7 +4150,7 @@ int CvCity::getOvercrowdingPercentAnger(int iExtra) const
 
 	iAnger = 0;
 
-	iOvercrowding = (getPopulation() + iExtra);
+	iOvercrowding = (getPopulation() + iExtra) * GC.getHAPPY_PER_POPULATION();
 
 	if (iOvercrowding > 0)
 	{
@@ -4499,8 +4499,10 @@ int CvCity::unhealthyPopulation(bool bNoAngry, int iExtra) const
 	{
 		return 0;
 	}
-
-	return std::max(0, ((getPopulation() + iExtra - ((bNoAngry) ? angryPopulation(iExtra) : 0))));
+	// PAE - two per Pop
+	int modifiedPop = getPopulation() + iExtra - (bNoAngry ? angryPopulation(iExtra) : 0)
+	modifiedPop *= GC.getHEALTH_PER_POPULATION();
+	return std::max(0, modifiedPop);
 }
 
 

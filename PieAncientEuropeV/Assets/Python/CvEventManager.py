@@ -1151,7 +1151,7 @@ class CvEventManager:
         FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
         FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
         FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
+        FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYAL"))
         FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
 
 
@@ -3234,7 +3234,7 @@ class CvEventManager:
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-       FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
+       FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYAL"))
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
        iGold = 0
        iRange = gc.getNumPromotionInfos()
@@ -5313,7 +5313,7 @@ class CvEventManager:
       iPromoLeader = gc.getInfoTypeForString('PROMOTION_LEADER')
       iPromoHero = gc.getInfoTypeForString('PROMOTION_HERO')
 # Loyale Einheiten sind dem Feldherren loyal gewesen!
-#      iPromoLoyal = gc.getInfoTypeForString('PROMOTION_LOYALITAT')
+#      iPromoLoyal = gc.getInfoTypeForString('PROMOTION_LOYAL')
 
       for h in PlotArrayRebellion:
         sPlot = gc.getMap().plot(h[0],h[1])
@@ -6747,11 +6747,10 @@ class CvEventManager:
 
            bDoIt = false
            if gc.getPlayer(pWinner.getOwner()).isHuman():
-             iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
              iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
              iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
 
-             if pWinner.isHasPromotion(iPromoLoyal) or pWinner.isHasPromotion(iPromoLeader) or pWinner.isHasPromotion(iPromoLeadership): iChance = 2 #50%
+             if pWinner.isLoyal() or pWinner.isHasPromotion(iPromoLeader) or pWinner.isHasPromotion(iPromoLeadership): iChance = 2 #50%
              else: iChance = 4 #25%
 
              if self.myRandom(iChance, None) == 1:
@@ -6963,64 +6962,64 @@ class CvEventManager:
     bUnitRenegades = True
 
 # PROMOTION-IDs: LOYALITAT: 0 , LEADER: 45, LEADERSHIP: 46 (ehemals)
-    iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
-    iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
-    iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
-    iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
-    iPromoBrander = gc.getInfoTypeForString("PROMOTION_BRANDER")
-    iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-    #iPromoSurrender = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
+    # iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYAL")
+    # iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
+    # iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
+    # iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
+    # iPromoBrander = gc.getInfoTypeForString("PROMOTION_BRANDER")
+    # iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
+    # #iPromoSurrender = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
 
-    # Ausnahmen - using UnitArray from above
-    if pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
-    elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
-    elif pLoser.getUnitType() in UnitArray: bUnitRenegades = False
-    elif pLoser.getUnitType() in AnimalArray: bUnitRenegades = False
-    # PAE V: Piraten sollen nur kentern: UnitInfos.xml: bNoCapture=1
-    elif pWinner.isNoCapture(): bUnitRenegades = False
-    #elif pLoser.isHasPromotion(iPromoSurrender): bUnitRenegades = True
-    elif pLoser.isHasPromotion(iPromoLoyal) and not pLoser.isHasPromotion(iPromoMercenary): bUnitRenegades = False
-    elif pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoBrander) or pWinner.isNoCapture(): bUnitRenegades = False
-    elif pLoser.hasCargo() and pLoser.canAttack(): bUnitRenegades = False
-
-
-    if bUnitRenegades:
-     pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
-     if pLoserPlot.getNumUnits() == 1 and pLoser.getCaptureUnitType(pLoser.getCivilizationType()) > -1: bUnitRenegades = False
-
-     # Attacking from Coast
-     if not bUnitDone and pWinner.isCargo():
-      pWinnerPlot = gc.getMap().plot(pWinner.getX(), pWinner.getY())
-      if pWinnerPlot.isWater():
-        iNumCargoSpace = 0
-        iNumCargoUnits = 0
-        iRange = pWinnerPlot.getNumUnits()
-        i=0
-        for i in range (iRange):
-          if pWinnerPlot.getUnit(i).getOwner() == pWinner.getOwner():
-            iNumCargoSpace += pWinnerPlot.getUnit(i).cargoSpace()
-            iNumCargoUnits += pWinnerPlot.getUnit(i).getCargo()
-
-        if iNumCargoSpace <= iNumCargoUnits: bUnitRenegades = False
-     # ----
+    # # Ausnahmen - using UnitArray from above
+    # if pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
+    # elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
+    # elif pLoser.getUnitType() in UnitArray: bUnitRenegades = False
+    # elif pLoser.getUnitType() in AnimalArray: bUnitRenegades = False
+    # # PAE V: Piraten sollen nur kentern: UnitInfos.xml: bNoCapture=1
+    # elif pWinner.isNoCapture(): bUnitRenegades = False
+    # #elif pLoser.isHasPromotion(iPromoSurrender): bUnitRenegades = True
+    # elif pLoser.isHasPromotion(iPromoLoyal) and not pLoser.isHasPromotion(iPromoMercenary): bUnitRenegades = False
+    # elif pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoBrander) or pWinner.isNoCapture(): bUnitRenegades = False
+    # elif pLoser.hasCargo() and pLoser.canAttack(): bUnitRenegades = False
 
 
-     if bUnitRenegades:
+    # if bUnitRenegades:
+     # pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
+     # if pLoserPlot.getNumUnits() == 1 and pLoser.getCaptureUnitType(pLoser.getCivilizationType()) > -1: bUnitRenegades = False
 
-      #if pLoser.isHasPromotion(iPromoSurrender): iRandMax = 0 #100%
+     # # Attacking from Coast
+     # if not bUnitDone and pWinner.isCargo():
+      # pWinnerPlot = gc.getMap().plot(pWinner.getX(), pWinner.getY())
+      # if pWinnerPlot.isWater():
+        # iNumCargoSpace = 0
+        # iNumCargoUnits = 0
+        # iRange = pWinnerPlot.getNumUnits()
+        # i=0
+        # for i in range (iRange):
+          # if pWinnerPlot.getUnit(i).getOwner() == pWinner.getOwner():
+            # iNumCargoSpace += pWinnerPlot.getUnit(i).cargoSpace()
+            # iNumCargoUnits += pWinnerPlot.getUnit(i).getCargo()
 
-      iUnitRenegadeChance = 20 # 10%
-      if pWinner.isHasPromotion(iPromoLeader): iUnitRenegadeChance += 20
-      if pWinner.isHasPromotion(iPromoHero):   iUnitRenegadeChance += 10
-      if pWinner.isHasPromotion(iPromoLeadership): iUnitRenegadeChance += 10
-      if pLoser.isHasPromotion(iPromoHero):   iUnitRenegadeChance -= 10
-      if pLoser.isHasPromotion(iPromoLeadership): iUnitRenegadeChance -= 10
-      # Trait Charismatic: Mehr Ueberlaeufer / more renegades
-      if gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance += 10
-      if gc.getPlayer(pLoser.getOwner() ).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance -= 10
-      if pLoser.isHasPromotion(iPromoMercenary): iUnitRenegadeChance += 10
+        # if iNumCargoSpace <= iNumCargoUnits: bUnitRenegades = False
+     # # ----
 
-      iRand = self.myRandom(100, None)
+
+     # if bUnitRenegades:
+
+      # #if pLoser.isHasPromotion(iPromoSurrender): iRandMax = 0 #100%
+
+      # iUnitRenegadeChance = 20 # 10%
+      # if pWinner.isHasPromotion(iPromoLeader): iUnitRenegadeChance += 20
+      # if pWinner.isHasPromotion(iPromoHero):   iUnitRenegadeChance += 10
+      # if pWinner.isHasPromotion(iPromoLeadership): iUnitRenegadeChance += 10
+      # if pLoser.isHasPromotion(iPromoHero):   iUnitRenegadeChance -= 10
+      # if pLoser.isHasPromotion(iPromoLeadership): iUnitRenegadeChance -= 10
+      # # Trait Charismatic: Mehr Ueberlaeufer / more renegades
+      # if gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance += 10
+      # if gc.getPlayer(pLoser.getOwner() ).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance -= 10
+      # if pLoser.isHasPromotion(iPromoMercenary): iUnitRenegadeChance += 10
+
+      # iRand = self.myRandom(100, None)
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Einheit allegiance Chance (Zeile 4150)",iRand)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -7631,7 +7630,6 @@ class CvEventManager:
                if pTeam.isAtWar(gc.getPlayer(loopPlot.getUnit(iUnit).getOwner()).getTeam()): iUnitAnzahl += 1
 
       # Anz Einheiten in der Stadt (military units)
-      iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
       iUnitCity = 0
       iChanceUnits = 0
       iRange = pPlot.getNumUnits()
@@ -7639,7 +7637,7 @@ class CvEventManager:
          if pPlot.getUnit(i).canFight():
            iUnitCity += 1
            # loyal units ?
-           if pPlot.getUnit(i).isHasPromotion(iPromoLoyal): iChanceUnits += 3
+           if pPlot.getUnit(i).isLoyal(): iChanceUnits += 3
            else: iChanceUnits += 1
 
 
@@ -12240,7 +12238,7 @@ class CvEventManager:
 #        bRebellion = True
 #
 #        # 2te ueberpruefung treue, loyale Einheiten gegenueber unzufriedene Bevoelkerung
-#        iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
+#        iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYAL")
 #        iLoyalUnits = 0
 #        for iUnit in range (pPlot.getNumUnits()):
 #          # Promotion Loyality = Nr 0
@@ -16538,7 +16536,7 @@ class CvEventManager:
            iPlot = self.myRandom(len(CivPlots), None)
            iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
            # Loyality disabled for elite units
-           iPromo2 = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
+           iPromo2 = gc.getInfoTypeForString("PROMOTION_LOYAL")
            iMinRanking = 0
            iMaxRanking = 4 # 4 = Veteran
 
@@ -16570,8 +16568,8 @@ class CvEventManager:
              for i in range(iAnz):
                  iRand = self.myRandom (len(lEliteUnits), None)
                  NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                 if NewUnit.isHasPromotion(iPromo2): NewUnit.setHasPromotion(iPromo2, False)
+                 NewUnit.setHasPromotion(iPromo, True)
+                 NewUnit.setHasPromotion(iPromo2, False)
                  # Unit Rang / Unit ranking
                  self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
                  NewUnit.setImmobileTimer(1)

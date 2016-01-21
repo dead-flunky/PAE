@@ -312,6 +312,10 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		.def("getExtraFirstStrikes", &CyUnit::getExtraFirstStrikes, "int ()")
 		.def("getExtraChanceFirstStrikes", &CyUnit::getExtraChanceFirstStrikes, "int ()")
 		.def("getExtraWithdrawal", &CyUnit::getExtraWithdrawal, "int ()")
+		//Flunky
+		.def("getExtraFlight", &CyUnit::getExtraFlight, "int ()")
+		.def("isLoyal", &CyUnit::isLoyal, "int ()")
+		// End Flunky
 		.def("getExtraCollateralDamage", &CyUnit::getExtraCollateralDamage, "int ()")
 		.def("getExtraEnemyHeal", &CyUnit::getExtraEnemyHeal, "int ()")
 		.def("getExtraNeutralHeal", &CyUnit::getExtraNeutralHeal, "int ()")

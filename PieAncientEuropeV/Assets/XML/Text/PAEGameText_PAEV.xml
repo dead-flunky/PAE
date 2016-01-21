@@ -892,22 +892,6 @@
      <Italian>Uno straniero porta i mistici dell'Induismo nel vostro paese.</Italian>
      <Spanish>Un forastero trae la m&#237;stica del hindu&#237;smo a tu pa&#237;s.</Spanish>
    </TEXT>
-  <!-- <TEXT>
-     <Tag>TXT_KEY_PROMOTION_MERCENARY_HELP</Tag>
-     <English>[ICON_BULLET]Unit easily defects to the enemy when losing</English>
-     <French>[ICON_BULLET]L'unit&#233; passe facilement &#224; l'ennemi apr&#232;s une d&#233;faite</French>
-     <German>[ICON_BULLET]Einheit l&#228;uft leicht zum Gegner &#252;ber, wenn sie geschlagen wird</German>
-     <Italian>[ICON_BULLET] Unit&#224; facilmente difetti al nemico quando perdono</Italian>
-     <Spanish>[ICON_BULLET]La unidad deserta f&#225;cilmente al enemigo cuando pierde</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_PROMOTION_LOYALITAT_HELP</Tag>
-     <English>[ICON_BULLET]Unit will no longer defect to the enemy</English>
-     <French>[ICON_BULLET]L'unit&#233; ne passe jamais &#224; l'ennemi</French>
-     <German>[ICON_BULLET]Einheit l&#228;uft nicht mehr zum Gegner &#252;ber</German>
-     <Italian>[ICON_BULLET] Unit&#224; non difetto il nemico pi&#249;</Italian>
-     <Spanish>[ICON_BULLET]La unidad no desertar&#225; al enemigo </Spanish>
-   </TEXT> -->
   <TEXT>
     <Tag>TXT_KEY_UNIT_FLIGHT_PROBABILITY</Tag>
     <English>[ICON_BULLET]Unit flees from a lost battle with %d1% chance</English>
@@ -915,14 +899,6 @@
     <German>[ICON_BULLET]Einheit hat %d1% Chance in einem verlorenen Kampf zu fl&#252;chten</German>
     <Italian>[ICON_BULLET]%d1% chance to flee in a lost battle</Italian>
     <Spanish>[ICON_BULLET]&#161;Probabilidad del %d1% de huir de una batalla perdida</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_UNIT_RENEGADE_PROBABILITY</Tag>
-    <English>[ICON_BULLET]Unit defects to the enemy %d1% more often when losing</English>
-    <French>[ICON_BULLET]L'unit&#233; passe facilement &#224; l'ennemi apr&#232;s une d&#233;faite</French>
-    <German>[ICON_BULLET]Einheit l&#228;uft %d1% leichter zum Gegner &#252;ber, wenn sie geschlagen wird</German>
-    <Italian>[ICON_BULLET] Unit&#224; facilmente difetti al nemico quando perdono</Italian>
-    <Spanish>[ICON_BULLET]La unidad deserta f&#225;cilmente al enemigo cuando pierde</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_FLIGHT_PROBABILITY_SHORT</Tag>
@@ -933,22 +909,6 @@
     <Spanish>[ICON_BULLET]&#161;Probabilidad del %d1% de huir de una batalla perdida</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_UNIT_RENEGADE_PROBABILITY_SHORT</Tag>
-    <English>[ICON_BULLET]%d1% defactation probability</English>
-    <French>[ICON_BULLET]%d1% de passer &#224; l'ennemi</French>
-    <German>[ICON_BULLET]%d1% Fahnenflucht</German>
-    <Italian>[ICON_BULLET]%d1% a passare al nemico</Italian>
-    <Spanish>[ICON_BULLET]%d1% a pasarse al enemigo</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_UNIT_LOYAL_PROBABILITY</Tag>
-    <English>[ICON_BULLET]Unit will rarely defect to the enemy</English>
-    <French>[ICON_BULLET]L'unit&#233; ne passe jamais &#224; l'ennemi</French>
-    <German>[ICON_BULLET]Einheit l&#228;uft selten zum Gegner &#252;ber</German>
-    <Italian>[ICON_BULLET] Unit&#224; non difetto il nemico pi&#249;</Italian>
-    <Spanish>[ICON_BULLET]La unidad no desertar&#225; al enemigo </Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_PROMOTION_FLIGHT_TEXT</Tag>
     <English>[ICON_BULLET]%D1_Change%% chance to flee in a lost battle</English>
     <French>[ICON_BULLET]%D1_Change%% de chances de fuir une bataille perdue</French>
@@ -957,13 +917,37 @@
     <Spanish>[ICON_BULLET]&#161;Probabilidad del %D1_Change%% de huir de una batalla perdida</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_PROMOTION_RENEGADE_TEXT</Tag>
-    <English>[ICON_BULLET]%d1% probability of defectation</English>
-    <French>[ICON_BULLET]L'unit&#233; passe facilement &#224; l'ennemi apr&#232;s une d&#233;faite</French>
-    <German>[ICON_BULLET]%d1% Wahrscheinlichkeit, zu desertieren</German>
-    <Italian>[ICON_BULLET] Unit&#224; facilmente difetti al nemico quando perdono</Italian>
-    <Spanish>[ICON_BULLET]La unidad deserta f&#225;cilmente al enemigo cuando pierde</Spanish>
-   </TEXT>
+    <Tag>TXT_KEY_UNIT_RENEGADE_PROBABILITY_SHORT</Tag>
+    <English>[ICON_BULLET]%d1% defactation probability</English>
+    <French>[ICON_BULLET]%d1% de passer &#224; l'ennemi</French>
+    <German>[ICON_BULLET]%d1% Fahnenflucht</German>
+    <Italian>[ICON_BULLET]%d1% a passare al nemico</Italian>
+    <Spanish>[ICON_BULLET]%d1% a pasarse al enemigo</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_LOYAL</Tag>
+    <English>[ICON_BULLET]Unit will never defect to the enemy</English>
+    <French>[ICON_BULLET]L'unit&#233; ne passe jamais &#224; l'ennemi</French>
+    <German>[ICON_BULLET]Einheit l&#228;uft nie zum Gegner &#252;ber</German>
+    <Italian>[ICON_BULLET] Unit&#224; non difetto il nemico pi&#249;</Italian>
+    <Spanish>[ICON_BULLET]La unidad no desertar&#225; al enemigo </Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_LOYAL_SHORT</Tag>
+    <English>[ICON_BULLET]Loyal</English>
+    <French>[ICON_BULLET]Loyal</French>
+    <German>[ICON_BULLET]Loyal</German>
+    <Italian>[ICON_BULLET]Leale</Italian>
+    <Spanish>[ICON_BULLET]Leal</Spanish>
+  </TEXT>
+   <TEXT>
+     <Tag>TXT_KEY_PROMOTION_LOYAL</Tag>
+     <English>[ICON_BULLET]Unit will no longer defect to the enemy</English>
+     <French>[ICON_BULLET]L'unit&#233; ne passe jamais &#224; l'ennemi</French>
+     <German>[ICON_BULLET]Einheit l&#228;uft nicht mehr zum Gegner &#252;ber</German>
+     <Italian>[ICON_BULLET] Unit&#224; non difetto il nemico pi&#249;</Italian>
+     <Spanish>[ICON_BULLET]La unidad no desertar&#225; al enemigo </Spanish>
+   </TEXT> 
    <TEXT>
      <Tag>TXT_KEY_MESSAGE_UNIT_FUROR_SUICIDE</Tag>
      <English>Our combative %s1 could win the fight but succumbed to injuries!</English>

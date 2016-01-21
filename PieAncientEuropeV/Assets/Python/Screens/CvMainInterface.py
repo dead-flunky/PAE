@@ -3346,7 +3346,7 @@ class CvMainInterface:
                     FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
                     FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
                     FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
+                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYAL"))
                     FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
                     iGold = 0
                     iRange = gc.getNumPromotionInfos()

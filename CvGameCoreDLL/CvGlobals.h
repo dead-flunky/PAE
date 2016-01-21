@@ -692,6 +692,10 @@ public:
 	int getNUM_UNIT_PREREQ_OR_BONUSES();
 	int getNUM_BUILDING_PREREQ_OR_BONUSES();
 	int getFOOD_CONSUMPTION_PER_POPULATION();
+	// Begin Flunky Health/Happy per Pop
+	int getHEALTH_PER_POPULATION();
+	int getHAPPY_PER_POPULATION();
+	// End Flunky
 	int getMAX_HIT_POINTS();
 	int getPATH_DAMAGE_WEIGHT();
 	int getHILLS_EXTRA_DEFENSE();
@@ -1115,6 +1119,10 @@ protected:
 	int m_iNUM_UNIT_PREREQ_OR_BONUSES;
 	int m_iNUM_BUILDING_PREREQ_OR_BONUSES;
 	int m_iFOOD_CONSUMPTION_PER_POPULATION;
+	// Flunky
+	int m_iHEALTH_PER_POPULATION;
+	int m_iHAPPY_PER_POPULATION;
+	// End Flunky
 	int m_iMAX_HIT_POINTS;
 	int m_iPATH_DAMAGE_WEIGHT;
 	int m_iHILLS_EXTRA_DEFENSE;

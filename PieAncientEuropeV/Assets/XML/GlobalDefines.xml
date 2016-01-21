@@ -355,6 +355,16 @@
     <DefineName>FOOD_CONSUMPTION_PER_POPULATION</DefineName>
     <iDefineIntVal>2</iDefineIntVal>
   </Define>
+  <!-- Flunky -->
+  <Define>
+    <DefineName>HEALTH_PER_POPULATION</DefineName>
+    <iDefineIntVal>2</iDefineIntVal>
+  </Define>
+  <Define>
+    <DefineName>HAPPY_PER_POPULATION</DefineName>
+    <iDefineIntVal>2</iDefineIntVal>
+  </Define>
+  <!-- End Flunky -->
   <Define>
     <DefineName>NEW_HURRY_MODIFIER</DefineName>
     <iDefineIntVal>0</iDefineIntVal>

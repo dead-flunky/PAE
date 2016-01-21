@@ -324,7 +324,8 @@ public:
 	int getExtraWithdrawal();
 	//Flunky
 	int getExtraFlight();
-	int getExtraLoyalty();
+	bool isLoyal();
+
 	int getExtraCollateralDamage();
 	int getExtraEnemyHeal();
 	int getExtraNeutralHeal();

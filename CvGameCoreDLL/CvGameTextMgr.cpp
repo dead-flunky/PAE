@@ -833,31 +833,17 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 		}
 
-		if (pUnit->flightProbability() > 0)
+		if (pUnit->isLoyal())
 		{
 			if (bShort)
 			{
 				szString.append(NEWLINE);
-				szString.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY_SHORT", pUnit->flightProbability()));
+				szString.append(gDLL->getText("TXT_KEY_UNIT_LOYAL_SHORT"));
 			}
 			else
 			{
 				szString.append(NEWLINE);
-				szString.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY", pUnit->flightProbability()));
-			}
-		}
-
-		if (pUnit->loyaltyProbability() > 0)
-		{
-			if (bShort)
-			{
-				szString.append(NEWLINE);
-				szString.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY_SHORT", GC.getDefineINT("MAX_LOYALTY_PROBABILITY") -pUnit->loyaltyProbability()));
-			}
-			else
-			{
-				szString.append(NEWLINE);
-				szString.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY", GC.getDefineINT("MAX_LOYALTY_PROBABILITY")-pUnit->loyaltyProbability()));
+				szString.append(gDLL->getText("TXT_KEY_UNIT_LOYAL"));
 			}
 		}
 
@@ -4137,10 +4123,10 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FLIGHT_TEXT", GC.getPromotionInfo(ePromotion).getFlightChange()));
 	}
-	if (GC.getPromotionInfo(ePromotion).getLoyaltyChange() != 0)
+	if (GC.getPromotionInfo(ePromotion).isLoyal())
 	{
 		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_RENEGADE_TEXT", -GC.getPromotionInfo(ePromotion).getLoyaltyChange()));
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_LOYAL"));
 	}
 	if (GC.getPromotionInfo(ePromotion).getCargoChange() != 0)
 	{
@@ -5836,25 +5822,6 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_WITHDRAWL_PROBABILITY", GC.getUnitInfo(eUnit).getWithdrawalProbability()));
-	}
-
-	if (GC.getUnitInfo(eUnit).getFlightProbability() > 0)
-	{
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FLIGHT_PROBABILITY", GC.getUnitInfo(eUnit).getFlightProbability()));
-	}	
-		
-        // Flunky TODO loyalty value range
-	if (GC.getUnitInfo(eUnit).getLoyaltyProbability() > 0)
-	{
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_LOYALTY_PROBABILITY", GC.getUnitInfo(eUnit).getLoyaltyProbability()));
-	}
-
-	else if (GC.getUnitInfo(eUnit).getLoyaltyProbability() < 0)
-	{
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_RENEGADE_PROBABILITY", GC.getUnitInfo(eUnit).getLoyaltyProbability()));
 	}
 
 	if (GC.getUnitInfo(eUnit).getCombatLimit() < GC.getMAX_HIT_POINTS() && GC.getUnitInfo(eUnit).getCombat() > 0 && !GC.getUnitInfo(eUnit).isOnlyDefensive())

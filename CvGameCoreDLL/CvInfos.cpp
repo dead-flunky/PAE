@@ -1587,7 +1587,7 @@ m_iInterceptChange(0),
 m_iEvasionChange(0),
 m_iWithdrawalChange(0),
 m_iFlightChange(0),
-m_iLoyaltyChange(0),
+m_bLoyal(0),
 m_iCargoChange(0),
 m_iCollateralDamageChange(0),
 m_iBombardRateChange(0),	
@@ -1735,8 +1735,8 @@ int CvPromotionInfo::getFlightChange() const{
 	return m_iFlightChange;
 }
 
-int CvPromotionInfo::getLoyaltyChange() const{
-	return m_iLoyaltyChange;
+bool CvPromotionInfo::isLoyal() const{
+	return m_bLoyal;
 }
 // End Flunky
 
@@ -1993,7 +1993,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iWithdrawalChange);	
 	//Flunky					
 	stream->Read(&m_iFlightChange);						
-	stream->Read(&m_iLoyaltyChange);	
+	stream->Read(&m_bLoyal);	
 	stream->Read(&m_iCargoChange);				
 	stream->Read(&m_iCollateralDamageChange);	
 	stream->Read(&m_iBombardRateChange);			
@@ -2090,7 +2090,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iWithdrawalChange);	
 	//Flunky
 	stream->Write(m_iFlightChange);						
-	stream->Write(m_iLoyaltyChange);		
+	stream->Write(m_bLoyal);		
 	stream->Write(m_iCargoChange);				
 	stream->Write(m_iCollateralDamageChange);	
 	stream->Write(m_iBombardRateChange);			
@@ -2179,7 +2179,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iWithdrawalChange, "iWithdrawalChange");
 	//Flunky
 	pXML->GetChildXmlValByName(&m_iFlightChange, "iFlightChange");
-	pXML->GetChildXmlValByName(&m_iLoyaltyChange, "iLoyaltyChange");
+	pXML->GetChildXmlValByName(&m_bLoyal, "bLoyal");
 	pXML->GetChildXmlValByName(&m_iCargoChange, "iCargoChange");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageChange, "iCollateralDamageChange");
 	pXML->GetChildXmlValByName(&m_iBombardRateChange, "iBombardRateChange");
@@ -3027,8 +3027,6 @@ m_iChanceFirstStrikes(0),
 m_iInterceptionProbability(0),
 m_iEvasionProbability(0),
 m_iWithdrawalProbability(0),
-m_iFlightProbability(0),
-m_iLoyaltyProbability(0),
 m_iCollateralDamage(0),
 m_iCollateralDamageLimit(0),
 m_iCollateralDamageMaxUnits(0),
@@ -3364,14 +3362,6 @@ int CvUnitInfo::getWithdrawalProbability() const
 	return m_iWithdrawalProbability;
 }
 
-int CvUnitInfo::getFlightProbability() const{
-	return m_iFlightProbability;
-}
-
-// Flunky TODO meaningful value
-int CvUnitInfo::getLoyaltyProbability() const{
-	return m_iLoyaltyProbability;
-}
 int CvUnitInfo::getCollateralDamage() const		
 {
 	return m_iCollateralDamage;
@@ -4221,9 +4211,6 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iInterceptionProbability);
 	stream->Read(&m_iEvasionProbability);
 	stream->Read(&m_iWithdrawalProbability);
-	//Flunky
-	stream->Read(&m_iFlightProbability);
-	stream->Read(&m_iLoyaltyProbability);
 	stream->Read(&m_iCollateralDamage);
 	stream->Read(&m_iCollateralDamageLimit);
 	stream->Read(&m_iCollateralDamageMaxUnits);
@@ -4524,9 +4511,6 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iInterceptionProbability);
 	stream->Write(m_iEvasionProbability);
 	stream->Write(m_iWithdrawalProbability);
-	//Flunky
-	stream->Write(m_iFlightProbability);
-	stream->Write(m_iLoyaltyProbability);
 	stream->Write(m_iCollateralDamage);
 	stream->Write(m_iCollateralDamageLimit);
 	stream->Write(m_iCollateralDamageMaxUnits);
@@ -4917,9 +4901,6 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iInterceptionProbability, "iInterceptionProbability");
 	pXML->GetChildXmlValByName(&m_iEvasionProbability, "iEvasionProbability");
 	pXML->GetChildXmlValByName(&m_iWithdrawalProbability, "iWithdrawalProb");
-	//Flunky
-	pXML->GetChildXmlValByName(&m_iFlightProbability, "iFlightProb");
-	pXML->GetChildXmlValByName(&m_iLoyaltyProbability, "iLoyaltyProb");
 	pXML->GetChildXmlValByName(&m_iCollateralDamage, "iCollateralDamage");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageLimit, "iCollateralDamageLimit");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageMaxUnits, "iCollateralDamageMaxUnits");

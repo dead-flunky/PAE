@@ -492,7 +492,7 @@ public:
 
 	// Flunky
 	int getFlightChange() const;
-	int getLoyaltyChange() const;
+	bool isLoyal() const;
 	const TCHAR* getSound() const;				// Exposed to Python
 	void setSound(const TCHAR* szVal);
 
@@ -535,7 +535,7 @@ protected:
 	int m_iWithdrawalChange;	
 	// Flunky
 	int m_iFlightChange;
-	int m_iLoyaltyChange;
+	int m_bLoyal;
 	// End Flunky
 	int m_iCargoChange;				
 	int m_iCollateralDamageChange;	
@@ -861,8 +861,6 @@ public:
 	int getPowerValue() const;								// Exposed to Python
 	int getUnitClassType() const;							// Exposed to Python
 	int getSpecialUnitType() const;						// Exposed to Python
-	//Orig
-	//int getUnitCaptureClassType() const;			// Exposed to Python
 	//Flunky
 	int getUnitCaptureType() const;			// Exposed to Python
 	int getUnitCombatType() const;						// Exposed to Python
@@ -973,10 +971,6 @@ public:
 	int getLeaderPromotion() const;   // Exposed to Python
 	int getLeaderExperience() const;				// Exposed to Python
 
-	
-	// Flunky
-	int getFlightProbability() const;
-	int getLoyaltyProbability() const;
 	const TCHAR* getEarlyArtDefineTag(int i, UnitArtStyleTypes eStyle) const;				// Exposed to Python
 	void setEarlyArtDefineTag(int i, const TCHAR* szVal);
 	const TCHAR* getLateArtDefineTag(int i, UnitArtStyleTypes eStyle) const;				// Exposed to Python
@@ -1032,9 +1026,6 @@ protected:
 	int m_iInterceptionProbability;
 	int m_iEvasionProbability;
 	int m_iWithdrawalProbability;
-	//Flunky
-	int m_iFlightProbability;
-	int m_iLoyaltyProbability;
 	int m_iCollateralDamage;
 	int m_iCollateralDamageLimit;
 	int m_iCollateralDamageMaxUnits;
@@ -1056,8 +1047,6 @@ protected:
 	int m_iPowerValue;						
 	int m_iUnitClassType;
 	int m_iSpecialUnitType;				
-	//orig
-	//int m_iUnitCaptureClassType;
 	//flunky
 	int m_iUnitCaptureType;
 	int m_iUnitCombatType;				
