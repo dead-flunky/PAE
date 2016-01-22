@@ -61,7 +61,7 @@ public:
 	void getCivilizationCityName(CvWString& szBuffer, CivilizationTypes eCivilization) const;
 	bool isCityNameValid(CvWString& szName, bool bTestDestroyed = true) const;
 
-	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION);							// Exposed to Python
+	CvUnit* initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI = NO_UNITAI, DirectionTypes eFacingDirection = NO_DIRECTION, CivilizationTypes eEthnic = NO_CIVILIZATION, ReligionTypes eReligion = NO_RELIGION);							// Exposed to Python
 	void disbandUnit(bool bAnnounce);																															// Exposed to Python
 	void killUnits();																																			// Exposed to Python
 
@@ -366,7 +366,7 @@ public:
 	int getHurryModifier() const;																																					// Exposed to Python
 	void changeHurryModifier(int iChange);
 
-	void createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY);
+	void createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY, CivilizationTypes eEthnic = NO_CIVILIZATION, ReligionTypes eReligion = NO_RELIGION);
 
 	int getGreatPeopleCreated() const;																																		// Exposed to Python
 	void incrementGreatPeopleCreated();
@@ -814,7 +814,7 @@ public:
 	void changeSpecialistValidCount(SpecialistTypes eIndex, int iChange);												
 														
 	// Begin Flunky
-	int getMaxSpecialistCount(SpecialistTypes eIndex) const;  // TODO expose to Python
+	int getMaxSpecialistCount(SpecialistTypes eIndex) const;  // Exposed to Python
 	void changeMaxSpecialistCount(SpecialistTypes eIndex, int iChange);
 	// End Flunky
 	DllExport bool isResearchingTech(TechTypes eIndex) const;																					// Exposed to Python					

@@ -4209,14 +4209,14 @@ public:
 	int getDomainFreeExperience(int i) const; // Exposed to Python
 	int getDomainProductionModifier(int i) const; // Exposed to Python
 	
-	int getFreeSpecialistSlot(int i, int j) const;	 // TODO Exposed to Python
-	bool isAnyFreeSpecialistSlot() const; // TODO Exposed to Python
+	int getFreeSpecialistSlot(int i, int j) const;	 // Exposed to Python
+	bool isAnyFreeSpecialistSlot() const; // Exposed to Python
 
-	int getSpecialistYieldChange(int i, int j) const; // TODO Exposed to Python
-	int* getSpecialistYieldChangeArray(int i) const; // TODO Exposed to Python
-	bool isAnySpecialistYieldChange() const; // TODO Exposed to Python
+	int getSpecialistYieldChange(int i, int j) const; // Exposed to Python
+	int* getSpecialistYieldChangeArray(int i) const;
+	bool isAnySpecialistYieldChange() const; // Exposed to Python
 	
-	int getGoldenAgeModifier() const; // TODO Exposed to Python
+	int getGoldenAgeModifier() const; // Exposed to Python
 	// End Flunky
 	bool read(CvXMLLoadUtility* pXML);
 

@@ -325,6 +325,8 @@ public:
 	//Flunky
 	int getExtraFlight();
 	bool isLoyal();
+	int getReligion();
+	int getEthnic();
 
 	int getExtraCollateralDamage();
 	int getExtraEnemyHeal();

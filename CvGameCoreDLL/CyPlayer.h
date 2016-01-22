@@ -417,6 +417,9 @@ public:
 
 	int getUpkeepCount(int /*UpkeepTypes*/ eIndex);
 	bool isSpecialistValid(int /*SpecialistTypes*/ iIndex);
+	// Flunky
+	int getMaxSpecialistCount(int /*SpecialistTypes*/ iIndex) const;
+	// End Flunky
 	bool isResearchingTech(int /*TechTypes*/ iIndex);
 	int /*CivicTypes*/ getCivics(int /*CivicOptionTypes*/ iIndex);
 	int getSingleCivicUpkeep(int /*CivicTypes*/ eCivic, bool bIgnoreAnarchy);

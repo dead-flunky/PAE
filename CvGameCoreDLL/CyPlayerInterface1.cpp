@@ -401,6 +401,10 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getUpkeepCount", &CyPlayer::getUpkeepCount, "int (int (UpkeepTypes) eIndex)")
 
 		.def("isSpecialistValid", &CyPlayer::isSpecialistValid, "bool (int /*SpecialistTypes*/ iIndex)")
+
+		// Flunky
+		.def("getMaxSpecialistCount", &CyPlayer::getMaxSpecialistCount, "int (int /*SpecialistTypes*/ iIndex)")
+		// End Flunky
 		.def("isResearchingTech", &CyPlayer::isResearchingTech, "bool (int /*TechTypes*/ iIndex)")
 		.def("getCivics", &CyPlayer::getCivics, "int /*CivicTypes*/ (int /*CivicOptionTypes*/ iIndex)")
 		.def("getSingleCivicUpkeep", &CyPlayer::getSingleCivicUpkeep, "int (int /*CivicTypes*/ eCivic, bool bIgnoreAnarchy)")

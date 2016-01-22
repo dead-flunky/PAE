@@ -1181,7 +1181,7 @@ void CvCity::updateVisibility()
 
 void CvCity::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience)
 {
-	GET_PLAYER(getOwnerINLINE()).createGreatPeople(eGreatPersonUnit, bIncrementThreshold, bIncrementExperience, getX_INLINE(), getY_INLINE());
+	GET_PLAYER(getOwnerINLINE()).createGreatPeople(eGreatPersonUnit, bIncrementThreshold, bIncrementExperience, getX_INLINE(), getY_INLINE(), chooseEthnic(), chooseReligion());
 }
 
 
@@ -3528,7 +3528,7 @@ CvUnit* CvCity::initConscriptedUnit()
 		eCityAI = NO_UNITAI;
 	}
 
-	CvUnit* pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eConscriptUnit, getX_INLINE(), getY_INLINE(), eCityAI);
+	CvUnit* pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eConscriptUnit, getX_INLINE(), getY_INLINE(), eCityAI, NO_DIRECTION, chooseEthnic(), chooseReligion());
 	FAssertMsg(pUnit != NULL, "pUnit expected to be assigned (not NULL)");
 
 	if (NULL != pUnit)
@@ -4122,7 +4122,7 @@ void CvCity::setHeadquarters(CorporationTypes eIndex)
 
 		if (eFreeUnit != NO_UNIT)
 		{
-			GET_PLAYER(getOwnerINLINE()).initUnit(eFreeUnit, getX_INLINE(), getY_INLINE());
+			GET_PLAYER(getOwnerINLINE()).initUnit(eFreeUnit, getX_INLINE(), getY_INLINE(), NO_UNITAI, NO_DIRECTION, chooseEthnic(), chooseReligion());
 		}
 	}
 }
@@ -4500,7 +4500,7 @@ int CvCity::unhealthyPopulation(bool bNoAngry, int iExtra) const
 		return 0;
 	}
 	// PAE - two per Pop
-	int modifiedPop = getPopulation() + iExtra - (bNoAngry ? angryPopulation(iExtra) : 0)
+	int modifiedPop = getPopulation() + iExtra - (bNoAngry ? angryPopulation(iExtra) : 0);
 	modifiedPop *= GC.getHEALTH_PER_POPULATION();
 	return std::max(0, modifiedPop);
 }
@@ -10974,7 +10974,7 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 			}
 
 
-			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTrainUnit, getX_INLINE(), getY_INLINE(), eTrainAIUnit);
+			pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTrainUnit, getX_INLINE(), getY_INLINE(), eTrainAIUnit, NO_DIRECTION, chooseEthnic(), chooseReligion());
 			FAssertMsg(pUnit != NULL, "pUnit is expected to be assigned a valid unit object");
 
 			pUnit->finishMoves();
@@ -13917,6 +13917,63 @@ int CvCity::getBestYieldAvailable(YieldTypes eYield) const
 	return iBestYieldAvailable;
 }
 
+// Flunky
+
+CivilizationTypes CvCity::chooseEthnic() const 
+{
+	int iPercent = 0;
+	std::vector<CivilizationTypes> aCiv;
+	std::vector<int> iWeights;
+	int iTotal = 0;
+	int iCount = 0;
+
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			iPercent = calculateCulturePercent((PlayerTypes)iI);
+			if (iPercent > 0) {
+				iWeights.push_back(iPercent);
+				aCiv.push_back(GET_PLAYER((PlayerTypes)iI).getCivilizationType());
+				iTotal += iPercent;
+				iCount++;
+			}
+		}
+	}
+
+	int	iRand = GC.getGameINLINE().getSorenRandNum(iTotal, "Unit Ethnic"); 
+	
+	for (int iI = 0; iI < iCount; iI++)
+	{
+		if (iWeights.at(iI) >= iRand)
+		{
+			return aCiv.at(iI);
+		}
+		iRand -= iWeights.at(iI);
+	}
+
+	FAssert(true, "Shouldn't get here");
+}
+
+ReligionTypes CvCity::chooseReligion() const
+{
+	int iCount = 0;
+	std::vector<ReligionTypes> aReligion;
+	
+	for (int iI = 0; iI < GC.getNumReligionInfos(); iI++)
+	{
+		if (isHasReligion((ReligionTypes)iI))
+		{
+			aReligion.push_back((ReligionTypes)iI);
+			iCount++;
+		}
+	}
+	if (iCount > 0) {
+		int iRand = GC.getGameINLINE().getSorenRandNum(iCount, "Unit Religion");
+		return aReligion.at(iRand);
+	}
+}
+// End Flunky
 bool CvCity::isAutoRaze() const
 {
 	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_CITY_RAZING))

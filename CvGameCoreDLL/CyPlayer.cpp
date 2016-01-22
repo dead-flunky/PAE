@@ -1783,6 +1783,12 @@ bool CyPlayer::isSpecialistValid(int /*SpecialistTypes*/ iIndex)
 	return m_pPlayer ? m_pPlayer->isSpecialistValid((SpecialistTypes)iIndex) : false;
 }
 
+// Flunky
+int CyPlayer::getMaxSpecialistCount(int /*SpecialistTypes*/ iIndex) const
+{
+	return m_pPlayer ? m_pPlayer->getMaxSpecialistCount((SpecialistTypes)iIndex) : false;
+}
+// End Flunky
 bool CyPlayer::isResearchingTech(int /*TechTypes*/ iIndex)
 {
 	return m_pPlayer ? m_pPlayer->isResearchingTech((TechTypes)iIndex) : false;

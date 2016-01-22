@@ -3435,7 +3435,7 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 			}
 		}
 
-		// Begin Flunky TODO
+		// Begin Flunky
 		for (iI = 0; iI < NUM_DOMAIN_TYPES; ++iI)
 		{
 			if (GC.getTraitInfo(eTrait).getDomainFreeExperience(iI) != 0)
@@ -3468,7 +3468,7 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 			szHelpString.append(gDLL->getText("TXT_KEY_BUILDING_GOLDENAGE_MOD", GC.getTraitInfo(eTrait).getGoldenAgeModifier()));
 		}
 
-		// End Flunky TODO
+		// End Flunky
 
 		// Increase Building/Unit Production Speeds
 		iLast = 0;

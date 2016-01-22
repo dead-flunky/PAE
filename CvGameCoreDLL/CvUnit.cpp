@@ -82,7 +82,7 @@ void CvUnit::reloadEntity()
 }
 
 
-void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
+void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, CivilizationTypes eEthnic, ReligionTypes eReligion)
 {
 	CvWString szBuffer;
 	int iUnitName;
@@ -205,6 +205,24 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 				setHasPromotion(((PromotionTypes)iJ), true);
 			}
 		}
+	}
+
+	if (NO_CIVILIZATION == eEthnic) 
+	{
+		setEthnic(GET_PLAYER(getOwnerINLINE()).getCivilizationType());
+	}
+	else
+	{
+		setEthnic(eEthnic);
+	}
+
+	if (NO_RELIGION == eReligion)
+	{
+		setReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion());
+	}
+	else
+	{
+		setReligion(eReligion);
 	}
 
 	if (getDomainType() == DOMAIN_LAND)
@@ -653,6 +671,9 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	// Flunky - include slaves and renegades
 	bool* m_pabRenegadePromotions = NULL;
 	int m_iRenegadeDamage = 0;
+
+	CivilizationTypes eEthnic = getEthnic();
+	ReligionTypes eReligion = getReligion();
 	if (eCapturingPlayer != NO_PLAYER)
 	{
 		if(isRenegade()){
@@ -679,7 +700,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	{
 		if (GET_PLAYER(eCapturingPlayer).isHuman() || GET_PLAYER(eCapturingPlayer).AI_captureUnit(eCaptureUnitType, pPlot) || 0 == GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
 		{
-			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE(), NO_UNITAI, NO_DIRECTION, eEthnic, eReligion);
 
 			if (pkCapturedUnit != NULL)
 			{
@@ -3221,7 +3242,7 @@ void CvUnit::gift(bool bTestTransport)
 	}
 
 	FAssertMsg(plot()->getOwnerINLINE() != NO_PLAYER, "plot()->getOwnerINLINE() is not expected to be equal with NO_PLAYER");
-	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
+	pGiftUnit = GET_PLAYER(plot()->getOwnerINLINE()).initUnit(getUnitType(), getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, getEthnic(), getReligion());
 
 	FAssertMsg(pGiftUnit != NULL, "GiftUnit is not assigned a valid value");
 
@@ -7302,7 +7323,7 @@ void CvUnit::upgrade(UnitTypes eUnit)
 
 	GET_PLAYER(getOwnerINLINE()).changeGold(-(upgradePrice(eUnit)));
 
-	pUpgradeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), AI_getUnitAIType());
+	pUpgradeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), AI_getUnitAIType(), NO_DIRECTION, getEthnic(), getReligion());
 
 	FAssertMsg(pUpgradeUnit != NULL, "UpgradeUnit is not assigned a valid value");
 
@@ -8914,7 +8935,7 @@ int CvUnit::renegadeProbability(const CvUnit* pOther) const
 	}
 }
 
-// Flunky - TODO meaningful value. Maybe depending on Civic
+// Flunky
 int CvUnit::slaveryProbability(const CvUnit* pOther) const
 {
 	if (!canBeEnslavedBy(pOther))
@@ -12275,6 +12296,16 @@ ReligionTypes CvUnit::getReligion() const
 CivilizationTypes CvUnit::getEthnic() const
 {
 	return m_eEthnic;
+}
+
+void CvUnit::setReligion(ReligionTypes eReligion)
+{
+	m_eReligion = eReligion;
+}
+
+void CvUnit::setEthnic(CivilizationTypes eEthnic)
+{
+	m_eEthnic = eEthnic;
 }
 
 // Returns true if we were intercepted...

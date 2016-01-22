@@ -2040,7 +2040,7 @@ bool CvPlayer::isCityNameValid(CvWString& szName, bool bTestDestroyed) const
 }
 
 
-CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection)
+CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, CivilizationTypes eEthnic, ReligionTypes eReligion)
 {
 	PROFILE_FUNC();
 
@@ -2050,7 +2050,7 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 	FAssertMsg(pUnit != NULL, "Unit is not assigned a valid value");
 	if (NULL != pUnit)
 	{
-		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? ((UnitAITypes)(GC.getUnitInfo(eUnit).getDefaultUnitAIType())) : eUnitAI), getID(), iX, iY, eFacingDirection);
+		pUnit->init(pUnit->getID(), eUnit, ((eUnitAI == NO_UNITAI) ? ((UnitAITypes)(GC.getUnitInfo(eUnit).getDefaultUnitAIType())) : eUnitAI), getID(), iX, iY, eFacingDirection, eEthnic, eReligion);
 	}
 
 	return pUnit;
@@ -7377,7 +7377,7 @@ void CvPlayer::foundReligion(ReligionTypes eReligion, ReligionTypes eSlotReligio
 				{
 					for (int i = 0; i < GC.getReligionInfo(eSlotReligion).getNumFreeUnits(); ++i)
 					{
-						initUnit(eFreeUnit, pBestCity->getX_INLINE(), pBestCity->getY_INLINE());
+						initUnit(eFreeUnit, pBestCity->getX_INLINE(), pBestCity->getY_INLINE(), NO_UNITAI, NO_DIRECTION, getCivilizationType(), eReligion);
 					}
 				}
 			}
@@ -13877,8 +13877,10 @@ bool CvPlayer::doEspionageMission(EspionageMissionTypes eMission, PlayerTypes eT
 				UnitTypes eUnitType = pUnit->getUnitType();
 				int iX = pUnit->getX_INLINE();
 				int iY = pUnit->getY_INLINE();
+				CivilizationTypes eEthnic = pUnit->getEthnic();
+				ReligionTypes eReligion = pUnit->getReligion();
 				pUnit->kill(false, getID());
-				initUnit(eUnitType, iX, iY, NO_UNITAI);
+				initUnit(eUnitType, iX, iY, NO_UNITAI, NO_DIRECTION, eEthnic, eReligion);
 
 				bSomethingHappened = true;
 			}
@@ -16785,9 +16787,9 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iInflationModifier);
 }
 
-void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY)
+void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY, CivilizationTypes eEthnic, ReligionTypes eReligion)
 {
-	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY);
+	CvUnit* pGreatPeopleUnit = initUnit(eGreatPersonUnit, iX, iY, NO_UNITAI, NO_DIRECTION, eEthnic, eReligion);
 	if (NULL == pGreatPeopleUnit)
 	{
 		FAssert(false);

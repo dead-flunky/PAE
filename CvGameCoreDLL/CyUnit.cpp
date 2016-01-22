@@ -1342,6 +1342,16 @@ bool CyUnit::isLoyal()
 	return m_pUnit ? m_pUnit->isLoyal() : false;
 }
 
+int CyUnit::getEthnic()
+{
+	return m_pUnit ? m_pUnit->getEthnic() : -1;
+}
+
+int CyUnit::getReligion()
+{
+	return m_pUnit ? m_pUnit->getReligion() : -1;
+}
+
 int CyUnit::getExtraCollateralDamage()
 {
 	return m_pUnit ? m_pUnit->getExtraCollateralDamage() : -1;

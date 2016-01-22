@@ -314,7 +314,9 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		.def("getExtraWithdrawal", &CyUnit::getExtraWithdrawal, "int ()")
 		//Flunky
 		.def("getExtraFlight", &CyUnit::getExtraFlight, "int ()")
-		.def("isLoyal", &CyUnit::isLoyal, "int ()")
+		.def("isLoyal", &CyUnit::isLoyal, "bool ()")
+		.def("getEthnic", &CyUnit::getEthnic, "int ()")
+		.def("getReligion", &CyUnit::getReligion, "int ()")
 		// End Flunky
 		.def("getExtraCollateralDamage", &CyUnit::getExtraCollateralDamage, "int ()")
 		.def("getExtraEnemyHeal", &CyUnit::getExtraEnemyHeal, "int ()")

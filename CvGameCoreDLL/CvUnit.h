@@ -73,7 +73,7 @@ public:
 	virtual ~CvUnit();
 	
 	void reloadEntity();
-	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection);
+	void init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection, CivilizationTypes eEthnic = NO_CIVILIZATION, ReligionTypes eReligion = NO_RELIGION);
 	void uninit();
 	void reset(int iID = 0, UnitTypes eUnit = NO_UNIT, PlayerTypes eOwner = NO_PLAYER, bool bConstructorCall = false);
 	void setupGraphical();
@@ -574,6 +574,8 @@ public:
 	CvPlot* getRenegadePlot();
 	ReligionTypes getReligion() const;
 	CivilizationTypes getEthnic() const;
+	void setReligion(ReligionTypes eReligion);
+	void setEthnic(CivilizationTypes eEthnic);
 
 
 	int getExtraCollateralDamage() const;																											// Exposed to Python

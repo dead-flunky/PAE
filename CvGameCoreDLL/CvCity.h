@@ -936,6 +936,10 @@ public:
 
 	int getBestYieldAvailable(YieldTypes eYield) const;
 
+	// Flunky
+	CivilizationTypes chooseEthnic() const;
+	ReligionTypes chooseReligion() const;
+
 protected:
 
 	int m_iID;
