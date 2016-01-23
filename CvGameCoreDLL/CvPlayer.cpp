@@ -7348,10 +7348,11 @@ void CvPlayer::foundReligion(ReligionTypes eReligion, ReligionTypes eSlotReligio
 
 			iValue /= (pLoopCity->getReligionCount() + 1);
 
-			if (pLoopCity->isCapital())
+			// PAE: bevorzugt in der HS gruenden
+			/*if (pLoopCity->isCapital())
 			{
 				iValue /= 8;
-			}
+			}*/
 
 			iValue = std::max(1, iValue);
 

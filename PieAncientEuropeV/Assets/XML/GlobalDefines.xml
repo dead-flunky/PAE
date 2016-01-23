@@ -358,11 +358,11 @@
   <!-- Flunky -->
   <Define>
     <DefineName>HEALTH_PER_POPULATION</DefineName>
-    <iDefineIntVal>2</iDefineIntVal>
+    <iDefineIntVal>1</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>HAPPY_PER_POPULATION</DefineName>
-    <iDefineIntVal>2</iDefineIntVal>
+    <iDefineIntVal>1</iDefineIntVal>
   </Define>
   <!-- End Flunky -->
   <Define>

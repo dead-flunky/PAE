@@ -471,12 +471,12 @@ class CvGameUtils:
         return iTech
 
 
-      # Fuer Abu Simbel beimm Nubier
+      # Fuer Abu Simbel beim Nubier
       if iCiv == gc.getInfoTypeForString('CIVILIZATION_NUBIA'):
         iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
         if not eTeam.isHasTech(iTech):
           return iTech
-		  
+          
       # 10. Kurzbogen beeline ueber Speerspitzen
       iTech = gc.getInfoTypeForString('TECH_ARCHERY2')
       if not eTeam.isHasTech(iTech):
@@ -677,7 +677,7 @@ class CvGameUtils:
       if not eTeam.isHasTech(iTech):
         if pPlayer.canResearch(iTech, False):
           return iTech
-		  
+          
     if eTeam.isHasTech(gc.getInfoTypeForString('TECH_GREEK')):
       iTech = gc.getInfoTypeForString('TECH_PHALANX')
       if not eTeam.isHasTech(iTech):
@@ -1220,7 +1220,7 @@ class CvGameUtils:
               iX = pUnit.getX()
               iY = pUnit.getY()
               # Create a new unit
-              NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
               NewUnit.setExperience(pUnit.getExperience(), -1)
               NewUnit.setLevel(pUnit.getLevel())
               NewUnit.changeMoves(90)
@@ -1569,7 +1569,7 @@ class CvGameUtils:
             pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
             if pPlot.getOwner() == iOwner:
 
-                 pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                 pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
 
                  iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT4")
                  if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)

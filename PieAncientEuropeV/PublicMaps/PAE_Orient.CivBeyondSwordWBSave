@@ -2466,7 +2466,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=4,y=46
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         TerrainType=TERRAIN_GRASS
         PlotType=1
         TeamReveal=0,
@@ -29962,7 +29962,7 @@ BeginPlot
         isNOfRiver
         RiverWEDirection=3
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=0
         TerrainType=TERRAIN_GRASS
         PlotType=1

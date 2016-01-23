@@ -414,7 +414,8 @@ class CvWorldBuilderScreen:
   ## Python Effects ##
     elif self.iPlayerAddMode == "Units":
       for i in xrange(iChange):
-        gc.getPlayer(self.m_iCurrentPlayer).initUnit(self.iSelection, self.m_pCurrentPlot.getX(), self.m_pCurrentPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)
+        player = gc.getPlayer(self.m_iCurrentPlayer)
+        player.initUnit(self.iSelection, self.m_pCurrentPlot.getX(), self.m_pCurrentPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION, player.getCivilizationType(), player.getStateReligion())
     elif self.iPlayerAddMode == "Buildings":
       if self.m_pCurrentPlot.isCity():
         pCity = self.m_pCurrentPlot.getPlotCity()

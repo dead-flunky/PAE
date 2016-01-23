@@ -481,6 +481,9 @@ public:
 	std::string getScriptData() const;
 	void setScriptData(std::string szNewValue);
 
+	int chooseEthnic();
+	int chooseReligion();
+
 private:
 	CvCity* m_pCity;
 };

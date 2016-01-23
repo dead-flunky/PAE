@@ -572,8 +572,8 @@ public:
 	void setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot);
 	bool isSlavery();
 	CvPlot* getRenegadePlot();
-	ReligionTypes getReligion() const;
-	CivilizationTypes getEthnic() const;
+	ReligionTypes getReligion() const; // Exposed to Python
+	CivilizationTypes getEthnic() const;  // Exposed to Python
 	void setReligion(ReligionTypes eReligion);
 	void setEthnic(CivilizationTypes eEthnic);
 

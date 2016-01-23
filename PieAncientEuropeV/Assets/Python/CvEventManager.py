@@ -636,7 +636,7 @@ class CvEventManager:
         popupInfo.setText(szBuffer)
         popupInfo.addPopup(iData2)
 
-        pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
 
 
 
@@ -1344,8 +1344,8 @@ class CvEventManager:
 
           if iNum > 0:
             for _ in itertools.repeat(None, iNum):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             pCity.setPopulation(iNum)
       elif iData5 == 2:
         if pCity != None:
@@ -1353,7 +1353,7 @@ class CvEventManager:
           iBeute = int(pCity.getPopulation() / 2) + 1
           ##if iBeute > 0: das ist >=1
           for _ in itertools.repeat(None, iBeute):
-            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
 
           pPlayer.disband(pCity)
 
@@ -1473,7 +1473,8 @@ class CvEventManager:
                 pPlayer.changeGold(-iCost)
                 gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pOrigin = random.choice(Neighbors)
+                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
                 NewUnit.setHasPromotion(iPromo, True)
                 NewUnit.setImmobileTimer(1)
                 # Unit Rang / Unit ranking
@@ -1563,7 +1564,8 @@ class CvEventManager:
                 pPlayer.changeGold(-iCost)
                 gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pOrigin = random.choice(Neighbors)
+                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
                 NewUnit.setHasPromotion(iPromo, True)
                 #NewUnit.finishMoves()
                 NewUnit.setImmobileTimer(1)
@@ -1713,7 +1715,8 @@ class CvEventManager:
                 pPlayer.changeGold(-iCost)
                 gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pOrigin = random.choice(Neighbors)
+                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
                 NewUnit.setHasPromotion(iPromo, True)
                 #NewUnit.finishMoves()
                 NewUnit.setImmobileTimer(1)
@@ -1830,7 +1833,8 @@ class CvEventManager:
                 pPlayer.changeGold(-iCost)
                 gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pOrigin = random.choice(Neighbors)
+                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
                 NewUnit.setHasPromotion(iPromo, True)
                 #NewUnit.finishMoves()
                 NewUnit.setImmobileTimer(1)
@@ -1889,7 +1893,8 @@ class CvEventManager:
                 pPlayer.changeGold(-iCost)
                 gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pOrigin = random.choice(Neighbors)
+                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())                
                 NewUnit.setHasPromotion(iPromo, True)
                 NewUnit.setImmobileTimer(1)
                 # Unit Rang / Unit ranking
@@ -2374,7 +2379,7 @@ class CvEventManager:
        pPlayer = gc.getPlayer(iData4)
        pUnit = pPlayer.getUnit(iData5)
 
-       pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+       pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
 
        self.doRetireVeteran(pUnit)
 
@@ -2424,8 +2429,7 @@ class CvEventManager:
          # Unload units: geht net weil darin canUnload geprueft wird
          #pUnit.doCommand(CommandTypes.COMMAND_UNLOAD_ALL, -1, -1 )
 
-         #NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-         NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pUnit.getFacingDirection()))
+         NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pUnit.getFacingDirection()), pUnit.getEthnic(), pUnit.getReligion())
          NewUnit.setExperience(pUnit.getExperience(), -1)
          NewUnit.setLevel(pUnit.getLevel())
          NewUnit.setDamage(pUnit.getDamage(), -1)
@@ -2444,13 +2448,13 @@ class CvEventManager:
            if pUnit.isHasPromotion(j):
               NewUnit.setHasPromotion(j, True)
 
-         # Veteran und Mercenary Promo checken
-         # Veteran ohne Mercenary bleibt ohne Mercenary
+         #Veteran und Mercenary Promo checken
+         #Veteran ohne Mercenary bleibt ohne Mercenary
          iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
          if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
            if not pUnit.isHasPromotion(iPromoMercenary):
              if NewUnit.isHasPromotion(iPromoMercenary):
-                NewUnit.setHasPromotion(iPromoMercenary, False)
+               NewUnit.setHasPromotion(iPromoMercenary, False)
 
          # Original unit killen
          pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
@@ -2513,7 +2517,7 @@ class CvEventManager:
            elif iData4 == 3 and bUnit4: iUnit = iUnit4
 
            if iUnit != -1:
-               NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+               NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
                NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
                NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
                NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
@@ -2976,7 +2980,7 @@ class CvEventManager:
        if iData5 == -1:
          # wenn es nur Gladiatoren gibt, automatisch einen abziehen
          if iCityGlads >= 1 and iCitySlaves == 0:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(15, -1)
             iCityGlads -= 1
@@ -2984,21 +2988,21 @@ class CvEventManager:
 
            # wenns nur Haussklaven gibt
            if iCityGlads == 0 and iCitySlaves == iCitySlavesHaus:
-             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
              NewUnit.finishMoves()
              pCity.changeFreeSpecialistCount(16, -1)
              iCitySlavesHaus -= 1
              iCitySlaves -= 1
            # wenns nur Feldsklaven gibt
            elif iCityGlads == 0 and iCitySlaves == iCitySlavesFood:
-             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
              NewUnit.finishMoves()
              pCity.changeFreeSpecialistCount(17, -1)
              iCitySlavesFood -= 1
              iCitySlaves -= 1
            # wenns nur Bergwerksklaven gibt
            elif iCityGlads == 0 and iCitySlaves == iCitySlavesProd:
-             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
              NewUnit.finishMoves()
              pCity.changeFreeSpecialistCount(18, -1)
              iCitySlavesProd -= 1
@@ -3013,24 +3017,24 @@ class CvEventManager:
              # Sklaven abziehen
              if iData5 > -1:
                if iData5 == 0 and iCityGlads >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
                  NewUnit.finishMoves()
                  pCity.changeFreeSpecialistCount(15, -1)
                  iCityGlads -= 1
                elif iData5 == 1 and iCitySlavesHaus >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
                  NewUnit.finishMoves()
                  pCity.changeFreeSpecialistCount(16, -1)
                  iCitySlavesHaus -= 1
                  iCitySlaves -= 1
                elif iData5 == 2 and iCitySlavesFood >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
                  NewUnit.finishMoves()
                  pCity.changeFreeSpecialistCount(17, -1)
                  iCitySlavesFood -= 1
                  iCitySlaves -= 1
                elif iData5 == 3 and iCitySlavesProd >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
                  NewUnit.finishMoves()
                  pCity.changeFreeSpecialistCount(18, -1)
                  iCitySlavesProd -= 1
@@ -3332,7 +3336,7 @@ class CvEventManager:
 
           if len(rebelPlotArray) > 0:
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            NewUnit = gc.getBARBARIAN_PLAYER().initUnit(pUnit.getUnitType(), rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(pUnit.getUnitType(), rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
 
             iRange = gc.getNumPromotionInfos()
             for j in range(iRange):
@@ -3541,17 +3545,17 @@ class CvEventManager:
          elif iData5 == 0:
            # pCity.setBuildingHappyChange geht nicht, weil die Stadt auch Negatives positiv anrechnet
            pCity.changeExtraHappiness(-iUnhappy1)
-           NewUnit = pPlayer.initUnit(iUnit1, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+           NewUnit = pPlayer.initUnit(iUnit1, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
            NewUnit.setImmobileTimer(1)
          # Hilfstrupp
          elif iData5 == 1:
            pCity.changeExtraHappiness(-iUnhappy2)
-           NewUnit = pPlayer.initUnit(iUnit2, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+           NewUnit = pPlayer.initUnit(iUnit2, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
            NewUnit.setImmobileTimer(1)
          # Getreide
          elif iData5 == 2:
            pCity.changeExtraHappiness(-iUnhappy3)
-           NewUnit = pPlayer.initUnit(iUnit3, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+           NewUnit = pPlayer.initUnit(iUnit3, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
            iRand = 1 + self.myRandom(3, None)
            if iRand >= 1: NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
            if iRand >= 2: NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
@@ -3560,7 +3564,7 @@ class CvEventManager:
          # Sklaven
          elif iData5 == 3:
            pCity.changeExtraHappiness(-iUnhappy4)
-           NewUnit = pPlayer.initUnit(iUnit4, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+           NewUnit = pPlayer.initUnit(iUnit4, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
            NewUnit.setImmobileTimer(1)
 
          if iData5 > -1:
@@ -3746,14 +3750,6 @@ class CvEventManager:
           #if player.getUnit(j).getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"):
           #   player.getUnit(j).kill(1,player.getUnit(j).getOwner())
           (unit, iter) = player.nextUnit(iter, false)
-
-        ##Flunky: (city, iter) statt for range
-        # +++++ Check city status
-        (city, iter) = player.firstCity(false)
-        while city:
-          self.doCheckCityState(city)
-          (city,iter) = player.nextCity(iter, false)
-        ##/Flunky
 
         #Start in spaeterer Aera -> unerforschbare und Relitechs entfernen
         #Start in later era -> remove unresearchable and religious techs
@@ -4021,9 +4017,9 @@ class CvEventManager:
             elif gc.getGame().getGameTurnYear() > -1200: iAnz = 2
             else: iAnz = 1
             for j in range (iAnz):
-              barbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH)
-              barbPlayer.initUnit(iUnitTypeWarrior1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-              barbPlayer.initUnit(iUnitTypeWarrior2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              barbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+              barbPlayer.initUnit(iUnitTypeWarrior1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+              barbPlayer.initUnit(iUnitTypeWarrior2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
             # ***TEST***
             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Seevoelker erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -4052,9 +4048,9 @@ class CvEventManager:
           if loopPlot.getFeatureType() == iDarkIce or loopPlot2.getFeatureType() == iDarkIce: continue
           if not loopPlot.isUnit() and loopPlot.isWater() and loopPlot2.isWater() and not loopPlot.isOwned():
             # Wikinger erstellen
-            barbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH)
+            barbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
             for j in range (4):
-              barbPlayer.initUnit(iUnitTypeUnit, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              barbPlayer.initUnit(iUnitTypeUnit, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wikinger erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -4078,9 +4074,9 @@ class CvEventManager:
           if loopPlot.getFeatureType() != iDarkIce and loopPlot2.getFeatureType() != iDarkIce:
             if not loopPlot.isUnit() and not loopPlot.isOwned():
               if loopPlot.isWater() and loopPlot2.isWater() and gc.getGame().getGameTurnYear() > -600:
-                barbPlayer.initUnit(iUnitTypeMerchant2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                barbPlayer.initUnit(iUnitTypeMerchant2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               elif not loopPlot.isWater() and not loopPlot.isPeak():
-                barbPlayer.initUnit(iUnitTypeMerchant1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                barbPlayer.initUnit(iUnitTypeMerchant1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Barb. Handelskarren erschaffen",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -4168,17 +4164,17 @@ class CvEventManager:
               pPlayer = gc.getPlayer(iHunsID)
 
               for i in range(8):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               for i in range(4):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SPEARMAN"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SPEARMAN"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               for i in range(6):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_WORKER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_WORKER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               for i in range(3):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               for i in range(9):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_ARCHER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_ARCHER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               for i in range(9):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_HORSE"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_HORSE"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
               pPlayer.setCurrentEra(3)
               pPlayer.setGold(300)
@@ -4216,7 +4212,7 @@ class CvEventManager:
             iUnitType = gc.getInfoTypeForString('UNIT_MONGOL_KESHIK')
             barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
             for j in range(iHuns):
-              barbPlayer.initUnit(iUnitType, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              barbPlayer.initUnit(iUnitType, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
 # -- Hunnen Ende ------------------------------------------
 
@@ -4294,7 +4290,8 @@ class CvEventManager:
                 if loopPlot.getNumUnits() < 3:
                   if self.myRandom(50, None) == 1:
                     iUnitType = gc.getInfoTypeForString("UNIT_LION")
-                    gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                    barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+                    barbPlayer.initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
                     # ***TEST***
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Barb. Atlasloewe erschaffen",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
@@ -4312,7 +4309,7 @@ class CvEventManager:
                         iNewUnitOwner = iPlotOwner
 
                     # Add Unit
-                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
                     # ***TEST***
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Pferd erschaffen",iNewUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -4331,7 +4328,7 @@ class CvEventManager:
                         iNewUnitOwner = iPlotOwner
 
                     # Add Unit
-                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
                     # ***TEST***
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Kamel erschaffen",iNewUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -4350,7 +4347,7 @@ class CvEventManager:
                         iNewUnitOwner = iPlotOwner
 
                     # Add Unit
-                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
                     # ***TEST***
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Elefant erschaffen",iNewUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -4411,7 +4408,7 @@ class CvEventManager:
           ePantodapoi = gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
           iRange = self.myRandom(3, None)
           # Korinth erhaelt 0 - 2 zusaetzliche makedonische Hilfstrupps in Poteidaia
-          for i in range(iRange): pKorinth.initUnit(ePantodapoi, 56, 46, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          for i in range(iRange): pKorinth.initUnit(ePantodapoi, 56, 46, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
           CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_WORLDNEWS", ()), None, 2, None, ColorTypes(11), 0, 0, False, False)
           if pPlayer.isHuman():
             popupInfo = CyPopupInfo()
@@ -4734,7 +4731,7 @@ class CvEventManager:
                  iRand = self.myRandom(len(lResUnits), None)
                  iUnit = lResUnits[iRand]
 
-                 NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                 NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
                  NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
                  NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
                  NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
@@ -4899,7 +4896,7 @@ class CvEventManager:
 
                    pPlayer.changeGold(-iCost)
                    gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                   NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                   NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, random.choice(Neighbors).getCivilizationType(), random.choice(Neighbors).getStateReligion())
                    NewUnit.setHasPromotion(iPromo, True)
                    #NewUnit.finishMoves()
                    NewUnit.setImmobileTimer(1)
@@ -5414,7 +5411,8 @@ class CvEventManager:
               iName = self.myRandom(len(listNamesStandard), None)
 
               iUnitType = gc.getInfoTypeForString("UNIT_GREAT_GENERAL")
-              unit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes.UNITAI_GENERAL, DirectionTypes.DIRECTION_SOUTH)
+              barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+              unit = barbPlayer.initUnit(iUnitType, rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes.UNITAI_GENERAL, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
               unit.setName(listNamesStandard[iName])
               self.doNextCityRevolt(sPlot.getX(), sPlot.getY(), iPlayer, gc.getBARBARIAN_PLAYER())
               self.doNextCityRevolt(sPlot.getX(), sPlot.getY(), iPlayer, gc.getBARBARIAN_PLAYER())
@@ -5437,7 +5435,7 @@ class CvEventManager:
 
              if sPlot.getUnit(iRand).getOwner() == iPlayer:
 
-              NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(sPlot.getUnit(iRand).getUnitType(),  rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes(sPlot.getUnit(iRand).getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
+              NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(sPlot.getUnit(iRand).getUnitType(),  rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes(sPlot.getUnit(iRand).getUnitAIType()), DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
               NewUnit.setExperience(sPlot.getUnit(iRand).getExperience(), -1)
               NewUnit.setLevel(sPlot.getUnit(iRand).getLevel())
 
@@ -5742,7 +5740,7 @@ class CvEventManager:
 
                 for i in range(iNumRebels):
                   iPlot = self.myRandom(len(rebelPlotArray), None)
-                  NewUnit = barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                  NewUnit = barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
                   NewUnit.setImmobileTimer(1)
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Rebell erstellt (Zeile 1116)",iNumRebels)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -5832,7 +5830,7 @@ class CvEventManager:
 
                 for i in range(iNumRebels):
                   iPlot = self.myRandom(len(rebelPlotArray), None)
-                  barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                  barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gladiatorenaufstand (Zeile 1188)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -5973,7 +5971,7 @@ class CvEventManager:
 
               if bSlave2Christ == True:
                 iUnitType = gc.getInfoTypeForString("UNIT_CHRISTIAN_MISSIONARY")
-                gc.getPlayer(iPlayer).initUnit(iUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+                gc.getPlayer(iPlayer).initUnit(iUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iPlayer).getCivilizationType(), ReligionTypes.RELIGION_CHRISTIANITY)
                 if gc.getPlayer(iPlayer).isHuman():
                   CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_2_CHRIST",(0,)), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(14), pUnit.getX(), pUnit.getY(), True, True)
                 #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
@@ -6003,7 +6001,7 @@ class CvEventManager:
                     if len(rebelPlotArray) > 0:
                       iPlot = self.myRandom(len(rebelPlotArray), None)
                       iUnitType = gc.getInfoTypeForString("UNIT_SLAVE")
-                      NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                      NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
                   #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   pUnit.kill(1,pUnit.getOwner())
@@ -6034,7 +6032,7 @@ class CvEventManager:
                   if len(rebelPlotArray) > 0:
                     iPlot = self.myRandom(len(rebelPlotArray), None)
                     iUnitType = gc.getInfoTypeForString("UNIT_REBELL")
-                    NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                    NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                     if pOwner.isHuman():
                       CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_2_REBELL",(0,)), None, 2, "Art/Interface/Buttons/Units/button_rebell.dds", ColorTypes(7), rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), True, True)
                     #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
@@ -6078,7 +6076,7 @@ class CvEventManager:
             pCity = pPlayer.getCity(lCities[0].getID())
 
             iUnitType = gc.getInfoTypeForString("UNIT_GREEK_MISSIONARY")
-            pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+            pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_GREEK)
 
             if (pPlayer.isHuman()):
               popupInfo = CyPopupInfo()
@@ -6468,7 +6466,7 @@ class CvEventManager:
                  if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_OCEAN"):
                    if iNumSetFlotsam < iMaxFlot:
                      # Treibgut setzen
-                     pPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                     pPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                      iNumSetFlotsam += 1
 
      # --------- Strandgut -----------
@@ -6494,7 +6492,7 @@ class CvEventManager:
            if len(lPlots) > 0:
              iPlot = self.myRandom(len(lPlots), None)
              # Create Strandgut
-             pPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+             pPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
              # Disband Treibgut
              pPlayer.getUnit(u).kill(1,iPlayer)
      # --------- Strandgut -----------
@@ -6856,7 +6854,7 @@ class CvEventManager:
               iRand = self.myRandom(len(SeaPlots), None)
               loopPlot = SeaPlots[iRand]
               # Unit erzeugen
-              NewUnit = barbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              NewUnit = barbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
               NewUnit.setImmobileTimer(2)
               if gc.getPlayer(pWinner.getOwner()).isHuman():
                 CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_UNIT_ERSTELLT",(PyInfo.UnitInfo(iUnit).getDescription(),)), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
@@ -6903,7 +6901,7 @@ class CvEventManager:
               #else:
               iX = pWinner.getX()
               iY = pWinner.getY()
-              NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
               NewUnit.setTransportUnit(pWinner)
               NewUnit.finishMoves()
             else:
@@ -6953,7 +6951,7 @@ class CvEventManager:
               iY = pLoser.getY()
 
             # Create unit
-            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_TREIBGUT"), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_TREIBGUT"), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
 
 
@@ -7111,7 +7109,7 @@ class CvEventManager:
         if gc.getTeam(iThisTeam).isHasTech(iTech):
           bUnitDone = True
           # Create a new unit
-          NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(pLoser.getUnitType(), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(pLoser.getUnitType(), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
           NewUnit.finishMoves()
           if gc.getPlayer(pWinner.getOwner()).isHuman():
              CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_UNIT_EROBERT",(unitY.getDescription(),0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
@@ -7355,7 +7353,7 @@ class CvEventManager:
           iRand = self.myRandom(10, None)
           if iRand == 0 and iNewUnitType != -1:
             # Create a new unit
-            NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(iNewUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(iNewUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pLoser.getEthnic(), pLoser.getReligion())
             NewUnit.setExperience(pLoser.getExperience(), -1)
             NewUnit.setLevel(pLoser.getLevel())
             NewUnit.finishMoves()
@@ -7390,9 +7388,9 @@ class CvEventManager:
             if len(rebelPlotArray) > 0:
               barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
               iPlot = self.myRandom(len(rebelPlotArray), None)
-              barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
+              barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
             else:
-              gc.getPlayer(pLoser.getOwner()).initUnit(iUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
+              gc.getPlayer(pLoser.getOwner()).initUnit(iUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
             if gc.getPlayer(pLoser.getOwner()).isHuman():
               CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_ONLY_HORSE_LEFT",(unitY.getDescription(),0)), None, 2, None, ColorTypes(6), 0, 0, False, False)
@@ -7584,7 +7582,7 @@ class CvEventManager:
       # pPlot von Change Culture Percent (oben)
       if iNumUnits > 0:
         for i in range(iNumUnits):
-          NewUnit = barbPlayer.initUnit(iUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+          NewUnit = barbPlayer.initUnit(iUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
           NewUnit.finishMoves()
 
 #        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iPlayer",pLoser.getOwner())), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -8372,12 +8370,12 @@ class CvEventManager:
     if iBuildingType == iBuilding:
       pPlayer = gc.getPlayer(pCity.getOwner())
       iUnitType = gc.getInfoTypeForString("UNIT_PROPHET")
-      NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_PROPHET, DirectionTypes.DIRECTION_SOUTH)
+      NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_PROPHET, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_JUDAISM)
       NewUnit.setName("Moses")
       iUnitType = gc.getInfoTypeForString("UNIT_JEWISH_MISSIONARY")
       Names = ["Sarah","Abraham","Isaak","Jakob","Pinchas","Aaron","Miriam","Josua","Bileam","Jesaja"]
       for i in range(10):
-        NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+        NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_JUDAISM)
         NewUnit.setName(Names[i])
 
     # PAE Debug Mark
@@ -8432,7 +8430,7 @@ class CvEventManager:
       iUnitType = gc.getInfoTypeForString("UNIT_CHRISTIAN_MISSIONARY")
       Names = ["Petrus","Andreas","Jakobus","Johannes","Philippus","Bartholomaeus","Thomas","Matthaeus","Jakobus","Thaddaeus","Simon","Judas"]
       for i in range(12):
-        NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+        NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_CHRISTIANITY)
         NewUnit.setName(Names[i])
 
   def onSelectionGroupPushMission(self, argsList):
@@ -8864,7 +8862,7 @@ class CvEventManager:
           if pPlot.getNumUnits() == 0:
             iRand = self.myRandom(2, None)
             if iRand == 1:
-              barbPlayer.initUnit(gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
+              barbPlayer.initUnit(gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Haendler verschwunden (Zeile 2530)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -9078,7 +9076,7 @@ class CvEventManager:
 
       # 2nd Settler for AI (Immortal, Deity) (PAE V)
       if iHandicap >= 7 and unit.getUnitType() == gc.getInfoTypeForString("UNIT_SETTLER"):
-        pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
 
       # -----------------------
       # Experienced units on higher handicap level (PAE V Patch 3)
@@ -9335,12 +9333,12 @@ class CvEventManager:
       else:
         self.doCityUnitPromotions(city,unit)
 
-    # PAE V: Mercenary promotion
-    if city.getOwner() != city.getOriginalOwner():
-      if city.getPopulation() < 9:
-        if city.plot().calculateCulturePercent(city.getOwner()) < 75:
-          if unit.isMilitaryHappiness() or unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-             unit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY"), True)
+    # # PAE V: Mercenary promotion
+    # if city.getOwner() != city.getOriginalOwner():
+      # if city.getPopulation() < 9:
+        # if city.plot().calculateCulturePercent(city.getOwner()) < 75:
+          # if unit.isMilitaryHappiness() or unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
+             # unit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY"), True)
 
     # PAE Debug Mark
     #"""
@@ -9687,7 +9685,7 @@ class CvEventManager:
           iRand = self.myRandom(len(lCities), None)
           iX = pPlayer.getCity(lCities[iRand].getID()).getX()
           iY = pPlayer.getCity(lCities[iRand].getID()).getY()
-          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), pPlayer.getStateReligion())
           bNewUnit = True
 #      #freier Siedler
 #      iUnit = -1
@@ -10164,7 +10162,7 @@ class CvEventManager:
     if team.isHasTech(iTechEnslavement):
       iSlaves = city.getPopulation()
       for i in range(iSlaves):
-        gc.getPlayer(iPlayer).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        gc.getPlayer(iPlayer).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
       if gc.getPlayer(iPlayer).isHuman():
         if iSlaves == 1:
@@ -10214,7 +10212,7 @@ class CvEventManager:
 
           for i in range(iAnzahl):
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            pUnit = gc.getPlayer(iOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iOwner).getCivilizationType(), gc.getPlayer(iOwner).getStateReligion())
             iDamage = self.myRandom(50, None)
             pUnit.setDamage( iDamage, iOwner )
 
@@ -10413,7 +10411,7 @@ class CvEventManager:
 
           for i in range(iAnzahl):
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iPreviousOwner).getCivilizationType(), gc.getPlayer(iPreviousOwner).getStateReligion())
             iDamage = self.myRandom(50, None)
             pUnit.setDamage( iDamage, iPreviousOwner )
 
@@ -10422,7 +10420,7 @@ class CvEventManager:
           pCity.setFreeSpecialistCount(19,0)
           for i in range(iAnzahl):
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iPreviousOwner).getCivilizationType(), gc.getPlayer(iPreviousOwner).getStateReligion())
             iDamage = self.myRandom(25, None)
             pUnit.setDamage( iDamage, iPreviousOwner )
             pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
@@ -10450,7 +10448,7 @@ class CvEventManager:
       team = gc.getTeam(iThisTeam)
       if team.isHasTech(iTechEnslavement):
         for i in range(iSlaves):
-          gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
         if gc.getPlayer(iNewOwner).isHuman():
           if iSlaves == 1:
@@ -10491,34 +10489,34 @@ class CvEventManager:
           iRand = self.myRandom(20, None)
           NewUnit = ""
           if iRand == 0:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_1",(0,0))
           elif iRand == 1:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_UNSTERBLICH'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_UNSTERBLICH'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH, CivilizationTypes.CIVILIZATION_PERSIA, pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_2",(0,0))
           elif iRand == 2:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_3",(0,0))
           elif iRand == 3:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_SPY'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SPY, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_SPY'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SPY, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_4",(0,0))
           elif iRand == 4:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_HOPLIT'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_HOPLIT'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, CivilizationTypes.CIVILIZATION_GREECE, pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_5",(0,0))
           elif iRand == 5:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_ARCHER_KRETA'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_ARCHER_KRETA'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_6",(0,0))
           elif iRand == 6:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_7",(0,0))
           elif iRand == 7:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_BALEAREN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_BALEAREN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_8",(0,0))
           elif iRand == 8:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GERMANNE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GERMANNE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_9",(0,0))
           else:
-            gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_SPECIAL, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_SPECIAL, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_0",(0,0))
 
           if gc.getPlayer(iNewOwner).isHuman():
@@ -10570,7 +10568,7 @@ class CvEventManager:
         for i in range(iCityGP1):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP1_1",(0,0))
@@ -10579,7 +10577,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10599,7 +10597,7 @@ class CvEventManager:
         for i in range(iCityGP2):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP2_1",(0,0))
@@ -10608,7 +10606,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10628,7 +10626,7 @@ class CvEventManager:
         for i in range(iCityGP3):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP3_1",(0,0))
@@ -10637,7 +10635,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10657,7 +10655,7 @@ class CvEventManager:
         for i in range(iCityGP4):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP4_1",(0,0))
@@ -10666,7 +10664,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10686,7 +10684,7 @@ class CvEventManager:
         for i in range(iCityGP5):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP5_1",(0,0))
@@ -10695,7 +10693,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(3, None)
@@ -10709,13 +10707,13 @@ class CvEventManager:
         for i in range(iCityGP6):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(11, None)
               CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP6_"+str(iRand),(0,0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(3, None)
@@ -10729,13 +10727,13 @@ class CvEventManager:
         for i in range(iCityGP7):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(4, None)
               CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP7_"+str(iRand),(0,0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(3, None)
@@ -10852,7 +10850,7 @@ class CvEventManager:
       iBeute = int(pCity.getPopulation() / 2)
       if iBeute > 0:
         for i in range (iBeute):
-          gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
 
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Beutegold erhalten (Zeile 3475)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -11314,7 +11312,7 @@ class CvEventManager:
                   break
 
             iNewUnit = gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")
-            NewUnit = pHegemon.initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pHegemon.initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
 
             if pHegemon.isHuman():
               CyInterface().addMessage(pHegemon.getID(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GET_UNIT_SUPPLY_FOOD",(pCity.getName(),)), "AS2D_BUILD_GRANARY", 2, gc.getUnitInfo(iNewUnit).getButton(), ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
@@ -11597,7 +11595,7 @@ class CvEventManager:
         iRand = self.myRandom(100, None)
         if iChance > iRand:
           iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-          NewUnit = gc.getPlayer(iPlayer).initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
+          NewUnit = gc.getPlayer(iPlayer).initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
 
           # Einheit die richtige Kultur geben
           iPlayerCulture = pCity.findHighestCulture()
@@ -11935,7 +11933,7 @@ class CvEventManager:
 
         if self.myRandom(1000, None) < iChance:
           iUnitType = gc.getInfoTypeForString("UNIT_SLAVE")
-          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_WORKER, DirectionTypes.DIRECTION_SOUTH)
+          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_WORKER, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
           if pOwner.isHuman():
             CyInterface().addMessage(pOwner.getID(), True, 10, CyTranslator().getText("TXT_KEY_SLAVE_BIRTH",(pCity.getName(),"")),None,2,",Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2",ColorTypes(14),pCity.getX(),pCity.getY(),True,True)
 
@@ -11975,7 +11973,7 @@ class CvEventManager:
         iRand = self.myRandom(50, None)
         if iRand == 1:
           iUnitType = gc.getInfoTypeForString("UNIT_GLADIATOR")
-          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
           pCity.changeFreeSpecialistCount(15, -1)
           iCityGlads = iCityGlads - 1
           if pOwner.isHuman():
@@ -12553,7 +12551,7 @@ class CvEventManager:
             for i in range(iNumRebels):
                   iPlot = self.myRandom(len(rebelPlotArray), None)
                   iUnitType = self.myRandom(len(rebellTypeArray), None)
-                  newPlayer.initUnit(rebellTypeArray[iUnitType], rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                  newPlayer.initUnit(rebellTypeArray[iUnitType], rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, newPlayer.getCivilizationType(), newPlayer.getStateReligion())
 
             for iAllPlayer in range (iRangeMaxPlayers):
                   ThisPlayer = gc.getPlayer(iAllPlayer)
@@ -12703,7 +12701,7 @@ class CvEventManager:
                 if pCity.canTrain(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"),0,0): lGift.append(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"))
 
               iRand = self.myRandom(len(lGift), None)
-              pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Provinz-HS Tribut-PopUp (Zeile 4367)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -13224,6 +13222,7 @@ class CvEventManager:
 
 
         # Einheiten auslesen bevor die Stadt ueberlaeuft
+
         UnitArray = []
         j = 0
         iRange = pPlot.getNumUnits()
@@ -13320,7 +13319,7 @@ class CvEventManager:
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",UnitArray[iUnit][1])), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
           if UnitArray[iUnit][0] > -1:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(UnitArray[iUnit][0], iX, iY, UnitAITypes(UnitArray[iUnit][1]), DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(UnitArray[iUnit][0], iX, iY, UnitAITypes(UnitArray[iUnit][1]), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
 
             # Emigrant und dessen Kultur
             if UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_EMIGRANT'): NewUnit.setScriptData(str(iOldOwner))
@@ -13357,9 +13356,9 @@ class CvEventManager:
 
 
         if iNewOwner == gc.getBARBARIAN_PLAYER():
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(4), DirectionTypes.DIRECTION_SOUTH)
+           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
+           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
+           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(4), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
 
         # Kultur regenerieren - funkt net
         if iCulture > 0: pAcquiredCity.changeCulture(gc.getPlayer(iNewOwner).getID(),iCulture,1)
@@ -13662,10 +13661,10 @@ class CvEventManager:
 
     if iNewUnitType != -1:
      # Create horse unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_HORSE"), iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
+     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_HORSE"), iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
      NewUnit.changeMoves(90)
      # Create a new unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
      NewUnit.setExperience(pUnit.getExperience(), -1)
      NewUnit.setLevel(pUnit.getLevel())
      NewUnit.setDamage(pUnit.getDamage(), -1)
@@ -13719,7 +13718,7 @@ class CvEventManager:
 
     if iNewUnitType != -1:
      # Create a new unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
+     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
      NewUnit.setExperience(pUnit.getExperience(), -1)
      NewUnit.setLevel(pUnit.getLevel())
      NewUnit.changeMoves(-60)
@@ -13855,8 +13854,7 @@ class CvEventManager:
       iBuilding = self.myRandom(len(TempleArray), None)
       iCulture = 1
       # Trait Creative: +2 Kultur pro Sklave / +2 culture per slave
-      if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")): 
-        iCulture += 2
+      if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")): iCulture += 2
       pCity.changeBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
       pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
@@ -16567,7 +16565,8 @@ class CvEventManager:
 
              for i in range(iAnz):
                  iRand = self.myRandom (len(lEliteUnits), None)
-                 NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                 NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+
                  NewUnit.setHasPromotion(iPromo, True)
                  NewUnit.setHasPromotion(iPromo2, False)
                  # Unit Rang / Unit ranking
@@ -16575,14 +16574,14 @@ class CvEventManager:
                  NewUnit.setImmobileTimer(1)
                  ScriptUnit.append(NewUnit)
              # Goldkarren
-             gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-             gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+             gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+             gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
            # standard units
            else:
             if iAnzSpear > 0:
               for i in range(iAnzSpear):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSpear, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSpear, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
@@ -16590,7 +16589,7 @@ class CvEventManager:
                 ScriptUnit.append(NewUnit)
             if iAnzAxe > 0:
               for i in range(iAnzAxe):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitAxe, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitAxe, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
@@ -16598,7 +16597,7 @@ class CvEventManager:
                 ScriptUnit.append(NewUnit)
             if iAnzSword > 0 and iUnitSword != -1:
               for i in range(iAnzSword):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSword, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSword, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
@@ -16606,21 +16605,21 @@ class CvEventManager:
                 ScriptUnit.append(NewUnit)
             if iAnzArcher > 0:
               for i in range(iAnzArcher):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitArcher, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitArcher, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
                 NewUnit.setImmobileTimer(1)
             if iAnzSlinger > 0:
               for i in range(iAnzSlinger):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlinger, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlinger, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
                 NewUnit.setImmobileTimer(1)
             if iAnzSiege > 0 and iUnitSiege != -1:
               for i in range(iAnzSiege):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSiege, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSiege, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
                 NewUnit.setImmobileTimer(1)
@@ -16634,7 +16633,7 @@ class CvEventManager:
 
             if iAnzShip1 > 0 and iShip1 != -1:
               for i in range(iAnzShip1):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip1, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip1, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
@@ -16642,12 +16641,12 @@ class CvEventManager:
 
                 # Cargo
                 iRand = self.myRandom(len(lUnit), None)
-                NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 NewLandUnit.setTransportUnit(NewUnit)
 
             if iAnzShip2 > 0 and iShip2 != -1:
               for i in range(iAnzShip2):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip2, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip2, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
                 # Unit Rang / Unit ranking
                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
@@ -16655,12 +16654,12 @@ class CvEventManager:
 
                 # Cargo
                 iRand = self.myRandom(len(lUnit), None)
-                NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
                 NewLandUnit.setTransportUnit(NewUnit)
 
             # Goldkarren bei Landeinheiten
             if not CivPlots[iPlot].isWater():
-              gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
 
            # Plot anzeigen
@@ -16720,7 +16719,7 @@ class CvEventManager:
       iPromoCombat5 = gc.getInfoTypeForString("PROMOTION_COMBAT5")
       iPromoCombat6 = gc.getInfoTypeForString("PROMOTION_COMBAT6")
 
-      NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+      NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
 
       forbiddenPromos = []
       if pUnit.getUnitCombatType() != gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
@@ -16790,12 +16789,8 @@ class CvEventManager:
     iBuildingCity = gc.getInfoTypeForString("BUILDING_STADT")
     iBuildingProvinz = gc.getInfoTypeForString("BUILDING_PROVINZ")
     iBuildingMetropole = gc.getInfoTypeForString("BUILDING_METROPOLE")
-	    # PAE Debug mark
-    #"""
-#    if gc.getPlayer(pCity.getOwner()).isHuman():
-#      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("X",iBuildingSiedlung)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-#      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Y",pPlot.getY())), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
+    ##doch eigentlich immer?
+    #if pCity.getPopulation() <= 2 and pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
     if pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
       pCity.setNumRealBuilding(iBuildingSiedlung,1)
 
@@ -16836,8 +16831,10 @@ class CvEventManager:
   # PAE UNIT FORMATIONS ------------------------------
   def canDoFormation (self, pUnit, iFormation):
       if not pUnit.canMove(): return False
-      if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return False
-
+      # Flunky: no formations for ethnic BARBARIAN
+      # if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return False
+      if pUnit.getEthnic() == gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(): return False
+      
       lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
       lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
 
@@ -17220,7 +17217,9 @@ class CvEventManager:
 
 
   def doAIUnitFormations (self, pUnit, bOffensive, bCity, bElefant):
-    if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return
+    # Flunky: no formations for ethnic BARBARIAN
+    # if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return
+    if pUnit.getEthnic() == gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(): return
     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")): return
     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")): return
     if pUnit.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: return
@@ -17499,8 +17498,7 @@ class CvEventManager:
             else: iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1")
             iChanceUnitType = iChanceUnitType / 2
             # Trait Conquereror / Eroberer: Automatische Heilung bei Stadtangriffs-Promo / auto-healing when receiving city raider promo
-            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")): 
-              pUnitTarget.setDamage(0, -1)
+            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")): pUnitTarget.setDamage(0, -1)
         # Defender
       else:
         if iChanceCityDefense > iRand:
@@ -17512,8 +17510,7 @@ class CvEventManager:
             else: iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1")
             iChanceUnitType = iChanceUnitType / 2
             # Trait Protective: Automatische Heilung bei Stadtverteidigungs-Promo / auto-healing when receiving city garrison promo
-            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")): 
-              pUnitTarget.setDamage(0, -1)
+            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")): pUnitTarget.setDamage(0, -1)
 
     # on open field
     else:
@@ -18210,7 +18207,7 @@ class CvEventManager:
 #            loopCity.setOccupationTimer(iRand)
 #            if pPlayer.isHuman():
 #               CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MAIN_CITY_RIOT",(loopCity.getName(),)), "AS2D_REVOLTSTART", 2, ",Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10", ColorTypes(7), loopCity.getX(), loopCity.getY(), True, True)
-#
+
         # PopUp
         if pPlayer.isHuman():
           popupInfo = CyPopupInfo()
@@ -18239,7 +18236,7 @@ class CvEventManager:
         if iCityGlads > 0:
           while iCityGlads > 0 and iCityPop < iCityGlads + iCitySlaves:
             # Create slave unit
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             NewUnit.finishMoves()
             # Decrease specialist
             pCity.changeFreeSpecialistCount(15, -1)
@@ -18252,21 +18249,21 @@ class CvEventManager:
         if iCitySlaves > 0:
           # 1st prio: research
           while iCitySlavesHaus > 0 and iCityPop < iCitySlaves:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(16, -1)
             iCitySlavesHaus -= 1
             iCitySlaves -= 1
           # 2nd prio: prod
           while iCitySlavesProd > 0 and iCityPop < iCitySlaves:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(18, -1)
             iCitySlavesProd -= 1
             iCitySlaves -= 1
           # 3rd prio: food
           while iCitySlavesFood > 0 and iCityPop < iCitySlaves:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(17, -1)
             iCitySlavesFood -= 1
@@ -18483,7 +18480,7 @@ class CvEventManager:
           for i in range(iSlaves):
             iRand = self.myRandom(len(lFluchtPlots), None)
             # gc.getBARBARIAN_PLAYER() statt pCity.getOwner()
-            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlave, lFluchtPlots[iRand].getX(), lFluchtPlots[iRand].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlave, lFluchtPlots[iRand].getX(), lFluchtPlots[iRand].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
 
           # Meldung
           if pUnit.getOwner() == gc.getGame().getActivePlayer() or pCity.getOwner() == gc.getGame().getActivePlayer():

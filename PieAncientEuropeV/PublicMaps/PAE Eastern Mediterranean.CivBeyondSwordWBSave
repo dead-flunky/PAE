@@ -11751,7 +11751,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=22,y=80
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -12629,7 +12629,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=24,y=65
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -13214,7 +13214,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=25,y=81
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
 EndPlot
@@ -17873,7 +17873,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=35,y=55
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -40832,7 +40832,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=84,y=87
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
 EndPlot
@@ -44044,7 +44044,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=91,y=80
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -54989,7 +54989,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=114,y=69
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
 EndPlot

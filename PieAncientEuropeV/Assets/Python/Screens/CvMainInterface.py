@@ -2850,7 +2850,8 @@ class CvMainInterface:
                   bFormationUndo = False
 
               # PAE V Patch 2: disabled for fights on his own units
-              if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
+              if pUnit.getEthnic() != gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType():
+              #if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
 
                 lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
                 lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
@@ -6701,11 +6702,11 @@ class CvMainInterface:
     return 0
 
 
-  """PAE, Ramk:
-    Die urspruenglichen CITY_TAB-Buttons koennen nur auf die Zeilen 0,1 und 2 springen und
-    diese stehen immer fuer Einheiten, Gebaeude und Wunder.
-    Daher sind die Buttons durch eigene (WIDGET_GENERAL) ausgetauscht worden.
-  """
+  #  PAE, Ramk:
+  #  Die urspruenglichen CITY_TAB-Buttons koennen nur auf die Zeilen 0,1 und 2 springen und
+  #  diese stehen immer fuer Einheiten, Gebaeude und Wunder.
+  #  Daher sind die Buttons durch eigene (WIDGET_GENERAL) ausgetauscht worden.
+  
   def updateCityTabs(self, screen):
     iBtnX = self.xResolution - 324
     iBtnY = self.yResolution - 94

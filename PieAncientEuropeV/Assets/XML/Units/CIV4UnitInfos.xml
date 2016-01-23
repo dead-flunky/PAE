@@ -8658,12 +8658,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -20210,12 +20205,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -20501,12 +20491,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -20683,12 +20668,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -31046,12 +31026,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -34995,10 +34970,6 @@
           <PromotionType>PROMOTION_COMBAT2</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
       </FreePromotions>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
@@ -38869,12 +38840,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -39256,12 +39222,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -39644,12 +39605,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -40774,12 +40730,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -40970,10 +40921,6 @@
       <FreePromotions>
         <FreePromotion>
           <PromotionType>PROMOTION_COMBAT1</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -41238,10 +41185,6 @@
           <PromotionType>PROMOTION_COMBAT2</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
       </FreePromotions>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
@@ -41452,10 +41395,6 @@
         </FreePromotion>
         <FreePromotion>
           <PromotionType>PROMOTION_COMBAT2</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>
@@ -41690,10 +41629,6 @@
           <PromotionType>PROMOTION_COMBAT2</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
       </FreePromotions>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
@@ -41926,10 +41861,6 @@
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-        <FreePromotion>
           <PromotionType>PROMOTION_DRILL1</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
@@ -42134,10 +42065,6 @@
         </FreePromotion>
         <FreePromotion>
           <PromotionType>PROMOTION_COMBAT2</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
         <FreePromotion>
@@ -42347,10 +42274,6 @@
           <PromotionType>PROMOTION_GUERILLA1</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
       </FreePromotions>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
@@ -42544,10 +42467,6 @@
         </FreePromotion>
         <FreePromotion>
           <PromotionType>PROMOTION_COMBAT2</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_MERCENARY</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
       </FreePromotions>

@@ -4944,7 +4944,7 @@ BeginPlot
     BuildingType=BUILDING_MALI_MINT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+     
     ReligionType=RELIGION_ROME
     FreeSpecialistType=SPECIALIST_GREAT_GENERAL
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -18464,7 +18464,7 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+     
     BuildingType=BUILDING_CORPORATION_3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -19097,6 +19097,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -19988,7 +19989,7 @@ BeginPlot
   isNOfRiver
   RiverWEDirection=3
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   RouteType=ROUTE_ROAD
   TerrainType=TERRAIN_PLAINS
   PlotType=1
@@ -20035,6 +20036,7 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_GREAT_MERCHANT
@@ -21383,6 +21385,7 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
     Player8Culture=62
@@ -21641,6 +21644,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     Player5Culture=50095
@@ -21873,6 +21877,7 @@ BeginPlot
     BuildingType=BUILDING_ORACLE2
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     Player5Culture=10035
@@ -23116,6 +23121,7 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     Player8Culture=66
   EndCity
@@ -23558,6 +23564,7 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     Player8Culture=3012
   EndCity
@@ -24412,6 +24419,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     Player5Culture=495
@@ -25704,6 +25712,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     CorporationType=CORPORATION_8
@@ -25848,7 +25857,8 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
+     
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     Player9Culture=812
@@ -26944,7 +26954,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=51,y=34
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   RouteType=ROUTE_ROAD
   TerrainType=TERRAIN_PLAINS
   PlotType=1
@@ -26963,6 +26973,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP6
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK
@@ -27022,6 +27033,7 @@ BeginPlot
     BuildingType=BUILDING_MALI_MINT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     Player4Culture=160
@@ -27118,6 +27130,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -27979,6 +27992,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -28471,6 +28485,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -29594,6 +29609,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     BuildingType=BUILDING_CORP3
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK
@@ -29702,6 +29718,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -30105,7 +30122,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=55,y=27
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   RouteType=ROUTE_ROAD
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -30149,6 +30166,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     ReligionType=RELIGION_GREEK
     Player3Culture=342
   EndCity
@@ -32674,6 +32692,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORPORATION_2
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
@@ -33924,6 +33943,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     FreeSpecialistType=SPECIALIST_CITIZEN2
@@ -34610,7 +34630,8 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
+     
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     FreeSpecialistType=SPECIALIST_SLAVE
@@ -35030,6 +35051,7 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_8
@@ -36582,6 +36604,7 @@ BeginPlot
     BuildingType=BUILDING_BRAUSTAETTE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     Player5Culture=600
   EndCity
   TeamReveal=0,5,
@@ -37550,6 +37573,7 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     Player5Culture=5020
@@ -38843,6 +38867,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -39513,6 +39538,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -40108,6 +40134,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -44174,6 +44201,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -46836,6 +46864,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -47299,6 +47328,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORPORATION_3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -47816,6 +47846,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -48818,6 +48849,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     BuildingType=BUILDING_CORPORATION_3
     BuildingType=BUILDING_THEATER
     ReligionType=RELIGION_GREEK

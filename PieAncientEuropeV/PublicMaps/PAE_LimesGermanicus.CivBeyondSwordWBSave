@@ -5354,7 +5354,8 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
+     
+     
     BuildingType=BUILDING_CORP6
     ReligionType=RELIGION_ROME
     ReligionType=RELIGION_CHRISTIANITY
@@ -7567,7 +7568,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=4,y=6
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -10011,6 +10012,7 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     BuildingType=BUILDING_CORP6
     ReligionType=RELIGION_ROME
     ReligionType=RELIGION_CHRISTIANITY
@@ -13053,7 +13055,8 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
+     
+     
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -16131,6 +16134,7 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -20697,6 +20701,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE
@@ -20979,6 +20984,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     BuildingType=BUILDING_CORP5
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
@@ -22758,6 +22764,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
+     
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -24099,6 +24106,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
+     
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE
@@ -25105,7 +25113,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=22,y=44
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -31113,7 +31121,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=27,y=45
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -34095,7 +34103,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=30,y=34
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -38351,6 +38359,7 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
+     
     BuildingType=BUILDING_CORP6
     ReligionType=RELIGION_ROME
     ReligionType=RELIGION_CHRISTIANITY
@@ -40594,7 +40603,7 @@ BeginPlot
   isNOfRiver
   RiverWEDirection=3
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   RouteType=ROUTE_ROAD
@@ -41498,7 +41507,7 @@ BeginPlot
   x=36,y=37
   isNOfRiver
   RiverWEDirection=1
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -45258,7 +45267,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=39,y=18
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -48632,7 +48641,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=41,y=26
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -53759,7 +53768,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=46,y=27
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -57382,7 +57391,7 @@ BeginPlot
   x=49,y=47
   RiverNSDirection=0
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   RouteType=ROUTE_ROAD
@@ -58291,7 +58300,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=50,y=39
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -58968,7 +58977,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=51,y=10
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -61642,7 +61651,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=53,y=32
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   RouteType=ROUTE_ROAD
@@ -63990,7 +63999,7 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+     
     BuildingType=BUILDING_CORP5
     ReligionType=RELIGION_NORDIC
     CorporationType=CORPORATION_2
@@ -72795,7 +72804,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=63,y=12
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -73478,7 +73487,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=64,y=0
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -74128,7 +74137,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=64,y=38
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -74773,7 +74782,7 @@ BeginPlot
   x=65,y=11
   RiverNSDirection=2
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   RouteType=ROUTE_ROAD
@@ -80769,7 +80778,7 @@ BeginPlot
   x=69,y=52
   isNOfRiver
   RiverWEDirection=3
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_MINE
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   RouteType=ROUTE_ROAD

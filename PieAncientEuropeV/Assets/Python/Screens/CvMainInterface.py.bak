@@ -2814,7 +2814,7 @@ class CvMainInterface:
                   bFormationUndo = False
 
               # PAE V Patch 2: disabled for fights on his own units
-              if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
+              if pUnit.getEthnic() != gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(): #not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
 
                 lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
                 lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]

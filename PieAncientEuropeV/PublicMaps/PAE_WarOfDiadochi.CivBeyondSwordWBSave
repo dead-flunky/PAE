@@ -5407,7 +5407,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=4,y=54
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -6429,7 +6429,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=6,y=29
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_PLAINS
@@ -9176,7 +9176,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=10,y=51
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_GRASS
@@ -9967,7 +9967,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=11,y=58
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         TerrainType=TERRAIN_GRASS
         PlotType=1
         TeamReveal=40,
@@ -10379,7 +10379,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=12,y=33
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -10464,7 +10464,7 @@ BeginPlot
         x=12,y=43
         RiverNSDirection=2
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -11150,7 +11150,7 @@ BeginPlot
         x=13,y=47
         isNOfRiver
         RiverWEDirection=1
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -13338,7 +13338,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=17,y=34
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_GRASS
@@ -14218,7 +14218,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=19,y=15
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -18107,7 +18107,7 @@ BeginPlot
         x=25,y=46
         isNOfRiver
         RiverWEDirection=3
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -18629,7 +18629,7 @@ BeginPlot
         x=26,y=40
         isNOfRiver
         RiverWEDirection=1
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -20432,7 +20432,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=29,y=43
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -20861,6 +20861,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_3
                 CorporationType=CORPORATION_5
@@ -21894,6 +21895,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 ReligionType=RELIGION_GREEK
                 FreeSpecialistType=SPECIALIST_SLAVE_FOOD
                 Player16Culture=50
@@ -22412,6 +22414,7 @@ BeginPlot
                 BuildingType=BUILDING_PFERDEZUCHT
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_3
                 Player6Culture=50
@@ -22553,6 +22556,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_2
                 FreeSpecialistType=SPECIALIST_GREAT_MERCHANT
@@ -23168,6 +23172,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 BuildingType=BUILDING_THEATER
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_5
@@ -24605,6 +24610,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 ReligionType=RELIGION_GREEK
                 FreeSpecialistType=SPECIALIST_GREAT_GENERAL
                 FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -25440,7 +25446,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=36,y=40
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_GRASS
@@ -26127,7 +26133,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=37,y=48
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_PLAINS
@@ -26543,6 +26549,7 @@ BeginPlot
                 BuildingType=BUILDING_STATUE_OF_ZEUS
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
+                 
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_2
                 CorporationType=CORPORATION_5
@@ -27198,6 +27205,7 @@ BeginPlot
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
                 BuildingType=BUILDING_STADT
+                 
                 BuildingType=BUILDING_PROMO_HILLS
                 BuildingType=BUILDING_PROMO_FOREST
                 ReligionType=RELIGION_GREEK
@@ -27258,7 +27266,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=39,y=25
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         FeatureType=FEATURE_SAVANNA, FeatureVariety=0
         RouteType=ROUTE_ROAD
@@ -29955,7 +29963,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=43,y=44
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -35431,7 +35439,7 @@ BeginPlot
                 BuildingType=BUILDING_ABU_SIMBEL
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+                 
                 BuildingType=BUILDING_CORP1
                 ReligionType=RELIGION_EGYPT
                 CorporationType=CORPORATION_1
@@ -35737,7 +35745,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=52,y=41
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         ImprovementType=IMPROVEMENT_MINE
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_GRASS
@@ -35790,7 +35798,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=52,y=48
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=2
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
@@ -40574,7 +40582,7 @@ BeginPlot
         isNOfRiver
         RiverWEDirection=3
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=2
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
@@ -41885,7 +41893,7 @@ BeginPlot
         x=62,y=32
         RiverNSDirection=2
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         RouteType=ROUTE_ROAD
         TerrainType=TERRAIN_PLAINS
         PlotType=1

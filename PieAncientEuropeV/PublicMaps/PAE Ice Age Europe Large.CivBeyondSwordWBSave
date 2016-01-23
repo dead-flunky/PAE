@@ -2100,7 +2100,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=4,y=54
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=2
         TerrainType=TERRAIN_SNOW
         PlotType=1
@@ -2713,7 +2713,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=6,y=29
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=0
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -4384,7 +4384,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=10,y=51
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -4841,7 +4841,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=11,y=58
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
 EndPlot
@@ -5075,7 +5075,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=12,y=33
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -5136,7 +5136,7 @@ BeginPlot
         x=12,y=43
         RiverNSDirection=2
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -5563,7 +5563,7 @@ BeginPlot
         x=13,y=47
         isNOfRiver
         RiverWEDirection=1
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         TerrainType=TERRAIN_GRASS
         PlotType=1
 EndPlot
@@ -6995,7 +6995,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=17,y=34
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -10105,7 +10105,7 @@ BeginPlot
         x=25,y=46
         isNOfRiver
         RiverWEDirection=3
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -11589,7 +11589,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=29,y=43
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
@@ -12717,7 +12717,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=32,y=41
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
@@ -14212,7 +14212,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=36,y=40
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_SNOW
         PlotType=1
@@ -14655,7 +14655,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=37,y=48
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -15282,7 +15282,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=39,y=25
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=0
         TerrainType=TERRAIN_PLAINS
         PlotType=1
@@ -16969,7 +16969,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=43,y=44
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
@@ -18103,7 +18103,7 @@ BeginPlot
         x=46,y=46
         RiverNSDirection=2
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -20353,7 +20353,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=52,y=48
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=2
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -23103,7 +23103,7 @@ BeginPlot
         isNOfRiver
         RiverWEDirection=3
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_FOREST, FeatureVariety=1
         TerrainType=TERRAIN_GRASS
         PlotType=1
@@ -24147,7 +24147,7 @@ BeginPlot
         x=62,y=32
         RiverNSDirection=2
         isWOfRiver
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         TerrainType=TERRAIN_PLAINS
         PlotType=1
 EndPlot
@@ -26581,7 +26581,7 @@ BeginPlot
         x=68,y=54
         isNOfRiver
         RiverWEDirection=1
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         FeatureType=FEATURE_SWAMP, FeatureVariety=0
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
@@ -28540,7 +28540,7 @@ BeginPlot
 EndPlot
 BeginPlot
         x=73,y=55
-        BonusType=BONUS_COAL
+        BonusType=BONUS_BLEI
         TerrainType=TERRAIN_TUNDRA
         PlotType=1
 EndPlot

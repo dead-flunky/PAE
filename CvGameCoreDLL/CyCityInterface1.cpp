@@ -469,5 +469,8 @@ void CyCityPythonInterface1(python::class_<CyCity>& x)
 
 		.def("getLiberationPlayer", &CyCity::getLiberationPlayer, "int ()")
 		.def("liberate", &CyCity::liberate, "void ()")
+
+		.def("chooseEthnic", &CyCity::chooseEthnic, "int ()")
+		.def("chooseReligion", &CyCity::chooseReligion, "int ()")
 		;
 }

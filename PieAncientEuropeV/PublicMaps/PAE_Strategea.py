@@ -995,12 +995,12 @@ def addBonusType(argsList):
         # Init all bonuses.
         bonusRare = ('BONUS_GOLD', 'BONUS_DYE', 'BONUS_RICE', 'BONUS_INCENSE', 'BONUS_SILK',
                      'BONUS_IVORY', 'BONUS_GEMS', 'BONUS_GRAPES', 'BONUS_SILVER', 'BONUS_SPICES', 'BONUS_HORSE')
-        bonusNormal = ('BONUS_COAL', 'BONUS_ZINN', 'BONUS_COW', 'BONUS_SHEEP')
+        bonusNormal = ('BONUS_BLEI', 'BONUS_ZINN', 'BONUS_COW', 'BONUS_SHEEP')
         bonusCommon = ('BONUS_COPPER', 'BONUS_IRON', 'BONUS_WHEAT', 'BONUS_FISH', 'BONUS_PIG')
         bonusExtraCommon = ('BONUS_COPPER')
         bonusFractal = ('BONUS_DEER', 'BONUS_FUR', 'BONUS_STONE', 'BONUS_BANANA', 'BONUS_MARBLE')
         needsChopping = ('BONUS_SHEEP', 'BONUS_GRAPES', 'BONUS_WHEAT', 'BONUS_IVORY', 'BONUS_COW')
-        needHills = ('BONUS_COAL', 'BONUS_IRON', 'BONUS_COPPER', 'BONUS_GOLD', 'BONUS_SILVER')
+        needHills = ('BONUS_BLEI', 'BONUS_IRON', 'BONUS_COPPER', 'BONUS_GOLD', 'BONUS_SILVER')
         extraTactical = ('BONUS_OIL')
         deer = ('BONUS_DEER')
         fur = ('BONUS_FUR')
@@ -1017,7 +1017,7 @@ def addBonusType(argsList):
         if  map.getClimate() == 4:
                 resourcesToEliminate = ('BONUS_PIG', 'BONUS_RICE', 'BONUS_SILK', 'BONUS_DYE', 'BONUS_SUGAR', 'BONUS_WHEAT',
                                                                 'BONUS_SPICES', 'BONUS_IVORY', 'BONUS_BANANA', 'BONUS_INCENSE')
-                needHills = ('BONUS_GEMS', 'BONUS_COAL', 'BONUS_IRON', 'BONUS_COPPER', 'BONUS_GOLD', 'BONUS_SILVER')
+                needHills = ('BONUS_GEMS', 'BONUS_BLEI', 'BONUS_IRON', 'BONUS_COPPER', 'BONUS_GOLD', 'BONUS_SILVER')
                 bonusRare = ('BONUS_GOLD', 'BONUS_SILVER')
                 bonusCommon = ('BONUS_COPPER', 'BONUS_IRON', 'BONUS_FISH', 'BONUS_GEMS')
                 bonusExtraCommon = ('BONUS_COPPER', 'BONUS_FISH')

@@ -34,7 +34,7 @@ public:
 
 	std::wstring getNewCityName();
 
-	CyUnit* initUnit(int /*UnitTypes*/ iIndex, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection);
+	CyUnit* initUnit(int /*UnitTypes*/ iIndex, int iX, int iY, UnitAITypes eUnitAI, DirectionTypes eFacingDirection, int iEthnic, int iReligion);
 	void disbandUnit(bool bAnnounce);
 
 	void killUnits();

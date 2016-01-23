@@ -2182,6 +2182,18 @@ void CyCity::setScriptData(std::string szNewValue)
 		m_pCity->setScriptData(szNewValue);
 }
 
+// Flunky
+int CyCity::chooseEthnic()
+{
+	return m_pCity ? m_pCity->chooseEthnic():NO_CIVILIZATION;
+}
+
+int CyCity::chooseReligion()
+{
+	return m_pCity ? m_pCity->chooseReligion() : NO_RELIGION;
+}
+// End Flunky
+
 int CyCity::visiblePopulation(void)
 {
 	if ( m_pCity )

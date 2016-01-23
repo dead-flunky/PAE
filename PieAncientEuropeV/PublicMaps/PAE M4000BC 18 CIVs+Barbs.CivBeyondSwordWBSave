@@ -2547,7 +2547,7 @@ BeginPlot
     CityName=Tingis
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_CREATIVE_GLOBAL
+     
   EndCity
   TeamReveal=13,
   Player13Culture=2
@@ -2978,7 +2978,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=6,y=29
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   TerrainType=TERRAIN_PLAINS
   PlotType=1
@@ -5045,7 +5045,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=12,y=33
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -5116,7 +5116,7 @@ BeginPlot
   x=12,y=43
   RiverNSDirection=2
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   TerrainType=TERRAIN_PLAINS
   PlotType=1
@@ -6700,7 +6700,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=17,y=34
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -9442,7 +9442,7 @@ BeginPlot
   x=25,y=40
   isNOfRiver
   RiverWEDirection=1
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   TerrainType=TERRAIN_GRASS
   PlotType=1
   TeamReveal=40,
@@ -11087,7 +11087,7 @@ BeginPlot
   x=30,y=45
   isNOfRiver
   RiverWEDirection=3
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -12026,6 +12026,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_C30
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
+     
   EndCity
   TeamReveal=12,40,
   Player12Culture=2
@@ -13761,7 +13762,7 @@ BeginPlot
   x=38,y=40
   isNOfRiver
   RiverWEDirection=3
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=2
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -13969,7 +13970,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=39,y=25
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   TerrainType=TERRAIN_PLAINS
   PlotType=1
@@ -14982,7 +14983,8 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_ATHENS
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+     
+     
   EndCity
   TeamReveal=3,
   Player3Culture=2
@@ -15516,7 +15518,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=43,y=44
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
   TerrainType=TERRAIN_PLAINS
   PlotType=1
@@ -20475,6 +20477,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_BYBLOS
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
+     
   EndCity
   TeamReveal=11,40,
   Player11Culture=2
@@ -21468,7 +21471,7 @@ BeginPlot
   x=62,y=32
   RiverNSDirection=2
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   TerrainType=TERRAIN_PLAINS
   PlotType=1
 EndPlot

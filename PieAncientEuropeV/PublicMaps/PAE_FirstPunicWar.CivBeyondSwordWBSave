@@ -3989,6 +3989,7 @@ BeginPlot
 		BuildingType=BUILDING_ORACLE2
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		Player7Culture=112
 	EndCity
@@ -4681,7 +4682,7 @@ BeginPlot
 	x=2,y=63
 	RiverNSDirection=0
 	isWOfRiver
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
 	TeamReveal=8,
@@ -5300,6 +5301,7 @@ BeginPlot
 		BuildingType=BUILDING_CELTIC_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		CorporationType=CORPORATION_2
 		Player7Culture=61
@@ -7397,6 +7399,7 @@ BeginPlot
 		BuildingType=BUILDING_SKLAVENMARKT
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		CorporationType=CORPORATION_2
 		FreeSpecialistType=SPECIALIST_SLAVE
@@ -11153,6 +11156,7 @@ BeginPlot
 		BuildingType=BUILDING_CELTIC_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		CorporationType=CORPORATION_2
 		Player7Culture=41
@@ -13141,6 +13145,7 @@ BeginPlot
 		BuildingType=BUILDING_CELTIC_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		CorporationType=CORPORATION_2
 		Player7Culture=64
@@ -15634,6 +15639,7 @@ BeginPlot
 		BuildingType=BUILDING_CELTIC_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		CorporationType=CORPORATION_2
 		Player7Culture=68
@@ -16193,6 +16199,7 @@ BeginPlot
 		BuildingType=BUILDING_CELTIC_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_CELTIC
 		CorporationType=CORPORATION_2
 		Player7Culture=64
@@ -30713,7 +30720,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=49,y=37
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -41046,7 +41053,8 @@ BeginPlot
 		BuildingType=BUILDING_SKLAVENMARKT
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
-		BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+		 
+		 
 		ReligionType=RELIGION_ROME
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
@@ -41159,7 +41167,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
-		BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+		 
 		ReligionType=RELIGION_ROME
 		CorporationType=CORPORATION_2
 		CorporationType=CORPORATION_5
@@ -42401,6 +42409,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		BuildingType=BUILDING_CORP3
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
@@ -44740,6 +44749,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_6
@@ -49353,6 +49363,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		ReligionType=RELIGION_PHOEN
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
@@ -49583,6 +49594,7 @@ BeginPlot
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
 		BuildingType=BUILDING_PROVINZ
+		 
 		BuildingType=BUILDING_CORP3
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
@@ -49677,6 +49689,7 @@ BeginPlot
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
 		BuildingType=BUILDING_PROVINZ
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -51232,6 +51245,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -51486,6 +51500,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_2
 		CorporationType=CORPORATION_8
@@ -51883,6 +51898,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -53122,6 +53138,7 @@ BeginPlot
 		BuildingType=BUILDING_SKLAVENMARKT
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -54798,6 +54815,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		BuildingType=BUILDING_CORP3
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
@@ -56002,6 +56020,7 @@ BeginPlot
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -56430,6 +56449,7 @@ BeginPlot
 		BuildingType=BUILDING_KOLONIE
 		BuildingType=BUILDING_STADT
 		BuildingType=BUILDING_PROVINZ
+		 
 		BuildingType=BUILDING_CORP3
 		ReligionType=RELIGION_GREEK
 		HolyCityReligionType=RELIGION_GREEK
@@ -56847,6 +56867,7 @@ BeginPlot
 		BuildingType=BUILDING_GREEK_TEMPLE
 		BuildingType=BUILDING_SIEDLUNG
 		BuildingType=BUILDING_KOLONIE
+		 
 		ReligionType=RELIGION_GREEK
 		CorporationType=CORPORATION_3
 		CorporationType=CORPORATION_5
@@ -61670,7 +61691,7 @@ BeginPlot
 	x=96,y=70
 	isNOfRiver
 	RiverWEDirection=3
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	ImprovementType=IMPROVEMENT_MINE
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	RouteType=ROUTE_ROAD

@@ -2828,7 +2828,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=6,y=24
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -4920,7 +4920,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=12,y=28
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -4995,7 +4995,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=12,y=38
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=2
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -5358,7 +5358,7 @@ BeginPlot
 	x=13,y=42
 	isNOfRiver
 	RiverWEDirection=3
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
 	TeamReveal=40,
@@ -6852,7 +6852,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=18,y=28
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=2
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -9727,7 +9727,7 @@ BeginPlot
 	x=26,y=42
 	RiverNSDirection=0
 	isWOfRiver
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -10691,7 +10691,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=29,y=37
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -13849,7 +13849,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=38,y=42
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	RouteType=ROUTE_ROAD
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -14029,7 +14029,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=39,y=20
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -14562,7 +14562,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=40,y=40
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_DICHTERWALD, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -15105,7 +15105,8 @@ BeginPlot
 		CityOwner=1
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+		 
+		 
 	EndCity
 	TeamReveal=1,
 	Player1Culture=2
@@ -16636,7 +16637,7 @@ BeginPlot
 	x=46,y=41
 	RiverNSDirection=2
 	isWOfRiver
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=2
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -18430,7 +18431,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=52,y=43
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=2
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -19741,7 +19742,7 @@ BeginPlot
 		CityOwner=2
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+		 
 	EndCity
 	TeamReveal=2,
 	Player2Culture=2
@@ -20507,6 +20508,7 @@ BeginPlot
 		CityOwner=6
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
+		 
 	EndCity
 	TeamReveal=6,
 	Player6Culture=2
@@ -21526,7 +21528,7 @@ BeginPlot
 	x=62,y=27
 	RiverNSDirection=2
 	isWOfRiver
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	ImprovementType=IMPROVEMENT_GOODY_HUT
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1

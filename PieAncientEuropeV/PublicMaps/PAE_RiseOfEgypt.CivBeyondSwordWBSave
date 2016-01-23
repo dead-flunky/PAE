@@ -4777,7 +4777,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=7,y=74
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -7004,6 +7004,7 @@ BeginPlot
 		CityName=TXT_KEY_CITY_NAME_THEBES
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
+		 
 	EndCity
 	TeamReveal=10,
 	Player10Culture=2
@@ -8605,7 +8606,8 @@ BeginPlot
 		CityName=TXT_KEY_CITY_NAME_ATHENS
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
-		BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+		 
+		 
 	EndCity
 	TeamReveal=8,
 	Player8Culture=2
@@ -10538,6 +10540,7 @@ BeginPlot
 		CityName=Knossos
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
+		 
 	EndCity
 	TeamReveal=11,
 	Player11Culture=2
@@ -20699,7 +20702,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=39,y=67
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -28712,6 +28715,7 @@ BeginPlot
 		CityName=TXT_KEY_CITY_NAME_BYBLOS
 		CityPopulation=1
 		BuildingType=BUILDING_SIEDLUNG
+		 
 	EndCity
 	TeamReveal=3,
 	Player3Culture=2
@@ -31278,7 +31282,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=60,y=68
-	BonusType=BONUS_COAL
+	BonusType=BONUS_BLEI
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
 EndPlot

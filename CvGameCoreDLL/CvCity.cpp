@@ -13953,6 +13953,7 @@ CivilizationTypes CvCity::chooseEthnic() const
 	}
 
 	FAssert(true, "Shouldn't get here");
+	return NO_CIVILIZATION;
 }
 
 ReligionTypes CvCity::chooseReligion() const

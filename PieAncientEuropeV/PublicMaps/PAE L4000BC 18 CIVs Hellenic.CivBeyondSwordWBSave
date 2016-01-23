@@ -1170,7 +1170,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=0,y=44
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -1938,7 +1938,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=2,y=46
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -2252,7 +2252,7 @@ BeginPlot
   x=3,y=40
   RiverNSDirection=2
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -7776,7 +7776,7 @@ BeginPlot
   x=18,y=27
   RiverNSDirection=2
   isWOfRiver
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=0
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -12454,7 +12454,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=30,y=21
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -15280,6 +15280,7 @@ BeginPlot
     CityName=Skodra
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
+     
   EndCity
   TeamReveal=8,
   Player8Culture=2
@@ -19284,7 +19285,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=48,y=19
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   ImprovementType=IMPROVEMENT_GOODY_HUT
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -20721,7 +20722,7 @@ BeginPlot
 EndPlot
 BeginPlot
   x=52,y=17
-  BonusType=BONUS_COAL
+  BonusType=BONUS_BLEI
   FeatureType=FEATURE_FOREST, FeatureVariety=1
   TerrainType=TERRAIN_GRASS
   PlotType=1
@@ -20748,6 +20749,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_THEBES
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
+     
     Player11Culture=1
   EndCity
   TeamReveal=4,11,40,
@@ -22739,7 +22741,8 @@ BeginPlot
     CityName=TXT_KEY_CIV_ATHENS_SHORT_DESC
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+     
+     
   EndCity
   TeamReveal=4,12,40,
   Player4Culture=2
@@ -31104,6 +31107,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_BYBLOS
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
+     
   EndCity
   TeamReveal=14,
   Player14Culture=2
@@ -31725,7 +31729,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_EGYPT_01
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
+     
   EndCity
   TeamReveal=3,
   Player3Culture=2
