@@ -5195,7 +5195,10 @@ class CvMainInterface:
     screen.hide( "SelectedUnitText" )
     screen.hide( "SelectedUnitLabel" )
     # PAE: Unit Combat Type
-    screen.hide( "SelectedUnitCombatType" )
+    screen.hide( "SelectedUnitCombatType" )    
+    # PAE Unit Ethnic und Religion
+    screen.hide( "SelectedUnitEthnic" )
+    screen.hide( "SelectedUnitReligion" )  
 
     screen.addTableControlGFC( "SelectedCityText", 3, 10, yResolution - 139, 183, 128, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
     screen.setStyle( "SelectedCityText", "Table_EmptyScroll_Style" )
@@ -5462,6 +5465,14 @@ class CvMainInterface:
             screen.show( "SelectedUnitPanel" )
             iRow += 1
 
+          # PAE Unit Ethnic und Religion
+          if pHeadSelectedUnit.getEthnic() != -1:
+            iUnitEthnic = pHeadSelectedUnit.getEthnic()
+            screen.setImageButton("SelectedUnitEthnic", gc.getCivilizationInfo(iUnitEthnic).getButton(), 80, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, iUnitEthnic, -1)
+          if pHeadSelectedUnit.getReligion() != -1:
+            iUnitReligion = pHeadSelectedUnit.getReligion()
+            screen.setImageButton("SelectedUnitReligion", gc.getReligionInfo(iUnitReligion).getButton(), 104, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_RELIGION, iUnitReligion, -1)
+          # ----  
 
 ## Hidden Promotions: changed by Pie for PAE to avoid info type XY not found errors!
           lIgnorePromos = []
