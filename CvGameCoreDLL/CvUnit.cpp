@@ -8869,136 +8869,6 @@ int CvUnit::withdrawalProbability() const
 	return std::max(0, (m_pUnitInfo->getWithdrawalProbability() + getExtraWithdrawal()));
 }
 
-int CvUnit::flightProbability(const CvUnit* pOther) const
-{
-	if (getDomainType() == DOMAIN_LAND && plot()->isWater())
-	{
-		return 0;
-	}
-
-	int iFlight = 0;
-	if (getEthnic() == pOther->getEthnic())
-	{
-		if (getReligion() == pOther->getReligion())
-		{
-			iFlight += 20;
-		}
-		else
-		{
-			iFlight += 20;
-		}
-	}
-	else
-	{
-		if (getReligion() == pOther->getReligion())
-		{
-			iFlight += 10;
-		}
-		else
-		{
-			iFlight += 0;
-		}
-	}
-
-
-	return std::max(0, (iFlight + getExtraFlight()));
-}
-
-// Flunky - ueberlaufen kann auch, wer vom Schiff aus angreift.
-int CvUnit::renegadeProbability(const CvUnit* pOther) const
-{
-	if (!canRenegadeTo(pOther))
-	{
-		return 0;
-	}
-	if (getEthnic() == pOther->getEthnic())
-	{
-		if (getReligion() == pOther->getReligion())
-		{
-			return 50;
-		}
-		else
-		{
-			return 30;
-		}
-	}
-	else
-	{
-		if (getReligion() == pOther->getReligion())
-		{
-			return 10;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-}
-
-// Flunky
-int CvUnit::slaveryProbability(const CvUnit* pOther) const
-{
-	if (!canBeEnslavedBy(pOther))
-	{
-		return 0;
-	}
-	if (getEthnic() == pOther->getEthnic())
-	{
-		if (getReligion() == pOther->getReligion())
-		{
-			return 10;
-		}
-		else
-		{
-			return 20;
-		}
-	}
-	else
-	{
-		if (getReligion() == pOther->getReligion())
-		{
-			return 40;
-		}
-		else
-		{
-			return 50;
-		}
-	}
-}
-
-
-bool CvUnit::canRenegadeTo(const CvUnit* pOther) const 
-{
-	if (isLoyal())
-		return false;
-	if (isAnimal())
-		return false;
-	if (pOther->isAnimal())
-		return false;	
-	if (!pOther->canAttack())
-		return false;
-	if (getCaptureUnitType() == NO_UNIT)
-		return false;
-	
-	return true;
-}
-
-bool CvUnit::canBeEnslavedBy(const CvUnit* pOther) const 
-{
-	if (isAnimal())
-		return false;
-	if (pOther->isAnimal())
-		return false;
-	if (!pOther->canAttack())
-		return false;
-	//if (getCaptureUnitType() == NO_UNIT)
-	//	return false;
-	if (!GET_PLAYER(pOther->getOwnerINLINE()).canEnslave())
-		return false;
-
-	return true;
-}
-
 int CvUnit::collateralDamage() const
 {
 	return std::max(0, (m_pUnitInfo->getCollateralDamage()));
@@ -11823,9 +11693,6 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iExtraFirstStrikes);
 	pStream->Read(&m_iExtraChanceFirstStrikes);
 	pStream->Read(&m_iExtraWithdrawal);
-	//Flunky
-	pStream->Read(&m_iExtraFlight);
-	pStream->Read(&m_iLoyalCount);
 	pStream->Read(&m_iExtraCollateralDamage);
 	pStream->Read(&m_iExtraBombardRate);
 	pStream->Read(&m_iExtraEnemyHeal);
@@ -11860,11 +11727,15 @@ void CvUnit::read(FDataStreamBase* pStream)
 		pStream->Read(&m_bAirCombat);
 	}
 	//Flunky
+	pStream->Read(&m_iExtraFlight);
+	pStream->Read(&m_iLoyalCount);
 	pStream->Read(&m_bFlight);
 	pStream->Read(&m_bRenegade);
 	pStream->Read(&m_bSlavery);
 	pStream->Read(&m_iRenegadePlotX);
 	pStream->Read(&m_iRenegadePlotY);
+	pStream->Read((int*)&m_eEthnic);
+	pStream->Read((int*)&m_eReligion);
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_eCapturingPlayer);
@@ -11936,9 +11807,6 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iExtraFirstStrikes);
 	pStream->Write(m_iExtraChanceFirstStrikes);
 	pStream->Write(m_iExtraWithdrawal);
-	//Flunky
-	pStream->Write(m_iExtraFlight);
-	pStream->Write(m_iLoyalCount);
 	pStream->Write(m_iExtraCollateralDamage);
 	pStream->Write(m_iExtraBombardRate);
 	pStream->Write(m_iExtraEnemyHeal);
@@ -11971,11 +11839,15 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_bAirCombat);
 	
 	//Flunky
+	pStream->Write(m_iExtraFlight);
+	pStream->Write(m_iLoyalCount);
 	pStream->Write(m_bFlight);
 	pStream->Write(m_bRenegade);
 	pStream->Write(m_bSlavery);
 	pStream->Write(m_iRenegadePlotX);
 	pStream->Write(m_iRenegadePlotY);
+	pStream->Write(m_eEthnic);
+	pStream->Write(m_eReligion);
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_eCapturingPlayer);
@@ -12249,15 +12121,105 @@ void CvUnit::flankingStrikeCombat(const CvPlot* pPlot, int iAttackerStrength, in
 	}
 }
 
-void CvUnit::setFlight()
-{	
-	m_bFlight = true;
+
+
+int CvUnit::flightProbability(const CvUnit* pOther) const
+{
+	if (getDomainType() == DOMAIN_LAND && plot()->isWater())
+	{
+		return 0;
+	}
+
+	int iFlight = 0;
+	if (getEthnic() == pOther->getEthnic())
+	{
+		if (getReligion() == pOther->getReligion())
+		{
+			iFlight += 20;
+		}
+		else
+		{
+			iFlight += 20;
+		}
+	}
+	else
+	{
+		if (getReligion() == pOther->getReligion())
+		{
+			iFlight += 10;
+		}
+		else
+		{
+			iFlight += 0;
+		}
+	}
+
+
+	return std::max(0, (iFlight + getExtraFlight()));
 }
 
-bool CvUnit::isFlight()
+// Flunky - ueberlaufen kann auch, wer vom Schiff aus angreift.
+int CvUnit::renegadeProbability(const CvUnit* pOther) const
 {
-	return m_bFlight;
+	if (!canRenegadeTo(pOther))
+	{
+		return 0;
+	}
+	if (getEthnic() == pOther->getEthnic())
+	{
+		if (getReligion() == pOther->getReligion())
+		{
+			return 50;
+		}
+		else
+		{
+			return 30;
+		}
+	}
+	else
+	{
+		if (getReligion() == pOther->getReligion())
+		{
+			return 10;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 }
+
+// Flunky
+int CvUnit::slaveryProbability(const CvUnit* pOther) const
+{
+	if (!canBeEnslavedBy(pOther))
+	{
+		return 0;
+	}
+	if (getEthnic() == pOther->getEthnic())
+	{
+		if (getReligion() == pOther->getReligion())
+		{
+			return 10;
+		}
+		else
+		{
+			return 20;
+		}
+	}
+	else
+	{
+		if (getReligion() == pOther->getReligion())
+		{
+			return 40;
+		}
+		else
+		{
+			return 50;
+		}
+	}
+}
+
 void CvUnit::setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot)
 {
 	setCapturingPlayer(capturingPlayer);
@@ -12269,6 +12231,43 @@ void CvUnit::setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot)
 bool CvUnit::isRenegade()
 {
 	return m_bRenegade;
+}
+
+CvPlot* CvUnit::getRenegadePlot()
+{
+	return GC.getMapINLINE().plotSorenINLINE(m_iRenegadePlotX, m_iRenegadePlotY);
+}
+
+bool CvUnit::canRenegadeTo(const CvUnit* pOther) const
+{
+	if (isLoyal())
+		return false;
+	if (isAnimal())
+		return false;
+	if (pOther->isAnimal())
+		return false;
+	if (!pOther->canAttack())
+		return false;
+	if (getCaptureUnitType() == NO_UNIT)
+		return false;
+
+	return true;
+}
+
+bool CvUnit::canBeEnslavedBy(const CvUnit* pOther) const
+{
+	if (isAnimal())
+		return false;
+	if (pOther->isAnimal())
+		return false;
+	if (!pOther->canAttack())
+		return false;
+	//if (getCaptureUnitType() == NO_UNIT)
+	//	return false;
+	if (!GET_PLAYER(pOther->getOwnerINLINE()).canEnslave())
+		return false;
+
+	return true;
 }
 
 void CvUnit::setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot)
@@ -12284,11 +12283,15 @@ bool CvUnit::isSlavery()
 	return m_bSlavery;
 }
 
-CvPlot* CvUnit::getRenegadePlot()
-{
-	return GC.getMapINLINE().plotSorenINLINE(m_iRenegadePlotX, m_iRenegadePlotY);
+void CvUnit::setFlight()
+{	
+	m_bFlight = true;
 }
 
+bool CvUnit::isFlight()
+{
+	return m_bFlight;
+}
 
 ReligionTypes CvUnit::getReligion() const
 {

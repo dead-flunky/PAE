@@ -5468,10 +5468,12 @@ class CvMainInterface:
           # PAE Unit Ethnic und Religion
           if pHeadSelectedUnit.getEthnic() != -1:
             iUnitEthnic = pHeadSelectedUnit.getEthnic()
-            screen.setImageButton("SelectedUnitEthnic", gc.getCivilizationInfo(iUnitEthnic).getButton(), 80, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, iUnitEthnic, -1)
+            if iUnitEthnic > -1 and iUnitEthnic < gc.getNumCivilizationInfos():
+              screen.setImageButton("SelectedUnitEthnic", gc.getCivilizationInfo(iUnitEthnic).getButton(), 80, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, iUnitEthnic, -1)
           if pHeadSelectedUnit.getReligion() != -1:
             iUnitReligion = pHeadSelectedUnit.getReligion()
-            screen.setImageButton("SelectedUnitReligion", gc.getReligionInfo(iUnitReligion).getButton(), 104, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_RELIGION, iUnitReligion, -1)
+            if iUnitReligion > -1 and iUnitReligion < gc.getNumReligionInfos():
+              screen.setImageButton("SelectedUnitReligion", gc.getReligionInfo(iUnitReligion).getButton(), 104, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_RELIGION, iUnitReligion, -1)
           # ----  
 
 ## Hidden Promotions: changed by Pie for PAE to avoid info type XY not found errors!
