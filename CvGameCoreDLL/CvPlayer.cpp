@@ -8361,7 +8361,7 @@ void CvPlayer::changeDomainProductionModifier(DomainTypes eIndex, int iChange)
 }
 
 bool CvPlayer::canEnslave(){
-	return m_bCanEnslave;
+	return m_bCanEnslave || true /*TODO temp until included in xml*/;
 }
 
 void CvPlayer::canEnslave(bool bCan) {

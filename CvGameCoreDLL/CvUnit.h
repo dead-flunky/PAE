@@ -555,28 +555,31 @@ public:
 	void changeExtraWithdrawal(int iChange);
 
 	// Flunky
-	int flightProbability(const CvUnit* pOther) const;
-	int renegadeProbability(const CvUnit* pOther) const;
-	int slaveryProbability(const CvUnit* pOther) const;
-	bool canRenegadeTo(const CvUnit* pOther) const;
-	bool canBeEnslavedBy(const CvUnit* pOther) const;
-	int getExtraFlight() const;
+	bool canFlee() const;
+	void setFlight();
+	bool isFlight();
 	void changeExtraFlight(int iChange);
+	int getExtraFlight() const;
+	int flightProbability(const CvUnit* pOther, bool checked = true) const;
+
+	CvPlot* getRenegadePlot();
+	void setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot);
+	bool isRenegade();
 	int getLoyalCount() const;
 	bool isLoyal() const;
 	void changeLoyalCount(int iChange);
-	void setFlight();
-	bool isFlight();
-	void setRenegade(PlayerTypes capturingPlayer, const CvPlot* pPlot);
-	bool isRenegade();
+	bool canRenegadeTo(const CvUnit* pOther) const;
+	int renegadeProbability(const CvUnit* pOther, bool checked = true) const;
+
 	void setSlavery(PlayerTypes capturingPlayer, const CvPlot* pPlot);
 	bool isSlavery();
-	CvPlot* getRenegadePlot();
+	bool canBeEnslavedBy(const CvUnit* pOther) const;
+	int slaveryProbability(const CvUnit* pOther, bool checked = true) const;
+
 	ReligionTypes getReligion() const; // Exposed to Python
 	CivilizationTypes getEthnic() const;  // Exposed to Python
 	void setReligion(ReligionTypes eReligion);
 	void setEthnic(CivilizationTypes eEthnic);
-
 
 	int getExtraCollateralDamage() const;																											// Exposed to Python
 	void changeExtraCollateralDamage(int iChange);

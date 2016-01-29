@@ -16430,7 +16430,7 @@
                         <SoundMP>AS2D_TECH_MP_SCIMETHOD</SoundMP>
                         <Button>,Art/Interface/Buttons/TechTree/Scientific Method.dds,Art/Interface/Buttons/TechTree_Atlas.dds,8,7</Button>
     </TechInfo>
-
+    
     <TechInfo>
       <Type>TECH_SOELDNER1</Type>
       <Description>TXT_KEY_TECH_SOELDNER1</Description>

@@ -4692,4 +4692,68 @@
      <Italian>Battle management</Italian>
      <Spanish>Manejo de la batalla</Spanish>
    </TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_LOSING_DETAILS</Tag>
+		<English>After loss:</English>
+		<French>En cas de victoire:</French>
+		<German>Bei drohender Niederlage:</German>
+		<Italian>After victory:</Italian>
+		<Spanish>After victory:</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_RENEGADE</Tag>
+		<English>Retreat odds: %s1%%</English>
+		<French>Chance de retraite : %s1 %%</French>
+		<German>%s1%% Chance &#252;berzulaufen</German>
+		<Italian>Probabilit&#224; di ritirata: %s1%%</Italian>
+		<Spanish>Probabilidades de retirada: %s1%%</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_FLIGHT</Tag>
+		<English>Flight odds: %s1%%</English>
+		<French>Chance de fuite : %s1 %%</French>
+		<German>%s1%% Flucht</German>
+		<Italian>Probabilit&#224; di evasione: %s1%%</Italian>
+		<Spanish>Probabilidades de fuga: %s1%%</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_SLAVERY</Tag>
+		<English>Slavery odds: %s1%%</English>
+		<French>Chance d'esclavage: %s1 %%</French>
+		<German>%s1%% Sklaverei</German>
+		<Italian>Probabilit&#224; di schiavit&#249;: %s1%%</Italian>
+		<Spanish>Probabilidades de esclavitud: %s1%%</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_WINNING_DETAILS</Tag>
+		<English>After victory:</English>
+		<French>En cas de victoire:</French>
+		<German>Nach Sieg:</German>
+		<Italian>After victory:</Italian>
+		<Spanish>After victory:</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_THEIR_RENEGADE</Tag>
+		<English>Enemy retreats: %s1%%</English>
+		<French>L'ennemi retraites: %s1 %%</French>
+		<German>Gegner l&#228;uft zu %s1%% &#252;ber</German>
+		<Italian>Probabilit&#224; di ritirata: %s1%%</Italian>
+		<Spanish>Probabilidades de retirada: %s1%%</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_THEIR_FLIGHT</Tag>
+		<English>Enemy flees: %s1%%</English>
+		<French>L'ennemi s'enfuir: %s1 %%</French>
+		<German>Gegner flieht zu %s1%%</German>
+		<Italian>Probabilit&#224; di evasione: %s1%%</Italian>
+		<Spanish>Probabilidades de fuga: %s1%%</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_ODDS_THEIR_SLAVERY</Tag>
+		<English>Enslaving the enemy: %s1%%</English>
+		<French>Chance d'esclavager l'ennemi: %s1 %%</French>
+		<German>Gegner wird zu %s1%% versklavt</German>
+		<Italian>Probabilit&#224; di schiavit&#249;: %s1%%</Italian>
+		<Spanish>Probabilidades de esclavitud: %s1%%</Spanish>
+	</TEXT>
 </Civ4GameText>
