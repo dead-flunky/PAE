@@ -1150,44 +1150,9 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 	int iAttackerSlaveryProbability = slaveryProbability(pDefender);
 	int iAttackerFlightProbability = flightProbability(pDefender);
 
-
-	if (!canRenegadeTo(pDefender))
-	{
-		//iAttackerSlaveryProbability += iAttackerRenegadeProbability;
-		iAttackerRenegadeProbability = 0;
-	}
-
-	if (!canBeEnslavedBy(pDefender))
-	{
-		//iAttackerFlightProbability += iAttackerSlaveryProbability;
-		iAttackerSlaveryProbability = 0;
-	}
-
-	if (!canFlee())
-	{
-		iAttackerFlightProbability = 0;
-	}
-
 	int iDefenderRenegadeProbability = pDefender->renegadeProbability(this);
 	int iDefenderSlaveryProbability = pDefender->slaveryProbability(this);
 	int iDefenderFlightProbability = pDefender->flightProbability(this);
-
-	if (!canRenegadeTo(pDefender))
-	{
-		//iDefenderSlaveryProbability += iDefenderRenegadeProbability;
-		iDefenderRenegadeProbability = 0;
-	}
-
-	if (!canBeEnslavedBy(pDefender))
-	{
-		//iDefenderFlightProbability += iDefenderSlaveryProbability;
-		iDefenderSlaveryProbability = 0;
-	}
-
-	if (!canFlee())
-	{
-		iDefenderFlightProbability = 0;
-	}
 
 	getDefenderCombatValues(*pDefender, pPlot, iAttackerStrength, iAttackerFirepower, iDefenderOdds, iDefenderStrength, iAttackerDamage, iDefenderDamage, &cdDefenderDetails);
 	int iAttackerKillOdds = iDefenderOdds * (100 - iAttackerWithdrawalProbability - iAttackerFlightProbability) / 100;
@@ -1206,6 +1171,7 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 
 	while (true)
 	{
+		// Defender hit
 		if (GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("COMBAT_DIE_SIDES"), "Combat") < iDefenderOdds)
 		{
 			if (getCombatFirstStrikes() == 0)
@@ -1268,6 +1234,7 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, CvBattleDefinition&
 				}
 			}
 		}
+		// Attacker hit
 		else
 		{
 			if (pDefender->getCombatFirstStrikes() == 0)
@@ -1519,8 +1486,22 @@ void CvUnit::updateCombat(bool bQuick)
 			// Kill them!
 			pDefender->setDamage(GC.getMAX_HIT_POINTS());
 		}
-		else
+		else if ((GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("COMBAT_DIE_SIDES"), "WirWerdenNichtGegenUnsereBruederUndSchwesternKaempfen") < noFightProbability(pDefender)))
 		{
+			int iRand = GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("COMBAT_DIE_SIDES"), "NoFightResolve");
+			if (iRand < noFightRenegadeProbability(pDefender))
+			{
+				setRenegade(pDefender->getOwnerINLINE(), pPlot);
+				kill(false);
+			}
+			iRand -= noFightRenegadeProbability(pDefender);
+			if (iRand < pDefender->noFightRenegadeProbability(this))
+			{
+				pDefender->setRenegade(getOwnerINLINE(), plot());
+				pDefender->kill(false);
+			}
+		}
+		else {
 			CvBattleDefinition kBattle;
 			kBattle.setUnit(BATTLE_UNIT_ATTACKER, this);
 			kBattle.setUnit(BATTLE_UNIT_DEFENDER, pDefender);
@@ -12184,6 +12165,46 @@ void CvUnit::flankingStrikeCombat(const CvPlot* pPlot, int iAttackerStrength, in
 }
 
 // Flunky
+
+int CvUnit::noFightProbability(const CvUnit* pOther) const
+{
+	if (getEthnic() == pOther->getEthnic())
+	{
+		if (getReligion() != NO_RELIGION && getReligion() == pOther->getReligion())
+		{
+			return 60;
+		}
+		else
+		{
+			return 40;
+		}
+	}
+	else
+	{
+		if (getReligion() != NO_RELIGION && getReligion() == pOther->getReligion())
+		{
+			return 20;
+		}
+
+		else
+		{
+			return 0;
+		}
+	}
+}
+
+int CvUnit::noFightRenegadeProbability(const CvUnit* pOther) const
+{
+	if (isLoyal())
+	{
+		return 0;
+	}
+	else
+	{
+		return 50;
+	}
+}
+
 bool CvUnit::canFlee() const
 {
 	return getDomainType() != DOMAIN_LAND || !plot()->isWater();

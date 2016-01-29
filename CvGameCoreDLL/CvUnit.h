@@ -555,6 +555,9 @@ public:
 	void changeExtraWithdrawal(int iChange);
 
 	// Flunky
+	int noFightProbability(const CvUnit* pOther) const;
+	int noFightRenegadeProbability(const CvUnit* pOther) const;
+
 	bool canFlee() const;
 	void setFlight();
 	bool isFlight();
