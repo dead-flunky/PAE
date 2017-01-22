@@ -155,34 +155,6 @@
           <BuildingType>BUILDING_BUND_MESO</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -197,10 +169,6 @@
           <UnitType>UNIT_GEPANZERTER_ASSYRIA</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
-        </Unit>
-        <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_SYRIAN_GARDE</UnitType>
         </Unit>
@@ -209,8 +177,16 @@
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_CHARIOT</UnitClassType>
           <UnitType>UNIT_INDIAN_WARCHARIOT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -527,10 +503,6 @@
           <BuildingType>BUILDING_SANITATION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL10</BuildingClassType>
-          <BuildingType>BUILDING_COLONIA_GREEK</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
         </Building>
@@ -543,12 +515,12 @@
           <BuildingType>BUILDING_SAEULE4</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
-          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
           <BuildingType>BUILDING_AMPHITHEATER</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
@@ -559,34 +531,6 @@
           <BuildingType>BUILDING_BUND_ATHEN</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -594,11 +538,19 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
           <UnitType>UNIT_HOPLIT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitType>UNIT_THESSALIAN_CAVALRY</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
@@ -615,6 +567,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_REFLEX_ARCHER</UnitClassType>
           <UnitType>UNIT_ARCHER_REFLEX_GREEK</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -717,6 +673,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -854,34 +822,6 @@
           <BuildingType>BUILDING_BUND_MESO</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -891,10 +831,6 @@
         </Building>
       </Buildings>
       <Units>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
-        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_MARDUK_PRIEST</UnitType>
@@ -906,6 +842,14 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -1090,43 +1034,15 @@
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -1138,6 +1054,14 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -1250,6 +1174,18 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -1343,54 +1279,34 @@
           <BuildingType>BUILDING_CELTIC_DUN</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
-          <UnitType>UNIT_WARBAND</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
           <UnitType>UNIT_STAMMESFUERST</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_CELTIC_FIANNA</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
+          <UnitType>UNIT_WARBAND</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
@@ -1500,6 +1416,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -1637,10 +1565,6 @@
           <BuildingType>BUILDING_SANITATION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL10</BuildingClassType>
-          <BuildingType>BUILDING_COLONIA_PHON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_KOENIGSGRAB</BuildingType>
         </Building>
@@ -1657,38 +1581,6 @@
           <BuildingType>BUILDING_BUND_PUNIC</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -1696,15 +1588,23 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
-          <UnitType>UNIT_QUADRIREME</UnitType>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
+          <UnitType>UNIT_HOPLIT_CARTHAGE</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
           <UnitType>UNIT_CARVEL_TRADE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
+          <UnitType>UNIT_QUADRIREME</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
@@ -1716,7 +1616,11 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
-          <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+          <UnitType>UNIT_FALCATA_IBERIA</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_KONTERE</UnitClassType>
@@ -1822,6 +1726,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -1972,36 +1888,12 @@
           <BuildingType>BUILDING_CELTIC_DUN</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -2011,11 +1903,15 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
-          <UnitType>UNIT_CELTIC_GALLIC_WARRIOR</UnitType>
+          <UnitType>UNIT_STAMMESFUERST</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
@@ -2023,19 +1919,19 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
-          <UnitType>UNIT_WARBAND</UnitType>
+          <UnitType>UNIT_CELTIBERIAN_CAVALRY</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
+          <UnitType>UNIT_CELTIC_GALLIC_WARRIOR</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CELTIBERIAN_CAVALRY</UnitType>
+          <UnitType>UNIT_WARBAND</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_ARVERNER</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_STAMMESFUERST</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
@@ -2144,6 +2040,18 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -2237,43 +2145,19 @@
           <BuildingType>BUILDING_HIGH_WALLS</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -2287,11 +2171,7 @@
           <UnitType>UNIT_FALXMAN</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_WAR_HORSE_THRAKER</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
           <UnitType>UNIT_FUERST_DAKER</UnitType>
         </Unit>
       </Units>
@@ -2394,6 +2274,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -2527,43 +2419,15 @@
           <BuildingType>BUILDING_FORT3</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -2573,11 +2437,11 @@
           <UnitType>UNIT_EGYPT_RAM_CHARIOT</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_GAUFUERST</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_PHARAONENGARDE</UnitType>
         </Unit>
         <Unit>
@@ -2585,8 +2449,16 @@
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_CHARIOT</UnitClassType>
           <UnitType>UNIT_EGYPT_WARCHARIOT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -2680,6 +2552,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -2844,39 +2728,15 @@
           <BuildingType>BUILDING_BUND_ETRUS</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -2886,19 +2746,11 @@
           <UnitType>UNIT_SAMNIT</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
-          <UnitType>UNIT_ROME_COHORTES_URBANAE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_EQUITES</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_CELERES</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_PRAETORIAN</UnitType>
         </Unit>
         <Unit>
@@ -2919,7 +2771,7 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
-          <UnitType>NONE</UnitType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HASTATI2</UnitClassType>
@@ -2930,16 +2782,28 @@
           <UnitType>UNIT_AUXILIAR_ROME</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
-          <UnitType>UNIT_EQUES</UnitType>
-        </Unit>
-        <Unit>
           <UnitClassType>UNITCLASS_HORSE_ARCHER</UnitClassType>
           <UnitType>UNIT_HORSE_ARCHER_ROMAN</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_WORKER</UnitClassType>
-          <UnitType>UNIT_ROMAN_WORKER</UnitType>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_EQUITES</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CATAPHRACT</UnitClassType>
+          <UnitType>UNIT_CATAPHRACT_ROME</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CLIBANARII</UnitClassType>
+          <UnitType>UNIT_CLIBANARII_ROME</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CAMEL_CATAPHRACT</UnitClassType>
+          <UnitType>UNIT_CAMEL_CATAPHRACT_ROME</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CATAPULT</UnitClassType>
+          <UnitType>UNIT_ONAGER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -3042,6 +2906,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -3181,36 +3057,12 @@
           <BuildingType>BUILDING_CELTIC_DUN</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -3220,11 +3072,15 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
-          <UnitType>UNIT_CELTIC_GALLIC_WARRIOR</UnitType>
+          <UnitType>UNIT_STAMMESFUERST</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
@@ -3232,19 +3088,19 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
-          <UnitType>UNIT_WARBAND</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
           <UnitType>UNIT_CELTIBERIAN_CAVALRY</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
-          <UnitType>UNIT_ARVERNER</UnitType>
+          <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
+          <UnitType>UNIT_CELTIC_GALLIC_WARRIOR</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
+          <UnitType>UNIT_WARBAND</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_STAMMESFUERST</UnitType>
+          <UnitType>UNIT_ARVERNER</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
@@ -3350,6 +3206,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -3516,36 +3384,12 @@
           <BuildingType>BUILDING_HIGH_WALLS</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -3555,14 +3399,22 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
+        <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
+          <UnitType>UNIT_STAMMESFUERST</UnitType>
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_BELGIER</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
           <UnitType>UNIT_WARBAND</UnitType>
         </Unit>
         <Unit>
@@ -3571,10 +3423,6 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_STAMMESFUERST</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_GERMAN_HARIER</UnitType>
         </Unit>
         <Unit>
@@ -3685,6 +3533,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -3940,10 +3800,6 @@
           <BuildingType>BUILDING_MILITARY_ACADEMY_SPARTA</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL10</BuildingClassType>
-          <BuildingType>BUILDING_COLONIA_GREEK</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
         </Building>
@@ -3956,12 +3812,12 @@
           <BuildingType>BUILDING_SAEULE4</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
-          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
           <BuildingType>BUILDING_AMPHITHEATER</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
@@ -3972,39 +3828,15 @@
           <BuildingType>BUILDING_BUND_GREEK</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -4018,16 +3850,20 @@
           <UnitType>UNIT_HOPLIT_SPARTA</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitType>UNIT_THESSALIAN_CAVALRY</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
           <UnitType>UNIT_CARVEL_TRADE</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
-          <UnitType>UNIT_SACRED_BAND</UnitType>
+          <UnitType>UNIT_SPARTAN</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_SPARTAN</UnitType>
+          <UnitType>UNIT_SACRED_BAND</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
@@ -4036,6 +3872,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_SCOUT</UnitClassType>
           <UnitType>UNIT_SCOUT_GREEK</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_REFLEX_ARCHER</UnitClassType>
@@ -4142,6 +3982,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -4267,38 +4119,6 @@
           <BuildingType>BUILDING_SCHULE</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -4306,19 +4126,27 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
-        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_AMAZONE</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_CHARIOT</UnitClassType>
           <UnitType>UNIT_HETHIT_WARCHARIOT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -4546,40 +4374,12 @@
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -4589,11 +4389,23 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
        </Buildings>
       <Units>
         <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
+          <UnitType>UNIT_CAMP</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
           <UnitType>UNIT_MONGOL_KESHIK</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitType>UNIT_HEAVY_HORSEMAN_HUN</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HORSE_ARCHER</UnitClassType>
@@ -4798,38 +4610,6 @@
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -4837,12 +4617,12 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
-          <UnitType>UNIT_IBERIAN_CAVALRY</UnitType>
-        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
           <UnitType>UNIT_CELTIBERIAN_CAVALRY</UnitType>
@@ -4850,6 +4630,14 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_FALCATA_IBERIA</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_IBERIAN_CAVALRY</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -4947,6 +4735,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -5052,43 +4852,15 @@
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -5192,10 +4964,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_SCHIFFSBAU</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_LIBRARY</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -5205,6 +4973,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -5326,34 +5106,6 @@
           <BuildingType>BUILDING_NATIONAL_EPIC_INDIA</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
           <BuildingType>BUILDING_FORT4</BuildingType>
         </Building>
@@ -5365,23 +5117,31 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
           <UnitType>UNIT_INDIAN_LONGBOW</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_INDIAN_NAYAR</UnitType>
+          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
+          <UnitType>UNIT_RADSCHA</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
-          <UnitType>UNIT_RADSCHA</UnitType>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitType>UNIT_INDIAN_NAYAR</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
           <UnitType>UNIT_BRAHMANE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_CHARIOT</UnitClassType>
@@ -5479,6 +5239,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
       </DisableTechs>
@@ -5632,38 +5404,6 @@
           <BuildingType>BUILDING_BUND_ISRAEL</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -5671,15 +5411,15 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
           <UnitType>UNIT_STADTWACHE_ISRAEL</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
@@ -5696,6 +5436,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -5913,43 +5657,15 @@
           <BuildingType>BUILDING_FORT2</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -5961,6 +5677,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -6066,6 +5786,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -6196,40 +5928,12 @@
           <BuildingType>BUILDING_GLUECKSSPIELHAUS</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
           <BuildingType>BUILDING_FORT5</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -6239,6 +5943,10 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
@@ -6246,8 +5954,8 @@
           <UnitType>UNIT_HOPLIT</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -6353,6 +6061,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -6516,43 +6236,15 @@
           <BuildingType>BUILDING_BUND_MACEDON</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -6563,23 +6255,27 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
-          <UnitType>UNIT_THORAKITAI</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
           <UnitType>UNIT_SARISSA_MACEDON</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_COMPANION_CAVALRY</UnitType>
+          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitType>UNIT_THESSALIAN_CAVALRY</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
-          <UnitType>UNIT_ARGYRASPIDAI</UnitType>
+          <UnitType>UNIT_COMPANION_CAVALRY</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_ARGYRASPIDAI2</UnitType>
+          <UnitType>UNIT_ARGYRASPIDAI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
+          <UnitType>UNIT_THORAKITAI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_REFLEX_ARCHER</UnitClassType>
@@ -6706,6 +6402,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -6852,39 +6560,15 @@
           <BuildingType>BUILDING_FORT3</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -6894,7 +6578,7 @@
           <UnitType>UNIT_KERMA_WARRIOR</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_NUBIAFUERST</UnitType>
         </Unit>
         <Unit>
@@ -6904,6 +6588,14 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -6997,6 +6689,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -7112,34 +6816,6 @@
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -7147,11 +6823,19 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
@@ -7380,38 +7064,6 @@
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -7422,8 +7074,16 @@
        </Buildings>
       <Units>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
+          <UnitType>UNIT_CAMP</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HORSE_ARCHER</UnitClassType>
@@ -7639,6 +7299,10 @@
       </Cities>
       <Buildings>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_SPECIAL1</BuildingClassType>
+          <BuildingType>BUILDING_APOTHEKE</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL2</BuildingClassType>
           <BuildingType>BUILDING_LEVEE</BuildingType>
         </Building>
@@ -7667,34 +7331,6 @@
           <BuildingType>BUILDING_FORT4</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -7709,28 +7345,36 @@
           <UnitType>UNIT_HOPLIT_PERSIA</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT_PERSIA</UnitType>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitType>UNIT_UNSTERBLICH_2</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_UNSTERBLICH_2</UnitType>
+          <UnitType>UNIT_APFELTRAEGER</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CATAPHRACT</UnitClassType>
+          <UnitType>UNIT_CATAPHRACT_PERSIA</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_CHARIOT</UnitClassType>
           <UnitType>UNIT_PERSIAN_WARCHARIOT</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SKIRMISHER</UnitClassType>
-          <UnitType>UNIT_UNSTERBLICH</UnitType>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_WORKER</UnitClassType>
-          <UnitType>UNIT_PERSIAN_WORKER</UnitType>
+          <UnitClassType>UNITCLASS_SKIRMISHER</UnitClassType>
+          <UnitType>UNIT_UNSTERBLICH</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -7959,10 +7603,6 @@
           <BuildingType>BUILDING_SANITATION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL10</BuildingClassType>
-          <BuildingType>BUILDING_COLONIA_PHON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_KOENIGSGRAB</BuildingType>
         </Building>
@@ -7979,34 +7619,6 @@
           <BuildingType>BUILDING_BUND_PHON</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -8014,15 +7626,15 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
           <UnitType>UNIT_CARVEL_TRADE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
@@ -8035,6 +7647,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_KONTERE</UnitClassType>
@@ -8288,10 +7904,6 @@
           <BuildingType>BUILDING_SANITATION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL10</BuildingClassType>
-          <BuildingType>BUILDING_COLONIA_ROME</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
         </Building>
@@ -8320,39 +7932,15 @@
           <BuildingType>BUILDING_BUND_ROME</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -8362,19 +7950,11 @@
           <UnitType>UNIT_SAMNIT</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
-          <UnitType>UNIT_ROME_COHORTES_URBANAE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_EQUITES</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_ROME_DECAREME</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_PRAETORIAN</UnitType>
         </Unit>
         <Unit>
@@ -8395,23 +7975,35 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
-          <UnitType>NONE</UnitType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_AUXILIAR</UnitClassType>
           <UnitType>UNIT_AUXILIAR_ROME</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
-          <UnitType>UNIT_EQUES</UnitType>
-        </Unit>
-        <Unit>
           <UnitClassType>UNITCLASS_HORSE_ARCHER</UnitClassType>
           <UnitType>UNIT_HORSE_ARCHER_ROMAN</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_WORKER</UnitClassType>
-          <UnitType>UNIT_ROMAN_WORKER</UnitType>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_EQUITES</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CATAPHRACT</UnitClassType>
+          <UnitType>UNIT_CATAPHRACT_ROME</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CLIBANARII</UnitClassType>
+          <UnitType>UNIT_CLIBANARII_ROME</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CAMEL_CATAPHRACT</UnitClassType>
+          <UnitType>UNIT_CAMEL_CATAPHRACT_ROME</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CATAPULT</UnitClassType>
+          <UnitType>UNIT_ONAGER</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -8518,6 +8110,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -8702,40 +8306,12 @@
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -8745,11 +8321,19 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
        </Buildings>
       <Units>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_WAR_HORSE_THRAKER</UnitType>
+          <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
+          <UnitType>UNIT_CAMP</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
@@ -8758,6 +8342,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_HORSE_ARCHER</UnitClassType>
           <UnitType>UNIT_HORSE_ARCHER_SCYTHS</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_HEAVY_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HEAVY_HORSEMAN_HUN</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -9073,12 +8661,12 @@
           <BuildingType>BUILDING_SAEULE4</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
-          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
           <BuildingType>BUILDING_AMPHITHEATER</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
@@ -9089,39 +8677,15 @@
           <BuildingType>BUILDING_BUND_SPARTA</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -9135,8 +8699,16 @@
           <UnitType>UNIT_HOPLIT_SPARTA</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitType>UNIT_THESSALIAN_CAVALRY</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_SPARTAN</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_REFLEX_ARCHER</UnitClassType>
@@ -9247,6 +8819,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -9385,34 +8969,6 @@
           <BuildingType>BUILDING_BUND_MESO</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
@@ -9423,10 +8979,6 @@
       </Buildings>
       <Units>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
-          <UnitType>UNIT_CATAPHRACT</UnitType>
-        </Unit>
-        <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_MARDUK_PRIEST</UnitType>
         </Unit>
@@ -9435,8 +8987,16 @@
           <UnitType>UNIT_SYRIAN_GARDE</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_AXEMAN</UnitClassType>
@@ -9740,10 +9300,6 @@
           <BuildingType>BUILDING_SANITATION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL10</BuildingClassType>
-          <BuildingType>BUILDING_COLONIA_GREEK</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
         </Building>
@@ -9756,12 +9312,12 @@
           <BuildingType>BUILDING_SAEULE4</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
-          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
           <BuildingType>BUILDING_AMPHITHEATER</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_ASKLEPIEION</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
@@ -9772,39 +9328,15 @@
           <BuildingType>BUILDING_BUND_THEBAI</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
       </Buildings>
@@ -9814,16 +9346,24 @@
           <UnitType>UNIT_HOPLIT</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitType>UNIT_THESSALIAN_CAVALRY</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SPECIAL4</UnitClassType>
           <UnitType>UNIT_CARVEL_TRADE</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
+          <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_SACRED_BAND</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_ELITE_HOPLIT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
+          <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_REFLEX_ARCHER</UnitClassType>
@@ -9930,6 +9470,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -10095,36 +9647,12 @@
           <BuildingType>BUILDING_HIGH_WALLS</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_STONEHENGE</BuildingClassType>
@@ -10134,18 +9662,22 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL1</UnitClassType>
-          <UnitType>NONE</UnitType>
+          <UnitType>UNIT_STAMMESFUERST</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_BELGIER</UnitType>
         </Unit>
         <Unit>
-          <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
+          <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
           <UnitType>UNIT_WARBAND</UnitType>
         </Unit>
         <Unit>
@@ -10154,10 +9686,6 @@
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
-          <UnitType>UNIT_STAMMESFUERST</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_GERMAN_HARIER</UnitType>
         </Unit>
         <Unit>
@@ -10264,6 +9792,18 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_REFLEXBOGEN</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARCHER</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_HORSE_ARMOR</TechType>
+          <bDisableTech>1</bDisableTech>
+        </DisableTech>
+        <DisableTech>
+          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -10520,40 +10060,12 @@
           <BuildingType>BUILDING_JURTE</BuildingType>
         </Building>
         <Building>
+          <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
+          <BuildingType>BUILDING_SAUNA</BuildingType>
+        </Building>
+        <Building>
           <BuildingClassType>BUILDINGCLASS_BUND</BuildingClassType>
           <BuildingType>BUILDING_BUND_STAMM</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_CELT</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_ROM</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUMID</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_NUBIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GREEK</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_EURASIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_GERMAN</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_GILDE_INDIA</BuildingClassType>
-          <BuildingType>NONE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_PALACE</BuildingClassType>
@@ -10623,6 +10135,10 @@
           <BuildingClassType>BUILDINGCLASS_WONDER_DAKER</BuildingClassType>
           <BuildingType>NONE</BuildingType>
         </Building>
+        <Building>
+          <BuildingClassType>BUILDINGCLASS_GREAT_WALL_GORGAN</BuildingClassType>
+          <BuildingType>NONE</BuildingType>
+        </Building>
       </Buildings>
       <Units>
         <Unit>
@@ -10644,30 +10160,6 @@
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_NUMID_HORSE_GILDE</UnitClassType>
-          <UnitType>NONE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_ARCHER_GILDE</UnitClassType>
-          <UnitType>NONE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_COMPOSITE_ARCHER_GILDE</UnitClassType>
-          <UnitType>NONE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_LEGION_GILDE</UnitClassType>
-          <UnitType>NONE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_PHALANX_GILDE</UnitClassType>
-          <UnitType>NONE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_GALLIER_GILDE</UnitClassType>
-          <UnitType>NONE</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_CARVEL_WAR</UnitClassType>

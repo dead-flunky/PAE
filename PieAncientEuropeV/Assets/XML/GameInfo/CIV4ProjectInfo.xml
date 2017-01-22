@@ -21,7 +21,7 @@
       <iNukeInterception>0</iNukeInterception>
       <iTechShare>0</iTechShare>
       <EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
-      <EveryoneSpecialBuilding>SPECIALBUILDING_TRADEPOST</EveryoneSpecialBuilding>
+      <EveryoneSpecialBuilding>NONE</EveryoneSpecialBuilding>
       <bSpaceship>0</bSpaceship>
       <bAllowsNukes>0</bAllowsNukes>
       <Button>Art/Interface/Buttons/Builds/button_silkroad.dds</Button>

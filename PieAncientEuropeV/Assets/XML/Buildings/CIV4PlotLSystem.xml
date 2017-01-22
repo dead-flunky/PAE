@@ -483,7 +483,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x1x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -492,7 +492,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -501,7 +501,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x1x2_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -510,7 +510,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x1x2_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -519,7 +519,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x1x2_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -612,10 +612,10 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- +++++++++++ ARTSTYLE_GRECO_ROMAN (ERA_MEDIEVAL) +++++++++++++++ -->
+<!-- +++++++++++ ARTSTYLE_GRECO_ROMAN (ERA_MEDIEVAL,ERA_LATE_ANTIK) +++++++++++++++ -->
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -624,7 +624,7 @@
                         <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -633,7 +633,7 @@
                         <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x1_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -642,7 +642,7 @@
                         <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x1_04</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -651,10 +651,10 @@
                         <Scale>0.35</Scale>
     </ArtRef>
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- +++++++++++ ARTSTYLE_ANATOLIA (ERA_MEDIEVAL) ++++++++++++++++++ -->
+<!-- +++++++++++ ARTSTYLE_ANATOLIA (ERA_MEDIEVAL,ERA_LATE_ANTIK) ++++++++++++++++++ -->
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -663,7 +663,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -672,7 +672,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -681,7 +681,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_04</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -690,7 +690,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_05</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -699,7 +699,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_06</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -708,7 +708,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_07</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -717,7 +717,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_08</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -726,7 +726,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x1_09</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -747,7 +747,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -774,7 +774,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::1x1_05</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -783,7 +783,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::1x1_06</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -840,7 +840,7 @@
                         <Scale>0.7</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x1x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -849,7 +849,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -858,7 +858,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x1x2_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -867,7 +867,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x1x2_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -876,7 +876,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x1x2_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -918,7 +918,7 @@
 <!-- +++++++++++ ARTSTYLE_AFRICA ++++++++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x1x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -927,7 +927,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -936,7 +936,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x1x2_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -945,7 +945,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x1x2_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -954,7 +954,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x1x2_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -966,7 +966,7 @@
 <!-- +++++++++++ ARTSTYLE_INDIA +++++++++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -975,7 +975,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -984,7 +984,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x1_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -993,7 +993,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x1_04</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1002,7 +1002,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x1_05</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1137,7 +1137,7 @@
 
     <!-- Asian -->
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x1_01</Attribute>
       <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1146,7 +1146,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x1_02</Attribute>
       <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1155,7 +1155,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x1_03</Attribute>
       <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1164,7 +1164,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x1_04</Attribute>
       <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1173,7 +1173,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x1_05</Attribute>
       <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1224,7 +1224,7 @@
     <Height>1</Height>
     <!--Ancient LandWorked -->
     <ArtRef Name="goal:IMPROVEMENT_LAND_WORKED">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/LandWorked/sm_farm_house.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/LandWorked/sm_farm_house.kfm</Attribute>
       <Attribute Class="Improvement">IMPROVEMENT_LAND_WORKED</Attribute>
@@ -1403,7 +1403,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x2x2_01</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1413,7 +1413,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x2x2_02</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1423,7 +1423,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x2x2_03</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1433,7 +1433,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x2x2_04</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1443,7 +1443,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::1x2x2_05</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1453,7 +1453,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::2x1x2_01</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1463,7 +1463,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::2x1x2_02</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1473,7 +1473,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::2x1x2_03</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1483,7 +1483,7 @@
                         <Scale>0.32</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_EGYPT</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_egypt.nif::2x1x2_04</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1559,7 +1559,7 @@
 <!-- +++++++++++ ARTSTYLE_GRECO_ROMAN +++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::2x1_01</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1569,7 +1569,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::2x1_02</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1579,7 +1579,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::2x1_03</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1589,7 +1589,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::2x1_04</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1599,7 +1599,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x2_01</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1609,7 +1609,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x2_02</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1619,7 +1619,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x2_03</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1629,7 +1629,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_GRECO_ROMAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/greco_roman.nif::1x2_04</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1642,7 +1642,7 @@
 <!-- +++ ARTSTYLE_ANATOLIA +++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x2_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1652,7 +1652,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::1x2_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1662,7 +1662,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::2x1_01</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1672,7 +1672,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::2x1_02</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1682,7 +1682,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::2x1_03</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1692,7 +1692,7 @@
                         <Scale>0.35</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_ANATOLIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_Iberia.nif::2x1_04</Attribute>
                         <Attribute Class="Improvement">IMPROVEMENT_COTTAGE,IMPROVEMENT_HAMLET,IMPROVEMENT_VILLAGE,IMPROVEMENT_TOWN</Attribute>
@@ -1705,7 +1705,7 @@
 <!-- +++++++++++ ARTSTYLE_MIDDLE_EAST +++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::2x1_01</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1715,7 +1715,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::2x1_02</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1725,7 +1725,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::2x1_03</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1735,7 +1735,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::2x1_04</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1755,7 +1755,7 @@
                         <Scale>0.31</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_egypt.nif::1x2_02</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_MIDDLE_EAST</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1768,7 +1768,7 @@
 <!-- +++++++++++ ARTSTYLE_NORSE +++++++++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x2x2_01</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1778,7 +1778,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x2x2_02</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1788,7 +1788,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x2x2_03</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1798,7 +1798,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x2x2_04</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1808,7 +1808,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::1x2x2_05</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1818,7 +1818,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::2x1x2_01</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1828,7 +1828,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::2x1x2_02</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1838,7 +1838,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::2x1x2_03</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1848,7 +1848,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_NORSE,ARTSTYLE_BARBARIAN</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/clas_norsca.nif::2x1x2_04</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -1964,7 +1964,7 @@
 <!-- +++++++++++ ARTSTYLE_AFRICA ++++++++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x2x2_01</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1974,7 +1974,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x2x2_02</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1984,7 +1984,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x2x2_03</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -1994,7 +1994,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x2x2_04</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -2004,7 +2004,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::1x2x2_05</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -2015,7 +2015,7 @@
                 </ArtRef>
 
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::2x1x2_01</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2025,7 +2025,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::2x1x2_02</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2035,7 +2035,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::2x1x2_03</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2045,7 +2045,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_AFRICA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/an_arabia.nif::2x1x2_04</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2058,7 +2058,7 @@
 <!-- ++++++++++++ ARTSTYLE_INDIA ++++++++++++++++++++ -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::2x1_01</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2068,7 +2068,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::2x1_02</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2078,7 +2078,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::2x1_03</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2088,7 +2088,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::2x1_04</Attribute>
                         <Attribute Class="Rotation">0,180</Attribute>
@@ -2098,7 +2098,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x2_01</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -2108,7 +2108,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x2_02</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -2118,7 +2118,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x2_03</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -2128,7 +2128,7 @@
                         <Scale>0.29</Scale>
                 </ArtRef>
                 <ArtRef Name="art:building">
-                        <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+                        <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
                         <Attribute Class="ArtStyle">ARTSTYLE_INDIA</Attribute>
                         <Attribute Class="Scalar">NIF:Art/Structures/Cities/med_southeastasia.nif::1x2_04</Attribute>
                         <Attribute Class="Rotation">90,270</Attribute>
@@ -2418,7 +2418,7 @@
 
     <!-- Asian -->
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x2_01</Attribute>
       <Attribute Class="Rotation">90,270</Attribute>
@@ -2428,7 +2428,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x2_02</Attribute>
       <Attribute Class="Rotation">90,270</Attribute>
@@ -2438,7 +2438,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x2_03</Attribute>
       <Attribute Class="Rotation">90,270</Attribute>
@@ -2448,7 +2448,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::1x2_04</Attribute>
       <Attribute Class="Rotation">90,270</Attribute>
@@ -2458,7 +2458,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::2x1_01</Attribute>
       <Attribute Class="Rotation">0,180</Attribute>
@@ -2468,7 +2468,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::2x1_02</Attribute>
       <Attribute Class="Rotation">0,180</Attribute>
@@ -2478,7 +2478,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::2x1_03</Attribute>
       <Attribute Class="Rotation">0,180</Attribute>
@@ -2488,7 +2488,7 @@
       <Scale>0.35</Scale>
     </ArtRef>
     <ArtRef Name="art:building">
-      <Attribute Class="Era">ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="ArtStyle">ARTSTYLE_ASIAN</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Cities/asian.nif::2x1_04</Attribute>
       <Attribute Class="Rotation">0,180</Attribute>
@@ -2840,7 +2840,7 @@
       <Attribute Class="Bonus">NO_BONUS,BONUS_ALL,!BONUS_SILK,!BONUS_DYE,!BONUS_SPICES</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Rotation">0,180</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation/Plantation.kfm</Attribute>
       <Scale>0.9</Scale>
@@ -2873,7 +2873,7 @@
       <Attribute Class="Scalar">iCropArea:16</Attribute>
       <Attribute Class="Scalar">szExtra:art:SILK_PLANTATION_SPINNER</Attribute>
       <Attribute Class="Scalar">szExtra:art:SILK_PLANTATION_RACK</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Attribute Class="Scalar">fTwist:-0.7853981633</Attribute>
@@ -2904,7 +2904,7 @@
       <Attribute Class="Scalar">iCropArea:10</Attribute>
       <Attribute Class="Scalar">szExtra:art:SILK_PLANTATION_SPINNER</Attribute>
       <Attribute Class="Scalar">szExtra:art:SILK_PLANTATION_RACK</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Attribute Class="Scalar">fTwist:-0.7853981633</Attribute>
@@ -2943,7 +2943,7 @@
       <Attribute Class="Scalar">iCropArea:24</Attribute>
       <Attribute Class="Scalar">szExtra:art:DYE_PLANTATION_POOL</Attribute>
       <Attribute Class="Scalar">szExtra:art:DYE_PLANTATION_RACK</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Attribute Class="Scalar">fTwist:-0.7853981633</Attribute>
@@ -2974,7 +2974,7 @@
       <Attribute Class="Scalar">iCropArea:10</Attribute>
       <Attribute Class="Scalar">szExtra:art:DYE_PLANTATION_POOL</Attribute>
       <Attribute Class="Scalar">szExtra:art:DYE_PLANTATION_RACK</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Attribute Class="Scalar">fTwist:-0.7853981633</Attribute>
@@ -3029,7 +3029,7 @@
       <Attribute Class="Scalar">iCropArea:16</Attribute>
       <Attribute Class="Scalar">szExtra:art:SPICE_PLANTATION_GRINDER</Attribute>
       <Attribute Class="Scalar">szExtra:art:SPICE_PLANTATION_RACK</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Attribute Class="Scalar">fTwist:-0.7853981633</Attribute>
@@ -3062,7 +3062,7 @@
       <Attribute Class="Scalar">iCropArea:8</Attribute>
       <Attribute Class="Scalar">szExtra:art:SPICE_PLANTATION_GRINDER</Attribute>
       <Attribute Class="Scalar">szExtra:art:SPICE_PLANTATION_RACK</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Scale>0.9</Scale>
@@ -3118,7 +3118,7 @@
       <Attribute Class="Bonus">BONUS_OLIVES</Attribute>
       <Attribute Class="Scalar">iCropArea:16</Attribute>
       <Attribute Class="Scalar">szExtra:art:OLIVES_PLANTATION_PRESS</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Attribute Class="Scalar">fTwist:-0.7853981633</Attribute>
@@ -3149,7 +3149,7 @@
       <Attribute Class="Bonus">BONUS_OLIVES</Attribute>
       <Attribute Class="Scalar">iCropArea:8</Attribute>
       <Attribute Class="Scalar">szExtra:art:OLIVES_PLANTATION_PRESS</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_RENAISSANCE</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK,ERA_RENAISSANCE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Plantation_Plain/Plantation.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Plantation_Plain/Plantation.kfm</Attribute>
       <Scale>0.9</Scale>
@@ -3327,13 +3327,13 @@
     <Attribute Class="Scalar">bNotBFS:1</Attribute>
     <ArtRef Name="art:IMPROVEMENT_FARM1">
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Farm/an_eu_farm02.nif</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="Scalar">bExtraGoalOnly:1</Attribute>
       <Scale>0.5</Scale>
     </ArtRef>
     <ArtRef Name="art:IMPROVEMENT_FARM2">
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Farm/an_eu_farm03.nif</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="Scalar">bExtraGoalOnly:1</Attribute>
     </ArtRef>
     <ArtRef Name="art:IMPROVEMENT_FARM1">
@@ -3380,7 +3380,7 @@
     <Attribute Class="Scalar">bNotBFS:1</Attribute>
     <!-- ancient and classical farms -->
     <ArtRef Name="goal:IMPROVEMENT_FARM">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="Bonus">NO_BONUS,BONUS_ALL,!BONUS_RICE,!BONUS_WHEAT,!BONUS_GERSTE,!BONUS_HAFER,!BONUS_ROGGEN,!BONUS_HIRSE</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Farm/an_eu_farm01.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Farm/an_eu_farm01.kfm</Attribute>
@@ -3393,7 +3393,7 @@
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
     </ArtRef>
     <ArtRef Name="goal:IMPROVEMENT_FARM">
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Farm/an_eu_farm01.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Farm/an_eu_farm01.kfm</Attribute>
       <Attribute Class="Bonus">BONUS_RICE,BONUS_WHEAT,BONUS_GERSTE,BONUS_HAFER,BONUS_ROGGEN,BONUS_HIRSE</Attribute>
@@ -3482,10 +3482,9 @@
     <Height>4</Height>
     <Attribute Class="Scalar">bNotBFS:1</Attribute>
     <Attribute Class="RegionTest">0NW</Attribute>
-    <!-- mine -->
     <ArtRef Name="goal:IMPROVEMENT_MINE">
       <Attribute Class="Improvement">IMPROVEMENT_MINE</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Mine/Mine.nif</Attribute>
@@ -3493,16 +3492,15 @@
     </ArtRef>
     <ArtRef Name="goal:IMPROVEMENT_SALTMINE">
       <Attribute Class="Improvement">IMPROVEMENT_SALTMINE</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL,ERA_LATE_ANTIK</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Salzmine/Smine.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Salzmine/Smine.kfm</Attribute>
     </ArtRef>
-    <!-- turm -->
     <ArtRef Name="goal:IMPROVEMENT_TURM">
       <Attribute Class="Improvement">IMPROVEMENT_TURM</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Woodentower/wooden_tower.blend.nif</Attribute>
@@ -3514,7 +3512,7 @@
     </ArtRef>
     <ArtRef Name="goal:IMPROVEMENT_TURM2">
       <Attribute Class="Improvement">IMPROVEMENT_TURM2</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Porttower/port_tower.nif</Attribute>
@@ -3524,10 +3522,9 @@
       <Attribute Class="Scalar">bZMode_Ground:1</Attribute>
       <Attribute Class="Scalar">szForceContourGeometry:shadow</Attribute>
     </ArtRef>
-    <!-- fort -->
     <ArtRef Name="goal:IMPROVEMENT_FORT">
       <Attribute Class="Improvement">IMPROVEMENT_FORT</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Fort/eu_an_fort.nif</Attribute>
@@ -3539,7 +3536,7 @@
     </ArtRef>
     <ArtRef Name="goal:IMPROVEMENT_FORT2">
       <Attribute Class="Improvement">IMPROVEMENT_FORT2</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Fort/eu_med_fort.nif</Attribute>
@@ -3549,35 +3546,20 @@
       <Attribute Class="Scalar">bZMode_Ground:1</Attribute>
       <Attribute Class="Scalar">szForceContourGeometry:shadow</Attribute>
     </ArtRef>
-
-    <!-- Pasture -->
     <ArtRef Name="goal:IMPROVEMENT_PASTURE">
       <Attribute Class="Improvement">IMPROVEMENT_PASTURE</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
     </ArtRef>
-
-    <!-- Quarry -->
     <ArtRef Name="goal:IMPROVEMENT_QUARRY">
       <Attribute Class="Improvement">IMPROVEMENT_QUARRY</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
+      <Attribute Class="Era">ERA_ALL</Attribute>
       <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
       <Attribute Class="Scalar">bApplyRotation:1</Attribute>
       <Attribute Class="Scalar">NIF:Art/Structures/Improvements/Quarry/Quarry.nif</Attribute>
       <Attribute Class="Scalar">KFM:Art/Structures/Improvements/Quarry/Quarry.kfm</Attribute>
     </ArtRef>
-
-    <!-- Windmill -->
-    <ArtRef Name="goal:IMPROVEMENT_WINDMILL">
-      <Attribute Class="Improvement">IMPROVEMENT_WINDMILL</Attribute>
-      <Attribute Class="Era">ERA_ANCIENT,ERA_BRONZE,ERA_CLASSICAL,ERA_MEDIEVAL</Attribute>
-      <Attribute Class="Scalar">bIsPartOfImprovement:1</Attribute>
-      <Attribute Class="Scalar">bApplyRotation:1</Attribute>
-      <Attribute Class="Scalar">NIF:Art/Structures/Improvements/WindMill/WindMill.nif</Attribute>
-      <Attribute Class="Scalar">KFM:Art/Structures/Improvements/WindMill/WindMill.kfm</Attribute>
-    </ArtRef>
-
   </LNode>
 
   <!-- *************************************************************************** -->
@@ -3596,11 +3578,11 @@
   <!-- *************************************************************************** -->
 
   <LProduction From="PLOT_ROOT">
-    <Attribute Class="Improvement">NO_IMPROVEMENT,IMPROVEMENT_ALL,!IMPROVEMENT_WATER_WORKED,!IMPROVEMENT_MINE,!IMPROVEMENT_SALTMINE,!IMPROVEMENT_PASTURE,!IMPROVEMENT_QUARRY,!IMPROVEMENT_WINDMILL,!IMPROVEMENT_FORT,!IMPROVEMENT_FORT2</Attribute>
+    <Attribute Class="Improvement">NO_IMPROVEMENT,IMPROVEMENT_ALL,!IMPROVEMENT_WATER_WORKED,!IMPROVEMENT_MINE,!IMPROVEMENT_SALTMINE,!IMPROVEMENT_PASTURE,!IMPROVEMENT_QUARRY,!IMPROVEMENT_FORT,!IMPROVEMENT_FORT2</Attribute>
     <To Name="Node_12x12"/>
   </LProduction>
   <LProduction From="PLOT_ROOT">
-    <Attribute Class="Improvement">IMPROVEMENT_MINE,IMPROVEMENT_SALTMINE,IMPROVEMENT_WINDMILL,IMPROVEMENT_FORT,IMPROVEMENT_FORT2</Attribute>
+    <Attribute Class="Improvement">IMPROVEMENT_MINE,IMPROVEMENT_SALTMINE,IMPROVEMENT_FORT,IMPROVEMENT_FORT2</Attribute>
     <Attribute Class="Bonus">BONUS_ALL</Attribute>
     <To Name="Node_12x12"/>
     <To Name="Leaf_LandImprovement_4x4"/>
@@ -3608,7 +3590,7 @@
   <!-- *************************************************************************** -->
 
   <LProduction From="PLOT_ROOT" Name="LandImprovementProd">
-    <Attribute Class="Improvement">IMPROVEMENT_MINE,IMPROVEMENT_SALTMINE,IMPROVEMENT_WINDMILL,IMPROVEMENT_FORT,IMPROVEMENT_FORT</Attribute>
+    <Attribute Class="Improvement">IMPROVEMENT_MINE,IMPROVEMENT_SALTMINE,IMPROVEMENT_FORT,IMPROVEMENT_FORT2</Attribute>
     <Attribute Class="Bonus">NO_BONUS</Attribute>
     <Attribute Class="Scalar">bNotBFS:1</Attribute>
     <To Name="Leaf_LandImprovement_4x4"/>

@@ -59,7 +59,7 @@
       <Type>PROCESS_WR</Type>
       <Description>TXT_KEY_PROCESS_WR</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_BEWEIS</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>30</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>30</iProductionToCommerceModifier>
@@ -71,7 +71,7 @@
       <Type>PROCESS_WC</Type>
       <Description>TXT_KEY_PROCESS_WC</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_MOSAIK</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>30</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
@@ -83,7 +83,7 @@
       <Type>PROCESS_WE</Type>
       <Description>TXT_KEY_PROCESS_WE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_TYRANNIS</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>30</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
@@ -96,7 +96,7 @@
       <Type>PROCESS_RC</Type>
       <Description>TXT_KEY_PROCESS_RC</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_LITERATURE</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>30</iProductionToCommerceModifier>
@@ -108,7 +108,7 @@
       <Type>PROCESS_RE</Type>
       <Description>TXT_KEY_PROCESS_RE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_CODE_OF_LAWS</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>30</iProductionToCommerceModifier>
@@ -121,7 +121,7 @@
       <Type>PROCESS_CE</Type>
       <Description>TXT_KEY_PROCESS_CE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_NATIONALISM</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
@@ -134,7 +134,7 @@
       <Type>PROCESS_WRC</Type>
       <Description>TXT_KEY_PROCESS_WRC</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_HELLENISMUS</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>25</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>25</iProductionToCommerceModifier>
@@ -146,7 +146,7 @@
       <Type>PROCESS_WRE</Type>
       <Description>TXT_KEY_PROCESS_WRE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_ARISTOKRATIE</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>25</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>25</iProductionToCommerceModifier>
@@ -159,7 +159,7 @@
       <Type>PROCESS_WCE</Type>
       <Description>TXT_KEY_PROCESS_WCE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_GLADIATOR2</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>25</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
@@ -172,7 +172,7 @@
       <Type>PROCESS_RCE</Type>
       <Description>TXT_KEY_PROCESS_RCE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_ANATOMIE</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>0</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>25</iProductionToCommerceModifier>
@@ -185,7 +185,7 @@
       <Type>PROCESS_WRCE</Type>
       <Description>TXT_KEY_PROCESS_WRCE</Description>
       <Strategy>TXT_KEY_PROCESS_STRATEGY</Strategy>
-      <TechPrereq>TECH_FUTURE_TECH</TechPrereq>
+      <TechPrereq>TECH_PAPER2</TechPrereq>
       <ProductionToCommerceModifiers>
         <iProductionToCommerceModifier>20</iProductionToCommerceModifier>
         <iProductionToCommerceModifier>20</iProductionToCommerceModifier>

@@ -244,7 +244,7 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
+        <iYield>0</iYield>
         <iYield>0</iYield>
         <iYield>2</iYield>
       </Yields>
@@ -274,14 +274,14 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
+        <iYield>0</iYield>
         <iYield>0</iYield>
         <iYield>0</iYield>
       </Yields>
       <Commerces>
-        <iCommerce>3</iCommerce>
+        <iCommerce>2</iCommerce>
         <iCommerce>0</iCommerce>
-        <iCommerce>10</iCommerce>
+        <iCommerce>8</iCommerce>
       </Commerces>
       <iExperience>0</iExperience>
       <Flavors/>
@@ -303,14 +303,14 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
         <iYield>0</iYield>
-        <iYield>2</iYield>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
       </Yields>
       <Commerces>
         <iCommerce>0</iCommerce>
-        <iCommerce>6</iCommerce>
-        <iCommerce>0</iCommerce>
+        <iCommerce>8</iCommerce>
+        <iCommerce>2</iCommerce>
       </Commerces>
       <iExperience>0</iExperience>
       <Flavors/>
@@ -332,14 +332,15 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
         <iYield>0</iYield>
-        <iYield>2</iYield>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
       </Yields>
       <Commerces>
-        <iCommerce>6</iCommerce>
+        <iCommerce>8</iCommerce>
         <iCommerce>0</iCommerce>
         <iCommerce>0</iCommerce>
+        <iCommerce>2</iCommerce>
       </Commerces>
       <iExperience>0</iExperience>
       <Flavors/>
@@ -361,8 +362,8 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
-        <iYield>5</iYield>
+        <iYield>0</iYield>
+        <iYield>6</iYield>
         <iYield>0</iYield>
       </Yields>
       <Commerces>
@@ -390,17 +391,17 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
+        <iYield>0</iYield>
         <iYield>0</iYield>
         <iYield>0</iYield>
       </Yields>
       <Commerces>
         <iCommerce>0</iCommerce>
-        <iCommerce>1</iCommerce>
+        <iCommerce>0</iCommerce>
         <iCommerce>2</iCommerce>
-        <iCommerce>3</iCommerce>
+        <iCommerce>4</iCommerce>
       </Commerces>
-      <iExperience>3</iExperience>
+      <iExperience>4</iExperience>
       <Flavors/>
       <HotKey/>
       <bAltDown>0</bAltDown>
@@ -420,15 +421,15 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
+        <iYield>0</iYield>
         <iYield>0</iYield>
         <iYield>0</iYield>
       </Yields>
       <Commerces>
         <iCommerce>0</iCommerce>
-        <iCommerce>3</iCommerce>
+        <iCommerce>2</iCommerce>
         <iCommerce>0</iCommerce>
-        <iCommerce>10</iCommerce>
+        <iCommerce>8</iCommerce>
       </Commerces>
       <iExperience>0</iExperience>
       <Flavors/>
@@ -450,7 +451,7 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
+        <iYield>0</iYield>
         <iYield>0</iYield>
         <iYield>1</iYield>
       </Yields>
@@ -533,7 +534,7 @@
       <GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
       <iGreatPeopleRateChange>0</iGreatPeopleRateChange>
       <Yields>
-        <iYield>-1</iYield>
+        <iYield>0</iYield>
         <iYield>2</iYield>
         <iYield>0</iYield>
       </Yields>

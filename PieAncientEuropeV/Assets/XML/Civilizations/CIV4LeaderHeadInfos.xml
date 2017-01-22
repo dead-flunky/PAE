@@ -1449,7 +1449,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -3737,15 +3737,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -4860,7 +4860,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_ANNOYED</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_PLEASED</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -6033,7 +6033,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -7741,7 +7741,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -8885,15 +8885,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -10029,7 +10029,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -12865,7 +12865,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -12873,7 +12873,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -13437,11 +13437,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
@@ -14009,7 +14009,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -14017,7 +14017,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -14581,15 +14581,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -15149,7 +15149,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -15157,7 +15157,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -16853,15 +16853,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_MILITARY</FlavorType>
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <FlavorType>FLAVOR_MILITARY</FlavorType>
          <iFlavor>5</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -17421,7 +17421,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -17429,7 +17429,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -21421,7 +21421,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -21429,7 +21429,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -22573,11 +22573,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -23137,7 +23137,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -23145,7 +23145,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -23709,10 +23709,10 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
@@ -24281,14 +24281,14 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
+         <iFlavor>5</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_RELIGION</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
@@ -25425,15 +25425,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <FlavorType>FLAVOR_CULTURE</FlavorType>
          <iFlavor>8</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -25996,11 +25996,11 @@
      </Traits>
      <Flavors>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
@@ -26573,7 +26573,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -27137,11 +27137,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -27705,11 +27705,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -28273,7 +28273,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -29409,11 +29409,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -29977,15 +29977,19 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_RELIGION</FlavorType>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -30545,11 +30549,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -31113,11 +31117,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -32249,11 +32253,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -32817,7 +32821,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -33385,11 +33389,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -33953,11 +33957,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -34504,7 +34508,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -35100,8 +35104,8 @@
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_SCIENCE</FlavorType>
-         <iFlavor>8</iFlavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -35665,15 +35669,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -36809,15 +36813,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>8</iFlavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -37381,7 +37385,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -37949,11 +37953,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -38517,7 +38521,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -39085,7 +39089,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -39093,7 +39097,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -40221,7 +40225,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -40229,7 +40233,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -40789,15 +40793,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>20</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>5</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -41336,7 +41340,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_PLEASED</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -41357,11 +41361,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>20</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -41925,7 +41929,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -41933,7 +41937,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -42493,15 +42497,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
+         <iFlavor>5</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
-       </Flavor>
-       <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -43061,15 +43065,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -43633,11 +43637,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -44197,18 +44201,18 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
+         <iFlavor>10</iFlavor>
+       </Flavor>
+       <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <iFlavor>8</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
@@ -44773,11 +44777,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
@@ -45921,11 +45925,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -48201,7 +48205,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -48209,7 +48213,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_RELIGION</FlavorType>
@@ -48773,7 +48777,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -48785,7 +48789,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -49345,11 +49349,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_RELIGION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
@@ -49917,19 +49921,19 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_RELIGION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -50489,11 +50493,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_RELIGION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -50501,7 +50505,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -51061,7 +51065,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -52205,7 +52209,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -53341,7 +53345,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -53913,7 +53917,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -53921,7 +53925,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -54485,15 +54489,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -55057,7 +55061,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -55065,7 +55069,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -56201,15 +56205,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -56772,8 +56776,8 @@
      </Traits>
      <Flavors>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>8</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -56781,7 +56785,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -57345,7 +57349,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -57353,7 +57357,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -57917,7 +57921,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -59057,7 +59061,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -59065,7 +59069,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -59629,15 +59633,19 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>8</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -60769,11 +60777,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -61333,15 +61341,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -61901,15 +61909,19 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -62469,15 +62481,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -63037,15 +63049,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -63605,15 +63617,19 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -64173,7 +64189,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -64185,7 +64201,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -64745,7 +64761,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -64753,7 +64769,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -65317,7 +65333,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -65325,11 +65341,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -66461,15 +66477,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>5</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -67033,19 +67049,19 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>5</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -67605,14 +67621,14 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
+         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+         <iFlavor>8</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
@@ -68181,11 +68197,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
@@ -68761,7 +68777,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -69329,11 +69345,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -69893,15 +69909,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -70465,11 +70481,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -71037,11 +71053,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -71609,7 +71625,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -71617,7 +71633,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GOLD</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -72181,7 +72197,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
@@ -73325,7 +73341,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -73333,7 +73349,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -73897,15 +73913,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_SCIENCE</FlavorType>
-         <iFlavor>5</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -75041,7 +75057,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -75613,7 +75629,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -75621,7 +75637,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -76185,15 +76201,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_SCIENCE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -76736,7 +76752,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -77329,11 +77345,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -77901,11 +77917,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -78473,7 +78489,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -78481,7 +78497,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -79045,11 +79061,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -80189,7 +80205,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -80197,7 +80213,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_ROME</FlavorType>
@@ -81333,7 +81349,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -81341,7 +81357,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -81901,7 +81917,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -82469,7 +82485,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -83020,7 +83036,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_PLEASED</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_PLEASED</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -83041,7 +83057,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
@@ -83049,7 +83065,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -83529,9 +83545,9 @@
      <ArtDefineTag>ART_DEF_LEADER_LEONIDAS</ArtDefineTag>
      <iWonderConstructRand>30</iWonderConstructRand>
      <iBaseAttitude>0</iBaseAttitude>
-     <iBasePeaceWeight>0</iBasePeaceWeight>
+     <iBasePeaceWeight>5</iBasePeaceWeight>
      <iPeaceWeightRand>3</iPeaceWeightRand>
-     <iWarmongerRespect>2</iWarmongerRespect>
+     <iWarmongerRespect>1</iWarmongerRespect>
      <iEspionageWeight>80</iEspionageWeight>
      <iRefuseToTalkWarThreshold>10</iRefuseToTalkWarThreshold>
      <iNoTechTradeThreshold>10</iNoTechTradeThreshold>
@@ -83545,17 +83561,17 @@
      <iLimitedWarRand>0</iLimitedWarRand>
      <iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
      <iDogpileWarRand>80</iDogpileWarRand>
-     <iMakePeaceRand>80</iMakePeaceRand>
+     <iMakePeaceRand>60</iMakePeaceRand>
      <iDeclareWarTradeRand>45</iDeclareWarTradeRand>
      <iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
-     <iDemandRebukedWarProb>20</iDemandRebukedWarProb>
+     <iDemandRebukedWarProb>15</iDemandRebukedWarProb>
      <iRazeCityProb>0</iRazeCityProb>
-     <iBuildUnitProb>20</iBuildUnitProb>
+     <iBuildUnitProb>15</iBuildUnitProb>
      <iBaseAttackOddsChange>6</iBaseAttackOddsChange>
      <iAttackOddsChangeRand>10</iAttackOddsChangeRand>
      <iWorseRankDifferenceAttitudeChange>-3</iWorseRankDifferenceAttitudeChange>
      <iBetterRankDifferenceAttitudeChange>-1</iBetterRankDifferenceAttitudeChange>
-     <iCloseBordersAttitudeChange>-1</iCloseBordersAttitudeChange>
+     <iCloseBordersAttitudeChange>-2</iCloseBordersAttitudeChange>
      <iLostWarAttitudeChange>-1</iLostWarAttitudeChange>
      <iAtWarAttitudeDivisor>-1</iAtWarAttitudeDivisor>
      <iAtWarAttitudeChangeLimit>1</iAtWarAttitudeChangeLimit>
@@ -83592,7 +83608,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_PLEASED</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_PLEASED</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -83613,15 +83629,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -84122,7 +84138,7 @@
      <iDemandRebukedSneakProb>90</iDemandRebukedSneakProb>
      <iDemandRebukedWarProb>20</iDemandRebukedWarProb>
      <iRazeCityProb>0</iRazeCityProb>
-     <iBuildUnitProb>15</iBuildUnitProb>
+     <iBuildUnitProb>20</iBuildUnitProb>
      <iBaseAttackOddsChange>6</iBaseAttackOddsChange>
      <iAttackOddsChangeRand>10</iAttackOddsChangeRand>
      <iWorseRankDifferenceAttitudeChange>-1</iWorseRankDifferenceAttitudeChange>
@@ -84185,15 +84201,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -84736,7 +84752,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_PLEASED</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_PLEASED</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -84757,15 +84773,15 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GREEK</FlavorType>
@@ -85328,20 +85344,20 @@
      </Traits>
      <Flavors>
        <Flavor>
-         <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-         <iFlavor>5</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_RELIGION</FlavorType>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
          <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
+         <FlavorType>FLAVOR_RELIGION</FlavorType>
+         <iFlavor>5</iFlavor>
+       </Flavor>
+       <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -85812,7 +85828,7 @@
    </LeaderHeadInfo>
   <LeaderHeadInfo>
      <Type>LEADER_LUGALZAGESI</Type>
-     <Description>TXT_KEY_LEADER_LUGALZAGESI</Description>
+    <Description>TXT_KEY_LEADER_LUGALZAGESI</Description>
      <Civilopedia>TXT_KEY_LEADER_LUGALZAGESI_PEDIA</Civilopedia>
      <ArtDefineTag>ART_DEF_LEADER_LUGALZAGESI</ArtDefineTag>
      <iWonderConstructRand>25</iWonderConstructRand>
@@ -85905,15 +85921,15 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
-       </Flavor>
-       <Flavor>
-         <FlavorType>FLAVOR_MILITARY</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <FlavorType>FLAVOR_MILITARY</FlavorType>
          <iFlavor>5</iFlavor>
+       </Flavor>
+       <Flavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -86473,7 +86489,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -86481,11 +86497,11 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>5</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_RELIGION</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -87024,7 +87040,7 @@
      <StopTradingThemRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</StopTradingThemRefuseAttitudeThreshold>
      <AdoptCivicRefuseAttitudeThreshold>ATTITUDE_PLEASED</AdoptCivicRefuseAttitudeThreshold>
      <ConvertReligionRefuseAttitudeThreshold>ATTITUDE_PLEASED</ConvertReligionRefuseAttitudeThreshold>
-     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_PLEASED</OpenBordersRefuseAttitudeThreshold>
+     <OpenBordersRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</OpenBordersRefuseAttitudeThreshold>
      <DefensivePactRefuseAttitudeThreshold>ATTITUDE_CAUTIOUS</DefensivePactRefuseAttitudeThreshold>
      <PermanentAllianceRefuseAttitudeThreshold>ATTITUDE_PLEASED</PermanentAllianceRefuseAttitudeThreshold>
      <VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
@@ -87045,14 +87061,14 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_SCIENCE</FlavorType>
-         <iFlavor>10</iFlavor>
+         <FlavorType>FLAVOR_GOLD</FlavorType>
+         <iFlavor>8</iFlavor>
        </Flavor>
        <Flavor>
-         <FlavorType>FLAVOR_CULTURE</FlavorType>
+         <FlavorType>FLAVOR_GROWTH</FlavorType>
          <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
@@ -88189,11 +88205,11 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_RELIGION</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>6</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_CULTURE</FlavorType>
@@ -88761,7 +88777,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -88769,7 +88785,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>
@@ -89329,7 +89345,7 @@
      <Flavors>
        <Flavor>
          <FlavorType>FLAVOR_MILITARY</FlavorType>
-         <iFlavor>10</iFlavor>
+         <iFlavor>5</iFlavor>
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -89337,7 +89353,7 @@
        </Flavor>
        <Flavor>
          <FlavorType>FLAVOR_GROWTH</FlavorType>
-         <iFlavor>8</iFlavor>
+         <iFlavor>10</iFlavor>
        </Flavor>
      </Flavors>
      <ContactRands>

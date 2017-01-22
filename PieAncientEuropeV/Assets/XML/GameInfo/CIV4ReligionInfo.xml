@@ -169,7 +169,7 @@
       <TechPrereq>TECH_DUALISMUS</TechPrereq>
       <FreeUnitClass>NONE</FreeUnitClass>
       <iFreeUnits>0</iFreeUnits>
-      <iSpreadFactor>25</iSpreadFactor>
+      <iSpreadFactor>20</iSpreadFactor>
       <GlobalReligionCommerces>
         <iGlobalReligionCommerce>1</iGlobalReligionCommerce>
         <iGlobalReligionCommerce>0</iGlobalReligionCommerce>
@@ -324,7 +324,7 @@
       <TechPrereq>TECH_MONOTHEISM</TechPrereq>
       <FreeUnitClass>UNITCLASS_JEWISH_MISSIONARY</FreeUnitClass>
       <iFreeUnits>1</iFreeUnits>
-      <iSpreadFactor>10</iSpreadFactor>
+      <iSpreadFactor>0</iSpreadFactor>
       <GlobalReligionCommerces>
         <iGlobalReligionCommerce>1</iGlobalReligionCommerce>
         <iGlobalReligionCommerce>0</iGlobalReligionCommerce>
@@ -352,10 +352,10 @@
       <Description>TXT_KEY_RELIGION_CHRISTIANITY</Description>
       <Adjective>TXT_KEY_RELIGION_CHRISTIANITY_ADJECTIVE</Adjective>
       <Civilopedia>TXT_KEY_RELIGION_CHRISTIANITY_PEDIA</Civilopedia>
-      <TechPrereq>TECH_THEOLOGY</TechPrereq>
+      <TechPrereq>TECH_NONE</TechPrereq>
       <FreeUnitClass>UNITCLASS_CHRISTIAN_MISSIONARY</FreeUnitClass>
-      <iFreeUnits>1</iFreeUnits>
-      <iSpreadFactor>100</iSpreadFactor>
+      <iFreeUnits>0</iFreeUnits>
+      <iSpreadFactor>50</iSpreadFactor>
       <GlobalReligionCommerces>
         <iGlobalReligionCommerce>1</iGlobalReligionCommerce>
         <iGlobalReligionCommerce>0</iGlobalReligionCommerce>

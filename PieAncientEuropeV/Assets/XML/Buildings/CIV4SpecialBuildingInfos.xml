@@ -59,7 +59,26 @@
       <TechPrereqAnyone>NONE</TechPrereqAnyone>
       <bValid>0</bValid>
       <ProductionTraits/>
-      <Button>Art/Interface/Buttons/Buildings/button_x.dds</Button>
+      <Button>Art/Interface/Buttons/Buildings/button_building_palmblatt.dds</Button>
+    </SpecialBuildingInfo>
+    <SpecialBuildingInfo>
+      <Type>SPECIALBUILDING_WAFFENMANUFAKTUR</Type>
+      <Description>TXT_KEY_BUILDING_WAFFENMANUFAKTUR</Description>
+      <ObsoleteTech>NONE</ObsoleteTech>
+      <TechPrereq>TECH_MANUFAKTUREN2</TechPrereq>
+      <TechPrereqAnyone>NONE</TechPrereqAnyone>
+      <bValid>1</bValid>
+      <ProductionTraits>
+        <ProductionTrait>
+          <ProductionTraitType>TRAIT_AGGRESSIVE</ProductionTraitType>
+          <iProductionTrait>50</iProductionTrait>
+        </ProductionTrait>
+        <ProductionTrait>
+          <ProductionTraitType>TRAIT_EROBERER</ProductionTraitType>
+          <iProductionTrait>50</iProductionTrait>
+        </ProductionTrait>
+      </ProductionTraits>
+      <Button>Art/Interface/Buttons/Techs/button_tech_waffenmanu.dds</Button>
     </SpecialBuildingInfo>
   </SpecialBuildingInfos>
 </Civ4SpecialBuildingInfos>

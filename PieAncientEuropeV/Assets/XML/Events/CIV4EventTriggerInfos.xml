@@ -60,7 +60,9 @@
       </FeaturesRequired>
       <TerrainsRequired/>
       <ImprovementsRequired/>
-      <BonusesRequired/>
+      <BonusesRequired>
+        <BonusType>NONE</BonusType>
+      </BonusesRequired>
       <RoutesRequired/>
       <ReligionsRequired/>
       <iNumReligions>0</iNumReligions>
@@ -79,7 +81,7 @@
       <PrereqEvents/>
       <bPrereqEventPlot>0</bPrereqEventPlot>
       <OrPreReqs>
-        <PrereqTech>TECH_LEADERSHIP</PrereqTech>
+        <PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
       </OrPreReqs>
       <AndPreReqs/>
       <ObsoleteTechs/>
@@ -143,7 +145,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>1000</iWeight>
+      <iWeight>500</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -235,7 +237,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
+      <iPercentGamesActive>90</iPercentGamesActive>
       <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -775,7 +777,7 @@
       </TriggerTexts>
       <bSinglePlayer>1</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -865,7 +867,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>500</iWeight>
+      <iWeight>300</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -1239,7 +1241,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>400</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -1259,8 +1261,10 @@
       <iUnitDistanceWeight>0</iUnitDistanceWeight>
       <iUnitExperienceWeight>0</iUnitExperienceWeight>
       <bUnitsOnPlot>0</bUnitsOnPlot>
-      <BuildingsRequired/>
-      <iNumBuildings>0</iNumBuildings>
+      <BuildingsRequired>
+        <BuildingClass>BUILDINGCLASS_ORACLE2</BuildingClass>
+      </BuildingsRequired>
+      <iNumBuildings>1</iNumBuildings>
       <iNumBuildingsGlobal>0</iNumBuildingsGlobal>
       <iNumPlotsRequired>1</iNumPlotsRequired>
       <bOwnPlot>0</bOwnPlot>
@@ -1925,7 +1929,7 @@
       </TriggerTexts>
       <bSinglePlayer>1</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -2699,7 +2703,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>1000</iWeight>
+      <iWeight>400</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -2786,8 +2790,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>75</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>40</iPercentGamesActive>
+      <iWeight>50</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -2869,8 +2873,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>40</iPercentGamesActive>
+      <iWeight>50</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -2952,8 +2956,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>0</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>40</iPercentGamesActive>
+      <iWeight>50</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -4161,7 +4165,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -4498,7 +4502,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>50</iWeight>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -5033,8 +5037,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>75</iPercentGamesActive>
-      <iWeight>400</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -5119,7 +5123,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
+      <iPercentGamesActive>80</iPercentGamesActive>
       <iWeight>100</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -5201,7 +5205,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
+      <iPercentGamesActive>80</iPercentGamesActive>
       <iWeight>100</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -5283,7 +5287,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
+      <iPercentGamesActive>80</iPercentGamesActive>
       <iWeight>100</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -5371,7 +5375,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
+      <iPercentGamesActive>80</iPercentGamesActive>
       <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -5455,8 +5459,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>1</bSinglePlayer>
-      <iPercentGamesActive>80</iPercentGamesActive>
-      <iWeight>300</iWeight>
+      <iPercentGamesActive>90</iPercentGamesActive>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -5620,7 +5624,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>180</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -6304,8 +6308,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>80</iPercentGamesActive>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -6389,8 +6393,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>80</iPercentGamesActive>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -6471,8 +6475,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>80</iPercentGamesActive>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -6561,8 +6565,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>99</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>90</iPercentGamesActive>
+      <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -7000,7 +7004,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>200</iWeight>
+      <iWeight>300</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -7168,7 +7172,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>300</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -7334,7 +7338,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>300</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -7502,7 +7506,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>300</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -8256,11 +8260,11 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>100</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
-      <Civic>CIVIC_DYNASTIE</Civic>
+      <Civic>CIVIC_ROYAL</Civic>
       <iMinTreasury>0</iMinTreasury>
       <iMinPopulation>0</iMinPopulation>
       <iMaxPopulation>0</iMaxPopulation>
@@ -8306,9 +8310,7 @@
       </Events>
       <PrereqEvents/>
       <bPrereqEventPlot>0</bPrereqEventPlot>
-      <OrPreReqs>
-        <PrereqTech>TECH_LEADERSHIP</PrereqTech>
-      </OrPreReqs>
+      <OrPreReqs/>
       <AndPreReqs/>
       <ObsoleteTechs/>
       <bRecurring>0</bRecurring>
@@ -8343,7 +8345,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>400</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>CIVIC_OLIGARCHIE</Civic>
@@ -8512,7 +8514,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>CIVIC_TYRANNIS</Civic>
@@ -9002,7 +9004,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -9165,7 +9167,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -9412,7 +9414,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>70</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>120</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -9496,7 +9498,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -9582,8 +9584,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>60</iPercentGamesActive>
-      <iWeight>1000</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>400</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>CIVIC_HERRSCHERKULT</Civic>
@@ -9667,7 +9669,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>75</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iWeight>120</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -9835,8 +9837,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>0</iWeight>
+      <iPercentGamesActive>80</iPercentGamesActive>
+      <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -10091,7 +10093,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>0</iPercentGamesActive>
-      <iWeight>0</iWeight>
+      <iWeight>20</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -10439,7 +10441,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -10699,7 +10701,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -10786,7 +10788,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -11197,7 +11199,7 @@
       <bPickOtherPlayerCity>0</bPickOtherPlayerCity>
       <bShowPlot>1</bShowPlot>
       <iCityFoodWeight>0</iCityFoodWeight>
-      <PythonCanDo>canTriggerHunter</PythonCanDo>
+      <PythonCanDo/>
       <PythonCanDoCity/>
       <PythonCanDoUnit>canTriggerHunterUnit</PythonCanDoUnit>
       <PythonCallback/>
@@ -11214,8 +11216,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>80</iPercentGamesActive>
-      <iWeight>200</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>150</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -11464,8 +11466,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
-      <iWeight>900</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>500</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -11491,10 +11493,10 @@
       <iNumPlotsRequired>1</iNumPlotsRequired>
       <bOwnPlot>0</bOwnPlot>
       <iPlotType>-1</iPlotType>
-      <FeaturesRequired>
-        <FeatureType>FEATURE_SWAMP</FeatureType>
-      </FeaturesRequired>
-      <TerrainsRequired/>
+      <FeaturesRequired/>
+      <TerrainsRequired>
+        <TerrainType>TERRAIN_SWAMP</TerrainType>
+      </TerrainsRequired>
       <ImprovementsRequired/>
       <BonusesRequired/>
       <RoutesRequired>
@@ -11573,10 +11575,10 @@
       <iNumPlotsRequired>1</iNumPlotsRequired>
       <bOwnPlot>0</bOwnPlot>
       <iPlotType>-1</iPlotType>
-      <FeaturesRequired>
-        <FeatureType>FEATURE_SWAMP</FeatureType>
-      </FeaturesRequired>
-      <TerrainsRequired/>
+      <FeaturesRequired/>
+      <TerrainsRequired>
+        <TerrainType>TERRAIN_SWAMP</TerrainType>
+      </TerrainsRequired>
       <ImprovementsRequired/>
       <BonusesRequired/>
       <RoutesRequired>
@@ -11718,8 +11720,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
-      <iWeight>70</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>120</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -11745,10 +11747,10 @@
       <iNumPlotsRequired>1</iNumPlotsRequired>
       <bOwnPlot>1</bOwnPlot>
       <iPlotType>-1</iPlotType>
-      <FeaturesRequired>
-        <FeatureType>FEATURE_SWAMP</FeatureType>
-      </FeaturesRequired>
-      <TerrainsRequired/>
+      <FeaturesRequired/>
+      <TerrainsRequired>
+        <TerrainType>TERRAIN_SWAMP</TerrainType>
+      </TerrainsRequired>
       <ImprovementsRequired/>
       <BonusesRequired/>
       <RoutesRequired/>
@@ -11886,7 +11888,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>80</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>100</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -11918,7 +11920,9 @@
       </FeaturesRequired>
       <TerrainsRequired/>
       <ImprovementsRequired/>
-      <BonusesRequired/>
+      <BonusesRequired>
+        <BonusType>NONE</BonusType>
+      </BonusesRequired>
       <RoutesRequired/>
       <ReligionsRequired/>
       <iNumReligions>0</iNumReligions>
@@ -11937,7 +11941,7 @@
       <PrereqEvents/>
       <bPrereqEventPlot>0</bPrereqEventPlot>
       <OrPreReqs>
-        <PrereqTech>TECH_LEADERSHIP</PrereqTech>
+        <PrereqTech>TECH_BRONZE_WORKING</PrereqTech>
       </OrPreReqs>
       <AndPreReqs/>
       <ObsoleteTechs/>
@@ -12135,8 +12139,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
-      <iWeight>80</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -12224,8 +12228,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>80</iPercentGamesActive>
-      <iWeight>70</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -12308,8 +12312,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>80</iPercentGamesActive>
-      <iWeight>100</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -12547,7 +12551,7 @@
                         <bPrereqEventPlot>0</bPrereqEventPlot>
                         <OrPreReqs/>
                         <AndPreReqs>
-                                <PrereqTech>TECH_MAGNET</PrereqTech>
+                                <PrereqTech>TECH_MAGNETISM</PrereqTech>
                                 <PrereqTech>TECH_WEHRTECHNIK</PrereqTech>
                         </AndPreReqs>
                         <ObsoleteTechs/>
@@ -13789,7 +13793,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>30</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -13954,7 +13958,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>40</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -14119,8 +14123,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>50</iPercentGamesActive>
-      <iWeight>500</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -14283,8 +14287,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>50</iPercentGamesActive>
-      <iWeight>500</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -14447,7 +14451,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -14468,8 +14472,10 @@
       <iUnitDistanceWeight>0</iUnitDistanceWeight>
       <iUnitExperienceWeight>0</iUnitExperienceWeight>
       <bUnitsOnPlot>0</bUnitsOnPlot>
-      <BuildingsRequired/>
-      <iNumBuildings>0</iNumBuildings>
+      <BuildingsRequired>
+        <BuildingClass>BUILDINGCLASS_LUXOR</BuildingClass>
+      </BuildingsRequired>
+      <iNumBuildings>1</iNumBuildings>
       <iNumBuildingsGlobal>0</iNumBuildingsGlobal>
       <iNumPlotsRequired>0</iNumPlotsRequired>
       <bOwnPlot>0</bOwnPlot>
@@ -14489,15 +14495,13 @@
       <bStateReligion>0</bStateReligion>
       <bHolyCity>0</bHolyCity>
       <bPickCorporation>1</bPickCorporation>
-      <bHeadquarters>1</bHeadquarters>
+      <bHeadquarters>0</bHeadquarters>
       <Events>
         <Event>EVENT_ISIS_1</Event>
       </Events>
       <PrereqEvents/>
       <bPrereqEventPlot>0</bPrereqEventPlot>
-      <OrPreReqs>
-        <PrereqTech>TECH_MATHEMATICS</PrereqTech>
-      </OrPreReqs>
+      <OrPreReqs/>
       <AndPreReqs/>
       <ObsoleteTechs/>
       <bRecurring>0</bRecurring>
@@ -14613,7 +14617,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>70</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -14634,8 +14638,10 @@
       <iUnitDistanceWeight>0</iUnitDistanceWeight>
       <iUnitExperienceWeight>0</iUnitExperienceWeight>
       <bUnitsOnPlot>0</bUnitsOnPlot>
-      <BuildingsRequired/>
-      <iNumBuildings>0</iNumBuildings>
+      <BuildingsRequired>
+        <BuildingClass>BUILDINGCLASS_CORPORATION_4</BuildingClass>
+      </BuildingsRequired>
+      <iNumBuildings>1</iNumBuildings>
       <iNumBuildingsGlobal>0</iNumBuildingsGlobal>
       <iNumPlotsRequired>0</iNumPlotsRequired>
       <bOwnPlot>0</bOwnPlot>
@@ -14655,7 +14661,7 @@
       <bStateReligion>0</bStateReligion>
       <bHolyCity>0</bHolyCity>
       <bPickCorporation>1</bPickCorporation>
-      <bHeadquarters>1</bHeadquarters>
+      <bHeadquarters>0</bHeadquarters>
       <Events>
         <Event>EVENT_MITHRAS_1</Event>
       </Events>
@@ -14777,7 +14783,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>60</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -14798,8 +14804,10 @@
       <iUnitDistanceWeight>0</iUnitDistanceWeight>
       <iUnitExperienceWeight>0</iUnitExperienceWeight>
       <bUnitsOnPlot>0</bUnitsOnPlot>
-      <BuildingsRequired/>
-      <iNumBuildings>0</iNumBuildings>
+      <BuildingsRequired>
+        <BuildingClass>BUILDINGCLASS_CORPORATION_7</BuildingClass>
+      </BuildingsRequired>
+      <iNumBuildings>1</iNumBuildings>
       <iNumBuildingsGlobal>0</iNumBuildingsGlobal>
       <iNumPlotsRequired>0</iNumPlotsRequired>
       <bOwnPlot>0</bOwnPlot>
@@ -14819,7 +14827,7 @@
       <bStateReligion>0</bStateReligion>
       <bHolyCity>0</bHolyCity>
       <bPickCorporation>1</bPickCorporation>
-      <bHeadquarters>1</bHeadquarters>
+      <bHeadquarters>0</bHeadquarters>
       <Events>
         <Event>EVENT_HELLE_1</Event>
       </Events>
@@ -14943,7 +14951,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
+      <iPercentGamesActive>100</iPercentGamesActive>
       <iWeight>60</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -14958,7 +14966,9 @@
       <iAngry>0</iAngry>
       <iUnhealthy>0</iUnhealthy>
       <UnitsRequired>
-        <UnitClass>UNITCLASS_GALLEY</UnitClass>
+        <UnitClass>UNITCLASS_TRIREME</UnitClass>
+        <UnitClass>UNITCLASS_PIRAT_TRIREME</UnitClass>
+        <UnitClass>UNITCLASS_QUINQUEREME</UnitClass>
       </UnitsRequired>
       <iNumUnits>1</iNumUnits>
       <iNumUnitsGlobal>0</iNumUnitsGlobal>
@@ -15028,8 +15038,8 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>90</iPercentGamesActive>
-      <iWeight>90</iWeight>
+      <iPercentGamesActive>100</iPercentGamesActive>
+      <iWeight>200</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -15111,7 +15121,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>300</iWeight>
+      <iWeight>500</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -15281,7 +15291,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>400</iWeight>
+      <iWeight>500</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -15436,95 +15446,6 @@
       <bShowPlot>1</bShowPlot>
       <iCityFoodWeight>0</iCityFoodWeight>
       <PythonCanDo>canTriggerBalearenDone</PythonCanDo>
-      <PythonCanDoCity/>
-      <PythonCanDoUnit/>
-      <PythonCallback/>
-    </EventTriggerInfo>
-    <EventTriggerInfo>
-      <Type>EVENTTRIGGER_SOELDNER</Type>
-      <WorldNewsTexts>
-        <Text>TXT_KEY_EVENTTRIGGER_SOELDNER</Text>
-      </WorldNewsTexts>
-      <TriggerTexts>
-        <TriggerText>
-          <Text>TXT_KEY_EVENT_TRIGGER_SOELDNER_1</Text>
-          <Era>NONE</Era>
-        </TriggerText>
-      </TriggerTexts>
-      <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>800</iWeight>
-      <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
-      <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
-      <Civic>NONE</Civic>
-      <iMinTreasury>0</iMinTreasury>
-      <iMinPopulation>0</iMinPopulation>
-      <iMaxPopulation>0</iMaxPopulation>
-      <iMinMapLandmass>0</iMinMapLandmass>
-      <iMinOurLandmass>0</iMinOurLandmass>
-      <iMaxOurLandmass>-1</iMaxOurLandmass>
-      <MinDifficulty>NONE</MinDifficulty>
-      <iAngry>0</iAngry>
-      <iUnhealthy>0</iUnhealthy>
-      <UnitsRequired/>
-      <iNumUnits>0</iNumUnits>
-      <iNumUnitsGlobal>0</iNumUnitsGlobal>
-      <iUnitDamagedWeight>0</iUnitDamagedWeight>
-      <iUnitDistanceWeight>0</iUnitDistanceWeight>
-      <iUnitExperienceWeight>0</iUnitExperienceWeight>
-      <bUnitsOnPlot>0</bUnitsOnPlot>
-      <BuildingsRequired/>
-      <iNumBuildings>0</iNumBuildings>
-      <iNumBuildingsGlobal>0</iNumBuildingsGlobal>
-      <iNumPlotsRequired>0</iNumPlotsRequired>
-      <bOwnPlot>1</bOwnPlot>
-      <iPlotType>-1</iPlotType>
-      <FeaturesRequired/>
-      <TerrainsRequired/>
-      <ImprovementsRequired/>
-      <BonusesRequired/>
-      <RoutesRequired/>
-      <ReligionsRequired/>
-      <iNumReligions>0</iNumReligions>
-      <CorporationsRequired/>
-      <iNumCorporations>0</iNumCorporations>
-      <bPickReligion>1</bPickReligion>
-      <bStateReligion>1</bStateReligion>
-      <bHolyCity>0</bHolyCity>
-      <bPickCorporation>0</bPickCorporation>
-      <bHeadquarters>0</bHeadquarters>
-      <Events>
-        <Event>EVENT_SOELDNER_1</Event>
-        <Event>EVENT_SOELDNER_2</Event>
-        <Event>EVENT_SOELDNER_3</Event>
-        <Event>EVENT_SOELDNER_4</Event>
-        <Event>EVENT_SOELDNER_5</Event>
-        <Event>EVENT_SOELDNER_6</Event>
-        <Event>EVENT_SOELDNER_7</Event>
-        <Event>EVENT_SOELDNER_8</Event>
-      </Events>
-      <PrereqEvents/>
-      <bPrereqEventPlot>0</bPrereqEventPlot>
-      <OrPreReqs>
-        <PrereqTech>TECH_BUENDNISSE</PrereqTech>
-      </OrPreReqs>
-      <AndPreReqs/>
-      <ObsoleteTechs/>
-      <bRecurring>1</bRecurring>
-      <bTeam>0</bTeam>
-      <bGlobal>0</bGlobal>
-      <bPickPlayer>1</bPickPlayer>
-      <bOtherPlayerWar>0</bOtherPlayerWar>
-      <bOtherPlayerHasReligion>1</bOtherPlayerHasReligion>
-      <bOtherPlayerHasOtherReligion>0</bOtherPlayerHasOtherReligion>
-      <bOtherPlayerAI>0</bOtherPlayerAI>
-      <iOtherPlayerShareBorders>0</iOtherPlayerShareBorders>
-      <OtherPlayerHasTech>NONE</OtherPlayerHasTech>
-      <bPickCity>0</bPickCity>
-      <bPickOtherPlayerCity>0</bPickOtherPlayerCity>
-      <bShowPlot>0</bShowPlot>
-      <iCityFoodWeight>0</iCityFoodWeight>
-      <PythonCanDo>canTriggerSoeldner</PythonCanDo>
       <PythonCanDoCity/>
       <PythonCanDoUnit/>
       <PythonCallback/>
@@ -15707,7 +15628,7 @@
         </TriggerText>
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
-      <iPercentGamesActive>50</iPercentGamesActive>
+      <iPercentGamesActive>70</iPercentGamesActive>
       <iWeight>80</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
@@ -16042,7 +15963,7 @@
       </TriggerTexts>
       <bSinglePlayer>0</bSinglePlayer>
       <iPercentGamesActive>100</iPercentGamesActive>
-      <iWeight>80</iWeight>
+      <iWeight>90</iWeight>
       <bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
       <bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
       <Civic>NONE</Civic>
@@ -16056,22 +15977,13 @@
       <iAngry>0</iAngry>
       <iUnhealthy>0</iUnhealthy>
       <UnitsRequired>
-        <UnitClass>UNITCLASS_NUMID_HORSE_GILDE</UnitClass>
-        <UnitClass>UNITCLASS_ARCHER_GILDE</UnitClass>
-        <UnitClass>UNITCLASS_WAR_ELEPHANT_GILDE</UnitClass>
-        <UnitClass>UNITCLASS_LEGION_GILDE</UnitClass>
-        <UnitClass>UNITCLASS_PHALANX_GILDE</UnitClass>
-        <UnitClass>UNITCLASS_GALLIER_GILDE</UnitClass>
-        <UnitClass>UNITCLASS_GERMAN_GILDE</UnitClass>
         <UnitClass>UNITCLASS_TEUTONEN</UnitClass>
+        <UnitClass>UNITCLASS_THRAKIEN_WARRIOR</UnitClass>
+        <UnitClass>UNITCLASS_MARS</UnitClass>
         <UnitClass>UNITCLASS_ARCHER_KRETA</UnitClass>
         <UnitClass>UNITCLASS_BALEAREN</UnitClass>
         <UnitClass>UNITCLASS_BAKTRIEN</UnitClass>
         <UnitClass>UNITCLASS_KILIKIEN</UnitClass>
-        <UnitClass>UNITCLASS_PIRAT_KONTERE</UnitClass>
-        <UnitClass>UNITCLASS_PIRAT_BIREME</UnitClass>
-        <UnitClass>UNITCLASS_PIRAT_TRIREME</UnitClass>
-        <UnitClass>UNITCLASS_PIRAT_LIBURNE</UnitClass>
       </UnitsRequired>
       <iNumUnits>1</iNumUnits>
       <iNumUnitsGlobal>0</iNumUnitsGlobal>

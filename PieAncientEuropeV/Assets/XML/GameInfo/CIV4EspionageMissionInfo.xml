@@ -49,7 +49,7 @@
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
                         <bSelectPlot>0</bSelectPlot>
-                        <TechPrereq>TECH_KARTEN</TechPrereq>
+                        <TechPrereq>TECH_BELAGERUNG</TechPrereq>
                         <iVisibilityLevel>1</iVisibilityLevel>
                         <bInvestigateCity>0</bInvestigateCity>
                         <bSeeDemographics>0</bSeeDemographics>
@@ -79,12 +79,12 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_INVESTIGATE_CITY</Type>
                         <Description>TXT_KEY_ESPIONAGE_INVESTIGATE_CITY</Description>
-                        <iCost>250</iCost>
+                        <iCost>300</iCost>
                         <bIsPassive>1</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
                         <bSelectPlot>0</bSelectPlot>
-                        <TechPrereq>TECH_BELAGERUNG</TechPrereq>
+                        <TechPrereq>TECH_KARTEN</TechPrereq>
                         <iVisibilityLevel>0</iVisibilityLevel>
                         <bInvestigateCity>1</bInvestigateCity>
                         <bSeeDemographics>0</bSeeDemographics>
@@ -114,7 +114,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_SEE_RESEARCH</Type>
                         <Description>TXT_KEY_ESPIONAGE_SEE_RESEARCH</Description>
-                        <iCost>300</iCost>
+                        <iCost>250</iCost>
                         <bIsPassive>1</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>0</bTargetsCity>

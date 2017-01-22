@@ -16,7 +16,7 @@
       <iMovement>2</iMovement>
       <iSeeThrough>0</iSeeThrough>
       <iHealthPercent>0</iHealthPercent>
-      <iDefense>-25</iDefense>
+      <iDefense>-20</iDefense>
       <iAppearance>0</iAppearance>
       <iDisappearance>0</iDisappearance>
       <iGrowth>0</iGrowth>
@@ -128,18 +128,18 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>3</iMovement>
       <iSeeThrough>1</iSeeThrough>
       <iHealthPercent>-25</iHealthPercent>
-      <iDefense>25</iDefense>
+      <iDefense>30</iDefense>
       <iAppearance>0</iAppearance>
       <iDisappearance>0</iDisappearance>
-      <iGrowth>8</iGrowth>
+      <iGrowth>6</iGrowth>
       <iTurnDamage>0</iTurnDamage>
       <bNoCoast>0</bNoCoast>
       <bNoRiver>0</bNoRiver>
@@ -148,7 +148,7 @@
       <bRequiresRiver>0</bRequiresRiver>
       <bAddsFreshWater>0</bAddsFreshWater>
       <bImpassable>0</bImpassable>
-      <bNoCity>1</bNoCity>
+      <bNoCity>0</bNoCity>
       <bNoImprovement>0</bNoImprovement>
       <bVisibleAlways>0</bVisibleAlways>
       <bNukeImmune>0</bNukeImmune>
@@ -156,6 +156,10 @@
       <TerrainBooleans>
         <TerrainBoolean>
           <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SWAMP</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
@@ -245,9 +249,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>1</iMovement>
@@ -256,7 +260,7 @@
       <iDefense>10</iDefense>
       <iAppearance>1000</iAppearance>
       <iDisappearance>0</iDisappearance>
-      <iGrowth>8</iGrowth>
+      <iGrowth>6</iGrowth>
       <iTurnDamage>0</iTurnDamage>
       <bNoCoast>0</bNoCoast>
       <bNoRiver>0</bNoRiver>
@@ -362,18 +366,18 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>2</iMovement>
       <iSeeThrough>1</iSeeThrough>
       <iHealthPercent>33</iHealthPercent>
-      <iDefense>50</iDefense>
+      <iDefense>20</iDefense>
       <iAppearance>0</iAppearance>
       <iDisappearance>0</iDisappearance>
-      <iGrowth>20</iGrowth>
+      <iGrowth>10</iGrowth>
       <iTurnDamage>0</iTurnDamage>
       <bNoCoast>0</bNoCoast>
       <bNoRiver>0</bNoRiver>
@@ -398,6 +402,10 @@
         </TerrainBoolean>
         <TerrainBoolean>
           <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SWAMP</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
@@ -487,18 +495,18 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>3</iMovement>
       <iSeeThrough>1</iSeeThrough>
       <iHealthPercent>-15</iHealthPercent>
-      <iDefense>50</iDefense>
+      <iDefense>40</iDefense>
       <iAppearance>0</iAppearance>
       <iDisappearance>0</iDisappearance>
-      <iGrowth>15</iGrowth>
+      <iGrowth>8</iGrowth>
       <iTurnDamage>0</iTurnDamage>
       <bNoCoast>0</bNoCoast>
       <bNoRiver>0</bNoRiver>
@@ -515,6 +523,10 @@
       <TerrainBooleans>
         <TerrainBoolean>
           <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SWAMP</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
@@ -717,9 +729,9 @@
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <RiverYieldChange>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
       </RiverYieldChange>
       <HillsYieldChange/>
       <iMovement>2</iMovement>
@@ -745,122 +757,6 @@
       <TerrainBooleans>
         <TerrainBoolean>
           <TerrainType>TERRAIN_DESERT</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-      </TerrainBooleans>
-      <FootstepSounds>
-        <FootstepSound>
-          <FootstepAudioType>FOOTSTEP_AUDIO_HUMAN</FootstepAudioType>
-          <FootstepAudioScript>AS3D_UN_FOOT_UNIT_MUD</FootstepAudioScript>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>FOOTSTEP_AUDIO_HUMAN_LOW</FootstepAudioType>
-          <FootstepAudioScript>AS3D_UN_FOOT_UNIT_LOW_MUD</FootstepAudioScript>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>FOOTSTEP_AUDIO_ANIMAL</FootstepAudioType>
-          <FootstepAudioScript>AS3D_UN_ANIMAL_FOOT_LARGE_MUD</FootstepAudioScript>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>FOOTSTEP_AUDIO_ANIMAL_LOW</FootstepAudioType>
-          <FootstepAudioScript>AS3D_UN_ANIMAL_FOOT_LARGE_LOW_MUD</FootstepAudioScript>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>FOOTSTEP_AUDIO_HORSE</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>LOOPSTEP_WHEELS</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>ENDSTEP_WHEELS</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>LOOPSTEP_WHEELS_2</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>ENDSTEP_WHEELS_2</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>LOOPSTEP_TANK</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>ENDSTEP_TANK</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>LOOPSTEP_MOD_ARMOUR</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>ENDSTEP_MOD_ARMOUR</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>LOOPSTEP_ARTILLERY</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>ENDSTEP_ARTILLERY</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>LOOPSTEP_WHEELS_3</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-        <FootstepSound>
-          <FootstepAudioType>ENDSTEP_WHEELS_3</FootstepAudioType>
-          <FootstepAudioScript/>
-        </FootstepSound>
-      </FootstepSounds>
-      <EffectType>NONE</EffectType>
-      <iEffectProbability>0</iEffectProbability>
-      <iAdvancedStartRemoveCost>0</iAdvancedStartRemoveCost>
-    </FeatureInfo>
-    <FeatureInfo>
-      <Type>FEATURE_SWAMP</Type>
-      <Description>TXT_KEY_FEATURE_SWAMP</Description>
-      <Civilopedia/>
-      <ArtDefineTag>ART_DEF_FEATURE_SWAMP</ArtDefineTag>
-      <YieldChanges>
-        <iYieldChange>-1</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-      </YieldChanges>
-      <RiverYieldChange>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
-      </RiverYieldChange>
-      <HillsYieldChange/>
-      <iMovement>3</iMovement>
-      <iSeeThrough>0</iSeeThrough>
-      <iHealthPercent>-35</iHealthPercent>
-      <iDefense>-10</iDefense>
-      <iAppearance>6000</iAppearance>
-      <iDisappearance>0</iDisappearance>
-      <iGrowth>0</iGrowth>
-      <iTurnDamage>5</iTurnDamage>
-      <bNoCoast>0</bNoCoast>
-      <bNoRiver>0</bNoRiver>
-      <bNoAdjacent>0</bNoAdjacent>
-      <bRequiresFlatlands>1</bRequiresFlatlands>
-      <bRequiresRiver>1</bRequiresRiver>
-      <bAddsFreshWater>0</bAddsFreshWater>
-      <bImpassable>0</bImpassable>
-      <bNoCity>0</bNoCity>
-      <bNoImprovement>0</bNoImprovement>
-      <bVisibleAlways>0</bVisibleAlways>
-      <bNukeImmune>0</bNukeImmune>
-      <OnUnitChangeTo/>
-      <TerrainBooleans>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_GRASS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
@@ -1639,7 +1535,7 @@
       <bRequiresFlatlands>0</bRequiresFlatlands>
       <bRequiresRiver>0</bRequiresRiver>
       <bAddsFreshWater>0</bAddsFreshWater>
-      <bImpassable>0</bImpassable>
+      <bImpassable>1</bImpassable>
       <bNoCity>0</bNoCity>
       <bNoImprovement>0</bNoImprovement>
       <bVisibleAlways>0</bVisibleAlways>
@@ -1686,7 +1582,7 @@
       <bRequiresFlatlands>0</bRequiresFlatlands>
       <bRequiresRiver>0</bRequiresRiver>
       <bAddsFreshWater>0</bAddsFreshWater>
-      <bImpassable>0</bImpassable>
+      <bImpassable>1</bImpassable>
       <bNoCity>0</bNoCity>
       <bNoImprovement>0</bNoImprovement>
       <bVisibleAlways>0</bVisibleAlways>
@@ -1725,7 +1621,7 @@
       <bRequiresFlatlands>0</bRequiresFlatlands>
       <bRequiresRiver>0</bRequiresRiver>
       <bAddsFreshWater>0</bAddsFreshWater>
-      <bImpassable>0</bImpassable>
+      <bImpassable>1</bImpassable>
       <bNoCity>0</bNoCity>
       <bNoImprovement>0</bNoImprovement>
       <bVisibleAlways>0</bVisibleAlways>
@@ -2236,6 +2132,230 @@
         </TerrainBoolean>
         <TerrainBoolean>
           <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
+      <FootstepSounds>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_HUMAN</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_FOOT_UNIT_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_HUMAN_LOW</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_FOOT_UNIT_LOW_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_ANIMAL</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_ANIMAL_FOOT_LARGE_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_ANIMAL_LOW</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_ANIMAL_FOOT_LARGE_LOW_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_HORSE</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_WHEELS</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_WHEELS</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_WHEELS_2</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_WHEELS_2</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_TANK</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_TANK</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_MOD_ARMOUR</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_MOD_ARMOUR</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_ARTILLERY</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_ARTILLERY</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_WHEELS_3</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_WHEELS_3</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+      </FootstepSounds>
+      <EffectType>NONE</EffectType>
+      <iEffectProbability>0</iEffectProbability>
+      <iAdvancedStartRemoveCost>0</iAdvancedStartRemoveCost>
+    </FeatureInfo>
+    <FeatureInfo>
+      <Type>FEATURE_RIVER</Type>
+      <Description>TXT_KEY_FEATURE_RIVER</Description>
+      <Civilopedia>TXT_KEY_FEATURE_RIVER_PEDIA</Civilopedia>
+      <ArtDefineTag>ART_DEF_FEATURE_RIVER</ArtDefineTag>
+      <YieldChanges/>
+      <RiverYieldChange/>
+      <HillsYieldChange/>
+      <iMovement>2</iMovement>
+      <iSeeThrough>0</iSeeThrough>
+      <iHealthPercent>0</iHealthPercent>
+      <iDefense>-10</iDefense>
+      <iAppearance>0</iAppearance>
+      <iDisappearance>0</iDisappearance>
+      <iGrowth>0</iGrowth>
+      <iTurnDamage>0</iTurnDamage>
+      <bNoCoast>0</bNoCoast>
+      <bNoRiver>0</bNoRiver>
+      <bNoAdjacent>0</bNoAdjacent>
+      <bRequiresFlatlands>0</bRequiresFlatlands>
+      <bRequiresRiver>0</bRequiresRiver>
+      <bAddsFreshWater>1</bAddsFreshWater>
+      <bImpassable>0</bImpassable>
+      <bNoCity>1</bNoCity>
+      <bNoImprovement>0</bNoImprovement>
+      <bVisibleAlways>1</bVisibleAlways>
+      <bNukeImmune>0</bNukeImmune>
+      <OnUnitChangeTo/>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_RIVER</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_RIVER_FORD</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
+      <FootstepSounds>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_HUMAN</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_FOOT_UNIT_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_HUMAN_LOW</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_FOOT_UNIT_LOW_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_ANIMAL</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_ANIMAL_FOOT_LARGE_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_ANIMAL_LOW</FootstepAudioType>
+          <FootstepAudioScript>AS3D_UN_ANIMAL_FOOT_LARGE_LOW_SNOW</FootstepAudioScript>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>FOOTSTEP_AUDIO_HORSE</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_WHEELS</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_WHEELS</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_WHEELS_2</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_WHEELS_2</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_TANK</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_TANK</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_MOD_ARMOUR</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_MOD_ARMOUR</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_ARTILLERY</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_ARTILLERY</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>LOOPSTEP_WHEELS_3</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+        <FootstepSound>
+          <FootstepAudioType>ENDSTEP_WHEELS_3</FootstepAudioType>
+          <FootstepAudioScript/>
+        </FootstepSound>
+      </FootstepSounds>
+      <EffectType>NONE</EffectType>
+      <iEffectProbability>0</iEffectProbability>
+      <iAdvancedStartRemoveCost>0</iAdvancedStartRemoveCost>
+    </FeatureInfo>
+    <FeatureInfo>
+      <Type>FEATURE_RIVER_FORD</Type>
+      <Description>TXT_KEY_FEATURE_RIVER_FORD</Description>
+      <Civilopedia>TXT_KEY_FEATURE_RIVER_FORD_PEDIA</Civilopedia>
+      <ArtDefineTag>ART_DEF_FEATURE_RIVER</ArtDefineTag>
+      <YieldChanges/>
+      <RiverYieldChange/>
+      <HillsYieldChange/>
+      <iMovement>2</iMovement>
+      <iSeeThrough>0</iSeeThrough>
+      <iHealthPercent>0</iHealthPercent>
+      <iDefense>-25</iDefense>
+      <iAppearance>0</iAppearance>
+      <iDisappearance>0</iDisappearance>
+      <iGrowth>0</iGrowth>
+      <iTurnDamage>10</iTurnDamage>
+      <bNoCoast>0</bNoCoast>
+      <bNoRiver>0</bNoRiver>
+      <bNoAdjacent>0</bNoAdjacent>
+      <bRequiresFlatlands>0</bRequiresFlatlands>
+      <bRequiresRiver>0</bRequiresRiver>
+      <bAddsFreshWater>1</bAddsFreshWater>
+      <bImpassable>0</bImpassable>
+      <bNoCity>1</bNoCity>
+      <bNoImprovement>0</bNoImprovement>
+      <bVisibleAlways>1</bVisibleAlways>
+      <bNukeImmune>0</bNukeImmune>
+      <OnUnitChangeTo/>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_RIVER</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_RIVER_FORD</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>

@@ -94,7 +94,7 @@
       <fInterfaceScale>1.0</fInterfaceScale>
       <NIF>Art/Structures/Improvements/Salzmine/Smine.nif</NIF>
       <KFM>Art/Structures/Improvements/Mine/Mine.kfm</KFM>
-      <Button>Art/Interface/Buttons/Builds/button_salzmine.dds</Button>
+      <Button>Art/Interface/Buttons/Builds/button_build_salzmine.dds</Button>
     </ImprovementArtInfo>
     <ImprovementArtInfo>
       <Type>ART_DEF_IMPROVEMENT_WORKSHOP</Type>
@@ -527,6 +527,15 @@
       <NIF>Art/Structures/Improvements/limes2/limes9.nif</NIF>
       <KFM/>
       <Button>Art/Structures/Improvements/limes2/button_limes9.dds</Button>
+    </ImprovementArtInfo>
+    <ImprovementArtInfo>
+      <Type>ART_DEF_IMPROVEMENT_BARBARENFORT</Type>
+      <bExtraAnimations>0</bExtraAnimations>
+      <fScale>1.3</fScale>
+      <fInterfaceScale>0.5</fInterfaceScale>
+      <NIF>Art/Structures/Improvements/barbfort/eurofort.nif</NIF>
+      <KFM/>
+      <Button>Art/Interface/Buttons/TerrainImprovements/button_barbarenfort.dds</Button>
     </ImprovementArtInfo>
   </ImprovementArtInfos>
 </Civ4ArtDefines>

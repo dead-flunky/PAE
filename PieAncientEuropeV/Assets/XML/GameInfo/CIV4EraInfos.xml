@@ -38,7 +38,7 @@
       <iBuildPercent>100</iBuildPercent>
       <iImprovementPercent>100</iImprovementPercent>
       <iGreatPeoplePercent>100</iGreatPeoplePercent>
-      <iCulturePercent>25</iCulturePercent>
+      <iCulturePercent>100</iCulturePercent>
       <iAnarchyPercent>50</iAnarchyPercent>
       <iEventChancePerTurn>2</iEventChancePerTurn>
       <iSoundtrackSpace>200</iSoundtrackSpace>
@@ -83,21 +83,21 @@
       <iStartingUnitMultiplier>1</iStartingUnitMultiplier>
       <iStartingDefenseUnits>1</iStartingDefenseUnits>
       <iStartingWorkerUnits>1</iStartingWorkerUnits>
-      <iStartingExploreUnits>1</iStartingExploreUnits>
+      <iStartingExploreUnits>0</iStartingExploreUnits>
       <iStartingGold>10</iStartingGold>
       <iFreePopulation>0</iFreePopulation>
       <iStartPercent>10</iStartPercent>
-      <iGrowthPercent>110</iGrowthPercent>
+      <iGrowthPercent>100</iGrowthPercent>
       <iTrainPercent>100</iTrainPercent>
       <iConstructPercent>100</iConstructPercent>
       <iCreatePercent>100</iCreatePercent>
-      <iResearchPercent>110</iResearchPercent>
-      <iBuildPercent>100</iBuildPercent>
+      <iResearchPercent>125</iResearchPercent>
+      <iBuildPercent>110</iBuildPercent>
       <iImprovementPercent>100</iImprovementPercent>
       <iGreatPeoplePercent>100</iGreatPeoplePercent>
-      <iCulturePercent>50</iCulturePercent>
-      <iAnarchyPercent>50</iAnarchyPercent>
-      <iEventChancePerTurn>4</iEventChancePerTurn>
+      <iCulturePercent>100</iCulturePercent>
+      <iAnarchyPercent>100</iAnarchyPercent>
+      <iEventChancePerTurn>2</iEventChancePerTurn>
       <iSoundtrackSpace>200</iSoundtrackSpace>
       <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
       <EraInfoSoundtracks>
@@ -143,28 +143,28 @@
       <Description>TXT_KEY_ERA_IRON</Description>
       <Strategy>TXT_KEY_ERA_ANCIENT_STRATEGY</Strategy>
       <bNoGoodies>0</bNoGoodies>
-      <bNoAnimals>0</bNoAnimals>
+      <bNoAnimals>1</bNoAnimals>
       <bNoBarbUnits>0</bNoBarbUnits>
-      <bNoBarbCities>0</bNoBarbCities>
+      <bNoBarbCities>1</bNoBarbCities>
       <iAdvancedStartPoints>1200</iAdvancedStartPoints>
       <iStartingUnitMultiplier>1</iStartingUnitMultiplier>
       <iStartingDefenseUnits>1</iStartingDefenseUnits>
       <iStartingWorkerUnits>1</iStartingWorkerUnits>
-      <iStartingExploreUnits>1</iStartingExploreUnits>
+      <iStartingExploreUnits>0</iStartingExploreUnits>
       <iStartingGold>10</iStartingGold>
       <iFreePopulation>0</iFreePopulation>
       <iStartPercent>10</iStartPercent>
-      <iGrowthPercent>125</iGrowthPercent>
+      <iGrowthPercent>100</iGrowthPercent>
       <iTrainPercent>100</iTrainPercent>
       <iConstructPercent>100</iConstructPercent>
       <iCreatePercent>100</iCreatePercent>
-      <iResearchPercent>100</iResearchPercent>
+      <iResearchPercent>125</iResearchPercent>
       <iBuildPercent>100</iBuildPercent>
       <iImprovementPercent>100</iImprovementPercent>
       <iGreatPeoplePercent>100</iGreatPeoplePercent>
-      <iCulturePercent>75</iCulturePercent>
-      <iAnarchyPercent>50</iAnarchyPercent>
-      <iEventChancePerTurn>6</iEventChancePerTurn>
+      <iCulturePercent>100</iCulturePercent>
+      <iAnarchyPercent>100</iAnarchyPercent>
+      <iEventChancePerTurn>2</iEventChancePerTurn>
       <iSoundtrackSpace>200</iSoundtrackSpace>
       <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
       <EraInfoSoundtracks>
@@ -214,28 +214,128 @@
       <Description>TXT_KEY_ERA_CLASSICAL</Description>
       <Strategy>TXT_KEY_ERA_CLASSICAL_STRATEGY</Strategy>
       <bNoGoodies>0</bNoGoodies>
-      <bNoAnimals>0</bNoAnimals>
+      <bNoAnimals>1</bNoAnimals>
       <bNoBarbUnits>0</bNoBarbUnits>
       <bNoBarbCities>0</bNoBarbCities>
       <iAdvancedStartPoints>1200</iAdvancedStartPoints>
       <iStartingUnitMultiplier>1</iStartingUnitMultiplier>
-      <iStartingDefenseUnits>1</iStartingDefenseUnits>
-      <iStartingWorkerUnits>1</iStartingWorkerUnits>
-      <iStartingExploreUnits>1</iStartingExploreUnits>
+      <iStartingDefenseUnits>2</iStartingDefenseUnits>
+      <iStartingWorkerUnits>2</iStartingWorkerUnits>
+      <iStartingExploreUnits>0</iStartingExploreUnits>
       <iStartingGold>10</iStartingGold>
       <iFreePopulation>0</iFreePopulation>
       <iStartPercent>10</iStartPercent>
-      <iGrowthPercent>150</iGrowthPercent>
-      <iTrainPercent>100</iTrainPercent>
+      <iGrowthPercent>125</iGrowthPercent>
+      <iTrainPercent>125</iTrainPercent>
       <iConstructPercent>100</iConstructPercent>
       <iCreatePercent>100</iCreatePercent>
-      <iResearchPercent>100</iResearchPercent>
-      <iBuildPercent>100</iBuildPercent>
+      <iResearchPercent>125</iResearchPercent>
+      <iBuildPercent>125</iBuildPercent>
       <iImprovementPercent>100</iImprovementPercent>
       <iGreatPeoplePercent>100</iGreatPeoplePercent>
       <iCulturePercent>100</iCulturePercent>
-      <iAnarchyPercent>50</iAnarchyPercent>
-      <iEventChancePerTurn>8</iEventChancePerTurn>
+      <iAnarchyPercent>100</iAnarchyPercent>
+      <iEventChancePerTurn>4</iEventChancePerTurn>
+      <iSoundtrackSpace>200</iSoundtrackSpace>
+      <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
+      <EraInfoSoundtracks>
+        <EraInfoSoundtrack>AS2D_SONG_ALEXANDER</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_VIKING</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_ROME</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_PELOPONNESIAN</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CIV_III_MID_ROME</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CIV_III_ANC_EUROPE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CIV_III_ANC_ROME</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CIV_III_MID_EUROPE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CIV_III_MOD_CELTIC</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CONQUESTS_FANTASY1</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CONQUESTS_FANTASY2</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CONQUESTS_ROMAN</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_EC_EARLY_PEACE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_EC_EARLY_WAR</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_EU_LATE_PEACE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_EU_LATE_WAR</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_GR_EARLY_PEACE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_GR_EARLY_WAR</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_ME_EARLY_PEACE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_DIP_ME_LATE_PEACE</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_BARBARIAN</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_CIV_III_MOD_MID_EAST</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_CREDITS1</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_CREDITS2</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_OPENING_MENU</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_SONG_GENGHIS_KHAN</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DESPREZ_LAMENT</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANONYMOUS_AY_SANTA_MARIA</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DE_LA_TORRE_ALTA</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_BISMARCK_EARLY</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_CATHERINE_EARLY</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_CYRUS_LATE_INTRO</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_GENGHISKHAN_LATE_LP</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_MUSIC_PAE_MOD_1</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_MUSIC_PAE_MOD_2</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X5</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X6</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X7</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X8</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X9</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X10</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X11</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X12</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X13</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X15</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X17</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X18</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X19</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X20</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X21</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X22</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X23</EraInfoSoundtrack>
+      </EraInfoSoundtracks>
+      <CitySoundscapes>
+        <CitySoundscape>
+          <CitySizeType>CITYSIZE_SMALL</CitySizeType>
+          <SoundscapeScript>ASSS_CITY_ANCIENT_SMALL_SELECT_AMB</SoundscapeScript>
+        </CitySoundscape>
+        <CitySoundscape>
+          <CitySizeType>CITYSIZE_MEDIUM</CitySizeType>
+          <SoundscapeScript>ASSS_CITY_ANCIENT_SMALL_SELECT_AMB</SoundscapeScript>
+        </CitySoundscape>
+        <CitySoundscape>
+          <CitySizeType>CITYSIZE_LARGE</CitySizeType>
+          <SoundscapeScript>ASSS_CITY_ANCIENT_LARGE_SELECT_AMB</SoundscapeScript>
+        </CitySoundscape>
+      </CitySoundscapes>
+      <AudioUnitVictoryScript>AS2D_VICTORY_EARLY</AudioUnitVictoryScript>
+      <AudioUnitDefeatScript>AS2D_LOSS_EARLY</AudioUnitDefeatScript>
+    </EraInfo>
+    <EraInfo>
+      <Type>ERA_LATE_ANTIK</Type>
+      <Description>TXT_KEY_ERA_LATE_ANTIK</Description>
+      <Strategy>TXT_KEY_ERA_CLASSICAL_STRATEGY</Strategy>
+      <bNoGoodies>1</bNoGoodies>
+      <bNoAnimals>1</bNoAnimals>
+      <bNoBarbUnits>0</bNoBarbUnits>
+      <bNoBarbCities>0</bNoBarbCities>
+      <iAdvancedStartPoints>1200</iAdvancedStartPoints>
+      <iStartingUnitMultiplier>1</iStartingUnitMultiplier>
+      <iStartingDefenseUnits>2</iStartingDefenseUnits>
+      <iStartingWorkerUnits>2</iStartingWorkerUnits>
+      <iStartingExploreUnits>0</iStartingExploreUnits>
+      <iStartingGold>10</iStartingGold>
+      <iFreePopulation>0</iFreePopulation>
+      <iStartPercent>10</iStartPercent>
+      <iGrowthPercent>125</iGrowthPercent>
+      <iTrainPercent>125</iTrainPercent>
+      <iConstructPercent>100</iConstructPercent>
+      <iCreatePercent>100</iCreatePercent>
+      <iResearchPercent>150</iResearchPercent>
+      <iBuildPercent>125</iBuildPercent>
+      <iImprovementPercent>100</iImprovementPercent>
+      <iGreatPeoplePercent>100</iGreatPeoplePercent>
+      <iCulturePercent>100</iCulturePercent>
+      <iAnarchyPercent>100</iAnarchyPercent>
+      <iEventChancePerTurn>4</iEventChancePerTurn>
       <iSoundtrackSpace>200</iSoundtrackSpace>
       <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
       <EraInfoSoundtracks>

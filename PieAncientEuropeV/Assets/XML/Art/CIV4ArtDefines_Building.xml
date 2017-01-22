@@ -180,9 +180,9 @@
       <Type>ART_DEF_BUILDING_LUXOR</Type>
       <LSystem>LSYSTEM_3x3</LSystem>
       <bAnimated>0</bAnimated>
-      <fScale>0</fScale>
-      <fInterfaceScale>0</fInterfaceScale>
-      <NIF/>
+      <fScale>2.6</fScale>
+      <fInterfaceScale>0.4</fInterfaceScale>
+      <NIF>Art/Structures/buildings/luxor/cathedral.nif</NIF>
       <KFM/>
       <Button>Art/Interface/Buttons/Buildings/button_building_luxor.dds</Button>
     </BuildingArtInfo>
@@ -355,6 +355,16 @@
       <NIF>Art/Structures/Buildings/Elephant_Stable/2_elephant_stables.nif</NIF>
       <KFM/>
       <Button>Art/Interface/Buttons/Builds/button_elefantenstall.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_CAMEL_STABLE</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0</fScale>
+      <fInterfaceScale>0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_camel_stable.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_PUBLIC_EXECUTION</Type>
@@ -697,6 +707,26 @@
       <Button>Art/Interface/Buttons/Builds/button_provinzpalast.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_BISCHOFSSITZ</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_bischofssitz.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_PRAEFECTUR</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_praefektur.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_LEVEE1</Type>
       <LSystem>LSYSTEM_1x1</LSystem>
       <bAnimated>0</bAnimated>
@@ -774,13 +804,13 @@
       <fInterfaceScale>0.52</fInterfaceScale>
       <NIF>Art/Structures/Buildings/Pergamonaltar/pergamonaltar.nif</NIF>
       <KFM/>
-      <Button>Art/Interface/Buttons/Builds/button_pergamonaltar.dds</Button>
+      <Button>Art/Interface/Buttons/Buildings/button_pergamonaltar.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_KRIEGSHAFEN</Type>
-      <LSystem>LSYSTEM_WATER</LSystem>
+      <LSystem>LSYSTEM_HARBOR</LSystem>
       <bAnimated>0</bAnimated>
-      <fScale>5.4</fScale>
+      <fScale>2.4</fScale>
       <fInterfaceScale>0.33</fInterfaceScale>
       <NIF>Art/Structures/Buildings/Kriegshafen/doppelhafen.nif</NIF>
       <KFM/>
@@ -790,7 +820,7 @@
       <Type>ART_DEF_BUILDING_ELEPHANTMONUMENT</Type>
       <LSystem>LSYSTEM_1x1</LSystem>
       <bAnimated>0</bAnimated>
-      <fScale>1.6</fScale>
+      <fScale>0.0</fScale>
       <fInterfaceScale>0.33</fInterfaceScale>
       <NIF>Art/Structures/Buildings/Elephantmonument/Burial.nif</NIF>
       <KFM/>
@@ -847,6 +877,16 @@
       <Button>Art/Interface/Buttons/Builds/button_therme.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_SAUNA</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_sauna.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_TRADEPOST</Type>
       <LSystem>LSYSTEM_1x1</LSystem>
       <bAnimated>0</bAnimated>
@@ -855,6 +895,16 @@
       <NIF/>
       <KFM/>
       <Button>Art/Interface/Buttons/Builds/button_tradepost.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_HANDELSZENTRUM</Type>
+      <LSystem>LSYSTEM_3x3</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>1.0</fScale>
+      <fInterfaceScale>1.0</fInterfaceScale>
+      <NIF>Art/Structures/Buildings/handelszentrum/forum.nif</NIF>
+      <KFM/>
+      <Button>Art/Structures/Buildings/handelszentrum/button_handelszentrum.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_CURINGHUT</Type>
@@ -866,7 +916,7 @@
       <KFM/>
       <Button>Art/Interface/Buttons/Builds/button_curinghut.dds</Button>
     </BuildingArtInfo>
-    <BuildingArtInfo>
+     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_DOLMEN</Type>
       <LSystem>LSYSTEM_1x1</LSystem>
       <bAnimated>0</bAnimated>
@@ -960,8 +1010,8 @@
       <Type>ART_DEF_BUILDING_ABU_SIMBEL</Type>
       <LSystem>LSYSTEM_3x3</LSystem>
       <bAnimated>0</bAnimated>
-      <fScale>0.8</fScale>
-      <fInterfaceScale>0.8</fInterfaceScale>
+      <fScale>1.5</fScale>
+      <fInterfaceScale>0.3</fInterfaceScale>
       <NIF>Art/Structures/Buildings/Abu_Simbel/AbuSimbel2.nif</NIF>
       <KFM/>
       <Button>Art/Interface/Buttons/Builds/button_abu_simbel.dds</Button>
@@ -1638,6 +1688,26 @@
       <Button>Art/Interface/Buttons/Buildings/button_building_ricestorage.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_LAGERHAUS</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_lager.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_BROTMANUFAKTUR</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_manufaktur_brot.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_AQUEDUCT</Type>
       <!-- the actual art for this aqueduct is controlled by ArtDefines_Misc.xml : ART_AQUEDUCT_SEGMENT/ART_AQUEDUCT_WALL/ART_AQUEDUCT_ENDPOINT -->
       <LSystem>LSYSTEM_AQUEDUCT</LSystem>
@@ -1719,14 +1789,74 @@
       <Button>,Art/Interface/Buttons/Buildings/Forge.dds,Art/Interface/Buttons/Buildings_Atlas.dds,1,9</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_WAFFENMANUFAKTUR_SCHWERT</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_waffenmanu_sword.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_WAFFENMANUFAKTUR_SPEER</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_waffenmanu_speer.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_WAFFENMANUFAKTUR_AXT</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_waffenmanu_axt.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_WAFFENMANUFAKTUR_BOGEN</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_waffenmanu_bogen.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_MALI_MINT</Type>
+      <LSystem>LSYSTEM_2x2</LSystem>
+      <bAnimated>1</bAnimated>
+      <fScale>1.10</fScale>
+      <fInterfaceScale>0.67</fInterfaceScale>
+      <NIF>Art/Structures/Buildings/Mali Mint/Mali_mint.nif</NIF>
+      <KFM/>
+      <Button>,Art/Interface/Buttons/Buildings/Forge.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,1,3</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_MINT</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_mintpress.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_MINT_NATIONAL</Type>
       <LSystem>LSYSTEM_2x2</LSystem>
       <bAnimated>1</bAnimated>
       <fScale>1.32</fScale>
       <fInterfaceScale>0.67</fInterfaceScale>
       <NIF>Art/Structures/Buildings/Mali Mint/Mali_mint.nif</NIF>
       <KFM/>
-      <Button>,Art/Interface/Buttons/Buildings/Forge.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,1,3</Button>
+      <Button>Art/Interface/Buttons/Buildings/button_building_mintpress2.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_OBELISK</Type>
@@ -1809,6 +1939,16 @@
       <Button>Art/Interface/Buttons/Builds/button_aca_epikur.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_ACADEMY_6</Type>
+      <LSystem>LSYSTEM_3x2</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>2.5</fScale>
+      <fInterfaceScale>0.4</fInterfaceScale>
+      <NIF>Art/Structures/Buildings/Akademien/Akademie_Aristoteles/Aristotle_Academy.nif</NIF>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_neoplaton.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_LIBRARY_ORIG</Type>
       <LSystem>LSYSTEM_3x2</LSystem>
       <bAnimated>0</bAnimated>
@@ -1826,7 +1966,27 @@
       <fInterfaceScale>0.58</fInterfaceScale>
       <NIF>Art/Structures/Buildings/scriptorium/library.nif</NIF>
       <KFM/>
-      <Button>,Art/Interface/Buttons/Buildings/Library.dds,Art/Interface/Buttons/Buildings_Atlas.dds,5,4</Button>
+      <Button>Art/Interface/Buttons/Buildings/button_building_ancient_library.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_LIBRARY2</Type>
+      <LSystem>LSYSTEM_3x2</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>1.2</fScale>
+      <fInterfaceScale>0.58</fInterfaceScale>
+      <NIF>Art/Structures/Buildings/scriptorium/library.nif</NIF>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_bischofsbib.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_BANK</Type>
+      <LSystem>LSYSTEM_3x2</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>1.2</fScale>
+      <fInterfaceScale>0.58</fInterfaceScale>
+      <NIF>Art/Structures/Buildings/scriptorium/library.nif</NIF>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_bank.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_SCHULE</Type>
@@ -1989,6 +2149,16 @@
       <Button>,Art/Interface/Buttons/Buildings/Market.dds,Art/Interface/Buttons/Buildings_Atlas.dds,3,3</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_MARKTHALLE</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_markthalle.dds</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_ROMAN_FORUM</Type>
       <LSystem>LSYSTEM_2x3</LSystem>
       <bAnimated>0</bAnimated>
@@ -2057,6 +2227,16 @@
       <NIF>Art/Structures/Buildings/Courthouse/Courthouse.nif</NIF>
       <KFM/>
       <Button>,Art/Interface/Buttons/Buildings/Courthouse.dds,Art/Interface/Buttons/Buildings_Atlas.dds,4,2</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_COURTHOUSE2</Type>
+      <LSystem>LSYSTEM_1x1</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>0.0</fScale>
+      <fInterfaceScale>0.0</fInterfaceScale>
+      <NIF/>
+      <KFM/>
+      <Button>Art/Interface/Buttons/Buildings/button_building_bischofsgericht.dds</Button>
     </BuildingArtInfo>
     <BuildingArtInfo>
       <Type>ART_DEF_BUILDING_AZTEC_SACRIFICIAL_ALTAR</Type>
@@ -2618,6 +2798,16 @@
       <NIF>Art/Structures/Buildings/Apostolic_Palace/Apostolic_Palace.nif</NIF>
       <KFM/>
       <Button>,Art/Interface/Buttons/TechTree/Corporation.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,2,14</Button>
+    </BuildingArtInfo>
+    <BuildingArtInfo>
+      <Type>ART_DEF_BUILDING_HAGIA_SOPHIA</Type>
+      <LSystem>LSYSTEM_3x3</LSystem>
+      <bAnimated>0</bAnimated>
+      <fScale>1.5</fScale>
+      <fInterfaceScale>0.47</fInterfaceScale>
+      <NIF>Art/Structures/Buildings/Hagia_Sophia/HagiaSophia.nif</NIF>
+      <KFM/>
+      <Button>Art/Structures/Buildings/Hagia_Sophia/button_building_hagia.dds</Button>
     </BuildingArtInfo>
   </BuildingArtInfos>
 </Civ4ArtDefines>

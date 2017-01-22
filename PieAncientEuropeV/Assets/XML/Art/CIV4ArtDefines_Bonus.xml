@@ -335,60 +335,6 @@
       <FontButtonIndex>34</FontButtonIndex>
     </BonusArtInfo>
     <BonusArtInfo>
-      <Type>ART_DEF_BONUS_CELTIC</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>,Art/Interface/Buttons/WorldBuilder/Aluminum.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,1,12</Button>
-      <FontButtonIndex>35</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_EGYPT</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>,Art/Interface/Buttons/WorldBuilder/Oil.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,7,15</Button>
-      <FontButtonIndex>36</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_ROMAN</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>,Art/Interface/Buttons/WorldBuilder/Uranium.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,8,14</Button>
-      <FontButtonIndex>37</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_GREEK</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>,Art/Interface/Buttons/WorldBuilder/Music.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,4,16</Button>
-      <FontButtonIndex>38</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_NUMID</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>,Art/Interface/Buttons/WorldBuilder/Movies.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,5,15</Button>
-      <FontButtonIndex>39</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_PERSIA</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>,Art/Interface/Buttons/WorldBuilder/Music.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,5,16</Button>
-      <FontButtonIndex>40</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
       <Type>ART_DEF_BONUS_MUSIC</Type>
       <fScale>1.0</fScale>
       <fInterfaceScale>1.0</fInterfaceScale>
@@ -459,15 +405,6 @@
       <KFM>Art/Terrain/Resources/Wine/Wine.kfm</KFM>
       <Button>,Art/Interface/Buttons/WorldBuilder/Music.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,7,11</Button>
       <FontButtonIndex>48</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_GERMAN</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>Art/Interface/Buttons/Bonus/button_bonus_german.dds</Button>
-      <FontButtonIndex>49</FontButtonIndex>
     </BonusArtInfo>
 
     <BonusArtInfo>
@@ -668,15 +605,6 @@
       <KFM/>
       <Button>Art/Interface/Buttons/Bonus/bonus_silphium.dds</Button>
       <FontButtonIndex>70</FontButtonIndex>
-    </BonusArtInfo>
-    <BonusArtInfo>
-      <Type>ART_DEF_BONUS_INDIA</Type>
-      <fScale>1.0</fScale>
-      <fInterfaceScale>1.0</fInterfaceScale>
-      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
-      <KFM/>
-      <Button>Art/Interface/Buttons/Bonus/button_bonus_india.dds</Button>
-      <FontButtonIndex>71</FontButtonIndex>
     </BonusArtInfo>
     <BonusArtInfo>
       <Type>ART_DEF_BONUS_DATTELN</Type>

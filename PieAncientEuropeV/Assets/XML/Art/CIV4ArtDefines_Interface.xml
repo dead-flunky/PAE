@@ -1412,5 +1412,41 @@
       <Type>ESPIONAGE_BUTTON2</Type>
       <Path>Art/Interface/Buttons/Actions/button_spionage.dds</Path>
     </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_BUY</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_buy.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_SELL</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_sell.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_COLLECT</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_collect.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_UNLOAD</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_unload.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_COLLECT_IMPOSSIBLE</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_collect_impossible.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_CULTIVATE</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_cultivate.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_CULTIVATE_IMPOSSIBLE</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_cultivate_impossible.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_AUTO_START</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_auto_start.dds</Path>
+    </InterfaceArtInfo>
+    <InterfaceArtInfo>
+      <Type>INTERFACE_TRADE_AUTO_STOP</Type>
+      <Path>Art/Interface/Buttons/Trade/button_trade_auto_stop.dds</Path>
+    </InterfaceArtInfo>
   </InterfaceArtInfos>
 </Civ4ArtDefines>

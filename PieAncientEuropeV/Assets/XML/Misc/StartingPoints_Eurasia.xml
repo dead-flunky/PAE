@@ -1,11 +1,15 @@
 <Civ4CivilizationInfos>
         <CivilizationInfos>
                 <CivilizationInfo>
-                        <Type>CIVILIZATION_CELT</Type>
+                        <Type>CIVILIZATION_CELT</Type> 
                         <StartX>39</StartX>
                         <StartY>62</StartY>
-                        <StartX>31</StartX>
-                        <StartY>70</StartY>
+                        <StartX>34</StartX>
+                        <StartY>62</StartY>
+                        <StartX>29</StartX>
+                        <StartY>63</StartY>
+                        <StartX>27</StartX>
+                        <StartY>58</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_GALLIEN</Type>
@@ -15,18 +19,22 @@
                         <StartY>65</StartY>
                         <StartX>16</StartX>
                         <StartY>56</StartY>
+                        <StartX>14</StartX>
+                        <StartY>65</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_BRITEN</Type>
                         <StartX>20</StartX>
                         <StartY>72</StartY>
+                        <StartX>19</StartX>
+                        <StartY>77</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_GERMANEN</Type>
-                        <StartX>38</StartX>
-                        <StartY>73</StartY>
-                        <StartX>43</StartX>
-                        <StartY>67</StartY>
+                        <StartX>41</StartX>
+                        <StartY>70</StartY>
+                        <StartX>31</StartX>
+                        <StartY>70</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_DAKER</Type>
@@ -51,14 +59,14 @@
                 <CivilizationInfo>
                         <Type>CIVILIZATION_GREECE</Type>
                         <StartX>52</StartX>
-                        <StartY>35</StartY>
+                        <StartY>34</StartY>
                         <StartX>57</StartX>
                         <StartY>27</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_ATHENS</Type>
                         <StartX>52</StartX>
-                        <StartY>35</StartY>
+                        <StartY>34</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_THEBAI</Type>
@@ -79,6 +87,8 @@
                         <Type>CIVILIZATION_HETHIT</Type>
                         <StartX>71</StartX>
                         <StartY>43</StartY>
+                        <StartX>71</StartX>
+                        <StartY>34</StartY
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_LYDIA</Type>
@@ -138,6 +148,8 @@
                         <Type>CIVILIZATION_IBERER</Type>
                         <StartX>13</StartX>
                         <StartY>44</StartY>
+                        <StartX>11</StartX>
+                        <StartY>53</StartY>
                         <StartX>3</StartX>
                         <StartY>45</StartY>
                 </CivilizationInfo>
@@ -165,10 +177,12 @@
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_PARTHER</Type>
-                        <StartX>116</StartX>
-                        <StartY>31</StartY>
+                        <StartX>115</StartX>
+                        <StartY>34</StartY>
                         <StartX>106</StartX>
                         <StartY>43</StartY>
+                        <StartX>96</StartX>
+                        <StartY>40</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_HUNNEN</Type>

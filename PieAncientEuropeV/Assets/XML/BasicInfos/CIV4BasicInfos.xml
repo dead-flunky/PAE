@@ -192,6 +192,16 @@
       <Civilopedia>TXT_KEY_CONCEPT_UNITCOST_PEDIA</Civilopedia>
     </ConceptInfo>
     <ConceptInfo>
+      <Type>CONCEPT_UNIT_RANKING</Type>
+      <Description>TXT_KEY_CONCEPT_UNIT_RANKING</Description>
+      <Civilopedia>TXT_KEY_CONCEPT_UNIT_RANKING_PEDIA</Civilopedia>
+    </ConceptInfo>
+    <ConceptInfo>
+      <Type>CONCEPT_UNIT_ELITE</Type>
+      <Description>TXT_KEY_CONCEPT_UNIT_ELITE</Description>
+      <Civilopedia>TXT_KEY_CONCEPT_UNIT_ELITE_PEDIA</Civilopedia>
+    </ConceptInfo>
+    <ConceptInfo>
       <Type>CONCEPT_PAE_SUPPLY</Type>
       <Description>TXT_KEY_CONCEPT_PAE_SUPPLY</Description>
       <Civilopedia>TXT_KEY_CONCEPT_PAE_SUPPLY_PEDIA</Civilopedia>

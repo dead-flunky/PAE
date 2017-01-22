@@ -28,29 +28,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	    <SpecialistYieldChanges>
-		    <SpecialistYieldChange>
-		      <SpecialistType>SPECIALIST_SCIENTIST</SpecialistType>
-		        <YieldChanges>
-			      <iYield>0</iYield>
-			      <iYield>0</iYield>
-			      <iYield>2</iYield>
-		      </YieldChanges>
-		    </SpecialistYieldChange>
-		    <SpecialistYieldChange>
-		      <SpecialistType>SPECIALIST_GREAT_SCIENTIST</SpecialistType>
-		      <YieldChanges>
-			      <iYield>0</iYield>
-			      <iYield>0</iYield>
-			      <iYield>2</iYield>
-		      </YieldChanges>
-		    </SpecialistYieldChange>
-      </SpecialistYieldChanges>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_AGGRESSIVE</Type>
@@ -124,12 +101,6 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_SPIRITUAL</Type>
@@ -152,12 +123,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EXPANSIVE</Type>
@@ -180,12 +145,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_INDUSTRIOUS</Type>
@@ -209,12 +168,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CREATIVE</Type>
@@ -238,20 +191,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots>
-        <FreeSpecialistSlot>
-          <TechType>TECH_ALPHABET</TechType>
-		  <SpecialistCount>
-			<SpecialistType>SPECIALIST_ARTIST</SpecialistType>
-			<iSpecialistCount>1</iSpecialistCount>
-		  </SpecialistCount>
-        </FreeSpecialistSlot>
-      </FreeSpecialistSlots>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>50</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_FINANCIAL</Type>
@@ -270,20 +209,14 @@
       <iMaxPlayerBuildingProductionModifier>0</iMaxPlayerBuildingProductionModifier>
       <ExtraYieldThresholds/>
       <TradeYieldModifiers>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>50</iYield>
+  <iYield>0</iYield>
+  <iYield>0</iYield>
+  <iYield>50</iYield>
       </TradeYieldModifiers>
       <CommerceChanges/>
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_ORGANIZED</Type>
@@ -307,12 +240,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_CHARISMATIC</Type>
@@ -336,12 +263,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_PROTECTIVE</Type>
@@ -399,12 +320,6 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_IMPERIALIST</Type>
@@ -428,18 +343,13 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_MARITIME</Type>
       <Description>TXT_KEY_TRAIT_MARITIME</Description>
       <ShortDescription>TXT_KEY_TRAIT_MARITIME_SHORT</ShortDescription>
-      <iHealth>1</iHealth>
+      <Help>TXT_KEY_TRAIT_MARITIME_HELP</Help>
+      <iHealth>0</iHealth>
       <iHappiness>0</iHappiness>
       <iMaxAnarchy>-1</iMaxAnarchy>
       <iUpkeepModifier>0</iUpkeepModifier>
@@ -466,26 +376,6 @@
               <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
           </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-      <GlobalSeaPlotYieldChanges>
-        <iYield>0</iYield>
-        <iYield>0</iYield>
-        <iYield>1</iYield>
-      </GlobalSeaPlotYieldChanges>
-      <DomainFreeExperiences>
-        <DomainFreeExperience>
-          <DomainType>DOMAIN_SEA</DomainType>
-          <iExperience>4</iExperience>
-        </DomainFreeExperience>
-      </DomainFreeExperiences>
-      <DomainProductionModifiers>
-        <DomainProductionModifier>
-          <DomainType>DOMAIN_SEA</DomainType>
-          <iProductionModifier>20</iProductionModifier>
-        </DomainProductionModifier>
-      </DomainProductionModifiers>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_STRATEGE</Type>
@@ -509,12 +399,6 @@
       <CommerceModifiers/>
       <FreePromotions/>
       <FreePromotionUnitCombats/>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
     <TraitInfo>
       <Type>TRAIT_EROBERER</Type>
@@ -560,12 +444,6 @@
           <bFreePromotionUnitCombat>1</bFreePromotionUnitCombat>
         </FreePromotionUnitCombat>
       </FreePromotionUnitCombats>
-      <GlobalSeaPlotYieldChanges/>
-      <DomainFreeExperiences/>
-      <DomainProductionModifiers/>
-      <FreeSpecialistSlots/>
-	  <SpecialistYieldChanges/>
-      <iGoldenAgeModifier>0</iGoldenAgeModifier>
     </TraitInfo>
   </TraitInfos>
 </Civ4TraitInfos>

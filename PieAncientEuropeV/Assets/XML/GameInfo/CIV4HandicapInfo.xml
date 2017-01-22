@@ -16,15 +16,15 @@
       <iAdvancedStartPointsMod>150</iAdvancedStartPointsMod>
       <iGold>50</iGold>
       <iFreeUnits>25</iFreeUnits>
-      <iUnitCostPercent>70</iUnitCostPercent>
-      <iResearchPercent>70</iResearchPercent>
-      <iDistanceMaintenancePercent>70</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>70</iNumCitiesMaintenancePercent>
+      <iUnitCostPercent>50</iUnitCostPercent>
+      <iResearchPercent>65</iResearchPercent>
+      <iDistanceMaintenancePercent>50</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>50</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>2</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>70</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>100</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>70</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>70</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>50</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>50</iCivicUpkeepPercent>
       <iInflationPercent>70</iInflationPercent>
       <iHealthBonus>2</iHealthBonus>
       <iHappyBonus>3</iHappyBonus>
@@ -59,13 +59,13 @@
       <iAIWorldConstructPercent>150</iAIWorldConstructPercent>
       <iAICreatePercent>150</iAICreatePercent>
       <iAIWorldCreatePercent>150</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>100</iAIUnitCostPercent>
+      <iAICivicUpkeepPercent>150</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>150</iAIUnitCostPercent>
       <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
       <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
-      <iAIInflationPercent>100</iAIInflationPercent>
-      <iAIWarWearinessPercent>100</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-10</iAIPerEraModifier>
+      <iAIInflationPercent>150</iAIInflationPercent>
+      <iAIWarWearinessPercent>150</iAIWarWearinessPercent>
+      <iAIPerEraModifier>0</iAIPerEraModifier>
       <iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -95,15 +95,15 @@
       <iAdvancedStartPointsMod>130</iAdvancedStartPointsMod>
       <iGold>40</iGold>
       <iFreeUnits>20</iFreeUnits>
-      <iUnitCostPercent>80</iUnitCostPercent>
-      <iResearchPercent>80</iResearchPercent>
-      <iDistanceMaintenancePercent>80</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>80</iNumCitiesMaintenancePercent>
+      <iUnitCostPercent>50</iUnitCostPercent>
+      <iResearchPercent>75</iResearchPercent>
+      <iDistanceMaintenancePercent>60</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>60</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>3</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>80</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>100</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>80</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>80</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>60</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>60</iCivicUpkeepPercent>
       <iInflationPercent>80</iInflationPercent>
       <iHealthBonus>2</iHealthBonus>
       <iHappyBonus>2</iHappyBonus>
@@ -131,20 +131,20 @@
       <iBarbarianDefenders>3</iBarbarianDefenders>
       <iAIDeclareWarProb>50</iAIDeclareWarProb>
       <iAIWorkRateModifier>0</iAIWorkRateModifier>
-      <iAIGrowthPercent>125</iAIGrowthPercent>
-      <iAITrainPercent>125</iAITrainPercent>
-      <iAIWorldTrainPercent>125</iAIWorldTrainPercent>
-      <iAIConstructPercent>125</iAIConstructPercent>
-      <iAIWorldConstructPercent>125</iAIWorldConstructPercent>
-      <iAICreatePercent>125</iAICreatePercent>
-      <iAIWorldCreatePercent>125</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>100</iAIUnitCostPercent>
+      <iAIGrowthPercent>140</iAIGrowthPercent>
+      <iAITrainPercent>140</iAITrainPercent>
+      <iAIWorldTrainPercent>140</iAIWorldTrainPercent>
+      <iAIConstructPercent>140</iAIConstructPercent>
+      <iAIWorldConstructPercent>140</iAIWorldConstructPercent>
+      <iAICreatePercent>140</iAICreatePercent>
+      <iAIWorldCreatePercent>140</iAIWorldCreatePercent>
+      <iAICivicUpkeepPercent>140</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>140</iAIUnitCostPercent>
       <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
       <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
-      <iAIInflationPercent>100</iAIInflationPercent>
-      <iAIWarWearinessPercent>100</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-10</iAIPerEraModifier>
+      <iAIInflationPercent>140</iAIInflationPercent>
+      <iAIWarWearinessPercent>140</iAIWarWearinessPercent>
+      <iAIPerEraModifier>0</iAIPerEraModifier>
       <iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -176,15 +176,15 @@
       <iAdvancedStartPointsMod>110</iAdvancedStartPointsMod>
       <iGold>30</iGold>
       <iFreeUnits>20</iFreeUnits>
-      <iUnitCostPercent>90</iUnitCostPercent>
-      <iResearchPercent>90</iResearchPercent>
-      <iDistanceMaintenancePercent>90</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>90</iNumCitiesMaintenancePercent>
+      <iUnitCostPercent>60</iUnitCostPercent>
+      <iResearchPercent>85</iResearchPercent>
+      <iDistanceMaintenancePercent>70</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>70</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>4</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>90</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>90</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>90</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>70</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>70</iCivicUpkeepPercent>
       <iInflationPercent>90</iInflationPercent>
       <iHealthBonus>2</iHealthBonus>
       <iHappyBonus>2</iHappyBonus>
@@ -212,20 +212,20 @@
       <iBarbarianDefenders>3</iBarbarianDefenders>
       <iAIDeclareWarProb>75</iAIDeclareWarProb>
       <iAIWorkRateModifier>0</iAIWorkRateModifier>
-      <iAIGrowthPercent>100</iAIGrowthPercent>
-      <iAITrainPercent>100</iAITrainPercent>
-      <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
-      <iAIConstructPercent>100</iAIConstructPercent>
-      <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
-      <iAICreatePercent>100</iAICreatePercent>
-      <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>100</iAIUnitCostPercent>
+      <iAIGrowthPercent>130</iAIGrowthPercent>
+      <iAITrainPercent>130</iAITrainPercent>
+      <iAIWorldTrainPercent>130</iAIWorldTrainPercent>
+      <iAIConstructPercent>130</iAIConstructPercent>
+      <iAIWorldConstructPercent>130</iAIWorldConstructPercent>
+      <iAICreatePercent>130</iAICreatePercent>
+      <iAIWorldCreatePercent>130</iAIWorldCreatePercent>
+      <iAICivicUpkeepPercent>130</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>130</iAIUnitCostPercent>
       <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
       <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
-      <iAIInflationPercent>100</iAIInflationPercent>
-      <iAIWarWearinessPercent>100</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-10</iAIPerEraModifier>
+      <iAIInflationPercent>130</iAIInflationPercent>
+      <iAIWarWearinessPercent>130</iAIWarWearinessPercent>
+      <iAIPerEraModifier>0</iAIPerEraModifier>
       <iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -260,15 +260,15 @@
       <iAdvancedStartPointsMod>100</iAdvancedStartPointsMod>
       <iGold>30</iGold>
       <iFreeUnits>20</iFreeUnits>
-      <iUnitCostPercent>100</iUnitCostPercent>
-      <iResearchPercent>100</iResearchPercent>
-      <iDistanceMaintenancePercent>100</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>100</iNumCitiesMaintenancePercent>
+      <iUnitCostPercent>70</iUnitCostPercent>
+      <iResearchPercent>95</iResearchPercent>
+      <iDistanceMaintenancePercent>80</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>80</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>5</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>100</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>100</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>100</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>80</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>80</iCivicUpkeepPercent>
       <iInflationPercent>100</iInflationPercent>
       <iHealthBonus>1</iHealthBonus>
       <iHappyBonus>2</iHappyBonus>
@@ -296,20 +296,20 @@
       <iBarbarianDefenders>4</iBarbarianDefenders>
       <iAIDeclareWarProb>100</iAIDeclareWarProb>
       <iAIWorkRateModifier>0</iAIWorkRateModifier>
-      <iAIGrowthPercent>100</iAIGrowthPercent>
-      <iAITrainPercent>100</iAITrainPercent>
-      <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
-      <iAIConstructPercent>100</iAIConstructPercent>
-      <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
-      <iAICreatePercent>100</iAICreatePercent>
-      <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>100</iAIUnitCostPercent>
-      <iAIUnitSupplyPercent>100</iAIUnitSupplyPercent>
-      <iAIUnitUpgradePercent>100</iAIUnitUpgradePercent>
-      <iAIInflationPercent>100</iAIInflationPercent>
-      <iAIWarWearinessPercent>100</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-10</iAIPerEraModifier>
+      <iAIGrowthPercent>120</iAIGrowthPercent>
+      <iAITrainPercent>120</iAITrainPercent>
+      <iAIWorldTrainPercent>120</iAIWorldTrainPercent>
+      <iAIConstructPercent>120</iAIConstructPercent>
+      <iAIWorldConstructPercent>120</iAIWorldConstructPercent>
+      <iAICreatePercent>120</iAICreatePercent>
+      <iAIWorldCreatePercent>120</iAIWorldCreatePercent>
+      <iAICivicUpkeepPercent>120</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>120</iAIUnitCostPercent>
+      <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
+      <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
+      <iAIInflationPercent>120</iAIInflationPercent>
+      <iAIWarWearinessPercent>120</iAIWarWearinessPercent>
+      <iAIPerEraModifier>0</iAIPerEraModifier>
       <iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -345,15 +345,15 @@
       <iAdvancedStartPointsMod>95</iAdvancedStartPointsMod>
       <iGold>30</iGold>
       <iFreeUnits>15</iFreeUnits>
-      <iUnitCostPercent>100</iUnitCostPercent>
-      <iResearchPercent>100</iResearchPercent>
-      <iDistanceMaintenancePercent>100</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>100</iNumCitiesMaintenancePercent>
+      <iUnitCostPercent>80</iUnitCostPercent>
+      <iResearchPercent>105</iResearchPercent>
+      <iDistanceMaintenancePercent>90</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>90</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>6</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>100</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>100</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>100</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>90</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>90</iCivicUpkeepPercent>
       <iInflationPercent>100</iInflationPercent>
       <iHealthBonus>1</iHealthBonus>
       <iHappyBonus>2</iHappyBonus>
@@ -381,20 +381,20 @@
       <iBarbarianDefenders>4</iBarbarianDefenders>
       <iAIDeclareWarProb>100</iAIDeclareWarProb>
       <iAIWorkRateModifier>10</iAIWorkRateModifier>
-      <iAIGrowthPercent>100</iAIGrowthPercent>
-      <iAITrainPercent>100</iAITrainPercent>
-      <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
-      <iAIConstructPercent>100</iAIConstructPercent>
-      <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
-      <iAICreatePercent>100</iAICreatePercent>
-      <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>90</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>90</iAIUnitCostPercent>
-      <iAIUnitSupplyPercent>90</iAIUnitSupplyPercent>
-      <iAIUnitUpgradePercent>90</iAIUnitUpgradePercent>
-      <iAIInflationPercent>90</iAIInflationPercent>
-      <iAIWarWearinessPercent>90</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-5</iAIPerEraModifier>
+      <iAIGrowthPercent>110</iAIGrowthPercent>
+      <iAITrainPercent>110</iAITrainPercent>
+      <iAIWorldTrainPercent>110</iAIWorldTrainPercent>
+      <iAIConstructPercent>110</iAIConstructPercent>
+      <iAIWorldConstructPercent>110</iAIWorldConstructPercent>
+      <iAICreatePercent>110</iAICreatePercent>
+      <iAIWorldCreatePercent>110</iAIWorldCreatePercent>
+      <iAICivicUpkeepPercent>110</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>110</iAIUnitCostPercent>
+      <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
+      <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
+      <iAIInflationPercent>110</iAIInflationPercent>
+      <iAIWarWearinessPercent>110</iAIWarWearinessPercent>
+      <iAIPerEraModifier>-1</iAIPerEraModifier>
       <iAIAdvancedStartPercent>110</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -432,15 +432,15 @@
       <iAdvancedStartPointsMod>90</iAdvancedStartPointsMod>
       <iGold>30</iGold>
       <iFreeUnits>10</iFreeUnits>
-      <iUnitCostPercent>100</iUnitCostPercent>
-      <iResearchPercent>100</iResearchPercent>
-      <iDistanceMaintenancePercent>110</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>110</iNumCitiesMaintenancePercent>
+      <iUnitCostPercent>90</iUnitCostPercent>
+      <iResearchPercent>115</iResearchPercent>
+      <iDistanceMaintenancePercent>100</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>100</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>7</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>100</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>90</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>90</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>100</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>100</iCivicUpkeepPercent>
       <iInflationPercent>100</iInflationPercent>
       <iHealthBonus>0</iHealthBonus>
       <iHappyBonus>2</iHappyBonus>
@@ -468,20 +468,20 @@
       <iBarbarianDefenders>4</iBarbarianDefenders>
       <iAIDeclareWarProb>100</iAIDeclareWarProb>
       <iAIWorkRateModifier>20</iAIWorkRateModifier>
-      <iAIGrowthPercent>90</iAIGrowthPercent>
-      <iAITrainPercent>90</iAITrainPercent>
+      <iAIGrowthPercent>100</iAIGrowthPercent>
+      <iAITrainPercent>100</iAITrainPercent>
       <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
-      <iAIConstructPercent>90</iAIConstructPercent>
+      <iAIConstructPercent>100</iAIConstructPercent>
       <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
-      <iAICreatePercent>90</iAICreatePercent>
+      <iAICreatePercent>100</iAICreatePercent>
       <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>90</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>90</iAIUnitCostPercent>
+      <iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>100</iAIUnitCostPercent>
       <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
       <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
-      <iAIInflationPercent>90</iAIInflationPercent>
-      <iAIWarWearinessPercent>90</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-5</iAIPerEraModifier>
+      <iAIInflationPercent>100</iAIInflationPercent>
+      <iAIWarWearinessPercent>100</iAIWarWearinessPercent>
+      <iAIPerEraModifier>-2</iAIPerEraModifier>
       <iAIAdvancedStartPercent>120</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -521,14 +521,14 @@
       <iGold>30</iGold>
       <iFreeUnits>5</iFreeUnits>
       <iUnitCostPercent>100</iUnitCostPercent>
-      <iResearchPercent>110</iResearchPercent>
-      <iDistanceMaintenancePercent>120</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>120</iNumCitiesMaintenancePercent>
+      <iResearchPercent>125</iResearchPercent>
+      <iDistanceMaintenancePercent>110</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>110</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>8</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>125</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>120</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>120</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>110</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>110</iCivicUpkeepPercent>
       <iInflationPercent>100</iInflationPercent>
       <iHealthBonus>0</iHealthBonus>
       <iHappyBonus>1</iHappyBonus>
@@ -556,20 +556,20 @@
       <iBarbarianDefenders>4</iBarbarianDefenders>
       <iAIDeclareWarProb>100</iAIDeclareWarProb>
       <iAIWorkRateModifier>25</iAIWorkRateModifier>
-      <iAIGrowthPercent>80</iAIGrowthPercent>
-      <iAITrainPercent>80</iAITrainPercent>
-      <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
-      <iAIConstructPercent>80</iAIConstructPercent>
-      <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
-      <iAICreatePercent>80</iAICreatePercent>
-      <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>80</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>80</iAIUnitCostPercent>
-      <iAIUnitSupplyPercent>80</iAIUnitSupplyPercent>
-      <iAIUnitUpgradePercent>80</iAIUnitUpgradePercent>
-      <iAIInflationPercent>80</iAIInflationPercent>
-      <iAIWarWearinessPercent>50</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-5</iAIPerEraModifier>
+      <iAIGrowthPercent>90</iAIGrowthPercent>
+      <iAITrainPercent>90</iAITrainPercent>
+      <iAIWorldTrainPercent>90</iAIWorldTrainPercent>
+      <iAIConstructPercent>90</iAIConstructPercent>
+      <iAIWorldConstructPercent>90</iAIWorldConstructPercent>
+      <iAICreatePercent>90</iAICreatePercent>
+      <iAIWorldCreatePercent>90</iAIWorldCreatePercent>
+      <iAICivicUpkeepPercent>90</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>90</iAIUnitCostPercent>
+      <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
+      <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
+      <iAIInflationPercent>90</iAIInflationPercent>
+      <iAIWarWearinessPercent>90</iAIWarWearinessPercent>
+      <iAIPerEraModifier>-3</iAIPerEraModifier>
       <iAIAdvancedStartPercent>135</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -609,9 +609,9 @@
       <iGold>20</iGold>
       <iFreeUnits>5</iFreeUnits>
       <iUnitCostPercent>110</iUnitCostPercent>
-      <iResearchPercent>120</iResearchPercent>
-      <iDistanceMaintenancePercent>135</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>135</iNumCitiesMaintenancePercent>
+      <iResearchPercent>135</iResearchPercent>
+      <iDistanceMaintenancePercent>120</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>120</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>9</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>150</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
@@ -642,22 +642,22 @@
       <iAIStartingWorkerUnits>0</iAIStartingWorkerUnits>
       <iAIStartingExploreUnits>0</iAIStartingExploreUnits>
       <iBarbarianDefenders>4</iBarbarianDefenders>
-      <iAIDeclareWarProb>90</iAIDeclareWarProb>
+      <iAIDeclareWarProb>100</iAIDeclareWarProb>
       <iAIWorkRateModifier>25</iAIWorkRateModifier>
       <iAIGrowthPercent>80</iAIGrowthPercent>
       <iAITrainPercent>80</iAITrainPercent>
-      <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
+      <iAIWorldTrainPercent>80</iAIWorldTrainPercent>
       <iAIConstructPercent>80</iAIConstructPercent>
-      <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
+      <iAIWorldConstructPercent>80</iAIWorldConstructPercent>
       <iAICreatePercent>80</iAICreatePercent>
-      <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
+      <iAIWorldCreatePercent>80</iAIWorldCreatePercent>
       <iAICivicUpkeepPercent>80</iAICivicUpkeepPercent>
       <iAIUnitCostPercent>80</iAIUnitCostPercent>
-      <iAIUnitSupplyPercent>80</iAIUnitSupplyPercent>
-      <iAIUnitUpgradePercent>80</iAIUnitUpgradePercent>
+      <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
+      <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
       <iAIInflationPercent>80</iAIInflationPercent>
-      <iAIWarWearinessPercent>50</iAIWarWearinessPercent>
-      <iAIPerEraModifier>-5</iAIPerEraModifier>
+      <iAIWarWearinessPercent>80</iAIWarWearinessPercent>
+      <iAIPerEraModifier>-4</iAIPerEraModifier>
       <iAIAdvancedStartPercent>150</iAIAdvancedStartPercent>
       <Goodies>
         <GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -697,14 +697,14 @@
       <iGold>10</iGold>
       <iFreeUnits>5</iFreeUnits>
       <iUnitCostPercent>125</iUnitCostPercent>
-      <iResearchPercent>125</iResearchPercent>
-      <iDistanceMaintenancePercent>150</iDistanceMaintenancePercent>
-      <iNumCitiesMaintenancePercent>150</iNumCitiesMaintenancePercent>
+      <iResearchPercent>145</iResearchPercent>
+      <iDistanceMaintenancePercent>130</iDistanceMaintenancePercent>
+      <iNumCitiesMaintenancePercent>130</iNumCitiesMaintenancePercent>
       <iMaxNumCitiesMaintenance>10</iMaxNumCitiesMaintenance>
       <iColonyMaintenancePercent>200</iColonyMaintenancePercent>
       <iMaxColonyMaintenance>200</iMaxColonyMaintenance>
-      <iCorporationMaintenancePercent>200</iCorporationMaintenancePercent>
-      <iCivicUpkeepPercent>200</iCivicUpkeepPercent>
+      <iCorporationMaintenancePercent>130</iCorporationMaintenancePercent>
+      <iCivicUpkeepPercent>130</iCivicUpkeepPercent>
       <iInflationPercent>100</iInflationPercent>
       <iHealthBonus>0</iHealthBonus>
       <iHappyBonus>1</iHappyBonus>
@@ -712,7 +712,7 @@
       <iNoTechTradeModifier>20</iNoTechTradeModifier>
       <iTechTradeKnownModifier>0</iTechTradeKnownModifier>
       <iUnownedTilesPerGameAnimal>8</iUnownedTilesPerGameAnimal>
-      <iUnownedTilesPerBarbarianUnit>16</iUnownedTilesPerBarbarianUnit>
+      <iUnownedTilesPerBarbarianUnit>14</iUnownedTilesPerBarbarianUnit>
       <iUnownedWaterTilesPerBarbarianUnit>20</iUnownedWaterTilesPerBarbarianUnit>
       <iUnownedTilesPerBarbarianCity>10</iUnownedTilesPerBarbarianCity>
       <iBarbarianCreationTurnsElapsed>500</iBarbarianCreationTurnsElapsed>
@@ -732,19 +732,19 @@
       <iBarbarianDefenders>4</iBarbarianDefenders>
       <iAIDeclareWarProb>100</iAIDeclareWarProb>
       <iAIWorkRateModifier>25</iAIWorkRateModifier>
-      <iAIGrowthPercent>75</iAIGrowthPercent>
-      <iAITrainPercent>75</iAITrainPercent>
-      <iAIWorldTrainPercent>100</iAIWorldTrainPercent>
-      <iAIConstructPercent>75</iAIConstructPercent>
-      <iAIWorldConstructPercent>100</iAIWorldConstructPercent>
-      <iAICreatePercent>75</iAICreatePercent>
-      <iAIWorldCreatePercent>100</iAIWorldCreatePercent>
-      <iAICivicUpkeepPercent>75</iAICivicUpkeepPercent>
-      <iAIUnitCostPercent>75</iAIUnitCostPercent>
-      <iAIUnitSupplyPercent>75</iAIUnitSupplyPercent>
-      <iAIUnitUpgradePercent>75</iAIUnitUpgradePercent>
-      <iAIInflationPercent>75</iAIInflationPercent>
-      <iAIWarWearinessPercent>50</iAIWarWearinessPercent>
+      <iAIGrowthPercent>70</iAIGrowthPercent>
+      <iAITrainPercent>70</iAITrainPercent>
+      <iAIWorldTrainPercent>70</iAIWorldTrainPercent>
+      <iAIConstructPercent>70</iAIConstructPercent>
+      <iAIWorldConstructPercent>70</iAIWorldConstructPercent>
+      <iAICreatePercent>70</iAICreatePercent>
+      <iAIWorldCreatePercent>70</iAIWorldCreatePercent>
+      <iAICivicUpkeepPercent>70</iAICivicUpkeepPercent>
+      <iAIUnitCostPercent>70</iAIUnitCostPercent>
+      <iAIUnitSupplyPercent>50</iAIUnitSupplyPercent>
+      <iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
+      <iAIInflationPercent>70</iAIInflationPercent>
+      <iAIWarWearinessPercent>70</iAIWarWearinessPercent>
       <iAIPerEraModifier>-5</iAIPerEraModifier>
       <iAIAdvancedStartPercent>170</iAIAdvancedStartPercent>
       <Goodies>

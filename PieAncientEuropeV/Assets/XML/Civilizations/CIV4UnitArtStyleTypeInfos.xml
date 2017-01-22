@@ -66,6 +66,10 @@
           <UnitType>UNIT_SCOUT</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCOUT_GRECO_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_WORKER</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_WORKER_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
       </StyleUnits>
     </UnitArtStyleTypeInfo>
     <UnitArtStyleTypeInfo>
@@ -101,7 +105,7 @@
         <StyleUnit>
           <UnitType>UNIT_COMPOSITE_ARCHER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_ARCHER_ROMAN1</EarlyArtDefineTag></UnitMeshGroup>
-        </StyleUnit>        
+        </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CHARIOT_ARCHER</UnitType>
           <UnitMeshGroup>
@@ -121,10 +125,6 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
-          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
-        </StyleUnit>
-        <StyleUnit>
           <UnitType>UNIT_HEAVY_HORSEMAN</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HEAVY_HORSEMAN_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -135,6 +135,10 @@
         <StyleUnit>
           <UnitType>UNIT_SCOUT</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCOUT_GRECO_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_WORKER</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_WORKER_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
       </StyleUnits>
     </UnitArtStyleTypeInfo>
@@ -913,10 +917,6 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_WARLORD_ANCIENT_SOUTH</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_SACRED_BAND</UnitType>
-          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SACRED_CARTHAGE</EarlyArtDefineTag></UnitMeshGroup>
-        </StyleUnit>
-        <StyleUnit>
           <UnitType>UNIT_WARRIOR</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_WARRIOR_GRECO_ROMAN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -949,7 +949,11 @@
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_SPEARMAN</UnitType>
-          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SPEARMAN_CARTHAGE</EarlyArtDefineTag></UnitMeshGroup>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SPEARMAN_PHOEN</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_SACRED_BAND</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SACRED_CARTHAGE</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_AXEMAN</UnitType>
@@ -958,6 +962,10 @@
         <StyleUnit>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_KRUMMSAEBEL_CARTHAGE</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_SCHILDTRAEGER</UnitType>
@@ -1047,6 +1055,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCHILDTRAEGER_PHOEN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_HITTI</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1114,6 +1126,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCHILDTRAEGER_EGYPT</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_EGYPT</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1146,7 +1162,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_WAR_CHARIOT_EGYPT</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_EGYPT</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1205,6 +1221,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCHILDTRAEGER_NUBIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_LIGHT_SPEARMAN</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_LIGHT_SPEARMAN_NUBIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1253,7 +1273,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_NUBIA_2</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_NUBIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1336,6 +1356,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCHILDTRAEGER_PERSIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_PERSIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1359,8 +1383,8 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_PERSIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
-          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_PERSIA</EarlyArtDefineTag></UnitMeshGroup>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_PERSIA_IMMORTAL</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_HORSE_ARCHER</UnitType>
@@ -1383,6 +1407,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SETTLER_MIDDLE_EAST</EarlyArtDefineTag></UnitMeshGroup>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SETTLER_FEMALE_MIDDLE_EAST</EarlyArtDefineTag></UnitMeshGroup>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SETTLER_CHILD_MIDDLE_EAST</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_WORKER</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_WORKER_PERSIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
       </StyleUnits>
     </UnitArtStyleTypeInfo>
@@ -1434,6 +1462,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR_HORSE</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_HORSE_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1450,7 +1482,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_MIDDLE_EAST</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1529,6 +1561,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR_HORSE</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_HORSE_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1545,7 +1581,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_ASSYRIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_ASSYRIA</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1616,6 +1652,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR_HORSE</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_HORSE_SUMER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1652,7 +1692,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_BABYLON</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_BABYLON</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1723,6 +1763,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_HITTI</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_AUXILIAR_HORSE</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_HORSE_GREEK</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -1755,7 +1799,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_HETHIT</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_HITTI</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -1836,6 +1880,10 @@
         <StyleUnit>
           <UnitType>UNIT_AUXILIAR</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_ISRAEL</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_LIGHT_CHARIOT</UnitType>
@@ -2004,6 +2052,10 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_AUXILIAR_BERBER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
           <UnitType>UNIT_ARCHER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_ARCHER_BERBER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -2036,7 +2088,7 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_BERBER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HORSEMAN</UnitType>
+          <UnitType>UNIT_HORSEMAN_LANCIER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_BERBER</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
@@ -2146,10 +2198,6 @@
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_CHARIOT_CHINESE</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
-          <UnitType>UNIT_HEAVY_HORSEMAN</UnitType>
-          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_HEAVY_HORSEMAN_SCYTHS</EarlyArtDefineTag></UnitMeshGroup>
-        </StyleUnit>
-        <StyleUnit>
           <UnitType>UNIT_SCOUT</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCOUT_ASIAN</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
@@ -2208,6 +2256,10 @@
         <StyleUnit>
           <UnitType>UNIT_SWORDSMAN</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_INDIA</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_SPEARMAN</UnitType>
@@ -2299,6 +2351,10 @@
         <StyleUnit>
           <UnitType>UNIT_SCHILDTRAEGER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCHILDTRAEGER_SCYTHS</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_ARCHER</UnitType>
@@ -2427,6 +2483,10 @@
         <StyleUnit>
           <UnitType>UNIT_SCHILDTRAEGER</UnitType>
           <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SCHILDTRAEGER_BERBER</EarlyArtDefineTag></UnitMeshGroup>
+        </StyleUnit>
+        <StyleUnit>
+          <UnitType>UNIT_FOEDERATI</UnitType>
+          <UnitMeshGroup><EarlyArtDefineTag>ART_DEF_UNIT_SWORDSMAN_FOEDERATI_TURK</EarlyArtDefineTag></UnitMeshGroup>
         </StyleUnit>
         <StyleUnit>
           <UnitType>UNIT_CHARIOT_ARCHER</UnitType>

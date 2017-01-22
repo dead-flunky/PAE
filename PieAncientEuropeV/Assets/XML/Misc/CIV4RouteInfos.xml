@@ -46,5 +46,23 @@
       <TechMovementChanges/>
       <Button>Art/Interface/Buttons/Builds/Build_Persian_Road.dds</Button>
     </RouteInfo>
+    <RouteInfo>
+      <Type>ROUTE_TRADE_ROAD</Type>
+      <Description>TXT_KEY_ROUTE_TRADE_ROAD</Description>
+      <iValue>2</iValue>
+      <iAdvancedStartCost>40</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <iMovement>15</iMovement>
+      <iFlatMovement>15</iFlatMovement>
+      <BonusType/>
+      <PrereqOrBonuses/>
+      <Yields>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+        <iYield>1</iYield>
+      </Yields>
+      <TechMovementChanges/>
+      <Button>Art/Terrain/Routes/handelsstrasse/button_handelsstrasse.dds</Button>
+    </RouteInfo>
   </RouteInfos>
 </Civ4RouteInfos>

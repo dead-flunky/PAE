@@ -10,7 +10,7 @@
       <Button>,Art/Interface/Buttons/Civics/Despotism.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,5,1</Button>
       <TechPrereq>NONE</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
+      <Upkeep>UPKEEP_LOW</Upkeep>
       <iAIWeight>-5</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -223,7 +223,7 @@
       <iFreeExperience>0</iFreeExperience>
       <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
       <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-      <iMilitaryProductionModifier>25</iMilitaryProductionModifier>
+      <iMilitaryProductionModifier>0</iMilitaryProductionModifier>
       <iBaseFreeUnits>0</iBaseFreeUnits>
       <iBaseFreeMilitaryUnits>25</iBaseFreeMilitaryUnits>
       <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
@@ -431,7 +431,7 @@
       <Button>Art/Interface/Buttons/Civics/civic_barbarei.dds</Button>
       <TechPrereq>NONE</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
+      <Upkeep>UPKEEP_LOW</Upkeep>
       <iAIWeight>-5</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -578,7 +578,7 @@
       <iBaseFreeUnits>0</iBaseFreeUnits>
       <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
       <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
-      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
+      <iFreeMilitaryUnitsPopulationPercent>30</iFreeMilitaryUnitsPopulationPercent>
       <iGoldPerUnit>0</iGoldPerUnit>
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
       <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
@@ -652,7 +652,7 @@
       <iBaseFreeUnits>0</iBaseFreeUnits>
       <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
       <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
-      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
+      <iFreeMilitaryUnitsPopulationPercent>20</iFreeMilitaryUnitsPopulationPercent>
       <iGoldPerUnit>0</iGoldPerUnit>
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
       <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
@@ -727,7 +727,7 @@
       <iBaseFreeUnits>0</iBaseFreeUnits>
       <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
       <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
-      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
+      <iFreeMilitaryUnitsPopulationPercent>10</iFreeMilitaryUnitsPopulationPercent>
       <iGoldPerUnit>0</iGoldPerUnit>
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
       <iHappyPerMilitaryUnit>1</iHappyPerMilitaryUnit>
@@ -817,7 +817,7 @@
       <iExpInBorderModifier>0</iExpInBorderModifier>
       <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
       <iLargestCityHappiness>0</iLargestCityHappiness>
-      <iWarWearinessModifier>0</iWarWearinessModifier>
+      <iWarWearinessModifier>50</iWarWearinessModifier>
       <iFreeSpecialist>0</iFreeSpecialist>
       <iTradeRoutes>0</iTradeRoutes>
       <bNoForeignTrade>0</bNoForeignTrade>
@@ -869,7 +869,7 @@
       <Button>Art/Interface/Buttons/Civics/button_civic_blutrecht.dds</Button>
       <TechPrereq>NONE</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
+      <Upkeep>UPKEEP_LOW</Upkeep>
       <iAIWeight>-5</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1281,7 +1281,7 @@
       <Button>Art/Interface/Buttons/Civics/civic_isolation.dds</Button>
       <TechPrereq>NONE</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
+      <Upkeep>UPKEEP_LOW</Upkeep>
       <iAIWeight>-5</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1636,7 +1636,7 @@
       <Civilopedia>TXT_KEY_CIVIC_STAATSWIRTSCHAFT_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_CIVIC_STAATSWIRTSCHAFT_STRATEGY</Strategy>
       <Button>,Art/Interface/Buttons/Civics/Free_Market.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,1</Button>
-      <TechPrereq>TECH_NATIONALISM</TechPrereq>
+      <TechPrereq>TECH_PREISEDIKT</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
       <Upkeep>UPKEEP_MEDIUM</Upkeep>
       <iAIWeight>2</iAIWeight>
@@ -1712,7 +1712,7 @@
       <Button>Art/Interface/Buttons/Civics/civic_animalismus.dds</Button>
       <TechPrereq>NONE</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
+      <Upkeep>UPKEEP_LOW</Upkeep>
       <iAIWeight>-50</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1778,7 +1778,7 @@
       <TechPrereq>TECH_CEREMONIAL</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
       <Upkeep>UPKEEP_LOW</Upkeep>
-      <iAIWeight>0</iAIWeight>
+      <iAIWeight>10</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
@@ -1849,7 +1849,7 @@
       <iAnarchyLength>1</iAnarchyLength>
       <Upkeep>UPKEEP_MEDIUM</Upkeep>
       <iAIWeight>-50</iAIWeight>
-      <iGreatPeopleRateModifier>25</iGreatPeopleRateModifier>
+      <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
@@ -1884,7 +1884,7 @@
       <bStateReligion>0</bStateReligion>
       <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
       <iStateReligionHappiness>0</iStateReligionHappiness>
-      <iNonStateReligionHappiness>1</iNonStateReligionHappiness>
+      <iNonStateReligionHappiness>2</iNonStateReligionHappiness>
       <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
       <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
       <iStateReligionFreeExperience>0</iStateReligionFreeExperience>
@@ -2031,7 +2031,16 @@
       <Hurrys/>
       <SpecialBuildingNotRequireds/>
       <SpecialistValids/>
-      <BuildingHappinessChanges/>
+      <BuildingHappinessChanges>
+        <BuildingHappinessChange>
+          <BuildingType>BUILDINGCLASS_OBELISK</BuildingType>
+          <iHappinessChange>1</iHappinessChange>
+        </BuildingHappinessChange>
+        <BuildingHappinessChange>
+          <BuildingType>BUILDINGCLASS_SAEULE</BuildingType>
+          <iHappinessChange>1</iHappinessChange>
+        </BuildingHappinessChange>
+      </BuildingHappinessChanges>
       <BuildingHealthChanges/>
       <FeatureHappinessChanges/>
       <ImprovementYieldChanges/>
@@ -2048,7 +2057,7 @@
       <iAnarchyLength>1</iAnarchyLength>
       <Upkeep>UPKEEP_HIGH</Upkeep>
       <iAIWeight>10</iAIWeight>
-      <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+      <iGreatPeopleRateModifier>25</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
       <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
@@ -2111,7 +2120,7 @@
       <Button>,Art/Interface/Buttons/Civics/Tribalism.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,7,3</Button>
       <TechPrereq>NONE</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
+      <Upkeep>UPKEEP_LOW</Upkeep>
       <iAIWeight>-5</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -2169,86 +2178,15 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
-      <Type>CIVIC_SOELDNERTUM</Type>
-      <Description>TXT_KEY_CIVIC_SOELDNERTUM</Description>
-      <Civilopedia>TXT_KEY_TECH_SOELDNERTUM_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_CIVIC_SOELDNERTUM_STRATEGY</Strategy>
-      <Help>TXT_KEY_CIVIC_SOELDNERTUM_HELP</Help>
-      <Button>Art/Interface/Buttons/Techs/button_soeldner.dds</Button>
-      <TechPrereq>TECH_SOELDNERTUM</TechPrereq>
-      <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>NONE</Upkeep>
-      <iAIWeight>6</iAIWeight>
-      <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-      <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
-      <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
-      <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
-      <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
-      <iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
-      <iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
-      <iExtraHealth>0</iExtraHealth>
-      <iFreeExperience>0</iFreeExperience>
-      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-      <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-      <iMilitaryProductionModifier>-25</iMilitaryProductionModifier>
-      <iBaseFreeUnits>0</iBaseFreeUnits>
-      <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
-      <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
-      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
-      <iGoldPerUnit>0</iGoldPerUnit>
-      <iGoldPerMilitaryUnit>1</iGoldPerMilitaryUnit>
-      <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
-      <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-      <iMaxConscript>0</iMaxConscript>
-      <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
-      <iExpInBorderModifier>0</iExpInBorderModifier>
-      <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
-      <iLargestCityHappiness>0</iLargestCityHappiness>
-      <iWarWearinessModifier>-25</iWarWearinessModifier>
-      <iFreeSpecialist>0</iFreeSpecialist>
-      <iTradeRoutes>0</iTradeRoutes>
-      <bNoForeignTrade>0</bNoForeignTrade>
-      <bNoCorporations>0</bNoCorporations>
-      <bNoForeignCorporations>0</bNoForeignCorporations>
-      <iCivicPercentAnger>0</iCivicPercentAnger>
-      <bStateReligion>0</bStateReligion>
-      <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
-      <iStateReligionHappiness>0</iStateReligionHappiness>
-      <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
-      <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
-      <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
-      <iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-      <YieldModifiers/>
-      <CapitalYieldModifiers/>
-      <TradeYieldModifiers/>
-      <CommerceModifiers/>
-      <CapitalCommerceModifiers/>
-      <SpecialistExtraCommerces/>
-      <Hurrys/>
-      <SpecialBuildingNotRequireds/>
-      <SpecialistValids/>
-      <BuildingHappinessChanges>
-        <BuildingHappinessChange>
-          <BuildingType>BUILDINGCLASS_SOELDNERPOSTEN</BuildingType>
-          <iHappinessChange>1</iHappinessChange>
-        </BuildingHappinessChange>
-      </BuildingHappinessChanges>
-      <BuildingHealthChanges/>
-      <FeatureHappinessChanges/>
-      <ImprovementYieldChanges/>
-      <WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
-    </CivicInfo>
-    <CivicInfo>
-      <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
-      <Type>CIVIC_ZWANGSREKRUTIERUNG</Type>
-      <Description>TXT_KEY_CIVIC_ZWANGSREKRUTIERUNG</Description>
-      <Civilopedia>TXT_KEY_CIVIC_ZWANGSREKRUTIERUNG_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_CIVIC_ZWANGSREKRUTIERUNG_STRATEGY</Strategy>
-      <Button>Art/Interface/Buttons/Civics/button_civic_zwangsrekrut.dds</Button>
-      <TechPrereq>TECH_CODEX</TechPrereq>
-      <iAnarchyLength>1</iAnarchyLength>
+      <Type>CIVIC_BAUERNMILIZ</Type>
+      <Description>TXT_KEY_CIVIC_BAUERNMILIZ</Description>
+      <Civilopedia>TXT_KEY_CIVIC_BAUERNMILIZ_PEDIA</Civilopedia>
+      <Strategy>TXT_KEY_CIVIC_BAUERNMILIZ_STRATEGY</Strategy>
+      <Button>Art/Interface/Buttons/Civics/button_civic_bauernmiliz.dds</Button>
+      <TechPrereq>TECH_POTTERY</TechPrereq>
+      <iAnarchyLength>0</iAnarchyLength>
       <Upkeep>UPKEEP_LOW</Upkeep>
-      <iAIWeight>7</iAIWeight>
+      <iAIWeight>1</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
@@ -2260,7 +2198,7 @@
       <iFreeExperience>0</iFreeExperience>
       <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
       <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-      <iMilitaryProductionModifier>25</iMilitaryProductionModifier>
+      <iMilitaryProductionModifier>0</iMilitaryProductionModifier>
       <iBaseFreeUnits>0</iBaseFreeUnits>
       <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
       <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
@@ -2268,13 +2206,13 @@
       <iGoldPerUnit>0</iGoldPerUnit>
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
       <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
-      <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-      <iMaxConscript>3</iMaxConscript>
+      <bMilitaryFoodProduction>1</bMilitaryFoodProduction>
+      <iMaxConscript>0</iMaxConscript>
       <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
       <iExpInBorderModifier>0</iExpInBorderModifier>
       <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
       <iLargestCityHappiness>0</iLargestCityHappiness>
-      <iWarWearinessModifier>25</iWarWearinessModifier>
+      <iWarWearinessModifier>50</iWarWearinessModifier>
       <iFreeSpecialist>0</iFreeSpecialist>
       <iTradeRoutes>0</iTradeRoutes>
       <bNoForeignTrade>0</bNoForeignTrade>
@@ -2301,19 +2239,20 @@
       <BuildingHealthChanges/>
       <FeatureHappinessChanges/>
       <ImprovementYieldChanges/>
-      <WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DICTATOR</WeLoveTheKing>
+      <WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
-      <Type>CIVIC_BAUERNMILIZ</Type>
-      <Description>TXT_KEY_CIVIC_BAUERNMILIZ</Description>
-      <Civilopedia>TXT_KEY_CIVIC_BAUERNMILIZ_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_CIVIC_BAUERNMILIZ_STRATEGY</Strategy>
-      <Button>Art/Interface/Buttons/Civics/button_civic_bauernmiliz.dds</Button>
-      <TechPrereq>TECH_HOLZWEHRANLAGEN</TechPrereq>
-      <iAnarchyLength>1</iAnarchyLength>
+      <Type>CIVIC_SOELDNERTUM</Type>
+      <Description>TXT_KEY_CIVIC_SOELDNERTUM</Description>
+      <Civilopedia>TXT_KEY_TECH_SOELDNERTUM_PEDIA</Civilopedia>
+      <Strategy>TXT_KEY_CIVIC_SOELDNERTUM_STRATEGY</Strategy>
+      <Help>TXT_KEY_CIVIC_SOELDNERTUM_HELP</Help>
+      <Button>Art/Interface/Buttons/Techs/button_soeldner.dds</Button>
+      <TechPrereq>TECH_SOELDNERTUM</TechPrereq>
+      <iAnarchyLength>0</iAnarchyLength>
       <Upkeep>UPKEEP_LOW</Upkeep>
-      <iAIWeight>5</iAIWeight>
+      <iAIWeight>3</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
@@ -2333,7 +2272,7 @@
       <iGoldPerUnit>0</iGoldPerUnit>
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
       <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
-      <bMilitaryFoodProduction>1</bMilitaryFoodProduction>
+      <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
       <iMaxConscript>0</iMaxConscript>
       <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
       <iExpInBorderModifier>0</iExpInBorderModifier>
@@ -2370,15 +2309,15 @@
     </CivicInfo>
     <CivicInfo>
       <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
-      <Type>CIVIC_BUERGERHEER</Type>
-      <Description>TXT_KEY_CIVIC_BUERGERHEER</Description>
-      <Civilopedia>TXT_KEY_CIVIC_BUERGERHEER_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_CIVIC_BUERGERHEER_STRATEGY</Strategy>
-      <Button>Art/Interface/Buttons/Civics/button_civic_buergersoldaten.dds</Button>
-      <TechPrereq>TECH_BUERGERSOLDATEN</TechPrereq>
+      <Type>CIVIC_ZWANGSREKRUTIERUNG</Type>
+      <Description>TXT_KEY_CIVIC_ZWANGSREKRUTIERUNG</Description>
+      <Civilopedia>TXT_KEY_CIVIC_ZWANGSREKRUTIERUNG_PEDIA</Civilopedia>
+      <Strategy>TXT_KEY_CIVIC_ZWANGSREKRUTIERUNG_STRATEGY</Strategy>
+      <Button>Art/Interface/Buttons/Civics/button_civic_zwangsrekrut.dds</Button>
+      <TechPrereq>TECH_VASALLENTUM</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
       <Upkeep>UPKEEP_LOW</Upkeep>
-      <iAIWeight>8</iAIWeight>
+      <iAIWeight>2</iAIWeight>
       <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
       <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
       <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
@@ -2390,7 +2329,72 @@
       <iFreeExperience>0</iFreeExperience>
       <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
       <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-      <iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+      <iMilitaryProductionModifier>25</iMilitaryProductionModifier>
+      <iBaseFreeUnits>0</iBaseFreeUnits>
+      <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
+      <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
+      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
+      <iGoldPerUnit>0</iGoldPerUnit>
+      <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
+      <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
+      <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
+      <iMaxConscript>3</iMaxConscript>
+      <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+      <iExpInBorderModifier>0</iExpInBorderModifier>
+      <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+      <iLargestCityHappiness>0</iLargestCityHappiness>
+      <iWarWearinessModifier>0</iWarWearinessModifier>
+      <iFreeSpecialist>0</iFreeSpecialist>
+      <iTradeRoutes>0</iTradeRoutes>
+      <bNoForeignTrade>0</bNoForeignTrade>
+      <bNoCorporations>0</bNoCorporations>
+      <bNoForeignCorporations>0</bNoForeignCorporations>
+      <iCivicPercentAnger>0</iCivicPercentAnger>
+      <bStateReligion>0</bStateReligion>
+      <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
+      <iStateReligionHappiness>0</iStateReligionHappiness>
+      <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
+      <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
+      <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
+      <iStateReligionFreeExperience>0</iStateReligionFreeExperience>
+      <YieldModifiers/>
+      <CapitalYieldModifiers/>
+      <TradeYieldModifiers/>
+      <CommerceModifiers/>
+      <CapitalCommerceModifiers/>
+      <SpecialistExtraCommerces/>
+      <Hurrys/>
+      <SpecialBuildingNotRequireds/>
+      <SpecialistValids/>
+      <BuildingHappinessChanges/>
+      <BuildingHealthChanges/>
+      <FeatureHappinessChanges/>
+      <ImprovementYieldChanges/>
+      <WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DICTATOR</WeLoveTheKing>
+    </CivicInfo>
+    <CivicInfo>
+      <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
+      <Type>CIVIC_BUERGERHEER</Type>
+      <Description>TXT_KEY_CIVIC_BUERGERHEER</Description>
+      <Civilopedia>TXT_KEY_CIVIC_BUERGERHEER_PEDIA</Civilopedia>
+      <Strategy>TXT_KEY_CIVIC_BUERGERHEER_STRATEGY</Strategy>
+      <Button>Art/Interface/Buttons/Civics/button_civic_buergersoldaten.dds</Button>
+      <TechPrereq>TECH_BUERGERSOLDATEN</TechPrereq>
+      <iAnarchyLength>0</iAnarchyLength>
+      <Upkeep>UPKEEP_MEDIUM</Upkeep>
+      <iAIWeight>5</iAIWeight>
+      <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+      <iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
+      <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+      <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
+      <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
+      <iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
+      <iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
+      <iExtraHealth>0</iExtraHealth>
+      <iFreeExperience>0</iFreeExperience>
+      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+      <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
+      <iMilitaryProductionModifier>50</iMilitaryProductionModifier>
       <iBaseFreeUnits>0</iBaseFreeUnits>
       <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
       <iFreeUnitsPopulationPercent>25</iFreeUnitsPopulationPercent>
@@ -2399,7 +2403,72 @@
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
       <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
       <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-      <iMaxConscript>0</iMaxConscript>
+      <iMaxConscript>2</iMaxConscript>
+      <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
+      <iExpInBorderModifier>50</iExpInBorderModifier>
+      <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
+      <iLargestCityHappiness>0</iLargestCityHappiness>
+      <iWarWearinessModifier>0</iWarWearinessModifier>
+      <iFreeSpecialist>0</iFreeSpecialist>
+      <iTradeRoutes>0</iTradeRoutes>
+      <bNoForeignTrade>0</bNoForeignTrade>
+      <bNoCorporations>0</bNoCorporations>
+      <bNoForeignCorporations>0</bNoForeignCorporations>
+      <iCivicPercentAnger>0</iCivicPercentAnger>
+      <bStateReligion>0</bStateReligion>
+      <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
+      <iStateReligionHappiness>0</iStateReligionHappiness>
+      <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
+      <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
+      <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
+      <iStateReligionFreeExperience>0</iStateReligionFreeExperience>
+      <YieldModifiers/>
+      <CapitalYieldModifiers/>
+      <TradeYieldModifiers/>
+      <CommerceModifiers/>
+      <CapitalCommerceModifiers/>
+      <SpecialistExtraCommerces/>
+      <Hurrys/>
+      <SpecialBuildingNotRequireds/>
+      <SpecialistValids/>
+      <BuildingHappinessChanges/>
+      <BuildingHealthChanges/>
+      <FeatureHappinessChanges/>
+      <ImprovementYieldChanges/>
+      <WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DESPOT</WeLoveTheKing>
+    </CivicInfo>
+    <CivicInfo>
+      <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
+      <Type>CIVIC_BERUFSARMEE</Type>
+      <Description>TXT_KEY_CIVIC_BERUFSARMEE</Description>
+      <Civilopedia>TXT_KEY_CIVIC_BERUFSARMEE_PEDIA</Civilopedia>
+      <Strategy>TXT_KEY_CIVIC_BERUFSARMEE_STRATEGY</Strategy>
+      <Button>Art/Interface/Buttons/Civics/button_civic_berufssoldaten.dds</Button>
+      <TechPrereq>TECH_BERUFSSOLDATEN</TechPrereq>
+      <iAnarchyLength>0</iAnarchyLength>
+      <Upkeep>UPKEEP_HIGH</Upkeep>
+      <iAIWeight>4</iAIWeight>
+      <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
+      <iGreatGeneralRateModifier>50</iGreatGeneralRateModifier>
+      <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
+      <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
+      <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
+      <iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
+      <iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
+      <iExtraHealth>0</iExtraHealth>
+      <iFreeExperience>0</iFreeExperience>
+      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+      <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
+      <iMilitaryProductionModifier>100</iMilitaryProductionModifier>
+      <iBaseFreeUnits>0</iBaseFreeUnits>
+      <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
+      <iFreeUnitsPopulationPercent>50</iFreeUnitsPopulationPercent>
+      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
+      <iGoldPerUnit>0</iGoldPerUnit>
+      <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
+      <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
+      <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
+      <iMaxConscript>1</iMaxConscript>
       <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
       <iExpInBorderModifier>0</iExpInBorderModifier>
       <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
@@ -2431,72 +2500,7 @@
       <BuildingHealthChanges/>
       <FeatureHappinessChanges/>
       <ImprovementYieldChanges/>
-      <WeLoveTheKing/>
-    </CivicInfo>
-    <CivicInfo>
-      <CivicOptionType>CIVICOPTION_MILITARY</CivicOptionType>
-      <Type>CIVIC_BERUFSARMEE</Type>
-      <Description>TXT_KEY_CIVIC_BERUFSARMEE</Description>
-      <Civilopedia>TXT_KEY_CIVIC_BERUFSARMEE_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_CIVIC_BERUFSARMEE_STRATEGY</Strategy>
-      <Button>Art/Interface/Buttons/Civics/button_civic_berufssoldaten.dds</Button>
-      <TechPrereq>TECH_BERUFSSOLDATEN</TechPrereq>
-      <iAnarchyLength>1</iAnarchyLength>
-      <Upkeep>UPKEEP_HIGH</Upkeep>
-      <iAIWeight>9</iAIWeight>
-      <iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
-      <iGreatGeneralRateModifier>100</iGreatGeneralRateModifier>
-      <iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
-      <iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
-      <iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
-      <iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
-      <iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
-      <iExtraHealth>0</iExtraHealth>
-      <iFreeExperience>0</iFreeExperience>
-      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-      <iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
-      <iMilitaryProductionModifier>0</iMilitaryProductionModifier>
-      <iBaseFreeUnits>0</iBaseFreeUnits>
-      <iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
-      <iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
-      <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
-      <iGoldPerUnit>0</iGoldPerUnit>
-      <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
-      <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
-      <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-      <iMaxConscript>0</iMaxConscript>
-      <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
-      <iExpInBorderModifier>100</iExpInBorderModifier>
-      <bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
-      <iLargestCityHappiness>0</iLargestCityHappiness>
-      <iWarWearinessModifier>-25</iWarWearinessModifier>
-      <iFreeSpecialist>0</iFreeSpecialist>
-      <iTradeRoutes>0</iTradeRoutes>
-      <bNoForeignTrade>0</bNoForeignTrade>
-      <bNoCorporations>0</bNoCorporations>
-      <bNoForeignCorporations>0</bNoForeignCorporations>
-      <iCivicPercentAnger>0</iCivicPercentAnger>
-      <bStateReligion>0</bStateReligion>
-      <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
-      <iStateReligionHappiness>0</iStateReligionHappiness>
-      <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
-      <iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
-      <iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
-      <iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-      <YieldModifiers/>
-      <CapitalYieldModifiers/>
-      <TradeYieldModifiers/>
-      <CommerceModifiers/>
-      <CapitalCommerceModifiers/>
-      <SpecialistExtraCommerces/>
-      <Hurrys/>
-      <SpecialBuildingNotRequireds/>
-      <SpecialistValids/>
-      <BuildingHappinessChanges/>
-      <BuildingHealthChanges/>
-      <FeatureHappinessChanges/>
-      <ImprovementYieldChanges/>
-      <WeLoveTheKing/>
+      <WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
     </CivicInfo>
   </CivicInfos>
 </Civ4CivicInfos>

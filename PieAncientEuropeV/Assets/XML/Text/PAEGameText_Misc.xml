@@ -7,747 +7,805 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <Civ4GameText xmlns="http://www.firaxis.com">
   <TEXT>
-     <Tag>TXT_KEY_BUILDING_COASTAL_TRADE_ROUTES</Tag>
-     <English>[ICON_BULLET]%D1_Change Trade Routes in All Coastal Cities</English>
-     <French>[ICON_BULLET]%D1_Change [NUM1:Route commerciale:Routes commerciales] dans toutes les villes c&#244;ti&#232;res</French>
-     <German>[ICON_BULLET]%D1_Change Handelswege in allen K&#252;stenst&#228;dten</German>
-     <Italian>[ICON_BULLET]%D1_Change rotte commerciali in tutte le citt&#224; costiere</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change rutas comerciales en todas las ciudades costeras</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_MISSION_JOIN_CITY_HELP</Tag>
-     <English>This order will make this unit join the city as a specialist. It will consume the unit.</English>
-     <French>Ordonner &#224; cette unit&#233; de rejoindre la ville en tant que sp&#233;cialiste. Elle est alors d&#233;truite.</French>
-     <German>Opfern Sie diese Einheit und befehlen Sie ihr, sich als Spezialist in der Stadt anzusiedeln.</German>
-     <Italian>Con questo ordine, i Grandi Personaggi possono unirsi alla citt&#224; in veste di super specialisti, venendo sacrificati nel procedimento.</Italian>
-     <Spanish>Esta orden hace que esta unidad se una a la ciudad como un especialista, consumi&#233;ndose en el proceso.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_NATIONAL_WONDER</Tag>
-     <English>Congratulations, you have completed your first National Wonder ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) in %s2City_Name! These powerful buildings are useful for specializing your cities. In PAE there is no National Wonder limit in a city.</English>
-     <French>F&#233;licitations, vous venez de construire votre premi&#232;re merveille nationale ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) &#224; %s2City_Name ! Ces puissants &#233;difices permettent de sp&#233;cialiser vos villes. Dans PAE il n'y a pas de limite au nombre de merveilles nationales par ville.</French>
-     <German>Herzlichen Gl&#252;ckwunsch! Ihr habt Euer erstes Nationales Wunder ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) in %s2City_Name fertig gestellt! Diese m&#228;chtigen Geb&#228;ude eignen sich f&#252;r die Spezialisierung Eurer St&#228;dte. In PAE gibt es keine Anzahlbeschr&#228;nkung von Nationalwundern in einer Stadt.</German>
-     <Italian>Congratulazioni, hai completato la tua prima Meraviglia Nazionale ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) a %s2City_Name! Questi potenti edifici sono particolarmente indicati per specializzare le tue citt&#224;. In PAE there is no National Wonder limit in a city.</Italian>
-     <Spanish>Felicidades, hab&#233;is completado en %s2City_Name vuestra primera maravilla nacional, [COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]. Estos poderosos edificios son &#250;tiles para especializar las ciudades. En PAE no hay limitaci&#243;n de maravillas nacionales por ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_MAININTERFACE_FIELDOFVIEW_TEXT</Tag>
-     <English>Field of view</English>
-     <French>Champ visuel</French>
-     <German>Sichtfeld</German>
-     <Italian>Campo di vista</Italian>
-     <Spanish>Campo de visi&#243;n</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRAIT_TRADE_YIELD_MODIFIERS</Tag>
-     <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield from Trade Routes</English>
-     <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield de Routes commerciales</French>
-     <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield durch Handelswege</German>
-     <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield da Rotte commerciali</Italian>
-     <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield por Rutas comerciales</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_POPUP_CONFIRM_SELL_UNIT</Tag>
-     <English>Do you really want to sell this unit?</English>
-     <French>Voulez-vous vraiment vendre cette unit&#233; ?</French>
-     <German>Wollt Ihr diese Einheit wirklich verkaufen?</German>
-     <Italian>Vuoi davvero vendere questa unit&#224;?</Italian>
-     <Spanish>&#191;De verdad quieres vender esta unidad?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_POPUP_NO2</Tag>
-     <English>No, rather not!</English>
-     <French>Non, plut&#244;t pas!</French>
-     <German>Nein, lieber nicht!</German>
-     <Italian>No, anzi no!</Italian>
-     <Spanish>No, m&#225;s bien no!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_POPUP_YES2</Tag>
-     <English>Yes, it needs to be.</English>
-     <French>Oui, il doit &#234;tre.</French>
-     <German>Ja, es soll so sein.</German>
-     <Italian>S&#236;, ha bisogno di essere.</Italian>
-     <Spanish>S&#237;, tiene que ser.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_BOMBARD_DEFENSE_MOD</Tag>
-     <English>[ICON_BULLET]%D1_Mod%% Damage to Defenses from Bombardment</English>
-     <French>[ICON_BULLET]%D1_Mod%% D&#233;g&#226;ts inflig&#233;s aux d&#233;fenses apr&#232;s un bombardement</French>
-     <German>[ICON_BULLET]%D1_Mod%% Bombardierungsschaden gegen Defensivanlagen</German>
-     <Italian>[ICON_BULLET]%D1_Mod%% di danni alle difese a causa del bombardamento</Italian>
-     <Spanish>[ICON_BULLET]%D1_Mod%% de da&#241;o a las defensas por ca&#241;oneo</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_MISC_YOU_MADE_PEACE_WITH</Tag>
-     <English>You have made peace with %s1_TeamName!</English>
-     <French>Vous avez fait la paix avec %s1_TeamName!</French>
-     <German>Ihr habt Frieden mit %s1_TeamName geschlossen!</German>
-     <Italian>Hai fatto pace con %s1_TeamName!</Italian>
-     <Spanish>Hab&#233;is firmado la paz con %s1_TeamName</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_PEDIA_SCREEN_TOP</Tag>
-     <English>Index</English>
-     <French>Index</French>
-     <German>Index</German>
-     <Italian>Torna a civilopedia</Italian>
-     <Spanish>Inicio</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_ALEXANDER_1</Tag>
-     <English>Greetings, [CT_NAME]! I am [OUR_NAME], ruler of the warlike [OUR_EMPIRE]! Let us join together and crush the world's armies beneath our sandals! It'll be way cool!</English>
-     <French>Mes hommages, [CT_NAME] ! Je suis [OUR_NAME], roi des [OUR_EMPIRE] belliqueux ! Unissons nos forces pour &#233;craser les arm&#233;es du monde sous nos sandales ! Ce serait extra, non ?</French>
-     <German>Seid gegr&#252;&#223;t, [CT_NAME]! Ich bin [OUR_NAME], Staatsoberhaupt des [OUR_EMPIRE:3]es! Lasst uns mit vereinten Kr&#228;ften die Armeen dieser Welt ausradieren! Glaubt mir, wir werden viel Spa&#223; haben!</German>
-     <Italian>Salve, [CT_NAME]! Io sono [OUR_NAME], dominatore del bellicoso [OUR_EMPIRE]! Uniamo le nostre forze e schiacciamo il mondo sotto i nostri sandali... Sar&#224; divertente!</Italian>
-     <Spanish>&#161;Saludos, [CT_NAME]! &#161;Soy [OUR_NAME], regente del belicoso [OUR_EMPIRE]! &#161;Un&#225;monos y aplastemos el mundo bajo nuestras sandalias! &#161;Ser&#225; muy divertido!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_GENGHIS_KHAN_1</Tag>
-     <English>Welcome, oh leader of the [CT_EMPIRE]. My horde can beat your horde any day of the week. Shall we be friends or enemies?</English>
-     <French>Bienvenue, &#244; chef des [CT_EMPIRE]. Ma horde peut &#233;craser la v&#244;tre chaque jour. Serons-nous amis ou ennemis ?</French>
-     <German>Willkommen, wertes Staatsoberhaupt des [CT_EMPIRE:3]es. Meine Truppen k&#246;nnen Euren Truppen jederzeit die Stirn bieten. Also, wie wollt Ihr es halten? Werden wir Freunde oder Feinde sein?</German>
-     <Italian>Ti do il benvenuto, grande leader dell'[CT_EMPIRE]. Le mie orde potrebbero sconfiggere le tue in qualsiasi momento: vogliamo essere amici o nemici?</Italian>
-     <Spanish>Os damos la bienvenida, oh l&#237;der del [CT_EMPIRE]. Mi horda puede derrotar a la vuestra siempre que se le antoje. &#191;Seremos amigos o enemigos?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_CIVIC_PRESSURE_5</Tag>
-     <English>%s1 is extremely useful, [CT_NAME]. [CT_CIV_SHORT] would do well to adopt it.</English>
-     <French>[CT_NAME], nous trouvons ceci extr&#234;mement utile : %s1. Les [CT_EMPIRE] feraient mieux de l'adopter.</French>
-     <German>Die Staatsform %s1 ist extrem n&#252;tzlich, [CT_NAME]. [CT_CIV_SHORT] w&#228;re gut beraten, sie anzunehmen.</German>
-     <Italian>La forma di governo: %s1 &#232; estremamente utile, [CT_NAME]. [CT_CIV_SHORT:1] farebbe bene ad adottarla.</Italian>
-     <Spanish>[NUM1:El:La:Los:Las] %s1 [NUM1:es muy &#250;til:es muy &#250;til:son muy &#250;tiles:son muy &#250;tiles], [CT_NAME]. [CT_CIV_SHORT] har&#237;a bien en [NUM1:adoptarlo:adoptarla:adoptarlos:adoptarlas].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_POPUP_ENTER_LANDS_WAR</Tag>
-     <English>Entering [COLOR_HIGHLIGHT_TEXT]%s1_CivAdj[COLOR_REVERT] lands will trigger WAR! Are you sure?</English>
-     <French>Une intrusion sur le territoire [COLOR_HIGHLIGHT_TEXT]%s1_CivAdj[COLOR_REVERT] d&#233;clenchera une GUERRE ! Vous confirmez ?</French>
-     <German>Wenn wir in das [COLOR_HIGHLIGHT_TEXT]%s1:3_CivAdj[COLOR_REVERT] Gebiet vordringen, l&#246;sen wir einen KRIEG aus! Seid Ihr sicher?</German>
-     <Italian>Entrando nel territorio [COLOR_HIGHLIGHT_TEXT]%s1_CivAdj[COLOR_REVERT] scatenerai una GUERRA! Sei sicuro?</Italian>
-     <Spanish>&#161;Entrar en las tierras de los [COLOR_HIGHLIGHT_TEXT]%s1:3_CivAdj[COLOR_REVERT] significar&#225; la GUERRA! &#191;Seguro que eso es lo que quer&#233;is?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_MISC_PROGRESS_TOWARDS_TECH</Tag>
-     <English>You have come %d1[ICON_RESEARCH] closer to a breakthrough on [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT]</English>
-     <French>Vous avez progress&#233; de %d1[ICON_RESEARCH] dans la recherche de la technologie : [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT]</French>
-     <German>Ihr seid einem Durchbruch in der Technologie [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT] %d1[ICON_RESEARCH] n&#228;hergekommen</German>
-     <Italian>Sei %d1[ICON_RESEARCH] pi&#249; vicino a una scoperta sulla tecnologia [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT]</Italian>
-     <Spanish>Est&#225;is un %d1 [ICON_RESEARCH] m&#225;s cerca del adelanto [NUM2:del:de la:de los:de las] [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_TECH_GAINED_PERCENT</Tag>
-     <English>[ICON_BULLET]%D1_num[ICON_RESEARCH] towards [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</English>
-     <French>[ICON_BULLET]Progression de %D1_num[ICON_RESEARCH] dans la recherche de la technologie : [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</French>
-     <German>[ICON_BULLET]%D1_num[ICON_RESEARCH] f&#252;r die Technologie [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</German>
-     <Italian>[ICON_BULLET]%D1_num[ICON_RESEARCH] verso [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</Italian>
-     <Spanish>[ICON_BULLET]%D1_num [ICON_RESEARCH] hacia [NUM2:el:la:los:las] [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_IMPROVEMENT_GROWTH</Tag>
-     <English>[ICON_BULLET]A [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT] is built</English>
-     <French>[ICON_BULLET][NUM1:Un:Une] [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT] [NUM1:a &#233;t&#233; construit:a &#233;t&#233; construite]</French>
-     <German>[ICON_BULLET]Die Modernisierung [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT] wird errichtet</German>
-     <Italian>[ICON_BULLET][NUM1:&#200; stato costruito un:&#200; stata costruita una] [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT]</Italian>
-     <Spanish>[ICON_BULLET]Se [NUM1:ha construido un:ha construido una:han construido unos:han construido unas] [COLOR_HIGHLIGHT_TEXT]%s1:1_improvement[COLOR_REVERT]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_IMPROVEMENT_REMOVE</Tag>
-     <English>[ICON_BULLET]The %s1_improvement is destroyed</English>
-     <French>[ICON_BULLET]L'am&#233;nagement ([COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT]) a &#233;t&#233; d&#233;truit</French>
-     <German>[ICON_BULLET]Die Modernisierung %s1_improvement wird zerst&#246;rt</German>
-     <Italian>[ICON_BULLET]%s1_improvement [NUM1:distrutto:distrutta]</Italian>
-     <Spanish>[ICON_BULLET][NUM1:El:La:Los:Las] %s1:1_improvement [NUM1:ha quedado destruido:ha quedado destruida:han quedado destruidos:han quedado destruidas]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_UNIT_EXPERIENCE</Tag>
-     <English>[ICON_BULLET]The %s2_unit receives %d1 XP</English>
-     <French>[ICON_BULLET]L'unit&#233; ([COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT]) re&#231;oit %d1 EXP</French>
-     <German>[ICON_BULLET]Die Einheit %s2_unit erh&#228;lt %d1 EP</German>
-     <Italian>[ICON_BULLET]L'unit&#224; %s2_unit riceve %d1 XP</Italian>
-     <Spanish>[ICON_BULLET][NUM2:El:La:Los:Las] %s2_unit [NUM2:recibe:recibe:reciben:reciben] %d1 PE</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_ADDITIONAL_CHANCE</Tag>
-     <English>[NEWLINE][ICON_BULLET]In addition %s2_txt_key_event_delay_below, %d1%% chance for:</English>
-     <French>[NEWLINE][ICON_BULLET]Ainsi que%s2_txt_key_event_delay_below, %d1%% de chances pour :</French>
-     <German>[NEWLINE][ICON_BULLET]Zus&#228;tzlich %s2_txt_key_event_delay_below %d1%% Wahrscheinlichkeit f&#252;r:</German>
-     <Italian>[NEWLINE][ICON_BULLET]Inoltre %s2_txt_key_event_delay_below, %d1%% di probabilit&#224; che:</Italian>
-     <Spanish>[NEWLINE][ICON_BULLET]Adem&#225;s %s2_txt_key_event_delay_below, %d1%% de probabilidad de:</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_FREE_SPECIALISTS</Tag>
-     <English>[ICON_BULLET]%D1_Change Free Specialists</English>
-     <French>[ICON_BULLET]%D1_Change [NUM1:sp&#233;cialiste gratuit:sp&#233;cialistes gratuits]</French>
-     <German>[ICON_BULLET]%D1_Change freie Spezialisten</German>
-     <Italian>[ICON_BULLET]%D1_Change specialisti gratuiti</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change especialistas gratis</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_FREE_SPECIALIST</Tag>
-     <English>[ICON_BULLET]%D1_Change Free [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT]</English>
-     <French>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][NUM1: :s ][COLOR_REVERT][NUM1:gratuit:gratuits]</French>
-     <German>[ICON_BULLET]%D1_Change freien Spezialisten [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT]</German>
-     <Italian>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_TRADE_ROUTES</Tag>
-     <English>[ICON_BULLET]%D1_Change Trade Routes</English>
-     <French>[ICON_BULLET]%D1_Change [NUM1:Route commerciale:Routes commerciales]</French>
-     <German>[ICON_BULLET]%D1_Change Handelswege</German>
-     <Italian>[ICON_BULLET]%D1_Change rotte commerciali</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change rutas comerciales</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_TRADE_ROUTES_ALL_CITIES</Tag>
-     <English>[ICON_BULLET]%D1_Change Trade Routes in All Cities</English>
-     <French>[ICON_BULLET]%D1_Change [NUM1:Route commerciale:Routes commerciales] dans toutes les villes</French>
-     <German>[ICON_BULLET]%D1_Change Handelswege in allen St&#228;dten</German>
-     <Italian>[ICON_BULLET]%D1_Change rotte commerciali in tutte le citt&#224;</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change rutas comerciales en todas las ciudades</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_REMOVE_BUILDING</Tag>
-     <English>[ICON_BULLET]Lose the [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT]</English>
-     <French>[ICON_BULLET]Perdre le b&#226;timent ([COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT])</French>
-     <German>[ICON_BULLET]Geb&#228;ude [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT] entfernen</German>
-     <Italian>[ICON_BULLET]Perdere [NUM1:un:una] [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT]</Italian>
-     <Spanish>[ICON_BULLET]Perder [NUM1:el:la:los:las] [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_ATTACK</Tag>
-     <English>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat Attack</English>
-     <French>[ICON_BULLET]Attaque sur une case de %s2_TerrOrFeat %D1_Change%%</French>
-     <German>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat-Angriff</German>
-     <Italian>[ICON_BULLET]%D1_Change%% all'attacco in %s2_TerrOrFeat</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change%% a ataque a %s2:2_TerrOrFeat</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_PROMOTION_ATTACK_TEXT</Tag>
-     <English>[ICON_BULLET]%D1_Bonus%% %s2_TerrFeat Attack</English>
-     <French>[ICON_BULLET]Attaque sur une case de %s2_TerrFeat %D1_Bonus%%</French>
-     <German>[ICON_BULLET]%D1_Bonus%% %s2_TerrFeat-Angriff</German>
-     <Italian>[ICON_BULLET]%D1_Bonus%% di attacco in %s2_TerrFeat</Italian>
-     <Spanish>[ICON_BULLET]%D1_Bonus%% a ataque a %s2:2_TerrFeat</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_DEFENSE</Tag>
-     <English>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat Defense</English>
-     <French>[ICON_BULLET]D&#233;fense sur une case de %s2_TerrOrFeat %D1_Change%%</French>
-     <German>[ICON_BULLET]%D1_Change%% Verteidigung f&#252;r %s2_TerrOrFeat</German>
-     <Italian>[ICON_BULLET]%D1_Change%% di difesa nella %s2:2_TerrOrFeat</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change%% a defender %s2:2_TerrOrFeat</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_STRENGTH</Tag>
-     <English>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat Strength</English>
-     <French>[ICON_BULLET]Combat sur une case de %s2_TerrOrFeat %D1_Change%% (attaque et d&#233;fense)</French>
-     <German>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat-St&#228;rke</German>
-     <Italian>[ICON_BULLET]%D1_Change%% alla forza in %s2_TerrOrFeat</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change%% a fuerza en %s2:2_TerrOrFeat</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_CITY_STRENGTH_MOD</Tag>
-     <English>[ICON_BULLET]%D1_Change%% City Strength</English>
-     <French>[ICON_BULLET]Combat en ville %D1_Change%% (attaque et d&#233;fense)</French>
-     <German>[ICON_BULLET]%D1_Change%% Stadtst&#228;rke</German>
-     <Italian>[ICON_BULLET]%D1_Change%% alla forza della citt&#224;</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change%% a la fuerza de la ciudad</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_SPY_INTERCEPTED_SPY</Tag>
-     <English>A %s1_unit operating near %s3_city has been thwarted by %s2_civ_adjective counterintelligence agents!</English>
-     <French>Une unit&#233; (%s1_unit) op&#233;rant pr&#232;s de la ville de %s3_city a &#233;t&#233; neutralis&#233;e par les agents du contre-espionnage %s2_civ_adjective !</French>
-     <German>Der Einsatz einer Einheit %s1_unit in der N&#228;he von %s3_city wurde von %s2:2_civ_adjective Spionageabwehr-Agenten verhindert!</German>
-     <Italian>Una unit&#224; %s1_unit operante nei pressi di %s3_city &#232; stata fermata dagli agenti del controspionaggio %s2_civ_adjective!</Italian>
-     <Spanish>&#161;Los agentes de contraespionaje %s2:3_civ_adjective han desenmascarado a [NUM1:un:una:unos:unas] %s1_unit que [NUM1:operaba:operaba:operaban:operaban] cerca de %s3_city!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_UNIT_COMBAT_PROMOTION</Tag>
-     <English>[ICON_BULLET]All %s1_units are promoted to [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</English>
-     <French>[ICON_BULLET][NUM1:Tous:Toutes] les %s1_units re&#231;oivent la promotion [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</French>
-     <German>[ICON_BULLET]Alle Einheiten %s1_units erhalten die Bef&#246;rderung [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</German>
-     <Italian>[ICON_BULLET]Tutte le unit&#224; %s1_units ricevono la promozione [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</Italian>
-     <Spanish>[ICON_BULLET][NUM1:Todos los:Todas las:Todos los:Todos las] %s1:2_units ascienden a [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_IS_SPY</Tag>
-     <English>[ICON_BULLET]Can perform Espionage Missions in an opponent's territory. The longer the unit is stationary the lower the cost to perform a Mission</English>
-     <French>[ICON_BULLET]Peut ex&#233;cuter des missions d'espionnage en territoire ennemi. Le co&#251;t d'ex&#233;cution des missions d&#233;cro&#238;t en fonction du temps de d&#233;ploiement de votre unit&#233;.</French>
-     <German>[ICON_BULLET]Kann Spionagemissionen in feindlichem Territorium ausf&#252;hren. Je l&#228;nger sich die Einheit am selben Ort befindet, umso weniger kostet die Ausf&#252;hrung einer Mission</German>
-     <Italian>[ICON_BULLET]Pu&#242; effettuare missioni di spionaggio nei territori nemici. Pi&#249; l'unit&#224; &#232; stazionaria, minore &#232; il costo per portare a termine la missione.</Italian>
-     <Spanish>[ICON_BULLET]Puede llevar a cabo misiones de espionaje en el territorio de un oponente. Cuanto m&#225;s tiempo permanezca quieta la unidad, menor ser&#225; el coste de realizar la misi&#243;n.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_IMMOBILE_UNIT</Tag>
-     <English>[ICON_BULLET]The %s2_unit will be busy for %d1 [NUM1:turn:turns], unavailable for any other duty except self-defense.</English>
-     <French>[ICON_BULLET]L'unit&#233; (%s2_unit) sera occup&#233;e pendant %d1 [NUM1:tour:tours] et indisponible pour toute activit&#233; &#224; part l'autod&#233;fense.</French>
-     <German>[ICON_BULLET]Die Einheit %s2_unit ist %d1 [NUM1:Runde:Runden] lang besch&#228;ftigt und f&#252;r keine andere Aufgabe au&#223;er Selbstverteidigung verf&#252;gbar.</German>
-     <Italian>[ICON_BULLET]L'unit&#224; %s2_unit sar&#224; occupata per %d1 [NUM1:turno:turni], e non far&#224; altro eccetto difendersi.</Italian>
-     <Spanish>[ICON_BULLET][NUM2:El:La:Los:Las] %s2_unit [NUM2:no estar&#225; disponible:no estar&#225; disponible:no estar&#225;n disponibles:no estar&#225;n disponibles] durante %d1 [NUM1:turno:turnos], para ning&#250;n cometido que no sea su propia defensa</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_FLANKING_STRIKES</Tag>
-     <English>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Flank attack[\LINK] against %s1_unitlist</English>
-     <French>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Attaque de flanc[\LINK] contre %s1_unitlist</French>
-     <German>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Flankenangriff[\LINK] auf Einheit(en) %s1_unitlist</German>
-     <Italian>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Attacco ai fianchi[\LINK] contro %s1_unitlist</Italian>
-     <Spanish>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Flanqueo[\LINK] contra %s1_unitlist</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_TRANSFER_GAME_DATA_TITLE</Tag>
-     <English>Transferring Game Data...</English>
-     <French>Transfert des donnees du jeu...</French>
-     <German>Spieldaten werden transferiert...</German>
-     <Italian>Trasferimento dati...</Italian>
-     <Spanish>Transfiriendo datos de la partida...</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_MISC_CIV_DESTROYED</Tag>
-     <English>The %s1_CivAdj Civilization has been destroyed!!!</English>
-     <French>Les %s1:3_CivAdj ont &#233;t&#233; &#233;cras&#233;s !</French>
-     <German>Die %s1:3_CivAdj Zivilisation wurde vernichtet!!!</German>
-     <Italian>La civilt&#224; %s1:4_CivAdj &#232; stata distrutta!</Italian>
-     <Spanish>&#161;La civilizaci&#243;n %s1:2_CivAdj ha sido destruida!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_HALF_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Half a Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais un demi million d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt eine halbe Million Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene mezzo milione di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a medio mill&#243;n de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_1_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds a Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais un million d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt eine Million Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene un milione di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a un mill&#243;n de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_2_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Two Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais deux millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zwei Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene due milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a dos millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_5_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Five Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cinq millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt f&#252;nf Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cinque milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a cinco millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_10_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Ten Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais dix millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zehn Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene dieci milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a diez millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_20_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Twenty Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais vingt millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zwanzig Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene venti milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a veinte millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_50_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Fifty Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cinquante millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt f&#252;nfzig Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cinquanta milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a cincuenta millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_100_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds One Hundred Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cent millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt einhundert Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cento milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a cien millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_200_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Two Hundred Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais deux cents millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zweihundert Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene duecento milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a doscientos millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_500_MILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds Five Hundred Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cinq cents millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt f&#252;nfhundert Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cinquecento milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a quinientos millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_1_BILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds a BILLION souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte UN MILLIARD d'habitants ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt eine MILLIARDE Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene un miliardo di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a MIL MILLONES de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_FEAT_2_BILLION</Tag>
-     <English>Congratulations, the burgeoning %s1Civ_Name now holds TWO BILLION souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
-     <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte DEUX MILLIARDS d'habitants ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
-     <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt ZWEI MILLIARDEN Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
-     <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene due miliardi di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
-     <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a DOS MIL MILLONES de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_UNIT_CAVALRY</Tag>
-     <English>Cavalry</English>
-     <French>Cavalier Lourd</French>
-     <German><Text>Kavallerie</Text> [NEWLINE]<Gender>Male</Gender> [NEWLINE]<Plural>0</Plural></German>
-     <Italian><Text>Cavalleria</Text> [NEWLINE]<Gender>Female</Gender> [NEWLINE]<Plural>0:1</Plural></Italian>
-     <Spanish><Text>Caballer&#237;a:Caballer&#237;as</Text> [NEWLINE]<Gender>Female</Gender> [NEWLINE]<Plural>0:1</Plural></Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_UNIT_DISBAND</Tag>
-     <English>[ICON_BULLET]The %s1_unit is lost</English>
-     <French>[ICON_BULLET]L'unit&#233; (%s1_unit) est perdue</French>
-     <German>[ICON_BULLET]Verlust der Einheit %s1_unit</German>
-     <Italian>[ICON_BULLET]L'unit&#224; %s1_unit &#232; perduta</Italian>
-     <Spanish>[ICON_BULLET]Se [NUM1:ha perdido el:ha perdido la:han perdido los:han perdido las] %s1_unit</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_FARM</Tag>
-     <English>Build a [LINK=IMPROVEMENT_FARM]Farm[\LINK]</English>
-     <French>Construire une [LINK=IMPROVEMENT_FARM]ferme[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_FARM]Bauernhof[\LINK] bauen</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_FARM]fattoria[\LINK]</Italian>
-     <Spanish>Construir una [LINK=IMPROVEMENT_FARM]granja[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_FISHING_BOATS</Tag>
-     <English>Create [LINK=IMPROVEMENT_FISHING_BOATS]Fishing Boats[\LINK]</English>
-     <French>Construire des [LINK=IMPROVEMENT_FISHING_BOATS]bateaux de p&#234;che[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_FISHING_BOATS]Fischerboote[\LINK] bauen</German>
-     <Italian>Construire dei [LINK=IMPROVEMENT_FISHING_BOATS]pescherecci[\LINK]</Italian>
-     <Spanish>Crear [LINK=IMPROVEMENT_FISHING_BOATS]barcos pesqueros[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_WHALING_BOATS</Tag>
-     <English>Create [LINK=IMPROVEMENT_WHALING_BOATS]Whaling Boats[\LINK]</English>
-     <French>Construire des [LINK=IMPROVEMENT_WHALING_BOATS]baleiniers[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_WHALING_BOATS]Walf&#228;nger[\LINK] bauen</German>
-     <Italian>Creare delle [LINK=IMPROVEMENT_WHALING_BOATS]baleniere[\LINK]</Italian>
-     <Spanish>Crear [LINK=IMPROVEMENT_WHALING_BOATS]barcos balleneros[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_MINE</Tag>
-     <English>Build a [LINK=IMPROVEMENT_MINE]Mine[\LINK]</English>
-     <French>Construire une [LINK=IMPROVEMENT_MINE]mine[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_MINE]Mine[\LINK] bauen</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_MINE]miniera[\LINK]</Italian>
-     <Spanish>Construir una [LINK=IMPROVEMENT_MINE]mina[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_WORKSHOP</Tag>
-     <English>Build a [LINK=IMPROVEMENT_WORKSHOP]Workshop[\LINK]</English>
-     <French>Construire un [LINK=IMPROVEMENT_WORKSHOP]atelier[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_WORKSHOP]Werkstatt[\LINK] bauen</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_WORKSHOP]bottega[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_WORKSHOP]taller[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_LUMBERMILL</Tag>
-     <English>Build a [LINK=IMPROVEMENT_LUMBERMILL]Lumbermill[\LINK]</English>
-     <French>Construire une [LINK=IMPROVEMENT_LUMBERMILL]scierie[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_LUMBERMILL]S&#228;gewerk[\LINK] bauen</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_LUMBERMILL]segheria[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_LUMBERMILL]aserradero[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_WINDMILL</Tag>
-     <English>Build a [LINK=IMPROVEMENT_WINDMILL]Windmill[\LINK]</English>
-     <French>Construire un [LINK=IMPROVEMENT_WINDMILL]moulin &#224; vent[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_WINDMILL]Windm&#252;hle[\LINK] bauen</German>
-     <Italian>Costruire un [LINK=IMPROVEMENT_WINDMILL]mulino a vento[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_WINDMILL]molino de viento[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_WATERMILL</Tag>
-     <English>Build a [LINK=IMPROVEMENT_WATERMILL]Watermill[\LINK]</English>
-     <French>Construire un [LINK=IMPROVEMENT_WATERMILL]moulin &#224; eau[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_WATERMILL]Wasserm&#252;hle[\LINK] bauen</German>
-     <Italian>Costruire un [LINK=IMPROVEMENT_WATERMILL]mulino ad acqua[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_WATERMILL]molino de agua[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_PLANTATION</Tag>
-     <English>Build a [LINK=IMPROVEMENT_PLANTATION]Plantation[\LINK]</English>
-     <French>Construire une [LINK=IMPROVEMENT_PLANTATION]plantation[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_PLANTATION]Plantage[\LINK] bauen</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_PLANTATION]piantagione[\LINK]</Italian>
-     <Spanish>Construir una [LINK=IMPROVEMENT_PLANTATION]plantaci&#243;n[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_QUARRY</Tag>
-     <English>Build a [LINK=IMPROVEMENT_QUARRY]Quarry[\LINK]</English>
-     <French>Construire une [LINK=IMPROVEMENT_QUARRY]carri&#232;re[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_QUARRY]Steinbruch[\LINK] errichten</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_QUARRY]cava[\LINK]</Italian>
-     <Spanish>Construir una [LINK=IMPROVEMENT_QUARRY]cantera[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_PASTURE</Tag>
-     <English>Build a [LINK=IMPROVEMENT_PASTURE]Pasture[\LINK]</English>
-     <French>Cr&#233;er un [LINK=IMPROVEMENT_PASTURE]p&#226;turage[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_PASTURE]Weideland[\LINK] errichten</German>
-     <Italian>Costruire un [LINK=IMPROVEMENT_PASTURE]pascolo[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_PASTURE]pastizal[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_CAMP</Tag>
-     <English>Build a [LINK=IMPROVEMENT_CAMP]Camp[\LINK]</English>
-     <French>Construire un [LINK=IMPROVEMENT_CAMP]camp[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_CAMP]Lager[\LINK] errichten</German>
-     <Italian>Costruire un [LINK=IMPROVEMENT_CAMP]campo[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_CAMP]campamento[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_WELL</Tag>
-     <English>Build a [LINK=IMPROVEMENT_WELL]Well[\LINK]</English>
-     <French>Creuser un [LINK=IMPROVEMENT_WELL]puit[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_WELL]Quelle[\LINK] errichten</German>
-     <Italian>Costruire un [LINK=IMPROVEMENT_WELL]pozzo[\LINK]</Italian>
-     <Spanish>Construir un [LINK=IMPROVEMENT_WELL]pozo[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_WINERY</Tag>
-     <English>Build a [LINK=IMPROVEMENT_WINERY]Winery[\LINK]</English>
-     <French>Construire une [LINK=IMPROVEMENT_WINERY]exploitation viticole[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_WINERY]Weingut[\LINK] errichten</German>
-     <Italian>Costruire un'[LINK=IMPROVEMENT_WINERY]azienda vinicola[\LINK]</Italian>
-     <Spanish>Construir una [LINK=IMPROVEMENT_WINERY]bodega[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_COTTAGE</Tag>
-     <English>Build a [LINK=IMPROVEMENT_COTTAGE]Cottage[\LINK]</English>
-     <French>Construire un [LINK=IMPROVEMENT_COTTAGE]cottage[\LINK]</French>
-     <German>[LINK=IMPROVEMENT_COTTAGE]H&#252;tte[\LINK] errichten</German>
-     <Italian>Costruire una [LINK=IMPROVEMENT_COTTAGE]villetta[\LINK]</Italian>
-     <Spanish>Construir una [LINK=IMPROVEMENT_COTTAGE]villa[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_REMOVE_JUNGLE</Tag>
-     <English>Remove [LINK=FEATURE_JUNGLE]Jungle[\LINK]</English>
-     <French>D&#233;fricher la [LINK=FEATURE_JUNGLE]jungle[\LINK]</French>
-     <German>[LINK=FEATURE_JUNGLE]Dschungel[\LINK] entfernen</German>
-     <Italian>Rimuovere la [LINK=FEATURE_JUNGLE]giungla[\LINK]</Italian>
-     <Spanish>Quitar [LINK=FEATURE_JUNGLE]selva[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILD_REMOVE_FOREST</Tag>
-     <English>Chop Down a [LINK=FEATURE_FOREST]Forest[\LINK]</English>
-     <French>D&#233;fricher la [LINK=FEATURE_FOREST]for&#234;t[\LINK]</French>
-     <German>[LINK=FEATURE_FOREST]Wald[\LINK] abholzen</German>
-     <Italian>Disboscare una [LINK=FEATURE_FOREST]foresta[\LINK]</Italian>
-     <Spanish>Talar un [LINK=FEATURE_FOREST]bosque[\LINK]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_IMPROVEMENT_DEFENSE_MODIFIER_EXTRA</Tag>
-     <English>[ICON_BULLET]Acts as a city for combat purposes</English>
-     <French>[ICON_BULLET]Compte comme une ville pour les combats</French>
-     <German>[ICON_BULLET]Dient als Standort f&#252;r milit&#228;rische Zwecke</German>
-     <Italian>[ICON_BULLET]Ai fini dei combattimenti, equivalgono a una citt&#224;</Italian>
-     <Spanish>[ICON_BULLET]Hace las veces de ciudad a efectos de combate.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_EVENT_FREE_SPECIALIST</Tag>
-     <English>[ICON_BULLET]%D1 free %s2_specialist in %s3_city</English>
-     <French>[ICON_BULLET]%D1 %s2_specialist [NUM1:gratuit:gratuits] &#224; %s3_city</French>
-     <German>[ICON_BULLET]%D1 [NUM1:freier Spezialist:freie Spezialisten] %s2_specialist in %s3_city</German>
-     <Italian>[ICON_BULLET]%D1 %s2_specialist [NUM2:gratuito:gratuita:gratuiti:gratuite] a %s3_city</Italian>
-     <Spanish>[ICON_BULLET]%s2:2_specialist gratis en %s3_city: (%D1)</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_IMPROVEMENT_WINERY</Tag>
-     <English>Winery</English>
-     <French>Exploitation viticole</French>
-     <German><Text>Weingut</Text> <Gender>Male</Gender> <Plural>0</Plural></German>
-     <Italian><Text>Azienda vinicola:Aziende vinicole</Text> <Gender>Female</Gender> <Plural>0:1</Plural></Italian>
-     <Spanish><Text>Bodega:Bodegas</Text> <Gender>Female</Gender> <Plural>0:1</Plural></Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_DECLARE_WAR_4</Tag>
-     <English>Now you shall pay for your many insults to the [OUR_EMPIRE]! ([OUR_NAME] declares war!)</English>
-     <French>Vous allez payer vos innombrables insultes envers les [OUR_EMPIRE] ! ([OUR_NAME] vous d&#233;clare la guerre !)</French>
-     <German>Jetzt werdet Ihr f&#252;r Eure Respektlosigkeit gegen&#252;ber dem [OUR_EMPIRE:3] b&#252;&#223;en! ([OUR_NAME] erkl&#228;rt Euch den Krieg!)</German>
-     <Italian>Ora pagherai per aver insultato l'[OUR_EMPIRE]! ([OUR_NAME] dichiara guerra!)</Italian>
-     <Spanish>&#161;Ahora pagar&#233;is vuestros incontables insultos al [OUR_EMPIRE]! (&#161;[OUR_NAME] os declara la guerra!)</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_CHINESE_LEADER_1</Tag>
-     <English>Greetings, oh wise ruler of the [CT_CIV_ADJ] peoples! [OUR_CIV_SHORT] is strong - shall we count you among our friends, or among our enemies?</English>
-     <French>Je vous salue, &#244; sage dirigeant des [CT_CIV_SHORT] ! Les [OUR_CIV_SHORT] sont forts... faut-il vous compter au nombre de nos amis ou de nos ennemis ?</French>
-     <German>Ich gr&#252;&#223;e Euch, oh weises Staatsoberhaupt des [CT_CIV_ADJ:2] Volkes! [OUR_CIV_SHORT] ist m&#228;chtig und stark - sollen wir Euch zu unseren Freunden z&#228;hlen oder als unsere Feinde betrachten?</German>
-     <Italian>Saluti, leader del saggio popolo [CT_CIV_ADJ:1]! I [OUR_CIV_SHORT] sono una nazione potente: dobbiamo considerarvi amici o nemici?</Italian>
-     <Spanish>Saludos, oh prudente gobernante del pueblo [CT_CIV_ADJ:1]. [OUR_CIV_SHORT] es fuerte. &#191;Hemos de contaros entre nuestros amigos o nuestros enemigos?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_PERICLES_1</Tag>
-     <English>As the leader of ancient [OUR_CIV_SHORT], father and mother of all that is civilized, I, [OUR_NAME], welcome the leader of the upstart [CT_CIV_ADJ] people into my august presence.</English>
-     <French>En tant que chef des v&#233;n&#233;rables [OUR_CIV_SHORT], p&#232;re et m&#232;re de tout ce qui est civilis&#233;, moi, [OUR_NAME], daigne accepter le chef des pr&#233;somptueux [CT_CIV_SHORT] en mon auguste pr&#233;sence.</French>
-     <German>Als Staatsoberhaupt des alten Volkes von [OUR_CIV_SHORT], dessen Ahnen bereits zivilisiert waren, hei&#223;e ich, [OUR_NAME], das Staatsoberhaupt des aufstrebenden [CT_CIV_ADJ:2] Volkes in meiner erhabenen Pracht willkommen.</German>
-     <Italian>Quale leader dell'antica civilt&#224; di [OUR_CIV_SHORT], padre e madre di tutto ci&#242; che &#232; civilizzato io, [OUR_NAME], accolgo il capo della crescente popolazione [CT_CIV_ADJ] alla mia augusta presenza.</Italian>
-     <Spanish>Como l&#237;der de la antigua tierra de [OUR_CIV_SHORT], cuna de la civilizaci&#243;n, yo, [OUR_NAME], os doy la bienvenida, oh, l&#237;der del pueblo [CT_CIV_ADJ:1], ante mi augusta presencia.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_FUR_OFFER_DEAL_3</Tag>
-     <English>The [OUR_EMPIRE] offers you this trade. I suggest you take it.</English>
-     <French>L'empire [OUR_CIV_ADJ] vous propose ceci. Je vous conseille d'accepter.</French>
-     <German>Das [OUR_EMPIRE:2] bietet Euch diesen Handel an. Ich w&#252;rde vorschlagen, Ihr schlagt ein!</German>
-     <Italian>L'[OUR_EMPIRE] ti offre questa possibilit&#224; di commercio. Ti suggerisco di accettarla.</Italian>
-     <Spanish>El [OUR_EMPIRE] os ofrece este intercambio. Os sugiero que lo acept&#233;is.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_JOIN_WAR_1</Tag>
-     <English>The %s1:2 are a threat to us all. Please join us in wiping them out.</English>
-     <French>Les %s1:3 repr&#233;sentent une menace pour nous tous. Joignez-vous &#224; nous pour les &#233;liminer.</French>
-     <German>Das %s1:3 Volk ist eine Bedrohung f&#252;r uns alle. Bitte helft uns bei seiner Vernichtung!</German>
-     <Italian>I %s1 sono un pericolo per tutti. Unisciti a noi e li toglieremo di mezzo.</Italian>
-     <Spanish>[NUM1:El:La:Los:Las] %s1:3 son una amenaza para todos nosotros. Un&#237;os a nosotros para borrarlos del mapa.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_JOIN_WAR_2</Tag>
-     <English>Care to assist us in destroying the evil %s1:2?</English>
-     <French>Acceptez-vous de nous aider &#224; &#233;craser les ignobles %s1:3 ?</French>
-     <German>Habt Ihr Interesse, uns bei der Vernichtung des %s1:2 Volkes behilflich zu sein?</German>
-     <Italian>Vuoi darci una mano a distruggere i malvagi %s1?</Italian>
-     <Spanish>&#191;Os importar&#237;a ayudarnos a destruir [NUM1:al malvado:a la malvada:a los malvados:a las malvadas] %s1:3?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_JOIN_WAR_3</Tag>
-     <English>Greetings, [CT_NAME]. The annoying %s1:2 must be destroyed, don't you agree?</English>
-     <French>Salutations, [CT_NAME]. Ne pensez-vous pas que ces maudits %s1:3 doivent &#234;tre extermin&#233;s ?</French>
-     <German>Seid gegr&#252;&#223;t, [CT_NAME]. Das l&#228;stige %s1:3 Volk muss vernichtet werden, findet Ihr nicht auch?</German>
-     <Italian>Salve, [CT_NAME]. I fastidiosi %s1 devono essere distrutti, non sei d'accordo?</Italian>
-     <Spanish>Saludos, [CT_NAME]. [NUM1:El molesto:La molesta:Los molestos:Las molestas] %s1:3 [NUM1:debe ser destruido:debe ser destruida: deben ser destruidos:deben ser destruidas], &#191;no os parece?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_JOIN_WAR_4</Tag>
-     <English>[CT_NAME]: we urgently request mighty [CT_CIV_SHORT]'s assistance in our crusade against the %s1:2!</English>
-     <French>[CT_NAME], nous demandons d'urgence le soutien des [CT_CIV_SHORT] dans notre croisade contre les %s1:3 !</French>
-     <German>[CT_NAME]: Wir bitten das m&#228;chtige Volk von [CT_CIV_SHORT] dringend um Hilfe bei unserem Kreuzzug gegen das %s1:3 Volk!</German>
-     <Italian>[CT_NAME], chiediamo urgentemente l'aiuto del[CT_CIV_SHORT:2] per la nostra crociata contro i %s1!</Italian>
-     <Spanish>[CT_NAME], solicitamos urgentemente la ayuda de la poderosa naci&#243;n de [CT_CIV_SHORT] en nuestra cruzada contra [NUM1:el:la:los:las] %s1:3.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_JOIN_WAR_5</Tag>
-     <English>The treacherous %s1:2 must be punished for their offences against civilization, [CT_NAME]! I assume we can count on your assistance?</English>
-     <French>Les perfides %s1:3 doivent &#234;tre punis pour leurs offenses envers la civilisation, [CT_NAME] ! J'imagine que nous pouvons compter sur votre aide ?</French>
-     <German>Das hinterh&#228;ltige %s1:3 Volk verdient es, f&#252;r seine Feinseligkeiten gegen andere Zivilisationen bestraft zu werden, [CT_NAME]! K&#246;nnen wir mit Eurer Unterst&#252;tzung rechnen?</German>
-     <Italian>I traditori %s1 devono essere puniti per le loro offese nei confronti delle altre civilt&#224;, [CT_NAME]! Possiamo contare sul tuo aiuto?</Italian>
-     <Spanish>&#161;Hemos de castigar [NUM1:al traicionero:a la traicionera:a los traicioneros:a las traicioneras] %s1:3 por sus ofensas contra la civilizaci&#243;n, [CT_NAME]! Suponemos que podemos contar con vuestra ayuda, &#191;no?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_JOIN_WAR_6</Tag>
-     <English>The nasty %s1:2 are plotting against us all, [CT_NAME]! Let us destroy them together!</English>
-     <French>Les inf&#226;mes %s1:3 complotent contre nous tous, [CT_NAME] ! D&#233;truisons-les ensemble !</French>
-     <German>Das unversch&#228;mte %s1:3 Volk hat sich gegen uns alle verschworen, [CT_NAME]! Lasst es uns gemeinsam vernichten!</German>
-     <Italian>I malvagi %s1 stanno complottando contro noi tutti, [CT_NAME]! Distruggiamoli assieme!</Italian>
-     <Spanish>&#161;[NUM1:El repugnante:La repugnante:Los repugnantes:Las repugnantes] %s1:3 est&#225;n conspirando contra todos nosotros, [CT_NAME]! &#161;Destruy&#225;moslos juntos!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_PEACE_1</Tag>
-     <English>We look forward to many years of peace between the [OUR_CIV_ADJ] and [CT_CIV_ADJ] Empires.</English>
-     <French>Nous nous r&#233;jouissons &#224; l'avance d'une paix durable entre les empires des [OUR_EMPIRE] et des [CT_EMPIRE].</French>
-     <German>Wir freuen uns auf viele Jahre des Friedens zwischen dem [OUR_CIV_ADJ:2] und dem [CT_CIV_ADJ:2] Volk.</German>
-     <Italian>Ci auguriamo molti anni di pace tra l'Impero [OUR_CIV_ADJ:1] e quello [CT_CIV_ADJ:1].</Italian>
-     <Spanish>Deseamos muchos a&#241;os de paz entre el imperio de los [OUR_CIV_ADJ:3] y el de los [CT_CIV_ADJ:3].</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_REJECT_DEMAND_6</Tag>
-     <English>You badly underestimate the [OUR_EMPIRE], [CT_NAME]. We would never agree to any such thing.</English>
-     <French>Vous avez s&#233;rieusement sous-estim&#233; les [OUR_CIV_SHORT], [CT_NAME]. Nous n'accepterons jamais une telle chose.</French>
-     <German>Ihr untersch&#228;tzt das [OUR_EMPIRE:2] aufs &#196;rgste, [CT_NAME]! So einem Vorschlag w&#252;rden wir nie zustimmen!</German>
-     <Italian>Hai drammaticamente sottovalutato l'[OUR_EMPIRE], [CT_NAME]. Non accetteremo mai una proposta del genere.</Italian>
-     <Spanish>Subestim&#225;is enormemente al [OUR_EMPIRE], [CT_NAME]. Nunca accederemos a algo as&#237;.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_STOP_TRADING_1</Tag>
-     <English>It can no longer be tolerated - we demand that you cancel your deals with the vile %s1:2!</English>
-     <French>C'est intol&#233;rable. Nous vous demandons d'annuler imm&#233;diatement tous vos accords avec les m&#233;prisables %s1:3 !</French>
-     <German>Das kann nicht l&#228;nger toleriert werden! Wir verlangen, dass Ihr Eure Handelsbeziehungen mit dem widerw&#228;rtigen %s1:2 Volk einstellt!</German>
-     <Italian>Questo atteggiamento non pu&#242; pi&#249; essere tollerato; ti chiediamo di annullare i tuoi accordi con [NUM1:il vile:la vile:i vili:le vili] %s1:3!</Italian>
-     <Spanish>Ya no podemos permitirnos ser tolerantes. &#161;Os exigimos que cancel&#233;is vuestro trato con [NUM1:el vil:la vil:los viles:las viles] %s1:3!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_THANKS_11</Tag>
-     <English>I [OUR_NAME], Godlike Ruler of the Mighty [OUR_EMPIRE], do hereby offer my sincerest thanks to my good friend, [CT_NAME].</English>
-     <French>Moi, [OUR_NAME], r&#233;gnant sans partage sur le puissant empire [OUR_CIV_ADJ], je souhaite exprimer ici mes plus sinc&#232;res remerciements &#224; [CT_NAME], en toute amiti&#233;.</French>
-     <German>Ich, [OUR_NAME], gottgleiches Staatsoberhaupt des m&#228;chtigen [OUR_EMPIRE:3]es, entbiete Euch, [CT_NAME], meinen tief empfundenen Dank.</German>
-     <Italian>Io [OUR_NAME], leader divino dell'[OUR_EMPIRE], offro i miei pi&#249; sinceri ringraziamenti per l'amicizia con [CT_NAME].</Italian>
-     <Spanish>Nos, [OUR_NAME], gobernante por la gracia divina del poderoso [OUR_EMPIRE], ofrecemos nuestro m&#225;s sincero agradecimiento a [CT_NAME], gran camarada.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_WORST_ENEMY_1</Tag>
-     <English>Watch out for our worst enemy - [OUR_WORST_ENEMY]! They can't be trusted.</English>
-     <French>Prenez garde &#224; nos pires ennemis ([OUR_WORST_ENEMY]) ! Ils ne sont pas dignes de confiance.</French>
-     <German>Nehmt Euch vor unserem schlimmsten Feind in Acht - [OUR_WORST_ENEMY]! Vertrauen ist hier unangebracht!</German>
-     <Italian>Attenzione al nostro pi&#249; pericoloso nemico - [OUR_WORST_ENEMY:2]! Non possiamo fidarci di loro.</Italian>
-     <Spanish>&#161;Cuidado con el [OUR_WORST_ENEMY], nuestro peor enemigo! No conviene fiarse.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>AI_DIPLO_WORST_ENEMY_TRADING_1</Tag>
-     <English>We would encourage you to stop trading with our bitter enemy - [OUR_WORST_ENEMY]!</English>
-     <French>Nous vous conseillons de cesser tout commerce avec nos pires ennemis ([OUR_WORST_ENEMY]) !</French>
-     <German>Wir raten Euch, Eure Handelsbeziehungen mit [OUR_WORST_ENEMY] - dem Staatsoberhaupt unserer &#228;rgsten Feinde - schleunigst einzustellen!</German>
-     <Italian>Vorremmo che la smettessi di commerciare con il nostro nemico giurato - [OUR_WORST_ENEMY:2]!</Italian>
-     <Spanish>Os sugerimos que dej&#233;is de comerciar con el [OUR_WORST_ENEMY], nuestro enemigo m&#225;s ac&#233;rrimo.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CIVIC_MILITARY_SUPPORT_COSTS</Tag>
-     <English>[ICON_BULLET]%D1_Change%F2_Icon Support Cost per Military Unit</English>
-     <French>[ICON_BULLET]%D1_Change%F2_Icon Co&#251;t de ravitaillement par unit&#233; militaire</French>
-     <German>[ICON_BULLET]%D1_Change%F2_Icon Unterhaltskosten pro Milit&#228;reinheit</German>
-     <Italian>[ICON_BULLET]%D1_Change%F2_Icon Costo di supporto per le unit&#224; militari</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change %F2_Icon de coste de abastecimiento por cada unidad militar</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_POPUP_ARE_YOU_SURE_ACTION</Tag>
-     <English>Are you sure you want to %s1_ActionName?</English>
-     <French>Voulez-vous vraiment : %s1_ActionName ?</French>
-     <German>Soll diese Aktion wirklich ausgef&#252;hrt werden?: %s1_ActionName</German>
-     <Italian>Sei sicuro di voler eseguire l'azione %s1_ActionName</Italian>
-     <Spanish>&#191;Seguro que quer&#233;is %s1_ActionName?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_CIVIC_HEALTH_HAPPINESS_CHANGE</Tag>
-     <English>[ICON_BULLET]%D1_Change%F2_HappyOrHealth with[SPACE]</English>
-     <French>[ICON_BULLET]%D1_Change%F2_HappyOrHealth avec[SPACE]</French>
-     <German>[ICON_BULLET]%D1_Change%F2_HappyOrHealth mit[SPACE]</German>
-     <Italian>[ICON_BULLET]%D1_Change%F2_HappyOrHealth con[SPACE]</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change %F2_HappyOrHealth con[SPACE]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_BUILDING_HEALTH_HAPPINESS_CHANGE</Tag>
-     <English>[ICON_BULLET]%D1_Change%F2_HappyOrHealth from[SPACE]</English>
-     <French>[ICON_BULLET]%D1_Change%F2_HappyOrHealth en raison de[SPACE]</French>
-     <German>[ICON_BULLET]%D1_Change%F2_HappyOrHealth durch[SPACE]</German>
-     <Italian>[ICON_BULLET]%D1_Change %F2_HappyOrHealth da[SPACE]</Italian>
-     <Spanish>[ICON_BULLET]%D1_Change %F2_HappyOrHealth por[SPACE]</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_MISC_REVOLT_IN_CITY</Tag>
-     <English>A %s1_CivAdj revolt has taken place in %s2_CityName!</English>
-     <French>Les %s1:3_CivAdj se r&#233;voltent &#224; %s2_CityName !</French>
-     <German>In %s2_CityName hat eine %s1:3_CivAdj Revolte stattgefunden!</German>
-     <Italian>Una rivolta %s1_CivAdj &#232; scoppiata a %s2_CityName!</Italian>
-     <Spanish>Ha tenido lugar una rebeli&#243;n %s1:2_CivAdj en %s2_CityName.</Spanish>
-   </TEXT>
+    <Tag>TXT_KEY_BUILDING_COASTAL_TRADE_ROUTES</Tag>
+    <English>[ICON_BULLET]%D1_Change Trade Routes in All Coastal Cities</English>
+    <French>[ICON_BULLET]%D1_Change [NUM1:Route commerciale:Routes commerciales] dans toutes les villes c&#244;ti&#232;res</French>
+    <German>[ICON_BULLET]%D1_Change Handelswege in allen K&#252;stenst&#228;dten</German>
+    <Italian>[ICON_BULLET]%D1_Change rotte commerciali in tutte le citt&#224; costiere</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change rutas comerciales en todas las ciudades costeras</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISSION_JOIN_CITY_HELP</Tag>
+    <English>This order will make this unit join the city as a specialist. It will consume the unit.</English>
+    <French>Ordonner &#224; cette unit&#233; de rejoindre la ville en tant que sp&#233;cialiste. Elle est alors d&#233;truite.</French>
+    <German>Opfern Sie diese Einheit und befehlen Sie ihr, sich als Spezialist in der Stadt anzusiedeln.</German>
+    <Italian>Con questo ordine, i Grandi Personaggi possono unirsi alla citt&#224; in veste di super specialisti, venendo sacrificati nel procedimento.</Italian>
+    <Spanish>Esta orden hace que esta unidad se una a la ciudad como un especialista, consumi&#233;ndose en el proceso.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_NATIONAL_WONDER</Tag>
+    <English>Congratulations, you have completed your first National Wonder ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) in %s2City_Name! These powerful buildings are useful for specializing your cities. In PAE there is no National Wonder limit in a city.</English>
+    <French>F&#233;licitations, vous venez de construire votre premi&#232;re merveille nationale ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) &#224; %s2City_Name ! Ces puissants &#233;difices permettent de sp&#233;cialiser vos villes. Dans PAE, il n'y a pas de limite au nombre de merveilles nationales par ville.</French>
+    <German>Herzlichen Gl&#252;ckwunsch! Ihr habt Euer erstes Nationales Wunder ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) in %s2City_Name fertig gestellt! Diese m&#228;chtigen Geb&#228;ude eignen sich f&#252;r die Spezialisierung Eurer St&#228;dte. In PAE gibt es keine Anzahlbeschr&#228;nkung von Nationalwundern in einer Stadt.</German>
+    <Italian>Congratulazioni, hai completato la tua prima Meraviglia Nazionale ([COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]) a %s2City_Name! Questi potenti edifici sono particolarmente indicati per specializzare le tue citt&#224;. In PAE there is no National Wonder limit in a city.</Italian>
+    <Spanish>Felicidades, hab&#233;is completado en %s2City_Name vuestra primera maravilla nacional, [COLOR_BUILDING_TEXT]%s1Building_Name[COLOR_REVERT]. Estos poderosos edificios son &#250;tiles para especializar las ciudades. En PAE no hay limitaci&#243;n de maravillas nacionales por ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MAININTERFACE_FIELDOFVIEW_TEXT</Tag>
+    <English>Field of view</English>
+    <French>Champ de vision (FOV)</French>
+    <German>Sichtfeld</German>
+    <Italian>Campo di vista</Italian>
+    <Spanish>Campo de visi&#243;n</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRAIT_TRADE_YIELD_MODIFIERS</Tag>
+    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield from Trade Routes</English>
+    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield en raison des routes commerciales</French>
+    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield durch Handelswege</German>
+    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield da Rotte commerciali</Italian>
+    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1% %F2_yield por Rutas comerciales</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_POPUP_CONFIRM_SELL_UNIT</Tag>
+    <English>Do you really want to sell this unit?</English>
+    <French>Voulez-vous vraiment vendre cette unit&#233; ?</French>
+    <German>Wollt Ihr diese Einheit wirklich verkaufen?</German>
+    <Italian>Vuoi davvero vendere questa unit&#224;?</Italian>
+    <Spanish>&#191;De verdad quieres vender esta unidad?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_POPUP_NO2</Tag>
+    <English>No, rather not!</English>
+    <French>Non, surtout pas!</French>
+    <German>Nein, lieber nicht!</German>
+    <Italian>No, anzi no!</Italian>
+    <Spanish>No, m&#225;s bien no!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_POPUP_YES2</Tag>
+    <English>Yes, it needs to be.</English>
+    <French>Oui, il le faut.</French>
+    <German>Ja, es soll so sein.</German>
+    <Italian>S&#236;, ha bisogno di essere.</Italian>
+    <Spanish>S&#237;, tiene que ser.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_ASSIMILATION_HELP</Tag>
+    <English>[ICON_BULLET]Every conquered city has at least 5 pop[NEWLINE][ICON_BULLET]Slaves and specialists stay in city and buildings[NEWLINE][ICON_BULLET]33% chance of tech conquering (not only with pop>2)[NEWLINE][ICON_BULLET]Temples are not destroyed[NEWLINE][ICON_BULLET]No beatgold[NEWLINE][ICON_BULLET]No partisans</English>
+    <French>[ICON_BULLET]Every conquered city has at least 5 pop[NEWLINE][ICON_BULLET]Slaves and specialists stay in city and buildings[NEWLINE][ICON_BULLET]33% chance of tech conquering (not only with pop>2)[NEWLINE][ICON_BULLET]Temples are not destroyed[NEWLINE][ICON_BULLET]No beatgold[NEWLINE][ICON_BULLET]No partisans</French>
+    <German>[ICON_BULLET]Jede eroberte Stadt hat mind. 5 Pop[NEWLINE][ICON_BULLET]Sklaven und Spezialisten bleiben in Stadt und Geb&#228;uden angesiedelt[NEWLINE][ICON_BULLET]33% Chance einer Tech bei Stadteroberung (nicht mehr nur bei Pop>2)[NEWLINE][ICON_BULLET]Tempel werden nicht abgerissen[NEWLINE][ICON_BULLET]Kein Beutegold[NEWLINE][ICON_BULLET]Keine Partisanen</German>
+    <Italian>[ICON_BULLET]Every conquered city has at least 5 pop[NEWLINE][ICON_BULLET]Slaves and specialists stay in city and buildings[NEWLINE][ICON_BULLET]33% chance of tech conquering (not only with pop>2)[NEWLINE][ICON_BULLET]Temples are not destroyed[NEWLINE][ICON_BULLET]No beatgold[NEWLINE][ICON_BULLET]No partisans</Italian>
+    <Spanish>[ICON_BULLET]Cualquier ciudad conquistada que tenga al menos un tama&#241;o de 5 de poblaci&#243;n[NEWLINE][ICON_BULLET]Esclavos y especialistas se mantendr&#225;n en la ciudad y edificios[NEWLINE][ICON_BULLET]33% de oportunidad de conquista tecnol&#243;gica (no solo con pob>2)[NEWLINE][ICON_BULLET]Los templos no son destruidos[NEWLINE][ICON_BULLET]Sin bot&#237;n de guerra[NEWLINE][ICON_BULLET]Sin partisanos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_PATRONAT_HELP</Tag>
+    <English>[ICON_BULLET]House slaves can become to settled free citizen (every 4 turns, 20% chance)</English>
+    <French>[ICON_BULLET]House slaves can become to settled free citizen (every 4 turns, 20% chance)</French>
+    <German>[ICON_BULLET]Haussklaven k&#246;nnen zu angesiedelte freie B&#252;rger werden (Alle 4 Runden, 20% Chance)</German>
+    <Italian>[ICON_BULLET]House slaves can become to settled free citizen (every 4 turns, 20% chance)</Italian>
+    <Spanish>[ICON_BULLET]Los esclavos dom&#233;sticos pueden volverse ciudadanos libres (cada 4 turnos, 20%)</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TECH_KRIEGERETHOS_HELP</Tag>
+    <English>[ICON_BULLET] +1 XP for victorious units (per fight)[NEWLINE][ICON_BULLET] additional +1 XP for conquerors and aggressive leaderheads[NEWLINE][ICON_BULLET] German and Celt units get ranks now</English>
+    <French>[ICON_BULLET] +1 XP for victorious units (per fight)[NEWLINE][ICON_BULLET] additional +1 XP for conquerors and aggressive leaderheads[NEWLINE][ICON_BULLET] German and Celt units get ranks now</French>
+    <German>[ICON_BULLET]+1 XP f&#252;r siegreiche Einheiten (pro Kampf)[NEWLINE][ICON_BULLET]zus&#228;tzliche +1 XP f&#252;r Eroberer und aggressive Staatsoberh&#228;upter[NEWLINE][ICON_BULLET]Einheiten der Germanen und Kelten erhalten nun R&#228;nge</German>
+    <Italian>[ICON_BULLET] +1 XP for victorious units (per fight)[NEWLINE][ICON_BULLET] additional +1 XP for conquerors and aggressive leaderheads[NEWLINE][ICON_BULLET] German and Celt units get ranks now</Italian>
+    <Spanish>[ICON_BULLET] +1 XP para unidades victoriosas (por batalla)[NEWLINE][ICON_BULLET] +1 XP adicional por l&#237;deres conquistadores y agresivos[NEWLINE][ICON_BULLET] Unidades germanas y celtas tienen rangos ahora</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_BOMBARD_DEFENSE_MOD</Tag>
+    <English>[ICON_BULLET]%D1_Mod%% Damage to Defenses from Bombardment</English>
+    <French>[ICON_BULLET]%D1_Mod%% D&#233;g&#226;ts inflig&#233;s aux d&#233;fenses apr&#232;s un bombardement</French>
+    <German>[ICON_BULLET]%D1_Mod%% Bombardierungsschaden gegen Defensivanlagen</German>
+    <Italian>[ICON_BULLET]%D1_Mod%% di danni alle difese a causa del bombardamento</Italian>
+    <Spanish>[ICON_BULLET]%D1_Mod%% de da&#241;o a las defensas por ca&#241;oneo</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_YOU_MADE_PEACE_WITH</Tag>
+    <English>You have made peace with %s1_TeamName!</English>
+    <French>Vous avez fait la paix avec %s1_TeamName!</French>
+    <German>Ihr habt Frieden mit %s1_TeamName geschlossen!</German>
+    <Italian>Hai fatto pace con %s1_TeamName!</Italian>
+    <Spanish>Hab&#233;is firmado la paz con %s1_TeamName</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PEDIA_SCREEN_TOP</Tag>
+    <English>Index</English>
+    <French>Index</French>
+    <German>Index</German>
+    <Italian>Torna a civilopedia</Italian>
+    <Spanish>Inicio</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_ALEXANDER_1</Tag>
+    <English>Greetings, [CT_NAME]! I am [OUR_NAME], ruler of the warlike [OUR_EMPIRE]! Let us join together and crush the world's armies beneath our sandals! It'll be way cool!</English>
+    <French>Mes hommages, [CT_NAME] ! Je suis [OUR_NAME], roi des [OUR_EMPIRE] belliqueux ! Unissons nos forces pour &#233;craser les arm&#233;es du monde sous nos sandales ! Ce serait extra, non ?</French>
+    <German>Seid gegr&#252;&#223;t, [CT_NAME]! Ich bin [OUR_NAME], Staatsoberhaupt des [OUR_EMPIRE:3]es! Lasst uns mit vereinten Kr&#228;ften die Armeen dieser Welt ausradieren! Glaubt mir, wir werden viel Spa&#223; haben!</German>
+    <Italian>Salve, [CT_NAME]! Io sono [OUR_NAME], dominatore del bellicoso [OUR_EMPIRE]! Uniamo le nostre forze e schiacciamo il mondo sotto i nostri sandali... Sar&#224; divertente!</Italian>
+    <Spanish>&#161;Saludos, [CT_NAME]! &#161;Soy [OUR_NAME], regente del belicoso [OUR_EMPIRE]! &#161;Un&#225;monos y aplastemos el mundo bajo nuestras sandalias! &#161;Ser&#225; muy divertido!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_GENGHIS_KHAN_1</Tag>
+    <English>Welcome, oh leader of the [CT_EMPIRE]. My horde can beat your horde any day of the week. Shall we be friends or enemies?</English>
+    <French>Bienvenue, &#244; chef des [CT_EMPIRE]. Ma horde peut &#233;craser la v&#244;tre chaque jour. Serons-nous amis ou ennemis ?</French>
+    <German>Willkommen, wertes Staatsoberhaupt des [CT_EMPIRE:3]es. Meine Truppen k&#246;nnen Euren Truppen jederzeit die Stirn bieten. Also, wie wollt Ihr es halten? Werden wir Freunde oder Feinde sein?</German>
+    <Italian>Ti do il benvenuto, grande leader dell'[CT_EMPIRE]. Le mie orde potrebbero sconfiggere le tue in qualsiasi momento: vogliamo essere amici o nemici?</Italian>
+    <Spanish>Os damos la bienvenida, oh l&#237;der del [CT_EMPIRE]. Mi horda puede derrotar a la vuestra siempre que se le antoje. &#191;Seremos amigos o enemigos?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_CIVIC_PRESSURE_5</Tag>
+    <English>%s1 is extremely useful, [CT_NAME]. [CT_CIV_SHORT] would do well to adopt it.</English>
+    <French>[CT_NAME], nous trouvons ceci extr&#234;mement utile : %s1. Les [CT_EMPIRE] feraient mieux de l'adopter.</French>
+    <German>Die Staatsform %s1 ist extrem n&#252;tzlich, [CT_NAME]. [CT_CIV_SHORT] w&#228;re gut beraten, sie anzunehmen.</German>
+    <Italian>La forma di governo: %s1 &#232; estremamente utile, [CT_NAME]. [CT_CIV_SHORT:1] farebbe bene ad adottarla.</Italian>
+    <Spanish>[NUM1:El:La:Los:Las] %s1 [NUM1:es muy &#250;til:es muy &#250;til:son muy &#250;tiles:son muy &#250;tiles], [CT_NAME]. [CT_CIV_SHORT] har&#237;a bien en [NUM1:adoptarlo:adoptarla:adoptarlos:adoptarlas].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_POPUP_ENTER_LANDS_WAR</Tag>
+    <English>Entering [COLOR_HIGHLIGHT_TEXT]%s1_CivAdj[COLOR_REVERT] lands will trigger WAR! Are you sure?</English>
+    <French>Une intrusion sur le territoire [COLOR_HIGHLIGHT_TEXT]%s1_CivAdj[COLOR_REVERT] d&#233;clenchera une GUERRE ! Vous confirmez ?</French>
+    <German>Wenn wir in das [COLOR_HIGHLIGHT_TEXT]%s1:3_CivAdj[COLOR_REVERT] Gebiet vordringen, l&#246;sen wir einen KRIEG aus! Seid Ihr sicher?</German>
+    <Italian>Entrando nel territorio [COLOR_HIGHLIGHT_TEXT]%s1_CivAdj[COLOR_REVERT] scatenerai una GUERRA! Sei sicuro?</Italian>
+    <Spanish>&#161;Entrar en las tierras de los [COLOR_HIGHLIGHT_TEXT]%s1:3_CivAdj[COLOR_REVERT] significar&#225; la GUERRA! &#191;Seguro que eso es lo que quer&#233;is?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_PROGRESS_TOWARDS_TECH</Tag>
+    <English>You have come %d1[ICON_RESEARCH] closer to a breakthrough on [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT]</English>
+    <French>Vous avez progress&#233; de %d1[ICON_RESEARCH] dans la recherche de la technologie : [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT]</French>
+    <German>Ihr seid einem Durchbruch in der Technologie [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT] %d1[ICON_RESEARCH] n&#228;hergekommen</German>
+    <Italian>Sei %d1[ICON_RESEARCH] pi&#249; vicino a una scoperta sulla tecnologia [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT]</Italian>
+    <Spanish>Est&#225;is un %d1 [ICON_RESEARCH] m&#225;s cerca del adelanto [NUM2:del:de la:de los:de las] [COLOR_TECH_TEXT]%s2_TechName[COLOR_REVERT].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_TECH_GAINED_PERCENT</Tag>
+    <English>[ICON_BULLET]%D1_num[ICON_RESEARCH] towards [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</English>
+    <French>[ICON_BULLET]Progression de %D1_num[ICON_RESEARCH] dans la recherche de la technologie : [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</French>
+    <German>[ICON_BULLET]%D1_num[ICON_RESEARCH] f&#252;r die Technologie [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</German>
+    <Italian>[ICON_BULLET]%D1_num[ICON_RESEARCH] verso [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</Italian>
+    <Spanish>[ICON_BULLET]%D1_num [ICON_RESEARCH] hacia [NUM2:el:la:los:las] [COLOR_HIGHLIGHT_TEXT]%s2[COLOR_REVERT]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_IMPROVEMENT_GROWTH</Tag>
+    <English>[ICON_BULLET]A [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT] is built</English>
+    <French>[ICON_BULLET][NUM1:Un:Une] [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT] [NUM1:a &#233;t&#233; construit:a &#233;t&#233; construite]</French>
+    <German>[ICON_BULLET]Die Modernisierung [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT] wird errichtet</German>
+    <Italian>[ICON_BULLET][NUM1:&#200; stato costruito un:&#200; stata costruita una] [COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT]</Italian>
+    <Spanish>[ICON_BULLET]Se [NUM1:ha construido un:ha construido una:han construido unos:han construido unas] [COLOR_HIGHLIGHT_TEXT]%s1:1_improvement[COLOR_REVERT]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_IMPROVEMENT_REMOVE</Tag>
+    <English>[ICON_BULLET]The %s1_improvement is destroyed</English>
+    <French>[ICON_BULLET]L'am&#233;nagement ([COLOR_HIGHLIGHT_TEXT]%s1_improvement[COLOR_REVERT]) a &#233;t&#233; d&#233;truit</French>
+    <German>[ICON_BULLET]Die Modernisierung %s1_improvement wird zerst&#246;rt</German>
+    <Italian>[ICON_BULLET]%s1_improvement [NUM1:distrutto:distrutta]</Italian>
+    <Spanish>[ICON_BULLET][NUM1:El:La:Los:Las] %s1:1_improvement [NUM1:ha quedado destruido:ha quedado destruida:han quedado destruidos:han quedado destruidas]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_UNIT_EXPERIENCE</Tag>
+    <English>[ICON_BULLET]The %s2_unit receives %d1 XP</English>
+    <French>[ICON_BULLET]L'unit&#233; ([COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT]) re&#231;oit %d1 EXP</French>
+    <German>[ICON_BULLET]Die Einheit %s2_unit erh&#228;lt %d1 EP</German>
+    <Italian>[ICON_BULLET]L'unit&#224; %s2_unit riceve %d1 XP</Italian>
+    <Spanish>[ICON_BULLET][NUM2:El:La:Los:Las] %s2_unit [NUM2:recibe:recibe:reciben:reciben] %d1 PE</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_ADDITIONAL_CHANCE</Tag>
+    <English>[NEWLINE][ICON_BULLET]In addition %s2_txt_key_event_delay_below, %d1%% chance for:</English>
+    <French>[NEWLINE][ICON_BULLET]Ainsi que%s2_txt_key_event_delay_below, %d1%% de chances pour :</French>
+    <German>[NEWLINE][ICON_BULLET]Zus&#228;tzlich %s2_txt_key_event_delay_below %d1%% Wahrscheinlichkeit f&#252;r:</German>
+    <Italian>[NEWLINE][ICON_BULLET]Inoltre %s2_txt_key_event_delay_below, %d1%% di probabilit&#224; che:</Italian>
+    <Spanish>[NEWLINE][ICON_BULLET]Adem&#225;s %s2_txt_key_event_delay_below, %d1%% de probabilidad de:</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_FREE_SPECIALISTS</Tag>
+    <English>[ICON_BULLET]%D1_Change Free Specialists</English>
+    <French>[ICON_BULLET]%D1_Change [NUM1:sp&#233;cialiste gratuit:sp&#233;cialistes gratuits]</French>
+    <German>[ICON_BULLET]%D1_Change freie Spezialisten</German>
+    <Italian>[ICON_BULLET]%D1_Change specialisti gratuiti</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change especialistas gratis</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_FREE_SPECIALIST</Tag>
+    <English>[ICON_BULLET]%D1_Change Free [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT]</English>
+    <French>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][NUM1: :s ][COLOR_REVERT][NUM1:gratuit:gratuits]</French>
+    <German>[ICON_BULLET]%D1_Change freien Spezialisten [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT]</German>
+    <Italian>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change [COLOR_HIGHLIGHT_TEXT][LINK=literal]%s2_SpclstName[\LINK][COLOR_REVERT] gratis</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_TRADE_ROUTES</Tag>
+    <English>[ICON_BULLET]%D1_Change Trade Routes</English>
+    <French>[ICON_BULLET]%D1_Change [NUM1:Route commerciale:Routes commerciales]</French>
+    <German>[ICON_BULLET]%D1_Change Handelswege</German>
+    <Italian>[ICON_BULLET]%D1_Change rotte commerciali</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change rutas comerciales</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_TRADE_ROUTES_ALL_CITIES</Tag>
+    <English>[ICON_BULLET]%D1_Change Trade Routes in All Cities</English>
+    <French>[ICON_BULLET]%D1_Change [NUM1:Route commerciale:Routes commerciales] dans toutes les villes</French>
+    <German>[ICON_BULLET]%D1_Change Handelswege in allen St&#228;dten</German>
+    <Italian>[ICON_BULLET]%D1_Change rotte commerciali in tutte le citt&#224;</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change rutas comerciales en todas las ciudades</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_REMOVE_BUILDING</Tag>
+    <English>[ICON_BULLET]Lose the [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT]</English>
+    <French>[ICON_BULLET]Perdre le b&#226;timent ([COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT])</French>
+    <German>[ICON_BULLET]Geb&#228;ude [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT] entfernen</German>
+    <Italian>[ICON_BULLET]Perdere [NUM1:un:una] [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT]</Italian>
+    <Spanish>[ICON_BULLET]Perder [NUM1:el:la:los:las] [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_ATTACK</Tag>
+    <English>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat Attack</English>
+    <French>[ICON_BULLET]Attaque sur une case de %s2_TerrOrFeat %D1_Change%%</French>
+    <German>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat-Angriff</German>
+    <Italian>[ICON_BULLET]%D1_Change%% all'attacco in %s2_TerrOrFeat</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change%% a ataque a %s2:2_TerrOrFeat</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PROMOTION_ATTACK_TEXT</Tag>
+    <English>[ICON_BULLET]%D1_Bonus%% %s2_TerrFeat Attack</English>
+    <French>[ICON_BULLET]Attaque sur une case de %s2_TerrFeat %D1_Bonus%%</French>
+    <German>[ICON_BULLET]%D1_Bonus%% %s2_TerrFeat-Angriff</German>
+    <Italian>[ICON_BULLET]%D1_Bonus%% di attacco in %s2_TerrFeat</Italian>
+    <Spanish>[ICON_BULLET]%D1_Bonus%% a ataque a %s2:2_TerrFeat</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_DEFENSE</Tag>
+    <English>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat Defense</English>
+    <French>[ICON_BULLET]D&#233;fense sur une case de %s2_TerrOrFeat %D1_Change%%</French>
+    <German>[ICON_BULLET]%D1_Change%% Verteidigung f&#252;r %s2_TerrOrFeat</German>
+    <Italian>[ICON_BULLET]%D1_Change%% di difesa nella %s2:2_TerrOrFeat</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change%% a defender %s2:2_TerrOrFeat</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STRENGTH</Tag>
+    <English>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat Strength</English>
+    <French>[ICON_BULLET]Combat sur une case de %s2_TerrOrFeat %D1_Change%% (attaque et d&#233;fense)</French>
+    <German>[ICON_BULLET]%D1_Change%% %s2_TerrOrFeat-St&#228;rke</German>
+    <Italian>[ICON_BULLET]%D1_Change%% alla forza in %s2_TerrOrFeat</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change%% a fuerza en %s2:2_TerrOrFeat</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_CITY_STRENGTH_MOD</Tag>
+    <English>[ICON_BULLET]%D1_Change%% City Strength</English>
+    <French>[ICON_BULLET]Combat en ville %D1_Change%% (attaque et d&#233;fense)</French>
+    <German>[ICON_BULLET]%D1_Change%% Stadtst&#228;rke</German>
+    <Italian>[ICON_BULLET]%D1_Change%% alla forza della citt&#224;</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change%% a la fuerza de la ciudad</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_SPY_INTERCEPTED_SPY</Tag>
+    <English>A %s1_unit operating near %s3_city has been thwarted by %s2_civ_adjective counterintelligence agents!</English>
+    <French>Une unit&#233; (%s1_unit) op&#233;rant pr&#232;s de la ville de %s3_city a &#233;t&#233; neutralis&#233;e par les agents du contre-espionnage %s2_civ_adjective !</French>
+    <German>Der Einsatz einer Einheit %s1_unit in der N&#228;he von %s3_city wurde von %s2:2_civ_adjective Spionageabwehr-Agenten verhindert!</German>
+    <Italian>Una unit&#224; %s1_unit operante nei pressi di %s3_city &#232; stata fermata dagli agenti del controspionaggio %s2_civ_adjective!</Italian>
+    <Spanish>&#161;Los agentes de contraespionaje %s2:3_civ_adjective han desenmascarado a [NUM1:un:una:unos:unas] %s1_unit que [NUM1:operaba:operaba:operaban:operaban] cerca de %s3_city!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_UNIT_COMBAT_PROMOTION</Tag>
+    <English>[ICON_BULLET]All %s1_units are promoted to [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</English>
+    <French>[ICON_BULLET][NUM1:Tous:Toutes] les %s1_units re&#231;oivent la promotion [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</French>
+    <German>[ICON_BULLET]Alle Einheiten %s1_units erhalten die Bef&#246;rderung [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</German>
+    <Italian>[ICON_BULLET]Tutte le unit&#224; %s1_units ricevono la promozione [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</Italian>
+    <Spanish>[ICON_BULLET][NUM1:Todos los:Todas las:Todos los:Todos las] %s1:2_units ascienden a [COLOR_HIGHLIGHT_TEXT]%s2_promotion[COLOR_REVERT]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_IS_SPY</Tag>
+    <English>[ICON_BULLET]Can perform Espionage Missions in an opponent's territory. The longer the unit is stationary the lower the cost to perform a Mission</English>
+    <French>[ICON_BULLET]Peut ex&#233;cuter des missions d'espionnage en territoire ennemi. Le co&#251;t d'ex&#233;cution des missions d&#233;cro&#238;t en fonction du temps de d&#233;ploiement de votre unit&#233;.</French>
+    <German>[ICON_BULLET]Kann Spionagemissionen in feindlichem Territorium ausf&#252;hren. Je l&#228;nger sich die Einheit am selben Ort befindet, umso weniger kostet die Ausf&#252;hrung einer Mission</German>
+    <Italian>[ICON_BULLET]Pu&#242; effettuare missioni di spionaggio nei territori nemici. Pi&#249; l'unit&#224; &#232; stazionaria, minore &#232; il costo per portare a termine la missione.</Italian>
+    <Spanish>[ICON_BULLET]Puede llevar a cabo misiones de espionaje en el territorio de un oponente. Cuanto m&#225;s tiempo permanezca quieta la unidad, menor ser&#225; el coste de realizar la misi&#243;n.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_IMMOBILE_UNIT</Tag>
+    <English>[ICON_BULLET]The %s2_unit will be busy for %d1 [NUM1:turn:turns], unavailable for any other duty except self-defense.</English>
+    <French>[ICON_BULLET]L'unit&#233; (%s2_unit) sera occup&#233;e pendant %d1 [NUM1:tour:tours] et indisponible pour toute activit&#233; &#224; part l'autod&#233;fense.</French>
+    <German>[ICON_BULLET]Die Einheit %s2_unit ist %d1 [NUM1:Runde:Runden] lang besch&#228;ftigt und f&#252;r keine andere Aufgabe au&#223;er Selbstverteidigung verf&#252;gbar.</German>
+    <Italian>[ICON_BULLET]L'unit&#224; %s2_unit sar&#224; occupata per %d1 [NUM1:turno:turni], e non far&#224; altro eccetto difendersi.</Italian>
+    <Spanish>[ICON_BULLET][NUM2:El:La:Los:Las] %s2_unit [NUM2:no estar&#225; disponible:no estar&#225; disponible:no estar&#225;n disponibles:no estar&#225;n disponibles] durante %d1 [NUM1:turno:turnos], para ning&#250;n cometido que no sea su propia defensa</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_FLANKING_STRIKES</Tag>
+    <English>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Flank attack[\LINK] against %s1_unitlist</English>
+    <French>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Attaque de flanc[\LINK] contre %s1_unitlist</French>
+    <German>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Flankenangriff[\LINK] auf Einheit(en) %s1_unitlist</German>
+    <Italian>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Attacco ai fianchi[\LINK] contro %s1_unitlist</Italian>
+    <Spanish>[ICON_BULLET][LINK=CONCEPT_FLANK_ATTACK]Flanqueo[\LINK] contra %s1_unitlist</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_TRANSFER_GAME_DATA_TITLE</Tag>
+    <English>Transferring Game Data...</English>
+    <French>Transfert des donnees du jeu...</French>
+    <German>Spieldaten werden transferiert...</German>
+    <Italian>Trasferimento dati...</Italian>
+    <Spanish>Transfiriendo datos de la partida...</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_CIV_DESTROYED</Tag>
+    <English>The %s1_CivAdj Civilization has been destroyed!!!</English>
+    <French>Les %s1:3_CivAdj ont &#233;t&#233; &#233;cras&#233;s !</French>
+    <German>Die %s1:3_CivAdj Zivilisation wurde vernichtet!!!</German>
+    <Italian>La civilt&#224; %s1:4_CivAdj &#232; stata distrutta!</Italian>
+    <Spanish>&#161;La civilizaci&#243;n %s1:2_CivAdj ha sido destruida!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_HALF_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Half a Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais un demi million d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt eine halbe Million Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene mezzo milione di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a medio mill&#243;n de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_1_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds a Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais un million d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt eine Million Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene un milione di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a un mill&#243;n de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_2_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Two Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais deux millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zwei Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene due milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a dos millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_5_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Five Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cinq millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt f&#252;nf Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cinque milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a cinco millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_10_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Ten Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais dix millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zehn Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene dieci milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a diez millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_20_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Twenty Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais vingt millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zwanzig Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene venti milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a veinte millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_50_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Fifty Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cinquante millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt f&#252;nfzig Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cinquanta milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a cincuenta millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_100_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds One Hundred Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cent millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt einhundert Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cento milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a cien millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_200_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Two Hundred Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais deux cents millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt zweihundert Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene duecento milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a doscientos millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_500_MILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds Five Hundred Million souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte d&#233;sormais cinq cents millions d'&#226;mes ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt f&#252;nfhundert Millionen Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene cinquecento milioni di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a quinientos millones de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_1_BILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds a BILLION souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte UN MILLIARD d'habitants ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt eine MILLIARDE Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene un miliardo di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a MIL MILLONES de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FEAT_2_BILLION</Tag>
+    <English>Congratulations, the burgeoning %s1Civ_Name now holds TWO BILLION souls! Larger cities allow more citizens and specialists, increasing our productivity!</English>
+    <French>F&#233;licitations, la civilisation des %s1Civ_Name est en plein essor et compte DEUX MILLIARDS d'habitants ! Les grandes villes peuvent abriter plus de citoyens et de sp&#233;cialistes, ce qui augmente leur productivit&#233; !</French>
+    <German>Herzlichen Gl&#252;ckwunsch! In der expandierenden Zivilisation %s1Civ_Name leben jetzt ZWEI MILLIARDEN Einwohner! Gr&#246;&#223;ere St&#228;dte bieten Platz f&#252;r mehr B&#252;rger und Spezialisten, die wiederum unsere Produktivit&#228;t erh&#246;hen!</German>
+    <Italian>Congratulazioni, la fiorente citt&#224; %s1Civ_Name ora contiene due miliardi di abitanti! Le grandi citt&#224; ospitano pi&#249; cittadini e specialisti, aumentando la produttivit&#224;!</Italian>
+    <Spanish>Felicidades, el pr&#243;spero %s1Civ_Name ya alberga a DOS MIL MILLONES de almas. Unas mayores ciudades permiten que haya m&#225;s habitantes y especialistas, lo que aumenta a su vez la productividad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_CAVALRY</Tag>
+    <English>Cavalry</English>
+    <French>Cavalier lourd</French>
+    <German>
+        <Text>Kavallerie</Text>
+        <Gender>Male</Gender>
+        <Plural>0</Plural>
+    </German>
+    <Italian>
+        <Text>Cavalleria</Text>
+        <Gender>Female</Gender>
+        <Plural>0:1</Plural>
+    </Italian>
+    <Spanish>
+        <Text>Caballer&#237;a:Caballer&#237;as</Text>
+        <Gender>Female</Gender>
+        <Plural>0:1</Plural>
+    </Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_UNIT_DISBAND</Tag>
+    <English>[ICON_BULLET]The %s1_unit is lost</English>
+    <French>[ICON_BULLET]L'unit&#233; (%s1_unit) est perdue</French>
+    <German>[ICON_BULLET]Verlust der Einheit %s1_unit</German>
+    <Italian>[ICON_BULLET]L'unit&#224; %s1_unit &#232; perduta</Italian>
+    <Spanish>[ICON_BULLET]Se [NUM1:ha perdido el:ha perdido la:han perdido los:han perdido las] %s1_unit</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_FARM</Tag>
+    <English>Build a [LINK=IMPROVEMENT_FARM]Farm[\LINK]</English>
+    <French>Construire une [LINK=IMPROVEMENT_FARM]ferme[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_FARM]Bauernhof[\LINK] bauen</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_FARM]fattoria[\LINK]</Italian>
+    <Spanish>Construir una [LINK=IMPROVEMENT_FARM]granja[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_FISHING_BOATS</Tag>
+    <English>Create [LINK=IMPROVEMENT_FISHING_BOATS]Fishing Boats[\LINK]</English>
+    <French>Construire des [LINK=IMPROVEMENT_FISHING_BOATS]bateaux de p&#234;che[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_FISHING_BOATS]Fischerboote[\LINK] bauen</German>
+    <Italian>Construire dei [LINK=IMPROVEMENT_FISHING_BOATS]pescherecci[\LINK]</Italian>
+    <Spanish>Crear [LINK=IMPROVEMENT_FISHING_BOATS]barcos pesqueros[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_WHALING_BOATS</Tag>
+    <English>Create [LINK=IMPROVEMENT_WHALING_BOATS]Whaling Boats[\LINK]</English>
+    <French>Construire des [LINK=IMPROVEMENT_WHALING_BOATS]baleiniers[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_WHALING_BOATS]Walf&#228;nger[\LINK] bauen</German>
+    <Italian>Creare delle [LINK=IMPROVEMENT_WHALING_BOATS]baleniere[\LINK]</Italian>
+    <Spanish>Crear [LINK=IMPROVEMENT_WHALING_BOATS]barcos balleneros[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_MINE</Tag>
+    <English>Build a [LINK=IMPROVEMENT_MINE]Mine[\LINK]</English>
+    <French>Construire une [LINK=IMPROVEMENT_MINE]mine[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_MINE]Mine[\LINK] bauen</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_MINE]miniera[\LINK]</Italian>
+    <Spanish>Construir una [LINK=IMPROVEMENT_MINE]mina[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_WORKSHOP</Tag>
+    <English>Build a [LINK=IMPROVEMENT_WORKSHOP]Workshop[\LINK]</English>
+    <French>Construire un [LINK=IMPROVEMENT_WORKSHOP]atelier[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_WORKSHOP]Werkstatt[\LINK] bauen</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_WORKSHOP]bottega[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_WORKSHOP]taller[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_LUMBERMILL</Tag>
+    <English>Build a [LINK=IMPROVEMENT_LUMBERMILL]Lumbermill[\LINK]</English>
+    <French>Construire une [LINK=IMPROVEMENT_LUMBERMILL]scierie[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_LUMBERMILL]S&#228;gewerk[\LINK] bauen</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_LUMBERMILL]segheria[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_LUMBERMILL]aserradero[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_WINDMILL</Tag>
+    <English>Build a [LINK=IMPROVEMENT_WINDMILL]Windmill[\LINK]</English>
+    <French>Construire un [LINK=IMPROVEMENT_WINDMILL]moulin &#224; vent[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_WINDMILL]Windm&#252;hle[\LINK] bauen</German>
+    <Italian>Costruire un [LINK=IMPROVEMENT_WINDMILL]mulino a vento[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_WINDMILL]molino de viento[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_WATERMILL</Tag>
+    <English>Build a [LINK=IMPROVEMENT_WATERMILL]Watermill[\LINK]</English>
+    <French>Construire un [LINK=IMPROVEMENT_WATERMILL]moulin &#224; eau[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_WATERMILL]Wasserm&#252;hle[\LINK] bauen</German>
+    <Italian>Costruire un [LINK=IMPROVEMENT_WATERMILL]mulino ad acqua[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_WATERMILL]molino de agua[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_PLANTATION</Tag>
+    <English>Build a [LINK=IMPROVEMENT_PLANTATION]Plantation[\LINK]</English>
+    <French>Construire une [LINK=IMPROVEMENT_PLANTATION]plantation[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_PLANTATION]Plantage[\LINK] bauen</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_PLANTATION]piantagione[\LINK]</Italian>
+    <Spanish>Construir una [LINK=IMPROVEMENT_PLANTATION]plantaci&#243;n[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_QUARRY</Tag>
+    <English>Build a [LINK=IMPROVEMENT_QUARRY]Quarry[\LINK]</English>
+    <French>Construire une [LINK=IMPROVEMENT_QUARRY]carri&#232;re[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_QUARRY]Steinbruch[\LINK] errichten</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_QUARRY]cava[\LINK]</Italian>
+    <Spanish>Construir una [LINK=IMPROVEMENT_QUARRY]cantera[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_PASTURE</Tag>
+    <English>Build a [LINK=IMPROVEMENT_PASTURE]Pasture[\LINK]</English>
+    <French>Cr&#233;er un [LINK=IMPROVEMENT_PASTURE]p&#226;turage[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_PASTURE]Weideland[\LINK] errichten</German>
+    <Italian>Costruire un [LINK=IMPROVEMENT_PASTURE]pascolo[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_PASTURE]pastizal[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_CAMP</Tag>
+    <English>Build a [LINK=IMPROVEMENT_CAMP]Camp[\LINK]</English>
+    <French>Construire un [LINK=IMPROVEMENT_CAMP]camp[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_CAMP]Lager[\LINK] errichten</German>
+    <Italian>Costruire un [LINK=IMPROVEMENT_CAMP]campo[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_CAMP]campamento[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_WELL</Tag>
+    <English>Build a [LINK=IMPROVEMENT_WELL]Well[\LINK]</English>
+    <French>Creuser un [LINK=IMPROVEMENT_WELL]puit[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_WELL]Quelle[\LINK] errichten</German>
+    <Italian>Costruire un [LINK=IMPROVEMENT_WELL]pozzo[\LINK]</Italian>
+    <Spanish>Construir un [LINK=IMPROVEMENT_WELL]pozo[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_WINERY</Tag>
+    <English>Build a [LINK=IMPROVEMENT_WINERY]Winery[\LINK]</English>
+    <French>Construire une [LINK=IMPROVEMENT_WINERY]exploitation viticole[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_WINERY]Weingut[\LINK] errichten</German>
+    <Italian>Costruire un'[LINK=IMPROVEMENT_WINERY]azienda vinicola[\LINK]</Italian>
+    <Spanish>Construir una [LINK=IMPROVEMENT_WINERY]bodega[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_COTTAGE</Tag>
+    <English>Build a [LINK=IMPROVEMENT_COTTAGE]Cottage[\LINK]</English>
+    <French>Construire un [LINK=IMPROVEMENT_COTTAGE]cottage[\LINK]</French>
+    <German>[LINK=IMPROVEMENT_COTTAGE]H&#252;tte[\LINK] errichten</German>
+    <Italian>Costruire una [LINK=IMPROVEMENT_COTTAGE]villetta[\LINK]</Italian>
+    <Spanish>Construir una [LINK=IMPROVEMENT_COTTAGE]villa[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_REMOVE_JUNGLE</Tag>
+    <English>Remove [LINK=FEATURE_JUNGLE]Jungle[\LINK]</English>
+    <French>D&#233;fricher la [LINK=FEATURE_JUNGLE]jungle[\LINK]</French>
+    <German>[LINK=FEATURE_JUNGLE]Dschungel[\LINK] entfernen</German>
+    <Italian>Rimuovere la [LINK=FEATURE_JUNGLE]giungla[\LINK]</Italian>
+    <Spanish>Quitar [LINK=FEATURE_JUNGLE]selva[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILD_REMOVE_FOREST</Tag>
+    <English>Chop Down a [LINK=FEATURE_FOREST]Forest[\LINK]</English>
+    <French>D&#233;fricher la [LINK=FEATURE_FOREST]for&#234;t[\LINK]</French>
+    <German>[LINK=FEATURE_FOREST]Wald[\LINK] abholzen</German>
+    <Italian>Disboscare una [LINK=FEATURE_FOREST]foresta[\LINK]</Italian>
+    <Spanish>Talar un [LINK=FEATURE_FOREST]bosque[\LINK]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_IMPROVEMENT_DEFENSE_MODIFIER_EXTRA</Tag>
+    <English>[ICON_BULLET]Acts as a city for combat purposes</English>
+    <French>[ICON_BULLET]Compte comme une ville pour les combats</French>
+    <German>[ICON_BULLET]Dient als Standort f&#252;r milit&#228;rische Zwecke</German>
+    <Italian>[ICON_BULLET]Ai fini dei combattimenti, equivalgono a una citt&#224;</Italian>
+    <Spanish>[ICON_BULLET]Hace las veces de ciudad a efectos de combate.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_EVENT_FREE_SPECIALIST</Tag>
+    <English>[ICON_BULLET]%D1 free %s2_specialist in %s3_city</English>
+    <French>[ICON_BULLET]%D1 %s2_specialist [NUM1:gratuit:gratuits] &#224; %s3_city</French>
+    <German>[ICON_BULLET]%D1 [NUM1:freier Spezialist:freie Spezialisten] %s2_specialist in %s3_city</German>
+    <Italian>[ICON_BULLET]%D1 %s2_specialist [NUM2:gratuito:gratuita:gratuiti:gratuite] a %s3_city</Italian>
+    <Spanish>[ICON_BULLET]%s2:2_specialist gratis en %s3_city: (%D1)</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_IMPROVEMENT_WINERY</Tag>
+    <English>Winery</English>
+    <French>Exploitation viticole</French>
+    <German><Text>Weingut</Text>
+<Gender>Male</Gender>
+<Plural>0</Plural></German>
+    <Italian><Text>Azienda vinicola:Aziende vinicole</Text>
+<Gender>Female</Gender>
+<Plural>0:1</Plural></Italian>
+    <Spanish><Text>Bodega:Bodegas</Text>
+<Gender>Female</Gender>
+<Plural>0:1</Plural></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_DECLARE_WAR_4</Tag>
+    <English>Now you shall pay for your many insults to the [OUR_EMPIRE]! ([OUR_NAME] declares war!)</English>
+    <French>Vous allez payer vos innombrables insultes envers les [OUR_EMPIRE] ! ([OUR_NAME] vous d&#233;clare la guerre !)</French>
+    <German>Jetzt werdet Ihr f&#252;r Eure Respektlosigkeit gegen&#252;ber dem [OUR_EMPIRE:3] b&#252;&#223;en! ([OUR_NAME] erkl&#228;rt Euch den Krieg!)</German>
+    <Italian>Ora pagherai per aver insultato l'[OUR_EMPIRE]! ([OUR_NAME] dichiara guerra!)</Italian>
+    <Spanish>&#161;Ahora pagar&#233;is vuestros incontables insultos al [OUR_EMPIRE]! (&#161;[OUR_NAME] os declara la guerra!)</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_CHINESE_LEADER_1</Tag>
+    <English>Greetings, oh wise ruler of the [CT_CIV_ADJ] peoples! [OUR_CIV_SHORT] is strong - shall we count you among our friends, or among our enemies?</English>
+    <French>Je vous salue, &#244; sage dirigeant des [CT_CIV_SHORT] ! Les [OUR_CIV_SHORT] sont forts... faut-il vous compter au nombre de nos amis ou de nos ennemis ?</French>
+    <German>Ich gr&#252;&#223;e Euch, oh weises Staatsoberhaupt des [CT_CIV_ADJ:2] Volkes! [OUR_CIV_SHORT] ist m&#228;chtig und stark - sollen wir Euch zu unseren Freunden z&#228;hlen oder als unsere Feinde betrachten?</German>
+    <Italian>Saluti, leader del saggio popolo [CT_CIV_ADJ:1]! I [OUR_CIV_SHORT] sono una nazione potente: dobbiamo considerarvi amici o nemici?</Italian>
+    <Spanish>Saludos, oh prudente gobernante del pueblo [CT_CIV_ADJ:1]. [OUR_CIV_SHORT] es fuerte. &#191;Hemos de contaros entre nuestros amigos o nuestros enemigos?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_FIRST_CONTACT_LEADER_PERICLES_1</Tag>
+    <English>As the leader of ancient [OUR_CIV_SHORT], father and mother of all that is civilized, I, [OUR_NAME], welcome the leader of the upstart [CT_CIV_ADJ] people into my august presence.</English>
+    <French>En tant que chef des v&#233;n&#233;rables [OUR_CIV_SHORT], p&#232;re et m&#232;re de tout ce qui est civilis&#233;, moi, [OUR_NAME], daigne accepter le chef des pr&#233;somptueux [CT_CIV_SHORT] en mon auguste pr&#233;sence.</French>
+    <German>Als Staatsoberhaupt des alten Volkes von [OUR_CIV_SHORT], dessen Ahnen bereits zivilisiert waren, hei&#223;e ich, [OUR_NAME], das Staatsoberhaupt des aufstrebenden [CT_CIV_ADJ:2] Volkes in meiner erhabenen Pracht willkommen.</German>
+    <Italian>Quale leader dell'antica civilt&#224; di [OUR_CIV_SHORT], padre e madre di tutto ci&#242; che &#232; civilizzato io, [OUR_NAME], accolgo il capo della crescente popolazione [CT_CIV_ADJ] alla mia augusta presenza.</Italian>
+    <Spanish>Como l&#237;der de la antigua tierra de [OUR_CIV_SHORT], cuna de la civilizaci&#243;n, yo, [OUR_NAME], os doy la bienvenida, oh, l&#237;der del pueblo [CT_CIV_ADJ:1], ante mi augusta presencia.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_FUR_OFFER_DEAL_3</Tag>
+    <English>The [OUR_EMPIRE] offers you this trade. I suggest you take it.</English>
+    <French>L'empire [OUR_CIV_ADJ] vous propose ceci. Je vous conseille d'accepter.</French>
+    <German>Das [OUR_EMPIRE:2] bietet Euch diesen Handel an. Ich w&#252;rde vorschlagen, Ihr schlagt ein!</German>
+    <Italian>L'[OUR_EMPIRE] ti offre questa possibilit&#224; di commercio. Ti suggerisco di accettarla.</Italian>
+    <Spanish>El [OUR_EMPIRE] os ofrece este intercambio. Os sugiero que lo acept&#233;is.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_JOIN_WAR_1</Tag>
+    <English>The %s1:2 are a threat to us all. Please join us in wiping them out.</English>
+    <French>Les %s1:3 repr&#233;sentent une menace pour nous tous. Joignez-vous &#224; nous pour les &#233;liminer.</French>
+    <German>Das %s1:3 Volk ist eine Bedrohung f&#252;r uns alle. Bitte helft uns bei seiner Vernichtung!</German>
+    <Italian>I %s1 sono un pericolo per tutti. Unisciti a noi e li toglieremo di mezzo.</Italian>
+    <Spanish>[NUM1:El:La:Los:Las] %s1:3 son una amenaza para todos nosotros. Un&#237;os a nosotros para borrarlos del mapa.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_JOIN_WAR_2</Tag>
+    <English>Care to assist us in destroying the evil %s1:2?</English>
+    <French>Acceptez-vous de nous aider &#224; &#233;craser les ignobles %s1:3 ?</French>
+    <German>Habt Ihr Interesse, uns bei der Vernichtung des %s1:2 Volkes behilflich zu sein?</German>
+    <Italian>Vuoi darci una mano a distruggere i malvagi %s1?</Italian>
+    <Spanish>&#191;Os importar&#237;a ayudarnos a destruir [NUM1:al malvado:a la malvada:a los malvados:a las malvadas] %s1:3?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_JOIN_WAR_3</Tag>
+    <English>Greetings, [CT_NAME]. The annoying %s1:2 must be destroyed, don't you agree?</English>
+    <French>Salutations, [CT_NAME]. Ne pensez-vous pas que ces maudits %s1:3 doivent &#234;tre extermin&#233;s ?</French>
+    <German>Seid gegr&#252;&#223;t, [CT_NAME]. Das l&#228;stige %s1:3 Volk muss vernichtet werden, findet Ihr nicht auch?</German>
+    <Italian>Salve, [CT_NAME]. I fastidiosi %s1 devono essere distrutti, non sei d'accordo?</Italian>
+    <Spanish>Saludos, [CT_NAME]. [NUM1:El molesto:La molesta:Los molestos:Las molestas] %s1:3 [NUM1:debe ser destruido:debe ser destruida: deben ser destruidos:deben ser destruidas], &#191;no os parece?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_JOIN_WAR_4</Tag>
+    <English>[CT_NAME]: we urgently request mighty [CT_CIV_SHORT]'s assistance in our crusade against the %s1:2!</English>
+    <French>[CT_NAME], nous demandons d'urgence le soutien des [CT_CIV_SHORT] dans notre croisade contre les %s1:3 !</French>
+    <German>[CT_NAME]: Wir bitten das m&#228;chtige Volk von [CT_CIV_SHORT] dringend um Hilfe bei unserem Kreuzzug gegen das %s1:3 Volk!</German>
+    <Italian>[CT_NAME], chiediamo urgentemente l'aiuto del[CT_CIV_SHORT:2] per la nostra crociata contro i %s1!</Italian>
+    <Spanish>[CT_NAME], solicitamos urgentemente la ayuda de la poderosa naci&#243;n de [CT_CIV_SHORT] en nuestra cruzada contra [NUM1:el:la:los:las] %s1:3.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_JOIN_WAR_5</Tag>
+    <English>The treacherous %s1:2 must be punished for their offences against civilization, [CT_NAME]! I assume we can count on your assistance?</English>
+    <French>Les perfides %s1:3 doivent &#234;tre punis pour leurs offenses envers la civilisation, [CT_NAME] ! J'imagine que nous pouvons compter sur votre aide ?</French>
+    <German>Das hinterh&#228;ltige %s1:3 Volk verdient es, f&#252;r seine Feinseligkeiten gegen andere Zivilisationen bestraft zu werden, [CT_NAME]! K&#246;nnen wir mit Eurer Unterst&#252;tzung rechnen?</German>
+    <Italian>I traditori %s1 devono essere puniti per le loro offese nei confronti delle altre civilt&#224;, [CT_NAME]! Possiamo contare sul tuo aiuto?</Italian>
+    <Spanish>&#161;Hemos de castigar [NUM1:al traicionero:a la traicionera:a los traicioneros:a las traicioneras] %s1:3 por sus ofensas contra la civilizaci&#243;n, [CT_NAME]! Suponemos que podemos contar con vuestra ayuda, &#191;no?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_JOIN_WAR_6</Tag>
+    <English>The nasty %s1:2 are plotting against us all, [CT_NAME]! Let us destroy them together!</English>
+    <French>Les inf&#226;mes %s1:3 complotent contre nous tous, [CT_NAME] ! D&#233;truisons-les ensemble !</French>
+    <German>Das unversch&#228;mte %s1:3 Volk hat sich gegen uns alle verschworen, [CT_NAME]! Lasst es uns gemeinsam vernichten!</German>
+    <Italian>I malvagi %s1 stanno complottando contro noi tutti, [CT_NAME]! Distruggiamoli assieme!</Italian>
+    <Spanish>&#161;[NUM1:El repugnante:La repugnante:Los repugnantes:Las repugnantes] %s1:3 est&#225;n conspirando contra todos nosotros, [CT_NAME]! &#161;Destruy&#225;moslos juntos!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_PEACE_1</Tag>
+    <English>We look forward to many years of peace between the [OUR_CIV_ADJ] and [CT_CIV_ADJ] Empires.</English>
+    <French>Nous nous r&#233;jouissons &#224; l'avance d'une paix durable entre les empires des [OUR_EMPIRE] et des [CT_EMPIRE].</French>
+    <German>Wir freuen uns auf viele Jahre des Friedens zwischen dem [OUR_CIV_ADJ:2] und dem [CT_CIV_ADJ:2] Volk.</German>
+    <Italian>Ci auguriamo molti anni di pace tra l'Impero [OUR_CIV_ADJ:1] e quello [CT_CIV_ADJ:1].</Italian>
+    <Spanish>Deseamos muchos a&#241;os de paz entre el imperio de los [OUR_CIV_ADJ:3] y el de los [CT_CIV_ADJ:3].</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_REJECT_DEMAND_6</Tag>
+    <English>You badly underestimate the [OUR_EMPIRE], [CT_NAME]. We would never agree to any such thing.</English>
+    <French>Vous avez s&#233;rieusement sous-estim&#233; les [OUR_CIV_SHORT], [CT_NAME]. Nous n'accepterons jamais une telle chose.</French>
+    <German>Ihr untersch&#228;tzt das [OUR_EMPIRE:2] aufs &#196;rgste, [CT_NAME]! So einem Vorschlag w&#252;rden wir nie zustimmen!</German>
+    <Italian>Hai drammaticamente sottovalutato l'[OUR_EMPIRE], [CT_NAME]. Non accetteremo mai una proposta del genere.</Italian>
+    <Spanish>Subestim&#225;is enormemente al [OUR_EMPIRE], [CT_NAME]. Nunca accederemos a algo as&#237;.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_STOP_TRADING_1</Tag>
+    <English>It can no longer be tolerated - we demand that you cancel your deals with the vile %s1:2!</English>
+    <French>C'est intol&#233;rable. Nous vous demandons d'annuler imm&#233;diatement tous vos accords avec les m&#233;prisables %s1:3 !</French>
+    <German>Das kann nicht l&#228;nger toleriert werden! Wir verlangen, dass Ihr Eure Handelsbeziehungen mit dem widerw&#228;rtigen %s1:2 Volk einstellt!</German>
+    <Italian>Questo atteggiamento non pu&#242; pi&#249; essere tollerato; ti chiediamo di annullare i tuoi accordi con [NUM1:il vile:la vile:i vili:le vili] %s1:3!</Italian>
+    <Spanish>Ya no podemos permitirnos ser tolerantes. &#161;Os exigimos que cancel&#233;is vuestro trato con [NUM1:el vil:la vil:los viles:las viles] %s1:3!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_THANKS_11</Tag>
+    <English>I [OUR_NAME], Godlike Ruler of the Mighty [OUR_EMPIRE], do hereby offer my sincerest thanks to my good friend, [CT_NAME].</English>
+    <French>Moi, [OUR_NAME], r&#233;gnant sans partage sur le puissant empire [OUR_CIV_ADJ], je souhaite exprimer ici mes plus sinc&#232;res remerciements &#224; [CT_NAME], en toute amiti&#233;.</French>
+    <German>Ich, [OUR_NAME], gottgleiches Staatsoberhaupt des m&#228;chtigen [OUR_EMPIRE:3]es, entbiete Euch, [CT_NAME], meinen tief empfundenen Dank.</German>
+    <Italian>Io [OUR_NAME], leader divino dell'[OUR_EMPIRE], offro i miei pi&#249; sinceri ringraziamenti per l'amicizia con [CT_NAME].</Italian>
+    <Spanish>Nos, [OUR_NAME], gobernante por la gracia divina del poderoso [OUR_EMPIRE], ofrecemos nuestro m&#225;s sincero agradecimiento a [CT_NAME], gran camarada.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_WORST_ENEMY_1</Tag>
+    <English>Watch out for our worst enemy - [OUR_WORST_ENEMY]! They can't be trusted.</English>
+    <French>Prenez garde &#224; nos pires ennemis ([OUR_WORST_ENEMY]) ! Ils ne sont pas dignes de confiance.</French>
+    <German>Nehmt Euch vor unserem schlimmsten Feind in Acht - [OUR_WORST_ENEMY]! Vertrauen ist hier unangebracht!</German>
+    <Italian>Attenzione al nostro pi&#249; pericoloso nemico - [OUR_WORST_ENEMY:2]! Non possiamo fidarci di loro.</Italian>
+    <Spanish>&#161;Cuidado con el [OUR_WORST_ENEMY], nuestro peor enemigo! No conviene fiarse.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>AI_DIPLO_WORST_ENEMY_TRADING_1</Tag>
+    <English>We would encourage you to stop trading with our bitter enemy - [OUR_WORST_ENEMY]!</English>
+    <French>Nous vous conseillons de cesser tout commerce avec nos pires ennemis ([OUR_WORST_ENEMY]) !</French>
+    <German>Wir raten Euch, Eure Handelsbeziehungen mit [OUR_WORST_ENEMY] - dem Staatsoberhaupt unserer &#228;rgsten Feinde - schleunigst einzustellen!</German>
+    <Italian>Vorremmo che la smettessi di commerciare con il nostro nemico giurato - [OUR_WORST_ENEMY:2]!</Italian>
+    <Spanish>Os sugerimos que dej&#233;is de comerciar con el [OUR_WORST_ENEMY], nuestro enemigo m&#225;s ac&#233;rrimo.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CIVIC_MILITARY_SUPPORT_COSTS</Tag>
+    <English>[ICON_BULLET]%D1_Change%F2_Icon Support Cost per Military Unit</English>
+    <French>[ICON_BULLET]%D1_Change%F2_Icon Co&#251;t de ravitaillement par unit&#233; militaire</French>
+    <German>[ICON_BULLET]%D1_Change%F2_Icon Unterhaltskosten pro Milit&#228;reinheit</German>
+    <Italian>[ICON_BULLET]%D1_Change%F2_Icon Costo di supporto per le unit&#224; militari</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change %F2_Icon de coste de abastecimiento por cada unidad militar</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_POPUP_ARE_YOU_SURE_ACTION</Tag>
+    <English>Are you sure you want to %s1_ActionName?</English>
+    <French>Voulez-vous vraiment : %s1_ActionName ?</French>
+    <German>Soll diese Aktion wirklich ausgef&#252;hrt werden?: %s1_ActionName</German>
+    <Italian>Sei sicuro di voler eseguire l'azione %s1_ActionName</Italian>
+    <Spanish>&#191;Seguro que quer&#233;is %s1_ActionName?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_CIVIC_HEALTH_HAPPINESS_CHANGE</Tag>
+    <English>[ICON_BULLET]%D1_Change%F2_HappyOrHealth with[SPACE]</English>
+    <French>[ICON_BULLET]%D1_Change%F2_HappyOrHealth avec[SPACE]</French>
+    <German>[ICON_BULLET]%D1_Change%F2_HappyOrHealth mit[SPACE]</German>
+    <Italian>[ICON_BULLET]%D1_Change%F2_HappyOrHealth con[SPACE]</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change %F2_HappyOrHealth con[SPACE]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_HEALTH_HAPPINESS_CHANGE</Tag>
+    <English>[ICON_BULLET]%D1_Change%F2_HappyOrHealth from[SPACE]</English>
+    <French>[ICON_BULLET]%D1_Change%F2_HappyOrHealth en raison de[SPACE]</French>
+    <German>[ICON_BULLET]%D1_Change%F2_HappyOrHealth durch[SPACE]</German>
+    <Italian>[ICON_BULLET]%D1_Change %F2_HappyOrHealth da[SPACE]</Italian>
+    <Spanish>[ICON_BULLET]%D1_Change %F2_HappyOrHealth por[SPACE]</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MISC_REVOLT_IN_CITY</Tag>
+    <English>A %s1_CivAdj revolt has taken place in %s2_CityName!</English>
+    <French>Les %s1:3_CivAdj se r&#233;voltent &#224; %s2_CityName !</French>
+    <German>In %s2_CityName hat eine %s1:3_CivAdj Revolte stattgefunden!</German>
+    <Italian>Una rivolta %s1_CivAdj &#232; scoppiata a %s2_CityName!</Italian>
+    <Spanish>Ha tenido lugar una rebeli&#243;n %s1:2_CivAdj en %s2_CityName.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PLAYER_OPTION_MODDER_1</Tag>
+    <English>Hide river tile overlay</English>
+    <French>Hide river tile overlay</French>
+    <German>Dekoration der Flussfelder ausblenden</German>
+    <Italian>Hide river tile overlay</Italian>
+    <Spanish>Hide river tile overlay</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PLAYER_OPTION_MODDER_1_HELP</Tag>
+    <English>Hide river tile markup and display plots like coast. Requires reload.</English>
+    <French>Hide river tile markup and display plots like coast. Requires reload.</French>
+    <German>Entfernt breite Fl&#252;sse und zeigt diese Felder wie normale K&#252;stenfelder an. Neu Laden des Spielstandes erforderlich.</German>
+    <Italian>Hide river tile markup and display plots like coast. Requires reload.</Italian>
+    <Spanish>Hide river tile markup and display plots like coast. Requires reload.</Spanish>
+  </TEXT>
 </Civ4GameText>

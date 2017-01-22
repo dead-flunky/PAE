@@ -5,276 +5,300 @@
 <!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <Civ4GameText xmlns="http://www.firaxis.com">
-   <TEXT>
-     <Tag>TXT_KEY_PEDIA_CATEGORY_CONCEPT</Tag>
-     <English>PAE MOD Concepts</English>
-     <French>Concepts du MOD PAE</French>
-     <German>PAE MOD Konzepte</German>
-     <Italian>Nozioni di PAE MOD</Italian>
-     <Spanish>Conceptos del mod de PAE</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_PAE_TECHS</Tag>
-     <English>Technologies</English>
-     <French>Technologies</French>
-     <German>Technologien</German>
-     <Italian>Technologies</Italian>
-     <Spanish>Tecnolog&#237;as</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_IMPORTANT_FACTS</Tag>
-     <English>Important Facts</English>
-     <French>A lire !</French>
-     <German>Wichtige Fakten</German>
-     <Italian>Fatti importanti</Italian>
-     <Spanish>Datos Importantes</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_VASSALS</Tag>
-     <English>Vassals</English>
-     <French>Vassalit&#233;</French>
-     <German>Vasallen</German>
-     <Italian>Vassalli</Italian>
-     <Spanish>Vasallos</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_DESERTIFICATION</Tag>
-     <English>Desertification</English>
-     <French>D&#233;sertification</French>
-     <German>Desertifizierung</German>
-     <Italian>Desertificazione</Italian>
-     <Spanish>Desertificaci&#243;n</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_GENERALDEATH</Tag>
-     <English>Generals death</English>
-     <French>Mort d'un g&#233;n&#233;ral</French>
-     <German>Generalstod</German>
-     <Italian>Generali morte</Italian>
-     <Spanish>Muerte de generales</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_FOG_OF_WAR</Tag>
-     <English>World map and Fog of War</English>
-     <French>Carte du monde et brouillard de guerre</French>
-     <German>Weltkarte und Kriegsnebel</German>
-     <Italian>Mappa del mondo e Fog of War</Italian>
-     <Spanish>Mapa del mundo y niebla de guerra</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_BARBARIANS</Tag>
-     <English>Animals, Barbarians and Huns</English>
-     <French>Animaux, barbares et Huns</French>
-     <German>Tiere, Barbaren und Hunnen</German>
-     <Italian>Animali, barbari e unni</Italian>
-     <Spanish>Animales, b&#225;rbaros y hunos</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_CITIES</Tag>
-     <English>Cities</English>
-     <French>Villes</French>
-     <German>St&#228;dte</German>
-     <Italian>Citt&#224;</Italian>
-     <Spanish>Ciudades</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_MERCENARY</Tag>
-     <English>Mercenaries</English>
-     <French>Mercenaires</French>
-     <German>S&#246;ldnertum</German>
-     <Italian>Mercenaries</Italian>
-     <Spanish>Mercenarios</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_SLAVES</Tag>
-     <English>Slaves and freed slaves</English>
-     <French>Esclavage</French>
-     <German>Sklaven und befreite Sklaven</German>
-     <Italian>Schiavi e schiavi liberati</Italian>
-     <Spanish>Esclavos y esclavos liberados</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_GLADS</Tag>
-     <English>Exhibition fighters and gladiators</English>
-     <French>Gladiateurs</French>
-     <German>Schauk&#228;mpfer und Gladiatoren</German>
-     <Italian>Guarda combattenti e gladiatori</Italian>
-     <Spanish>Luchadores de espect&#225;culo y gladiadores</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_COMBAT</Tag>
-     <English>Ranged attack</English>
-     <French>Attaque &#224; distance</French>
-     <German>Fernangriff</German>
-     <Italian>Attacco a distanza</Italian>
-     <Spanish>Ataque a distancia</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_LEPRA_PLAGUE</Tag>
-     <English>Leprosy and plague</English>
-     <French>L&#232;pre et peste</French>
-     <German>Lepra, Seuchen und Pest</German>
-     <Italian>La lebbra, peste e la peste</Italian>
-     <Spanish>La lepra y la peste</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_LOYAL</Tag>
-     <English>Allegiance in battle</English>
-     <French>Loyaut&#233; au combat</French>
-     <German>Loyalit&#228;t im Kampf</German>
-     <Italian>Fedelt&#224; nella lotta</Italian>
-     <Spanish>Lealtad en combate</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_CHRISTEN</Tag>
-     <English>Jews and Christians</English>
-     <French>Juifs et chr&#233;tiens</French>
-     <German>Juden und Christen</German>
-     <Italian>Ebrei e cristiani</Italian>
-     <Spanish>Jud&#237;os y Cristianos</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_UNITCOST</Tag>
-     <English>Unit cost</English>
-     <French>Maintenance des unit&#233;s</French>
-     <German>Einheitenkosten</German>
-     <Italian>Costi unitari</Italian>
-     <Spanish>Coste de las Unidades</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_REBELLION</Tag>
-     <English>Rebellions</English>
-     <French>R&#233;bellions</French>
-     <German>Rebellionen</German>
-     <Italian>Ribellioni</Italian>
-     <Spanish>Rebeliones</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_FAQ</Tag>
-     <English>FAQs</English>
-     <French>FAQs</French>
-     <German>FAQs</German>
-     <Italian>FAQs</Italian>
-     <Spanish>FAQs</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_ALLGEMEINE_TIPPS</Tag>
-     <English>General tips</English>
-     <French>Conseils pratiques</French>
-     <German>Allgemeine Tipps</German>
-     <Italian>Consigli generali</Italian>
-     <Spanish>Consejos Generales</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_KOLONIE_PROVINZ</Tag>
-     <English>Settlements &#38; Provinces</English>
-     <French>Communaut&#233;s &#38; Provinces</French>
-     <German>Siedlungen &#38; Provinzen</German>
-     <Italian>Abitate e Province</Italian>
-     <Spanish>Asentamientos &#38; Provincias</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_KULTE</Tag>
-     <English>Cults and cultures</English>
-     <French>Cultes et cultures</French>
-     <German>Kulte und Kulturen</German>
-     <Italian>Culti e culturi</Italian>
-     <Spanish>Cultos y culturas</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_SCHIFFFAHRT</Tag>
-     <English>Shipping</English>
-     <French>Navigation</French>
-     <German>Schifffahrt</German>
-     <Italian>Spedizione</Italian>
-     <Spanish>Navegaci&#243;n</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_GET_BONUS_OF_NEUTRAL_PLOTS</Tag>
-     <English>Trading post (Neutral bonus resources)</English>
-     <French>Comptoir (Ressources en territoire neutre)</French>
-     <German>Handelsposten (Neutrale Bonusressourcen)</German>
-     <Italian>Stazione (Risorse bonus Neutral)</Italian>
-     <Spanish>Puesto comercial (Recursos en terreno neutral)</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_PAE_SUPPLY</Tag>
-     <English>Supply</English>
-     <French>Ravitaillement</French>
-     <German>Versorgung</German>
-     <Italian>Fornitura</Italian>
-     <Spanish>Suministro</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_PAE_PROMOTION_HERO</Tag>
-     <English>Heroes</English>
-     <French>H&#233;ros</French>
-     <German>Helden</German>
-     <Italian>Heroes</Italian>
-     <Spanish>H&#233;roes</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_MERCENARY_HIRE</Tag>
-     <English>Mercenaries (Hire)</English>
-     <French>Mercenaires (Recruter)</French>
-     <German>S&#246;ldner anheuern</German>
-     <Italian>Mercenaries (noleggio)</Italian>
-     <Spanish>Mercenarios (Contratar)</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_MERCENARY_ASSIGN</Tag>
-     <English>Mercenaries (Commission)</English>
-     <French>Mercenaires (Missionner)</French>
-     <German>S&#246;ldner beauftragen</German>
-     <Italian>Assoldare mercenari</Italian>
-     <Spanish>Mercenarios (Encomendar)</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_VETERANS</Tag>
-     <English>Veterans</English>
-     <French>V&#233;t&#233;rans</French>
-     <German>Veteranen</German>
-     <Italian>Veterani</Italian>
-     <Spanish>Veteranos</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_FORMATIONS</Tag>
-     <English>Unit Formations</English>
-     <French>Formations des unit&#233;s</French>
-     <German>Einheitenformationen</German>
-     <Italian>Formazioni Unit&#224;</Italian>
-     <Spanish>Formaciones de unidad</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_NATURAL_DISASTERS</Tag>
-     <English>Natural disasters</English>
-     <French>Catastrophes naturelles</French>
-     <German>Naturkatastrophen</German>
-     <Italian>Le catastrofi naturali</Italian>
-     <Spanish>Desastres naturales</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_COMBAT2</Tag>
-     <English>Combat</English>
-     <French>Combat</French>
-     <German>Kampf</German>
-     <Italian>Combattimento</Italian>
-     <Spanish>Combate</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_BONUSVERBREITUNG</Tag>
-     <English>Cultivation of bonus resources</English>
-     <French>Propagation des ressources</French>
-     <German>Kultivierung von Bonusressourcen</German>
-     <Italian>La coltivazione delle risorse bonus</Italian>
-     <Spanish>Cultivo de recursos</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_CONCEPT_DECIMATION</Tag>
-     <English>Salary and decimation</English>
-     <French>Salaire et d&#233;cimation</French>
-     <German>Sal&#228;r und Dezimierung</German>
-     <Italian>Salary and decimation</Italian>
-     <Spanish>Salario y Diezmar</Spanish>
-   </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_PEDIA_CATEGORY_CONCEPT_PAE</Tag>
+    <English>PAE Game Concepts</English>
+    <French>Concepts du PAE</French>
+    <German>PAE Spielkonzepte</German>
+    <Italian>Nozioni di PAE</Italian>
+    <Spanish>Conceptos del PAE</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_PAE_TECHS</Tag>
+    <English>Technologies</English>
+    <French>Technologies</French>
+    <German>Technologien</German>
+    <Italian>Technologies</Italian>
+    <Spanish>Tecnolog&#237;as</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_IMPORTANT_FACTS</Tag>
+    <English>Important Facts</English>
+    <French>A lire !</French>
+    <German>Wichtige Fakten</German>
+    <Italian>Fatti importanti</Italian>
+    <Spanish>Datos Importantes</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_VASSALS</Tag>
+    <English>Vassals</English>
+    <French>Vassalit&#233;</French>
+    <German>Vasallen</German>
+    <Italian>Vassalli</Italian>
+    <Spanish>Vasallos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_DESERTIFICATION</Tag>
+    <English>Desertification</English>
+    <French>D&#233;sertification</French>
+    <German>Desertifizierung</German>
+    <Italian>Desertificazione</Italian>
+    <Spanish>Desertificaci&#243;n</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_GENERALDEATH</Tag>
+    <English>Units-Generals death</English>
+    <French>Unit&#233;s-Mort d'un g&#233;n&#233;ral</French>
+    <German>Einheiten-Generalstod</German>
+    <Italian>Unit&#224;-Generali morte</Italian>
+    <Spanish>Unidades-Muerte de generales</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_FOG_OF_WAR</Tag>
+    <English>World map and Fog of War</English>
+    <French>Carte du monde et brouillard de guerre</French>
+    <German>Weltkarte und Kriegsnebel</German>
+    <Italian>Mappa del mondo e Fog of War</Italian>
+    <Spanish>Mapa del mundo y niebla de guerra</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_BARBARIANS</Tag>
+    <English>Animals, Barbarians and Huns</English>
+    <French>Animaux, barbares et Huns</French>
+    <German>Tiere, Barbaren und Hunnen</German>
+    <Italian>Animali, barbari e unni</Italian>
+    <Spanish>Animales, b&#225;rbaros y hunos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_CITIES</Tag>
+    <English>Cities</English>
+    <French>Villes</French>
+    <German>St&#228;dte</German>
+    <Italian>Citt&#224;</Italian>
+    <Spanish>Ciudades</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_MERCENARY</Tag>
+    <English>Units-Mercenaries</English>
+    <French>Unit&#233;s-Mercenaires</French>
+    <German>Einheiten-S&#246;ldner</German>
+    <Italian>Unit&#224;-Mercenaries</Italian>
+    <Spanish>Unidades-Mercenarios</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_SLAVES</Tag>
+    <English>Slaves and freed slaves</English>
+    <French>Esclavage</French>
+    <German>Sklaven und befreite Sklaven</German>
+    <Italian>Schiavi e schiavi liberati</Italian>
+    <Spanish>Esclavos y esclavos liberados</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_GLADS</Tag>
+    <English>Exhibition fighters and gladiators</English>
+    <French>Gladiateurs</French>
+    <German>Schauk&#228;mpfer und Gladiatoren</German>
+    <Italian>Guarda combattenti e gladiatori</Italian>
+    <Spanish>Luchadores de espect&#225;culo y gladiadores</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_COMBAT</Tag>
+    <English>Units-Ranged attack</English>
+    <French>Unit&#233;s-Attaque &#224; distance</French>
+    <German>Einheiten-Fernangriff</German>
+    <Italian>Unit&#224;-Attacco a distanza</Italian>
+    <Spanish>Unidades-Ataque a distancia</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_LEPRA_PLAGUE</Tag>
+    <English>Leprosy and plague</English>
+    <French>L&#232;pre et peste</French>
+    <German>Lepra, Seuchen und Pest</German>
+    <Italian>La lebbra, peste e la peste</Italian>
+    <Spanish>La lepra y la peste</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_LOYAL</Tag>
+    <English>Units-Allegiance in battle</English>
+    <French>Unit&#233;s-Loyaut&#233; au combat</French>
+    <German>Einheiten-Loyalit&#228;t im Kampf</German>
+    <Italian>Unit&#224;-Fedelt&#224; nella lotta</Italian>
+    <Spanish>Unidades-Lealtad en combate</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_CHRISTEN</Tag>
+    <English>Jews and Christians</English>
+    <French>Juifs et chr&#233;tiens</French>
+    <German>Juden und Christen</German>
+    <Italian>Ebrei e cristiani</Italian>
+    <Spanish>Jud&#237;os y Cristianos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_UNITCOST</Tag>
+    <English>Units-Maintenance costs</English>
+    <French>Unit&#233;s-Co&#251;ts de maintenance</French>
+    <German>Einheiten-Erhaltungskosten</German>
+    <Italian>Unit&#224;-Costi unitari</Italian>
+    <Spanish>Unidades-Coste del mantenimiento</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_REBELLION</Tag>
+    <English>Rebellions</English>
+    <French>R&#233;bellions</French>
+    <German>Rebellionen</German>
+    <Italian>Ribellioni</Italian>
+    <Spanish>Rebeliones</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_FAQ</Tag>
+    <English>FAQs</English>
+    <French>FAQs</French>
+    <German>FAQs</German>
+    <Italian>FAQs</Italian>
+    <Spanish>FAQs</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_ALLGEMEINE_TIPPS</Tag>
+    <English>General tips</English>
+    <French>Conseils pratiques</French>
+    <German>Allgemeine Tipps</German>
+    <Italian>Consigli generali</Italian>
+    <Spanish>Consejos Generales</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_KOLONIE_PROVINZ</Tag>
+    <English>Settlements &#38; Provinces</English>
+    <French>Communaut&#233;s &#38; Provinces</French>
+    <German>Siedlungen &#38; Provinzen</German>
+    <Italian>Abitate e Province</Italian>
+    <Spanish>Asentamientos &#38; Provincias</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_KULTE</Tag>
+    <English>Cults and cultures</English>
+    <French>Cultes et cultures</French>
+    <German>Kulte und Kulturen</German>
+    <Italian>Culti e culturi</Italian>
+    <Spanish>Cultos y culturas</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_SCHIFFFAHRT</Tag>
+    <English>Shipping</English>
+    <French>Navigation</French>
+    <German>Schifffahrt</German>
+    <Italian>Spedizione</Italian>
+    <Spanish>Navegaci&#243;n</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_GET_BONUS_OF_NEUTRAL_PLOTS</Tag>
+    <English>Trading post (Neutral bonus resources)</English>
+    <French>Comptoir (Ressources en territoire neutre)</French>
+    <German>Handelsposten (Neutrale Bonusressourcen)</German>
+    <Italian>Stazione (Risorse bonus Neutral)</Italian>
+    <Spanish>Puesto comercial (Recursos en terreno neutral)</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_PAE_SUPPLY</Tag>
+    <English>Units-Supply</English>
+    <French>Unit&#233;s-Ravitaillement</French>
+    <German>Einheiten-Versorgung</German>
+    <Italian>Unit&#224;-Fornitura</Italian>
+    <Spanish>Unidades-Suministro</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_PAE_PROMOTION_HERO</Tag>
+    <English>Units-Heroes</English>
+    <French>Unit&#233;s-H&#233;ros</French>
+    <German>Einheiten-Helden</German>
+    <Italian>Unit&#224;-Heroes</Italian>
+    <Spanish>Unidades-H&#233;roes</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_COMBAT3</Tag>
+    <English>Units-Experience Rank</English>
+    <French>Unit&#233;s-Rang d'exp&#233;rience</French>
+    <German>Einheiten-Erfahrungsrang</German>
+    <Italian>Unit&#224;-Classifica esperienza</Italian>
+    <Spanish>Unidades-Rango experiencia</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_MERCENARY_HIRE</Tag>
+    <English>Units-Mercenaries (Hire)</English>
+    <French>Unit&#233;s-Mercenaires (Recruter)</French>
+    <German>Einheiten-S&#246;ldner anheuern</German>
+    <Italian>Unit&#224;-Mercenaries (noleggio)</Italian>
+    <Spanish>Unidades-Mercenarios (Contratar)</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_MERCENARY_ASSIGN</Tag>
+    <English>Units-Mercenaries (Commission)</English>
+    <French>Unit&#233;s-Mercenaires (Missionner)</French>
+    <German>Einheiten-S&#246;ldner beauftragen</German>
+    <Italian>Unit&#224;-Assoldare mercenari</Italian>
+    <Spanish>Unidades-Mercenarios (Encomendar)</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_VETERANS</Tag>
+    <English>Units-Veterans</English>
+    <French>Unit&#233;s-V&#233;t&#233;rans</French>
+    <German>Einheiten-Veteranen</German>
+    <Italian>Unit&#224;-Veterani</Italian>
+    <Spanish>Unidades-Veteranos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_FORMATIONS</Tag>
+    <English>Units-Formations</English>
+    <French>Unit&#233;s-Formations</French>
+    <German>Einheiten-Formationen</German>
+    <Italian>Unit&#224;-Formazioni</Italian>
+    <Spanish>Unidades-Formaciones</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_NATURAL_DISASTERS</Tag>
+    <English>Natural disasters</English>
+    <French>Catastrophes naturelles</French>
+    <German>Naturkatastrophen</German>
+    <Italian>Le catastrofi naturali</Italian>
+    <Spanish>Desastres naturales</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_COMBAT2</Tag>
+    <English>Units-Combat</English>
+    <French>Unit&#233;s-Combat</French>
+    <German>Einheiten-Kampf</German>
+    <Italian>Unit&#224;-Combattimento</Italian>
+    <Spanish>Unidades-Combate</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_BONUSVERBREITUNG</Tag>
+    <English>Cultivation of bonus resources</English>
+    <French>Propagation des ressources</French>
+    <German>Kultivierung von Bonusressourcen</German>
+    <Italian>La coltivazione delle risorse bonus</Italian>
+    <Spanish>Cultivo de recursos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_DECIMATION</Tag>
+    <English>Units-Salary and decimation</English>
+    <French>Unit&#233;s-Salaire et d&#233;cimation</French>
+    <German>Einheiten-Sal&#228;r und Dezimierung</German>
+    <Italian>Units-Salary and decimation</Italian>
+    <Spanish>Unidades-Salario y Diezmar</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_UNIT_RANKING</Tag>
+    <English>Units-Military rank</English>
+    <French>Unit&#233;s-Grade militaire</French>
+    <German>Einheiten-Milit&#228;rrang</German>
+    <Italian>Unit&#224;-Grado militare</Italian>
+    <Spanish>Unidades: Rango militar</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_CONCEPT_UNIT_ELITE</Tag>
+    <English>Units-Elites</English>
+    <French>Unit&#233;s-Elites</French>
+    <German>Einheiten-Eliten</German>
+    <Italian>Unit&#224;-Elite</Italian>
+    <Spanish>Unidades-Elites</Spanish>
+  </TEXT>
 </Civ4GameText>

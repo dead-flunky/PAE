@@ -4,92 +4,81 @@
 <!-- Copyright Firaxis Games 2005 -->
 <!-- changed by Pie, Austria -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_SPECIAL1 ++++ -->
-<!-- UNIT_GERMAN_DOUBLEFIGHTER: German  -->
-<!-- UNIT_SAMNIT: Rom, Etrusker  -->
-<!-- UNIT_CELTIC_GALLIC_WARRIOR:  Kelten, Gallien -->
+<!-- ++++ UNITCLASS_SPECIAL1 (max 3 units) ++++ -->
+<!-- UNIT_STAMMESFUERST: Kelten, Gallien, Briten, Germanen -->
 <!-- UNIT_SICHELKRIEGER: Daker  -->
-<!-- UNIT_HOPLIT: Griechen, Illyrer, Ath,Theb,Spart, Lyder -->
+<!-- UNIT_SAMNIT: Rom, Etrusker  -->
+<!-- UNIT_HOPLIT: Griechen, Illyrer, Athen,Theben,Sparta, Lyder -->
 <!-- UNIT_HOPLIT_PERSIA: Perser -->
+<!-- UNIT_HOPLIT_CARTHAGE: Karthago -->
 <!-- UNIT_HYPASPIST: Makedon -->
 <!-- UNIT_STADTWACHE_ISRAEL: Israel -->
 <!-- UNIT_GEPANZERTER_ASSYRIA: Assyria -->
-<!-- UNIT_IBERIAN_CAVALRY: Iberer -->
 <!-- UNIT_KERMA_WARRIOR: Nubia -->
 <!-- UNIT_EGYPT_RAM_CHARIOT: Egypt -->
+<!-- UNIT_INDIAN_LONGBOW: India -->
+<!-- UNIT_CAMP: Skythen, Hunnen, Parther -->
+<!-- UNIT_SEEVOLK: Neutral -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_SPECIAL2 ++++ -->
+<!-- ++++ UNITCLASS_SPECIAL2 (max 3 units) ++++ -->
 <!-- UNIT_BELGIER: Kelten, Gallien, Germanen -->
+<!-- UNIT_CELTIC_FIANNA: Briten -->
 <!-- UNIT_FALXMAN: Daker -->
+<!-- UNIT_ROME_DECAREME: Rom -->
+<!-- UNIT_CELERES: Etrusker -->
+<!-- UNIT_SARISSA_MACEDON: Makedon -->
 <!-- UNIT_HOPLIT_SPARTA: Griechen, Sparta -->
-<!-- UNIT_THORAKITAI: Makedon -->
-<!-- UNIT_QUADRIREME: Karthago -->
+<!-- UNIT_NUBIAFUERST: Nubia -->
+<!-- UNIT_GAUFUERST: Egypt -->
+<!-- UNIT_RADSCHA: India -->
 <!-- UNIT_SEEVOLK_2: Neutral -->
 <!-- UNIT_VIKING_1: Neutral -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_SPECIAL3 ++++ -->
-<!-- UNIT_ROME_COHORTES_URBANAE: Rom -->
-<!-- UNIT_SARISSA_MACEDON: Makedon -->
-<!-- UNIT_WARBAND: Kelten, Gallier, Briten, Germanen, Vandalen -->
+<!-- ++++ UNITCLASS_SPECIAL3 (max 3 units) ++++ -->
+<!-- UNIT_THESSALIAN_CAVALRY: Makedon, Griechen, Athen, Theben, Sparta -->
+<!-- UNIT_CELTIBERIAN_CAVALRY: Kelten, Gallien, Iberer -->
+<!-- UNIT_FUERST_DAKER: Daker -->
 <!-- UNIT_SEEVOLK_3: Neutral -->
 <!-- UNIT_VIKING_2: Neutral -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_SPECIAL4 ++++ -->
+<!-- ++++ UNITCLASS_SPECIAL4 (no limit) ++++ -->
+<!-- UNIT_CELTIC_GALLIC_WARRIOR:  Kelten, Gallien -->
 <!-- UNIT_CARVEL_TRADE: Griechen, Illyrer, Phoen, Karthago -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_SPECIAL5 ++++ -->
-<!-- UNIT_COMPANION_CAVALRY: Makedon -->
-<!-- UNIT_WAR_HORSE_THRAKER: Daker, Skythen -->
-<!-- UNIT_EQUITES: Rom, Etrusker -->
-<!-- UNIT_CATAPHRACT: Hetither, Lydia, Phoen, Israel, Babylon, Sumer, Assyrer -->
-<!-- UNIT_CATAPHRACT_PERSIA: Perser -->
-<!-- UNIT_CELTIBERIAN_CAVALRY: Kelten, Gallier, Iberer -->
+<!-- ++++ UNITCLASS_SPECIAL5 (no limit) ++++ -->
+<!-- UNIT_WARBAND: Kelten, Gallien, Briten, Germanen -->
+<!-- UNIT_QUADRIREME: Karthago -->
 <!-- UNIT_MONGOL_KESHIK: Hunnen -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_ELITE1 ++++ -->
-<!-- UNIT_BERSERKER_GERMAN: Germanen -->
+<!-- ++++ UNITCLASS_ELITE1 (max 1 units) ++++ -->
 <!-- UNIT_ARVERNER: Kelten, Gallien -->
-<!-- UNIT_ROME_DECAREME: Rom -->
-<!-- UNIT_CELERES: Etrusker -->
-<!-- UNIT_ARGYRASPIDAI: Makedon -->
-<!-- UNIT_SACRED_BAND: Griechen, Theben -->
+<!-- UNIT_BERSERKER_GERMAN: Germanen -->
+<!-- UNIT_PRAETORIAN: Rom, Etrusker -->
+<!-- UNIT_COMPANION_CAVALRY: Makedon -->
+<!-- UNIT_SPARTAN: Griechen, Sparta -->
 <!-- UNIT_SACRED_BAND_CARTHAGE: Karthago -->
 <!-- UNIT_AMAZONE: Hethiter -->
 <!-- UNIT_PHILISTER: Israel, Phoen -->
 <!-- UNIT_MARDUK_PRIEST: Babylon, Sumer -->
-<!-- UNIT_INDIAN_LONGBOW: India -->
-<!-- UNIT_LIBYAN_AMAZON: Berber -->
-<!-- ++++ -->
-<!-- ++++ UNITCLASS_ELITE2 ++++ -->
-<!-- UNIT_STAMMESFUERST: Kelten, Gallien, Germanen -->
-<!-- UNIT_FUERST_DAKER: Daker -->
-<!-- UNIT_PRAETORIAN: Rom, Etrusker -->
-<!-- UNIT_SPARTAN: Griechen, Sparta -->
-<!-- UNIT_ARGYRASPIDAI2: Makedon -->
-<!-- UNIT_MOUNTED_SACRED_BAND_CARTHAGE: Karthago -->
-<!-- UNIT_GAUFUERST: Egypt -->
-<!-- UNIT_SYRIAN_GARDE: Assur, Israel, Phoen, Babylon, Sumer -->
 <!-- UNIT_UNSTERBLICH_2: Perser -->
-<!-- UNIT_INDIAN_NAYAR: India -->
-<!-- UNIT_NUBIAFUERST: Nubia -->
-<!-- ++++ -->
-<!-- ++++ UNITCLASS_ELITE3 ++++ -->
-<!-- UNIT_GERMAN_HARIER: German -->
-<!-- UNIT_CELTIC_FIANNA: Briten -->
-<!-- UNIT_ELITE_HOPLIT: Greek, Athen, Thebai -->
+<!-- UNIT_LIBYAN_AMAZON: Berber -->
 <!-- UNIT_PHARAONENGARDE: Egypt -->
-<!-- UNIT_RADSCHA: India -->
+<!-- UNIT_INDIAN_NAYAR: India -->
+<!-- UNIT_HEAVY_HORSEMAN_HUN: Hunnen -->
+<!-- ++++ -->
+<!-- ++++ UNITCLASS_ELITE2 (max 1 units) ++++ -->
+<!-- UNIT_GERMAN_HARIER: Germanen -->
+<!-- UNIT_SACRED_BAND: Griechen, Theben -->
+<!-- UNIT_ARGYRASPIDAI: Makedon -->
+<!-- UNIT_MOUNTED_SACRED_BAND_CARTHAGE: Karthago -->
+<!-- UNIT_SYRIAN_GARDE: Assyria, Israel, Phoen, Babylon, Sumer -->
+<!-- UNIT_APFELTRAEGER: Perser -->
+<!-- ++++ -->
+<!-- ++++ UNITCLASS_ELITE3 (max 1 units) ++++ -->
+<!-- UNIT_ELITE_HOPLIT: Greek, Athen, Thebai -->
+<!-- UNIT_THORAKITAI: Makedon -->
 <!-- UNIT_MACCABEE: Israel -->
 <!-- ++++ -->
-<!-- ++++ UNITCLASS_GILDE ++++ -->
-<!-- UNITCLASS_GALLIER_GILDE: Kelten, Gallier -->
-<!-- UNITCLASS_LEGION_GILDE: Rom, Etrusker -->
-<!-- UNITCLASS_NUMID_HORSE_GILDE: Numider -->
-<!-- UNITCLASS_ARCHER_GILDE: Egypt, Nubier -->
-<!-- UNITCLASS_PHALANX_GILDE: Alle Griechen -->
-<!-- UNITCLASS_COMPOSITE_ARCHER_GILDE: Phoen, Perser, Babylon, Sumer, Assyria -->
-<!-- UNITCLASS_GERMAN_GILDE: German -->
-<!-- UNITCLASS_WAR_ELEPHANT_GILDE: India -->
 <!-- UnitClass Schema -->
 <Civ4UnitClassInfos xmlns="x-schema:CIV4UnitSchema.xml">
   <UnitClassInfos>
@@ -107,7 +96,7 @@
       <Description>TXT_KEY_UNIT_EMIGRANT</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>3</iMaxPlayerInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iInstanceCostModifier>0</iInstanceCostModifier>
       <DefaultUnit>UNIT_EMIGRANT</DefaultUnit>
     </UnitClassInfo>
@@ -269,7 +258,7 @@
       <Description>TXT_KEY_UNIT_SPECIAL</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iMaxPlayerInstances>3</iMaxPlayerInstances>
       <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_SPECIAL1</DefaultUnit>
     </UnitClassInfo>
@@ -278,8 +267,8 @@
       <Description>TXT_KEY_UNIT_SPECIAL2</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>15</iInstanceCostModifier>
+      <iMaxPlayerInstances>3</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_SPECIAL2</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
@@ -287,7 +276,7 @@
       <Description>TXT_KEY_UNIT_SPECIAL3</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iMaxPlayerInstances>3</iMaxPlayerInstances>
       <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_SPECIAL3</DefaultUnit>
     </UnitClassInfo>
@@ -314,8 +303,8 @@
       <Description>TXT_KEY_UNIT_ELITE1</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>50</iInstanceCostModifier>
+      <iMaxPlayerInstances>1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
       <DefaultUnit>UNIT_ELITE1</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
@@ -323,8 +312,8 @@
       <Description>TXT_KEY_UNIT_ELITE2</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>50</iInstanceCostModifier>
+      <iMaxPlayerInstances>1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
       <DefaultUnit>UNIT_ELITE2</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
@@ -332,8 +321,8 @@
       <Description>TXT_KEY_UNIT_ELITE3</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>50</iInstanceCostModifier>
+      <iMaxPlayerInstances>1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
       <DefaultUnit>UNIT_ELITE3</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
@@ -360,7 +349,7 @@
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_CARVEL_WAR</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
@@ -416,15 +405,6 @@
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_PIRAT_TRIREME</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_GALLEY</Type>
-      <Description>TXT_KEY_UNIT_GALEERE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>10</iInstanceCostModifier>
-      <DefaultUnit>UNIT_GALLEY</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
       <Type>UNITCLASS_QUINQUEREME</Type>
@@ -580,6 +560,51 @@
       <DefaultUnit>UNIT_LEGION2</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
+      <Type>UNITCLASS_LEGION_OPTIO</Type>
+      <Description>TXT_KEY_UNIT_LEGION_OPTIO</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_LEGION_OPTIO</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_LEGION_OPTIO2</Type>
+      <Description>TXT_KEY_UNIT_LEGION_OPTIO2</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_LEGION_OPTIO2</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_LEGION_CENTURIO</Type>
+      <Description>TXT_KEY_UNIT_LEGION_CENTURIO</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_LEGION_CENTURIO</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_LEGION_CENTURIO2</Type>
+      <Description>TXT_KEY_UNIT_LEGION_CENTURIO2</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_LEGION_CENTURIO2</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_LEGION_TRIBUN</Type>
+      <Description>TXT_KEY_UNIT_LEGION_TRIBUN</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_LEGION_TRIBUN</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
       <Type>UNITCLASS_PRAETORIAN2</Type>
       <Description>TXT_KEY_UNIT_ROME_PRAETORIAN2</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -593,9 +618,90 @@
       <Description>TXT_KEY_UNIT_ROME_PRAETORIAN3</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iMaxPlayerInstances>1</iMaxPlayerInstances>
       <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_PRAETORIAN3</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_COHORTES_URBANAE</Type>
+      <Description>TXT_KEY_UNIT_ROME_COHORTES_URBANAE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_COHORTES_URBANAE</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_COMITATENSES</Type>
+      <Description>TXT_KEY_UNIT_ROME_COMITATENSES</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_COMITATENSES</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_COMITATENSES2</Type>
+      <Description>TXT_KEY_UNIT_ROME_COMITATENSES2</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_COMITATENSES2</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_COMITATENSES3</Type>
+      <Description>TXT_KEY_UNIT_ROME_COMITATENSES3</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_COMITATENSES3</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_LIMITANEI</Type>
+      <Description>TXT_KEY_UNIT_ROME_LIMITANEI</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_LIMITANEI</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_LIMITANEI_GARDE</Type>
+      <Description>TXT_KEY_UNIT_ROME_LIMITANEI_GARDE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>2</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_LIMITANEI_GARDE</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_PALATINI</Type>
+      <Description>TXT_KEY_UNIT_ROME_PALATINI</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_PALATINI</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_ROME_SCHOLAE</Type>
+      <Description>TXT_KEY_UNIT_ROME_SCHOLAE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ROME_SCHOLAE</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_CROSSBOWMAN_ROME</Type>
+      <Description>TXT_KEY_UNIT_CROSSBOWMAN_ROME</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_CROSSBOWMAN_ROME</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
       <Type>UNITCLASS_HUNTER</Type>
@@ -625,6 +731,15 @@
       <DefaultUnit>UNIT_SPEARMAN</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
+      <Type>UNITCLASS_ARGYRASPIDAI2</Type>
+      <Description>TXT_KEY_UNIT_ARGYRASPIDAI2</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_ARGYRASPIDAI2</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
       <Type>UNITCLASS_AUXILIAR</Type>
       <Description>TXT_KEY_UNIT_AUXILIAR</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -632,15 +747,6 @@
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iInstanceCostModifier>2</iInstanceCostModifier>
       <DefaultUnit>UNIT_AUXILIAR</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_ROME_NUMERI</Type>
-      <Description>TXT_KEY_UNIT_ROME_NUMERI</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>10</iInstanceCostModifier>
-      <DefaultUnit>UNIT_ROME_NUMERI</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
       <Type>UNITCLASS_LIGHT_ARCHER</Type>
@@ -731,15 +837,6 @@
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iInstanceCostModifier>5</iInstanceCostModifier>
       <DefaultUnit>UNIT_BATTERING_RAM2</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_ONAGER</Type>
-      <Description>TXT_KEY_UNIT_ONAGER</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>5</iInstanceCostModifier>
-      <DefaultUnit>UNIT_ONAGER</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
       <Type>UNITCLASS_CATAPULT</Type>
@@ -886,6 +983,42 @@
       <DefaultUnit>UNIT_HEAVY_HORSEMAN</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
+      <Type>UNITCLASS_CATAPHRACT</Type>
+      <Description>TXT_KEY_UNIT_CATAPHRACT</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_CATAPHRACT</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_CLIBANARII</Type>
+      <Description>TXT_KEY_UNIT_CLIBANARII</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_CLIBANARII</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_HORSEMAN_EQUITES2</Type>
+      <Description>TXT_KEY_UNIT_HORSEMAN_EQUITES2</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_HORSEMAN_EQUITES2</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_HORSEMAN_DECURIO</Type>
+      <Description>TXT_KEY_UNIT_HORSEMAN_DECURIO</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>10</iInstanceCostModifier>
+      <DefaultUnit>UNIT_HORSEMAN_DECURIO</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
       <Type>UNITCLASS_PRAETORIAN_RIDER</Type>
       <Description>TXT_KEY_UNIT_ROME_PRAETORIAN_RIDER</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -893,15 +1026,6 @@
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iInstanceCostModifier>10</iInstanceCostModifier>
       <DefaultUnit>UNIT_PRAETORIAN_RIDER</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_PRAETORIAN2_RIDER</Type>
-      <Description>TXT_KEY_UNIT_ROME_PRAETORIAN2_RIDER</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>10</iInstanceCostModifier>
-      <DefaultUnit>UNIT_PRAETORIAN2_RIDER</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
       <Type>UNITCLASS_CAMEL_ARCHER</Type>
@@ -976,6 +1100,15 @@
       <DefaultUnit>UNIT_BAKTRIEN</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
+      <Type>UNITCLASS_HORSE_ARCHER_BAKTRIEN</Type>
+      <Description>TXT_KEY_UNIT_HORSE_ARCHER_BAKTRIEN</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>50</iInstanceCostModifier>
+      <DefaultUnit>UNIT_HORSE_ARCHER_BAKTRIEN</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
       <Type>UNITCLASS_THRAKIEN_PELTAST</Type>
       <Description>TXT_KEY_UNIT_THRAKIEN_PELTAST</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -994,76 +1127,13 @@
       <DefaultUnit>UNIT_THRAKIEN_WARRIOR</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
-      <Type>UNITCLASS_ARCHER_GILDE</Type>
-      <Description>TXT_KEY_UNIT_ARCHER_GILDE</Description>
+      <Type>UNITCLASS_THRAKIEN_WAR_HORSE</Type>
+      <Description>TXT_KEY_UNIT_WAR_HORSE_THRAKER</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_ARCHER_GILDE</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_COMPOSITE_ARCHER_GILDE</Type>
-      <Description>TXT_KEY_UNIT_COMPOSITE_ARCHER_GILDE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_COMPOSITE_ARCHER_GILDE</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_GALLIER_GILDE</Type>
-      <Description>TXT_KEY_UNIT_GALLIER_GILDE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_GALLIER_GILDE</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_PHALANX_GILDE</Type>
-      <Description>TXT_KEY_UNIT_PHALANX</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_PHALANX_GILDE</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_GERMAN_GILDE</Type>
-      <Description>TXT_KEY_UNIT_GERMAN_GILDE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_GERMAN_GILDE</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_LEGION_GILDE</Type>
-      <Description>TXT_KEY_UNIT_LEGION_GILDE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_LEGION_GILDE</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_NUMID_HORSE_GILDE</Type>
-      <Description>TXT_KEY_UNIT_CARTHAGE_NUMIDIAN_CAVALRY</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_CARTHAGE_NUMIDIAN_CAVALRY</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
-      <Type>UNITCLASS_WAR_ELEPHANT_GILDE</Type>
-      <Description>TXT_KEY_UNIT_WAR_ELEPHANT_GILDE</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>25</iInstanceCostModifier>
-      <DefaultUnit>UNIT_WAR_ELEPHANT_GILDE</DefaultUnit>
+      <iInstanceCostModifier>50</iInstanceCostModifier>
+      <DefaultUnit>UNIT_THRAKIEN_WAR_HORSE</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
       <Type>UNITCLASS_INQUISITOR</Type>
@@ -1327,6 +1397,15 @@
       <DefaultUnit>UNIT_GREAT_GENERAL</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
+      <Type>UNITCLASS_GREAT_GENERAL2</Type>
+      <Description>TXT_KEY_UNIT_GREAT_GENERAL2</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_GREAT_GENERAL2</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
       <Type>UNITCLASS_GREAT_SPY</Type>
       <Description>TXT_KEY_SPECIALIST_GREAT_SPY</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -1478,6 +1557,15 @@
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iInstanceCostModifier>0</iInstanceCostModifier>
       <DefaultUnit>UNIT_BERGZIEGE</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
+      <Type>UNITCLASS_PRIVATEER</Type>
+      <Description>TXT_KEY_UNIT_PRIVATEER</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_PRIVATEER</DefaultUnit>
     </UnitClassInfo>
   </UnitClassInfos>
 </Civ4UnitClassInfos>
