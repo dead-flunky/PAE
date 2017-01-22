@@ -19,50 +19,56 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                 self.top = main
 
                 self.X_TECH_PANE = 10
-                self.Y_TECH_PANE = 57
-                self.W_TECH_PANE = 369
-                self.H_TECH_PANE = 126
+                self.Y_TECH_PANE = 55
+                self.W_TECH_PANE = 355
+                self.H_TECH_PANE = 110
 
                 self.X_ICON = 40
-                self.Y_ICON = 70
+                self.Y_ICON = 60
                 self.W_ICON = 100
                 self.H_ICON = 100
                 self.ICON_SIZE = 64
 
                 self.X_COST = 150
-                self.Y_COST = 110
+                self.Y_COST = 100
 
                 self.BUTTON_SIZE = 64
 
-                self.X_QUOTE_PANE = 394
-                self.Y_QUOTE_PANE = 350
-                self.W_QUOTE_PANE = 619
-                self.H_QUOTE_PANE = 356
-
-                self.X_UNIT_PANE = 10
-                self.Y_UNIT_PANE = 455
-                self.W_UNIT_PANE = 369
-                self.H_UNIT_PANE = 120
-
-                self.X_BUILDING_PANE = 10
-                self.Y_BUILDING_PANE = 586
-                self.W_BUILDING_PANE = 369
-                self.H_BUILDING_PANE = 120
-
                 self.X_PREREQ_PANE = 10
-                self.Y_PREREQ_PANE = 194
-                self.W_PREREQ_PANE = 369
-                self.H_PREREQ_PANE = 120
+                self.Y_PREREQ_PANE = 167
+                self.W_PREREQ_PANE = 355
+                self.H_PREREQ_PANE = 100
 
                 self.X_LEADS_TO_PANE = 10
-                self.Y_LEADS_TO_PANE = 324
-                self.W_LEADS_TO_PANE = 369
-                self.H_LEADS_TO_PANE = 120
+                self.Y_LEADS_TO_PANE = 269
+                self.W_LEADS_TO_PANE = 355
+                self.H_LEADS_TO_PANE = 110
 
-                self.X_SPECIAL_PANE = 394
-                self.Y_SPECIAL_PANE = 64
-                self.W_SPECIAL_PANE = 385
-                self.H_SPECIAL_PANE = 262 #262
+                self.X_UNIT_PANE = 10
+                self.Y_UNIT_PANE = 381
+                self.W_UNIT_PANE = 355
+                self.H_UNIT_PANE = 110
+
+                self.X_BUILDING_PANE = 10
+                self.Y_BUILDING_PANE = 493
+                self.W_BUILDING_PANE = 355
+                self.H_BUILDING_PANE = 110
+
+                self.X_CIV_PANE = 10
+                self.Y_CIV_PANE = 605
+                self.W_CIV_PANE = 355
+                self.H_CIV_PANE = 110
+
+
+                self.X_SPECIAL_PANE = 375
+                self.Y_SPECIAL_PANE = 55
+                self.W_SPECIAL_PANE = 415
+                self.H_SPECIAL_PANE = 185
+
+                self.X_QUOTE_PANE = 375
+                self.Y_QUOTE_PANE = 245
+                self.W_QUOTE_PANE = 415
+                self.H_QUOTE_PANE = 465
 
         def interfaceScreen(self, iTech):
 
@@ -73,7 +79,7 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                 screen = self.top.getScreen()
 
                 bNotActive = (not screen.isActive())
-                if bNotActive:
+                if bNotActive: # or self.top.iLastScreen != CvScreenEnums.PEDIA_TECH:  # PAE different Link menu height
                         self.top.setPediaCommonWidgets()
 
                 # Header...
@@ -83,7 +89,7 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                 # Top
                 screen.setText(self.top.getNextWidgetName(), "Background", self.top.MENU_TEXT, CvUtil.FONT_LEFT_JUSTIFY, self.top.X_MENU, self.top.Y_MENU, 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_PEDIA_MAIN, CivilopediaPageTypes.CIVILOPEDIA_PAGE_TECH, -1)
 
-                if self.top.iLastScreen        != CvScreenEnums.PEDIA_TECH or bNotActive:
+                if self.top.iLastScreen != CvScreenEnums.PEDIA_TECH or bNotActive:
                         self.placeLinks(true)
                         self.top.iLastScreen = CvScreenEnums.PEDIA_TECH
                 else:
@@ -113,6 +119,11 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
 
                 # Place buildings
                 self.placeBuildings()
+
+                # Place Civs: Anzeige nur(!) bei disabled Techs (PAE)
+                if not gc.getTechInfo(iTech).isDisable():
+                  lCivs = self.getTechOfCivs()
+                  if len(lCivs) > 0: self.placeCivs(lCivs)
 
                 # Place the Special abilities block
                 self.placeSpecial()
@@ -237,16 +248,37 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                         if (isTechRequiredForProject(self.iTech, eLoopProject)):
                                 screen.attachImageButton( panelName, "", gc.getProjectInfo(eLoopProject).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_PROJECT, eLoopProject, 1, False )
 
+        # Place CIVs who are able to research this technology (PAE)
+        def placeCivs(self, lCivs):
+
+                screen = self.top.getScreen()
+
+                panelName = self.top.getNextWidgetName()
+                screen.addPanel( panelName, localText.getText("TXT_KEY_PEDIA_CIVS_ENABLED", ()), "", false, true, self.X_CIV_PANE, self.Y_CIV_PANE, self.W_CIV_PANE, self.H_CIV_PANE, PanelStyles.PANEL_STYLE_BLUE50 )
+
+                screen.attachLabel(panelName, "", "  ")
+
+                # Civs anzeigen
+                for item in lCivs:
+                    screen.attachImageButton( panelName, "", gc.getCivilizationInfo(item).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, item, 1, False )
+
+        # Effects
         def placeSpecial(self):
 
                 screen = self.top.getScreen()
 
                 panelName = self.top.getNextWidgetName()
-                screen.addPanel( panelName, localText.getText("TXT_KEY_PEDIA_SPECIAL_ABILITIES", ()), "", true, false, self.X_SPECIAL_PANE, self.Y_SPECIAL_PANE, self.W_SPECIAL_PANE, self.H_SPECIAL_PANE, PanelStyles.PANEL_STYLE_BLUE50 )
+                screen.addPanel( panelName, "", "", true, false, self.X_SPECIAL_PANE, self.Y_SPECIAL_PANE, self.W_SPECIAL_PANE, self.H_SPECIAL_PANE, PanelStyles.PANEL_STYLE_BLUE50 )
 
                 listName = self.top.getNextWidgetName()
 
                 szSpecialText = CyGameTextMgr().getTechHelp(self.iTech, True, False, False, False, -1)[1:]
+
+
+                # Obsolete Unit
+                if self.iTech == gc.getInfoTypeForString("TECH_GRENZHEER"):
+                  if szSpecialText != "": szSpecialText += "\n"
+                  szSpecialText += CyTranslator().getText("TXT_KEY_TECH_OBSOLETES", (gc.getUnitInfo(gc.getInfoTypeForString("UNIT_PRAETORIAN")).getDescription(),))
 
                 # Spionagemissionen (werden erst im Spiel angezeigt, da Spionage auch ausgeschaltet sein kann -> getNumEspionageMissionInfos() = 0)
                 for eLoopEspionage in range(gc.getNumEspionageMissionInfos()):
@@ -273,10 +305,11 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                 else:
                   szSpecialText += CyTranslator().getText("TXT_KEY_MESSAGE_TECH_NOT_TRADEABLE", ())
 
+
                 # BTS: Auflistung
-                screen.addMultilineText(listName, szSpecialText, self.X_SPECIAL_PANE+5, self.Y_SPECIAL_PANE+30, self.W_SPECIAL_PANE-35, self.H_SPECIAL_PANE-10, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+                screen.addMultilineText(listName, szSpecialText, self.X_SPECIAL_PANE+5, self.Y_SPECIAL_PANE+20, self.W_SPECIAL_PANE-30, self.H_SPECIAL_PANE-10, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 
-
+        # Pedia text
         def placeQuote(self):
                 screen = self.top.getScreen()
 
@@ -294,8 +327,8 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                 szQuote += gc.getTechInfo(self.iTech).getCivilopedia()
 
                 szQuoteTextWidget = self.top.getNextWidgetName()
-                screen.addMultilineText( szQuoteTextWidget, szQuote, self.X_QUOTE_PANE + 15, self.Y_QUOTE_PANE + 15,
-                    self.W_QUOTE_PANE - (15 * 2), self.H_QUOTE_PANE - (15 * 2), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+                screen.addMultilineText( szQuoteTextWidget, szQuote, self.X_QUOTE_PANE + 10, self.Y_QUOTE_PANE + 10,
+                    self.W_QUOTE_PANE - 10, self.H_QUOTE_PANE - 15, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 
         def placeLinks(self, bRedraw):
 
@@ -309,12 +342,12 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
                 iSelected = 0
                 i = 0
                 for iI in range(gc.getNumTechInfos()):
-                        if (not gc.getTechInfo(techsList[iI][1]).isGraphicalOnly()):
-                                if bRedraw:
-                                        screen.appendListBoxStringNoUpdate(self.top.LIST_ID, techsList[iI][0], WidgetTypes.WIDGET_PEDIA_JUMP_TO_TECH, techsList[iI][1], 0, CvUtil.FONT_LEFT_JUSTIFY )
-                                if techsList[iI][1] == self.iTech:
-                                        iSelected = i
-                                i += 1
+                    # PAE: and not isDisable
+                    if not gc.getTechInfo(techsList[iI][1]).isGraphicalOnly() and not gc.getTechInfo(techsList[iI][1]).isDisable():
+                       if bRedraw:
+                          screen.appendListBoxStringNoUpdate(self.top.LIST_ID, techsList[iI][0], WidgetTypes.WIDGET_PEDIA_JUMP_TO_TECH, techsList[iI][1], 0, CvUtil.FONT_LEFT_JUSTIFY )
+                       if techsList[iI][1] == self.iTech: iSelected = i
+                       i += 1
 
                 if bRedraw:
                         screen.updateListBox(self.top.LIST_ID)
@@ -324,3 +357,31 @@ class CvPediaTech(CvPediaScreen.CvPediaScreen):
         # Will handle the input for this screen...
         def handleInput (self, inputClass):
                 return 0
+
+        # Civs that can research disabled Techs (PAE)
+        def getTechOfCivs(self):
+                lCivs = []
+                bRead = False
+
+                # Tech vorerst allen Civs zuweisen
+                iNumCivs = gc.getNumCivilizationInfos()
+                for i in range(iNumCivs): lCivs.append(i)
+
+                # Datei auslesen und bei disable Tech Civ aus der Liste droppen
+                datei = open("Mods/PieAncientEuropeV/Assets/XML/Civilizations/CIV4CivilizationInfos.xml")
+                for zeile in datei:
+                  if "<CivilizationInfo>" in zeile: bRead = False
+                  if "<Type>CIVILIZATION" in zeile: sCiv = zeile[zeile.find(">")+1:zeile.find("</")]
+                  if "<DisableTechs>" in zeile: bRead = True
+                  if bRead:
+                    if "<TechType>" in zeile:
+                      sTech = zeile[zeile.find(">")+1:zeile.find("</")]
+                      iTech = gc.getInfoTypeForString(sTech)
+                      iCiv = gc.getInfoTypeForString(sCiv)
+                      if iTech == self.iTech and iCiv in lCivs: lCivs.remove(iCiv)
+                datei.close()
+
+                if len(lCivs) == iNumCivs: lCivs = []
+                else: lCivs.remove(gc.getInfoTypeForString("CIVILIZATION_MINOR"))
+
+                return lCivs

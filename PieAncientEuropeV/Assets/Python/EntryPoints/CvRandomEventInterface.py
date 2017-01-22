@@ -65,7 +65,7 @@ def expireHolyMountain1(argsList):
 
   if (plot.getOwner() != kTriggeredData.ePlayer and plot.getOwner() != -1):
     # for PAE and the black fog of war
-    plot.setScriptData("")
+    CvUtil.removeScriptData(plot,"H")
     return True
 
   return False
@@ -89,7 +89,7 @@ def canTriggerHolyMountainDone(argsList):
     return False
 
   # for PAE and the black fog of war
-  plot.setScriptData("")
+  CvUtil.removeScriptData(plot,"H")
 
   return True
 
@@ -125,7 +125,7 @@ def canTriggerHolyMountainRevealed(argsList):
 
   plot.setRevealed(player.getTeam(), True, True, -1)
   # for PAE and the black fog of war
-  plot.setScriptData("X")
+  CvUtil.addScriptData(plot,"H","X")
 
   if (kTriggeredData.ePlayer == gc.getGame().getActivePlayer()):
     CyCamera().JustLookAtPlot( CyMap().plot( kOrigTriggeredData.iPlotX, kOrigTriggeredData.iPlotY ) )
@@ -970,7 +970,7 @@ def canTriggerTheHuns(argsList):
 
 #   At least one civ on the board must know Horseback Riding.
   bFoundValid = False
-  iTech = CvUtil.findInfoTypeNum(gc.getTechInfo, gc.getNumTechInfos(), 'TECH_HORSEBACK_RIDING_2')
+  iTech = CvUtil.findInfoTypeNum(gc.getTechInfo, gc.getNumTechInfos(), 'TECH_HORSEBACK_RIDING_3')
   for iPlayer in range(gc.getMAX_CIV_PLAYERS()):
     loopPlayer = gc.getPlayer(iPlayer)
     if loopPlayer.isAlive():
@@ -981,6 +981,7 @@ def canTriggerTheHuns(argsList):
   if not bFoundValid:
     return False
 
+  """
   # Can we build the counter unit?
   iCounterUnitClass = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_SPEARMAN')
   iCounterUnit = gc.getCivilizationInfo(player.getCivilizationType()).getCivilizationUnits(iCounterUnitClass)
@@ -998,6 +999,7 @@ def canTriggerTheHuns(argsList):
 
   if not bFound:
     return False
+  """
 
 #  Find an eligible plot
   map = gc.getMap()
@@ -1037,24 +1039,24 @@ def applyTheHuns1(argsList):
 
   if map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_DUEL'):
     iNumUnits  = 2
-
   elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
     iNumUnits  = 3
   elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
-    iNumUnits  = 3
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
     iNumUnits  = 4
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
+    iNumUnits  = 5
   elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
-    iNumUnits  = 5
+    iNumUnits  = 6
   else:
-    iNumUnits  = 5
+    iNumUnits  = 7
 
-  iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_HORSE_ARCHER_SCYTHS')
+  iUnitType1 = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_HORSE_ARCHER_SCYTHS')
+  iUnitType2 = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_MONGOL_KESHIK')
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-
+    barbPlayer.initUnit(iUnitType1, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
+    barbPlayer.initUnit(iUnitType2, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 ######## THE_VANDALS ###########
 
@@ -1135,23 +1137,23 @@ def applyTheVandals1(argsList):
   plot = map.plotByIndex(listPlots[gc.getGame().getSorenRandNum(len(listPlots), "Vandal event location")])
 
   if map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_DUEL'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
-    iNumUnits  = 3
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
-    iNumUnits  = 3
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
     iNumUnits  = 4
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
+    iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
+    iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
+    iNumUnits  = 8
   elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
-    iNumUnits  = 5
+    iNumUnits  = 10
   else:
-    iNumUnits  = 5
+    iNumUnits  = 12
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_CELTIC_GALLIC_WARRIOR')
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 
 ######## THE_GOTHS ###########
@@ -1228,23 +1230,23 @@ def applyTheGoths1(argsList):
   plot = map.plotByIndex(listPlots[gc.getGame().getSorenRandNum(len(listPlots), "Goth event location")])
 
   if map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_DUEL'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
-    iNumUnits  = 3
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
     iNumUnits  = 4
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
-    iNumUnits  = 5
-  else:
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
     iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
+    iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
+    iNumUnits  = 8
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
+    iNumUnits  = 10
+  else:
+    iNumUnits  = 12
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_STAMMESFUERST')
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 
 ######## THE_PHILISTINES ###########
@@ -1339,23 +1341,23 @@ def applyThePhilistines1(argsList):
   plot = map.plotByIndex(listPlots[gc.getGame().getSorenRandNum(len(listPlots), "Philistine event location")])
 
   if map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_DUEL'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
-    iNumUnits  = 3
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
     iNumUnits  = 4
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
-    iNumUnits  = 5
-  else:
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
     iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
+    iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
+    iNumUnits  = 8
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
+    iNumUnits  = 10
+  else:
+    iNumUnits  = 12
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_PHILISTER')
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 
 ######## THE_VEDIC_ARYANS ###########
@@ -1450,23 +1452,23 @@ def applyTheVedicAryans1(argsList):
   plot = map.plotByIndex(listPlots[gc.getGame().getSorenRandNum(len(listPlots), "Vedic Aryan event location")])
 
   if map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_DUEL'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
-    iNumUnits  = 2
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
-    iNumUnits  = 3
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
     iNumUnits  = 4
-  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
-    iNumUnits  = 5
-  else:
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
     iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
+    iNumUnits  = 6
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
+    iNumUnits  = 8
+  elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
+    iNumUnits  = 10
+  else:
+    iNumUnits  = 12
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_RADSCHA')
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 ######## SECURITY_TAX ###########
 
@@ -1551,7 +1553,7 @@ def applyHorseWhisperingDone1(argsList):
 
   if iUnitType != -1:
     for i in range(iNumUnits):
-      player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), player.getStateReligion())
+      player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
 ######## CLASSIC LITERATURE ###########
 
@@ -2016,7 +2018,7 @@ def applyGreedDone1(argsList):
 
   if iUnitType != -1:
     for i in range(iNumUnits):
-      player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), player.getStateReligion())
+      player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
 
 ######## WAR CHARIOTS ###########
@@ -2459,7 +2461,7 @@ def applyKilikien1(argsList):
         iUnitType1 = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_KILIKIEN')
         barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
         for i in range(iNumUnit1):
-                barbPlayer.initUnit(iUnitType1, plot.getX(), plot.getY(), UnitAITypes.UNITAI_PIRATE_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+                barbPlayer.initUnit(iUnitType1, plot.getX(), plot.getY(), UnitAITypes.UNITAI_PIRATE_SEA, DirectionTypes.DIRECTION_SOUTH)
 
 ######## MOOR ###########
 
@@ -2634,19 +2636,14 @@ def applyPiraten1(argsList):
 
         if map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_DUEL'):
                 iNumUnit1  = 2
-
         elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_TINY'):
                 iNumUnit1  = 2
-
         elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_SMALL'):
                 iNumUnit1  = 3
-
         elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_STANDARD'):
                 iNumUnit1  = 4
-
         elif map.getWorldSize() == CvUtil.findInfoTypeNum(gc.getWorldInfo, gc.getNumWorldInfos(), 'WORLDSIZE_LARGE'):
                 iNumUnit1  = 5
-
         else:
                 iNumUnit1  = 5
 
@@ -2664,7 +2661,7 @@ def applyPiraten1(argsList):
 
         barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
         for i in range(iNumUnit1):
-                barbPlayer.initUnit(iUnitType1, plot.getX(), plot.getY(), UnitAITypes.UNITAI_PIRATE_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+                barbPlayer.initUnit(iUnitType1, plot.getX(), plot.getY(), UnitAITypes.UNITAI_PIRATE_SEA, DirectionTypes.DIRECTION_SOUTH)
 
 ######## Spartacus ###########
 
@@ -2741,7 +2738,7 @@ def applySpartacus1(argsList):
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 ######## TROJA ###########
 
@@ -3016,10 +3013,11 @@ def canTriggerKastellDone(argsList):
 def canTriggerIsis(argsList):
         kTriggeredData = argsList[0]
         player = gc.getPlayer(kTriggeredData.ePlayer)
+        city = player.getCity(kTriggeredData.iCityId)
 
-        city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
-        if None == city or city.isNone():
-                return false
+        #city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
+        #if None == city or city.isNone():
+        #        return false
 
         # Hack to remember the number of cities you already have with the Corporation
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3087,10 +3085,11 @@ def canTriggerIsisDone(argsList):
 def canTriggerMithras(argsList):
         kTriggeredData = argsList[0]
         player = gc.getPlayer(kTriggeredData.ePlayer)
+        city = player.getCity(kTriggeredData.iCityId)
 
-        city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
-        if None == city or city.isNone():
-                return false
+        #city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
+        #if None == city or city.isNone():
+        #        return false
 
         # Hack to remember the number of cities you already have with the Corporation
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3158,10 +3157,11 @@ def canTriggerMithrasDone(argsList):
 def canTriggerHelle(argsList):
         kTriggeredData = argsList[0]
         player = gc.getPlayer(kTriggeredData.ePlayer)
+        city = player.getCity(kTriggeredData.iCityId)
 
-        city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
-        if None == city or city.isNone():
-                return false
+        #city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
+        #if None == city or city.isNone():
+        #        return false
 
         # Hack to remember the number of cities you already have with the Corporation
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3235,7 +3235,8 @@ def canTriggerMeuterei(argsList):
   if unit.isNone():
     return False
 
-  if unit.isLoyal():
+  iLoyal = CvUtil.findInfoTypeNum(gc.getPromotionInfo,gc.getNumPromotionInfos(),'PROMOTION_LOYALITAT')
+  if unit.isHasPromotion(iLoyal):
     return False
 
   return True
@@ -3250,7 +3251,7 @@ def applyMeuterei(argsList):
   plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-  barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_PIRATE_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+  barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_PIRATE_SEA, DirectionTypes.DIRECTION_SOUTH)
 
 ######## KARAWANE ###########
 
@@ -3262,11 +3263,11 @@ def applyKarawane(argsList):
   plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_MERCHANT')
-  player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_MERCHANT, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), player.getStateReligion())
+  player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_MERCHANT, DirectionTypes.DIRECTION_SOUTH)
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_CARAVAN')
-  player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_MERCHANT, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), player.getStateReligion())
-  player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_MERCHANT, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), player.getStateReligion())
+  player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_MERCHANT, DirectionTypes.DIRECTION_SOUTH)
+  player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_MERCHANT, DirectionTypes.DIRECTION_SOUTH)
 
 ######## BALEAREN und KRETA ###########
 
@@ -3293,7 +3294,7 @@ def doBalearenRevealed(argsList):
 
   plot.setRevealed(player.getTeam(), True, True, -1)
   # for PAE and the black fog of war
-  plot.setScriptData("X")
+  CvUtil.addScriptData(plot,"H","X")
   if (kTriggeredData.ePlayer == gc.getGame().getActivePlayer()):
     CyCamera().JustLookAtPlot( CyMap().plot( kTriggeredData.iPlotX, kTriggeredData.iPlotY ) )
 
@@ -3319,7 +3320,7 @@ def expireBalearen1(argsList):
 
   if plot.getOwner() != kTriggeredData.ePlayer and plot.getOwner() != gc.getBARBARIAN_PLAYER() and plot.getOwner() != -1:
     # for PAE and the black fog of war
-    plot.setScriptData("")
+    CvUtil.removeScriptData(plot,"H")
     return True
 
   return False
@@ -3335,7 +3336,7 @@ def canTriggerBalearenDone(argsList):
     return False
 
   # for PAE and the black fog of war
-  plot.setScriptData("")
+  CvUtil.removeScriptData(plot,"H")
 
   return True
 
@@ -3362,7 +3363,7 @@ def applyKretaDone(argsList):
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_ARCHER_KRETA')
 
   for i in range(iNumUnits):
-    player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+    player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
 def applyBalearenDone(argsList):
   iEvent = argsList[0]
@@ -3387,7 +3388,7 @@ def applyBalearenDone(argsList):
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_BALEAREN')
 
   for i in range(iNumUnits):
-    player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+    player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
 ######## Soeldner ###########
 
@@ -3442,7 +3443,7 @@ def applyThorgal(argsList):
   plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_VIKING_2')
-  NewUnit = player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), player.getStateReligion())
+  NewUnit = player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
   NewUnit.setName("Thorgal")
 
@@ -3533,7 +3534,7 @@ def applyBeduinen1(argsList):
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
-    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+    barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
 
 # Check City colony or province after events
 def doCheckCityStatus(argsList):
@@ -3620,7 +3621,7 @@ def applyRome_Religion_3(argsList):
   plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_PROPHET')
-  NewUnit = player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), ReligionType.RELIGION_ROME)
+  NewUnit = player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
   NewUnit.setName("Pontifex Maximus")
 
@@ -3642,7 +3643,7 @@ def applyZoro_3(argsList):
   plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
   iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_PROPHET')
-  NewUnit = player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, player.getCivilizationType(), ReligionType.RELIGION_ZORO)
+  NewUnit = player.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
   NewUnit.setName("Zarathustra")
 

@@ -8,7 +8,9 @@ import WBUnitScreen
 import WBPlayerScreen
 import WBTeamScreen
 import WBInfoScreen
+import WBRiverScreen
 import CvPlatyBuilderScreen
+import CvRiverUtil
 import Popup
 gc = CyGlobalContext()
 
@@ -31,7 +33,7 @@ class WBPlotScreen:
 		global iWidth
 		pPlot = pPlotX
 		iWidth = screen.getXResolution()/5 - 20
-		
+
 		screen.setRenderInterfaceOnly(True)
 		screen.addPanel( "MainBG", u"", u"", True, False, -10, -10, screen.getXResolution() + 20, screen.getYResolution() + 20, PanelStyles.PANEL_STYLE_MAIN )
 		screen.showScreen(PopupStates.POPUPSTATE_IMMEDIATE, False)
@@ -83,6 +85,7 @@ class WBPlotScreen:
 		if pPlot.getNumUnits() > 0:
 			screen.addPullDownString("CurrentPage", CyTranslator().getText("TXT_KEY_WB_UNIT_DATA", ()), 5, 5, False)
 		screen.addPullDownString("CurrentPage", CyTranslator().getText("TXT_KEY_INFO_SCREEN", ()), 11, 11, False)
+		screen.addPullDownString("CurrentPage", CyTranslator().getText("TXT_KEY_WB_RIVER_DATA", ()), 12, 12, False)
 
 		iIndex = -1
 		for i in xrange(CyMap().numPlots()):
@@ -528,6 +531,8 @@ class WBPlotScreen:
 				if iPlayer == -1:
 					iPlayer = CyGame().getActivePlayer()
 				WBInfoScreen.WBInfoScreen().interfaceScreen(iPlayer)
+			if iIndex == 12:
+				WBRiverScreen.WBRiverScreen().interfaceScreen(pPlot)
 
 		elif inputClass.getFunctionName() == "NextPlotUpButton":
 			pNewPlot = CyMap().plot(pPlot.getX(), pPlot.getY() + 1)
@@ -706,9 +711,15 @@ class WBPlotScreen:
 				iVariety = 0
 			if iEditType == 0:
 				if bAdd:
-					pPlot.setFeatureType(iFeature, iVariety)
+					pPlot.setFeatureType(-1, 0)
+					if CvRiverUtil.isRiverFeature(iFeature):
+						CvRiverUtil.addRiverFeatureSimple(pPlot, iFeature, iVariety)
+					else:
+						pPlot.setFeatureType(iFeature, iVariety)
+						CvUtil.removeScriptData(pLoopPlot, "r")
 				else:
 					pPlot.setFeatureType(-1, 0)
+					CvUtil.removeScriptData(pPlot, "r")
 			else:
 				for i in xrange(CyMap().numPlots()):
 					pLoopPlot = CyMap().plotByIndex(i)
@@ -721,10 +732,17 @@ class WBPlotScreen:
 						if iFeature > -1 and bSensibility and not pLoopPlot.canHaveFeature(iFeature):
 							pLoopPlot.setFeatureType(iOldFeature, iOldVariety)
 							continue
-						pLoopPlot.setFeatureType(iFeature, iVariety)
+						if CvRiverUtil.isRiverFeature(iFeature):
+							CvRiverUtil.addRiverFeatureSimple(pLoopPlot, iFeature, iVariety)
+						else:
+							pLoopPlot.setFeatureType(iFeature, iVariety)
+							if CvRiverUtil.isRiverFeature(iOldFeature):
+								CvUtil.removeScriptData(pLoopPlot, "r")
 					else:
 						pLoopPlot.setFeatureType(-1, 0)
+						CvUtil.removeScriptData(pLoopPlot, "r")
 			self.placeFeature()
+			self.placeScript()
 
 		elif inputClass.getFunctionName() == "WBPlotRoutes":
 			iRoute = inputClass.getData2()

@@ -6,7 +6,7 @@
 ## The argsList can contain anything from mouse location to key info
 ## The EVENTLIST that are being notified can be found
 ## ---------------------
-## Edited by Pie, Austria 2010-2014
+## Edited by Pie, Austria since 2010
 
 #####################
 # ColorTypes()
@@ -41,7 +41,6 @@ import pickle
 import math
 import time
 import re
-import time
 import random # Seed! fixed MP-OOS
 import itertools # faster repeating of stuff
 import CvScreenEnums
@@ -60,6 +59,26 @@ import WBPlotScreen
 import CvPlatyBuilderScreen
 ## Platy WorldBuilder ##
 
+# PAE River Tiles / navigable rivers (Ramk)
+import CvRiverUtil
+# Trade and cultivation (Pie, Boggy, Flunky)
+import PAE_Trade
+# Christian Events
+import PAE_Christen
+# Barbaren und rundenbezogene Features
+import PAE_Barbaren
+
+import PAE_Mercenaries
+
+# Flunky: Scenario files
+import PeloponnesianWar
+import PeloponnesianWarKeinPferd
+import Schmelz
+import FirstPunicWar
+import PAE_Sklaven
+import PAE_Vassal
+import PAE_Disasters
+
 gc = CyGlobalContext()
 localText = CyTranslator()
 PyPlayer = PyHelpers.PyPlayer
@@ -73,7 +92,6 @@ seed = int(time.strftime("%d%m%Y"))
 random.seed(seed)
 CyRandom().init(seed)
 
-# globals
 ###################################################
 class CvEventManager:
   def __init__(self):
@@ -86,14 +104,11 @@ class CvEventManager:
     # PAE - Show message which player is on turn
     self.bPAE_ShowMessagePlayerTurn = False
 
-    # PAE - ICE AGE (Boggy) - Schmelzen 1/4
-    self.IceSnow = []
-    self.IceCoast = []
-    self.IceTundra = []
-    self.IceTundra2 = []
-    self.IceEis = []
-    self.IceDesertEbene = []
-    self.IceDesertCoast = []
+    # PAE Stadtstatus
+    self.iPopDorf = 3
+    self.iPopStadt = 6
+    self.iPopProvinz = 12
+    self.iPopMetropole = 20
 
     # PAE - InstanceChanceModifier for units in getting Fighting-Promotions (per turn)
     # [PlayerID, UnitID]
@@ -105,6 +120,18 @@ class CvEventManager:
 
     # PAE Statthalter Tribut
     self.PAEStatthalterTribut = []
+
+    # PAE - River tiles
+    """ The plot tiles require some initialisation at
+    game startup, but the setup fails if it will be
+    done into onLoadGame. Use same solution like
+    FinalFrontier. Comment about this flag/issue in FF:
+    Used when loading, since the order is wonky and trying to update display in onLoad 'splodes
+    """
+    self.bRiverTiles_NeedUpdate = False
+    self.bRiverTiles_WaitOnMainInterface = False
+    # PAE - River tiles end
+
 
     self.bCtrl = False
     self.bShift = False
@@ -432,87 +459,64 @@ class CvEventManager:
       pUnit = pPlayer.getUnit(iData5)
       self.doInquisitorPersecution(pCity, pUnit)
     # Horse down
-    if iData1 == 666:
+    elif iData1 == 666:
       pPlot = CyMap().plot(iData2, iData3)
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
       self.doHorseDown(pPlot, pUnit)
     # Horse up
-    if iData1 == 667:
+    elif iData1 == 667:
       pPlot = CyMap().plot(iData2, iData3)
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
       self.doHorseUp(pPlot, pUnit)
-    # Slave -> Bordell
-    if iData1 == 668:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Bordell(pCity, pUnit)
-    # Slave -> Gladiator
-    if iData1 == 669:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Gladiator(pCity, pUnit)
-    # Slave -> Theatre
-    if iData1 == 670:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Theatre(pCity, pUnit)
     # Emigrant
-    if iData1 == 672:
+    elif iData1 == 672:
       pPlot = CyMap().plot(iData2, iData3)
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
       self.doEmigrant(pCity, pUnit)
     # Disband city
-    if iData1 == 673:
+    elif iData1 == 673:
       pPlot = CyMap().plot(iData2, iData3)
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
       self.doDisbandCity(pCity, pUnit, pPlayer)
     # Hunnen
-    if iData1 == 674:
+    elif iData1 == 674:
       # iData2 = iPlayer , iData3 = unitID
       gc.getPlayer(iData2).changeGold(-100)
       #gc.getPlayer(gc.getBARBARIAN_PLAYER()).getUnit(iData3).kill(1,gc.getBARBARIAN_PLAYER())
       gc.getPlayer(gc.getBARBARIAN_PLAYER()).getUnit(iData3).doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
       CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_HUNS_PAID",()), None, 2, None, ColorTypes(14), 0, 0, False, False)
     # City Revolten
-    if iData1 == 675:
+    elif iData1 == 675:
       # iData2 = iPlayer , iData3 = City ID, iData4 = Revolt Turns , iData5 = Button
       # Button 0: 1st Payment: pop * 10 - 5% chance
       # Button 1: 2nd Payment: pop * 5 - 30% chance
       # Button 2: Cancel: 100% revolt
       pPlayer = gc.getPlayer(iData2)
       pCity = pPlayer.getCity(iData3)
-      pPlot = CyMap().plot(pCity.getX(), pCity.getY())
+      pPlot = pCity.plot()
 
       if iData5 == 0:
         if pPlayer.getGold() >= pCity.getPopulation() * 10:
           pPlayer.changeGold(pCity.getPopulation() * (-10))
           iChance = 1
-        else: iChance = 20
+        else: iChance = 10
       elif iData5 == 1:
         if pPlayer.getGold() >= pCity.getPopulation() * 5:
           pPlayer.changeGold(pCity.getPopulation() * (-5))
-          iChance = 6
-        else: iChance = 20
-      else: iChance = 20
+          iChance = 5
+        else: iChance = 10
+      else: iChance = 10
 
-      iRand = self.myRandom(20, None)
+      iRand = self.myRandom(10, None)
       if iRand < iChance:
         if pPlot.getNumUnits() > pCity.getPopulation(): iData4 = 2
-
         self.doCityRevolt (pCity,iData4)
-
         CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_REVOLT_DONE_1",(pCity.getName(),)), None, 2, None, ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
       else:
         CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_REVOLT_DONE_2",(pCity.getName(),)), None, 2, None, ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
@@ -520,7 +524,7 @@ class CvEventManager:
     # 676 vergeben (Tech - Unit)
 
     # 677 Goldkarren / Beutegold / Treasure zw 80 und 150
-    if iData1 == 677:
+    elif iData1 == 677:
       pPlot = CyMap().plot(iData2, iData3)
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
@@ -535,9 +539,8 @@ class CvEventManager:
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Beutegold eingesackt (Zeile 444)",150)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-
     # Provinzhauptstadt Statthalter Tribut
-    if iData1 == 678:
+    elif iData1 == 678:
       # iData2 = iPlayer, iData3 = CityID, iData4 = Antwort [0,1,2] , iData5 = Tribut
       pPlayer = gc.getPlayer(iData2)
       pCity = pPlayer.getCity(iData3)
@@ -548,7 +551,7 @@ class CvEventManager:
       bDoRebellion = False
       iAddHappiness = -1
       bPaid = False
-      iRebellionRand = self.myRandom(100, None)
+      iRandRebellion = self.myRandom(100, None)
 
       if iGold >= iTribut:
         if iData4 == 0:
@@ -621,6 +624,11 @@ class CvEventManager:
         if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
           lGift.append(gc.getInfoTypeForString("UNIT_ELEFANT"))
           if pCity.canTrain(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"),0,0): lGift.append(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"))
+        # Kamel
+        if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
+          lGift.append(gc.getInfoTypeForString("UNIT_CARAVAN"))
+          if pCity.canTrain(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"),0,0): lGift.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
+          if pCity.canTrain(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"),0,0): lGift.append(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"))
 
         # Choose unit
         iRand = self.myRandom(len(lGift), None)
@@ -636,486 +644,32 @@ class CvEventManager:
         popupInfo.setText(szBuffer)
         popupInfo.addPopup(iData2)
 
-        pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+        pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
+    elif (iData1 >= 668 and iData1 <= 670) or (iData1 >= 679 and iData1 <= 682) or (iData1 >= 692 and iData1 <= 693) or iData1 == 696:
+      PAE_Sklaven.onModNetMessage(iData1, iData2, iData3, iData4, iData5)
 
-
-    # Slave -> Schule
-    if iData1 == 679:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Schule(pCity, pUnit)
-
-    # Slave -> Manufaktur Nahrung
-    if iData1 == 680:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Manufaktur(pCity, pUnit, 0)
-
-    # Slave -> Manufaktur Produktion
-    if iData1 == 681:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Manufaktur(pCity, pUnit, 1)
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Vasallen Start -------------------------------------------------------
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    # iLoser gets Vassal of iWinner with 1/2 Gold of iLoser
-    if iData1 == 671:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-
-      iWinnerTeam = pWinner.getTeam()
-      pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Botschafter Kill
-      # Verschlechterung der Beziehungen um -1
-      # Verbesserung der Beziehungen mit jenen, die mit diesem im Krieg sind um +1
-      if iData4 == -1:
-        # Verlierer bekommt Absage
-        if iData5 == 0:
-          # Verlierer bekommt -1 zum Gewinner
-          pLoser.AI_changeAttitudeExtra(iData2,-1)
-          # Alle, die mit dem Verlierer im Krieg sind, bekommen zum Gewinner +1
-          # ausser die Vasallen des Gewinners
-          iRange = gc.getMAX_PLAYERS()
-          for i in range(iRange):
-            if gc.getPlayer(i).isAlive():
-              iTeam = gc.getPlayer(i).getTeam()
-              if pLoserTeam.isAtWar(iTeam) and not gc.getTeam(iTeam).isVassal(pWinnerTeam.getID()): gc.getPlayer(i).AI_changeAttitudeExtra(iData2,1)
-        # Gewinner bekommt Absage
-        else:
-          # Gewinner bekommt -1 zum Verlierer
-          pWinner.AI_changeAttitudeExtra(iData3,-1)
-          # Alle, die mit dem Gewinner im Krieg sind, bekommen zum Verlierer +1
-          # ausser die Vasallen des Verlierers
-          iRange = gc.getMAX_PLAYERS()
-          for i in range(iRange):
-            if gc.getPlayer(i).isAlive():
-              iTeam = gc.getPlayer(i).getTeam()
-              if pWinnerTeam.isAtWar(iTeam) and not gc.getTeam(iTeam).isVassal(pLoserTeam.getID()): gc.getPlayer(i).AI_changeAttitudeExtra(iData3,1)
-      else:
-        pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
-        self.VassalHegemonGetsVassal(iData3) # Hegemon verliert seine Vasallen
-        pWinner.changeGold(iData4)
-        pLoser.changeGold(iData4 * (-1))
-        if iData2 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-
-
-    # HI-HI Interaktion Start ++++++++++++++++++++++++++++++
-    # 1) Der Loser darf beginnen und sich als Vasall vorschlagen
-    # 1a) Wenn negativ, dann soll Winner eine Meldung bekommen und dem Loser einen Vorschlag unterbreiten => 2
-    # 1b) Der Winner darf entscheiden, ob der Vorschlag angenommen wird
-    # 2) Der Loser darf entscheiden, ob er mit dem Angebot des Winners Vasall wird
-    # = Net-ID , iWinner , iLoser, iGold1
-    if iData1 == 682:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-
-      iWinnerTeam = pWinner.getTeam()
-      pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Loser moechte nix zu tun haben = 1a
-      # Winner bietet Hegemonschaft an
-      if iData4 == -1:
-              iGold1 = self.myRandom(pWinner.getGold() / 4, None)
-              if iGold1 < pWinner.getGold() / 8: iGold1 = pWinner.getGold() / 8 + iGold1
-              iGold2 = iGold1 * 2
-              iGold1 = int(iGold1)
-              iGold2 = int(iGold2)
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_04",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),pLoser.getCivilizationShortDescription(0))) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(iGold1)
-              popupInfo.setFlags(iGold2)
-              popupInfo.setOnClickedPythonCallback("popupVassal04") # EntryPoints/CvScreenInterface und CvGameUtils / 683
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_04_1",(iGold1,pWinner.getCivilizationAdjective(2))), "")
-              if iGold2 > 0: popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_04_2",(iGold2,pWinner.getCivilizationAdjective(2))), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_04_NO",()), "")
-              popupInfo.addPopup(iData2)
-      # Loser schlagt vor, Winner entscheidet = 1b
-      else:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_06",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),pLoser.getCivilizationShortDescription(0),iData4)) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(iData4)
-              popupInfo.setOnClickedPythonCallback("popupVassal06") # EntryPoints/CvScreenInterface und CvGameUtils / 685
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_06_YES",()), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_06_NO",()), "")
-              iRand = 1 + self.myRandom(9, None)
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPopup(iData2)
-
-    # 1a => 2
-    if iData1 == 683:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-
-      iWinnerTeam = pWinner.getTeam()
-      pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Winner bietet Hegemonschaft an
-      # Loser entscheidet
-      if iData4 >= 0:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),pWinner.getCivilizationShortDescription(0),iData4)) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(iData4)
-              popupInfo.setOnClickedPythonCallback("popupVassal05") # EntryPoints/CvScreenInterface und CvGameUtils / 684
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_YES",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_NO",(iData4,)), "")
-              iRand = 1 + self.myRandom(9, None)
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPopup(iData3)
-
-    # 2 => Loser entscheidet: YES: Loser wird Vasall, NO: Winner bekommt Meldung
-    if iData1 == 684:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-
-      iWinnerTeam = pWinner.getTeam()
-      pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Winner bietet Hegemonschaft an
-      # Loser nicht einverstanden
-      if iData4 == 0:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_07",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),pLoser.getCivilizationShortDescription(0))) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(1) # zur Winnerauswahl
-              popupInfo.setOnClickedPythonCallback("popupVassal07") # EntryPoints/CvScreenInterface und CvGameUtils / 686 / 1
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_07_YES",()), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_07_NO",()), "")
-              popupInfo.addPopup(iData2)
-
-      # Botschafter vom Winner wird gekillt
-      elif iData4 == -1:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT) # Vorsicht Text PopUp only!
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_1",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),pLoser.getCivilizationShortDescription(0))) )
-              popupInfo.addPopup(iData3)
-
-              # Verschlechterung der Beziehungen des Gewinners zum Verlierer -1
-              pWinner.AI_changeAttitudeExtra(iData3,-1)
-              # Alle, die mit dem Gewinner im Krieg sind, bekommen zum Verlierer +1
-              # ausser die Vasallen des Verlierers
-              iRange = gc.getMAX_PLAYERS()
-              for i in range(iRange):
-                if gc.getPlayer(i).isAlive():
-                  iTeam = gc.getPlayer(i).getTeam()
-                  if pWinnerTeam.isAtWar(iTeam) and not gc.getTeam(iTeam).isVassal(pLoserTeam.getID()): gc.getPlayer(i).AI_changeAttitudeExtra(iData3,1)
-
-      else:
-        pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
-        self.VassalHegemonGetsVassal(iData3) # Hegemon verliert seine Vasallen
-        pLoser.changeGold(iData4)
-        pWinner.changeGold(iData4 * (-1))
-        if iData3 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-
-    # 1b Winner entscheidet: YES: Loser wird Vasall, NO: Loser bekommt Meldung
-    if iData1 == 685:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-
-      iWinnerTeam = pWinner.getTeam()
-      pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Winner bietet Hegemonschaft an
-      # Loser entscheidet
-
-      # Winner lehnt ab, nochmal entscheiden?
-      if iData4 == 0:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_07",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),pWinner.getCivilizationShortDescription(0))) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(0) # zur Loserauswahl
-              popupInfo.setOnClickedPythonCallback("popupVassal07") # EntryPoints/CvScreenInterface und CvGameUtils / 686 / 0
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_07_YES",()), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_07_NO",()), "")
-              popupInfo.addPopup(iData3)
-
-      # Botschafter vom Loser wird gekillt
-      elif iData4 == -1:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT) # Vorsicht Text PopUp only!
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_1",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),pWinner.getCivilizationShortDescription(0))) )
-              popupInfo.addPopup(iData3)
-              # Verschlechterung der Beziehungen vom Verlierer zum Gewinner -1
-              pLoser.AI_changeAttitudeExtra(iData2,-1)
-              # Alle, die mit dem Verlierer im Krieg sind, bekommen zum Gewinner +1
-              # ausser die Vasallen des Gewinners
-              iRange = gc.getMAX_PLAYERS()
-              for i in range(iRange):
-                if gc.getPlayer(i).isAlive():
-                  iTeam = gc.getPlayer(i).getTeam()
-                  if pLoserTeam.isAtWar(iTeam) and not gc.getTeam(iTeam).isVassal(pWinnerTeam.getID()): gc.getPlayer(i).AI_changeAttitudeExtra(iData2,1)
-
-      # Vasall werden
-      else:
-        pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
-        self.VassalHegemonGetsVassal(iData3) # Hegemon verliert seine Vasallen
-        pWinner.changeGold(iData4)
-        pLoser.changeGold(iData4 * (-1))
-        if iData2 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-
-    # Es wird nochmal entschieden
-    if iData1 == 686:
-      # zur Loserauswahl
-      if iData4 == 0:
-        # iWinner , iLoser, pCity
-        self.VassalHItoHI (iData2, iData3, None)
-      # zur Winnerauswahl
-      else:
-        CyMessageControl().sendModNetMessage( 682, iData1, iData2, -1, 0 )
-
-    # HI-HI Interaktion Ende +++++++++++++++++++++++++++++++++
-
-    # Winner greift einen Hegemon an und bekommt ein positives Kriegsangebot von einem seiner Vasallen
-    # Message-ID / HI - Winner / KI-Loser (Hegemon) / KI-Vasall / Bestechungsgeld
-    if iData1 == 687:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-      pVassal = gc.getPlayer(iData4)
-
-      #iWinnerTeam = pWinner.getTeam()
-      #pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      #pLoserTeam = gc.getTeam(iLoserTeam)
-      #pHegemonTeam.freeVassal(iTeam)
-      iVassalTeam = pVassal.getTeam()
-      pVassalTeam = gc.getTeam(iVassalTeam)
-
-      # Zuerst allen Frieden schliessen
-      iRange = gc.getMAX_PLAYERS()
-      for i in range(iRange):
-        if gc.getPlayer(i).isAlive():
-          iTeam = gc.getPlayer(i).getTeam()
-          if pVassalTeam.isAtWar(iTeam): gc.getTeam(iTeam).makePeace(pVassalTeam.getID())
-
-      # Danach dem alten Hegemon Krieg erklaeren
-      gc.getTeam(pVassal.getTeam()).declareWar(iLoserTeam, 0, 4)
-      pVassal.changeGold(iData5)
-      pWinner.changeGold(iData5 * (-1))
-      if iData4 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-
-    # HI ist Vasall eines Hegemons, der soeben eine Stadt verloren hat
-    # iData5: 0=Krieg gegen Hegemon, 1=treu
-    if iData1 == 688:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-      pVassal = gc.getPlayer(iData4)
-      #iWinnerTeam = pWinner.getTeam()
-      #pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      #pLoserTeam = gc.getTeam(iLoserTeam)
-
-      if iData5 == 0:
-        gc.getTeam(pVassal.getTeam()).declareWar(iLoserTeam, 0, 4)
-        # Beziehungsstatus aendern
-        pLoser.AI_changeAttitudeExtra(iData4,-2)
-        pWinner.AI_changeAttitudeExtra(iData4,2)
-        if pWinner.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_1",(pVassal.getCivilizationAdjective(3),gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription(),)) )
-          popupInfo.addPopup(iData2)
-        if pLoser.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_2",(pVassal.getCivilizationAdjective(4),gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription(),)) )
-          popupInfo.addPopup(iData3)
-      else:
-        # Beziehungsstatus aendern
-        pLoser.AI_changeAttitudeExtra(iData4,3)
-        pWinner.AI_changeAttitudeExtra(iData4,-1)
-        if pWinner.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_3",(pVassal.getCivilizationAdjective(3),gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription(),)) )
-          popupInfo.addPopup(iData2)
-        if pLoser.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_4",(pVassal.getCivilizationAdjective(3),gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription(),)) )
-          popupInfo.addPopup(iData3)
-
-    # 1. Schritt HI-Winner und HI-Vasall
-    if iData1 == 689:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-      pVassal = gc.getPlayer(iData4)
-      #iWinnerTeam = pWinner.getTeam()
-      #pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      #pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Winner bietet dem Vasall ein Angebot an (iData5 = Gold)
-      if iData5 > 0:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),iData5,gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription())) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(iData4)
-              popupInfo.setFlags(iData5)
-              popupInfo.setOnClickedPythonCallback("popupVassal11") # EntryPoints/CvScreenInterface und CvGameUtils / 690
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_YES",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription())), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_NO",()), "")
-              iRand = 1 + self.myRandom(9, None)
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPopup(iData4)
-
-      # Winner hat kein Interesse
-      # Vasall darf entscheiden, ob er Krieg erklaert
-      else:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),pWinner.getCivilizationAdjective(2) )) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(iData4)
-              popupInfo.setOnClickedPythonCallback("popupVassal12") # EntryPoints/CvScreenInterface und CvGameUtils / 691
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_YES",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_NO",()), "")
-              popupInfo.addPopup(iData4)
-
-    # HI Vasall: Kriegserklaerung an Hegemon oder Botschafterkill
-    if iData1 == 690:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-      pVassal = gc.getPlayer(iData4)
-      #iWinnerTeam = pWinner.getTeam()
-      #pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      #pLoserTeam = gc.getTeam(iLoserTeam)
-
-      # Botschafter-Kill
-      if iData5 == -1:
-        pWinner.AI_changeAttitudeExtra(iData4,-1)
-        if pWinner.isHuman():
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT) # Vorsicht Text PopUp only!
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_1",(gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription(),pVassal.getCivilizationShortDescription(0))) )
-              popupInfo.addPopup(iData2)
-
-      # Angebot angenommen mit Kriegserklaerung
-      else:
-        # Zuerst mit allen Frieden schliessen
-        iVassalTeam = pVassal.getTeam()
-        pVassalTeam = gc.getTeam(iVassalTeam)
-        iRange = gc.getMAX_PLAYERS()
-        for i in range(iRange):
-          if gc.getPlayer(i).isAlive():
-            iTeam = gc.getPlayer(i).getTeam()
-            if pVassalTeam.isAtWar(iTeam): gc.getTeam(iTeam).makePeace(pVassalTeam.getID())
-
-        # Danach Krieg erklaeren
-        gc.getTeam(pVassal.getTeam()).declareWar(iLoserTeam, 0, 4)
-        pVassal.changeGold(iData5)
-        pWinner.changeGold(iData5 * (-1))
-        if iData4 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-
-        if pWinner.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_1",(pVassal.getCivilizationAdjective(3),gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription() )) )
-          popupInfo.addPopup(iData2)
-
-    # HI Vasall erklaert eigenmaechtig Krieg gegen Hegemon
-    if iData1 == 691:
-      pWinner = gc.getPlayer(iData2)
-      pLoser = gc.getPlayer(iData3)
-      pVassal = gc.getPlayer(iData4)
-      #iWinnerTeam = pWinner.getTeam()
-      #pWinnerTeam = gc.getTeam(iWinnerTeam)
-      iLoserTeam = pLoser.getTeam()
-      #pLoserTeam = gc.getTeam(iLoserTeam)
-
-      gc.getTeam(pVassal.getTeam()).declareWar(iLoserTeam, 0, 4)
-
-      if pWinner.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_1",(pVassal.getCivilizationAdjective(3),gc.getLeaderHeadInfo(pVassal.getLeaderType()).getDescription() )) )
-          popupInfo.addPopup(iData2)
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Vasallen Ende --------------------------------------------------------
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    # Sklaven -> Palast
-    if iData1 == 692:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Palace(pCity, pUnit)
-
-    # Sklaven -> Tempel
-    if iData1 == 693:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Temple(pCity, pUnit)
+    elif iData1 == 671 or (iData1 >= 682 and iData1 <= 691):
+      PAE_Vassal.onModNetMessage(iData1, iData2, iData3, iData4, iData5)
 
     # Sklave wird verkauft (am Sklavenmarkt)
-    if iData1 == 694:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      iGold = self.myRandom(31, None) + 10
-      pPlayer.changeGold(iGold)
-      gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iGold)
-      if pPlayer.isHuman():
-         CyInterface().addMessage(iData4, True, 8, CyTranslator().getText("TXT_KEY_BUTTON_SELL_SLAVE_SOLD",(iGold,)),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Units/button_slave.dds",ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
-      # New kill / neuer Kill befehl
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
+    elif iData1 == 694:
+      PAE_Sklaven.doSell(iData2, iData3)
 
     # Unit wird verkauft (beim Soeldnerposten) - Sell unit
-    if iData1 == 695:
+    elif iData1 == 695:
       #Confirmation?
       # 695, 0, 0, iOwner, iUnitID
       if iData2 == 0:
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_CONFIRM_SELL_UNIT",("",)) )
-              popupInfo.setData1(iData4)
-              popupInfo.setData2(iData5)
-              popupInfo.setOnClickedPythonCallback("popupSellUnit") # EntryPoints/CvScreenInterface und CvGameUtils / 695
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_YES2",("",)), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_NO2",("",)), "")
-              popupInfo.addPopup(iData4)
+        popupInfo = CyPopupInfo()
+        popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
+        popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_CONFIRM_SELL_UNIT",("",)) )
+        popupInfo.setData1(iData4)
+        popupInfo.setData2(iData5)
+        popupInfo.setOnClickedPythonCallback("popupSellUnit") # EntryPoints/CvScreenInterface und CvGameUtils / 695
+        popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_YES2",("",)), "")
+        popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_NO2",("",)), "")
+        popupInfo.addPopup(iData4)
       # Confirmed
       # 695, 1, 0, iOwner, iUnitID
       else:
@@ -1126,38 +680,18 @@ class CvEventManager:
         iGold = self.myRandom(iCost-4, None) + 5
 
         FormationArray = []
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KEIL"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_GASSE"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"))
         FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-        FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYAL"))
+        FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
         FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
 
 
         # +3 Gold pro Promotion
         iRange = gc.getNumPromotionInfos()
         for j in range(iRange):
+          if "_FORM_" in gc.getPromotionInfo(j).getType(): continue
+          if "_RANG_" in gc.getPromotionInfo(j).getType(): continue
+          if "_MORAL_" in gc.getPromotionInfo(j).getType(): continue
+          if "_TRAIT_" in gc.getPromotionInfo(j).getType(): continue
           if pUnit.isHasPromotion(j) and j not in FormationArray: iGold += 3
 
         pPlayer.changeGold(iGold)
@@ -1167,16 +701,9 @@ class CvEventManager:
         pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
         #pUnit.kill(1,pUnit.getOwner())
 
-    # Sklaven -> Feuerwehr
-    if iData1 == 696:
-      pPlot = CyMap().plot(iData2, iData3)
-      pCity = pPlot.getPlotCity()
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Feuerwehr(pCity, pUnit)
 
     # Trojanisches Pferd
-    if iData1 == 697:
+    elif iData1 == 697:
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
       iX = iData2
@@ -1194,7 +721,7 @@ class CvEventManager:
                     self.doTrojanHorse(pCity, pUnit)
 
     # Unit bekommt Edle Ruestung
-    if iData1 == 699:
+    elif iData1 == 699:
       #pPlot = CyMap().plot(iData2, iData3)
       #pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
@@ -1208,7 +735,7 @@ class CvEventManager:
       self.doGoToNextUnit(pPlayer, pUnit)
 
     # Pillage Road
-    if iData1 == 700:
+    elif iData1 == 700:
       pPlot = CyMap().plot(iData2, iData3)
       pPlot.setRouteType(RouteTypes.NO_ROUTE)
       pPlayer = gc.getPlayer(iData4)
@@ -1218,7 +745,7 @@ class CvEventManager:
       self.doGoToNextUnit(pPlayer, pUnit)
 
     # Unit bekommt Wellen-Oil
-    if iData1 == 701:
+    elif iData1 == 701:
       #pPlot = CyMap().plot(iData2, iData3)
       #pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
@@ -1234,105 +761,33 @@ class CvEventManager:
 # Vasallen Technologie +++++++++++++++++++++++++
 
     # Vassal Tech
-    if iData1 == 702:
+    elif iData1 == 702:
+      PAE_Vassal.do702(iData2, iData3, iData4, iData5)
       # 702 , iHegemon (HI) , iVassal, iTech , iTechCost
       # Yes  : iTech und iTechCost = -1 (+1 Beziehung)
       # Money: iTech und iTechCost
       # NO:  : iTech = -1
-      pHegemon = gc.getPlayer(iData2)
-      pVassal = gc.getPlayer(iData3)
-      iVassalTeam = pVassal.getTeam()
-      pVassalTeam = gc.getTeam(iVassalTeam)
-      iTech = iData4
-      iTechCost = iData5
-
-      # Yes
-      if iTech > -1 and iTechCost == -1:
-        pVassalTeam.setHasTech(iTech, 1, iData3, 0, 1)
-        if pVassal.isHuman():
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_GETTING_TECH",(gc.getTechInfo(iTech).getDescription (), )))
-            popupInfo.addPopup(iData3)
-        else: pVassal.AI_changeAttitudeExtra(iData2,1)
-
-      # Money
-      elif iTech > -1:
-        if pVassal.getGold() >= iTechCost:
-          # HI - HI Konfrontation
-          if pVassal.isHuman():
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_2",(gc.getTechInfo(iTech).getDescription(),iTechCost )) )
-              popupInfo.setData1(iData2)
-              popupInfo.setData2(iData3)
-              popupInfo.setData3(iTech)
-              popupInfo.setFlags(iTechCost)
-              popupInfo.setOnClickedPythonCallback("popupVassalTech2") # EntryPoints/CvScreenInterface und CvGameUtils / 702
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_2_YES",("",iTechCost)), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_2_NO",("",)), "")
-              popupInfo.addPopup(iData3)
-          else:
-            pVassalTeam.setHasTech(iTech, 1, iData3, 0, 1)
-            pVassal.changeGold(-iTechCost)
-            pHegemon.changeGold(iTechCost)
-            if iData2 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-            CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_THX",(gc.getTechInfo(iTech).getDescription (),)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-        else:
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_HAS_NO_MONEY",(gc.getTechInfo(iTech).getDescription (), iTechCost)))
-            popupInfo.addPopup(iData2)
-
-      # No
-      elif not pVassal.isHuman(): pVassal.AI_changeAttitudeExtra(iData2,-1)
 
     # Vassal Tech (HI-HI)
-    if iData1 == 703:
-      # 702 , iHegemon (HI) , iVassal (HI), iTech , iTechCost
+    elif iData1 == 703:
+      # 703 , iHegemon (HI) , iVassal (HI), iTech , iTechCost
       # Yes  : iTech und iTechCost
       # NO:  : iTechCost = -1
-      pHegemon = gc.getPlayer(iData2)
-      pVassal = gc.getPlayer(iData3)
-      iVassalTeam = pVassal.getTeam()
-      pVassalTeam = gc.getTeam(iVassalTeam)
-      iTech = iData4
-      iTechCost = iData5
-
-      if iData5 == -1:
-            CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_2_DECLINE",("",)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_2_DECLINE",("", )))
-            popupInfo.addPopup(iData2)
-      else:
-            pVassalTeam.setHasTech(iTech, 1, iData3, 0, 1)
-            pVassal.changeGold(-iTechCost)
-            pHegemon.changeGold(iTechCost)
-            if iData2 == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound('AS2D_COINS')
-            # Meldungen
-            CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_VASSAL_TECH_THX",(gc.getTechInfo(iTech).getDescription (),)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_GETTING_TECH",(gc.getTechInfo(iTech).getDescription (), )))
-            popupInfo.addPopup(iData3)
-
+      do703(iData2, iData3, iData4, iData5)
 
     # Religionsaustreibung
-    if iData1 == 704:
+    elif iData1 == 704:
       # 704, iPlayer, iCity, iButton, iUnit
       self.doInquisitorPersecution2(iData2, iData3, iData4, -1, iData5)
 
-
     # Veteran -> Eliteunit, Bsp: Principes + Hastati Combat4 -> Triarii mit Combat3 - Belobigung
-    if iData1 == 705:
+    elif iData1 == 705:
       # iData1,... 705, 0, iNewUnit, iPlayer, iUnitID
-      self.doUpgradeVeteran(gc.getPlayer(iData4).getUnit(iData5), iData3)
-
+      self.doUpgradeVeteran(gc.getPlayer(iData4).getUnit(iData5), iData3, True)
 
     # Renegade City (Keep or raze) TASK_RAZE / TASK_DISBAND
-    if iData1 == 706:
-      # 706 , iWinner , iCityID, iLoser , keep(0), enslave(1) or raze(2)
+    elif iData1 == 706:
+      # 706 , iWinner , iCityID, iLoser , keep(0) | enslave(1) | raze(2)
       pPlayer = gc.getPlayer(iData2)
       pCity = pPlayer.getCity(iData3)
       if iData5 == 1:
@@ -1344,1027 +799,35 @@ class CvEventManager:
 
           if iNum > 0:
             for _ in itertools.repeat(None, iNum):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             pCity.setPopulation(iNum)
+
+          # set city and temple slaves => 0
+          PAE_Sklaven.doEnslaveCity(pCity)
+
       elif iData5 == 2:
         if pCity != None:
           # --- Getting goldkarren / treasure / Beutegold ------
           iBeute = int(pCity.getPopulation() / 2) + 1
           ##if iBeute > 0: das ist >=1
           for _ in itertools.repeat(None, iBeute):
-            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
           pPlayer.disband(pCity)
 
 
     # Hire or Commission Mercenary Menu
-    if iData1 == 707:
-       # iData1, iData2, ...
-       # 707, iCityID, -1, -1, iPlayer
-       pPlayer = gc.getPlayer(iData5)
-       pCity = pPlayer.getCity(iData2)
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_MAIN" + str(1 + self.myRandom(5, None)),(pCity.getName(), )) )
-       popupInfo.setData1(iData2) # CityID
-       popupInfo.setData2(iData5) # iPlayer
-       popupInfo.setOnClickedPythonCallback("popupMercenariesMain") # EntryPoints/CvScreenInterface und CvGameUtils -> 708, 709 usw
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_HIRE",("", )), "Art/Interface/Buttons/Actions/button_action_mercenary_hire.dds")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN",("", )), "Art/Interface/Buttons/Actions/button_action_mercenary_assign.dds")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-       popupInfo.addPopup(iData5)
-
-    # Hire Mercenaries
-    if iData1 == 708:
-       # iData1, iData2, ... iData5 = iPlayer
-       # 708, iCityID, iButtonID (Typ), iButtonID (Unit), iButtonID (Cancel)
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-       pCity = pPlayer.getCity(iData2)
-       iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-       iMinRanking = 1 # trainiert
-       iMaxRanking = 3 # per Unit, 3 = kampferprobt
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_HIRE2",("", )) )
-       popupInfo.setData1(iData2)
-       popupInfo.setData3(iPlayer)
-
-       # Check neighbours
-       Neighbors = []
-       # Eigene CIV inkludieren
-       if pCity.isConnectedToCapital(iPlayer): Neighbors.append(pPlayer)
-       iRange = gc.getMAX_PLAYERS()
-       for iAllPlayer in range (iRange):
-           # Nachbarn inkludieren
-           if pCity.isConnectedToCapital(iAllPlayer):
-              Neighbors.append(gc.getPlayer(iAllPlayer))
-           # alt:
-           #ThisPlayer = gc.getPlayer(iAllPlayer)
-           #if ThisPlayer.isAlive():
-           #  if gc.getTeam(ThisPlayer.getTeam()).isHasMet(pPlayer.getTeam()):
-           #    Neighbors.append(ThisPlayer)
-         # ------------------
-
-       if iData3 == -1:
-
-         if len(Neighbors) == 0:
-           popupInfo = CyPopupInfo()
-           popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-           popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_HIRE3",("", )))
-           popupInfo.addPopup(iPlayer)
-         else:
-           popupInfo.setOnClickedPythonCallback("popupMercenariesHire")
-           popupInfo.addPythonButton(gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_ARCHER")).getDescription(), gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_ARCHER")).getButton())
-           popupInfo.addPythonButton(gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_MELEE")).getDescription(), gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_MELEE")).getButton())
-           popupInfo.addPythonButton(gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_MOUNTED")).getDescription(), gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_MOUNTED")).getButton())
-           popupInfo.addPythonButton(gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT")).getDescription(), gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT")).getButton())
-           popupInfo.addPythonButton(gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_NAVAL")).getDescription(), gc.getUnitCombatInfo(gc.getInfoTypeForString("UNITCOMBAT_NAVAL")).getButton())
-           popupInfo.setData2(-1)
-
-       else:
-
-         # PAEInstanceHiringModifier per turn
-         iMultiplier = 0
-         iPAEInstanceIndex = -1
-         #if any(iPlayer in s[0] for s in self.PAEInstanceHiringModifier):
-         if len(self.PAEInstanceHiringModifier) > 0:
-           for s in self.PAEInstanceHiringModifier:
-             iPAEInstanceIndex += 1
-             if s[0] == iPlayer:
-               iMultiplier = s[1] + 1
-               break
-         # --------
-
-         # Unit list
-         popupInfo.setOnClickedPythonCallback("popupMercenariesHireUnits")
-         popupInfo.setData2(iData3)
-         # ------------------
-
-         if pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_SOELDNERTUM")): bCivicSoeldner = True
-         else: bCivicSoeldner = False
-
-         # Archers
-         if iData3 == 0:
-
-           # Hire Units
-           if iData4 != -1:
-             iUnit = -1
-             if iData4 == 0: iUnit = gc.getInfoTypeForString("UNIT_PELTIST")
-             if iData4 == 1: iUnit = gc.getInfoTypeForString("UNIT_ARCHER")
-             if iData4 == 2: iUnit = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-             if iData4 == 3: iUnit = gc.getInfoTypeForString("UNIT_SKIRMISHER")
-
-             if iUnit != -1:
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-
-               if pPlayer.getGold() < iCost:
-                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-                 iUnit = -1
-
-             if iUnit != -1:
-                if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
-                pPlayer.changeGold(-iCost)
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                pOrigin = random.choice(Neighbors)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
-                NewUnit.setHasPromotion(iPromo, True)
-                NewUnit.setImmobileTimer(1)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-
-                # PAEInstanceHiringModifier per turn
-                if iPAEInstanceIndex > -1:
-                  self.PAEInstanceHiringModifier[iPAEInstanceIndex] = (iPlayer,iMultiplier)
-                else:
-                  self.PAEInstanceHiringModifier.append((iPlayer,1))
-                iMultiplier += 1
-
-
-           # List Units
-
-           # Check knowledge
-           # UNIT_ARCHER: TECH_ARCHERY2
-           # UNIT_COMPOSITE_ARCHER: TECH_ARCHERY3
-           # UNIT_SKIRMISHER: TECH_SKIRMISH_TACTICS
-           bUnit1 = false
-           bUnit2 = false
-           bUnit3 = false
-           for Neighbor in Neighbors:
-             if bUnit1 and bUnit2 and bUnit3: break
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")): bUnit1 = true
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): bUnit2 = true
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")):
-               ## ab Plaenkler duerfen alle Kompositbogis
-               bUnit2 = true
-               bUnit3 = true
-
-
-           iUnit = gc.getInfoTypeForString("UNIT_PELTIST")
-           iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-           iCost += iCost / 10 * 2 * iMultiplier
-           if bCivicSoeldner: iCost -= iCost/4
-           popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit1:
-             iUnit = gc.getInfoTypeForString("UNIT_ARCHER")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit2:
-             iUnit = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit3:
-             iUnit = gc.getInfoTypeForString("UNIT_SKIRMISHER")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-
-
-         # Melee
-         elif iData3 == 1:
-
-           # Hire Units
-           if iData4 != -1:
-             if pPlayer.getCurrentEra() <= 2:
-               if iData4 == 0: iUnit = gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN")
-               if iData4 == 1: iUnit = gc.getInfoTypeForString("UNIT_AXEWARRIOR")
-               if iData4 == 2: iUnit = gc.getInfoTypeForString("UNIT_AXEMAN")
-               if iData4 == 3: iUnit = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_KURZSCHWERT"))
-               if iData4 == 4: iUnit = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-               if iData4 == 5: iUnit = gc.getInfoTypeForString("UNIT_SPEARMAN")
-             else:
-               if iData4 == 0: iUnit = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-               if iData4 == 1: iUnit = gc.getInfoTypeForString("UNIT_SPEARMAN")
-               if iData4 == 2: iUnit = gc.getInfoTypeForString("UNIT_AXEMAN2")
-               if iData4 == 3: iUnit = gc.getInfoTypeForString("UNIT_SWORDSMAN")
-               if iData4 == 4: iUnit = gc.getInfoTypeForString("UNIT_WURFAXT")
-
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-
-             if pPlayer.getGold() < iCost:
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-                iUnit = -1
-
-             if iUnit != -1:
-                if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
-                pPlayer.changeGold(-iCost)
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                pOrigin = random.choice(Neighbors)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
-                NewUnit.setHasPromotion(iPromo, True)
-                #NewUnit.finishMoves()
-                NewUnit.setImmobileTimer(1)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-
-                # PAEInstanceHiringModifier per turn
-                if iPAEInstanceIndex > -1:
-                  self.PAEInstanceHiringModifier[iPAEInstanceIndex] = (iPlayer,iMultiplier)
-                else:
-                  self.PAEInstanceHiringModifier.append((iPlayer,1))
-                iMultiplier += 1
-
-           # List Units
-
-           # Check knowledge
-           # UNIT_LIGHT_SPEARMAN: TECH_SPEERSPITZEN
-           # UNIT_AXEWARRIOR: TECH_BEWAFFNUNG
-           # UNIT_AXEMAN: TECH_BEWAFFNUNG2 + Bronze or Iron
-           # UNITCLASS_KURZSCHWERT: TECH_BEWAFFNUNG3 + Bronze or Iron
-           # UNIT_SCHILDTRAEGER: TECH_BEWAFFNUNG4 + Bronze or Iron
-           # UNIT_SPEARMAN: TECH_BUERGERSOLDATEN + Bronze or Iron
-           # UNIT_AXEMAN2: TECH_BUERGERSOLDATEN + Iron
-           # UNIT_SWORDSMAN: TECH_BEWAFFNUNG5 + Iron
-           # UNIT_WURFAXT: TECH_WURFAXT + Iron
-           iBonus1 = gc.getInfoTypeForString("BONUS_BRONZE")
-           iBonus2 = gc.getInfoTypeForString("BONUS_IRON")
-
-           bUnit1 = false
-           bUnit2 = false
-           bUnit3 = false
-           bUnit4 = false
-           bUnit5 = false
-           bUnit6 = false
-
-           # vor Klassik Light Spearman and Axewarrior fix
-           # ab Klassik Spearman und Shield bearer fix
-           bUnit1 = true
-           bUnit2 = true
-
-           for Neighbor in Neighbors:
-             if bUnit3 and bUnit4 and bUnit5 and bUnit6: break
-             if pPlayer.getCurrentEra() <= 2:
-               if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG2")): bUnit3 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG3")): bUnit4 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")): bUnit5 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit6 = true
-             else:
-               if Neighbor.hasBonus(iBonus2):
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit3 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG5")): bUnit4 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WURFAXT")): bUnit5 = true
-
-
-           if pPlayer.getCurrentEra() <= 2:
-             iUnit = gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             iUnit = gc.getInfoTypeForString("UNIT_AXEWARRIOR")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit3:
-               iUnit = gc.getInfoTypeForString("UNIT_AXEMAN")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit4:
-               iUnit = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_KURZSCHWERT"))
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit5:
-               iUnit = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit6:
-               iUnit = gc.getInfoTypeForString("UNIT_SPEARMAN")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           else:
-             iUnit = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             iUnit = gc.getInfoTypeForString("UNIT_SPEARMAN")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit3:
-               iUnit = gc.getInfoTypeForString("UNIT_AXEMAN2")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit4:
-               iUnit = gc.getInfoTypeForString("UNIT_SWORDSMAN")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit5:
-               iUnit = gc.getInfoTypeForString("UNIT_WURFAXT")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-
-
-         # Mounted
-         elif iData3 == 2:
-
-           # Hire Units
-           if iData4 != -1:
-             if pPlayer.getCurrentEra() <= 2:
-               if iData4 == 0: iUnit = gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT")
-               if iData4 == 1: iUnit = gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER")
-               if iData4 == 2: iUnit = gc.getInfoTypeForString("UNIT_CHARIOT")
-             else:
-               if iData4 == 0: iUnit = gc.getInfoTypeForString("UNIT_CHARIOT")
-               if iData4 == 1: iUnit = gc.getInfoTypeForString("UNIT_HORSEMAN")
-               if iData4 == 2: iUnit = gc.getInfoTypeForString("UNIT_HORSE_ARCHER")
-               if iData4 == 3: iUnit = gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN")
-
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-
-             if pPlayer.getGold() < iCost:
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-                iUnit = -1
-
-             if iUnit != -1:
-                if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
-                pPlayer.changeGold(-iCost)
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                pOrigin = random.choice(Neighbors)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
-                NewUnit.setHasPromotion(iPromo, True)
-                #NewUnit.finishMoves()
-                NewUnit.setImmobileTimer(1)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-
-                # PAEInstanceHiringModifier per turn
-                if iPAEInstanceIndex > -1:
-                  self.PAEInstanceHiringModifier[iPAEInstanceIndex] = (iPlayer,iMultiplier)
-                else:
-                  self.PAEInstanceHiringModifier.append((iPlayer,1))
-                iMultiplier += 1
-
-           # List Units
-
-           # Check knowledge
-           # UNIT_LIGHT_CHARIOT: TECH_CHARIOTS
-           # UNIT_CHARIOT_ARCHER: TECH_PFERDEZUCHT + TECH_ARCHERY2
-           # UNIT_CHARIOT: TECH_THE_WHEEL3 + Horse + Bronze or Iron
-           # UNIT_HORSEMAN: TECH_HORSEBACK_RIDING_2 + Horse
-           # UNIT_HORSE_ARCHER: TECH_HORSEBACK_RIDING_3 + TECH_HORSE_ARCHER + Horse
-           # UNIT_HEAVY_HORSEMAN: TECH_CAVALRY + Horse + Bronze or Iron
-           iBonus1 = gc.getInfoTypeForString("BONUS_BRONZE")
-           iBonus2 = gc.getInfoTypeForString("BONUS_IRON")
-           iBonus3 = gc.getInfoTypeForString("BONUS_HORSE")
-
-           bUnit1 = false
-           bUnit2 = false
-           bUnit3 = false
-           bUnit4 = false
-
-           for Neighbor in Neighbors:
-             if bUnit1 and bUnit2 and bUnit3 and bUnit4: break
-             if pPlayer.getCurrentEra() <= 2:
-               if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_CHARIOTS")): bUnit1 = true
-               if Neighbor.hasBonus(iBonus3):
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PFERDEZUCHT")) and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")):
-                   bUnit2 = true
-                 if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                   if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL3")):
-                     bUnit2 = true
-                     bUnit3 = true
-             else:
-               if Neighbor.hasBonus(iBonus3):
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")): bUnit2 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")) and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")): bUnit3 = true
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_CAVALRY")):
-                   if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                     bUnit3 = true
-                     bUnit4 = true
-
-           if pPlayer.getCurrentEra() <= 2:
-             if bUnit1:
-               iUnit = gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit2:
-               iUnit = gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit3:
-               iUnit = gc.getInfoTypeForString("UNIT_CHARIOT")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           else:
-             iUnit = gc.getInfoTypeForString("UNIT_CHARIOT")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit2:
-               iUnit = gc.getInfoTypeForString("UNIT_HORSEMAN")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit3:
-               iUnit = gc.getInfoTypeForString("UNIT_HORSE_ARCHER")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-             if bUnit4:
-               iUnit = gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-
-
-         # Elephants
-         elif iData3 == 3:
-
-           # Hire Units
-           if iData4 != -1:
-             iUnit = gc.getInfoTypeForString("UNIT_WAR_ELEPHANT")
-
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost() * 2
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-
-             if pPlayer.getGold() < iCost:
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-                iUnit = -1
-
-             if iUnit != -1:
-                if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
-                pPlayer.changeGold(-iCost)
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                pOrigin = random.choice(Neighbors)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())
-                NewUnit.setHasPromotion(iPromo, True)
-                #NewUnit.finishMoves()
-                NewUnit.setImmobileTimer(1)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-
-                # PAEInstanceHiringModifier per turn
-                if iPAEInstanceIndex > -1:
-                  self.PAEInstanceHiringModifier[iPAEInstanceIndex] = (iPlayer,iMultiplier)
-                else:
-                  self.PAEInstanceHiringModifier.append((iPlayer,1))
-                iMultiplier += 1
-
-           # List Units
-
-           # Check knowledge
-           # UNIT_WAR_ELEPHANT: TECH_ELEFANTENZUCHT + BONUS_IVORY
-           iBonus1 = gc.getInfoTypeForString("BONUS_IVORY")
-
-           bUnit1 = false
-
-           for Neighbor in Neighbors:
-                if bUnit1: break
-                if Neighbor.hasBonus(iBonus1):
-                   if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ELEFANTENZUCHT")):
-                     bUnit1 = true
-
-           if bUnit1:
-               iUnit = gc.getInfoTypeForString("UNIT_WAR_ELEPHANT")
-               iCost = PyInfo.UnitInfo(iUnit).getProductionCost() * 2
-               iCost += (iCost / 10) * 2 * iMultiplier
-               if bCivicSoeldner: iCost -= iCost/4
-               popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-
-         # Ships / Vessels
-         if iData3 == 4:
-
-           # Hire Units
-           if iData4 != -1:
-             if iData4 == 0: iUnit = gc.getInfoTypeForString("UNIT_KONTERE")
-             if iData4 == 1: iUnit = gc.getInfoTypeForString("UNIT_BIREME")
-             if iData4 == 2: iUnit = gc.getInfoTypeForString("UNIT_TRIREME")
-             if iData4 == 3: iUnit = gc.getInfoTypeForString("UNIT_GALLEY")
-             if iData4 == 4: iUnit = gc.getInfoTypeForString("UNIT_LIBURNE")
-
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += (iCost / 10) * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-
-             if pPlayer.getGold() < iCost:
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-                iUnit = -1
-
-             if iUnit != -1:
-                if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
-                pPlayer.changeGold(-iCost)
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_HIRED",(pCity.getName(), gc.getUnitInfo(iUnit).getDescriptionForm(0))), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-                pOrigin = random.choice(Neighbors)
-                NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pOrigin.getCivilizationType(), pOrigin.getStateReligion())                
-                NewUnit.setHasPromotion(iPromo, True)
-                NewUnit.setImmobileTimer(1)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-
-                # PAEInstanceHiringModifier per turn
-                if iPAEInstanceIndex > -1:
-                  self.PAEInstanceHiringModifier[iPAEInstanceIndex] = (iPlayer,iMultiplier)
-                else:
-                  self.PAEInstanceHiringModifier.append((iPlayer,1))
-                iMultiplier += 1
-
-
-           # List Units
-
-           # Check knowledge
-           # UNIT_KONTERE: TECH_COLONIZATION2
-           # UNIT_BIREME:  TECH_RUDERER2  (+ Bronze)
-           # UNIT_TRIREME: TECH_RUDERER3  (+ BUILDING_STADT + Bronze oder Eisen)
-           # UNIT_GALLEY:  TECH_WARSHIPS  (+ BUILDING_STADT + BONUS_COAL)
-           # UNIT_LIBURNE: TECH_WARSHIPS2 (+ BUILDING_STADT + Eisen)
-
-           #iBonus1 = gc.getInfoTypeForString("BONUS_BRONZE")
-           #iBonus2 = gc.getInfoTypeForString("BONUS_IRON")
-           #iBonus3 = gc.getInfoTypeForString("BONUS_COAL")
-           #iBuilding1 = gc.getInfoTypeForString("BUILDING_STADT")
-
-           bUnit1 = false
-           bUnit2 = false
-           bUnit3 = false
-           bUnit4 = false
-           bUnit5 = false
-           for Neighbor in Neighbors:
-             if bUnit1 and bUnit2 and bUnit3 and bUnit4 and bUnit5: break
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_COLONIZATION2")): bUnit1 = true
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_RUDERER2")): bUnit2 = true
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_RUDERER3")): bUnit3 = true
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WARSHIPS")): bUnit4 = true
-             if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WARSHIPS2")): bUnit5 = true
-
-
-           if bUnit1:
-             iUnit = gc.getInfoTypeForString("UNIT_KONTERE")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit2:
-             iUnit = gc.getInfoTypeForString("UNIT_BIREME")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit3:
-             iUnit = gc.getInfoTypeForString("UNIT_TRIREME")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit4:
-             iUnit = gc.getInfoTypeForString("UNIT_GALLEY")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-           if bUnit5:
-             iUnit = gc.getInfoTypeForString("UNIT_LIBURNE")
-             iCost = PyInfo.UnitInfo(iUnit).getProductionCost()
-             iCost += iCost / 10 * 2 * iMultiplier
-             if bCivicSoeldner: iCost -= iCost/4
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_UNIT_COST",(gc.getUnitInfo(iUnit).getDescriptionForm(0), iCost )), gc.getUnitInfo(iUnit).getButton())
-
-
-         # -----------------------
-
-         popupInfo.setData2(iData3)
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MAIN_MENU_GO_BACK",("", )), ",Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5")
-
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-       popupInfo.addPopup(iPlayer)
-
-
-    # Commission Mercenaries (CIV)
-    if iData1 == 709:
-       # iData1, iData2, ...
-       # 709, (1) -1 (2) iButtonId (CIV) , -1, -1, iPlayer
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-
-       # Check neighbours
-       Neighbors = []
-       iRange = gc.getMAX_PLAYERS()
-       for iAllPlayer in range (iRange):
-         ThisPlayer = gc.getPlayer(iAllPlayer)
-         if iAllPlayer != gc.getBARBARIAN_PLAYER() and iAllPlayer != iPlayer:
-           if ThisPlayer.isAlive():
-             if gc.getTeam(ThisPlayer.getTeam()).isHasMet(pPlayer.getTeam()):
-               Neighbors.append(iAllPlayer)
-
-       # iButtonId of CIV
-       # Forward to 2nd screen -> 710
-       #if iData2 != -1:
-         #i = 0
-         #for j in Neighbors:
-           #if i == iData2:
-             #iData1 = 710 # geht direkt weiter in dieser def
-             #iData2 = j
-             #break
-           #i += 1
-
-       if iData2 != -1 and iData2 < len(Neighbors):
-         iData2 = Neighbors[iData2]
-         iData1 = 710
-
-       # First screen (Civilizations)
-       else:
-         popupInfo = CyPopupInfo()
-         popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-         popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN1",("", )) )
-         popupInfo.setOnClickedPythonCallback("popupMercenariesAssign1") # EntryPoints/CvScreenInterface -> 709
-         popupInfo.setData3(iPlayer)
-
-         # List neighbors ---------
-         # Friendly >= +10
-         # Pleased >= +3
-         # Cautious: -
-         # Annoyed: <= -3
-         # Furious: <= -10
-         # ATTITUDE_FRIENDLY
-         # ATTITUDE_PLEASED
-         # ATTITUDE_CAUTIOUS
-         # ATTITUDE_ANNOYED
-         # ATTITUDE_FURIOUS
-         if len(Neighbors) == 0:
-           popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN1_1",("", )) )
-         else:
-           for i in Neighbors:
-             ThisPlayer = gc.getPlayer(i)
-             Att = ThisPlayer.AI_getAttitude(iPlayer)
-             if   Att == AttitudeTypes.ATTITUDE_FRIENDLY: szBuffer = "<color=0,255,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_PLEASED:  szBuffer = "<color=0,155,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_CAUTIOUS: szBuffer = "<color=255,255,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_ANNOYED:  szBuffer = "<color=255,180,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_FURIOUS:  szBuffer = "<color=255,0,0,255>"
-
-             szBuffer = szBuffer + " (" + localText.getText("TXT_KEY_"+str(Att), ()) + ")"
-             popupInfo.addPythonButton(ThisPlayer.getCivilizationShortDescription(0) + szBuffer, gc.getCivilizationInfo(ThisPlayer.getCivilizationType()).getButton())
-             #popupInfo.addPythonButton(gc.getCivilizationInfo(ThisPlayer.getCivilizationType()).getText(), gc.getCivilizationInfo(ThisPlayer.getCivilizationType()).getButton())
-
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-         popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-         popupInfo.addPopup(iPlayer)
-
-
-    # Commission Mercenaries (Inter/national mercenaries)
-    # on-site
-    # local
-    # international
-    # elite
-    if iData1 == 710:
-       # Werte von 709 weitervererbt
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2",("", )) )
-       popupInfo.setOnClickedPythonCallback("popupMercenariesAssign2") # EntryPoints/CvScreenInterface -> 711
-       popupInfo.setData1(iData2) # iTargetPlayer
-       popupInfo.setData3(iPlayer) # iPlayer
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_1",("", )), gc.getCivilizationInfo(gc.getPlayer(iData2).getCivilizationType()).getButton())
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_2",("", )), gc.getCivilizationInfo(pPlayer.getCivilizationType()).getButton())
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_3",("", )), "Art/Interface/Buttons/Actions/button_action_merc_international.dds")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_4",("", )), "Art/Interface/Buttons/Actions/button_action_merc_elite.dds")
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-       popupInfo.addPopup(iPlayer)
-
-    # Commission Mercenaries (mercenary size)
-    # small
-    # medium
-    # large
-    # army
-    if iData1 == 711:
-       # iData1, iData2, iData3, ...
-       # 710, iTargetPlayer, iFaktor, -1, iPlayer
-       # iFaktor:
-       # 1: Urban (iTargetCiv) +200 Kosten
-       # 2: Own units          +300
-       # 3: international      +400
-       # 4: elite              +500
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN3",("", )) )
-       popupInfo.setOnClickedPythonCallback("popupMercenariesAssign3") # EntryPoints/CvScreenInterface -> 712
-       popupInfo.setData1(iData2) # iTargetPlayer
-       popupInfo.setData2(iData3) # iFaktor
-       popupInfo.setData3(iPlayer) # iPlayer
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN3_1",("", )), "Art/Interface/Buttons/Actions/button_action_mercenaries1.dds")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN3_2",("", )), "Art/Interface/Buttons/Actions/button_action_mercenaries2.dds")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN3_3",("", )), "Art/Interface/Buttons/Actions/button_action_mercenaries3.dds")
-       if iData3 != 4: popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN3_4",("", )), "Art/Interface/Buttons/Actions/button_action_mercenaries4.dds")
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-       popupInfo.addPopup(iPlayer)
-
-    # Commission Mercenaries (primary unit types)
-    # defensice
-    # ranged combat
-    # offensive
-    # city attack
-    if iData1 == 712:
-       # iData1, iData2, iData3, ...
-       # 710, iTargetPlayer, iFaktor, -1, iPlayer
-       # iFaktor:
-       # 10: small group    +0
-       # 20: medium group   +150
-       # 30: big group      +300
-       # 40: huge group     +400
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN4",("", )) )
-       popupInfo.setOnClickedPythonCallback("popupMercenariesAssign4") # EntryPoints/CvScreenInterface -> 713
-       popupInfo.setData1(iData2) # iTargetPlayer
-       popupInfo.setData2(iData3) # iFaktor
-       popupInfo.setData3(iPlayer) # iPlayer
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN4_1",("", )), "Art/Interface/Buttons/Promotions/tarnung.dds")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN4_2",("", )), ",Art/Interface/Buttons/Promotions/Cover.dds,Art/Interface/Buttons/Promotions_Atlas.dds,2,5")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN4_3",("", )), ",Art/Interface/Buttons/Promotions/Shock.dds,Art/Interface/Buttons/Promotions_Atlas.dds,4,5")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN4_4",("", )), ",Art/Interface/Buttons/Promotions/CityRaider1.dds,Art/Interface/Buttons/Promotions_Atlas.dds,5,2")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_UNITCOMBAT_NAVAL",("", )), ",Art/Interface/Buttons/Promotions/Naval_Units.dds,Art/Interface/Buttons/Promotions_Atlas.dds,3,7")
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-       popupInfo.addPopup(iPlayer)
-
-    # Commission Mercenaries (siege units)
-    if iData1 == 713:
-       # iData1, iData2, iData3, ...
-       # 710, iTargetPlayer, iFaktor, -1, iPlayer
-       # iFaktor:
-       # 100: defensive
-       # 200: ranged
-       # 300: offensive
-       # 400: city raiders
-       # 500: naval units
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN5",("", )) )
-       popupInfo.setOnClickedPythonCallback("popupMercenariesAssign5") # EntryPoints/CvScreenInterface -> 714
-       popupInfo.setData1(iData2) # iTargetPlayer
-       popupInfo.setData2(iData3) # iFaktor
-       popupInfo.setData3(iPlayer) # iPlayer
-
-       if gc.getGame().countKnownTechNumTeams(gc.getInfoTypeForString("TECH_MECHANIK")) > 0:
-         iUnit = gc.getInfoTypeForString("UNIT_BATTERING_RAM2")
-         szName = localText.getText("TXT_KEY_UNIT_BATTERING_RAM2_PLURAL", ())
-       elif gc.getGame().countKnownTechNumTeams(gc.getInfoTypeForString("TECH_WEHRTECHNIK")) > 0:
-         iUnit = gc.getInfoTypeForString("UNIT_BATTERING_RAM")
-         szName = localText.getText("TXT_KEY_UNIT_BATTERING_RAM_PLURAL", ())
-       elif gc.getGame().countKnownTechNumTeams(gc.getInfoTypeForString("TECH_BELAGERUNG")) > 0:
-         iUnit = gc.getInfoTypeForString("UNIT_RAM")
-         szName = localText.getText("TXT_KEY_UNIT_RAM_PLURAL", ())
-       else: iUnit = -1
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN5_1",("", )), ",Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5")
-       if iUnit != -1:
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN5_2",(szName, 2, 50)), gc.getUnitInfo(iUnit).getButton())
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN5_2",(szName, 4, 90)), gc.getUnitInfo(iUnit).getButton())
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN5_2",(szName, 6, 120)), gc.getUnitInfo(iUnit).getButton())
-
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-       popupInfo.addPopup(iPlayer)
-
-    # Commission Mercenaries (confirmation)
-    if iData1 == 714:
-       # iData1, iData2, iData3, ...
-       # 710, iTargetPlayer, iFaktor, -1, iPlayer
-       # iFaktor:
-       # 1000: no siege +0
-       # 2000: 2x       +50
-       # 3000: 4x       +90
-       # 4000: 6x       +120
-       iPlayer = iData5
-       pPlayer = gc.getPlayer(iPlayer)
-
-       # Kosten berechnen
-       sFaktor = str(iData3)
-       iCost = 0
-       # siege units
-       if sFaktor[0] == "2":   iCost += 50
-       elif sFaktor[0] == "3": iCost += 90
-       elif sFaktor[0] == "4": iCost += 120
-       # size
-       if sFaktor[2] == "2":   iCost += 150
-       elif sFaktor[2] == "3": iCost += 300
-       elif sFaktor[2] == "4": iCost += 400
-       # inter/national
-       if sFaktor[3] == "1":   iCost += 200
-       elif sFaktor[3] == "2": iCost += 300
-       elif sFaktor[3] == "3": iCost += 400
-       elif sFaktor[3] == "4": iCost += 500
-       # ----------
-
-       szText = ""
-       if pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_SOELDNERTUM")):
-         iCost -= iCost/4
-         szText = CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN_BONUS",(25,))
-
-       popupInfo = CyPopupInfo()
-       popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-       popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN6",(gc.getPlayer(iData2).getCivilizationShortDescription(0), iCost, szText)) )
-       popupInfo.setOnClickedPythonCallback("popupMercenariesAssign6") # EntryPoints/CvScreenInterface -> 715
-       popupInfo.setData1(iData2) # iTargetPlayer
-       popupInfo.setData2(iData3) # iFaktor
-       popupInfo.setData3(iPlayer) # iPlayer
-
-       # Confirm
-       popupInfo.addPythonButton(CyTranslator().getText( "TXT_KEY_POPUP_MERCENARIES_ASSIGN6_" + str(1 + self.myRandom(13, None)) , ("", ) ), ",Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5")
-       popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-       popupInfo.addPopup(iPlayer)
-
-    # Commission Mercenaries (confirmation)
-    if iData1 == 715:
-       # iData1, iData2, iData3, ...
-       # 715, iTargetPlayer, iFaktor, -1, iPlayer
-       # iFaktor: 1111 - 4534
-       self.doComissionMercenaries(iData2,iData3,iData5)
-
-    # Mercenaries Torture / Folter
-    if iData1 == 716:
-       # iData1, iData2, iData3
-       # 716, iMercenaryCiv, iPlayer
-       iPlayer = iData3
-       iMercenaryCiv = iData2
-       pPlayer = gc.getPlayer(iPlayer)
-
-       if pPlayer.getGold() < 80:
-         if gc.getPlayer(iPlayer).isHuman():
-           CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-           popupInfo = CyPopupInfo()
-           popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-           popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("", )))
-           popupInfo.addPopup(iPlayer)
-       else:
-
-         pPlayer.changeGold(-80)
-
-         if 0 == self.myRandom(2, None): self.doFailedMercenaryTortureMessage(iPlayer)
-         else:
-
-           # Check neighbours
-           Neighbors = []
-           iRange = gc.getMAX_PLAYERS()
-           for iAllPlayer in range (iRange):
-             ThisPlayer = gc.getPlayer(iAllPlayer)
-             if iAllPlayer != gc.getBARBARIAN_PLAYER():
-               if ThisPlayer.isAlive():
-                 if gc.getTeam(ThisPlayer.getTeam()).isHasMet(pPlayer.getTeam()) or iAllPlayer == iPlayer:
-                   Neighbors.append(iAllPlayer)
-
-           # select neighbours if more than 5
-           while len(Neighbors) > 5:
-             iRand = self.myRandom(len(Neighbors), None)
-             if Neighbors[iRand] != iMercenaryCiv:
-               Neighbors.remove(Neighbors[iRand])
-
-           szText = CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE2",("",)) + localText.getText("[NEWLINE]", ())
-           # List neighbors ---------
-           # ATTITUDE_FRIENDLY
-           # ATTITUDE_PLEASED
-           # ATTITUDE_CAUTIOUS
-           # ATTITUDE_ANNOYED
-           # ATTITUDE_FURIOUS
-           for i in Neighbors:
-             ThisPlayer = gc.getPlayer(i)
-             Att = ThisPlayer.AI_getAttitude(iPlayer)
-             if   Att == AttitudeTypes.ATTITUDE_FRIENDLY: szBuffer = "<color=0,255,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_PLEASED:  szBuffer = "<color=0,155,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_CAUTIOUS: szBuffer = "<color=255,255,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_ANNOYED:  szBuffer = "<color=255,180,0,255>"
-             elif Att == AttitudeTypes.ATTITUDE_FURIOUS:  szBuffer = "<color=255,0,0,255>"
-
-             szText = szText + localText.getText("[NEWLINE][ICON_STAR] <color=255,255,255,255>", ()) + ThisPlayer.getCivilizationShortDescription(0) + szBuffer + " (" + localText.getText("TXT_KEY_"+str(Att), ()) + ")"
-
-
-
-           szText = szText + localText.getText("[NEWLINE][NEWLINE]<color=255,255,255,255>", ()) + CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE2_1",("", ))
-           popupInfo = CyPopupInfo()
-           popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-           popupInfo.setText(szText)
-           popupInfo.setData1(iMercenaryCiv) # iMercenaryCiv
-           popupInfo.setData2(iPlayer) # iPlayer
-           popupInfo.setOnClickedPythonCallback("popupMercenaryTorture2") # EntryPoints/CvScreenInterface und CvGameUtils -> 717
-           popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_YES1",(75,50)), "")
-           popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_YES2",(50,25)), "")
-           popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_YES3",(25,10)), "")
-           popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-           popupInfo.addPopup(iPlayer)
-
-
-    # Mercenaries Torture 2
-    if iData1 == 717:
-       # iData1, iData2, iData3, iData4
-       # 717, iMercenaryCiv, iPlayer, iButtonId
-       iPlayer = iData3
-       iMercenaryCiv = iData2
-       pPlayer = gc.getPlayer(iPlayer)
-
-       if iData4 == 0:
-         iGold = 75
-         iChance = 10
-       elif iData4 == 1:
-         iGold = 50
-         iChance = 5
-       elif iData4 == 2:
-         iGold = 25
-         iChance = 2
-
-       if pPlayer.getGold() < iGold:
-         if gc.getPlayer(iPlayer).isHuman():
-           CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-           popupInfo = CyPopupInfo()
-           popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-           popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("", )))
-           popupInfo.addPopup(iPlayer)
-       else:
-
-         pPlayer.changeGold(-iGold)
-         if iChance < self.myRandom(20, None): self.doFailedMercenaryTortureMessage(iPlayer)
-         else:
-           if iPlayer != iMercenaryCiv:
-             CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE3_1",(gc.getPlayer(iMercenaryCiv).getCivilizationShortDescription(0),)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-             popupInfo = CyPopupInfo()
-             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-             popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE3_1",(gc.getPlayer(iMercenaryCiv).getCivilizationShortDescription(0), )))
-             popupInfo.addPopup(iPlayer)
-           else:
-             CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE3_2",("",)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-             popupInfo = CyPopupInfo()
-             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-             popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE3_2",("", )))
-             popupInfo.addPopup(iPlayer)
-
-    # END Mercenaries ----------------------
+    elif (iData1 >= 707 and iData1 <= 717):
+      PAE_Mercenaries.onModNetMessage(iData1, iData2, iData3, iData4, idata5)
 
     # Unit FORMATIONS ----------------------
-    if iData1 == 718:
+    elif iData1 == 718:
        # iData1,... 705, 0, iFormation, iPlayer, iUnitID
        self.doUnitFormation(gc.getPlayer(iData4).getUnit(iData5), iData3)
 
     # Promotion Trainer Building (Forest 1, Hills1, ...)
-    if iData1 == 719:
+    elif iData1 == 719:
        # 719, iCityID, iBuilding, iPlayer, iUnitID
        pPlayer = gc.getPlayer(iData4)
        pCity = pPlayer.getCity(iData2)
@@ -2373,28 +836,31 @@ class CvEventManager:
        pCity.setNumRealBuilding(iData3,1)
        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
-    # Legendary unit can become a Great General
-    if iData1 == 720:
+    # Legendary unit can become a Great General (Feldherr)
+    elif iData1 == 720:
        # 720, 0, 0, iPlayer, iUnitID
        pPlayer = gc.getPlayer(iData4)
        pUnit = pPlayer.getUnit(iData5)
-
-       pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
-
+       pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL2"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
        self.doRetireVeteran(pUnit)
 
     # Elefantenstall
-    if iData1 == 721:
-       # 721, iCityID, 0, iPlayer, iUnitID
+    elif iData1 == 721:
+       # 721, iCityID, (1 = Elefantenstall | 2 = Kamellager), iPlayer, iUnitID
        pPlayer = gc.getPlayer(iData4)
        pCity = pPlayer.getCity(iData2)
        pUnit = pPlayer.getUnit(iData5)
 
-       pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"),1)
+       if   iData3 == 1:
+         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"),1)
+         self.onBuildingBuilt([pCity, gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")])
+       elif iData3 == 2:
+         pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE"),1)
+         self.onBuildingBuilt([pCity, gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")])
        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
     # Piraten-Feature
-    if iData1 == 722:
+    elif iData1 == 722:
        # iData2 = 1: Pirat -> normal
        # iData2 = 2: Normal -> Pirat
        # 722, iData2, 0, iPlayer, iUnitID
@@ -2429,7 +895,8 @@ class CvEventManager:
          # Unload units: geht net weil darin canUnload geprueft wird
          #pUnit.doCommand(CommandTypes.COMMAND_UNLOAD_ALL, -1, -1 )
 
-         NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pUnit.getFacingDirection()), pUnit.getEthnic(), pUnit.getReligion())
+         #NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+         NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pUnit.getFacingDirection()))
          NewUnit.setExperience(pUnit.getExperience(), -1)
          NewUnit.setLevel(pUnit.getLevel())
          NewUnit.setDamage(pUnit.getDamage(), -1)
@@ -2448,13 +915,13 @@ class CvEventManager:
            if pUnit.isHasPromotion(j):
               NewUnit.setHasPromotion(j, True)
 
-         #Veteran und Mercenary Promo checken
-         #Veteran ohne Mercenary bleibt ohne Mercenary
+         # Veteran und Mercenary Promo checken
+         # Veteran ohne Mercenary bleibt ohne Mercenary
          iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
          if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
            if not pUnit.isHasPromotion(iPromoMercenary):
              if NewUnit.isHasPromotion(iPromoMercenary):
-               NewUnit.setHasPromotion(iPromoMercenary, False)
+                NewUnit.setHasPromotion(iPromoMercenary, False)
 
          # Original unit killen
          pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
@@ -2466,7 +933,7 @@ class CvEventManager:
     # iData1 723: EspionageMission Info im TechChooser
 
     # Veteran -> Reservist
-    if iData1 == 724:
+    elif iData1 == 724:
        # 724, iCityID, 0, iPlayer, iUnitID
        pPlayer = gc.getPlayer(iData4)
        pCity = pPlayer.getCity(iData2)
@@ -2476,7 +943,7 @@ class CvEventManager:
        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
     # Reservist -> Veteran
-    if iData1 == 725:
+    elif iData1 == 725:
        # iData1, iData2, ... iData5
        # First:  725, iCityID, iPlayer, -1, 0
        # Second: 725, iCityID, iPlayer, iButtonID (Typ), 0
@@ -2517,7 +984,7 @@ class CvEventManager:
            elif iData4 == 3 and bUnit4: iUnit = iUnit4
 
            if iUnit != -1:
-               NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+               NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
                NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
                NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
@@ -2560,125 +1027,8 @@ class CvEventManager:
          popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
          popupInfo.addPopup(iData3)
 
-    # Bonusverbreitung UNIT_SUPPLY_FOOD
-    if iData1 == 726:
-       # 726, iPage, iButtonId, iPlayer, iUnitID
-       iPlayer = iData4
-       pPlayer = gc.getPlayer(iPlayer)
-
-       # First Page
-       if iData2 == -1:
-         popupInfo = CyPopupInfo()
-         popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-         popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG",("", )) )
-         popupInfo.setOnClickedPythonCallback("popupBonusverbreitung")
-         popupInfo.setData1(iData4) # iPlayer
-         popupInfo.setData2(iData5) # iUnitID
-         popupInfo.setData3(-1)
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_1",("", )), "Art/Interface/Buttons/Actions/button_bonusverbreitung1.dds")
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_2",("", )), "Art/Interface/Buttons/Actions/button_bonusverbreitung2.dds")
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_3",("", )), "Art/Interface/Buttons/Actions/button_bonusverbreitung3.dds")
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_4",("", )), "Art/Interface/Buttons/Actions/button_bonusverbreitung4.dds")
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-         popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-         popupInfo.addPopup(iPlayer)
-       else:
-
-         # Inits
-         pUnit = pPlayer.getUnit(iData5)
-         pPlot = CyMap().plot(pUnit.getX(), pUnit.getY())
-         pCity = pPlot.getPlotCity()
-         lBonus = []
-
-         # Getreide
-         if iData2 == 0:
-           lBonus.append("")
-           lBonus.append(gc.getInfoTypeForString("BONUS_WHEAT"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_GERSTE"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_HAFER"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_ROGGEN"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_HIRSE"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_RICE"))
-         # Vieh
-         elif iData2 == 1:
-           lBonus.append("")
-           lBonus.append(gc.getInfoTypeForString("BONUS_COW"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_PIG"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_SHEEP"))
-         # Plantage
-         elif iData2 == 2:
-           lBonus.append("")
-           lBonus.append(gc.getInfoTypeForString("BONUS_OLIVES"))
-           lBonus.append(gc.getInfoTypeForString("BONUS_DATTELN"))
-         # Kamele
-         elif iData2 == 3:
-           lBonus.append("")
-           lBonus.append(gc.getInfoTypeForString("BONUS_CAMEL"))
-
-         # Bonusgut
-         iRange = len(lBonus)
-         if iRange > 0:
-           bDone = False
-           iBonus = -1
-           # Bonus verbreiten versuchen (0 = back to Index)
-           if iData3 > 0:
-             iBonus = lBonus[iData3]
-
-             # Bonus checken
-             if iBonus != -1:
-               loopPlot, iChance = self.doBonusCityGetPlot(pCity, iBonus)
-
-               # Bonus verbreiten
-               if loopPlot != None and not loopPlot.isNone():
-
-                 # Bei gleichem Bonusgut keine Auswirkungen
-                 if loopPlot.getBonusType(iPlayer) != iBonus:
-
-                   if self.myRandom(100, None) < iChance:
-                     loopPlot.setBonusType(iBonus)
-                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_DONE",(gc.getBonusInfo(iBonus).getDescription(),pCity.getName())), None, 2, gc.getBonusInfo(iBonus).getButton(), ColorTypes(8), loopPlot.getX(), loopPlot.getY(), True, True)
-                   else:
-                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_INFO_BONUSVERBREITUNG_NEG",(gc.getBonusInfo(iBonus).getDescription(),pCity.getName())), None, 2, gc.getBonusInfo(iBonus).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-
-                   pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                   bDone = True
-
-
-           # Bonus selektieren
-           if not bDone:
-             popupInfo = CyPopupInfo()
-             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-             popupInfo.setOnClickedPythonCallback("popupBonusverbreitung")
-             popupInfo.setData1(iData4) # iPlayer
-             popupInfo.setData2(iData5) # iUnitID
-             popupInfo.setData3(iData2) # iPage
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_MAIN_MENU_GO_BACK",("", )), "Art/Interface/Buttons/Actions/button_bonusverbreitung.dds")
-
-             iReplace = -1
-             for i in range(iRange):
-               if i > 0:
-                 iBonus = lBonus[i]
-                 szText = gc.getBonusInfo(iBonus).getDescription() + " (" + str(pPlayer.getNumAvailableBonuses(iBonus)) + " "
-                 szText += CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_INBESITZ",("",)) + ")"
-                 loopPlot, iChance = self.doBonusCityGetPlot(pCity, iBonus)
-                 if loopPlot == None or loopPlot.isNone(): szText += " " + CyTranslator().getText("TXT_KEY_POPUP_NOT_POSSIBLE",())
-                 else:
-                   if loopPlot.getBonusType(iPlayer) == iBonus:
-                     szText += " " + CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_HIER",("",))
-                     iReplace = iBonus
-                   else:
-                     szText += " " + CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_CHANCE",(iChance,))
-                 popupInfo.addPythonButton(szText, gc.getBonusInfo(iBonus).getButton())
-
-             szTextHead = CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG",("", ))
-             if iReplace != -1: szTextHead += CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_REPLACE",(gc.getBonusInfo(iReplace).getDescription(), ))
-             popupInfo.setText( szTextHead )
-
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-             popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-             popupInfo.addPopup(iPlayer)
-
-    # ---- Ende Bonusverbreitung
+##    # Alte Bonusverbreitung UNIT_SUPPLY_FOOD (Obsolete)
+##    if iData1 == 726:  frei
 
     # Getreidelieferung UNIT_SUPPLY_FOOD
     if iData1 == 727:
@@ -2692,7 +1042,7 @@ class CvEventManager:
 
     # Karte zeichnen
     if iData1 == 728:
-       # 726, iPage/iButtonId, -1, iPlayer, iUnitID
+       # 728, iPage/iButtonId, -1, iPlayer, iUnitID
        iPlayer = iData4
        pPlayer = gc.getPlayer(iPlayer)
 
@@ -2741,9 +1091,9 @@ class CvEventManager:
          if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_FINANCIAL")):
            iGold = int(iGold * .75)
            txtBonus = " " + CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_TRAITBONUS",("", ))
-         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_4",(iGold,iChance))+txtBonus, "Art/Interface/Buttons/Buildings/button_building_colonia.dds")
+         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_4",(iGold,iChance))+txtBonus, "Art/Interface/Buttons/Buildings/button_city_metropole.dds")
 
-         # Metropolen (ab Pop 18): 600 G/90% TRAIT_EXPANSIVE
+         # Metropolen: 600 G/90% TRAIT_EXPANSIVE
          txtBonus = ""
          iChance = 90
          iGold = 600
@@ -2876,7 +1226,7 @@ class CvEventManager:
              else:
                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_KARTE_ZEICHNEN_FAILED",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
 
-         # Metropolen (ab Pop 18): 600 G/90% TRAIT_EXPANSIVE
+         # Metropolen: 600 G/90% TRAIT_EXPANSIVE
          elif iData2 == 4:
            iChance = 90
            iGold = 600
@@ -2961,111 +1311,14 @@ class CvEventManager:
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
-      self.doSlave2Library(pCity, pUnit)
+      PAE_Sklaven.doSlave2Library(pCity, pUnit)
 
     # Release slaves
     if iData1 == 730:
-       # 730, iCityID, 0, iPlayer, -1/iButton
-       pPlayer = gc.getPlayer(iData4)
-       pCity = pPlayer.getCity(iData2)
-
-       iCityGlads = pCity.getFreeSpecialistCount(15) # SPECIALIST_GLADIATOR
-       iCitySlavesHaus = pCity.getFreeSpecialistCount(16) # SPECIALIST_SLAVE
-       iCitySlavesFood = pCity.getFreeSpecialistCount(17) # SPECIALIST_SLAVE_FOOD
-       iCitySlavesProd = pCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE_PROD
-       iCitySlaves = iCitySlavesHaus + iCitySlavesFood + iCitySlavesProd
-
-       bPopUp = false
-
-       if iData5 == -1:
-         # wenn es nur Gladiatoren gibt, automatisch einen abziehen
-         if iCityGlads >= 1 and iCitySlaves == 0:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-            NewUnit.finishMoves()
-            pCity.changeFreeSpecialistCount(15, -1)
-            iCityGlads -= 1
-         elif iCitySlaves >= 1:
-
-           # wenns nur Haussklaven gibt
-           if iCityGlads == 0 and iCitySlaves == iCitySlavesHaus:
-             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-             NewUnit.finishMoves()
-             pCity.changeFreeSpecialistCount(16, -1)
-             iCitySlavesHaus -= 1
-             iCitySlaves -= 1
-           # wenns nur Feldsklaven gibt
-           elif iCityGlads == 0 and iCitySlaves == iCitySlavesFood:
-             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-             NewUnit.finishMoves()
-             pCity.changeFreeSpecialistCount(17, -1)
-             iCitySlavesFood -= 1
-             iCitySlaves -= 1
-           # wenns nur Bergwerksklaven gibt
-           elif iCityGlads == 0 and iCitySlaves == iCitySlavesProd:
-             NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-             NewUnit.finishMoves()
-             pCity.changeFreeSpecialistCount(18, -1)
-             iCitySlavesProd -= 1
-             iCitySlaves -= 1
-           # wenns verschiedene angesiedelte Sklaven gibt -> PopUP
-           else:
-             bPopUp = true
-
-       # PopUp
-       if iData5 > -1 or bPopUp:
-
-             # Sklaven abziehen
-             if iData5 > -1:
-               if iData5 == 0 and iCityGlads >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-                 NewUnit.finishMoves()
-                 pCity.changeFreeSpecialistCount(15, -1)
-                 iCityGlads -= 1
-               elif iData5 == 1 and iCitySlavesHaus >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-                 NewUnit.finishMoves()
-                 pCity.changeFreeSpecialistCount(16, -1)
-                 iCitySlavesHaus -= 1
-                 iCitySlaves -= 1
-               elif iData5 == 2 and iCitySlavesFood >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-                 NewUnit.finishMoves()
-                 pCity.changeFreeSpecialistCount(17, -1)
-                 iCitySlavesFood -= 1
-                 iCitySlaves -= 1
-               elif iData5 == 3 and iCitySlavesProd >= 1:
-                 NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-                 NewUnit.finishMoves()
-                 pCity.changeFreeSpecialistCount(18, -1)
-                 iCitySlavesProd -= 1
-                 iCitySlaves -= 1
-             # -----
-
-             # PopUp
-             popupInfo = CyPopupInfo()
-             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-             popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_RELEASE_SLAVES",(pCity.getName(),iCityGlads+iCitySlaves)) )
-             popupInfo.setData1(iData2) # CityID
-             popupInfo.setData2(iData4) # iPlayer
-             popupInfo.setOnClickedPythonCallback("popupReleaseSlaves")
-
-             # Button 0: Gladiatoren
-             szText = localText.getText("TXT_KEY_UNIT_GLADIATOR", ()) + " (" + str(iCityGlads) + ")"
-             popupInfo.addPythonButton(szText, gc.getSpecialistInfo(15).getButton())
-             # Button 1: Haussklaven
-             szText = localText.getText("TXT_KEY_UNIT_SLAVE_HAUS", ()) + " (" + str(iCitySlavesHaus) + ")"
-             popupInfo.addPythonButton(szText, gc.getSpecialistInfo(16).getButton())
-             # Button 2: Feldsklaven
-             szText = localText.getText("TXT_KEY_UNIT_SLAVE_FOOD", ()) + " (" + str(iCitySlavesFood) + ")"
-             popupInfo.addPythonButton(szText, gc.getSpecialistInfo(17).getButton())
-             # Button 3: Bergwerksklaven
-             szText = localText.getText("TXT_KEY_UNIT_SLAVE_PROD", ()) + " (" + str(iCitySlavesProd) + ")"
-             popupInfo.addPythonButton(szText, gc.getSpecialistInfo(18).getButton())
-
-             # Cancel button
-             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL",("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
-             popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
-             popupInfo.addPopup(iData4)
+      # 730, iCityID, 0, iPlayer, -1/iButton
+      pPlayer = gc.getPlayer(iData4)
+      pCity = pPlayer.getCity(iData2)
+      PAE_Sklaven.doReleaseSlaves(pPlayer, pCity, iData5)
 
     # Spread religion with a missionary
     if iData1 == 731:
@@ -3077,6 +1330,10 @@ class CvEventManager:
       # Religion herausfinden
       # pUnit.canSpread (PLOT, iReligion, bool) => geht leider nur in Zusammenhang mit einem PLOT!
       # also wenn die Einheit schon in der Stadt steht, die aber erst gesucht werden muss!
+      #Flunky: was ist hiermit?
+      # for iReligion in range(gc.getNumReligionInfos()):
+        # if gc.getUnitInfo(pUnit.getUnitType()).getReligionSpreads(iReligion): break
+
       if pUnit.getUnitType()   == gc.getInfoTypeForString("UNIT_CELTIC_MISSIONARY"): iReligion = 0
       elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_NORDIC_MISSIONARY"): iReligion = 1
       elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PHOEN_MISSIONARY"):  iReligion = 2
@@ -3105,12 +1362,13 @@ class CvEventManager:
         if not bCanSpread:
           CyInterface().addMessage(iData4, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SPREAD_RELIGION_NEG",(gc.getReligionInfo(iReligion).getDescription(),"")), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-    # Trade Mission: send and submit merchant into next foreign city
-    if iData1 == 732:
-      # 732, -1, -1, iPlayer, iUnitID
-      pPlayer = gc.getPlayer(iData4)
-      pUnit = pPlayer.getUnit(iData5)
-      self.doAutomateMerchant(pUnit)
+# Obsolete (Boggy)
+##    # Trade Mission: send and submit merchant into next foreign city
+##    if iData1 == 732:
+##      # 732, -1, -1, iPlayer, iUnitID
+##      pPlayer = gc.getPlayer(iData4)
+##      pUnit = pPlayer.getUnit(iData5)
+##      self.doAutomateMerchant(pUnit)
 
     # Build Limes PopUp
     if iData1 == 733:
@@ -3238,7 +1496,7 @@ class CvEventManager:
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-       FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYAL"))
+       FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
        FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
        iGold = 0
        iRange = gc.getNumPromotionInfos()
@@ -3336,7 +1594,7 @@ class CvEventManager:
 
           if len(rebelPlotArray) > 0:
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(pUnit.getUnitType(), rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+            NewUnit = gc.getBARBARIAN_PLAYER().initUnit(pUnit.getUnitType(), rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             iRange = gc.getNumPromotionInfos()
             for j in range(iRange):
@@ -3545,37 +1803,167 @@ class CvEventManager:
          elif iData5 == 0:
            # pCity.setBuildingHappyChange geht nicht, weil die Stadt auch Negatives positiv anrechnet
            pCity.changeExtraHappiness(-iUnhappy1)
-           NewUnit = pPlayer.initUnit(iUnit1, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+           NewUnit = pPlayer.initUnit(iUnit1, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
            NewUnit.setImmobileTimer(1)
          # Hilfstrupp
          elif iData5 == 1:
            pCity.changeExtraHappiness(-iUnhappy2)
-           NewUnit = pPlayer.initUnit(iUnit2, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
-           NewUnit.setImmobileTimer(1)
-         # Getreide
-         elif iData5 == 2:
-           pCity.changeExtraHappiness(-iUnhappy3)
-           NewUnit = pPlayer.initUnit(iUnit3, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+           NewUnit = pPlayer.initUnit(iUnit2, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
            iRand = 1 + self.myRandom(3, None)
            if iRand >= 1: NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
            if iRand >= 2: NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
            if iRand >= 3: NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
            NewUnit.setImmobileTimer(1)
+         # Getreide
+         elif iData5 == 2:
+           pCity.changeExtraHappiness(-iUnhappy3)
+           NewUnit = pPlayer.initUnit(iUnit3, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+           NewUnit.setImmobileTimer(1)
          # Sklaven
          elif iData5 == 3:
            pCity.changeExtraHappiness(-iUnhappy4)
-           NewUnit = pPlayer.initUnit(iUnit4, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+           NewUnit = pPlayer.initUnit(iUnit4, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
            NewUnit.setImmobileTimer(1)
 
          if iData5 > -1:
            if iData3 == gc.getGame().getActivePlayer():
              CyAudioGame().Play2DSound("AS2D_UNIT_BUILD_UNIT")
 
+    # 738-743: Cultivation feature / Bonusverbreitung ( Cultivation / Trade / Boggy )
+    # 744-748: Automated trade routes
+
+    # 738: Create popup for bonus cultivation
+    if iData1 == 738:
+        pPlayer = gc.getPlayer(iData2)
+        pUnit = pPlayer.getUnit(iData3)
+        # iData4 = int von iIsCity
+        PAE_Trade.doPopupChooseBonusForCultivation(pUnit, iData4)
+
+    # Collect bonus from plot
+    if iData1 == 739:
+        pPlayer = gc.getPlayer(iData4)
+        pUnit = pPlayer.getUnit(iData5)
+        pPlot = pUnit.plot()
+        if iData2 == -1:
+          # Kaufen
+          if iData3 == 1: PAE_Trade.doPopupChooseBonus4Collection(pUnit)
+          # Collect
+          elif iData3 == 0: PAE_Trade.doCollectBonus(pUnit)
+        elif PAE_Trade.doCollectBonus4Cultivation(pUnit, iData2):
+          self.doGoToNextUnit(pPlayer, pUnit)
+
+    # Create popup for buying bonus (in city)
+    if iData1 == 740:
+        pPlayer = gc.getPlayer(iData4)
+        pUnit = pPlayer.getUnit(iData5)
+        pCity = CyMap().plot(iData2,iData3).getPlotCity()
+        PAE_Trade.doPopupChooseBonus(pUnit, pCity)
+        #self.doGoToNextUnit(pPlayer, pUnit)
+
+    # Sell bonus (in city)
+    if iData1 == 741:
+        pPlayer = gc.getPlayer(iData4)
+        pUnit = pPlayer.getUnit(iData5)
+        pCity = CyMap().plot(iData2,iData3).getPlotCity()
+        PAE_Trade.doSellBonus(pUnit, pCity)
+        self.doGoToNextUnit(pPlayer, pUnit)
+
+    # Buy bonus (in city). Called by CvScreensInterface.
+    if iData1 == 742:
+        pPlayer = gc.getPlayer(iData4)
+        pUnit = pPlayer.getUnit(iData5)
+        eBonus = iData2
+        iCityOwner = iData3
+        PAE_Trade.doBuyBonus(pUnit, eBonus, iCityOwner)
+
+    # Cultivate bonus. Called by CvScreensInterface.
+    if iData1 == 743:
+        pPlayer = gc.getPlayer(iData4)
+        pUnit = pPlayer.getUnit(iData5)
+        eBonus = iData2
+        # iData3 = iIsCity
+        pPlot = pUnit.plot()
+        if iData3 == 1: PAE_Trade.doCultivateBonusFromCity(pUnit, eBonus)
+        else: PAE_Trade.doCultivateBonus(pPlot, pUnit, eBonus)
+
+    # Automated trade route: first popup (choose civ 1)
+    if iData1 == 744:
+        pUnit = gc.getPlayer(iData4).getUnit(iData5)
+        # Falls Erstellung der Route zwischendurch abgebrochen wird, kann eine halbfertige Route im
+        # ScriptData gespeichert sein - daher wird die Route zunaechst auf inaktiv gesetzt und erst
+        # am Ende des Vorgangs aktiviert
+        CvUtil.addScriptData(pUnit, "automActive", 0)
+        # Next step: choose civ
+        PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 1, -1, -1)
+
+    # Automated trade route: after choosing city 1
+    if iData1 == 745:
+        pUnit = gc.getPlayer(iData4).getUnit(iData5)
+        pCity = gc.getPlayer(iData2).getCity(iData3)
+        CvUtil.addScriptData(pUnit, "automX1", pCity.getX())
+        CvUtil.addScriptData(pUnit, "automY1", pCity.getY())
+        # Next step: Choose bonus 1 => civ 2 => city 2 => bonus 2
+        PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 3, iData2, iData3)
+
+    # Automated trade route: after choosing city 2
+    if iData1 == 746:
+        pUnit = gc.getPlayer(iData4).getUnit(iData5)
+        pCity = gc.getPlayer(iData2).getCity(iData3)
+        CvUtil.addScriptData(pUnit, "automX2", pCity.getX())
+        CvUtil.addScriptData(pUnit, "automY2", pCity.getY())
+        # Next step: Choose bonus 2
+        PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 6, iData2, iData3)
+
+    # Automated trade route: after choosing bonus
+    if iData1 == 747:
+        pUnit = gc.getPlayer(iData4).getUnit(iData5)
+        eBonus = iData2
+        bFirst = iData3
+        if bFirst:
+            CvUtil.addScriptData(pUnit, "automBonus1", eBonus)
+            # Next step: choose civ 2 => city 2 => bonus 2
+            PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 4, -1, -1)
+        else:
+            CvUtil.addScriptData(pUnit, "automBonus2", eBonus)
+            # Start trade route
+            CvUtil.addScriptData(pUnit, "automActive", 1)
+            PAE_Trade.doAutomateMerchant(pUnit, False)
+            # Falls Haendler in Stadt zieht und noch Fortbewegung hat, soll direkt ge-/verkauft werden
+            #if pUnit.canMove():
+            #    PAE_Trade.doAutomateMerchant(pUnit, False)
+
+    if iData1 == 748:
+        pUnit = gc.getPlayer(iData4).getUnit(iData5)
+        CvUtil.addScriptData(pUnit, "automActive", 0)
+        self.doGoToNextUnit(gc.getPlayer(iData4), pUnit)
+
     # --------------------------------
-    # 738: Allgemeine Infos zu Buttons
+    # 749: Allgemeine Infos zu Buttons
+    # 750: Unit Ehtnic Info
     # --------------------------------
 
+    # 751: Unit Rang Promo / Upgrade to new unit with new additional PAE ranking system
+    if iData1 == 751:
+       # iData1, iData2, ... , iData5
+       # 751, -1, -1, iPlayer, iUnitID
+       self.doUpgradeRang(iData4,iData5)
 
+    # 752: bless units
+    if iData1 == 752:
+       # iData1, iData2, ... , iData5
+       # 752, iX, iY, iPlayer, iUnitID
+       self.doBlessUnits(iData2,iData3,iData4,iData5)
+
+    # Slave -> Latifundium
+    if iData1 == 753:
+      # 733, -1 oder iButtonID, -1, iPlayer, iUnitID
+      pPlayer = gc.getPlayer(iData4)
+      pUnit = pPlayer.getUnit(iData5)
+      pPlot = pUnit.plot()
+      pPlot.changeUpgradeProgress(10)
+      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+
+    # 754: Obsolete Unit text in Tech Screen
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -3589,6 +1977,14 @@ class CvEventManager:
 
     # allow camera to be updated
     CvCameraControls.g_CameraControls.onUpdate( fDeltaTime )
+
+    # PAE - River tiles
+    if self.bRiverTiles_NeedUpdate:
+        self.bRiverTiles_NeedUpdate = False
+        CvRiverUtil.initRiverTiles(False)
+        CvRiverUtil.addGoldNearbyRiverTiles()
+    # PAE - River tiles end
+
 
   def onWindowActivation(self, argsList):
     'Called when the game window activates or deactivates'
@@ -3611,78 +2007,98 @@ class CvEventManager:
     # force deactivation, otherwise CtD when choosing a religion with forbidden tech require
     gc.getGame().setOption(gc.getInfoTypeForString("GAMEOPTION_PICK_RELIGION"), false)
 
+    # PAE - River tiles
+    self.bRiverTiles_WaitOnMainInterface = True
+
+    # PAE_Trade needs to be initialised
+    PAE_Trade.init()
+
+    PAE_Christen.init()
+
     # ---------------- Schmelzen 2/4 (BoggyB) --------
     # Beim Neuladen (Felder aus 3/4 bleiben nicht gespeichert)
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-    if sScenarioScriptData == "SchmelzEuro" or sScenarioScriptData == "SchmelzWelt":
-           iXLaenge = CyMap().getGridWidth()
-           iYLaenge = CyMap().getGridHeight()
-           eTundra = gc.getInfoTypeForString("TERRAIN_TUNDRA")
-           eSnow = gc.getInfoTypeForString("TERRAIN_SNOW")
-           #eGras = gc.getInfoTypeForString("TERRAIN_GRASS")
-           eEbene = gc.getInfoTypeForString("TERRAIN_PLAINS")
-           eEis = gc.getInfoTypeForString("FEATURE_ICE")
-           eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
-           #eDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
-           eDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-           for x in xrange(iXLaenge):
-             for y in xrange(iYLaenge):
-               pPlot = CyMap().plot(x,y)
-               if pPlot.getTerrainType() == eDarkIce: continue
-               elif pPlot.getTerrainType() == eSnow: self.IceSnow.append(pPlot)
-               elif pPlot.getTerrainType() == eTundra:
-                 # Extra Tundra-Bereich, wos langsamer gehn soll
-                 if sScenarioScriptData == "SchmelzEuro" and x >= 42 and y >= 49: self.IceTundra2.append(pPlot)
-                 else: self.IceTundra.append(pPlot)
-               elif pPlot.getFeatureType() == eEis: self.IceEis.append(pPlot)
-               #Ueberflutung
-               if pPlot.isCoastalLand() and not pPlot.isCity() and not pPlot.isHills() and not pPlot.isPeak() and pPlot.getBonusType(pPlot.getOwner()) == -1:
-                 if sScenarioScriptData == "SchmelzEuro":
-                   if y >= 28: self.IceCoast.append(pPlot)
-                 else: self.IceCoast.append(pPlot)
-               #Desertifizierung
-               if sScenarioScriptData == "SchmelzEuro" and y <= 8:
-                 if pPlot.getTerrainType() == eEbene and not pPlot.isCoastalLand() and not pPlot.isCity() and not pPlot.isRiver(): self.IceDesertEbene.append(pPlot)
-                 elif pPlot.getTerrainType() == eCoast and y <=6 and x >= 2 and x <= 60: self.IceDesertCoast.append(pPlot)
-
-    # +++++ PAE Debug: disband certain units ++++++++++++++++++++++++++++++++
-    #iRange = gc.getMAX_PLAYERS()
-    #for iPlayer in range(iRange):
-    #  player = gc.getPlayer(iPlayer)
-    #  if player.isAlive():
-    #    iNumUnits = player.getNumUnits()
-    #    for j in range(iNumUnits):
-    #      if player.getUnit(j).getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"):
-    #         player.getUnit(j).kill(1,player.getUnit(j).getOwner())
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    if sScenarioName == "SchmelzEuro" or sScenarioName == "SchmelzWelt":
+      Schmelz.onLoadGame(sScenarioName)
 
     # --------- BTS --------
     CvAdvisorUtils.resetNoLiberateCities()
     return 0
 
+  # +++++ PAE Debug: disband/delete things (for different reasons: CtD or OOS)
+  def onGameStartAndKickSomeAss(self):
+
+    iRange = gc.getMAX_PLAYERS()
+    """
+    for iPlayer in range(iRange):
+      # Units
+      pPlayer = gc.getPlayer(iPlayer)
+      if pPlayer.isAlive():
+        #iNumUnits = pPlayer.getNumUnits()
+        #for j in range(iNumUnits):
+        (pUnit, iter) = pPlayer.firstUnit(false)
+        while pUnit:
+        #  if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT") \
+        #  or pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_MERCHANT"):
+           pUnit.kill(1,pUnit.getOwner())
+           (pUnit, iter) = pPlayer.nextUnit(iter, false)
+        # City buildings
+        iNumCities = pPlayer.getNumCities()
+        for iCity in range (iNumCities):
+          pCity = pPlayer.getCity(iCity)
+          if not pCity.isNone():
+            iRange2 = gc.getNumBuildingInfos()
+            for iBuilding in range (iRange2):
+                pCity.setNumRealBuilding(iBuilding,0)
+    """
+
+    """
+    iMapW = gc.getMap().getGridWidth()
+    iMapH = gc.getMap().getGridHeight()
+
+    for x in range(iMapW):
+      for y in range(iMapH):
+        loopPlot = gc.getMap().plot(x,y)
+        #if loopPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_MINE"):
+        loopPlot.setImprovementType(-1)
+    """
+
+
+
   def onGameStart(self, argsList):
     'Called at the start of the game'
+
+    # +++++ PAE Debug: disband/delete things to check CtD reasons)
+    #self.onGameStartAndKickSomeAss()
 
     # force deactivation, otherwise CtD when choosing a religion with forbidden tech require
     gc.getGame().setOption(gc.getInfoTypeForString("GAMEOPTION_PICK_RELIGION"), false)
 
+    # PAE - River tiles
+    self.bRiverTiles_WaitOnMainInterface = True
+
+    # PAE_Trade needs to be initialised
+    PAE_Trade.init()
+
+    PAE_Christen.init()
+
     ### Starting points part 2 ###
     MapName = CyMap().getMapScriptName ()
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
     if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_START) and gc.getGame().getGameTurnYear() == gc.getDefineINT("START_YEAR"):
       MapName = ""
       bPlaceCivs = True
       bPlaceBarbs = True
       # PAE Maps
-      if sScenarioScriptData == "EuropeStandard": MapName = "StartingPoints_EuropeStandard.xml"
-      elif sScenarioScriptData == "EuropeMini": MapName = "StartingPoints_EuropeMini.xml"
-      elif sScenarioScriptData == "EuropeMedium": MapName = "StartingPoints_EuropeMedium.xml"
-      elif sScenarioScriptData == "EuropeLarge": MapName = "StartingPoints_EuropeLarge.xml"
-      elif sScenarioScriptData == "EuropeSmall": MapName = "StartingPoints_EuropeSmall.xml"
-      elif sScenarioScriptData == "SchmelzEuro": MapName = "StartingPoints_EuropeLarge.xml"
-      elif sScenarioScriptData == "EuropeXL": MapName = "StartingPoints_EuropeXL.xml"
-      elif sScenarioScriptData == "Eurasia": MapName = "StartingPoints_Eurasia.xml"
-      elif sScenarioScriptData == "PAE_PB": MapName = "StartingPoints_PAE_PB.xml"
-      #elif sScenarioScriptData == "EasternMed":
+      if sScenarioName == "EuropeStandard": MapName = "StartingPoints_EuropeStandard.xml"
+      elif sScenarioName == "EuropeMini": MapName = "StartingPoints_EuropeMini.xml"
+      elif sScenarioName == "EuropeMedium": MapName = "StartingPoints_EuropeMedium.xml"
+      elif sScenarioName == "EuropeLarge": MapName = "StartingPoints_EuropeLarge.xml"
+      elif sScenarioName == "EuropeSmall": MapName = "StartingPoints_EuropeSmall.xml"
+      elif sScenarioName == "SchmelzEuro": MapName = "StartingPoints_EuropeLarge.xml"
+      elif sScenarioName == "EuropeXL": MapName = "StartingPoints_EuropeXL.xml"
+      elif sScenarioName == "Eurasia": MapName = "StartingPoints_Eurasia.xml"
+      #elif sScenarioName == "EasternMed":
       #    MapName = "StartingPoints_EasternMed.xml"
       #    bPlaceCivs = False
 
@@ -3701,12 +2117,13 @@ class CvEventManager:
     lTechs.append(gc.getInfoTypeForString("TECH_NONE"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_1"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_2"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_3"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_4"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_5"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_6"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_7"))
     lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_8"))
+    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_9"))
+    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_10"))
     lTechsReli = []
     lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_NORDIC"))
     lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_CELTIC"))
@@ -3749,12 +2166,34 @@ class CvEventManager:
           #PAE Debug: delete certain units
           #if player.getUnit(j).getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"):
           #   player.getUnit(j).kill(1,player.getUnit(j).getOwner())
+
+          # Handelskarren CityID eintragen
+          #if unit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"):
+          #   pPlot = unit.plot()
+          #   if pPlot.isCity():
+          #     #unit.setScriptData(str(pPlot.getPlotCity().getID()))
+          #     CvUtil.addScriptData(unit, "c", pPlot.getPlotCity().getID()) # CityID
+
           (unit, iter) = player.nextUnit(iter, false)
+
+        ##Flunky: Einrueckung angepasst
+        # Trait-Gebaeude ueberpruefen
+        self.doCheckGlobalTraitBuildings(iPlayer)
+
+        ##Flunky: (city, iter) statt for range
+        # +++++ Check city status
+        # und Trait-Gebaeude / trait buildings
+        (city, iter) = player.firstCity(false)
+        while city:
+          self.doCheckCityState(city)
+          self.doCheckTraitBuildings(city, iPlayer)
+          (city,iter) = player.nextCity(iter, false)
+        ##/Flunky
 
         #Start in spaeterer Aera -> unerforschbare und Relitechs entfernen
         #Start in later era -> remove unresearchable and religious techs
         # Scenarios ausgeschlossen!!!
-        if sScenarioScriptData == "":
+        if sScenarioName == "":
           iTeam = player.getTeam()
           pTeam = gc.getTeam(iTeam)
           for iTech in lTechs:
@@ -3773,21 +2212,21 @@ class CvEventManager:
           popupInfo.setText(u"showDawnOfMan")
           popupInfo.addPopup(iPlayer)
 
-
+    # Flunky: sollte eigentlich problemlos gehen
     # ++++ Das Zedernholz benoetigt Savanne. Da es in den BONUS-Infos nicht funktioniert, muss es manuell gemacht werden
-    feat_forest = gc.getInfoTypeForString("FEATURE_SAVANNA")
-    bonus_zedern = gc.getInfoTypeForString("BONUS_ZEDERNHOLZ")
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-    iMapW = gc.getMap().getGridWidth()
-    iMapH = gc.getMap().getGridHeight()
+    #feat_forest = gc.getInfoTypeForString("FEATURE_SAVANNA")
+    #bonus_zedern = gc.getInfoTypeForString("BONUS_ZEDERNHOLZ")
+    #iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
+    #iMapW = gc.getMap().getGridWidth()
+    #iMapH = gc.getMap().getGridHeight()
 
-    for x in range(iMapW):
-      for y in range(iMapH):
-        loopPlot = gc.getMap().plot(x,y)
-        #if loopPlot != None and not loopPlot.isNone():
-        if loopPlot.getFeatureType() == iDarkIce: continue
-        if loopPlot.getBonusType(-1) == bonus_zedern and loopPlot.getFeatureType() != feat_forest:
-           loopPlot.setFeatureType(feat_forest,1)
+    #for x in range(iMapW):
+    #  for y in range(iMapH):
+    #    loopPlot = gc.getMap().plot(x,y)
+    #    #if loopPlot != None and not loopPlot.isNone():
+    #    if loopPlot.getFeatureType() == iDarkIce: continue
+    #    if loopPlot.getBonusType(-1) == bonus_zedern and loopPlot.getFeatureType() != feat_forest:
+    #       loopPlot.setFeatureType(feat_forest,1)
     # -----------
 
     # BTS Standard
@@ -3818,6 +2257,7 @@ class CvEventManager:
 ## AI AutoPlay ##
     #CvTopCivs.CvTopCivs().turnChecker(iGameTurn)
 
+
     ###### Historische Texte ---------
     self.doHistory(iGameTurn)
 
@@ -3827,531 +2267,53 @@ class CvEventManager:
     iGameTurn = argsList[0]
 
     # Special Scripts for PAE Scenarios
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-    #if iGameTurn > 1 and iGameTurn % 10 == 0:
-    if iGameTurn == 1:
-      if sScenarioScriptData == "PeloponnesianWar":
-        # Athen (0) soll mit Sparta (1) ewig Krieg fuehren
-        gc.getTeam(gc.getPlayer(0).getTeam()).setPermanentWarPeace(gc.getPlayer(1).getTeam(), true)
-        #gc.getPlayer(0).AI_setAttitudeExtra(1,-50)
-        #gc.getPlayer(1).AI_setAttitudeExtra(0,-50)
-        #gc.getTeam(gc.getPlayer(0).getTeam()).setWarWeariness(gc.getPlayer(1).getTeam(),30)
-        #gc.getTeam(gc.getPlayer(1).getTeam()).setWarWeariness(gc.getPlayer(0).getTeam(),30)
-      # ---------------- Schmelzen 3/4 (BoggyB) --------
-      elif sScenarioScriptData == "SchmelzEuro" or sScenarioScriptData == "SchmelzWelt":
-           iXLaenge = CyMap().getGridWidth()
-           iYLaenge = CyMap().getGridHeight()
-           eTundra = gc.getInfoTypeForString("TERRAIN_TUNDRA")
-           eSnow = gc.getInfoTypeForString("TERRAIN_SNOW")
-           #eGras = gc.getInfoTypeForString("TERRAIN_GRASS")
-           eEbene = gc.getInfoTypeForString("TERRAIN_PLAINS")
-           eEis = gc.getInfoTypeForString("FEATURE_ICE")
-           eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
-           #eDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
-           eDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-           for x in xrange(iXLaenge):
-             for y in xrange(iYLaenge):
-               pPlot = CyMap().plot(x,y)
-               if pPlot.getTerrainType() == eDarkIce: continue
-               if pPlot.getTerrainType() == eSnow: self.IceSnow.append(pPlot)
-               elif pPlot.getTerrainType() == eTundra:
-                 # Extra Tundra-Bereich, wos langsamer gehn soll
-                 if sScenarioScriptData == "SchmelzEuro" and x >= 42 and y >= 49: self.IceTundra2.append(pPlot)
-                 else: self.IceTundra.append(pPlot)
-               elif pPlot.getFeatureType() == eEis: self.IceEis.append(pPlot)
-               #Ueberflutung
-               if pPlot.isCoastalLand() and not pPlot.isCity() and not pPlot.isHills() and not pPlot.isPeak() and pPlot.getBonusType(pPlot.getOwner()) == -1:
-                 if sScenarioScriptData == "SchmelzEuro":
-                   if y >= 28: self.IceCoast.append(pPlot)
-                 else: self.IceCoast.append(pPlot)
-               #Desertifizierung
-               if sScenarioScriptData == "SchmelzEuro" and y <= 8:
-                 if pPlot.getTerrainType() == eEbene and not pPlot.isCoastalLand() and not pPlot.isCity() and not pPlot.isRiver(): self.IceDesertEbene.append(pPlot)
-                 elif pPlot.getTerrainType() == eCoast and y <=6 and x >= 2 and x <= 60: self.IceDesertCoast.append(pPlot)
-      # --------------
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
 
-    # ----------------
+    if sScenarioName == "PeloponnesianWar":
+      PeloponnesianWar.onEndGameTurn(iGameTurn)
 
-    elif iGameTurn == 228:
-      if sScenarioScriptData == "PeloponnesianWarKeinpferd":
-        # Athen (0) soll von 414 an mit Sparta (1) ewig den dekeleischen Krieg fuehren
-        gc.getTeam(gc.getPlayer(0).getTeam()).setPermanentWarPeace(gc.getPlayer(1).getTeam(), true)
+  # ---------------- Schmelzen 3/4 (BoggyB) --------
+    if sScenarioName == "SchmelzEuro" or sScenarioName == "SchmelzWelt":
+      Schmelz.onEndGameTurn(iGameTurn, sScenarioName)
 
-    # ---------------- Schmelzen 4/4 (BoggyB)--------
-    elif iGameTurn > 1:
-      if sScenarioScriptData == "SchmelzEuro" or sScenarioScriptData == "SchmelzWelt":
-        #Normal alle 40 Runden (insg. 940 Runden)
-        #Schnell alle 32 Runden (insg. 770 Runden)
-        #Episch alle 45 Runden (insg. 1095 Runden)
-        #Marathon alle 52 Runden (insg. 1220 Runden)
-        iTurnSchmelzIntervall = 40
-        iTurnLimit = 800
-        if gc.getGame().getGameSpeedType() == gc.getInfoTypeForString("GAMESPEED_QUICK"):
-          iTurnSchmelzIntervall = 32
-          iTurnLimit = 600
-        elif gc.getGame().getGameSpeedType() == gc.getInfoTypeForString("GAMESPEED_EPIC"):
-          iTurnSchmelzIntervall = 45
-          iTurnLimit = 900
-        elif gc.getGame().getGameSpeedType() == gc.getInfoTypeForString("GAMESPEED_MARATHON"):
-          iTurnSchmelzIntervall = 52
-          iTurnLimit = 1000
+    if sScenarioName == "PeloponnesianWarKeinpferd":
+      PeloponnesianWarKeinpferd.onEndGameTurn(iGameTurn)
 
-        ## ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Summe Eis",len(self.IceSnow))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-        if iGameTurn % iTurnSchmelzIntervall == 0 and iGameTurn <= iTurnLimit:
-           iWahrscheinlichkeit = 8
-           #if sScenarioScriptData == "SchmelzWelt":
-           #  iWahrscheinlichkeit = 8
-
-           eTundra = gc.getInfoTypeForString("TERRAIN_TUNDRA")
-           eSnow = gc.getInfoTypeForString("TERRAIN_SNOW")
-           eGras = gc.getInfoTypeForString("TERRAIN_GRASS")
-           eEbene = gc.getInfoTypeForString("TERRAIN_PLAINS")
-           eEis = gc.getInfoTypeForString("FEATURE_ICE")
-           eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
-           eDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
-
-           #Schnee -> Tundra
-           if len(self.IceSnow):
-             for pPlot in self.IceSnow:
-               iRand = self.myRandom(iWahrscheinlichkeit, None)
-               if iRand == 1:
-                 pPlot.setTerrainType(eTundra,1,1)
-                 self.IceSnow.remove(pPlot)
-                 # Tundra Liste updaten
-                 if sScenarioScriptData == "SchmelzEuro" and pPlot.getX() >= 42 and pPlot.getY() >= 49: self.IceTundra2.append(pPlot)
-                 else: self.IceTundra.append(pPlot)
-
-           #Tundra -> Gras (25%) oder Ebene (75%)
-           if len(self.IceTundra):
-             for pPlot in self.IceTundra:
-               iRand = self.myRandom(iWahrscheinlichkeit, None)
-               if iRand == 1:
-                 iRand = self.myRandom(4, None)
-                 if iRand == 1: pPlot.setTerrainType(eGras,1,1)
-                 else: pPlot.setTerrainType(eEbene,1,1)
-                 self.IceTundra.remove(pPlot)
-           if len(self.IceTundra2):
-             for pPlot in self.IceTundra2:
-               iRand = self.myRandom(iWahrscheinlichkeit*3, None)
-               if iRand == 1:
-                 iRand = self.myRandom(4, None)
-                 if iRand == 1: pPlot.setTerrainType(eGras,1,1)
-                 else: pPlot.setTerrainType(eEbene,1,1)
-                 self.IceTundra2.remove(pPlot)
-
-           #Eis schmilzt
-           if len(self.IceEis):
-             for pPlot in self.IceEis:
-               iRand = self.myRandom(iWahrscheinlichkeit, None)
-               if iRand == 1:
-                 pPlot.setFeatureType(-1, 0)
-                 self.IceEis.remove(pPlot)
-
-           #Ueberflutung
-           if len(self.IceCoast):
-             for pPlot in self.IceCoast:
-               iRand = self.myRandom(50, None)
-               if iRand == 1:
-                 pPlot.setTerrainType(eCoast,1,1)
-                 self.IceCoast.remove(pPlot)
-
-           #Desertifizierung
-           if sScenarioScriptData == "SchmelzEuro":
-              if len(self.IceDesertEbene):
-                 for pPlot in self.IceDesertEbene:
-                     iRand = self.myRandom(iWahrscheinlichkeit, None)
-                     if iRand == 1:
-                        pPlot.setTerrainType(eDesert,1,1)
-                        pPlot.setImprovementType(-1)
-                        self.IceDesertEbene.remove(pPlot)
-              elif len(self.IceDesertCoast):
-                   for pPlot in self.IceDesertCoast:
-                       iRand = self.myRandom(iWahrscheinlichkeit, None)
-                       if iRand == 1:
-                          pPlot.setTerrainType(eEbene,1,1)
-                          self.IceDesertCoast.remove(pPlot)
-                          # Desert Liste updaten
-                          self.IceDesertEbene.append(pPlot)
-    #---------------------------Ende Schmelzen---------------------------------------
-
-    # --------------------------------------------
 
     # PAE Debug Mark
     #"""
 # Seevoelker erschaffen: Langboot + Axtkrieger oder Axtkaempfer | -1500 bis -800
     if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-     if iGameTurn % 5 == 0 and gc.getGame().getGameTurnYear() > -1400 and gc.getGame().getGameTurnYear() < -800:
-      barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-      iUnitTypeShip = gc.getInfoTypeForString("UNIT_SEEVOLK")
-      iUnitTypeWarrior1 = gc.getInfoTypeForString("UNIT_SEEVOLK_2")
-      iUnitTypeWarrior2 = gc.getInfoTypeForString("UNIT_SEEVOLK_3")
-
-      # Handicap: 0 (Settler) - 8 (Deity)
-      # Worldsize: 0 (Duell) - 5 (Huge)
-      iRange = 1 + gc.getMap().getWorldSize() + gc.getGame().getHandicapType()
-
-      for i in range (iRange):
-        # Diese Koordinaten entsprechen ungefaehr dem Mittelmeer: Ships(range):3 | X: 19-59(40) | Y:9-37(28)
-        #iRandX = 19 + self.myRandom(40, None)
-        #iRandY = 9 + self.myRandom(28, None)
-
-        # Wird geaendert zu einem Mittelmeerstreifen: x: 5 bis (X-5), y: 5 bis letztes Drittel von Y
-        iMapX = gc.getMap().getGridWidth() - 5
-        iMapY = int(gc.getMap().getGridHeight() / 3 * 2)
-        iRandX = 5 + self.myRandom(iMapX, None)
-        iRandY = 5 + self.myRandom(iMapY, None)
-
-        loopPlot = gc.getMap().plot(iRandX, iRandY)
-        # Plot soll ein Ozean sein
-        terr_ocean = gc.getInfoTypeForString("TERRAIN_OCEAN")
-        feat_ice = gc.getInfoTypeForString("FEATURE_ICE")
-        iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-        if None != loopPlot and not loopPlot.isNone():
-          if loopPlot.getFeatureType() == iDarkIce: continue
-          if not loopPlot.isUnit() and not loopPlot.isOwned() and loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-            # Schiffe erstellen
-            if gc.getGame().getGameTurnYear() > -1000: iAnz = 3
-            elif gc.getGame().getGameTurnYear() > -1200: iAnz = 2
-            else: iAnz = 1
-            for j in range (iAnz):
-              barbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              barbPlayer.initUnit(iUnitTypeWarrior1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              barbPlayer.initUnit(iUnitTypeWarrior2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-            # ***TEST***
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Seevoelker erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-# -- Seevoelker Ende ------------------------------------------
+      if iGameTurn % 5 == 0 and gc.getGame().getGameTurnYear() > -1400 and gc.getGame().getGameTurnYear() < -800:
+        PAE_Barbaren.doSeevoelker()
+        # ***TEST***
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Seevoelker erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # Wikinger erschaffen: Langboot + Berserker | ab 400 AD
     if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-     if iGameTurn % 5 == 0 and gc.getGame().getGameTurnYear() >= 400:
-      barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-      iUnitTypeShip = gc.getInfoTypeForString("UNIT_VIKING_1")
-      iUnitTypeUnit = gc.getInfoTypeForString("UNIT_VIKING_2")
-      iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      for i in range (4):
-        iRandX = iMapH - self.myRandom(5, None)
-        iRandY = self.myRandom(iMapW, None)
-        loopPlot = gc.getMap().plot(iRandX, iRandY)
-        # Es soll auch ein 2tes Feld Wasser sein
-        loopPlot2 = gc.getMap().plot(iRandX+1, iRandY)
-        if None != loopPlot and not loopPlot.isNone() and None != loopPlot2 and not loopPlot2.isNone():
-          if loopPlot.getFeatureType() == iDarkIce or loopPlot2.getFeatureType() == iDarkIce: continue
-          if not loopPlot.isUnit() and loopPlot.isWater() and loopPlot2.isWater() and not loopPlot.isOwned():
-            # Wikinger erstellen
-            barbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-            for j in range (4):
-              barbPlayer.initUnit(iUnitTypeUnit, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-          # ***TEST***
-          #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wikinger erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
+      if iGameTurn % 5 == 0 and gc.getGame().getGameTurnYear() >= 400:
+        PAE_Barbaren.doVikings()
+        # ***TEST***
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wikinger erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # Handelskarren erschaffen: -1800 bis 0
     if iGameTurn % 20 == 0 and gc.getGame().getGameTurnYear() > -1800 and gc.getGame().getGameTurnYear() < 0:
-      barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-      iUnitTypeMerchant1 = gc.getInfoTypeForString("UNIT_TRADE_MERCHANT")
-      iUnitTypeMerchant2 = gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN")
-      iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-      for i in range (4):
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-        loopPlot = gc.getMap().plot(iRandX, iRandY)
-        # Es soll auch ein 2tes Feld Wasser sein fuers Handelsschiff
-        loopPlot2 = gc.getMap().plot(iRandX+1, iRandY)
-        if None != loopPlot and not loopPlot.isNone() and None != loopPlot2 and not loopPlot2.isNone():
-          if loopPlot.getFeatureType() != iDarkIce and loopPlot2.getFeatureType() != iDarkIce:
-            if not loopPlot.isUnit() and not loopPlot.isOwned():
-              if loopPlot.isWater() and loopPlot2.isWater() and gc.getGame().getGameTurnYear() > -600:
-                barbPlayer.initUnit(iUnitTypeMerchant2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              elif not loopPlot.isWater() and not loopPlot.isPeak():
-                barbPlayer.initUnit(iUnitTypeMerchant1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-          # ***TEST***
-          #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Barb. Handelskarren erschaffen",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-# -- Merchants Ende ------------------------------------------
+      PAE_Barbaren.doHandelskarren()
+      # ***TEST***
+      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Barb. Handelskarren erschaffen",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # -- Huns | Hunnen erschaffen: Hunnischer Reiter | ab 250 AD  ---------
-
-    iHuns = 0
-    if gc.getGame().getGameTurnYear() == 250: iHuns = 20
-    elif gc.getGame().getGameTurnYear() == 255: iHuns = 24
-    elif gc.getGame().getGameTurnYear() == 260: iHuns = 28
-    elif gc.getGame().getGameTurnYear() >= 270 and gc.getGame().getGameTurnYear() <= 400 and iGameTurn % 10 == 0: iHuns = 28  # Diesen Wert auch unten bei der Meldung angeben!
-
-    if iHuns > 0:
-
-      CivHuns = gc.getInfoTypeForString("CIVILIZATION_HUNNEN")
-      bHunsAlive = False
-
-      iRange = gc.getMAX_PLAYERS()
-      for iPlayer in range(iRange):
-        pPlayer = gc.getPlayer(iPlayer)
-        # Hunnen sollen nur auftauchen, wenn es nicht bereits Hunnen gibt
-        if pPlayer.getCivilizationType() == CivHuns and pPlayer.isAlive():
-          bHunsAlive = True
-          break
-
-      if not bHunsAlive:
-        iRange = gc.getMAX_PLAYERS()
-        for iPlayer in range(iRange):
-          pPlayer = gc.getPlayer(iPlayer)
-
-          # Message PopUps
-          if iHuns < 28 and pPlayer.isAlive() and pPlayer.isHuman():
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            if iHuns == 2: popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_HUNNEN_1",("", )))
-            elif iHuns == 4: popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_HUNNEN_2",("", )))
-            else: popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_HUNNEN_3",("", )))
-            popupInfo.addPopup(pPlayer.getID())
-            CyAudioGame().Play2DSound('AS2D_THEIRDECLAREWAR')
-
-        iMapW = gc.getMap().getGridWidth()
-        iMapH = gc.getMap().getGridHeight()
-        iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-        # 15 Versuche einen Plot zu finden
-        bPlot = False
-        for i in range (15):
-          # Diese Koordinaten entsprechen Nord-Osten
-          iRandX = iMapW - 15 + self.myRandom(15, None)
-          iRandY = iMapH - 15 + self.myRandom(15, None)
-          loopPlot = gc.getMap().plot(iRandX, iRandY)
-          if None != loopPlot and not loopPlot.isNone():
-            if loopPlot.getFeatureType() != iDarkIce:
-              if not loopPlot.isUnit() and not loopPlot.isWater() and not loopPlot.isOwned():
-                bPlot = True
-                break
-
-        # wenn ein Plot gefunden wurde
-        if bPlot:
-
-          # Hunnen versuchen zu erstellen  1 == 2: Ausgeschaltet!
-          if gc.getGame().getGameTurnYear() >= 250 and gc.getGame().countCivPlayersAlive() < 18 and 1 == 2:
-            # freie PlayerID herausfinden
-            iHunsID = 0
-            for i in range(18):
-              pPlayer = gc.getPlayer(i)
-              if not pPlayer.isEverAlive():
-                iHunsID = i
-                break
-            # wenn keine nagelneue ID frei ist, dann eine bestehende nehmen
-            if iHunsID == 0:
-              for i in range(18):
-                j = 18-i
-                pPlayer = gc.getPlayer(j)
-                if not pPlayer.isAlive():
-                  iHunsID = j
-                  break
-
-            if iHunsID > 0:
-              # Hunnen erstellen
-              LeaderHuns = gc.getInfoTypeForString("LEADER_ATTILA")
-              gc.getGame().addPlayer(iHunsID,LeaderHuns,CivHuns)
-              pPlayer = gc.getPlayer(iHunsID)
-
-              for i in range(8):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              for i in range(4):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SPEARMAN"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              for i in range(6):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_WORKER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              for i in range(3):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              for i in range(9):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_ARCHER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-              for i in range(9):
-                pPlayer.initUnit(gc.getInfoTypeForString("UNIT_HORSE"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-              pPlayer.setCurrentEra(3)
-              pPlayer.setGold(300)
-
-              # increasing Anger to all other CIVs
-              # and looking for best tech player
-              pTeam = gc.getTeam(pPlayer.getTeam())
-              iPlayerBestTechScore = -1
-              iTechScore = 0
-              iRange = gc.getMAX_PLAYERS()
-              for i in range(iRange):
-                pSecondPlayer = gc.getPlayer(i)
-                # increases Anger for all AIs
-                if pSecondPlayer.getID() != pPlayer.getID() and pSecondPlayer.isAlive():
-                  # Haltung aendern
-                  pPlayer.AI_changeAttitudeExtra(i,-5)
-                  # Krieg erklaeren
-                  pTeam.declareWar(pSecondPlayer.getTeam(), 0, 6)
-                  # TechScore herausfinden
-                  if iTechScore < pSecondPlayer.getTechScore():
-                    iTechScore = pSecondPlayer.getTechScore()
-                    iPlayerBestTechScore = i
-
-              # Techs geben
-              if iPlayerBestTechScore > -1:
-                xTeam = gc.getTeam(gc.getPlayer(iPlayerBestTechScore).getTeam())
-                iTechNum = gc.getNumTechInfos()
-                for iTech in range(iTechNum):
-                  if gc.getTechInfo(iTech) != None:
-                    if xTeam.isHasTech(iTech) and not pTeam.isHasTech(iTech):
-                      if gc.getTechInfo(iTech).isTrade():
-                        pTeam.setHasTech(iTech, 1, iHunsID, 0, 0)
-
-          else:
-            iUnitType = gc.getInfoTypeForString('UNIT_MONGOL_KESHIK')
-            barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-            for j in range(iHuns):
-              barbPlayer.initUnit(iUnitType, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-# -- Hunnen Ende ------------------------------------------
-
-
+    PAE_Barbaren.doHuns()
 
 # ------ Handelsposten erzeugen Kultur (PAE V Patch 3: und wieder Forts/Festungen)
 # ------ Berberloewen erzeugen
 # ------ Wildpferde, Wildelefanten, Wildkamele ab PAE V
-    lImpForts = []
-    lImpForts.append(gc.getInfoTypeForString('IMPROVEMENT_HANDELSPOSTEN'))
-    lImpForts.append(gc.getInfoTypeForString('IMPROVEMENT_FORT'))
-    lImpForts.append(gc.getInfoTypeForString('IMPROVEMENT_FORT2'))
+# ------ Barbarenfort beleben (PAE V Patch 4)
+    PAE_Barbaren.doPlotFeatures()
 
-    bonus_lion = gc.getInfoTypeForString('BONUS_LION')
-    bonus_horse = gc.getInfoTypeForString('BONUS_HORSE')
-    bonus_camel = gc.getInfoTypeForString('BONUS_CAMEL')
-    bonus_ivory = gc.getInfoTypeForString('BONUS_IVORY')
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-    iMapW = gc.getMap().getGridWidth()
-    iMapH = gc.getMap().getGridHeight()
-
-    for x in range(iMapW):
-      for y in range(iMapH):
-        loopPlot = gc.getMap().plot(x,y)
-        #if loopPlot != None and not loopPlot.isNone():
-        if loopPlot.getFeatureType() == iDarkIce: continue
-        if not loopPlot.isWater() and not loopPlot.isPeak() and not loopPlot.isCity():
-
-            iPlotOwner = loopPlot.getOwner()
-
-            # Handelsposten und Forts
-            if iPlotOwner == -1 and loopPlot.getImprovementType() in lImpForts:
-              # Init
-              iOwner = -1
-
-              # Handelsposten
-              if loopPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"):
-
-                str = loopPlot.getScriptData()
-                if str.isdigit(): iOwner = int(str)
-
-              # Forts
-              else:
-
-                if loopPlot.getNumUnits() > 0:
-                  # Besitzer ist der mit den meisten Einheiten drauf
-                  OwnerArray = []
-                  iRange = gc.getMAX_PLAYERS()
-                  for i in range(iRange):
-                    OwnerArray.append(0)
-
-                  iNumUnits = loopPlot.getNumUnits()
-                  for i in range (iNumUnits):
-                    if loopPlot.getUnit(i).isMilitaryHappiness():
-                      iOwner = loopPlot.getUnit(i).getOwner()
-                      if iOwner > -1: OwnerArray[iOwner] += 1
-
-                  if max(OwnerArray) > 0:
-                    iOwner = OwnerArray.index(max(OwnerArray))
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Owner",iOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-              iRange = gc.getMAX_PLAYERS()
-              for i in range(iRange):
-                iPlayerID = gc.getPlayer(i).getID()
-                if iPlayerID == iOwner:
-                  loopPlot.setCulture(iPlayerID,1,True)
-                  loopPlot.setOwner(iPlayerID)
-                else:
-                  loopPlot.setCulture(iPlayerID,0,True)
-
-            # and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS)
-            # Lion - 2% Appearance
-            elif iPlotOwner == -1 and loopPlot.getBonusType(-1) == bonus_lion:
-              if loopPlot.getImprovementType() == -1:
-                if loopPlot.getNumUnits() < 3:
-                  if self.myRandom(50, None) == 1:
-                    iUnitType = gc.getInfoTypeForString("UNIT_LION")
-                    barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-                    barbPlayer.initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
-                    # ***TEST***
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Barb. Atlasloewe erschaffen",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-            # Horse - 1.5% Appearance
-            elif loopPlot.getBonusType(iPlotOwner) == bonus_horse: # and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-              #if loopPlot.getImprovementType() == -1:
-              if loopPlot.getNumUnits() == 0:
-                  if self.myRandom(75, None) == 1:
-                    iUnitType = gc.getInfoTypeForString("UNIT_WILD_HORSE")
-
-                    # Check Owner
-                    iNewUnitOwner = gc.getBARBARIAN_PLAYER()
-                    if iPlotOwner != -1:
-                      if gc.getTeam(gc.getPlayer(iPlotOwner).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PFERDEZUCHT")):
-                        iNewUnitOwner = iPlotOwner
-
-                    # Add Unit
-                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-                    # ***TEST***
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Pferd erschaffen",iNewUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-            # Camel - 1.5% Appearance
-            elif loopPlot.getBonusType(iPlotOwner) == bonus_camel: # and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-              #if loopPlot.getImprovementType() == -1:
-              if loopPlot.getNumUnits() == 0:
-                  if self.myRandom(75, None) == 1:
-                    iUnitType = gc.getInfoTypeForString("UNIT_WILD_CAMEL")
-
-                    # Check Owner
-                    iNewUnitOwner = gc.getBARBARIAN_PLAYER()
-                    if iPlotOwner != -1:
-                      if gc.getTeam(gc.getPlayer(iPlotOwner).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_KAMELZUCHT")):
-                        iNewUnitOwner = iPlotOwner
-
-                    # Add Unit
-                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-                    # ***TEST***
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Kamel erschaffen",iNewUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-            # Elefant - 1.5% Appearance
-            elif loopPlot.getBonusType(iPlotOwner) == bonus_ivory: # and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-              #if loopPlot.getImprovementType() == -1:
-              if loopPlot.getNumUnits() == 0:
-                  if self.myRandom(75, None) == 1:
-                    iUnitType = gc.getInfoTypeForString("UNIT_ELEFANT")
-
-                    # Check Owner
-                    iNewUnitOwner = gc.getBARBARIAN_PLAYER()
-                    if iPlotOwner != -1:
-                      if gc.getTeam(gc.getPlayer(iPlotOwner).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ELEFANTENZUCHT")):
-                        iNewUnitOwner = iPlotOwner
-
-                    # Add Unit
-                    gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-                    # ***TEST***
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Elefant erschaffen",iNewUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
+    # Christentum gruenden
+    if gc.getGame().getGameTurnYear() >= 0:
+      if not PAE_Christen.bChristentum: PAE_Christen.setHolyCity()
 
 # --------------------
     # PAE Debug Mark
@@ -4368,198 +2330,24 @@ class CvEventManager:
     self.PAEInstanceFightingModifier = []
     self.PAEInstanceHiringModifier = []
 
+    # --- Automated trade routes for HI (Boggy)
+    if pPlayer.isHuman():
+        (pLoopUnit, iter) = pPlayer.firstUnit(False)
+        while pLoopUnit:
+            iUnitType = pLoopUnit.getUnitType()
+            if iUnitType in PAE_Trade.lTradeUnits:
+                bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["automActive","t"]))
+                if bTradeRouteActive and pLoopUnit.getGroup().getLengthMissionQueue() == 0:
+                    PAE_Trade.doAutomateMerchant(pLoopUnit, False)
+                    #pLoopUnit.finishMoves()
+                    # Falls Haendler in Stadt zieht und noch Fortbewegung hat, soll direkt ge-/verkauft werden
+                    #if pLoopUnit.canMove(): PAE_Trade.doAutomateMerchant(pLoopUnit, False)
+            (pLoopUnit, iter) = pPlayer.nextUnit(iter, False)
+
     # ------- Scenario PeloponnesianWarKeinpferd Events Poteidaia, Megara, Plataiai, Syrakus
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-    if sScenarioScriptData == "PeloponnesianWarKeinpferd":
-      iTeam = pPlayer.getTeam()
-      iAthen = 0
-      iSparta = 1
-      iKorinth = 2
-      iTheben = 4
-      iSyrakus = 16
-      # Event 1: Poteidaia verlangt geringere Abgaben
-      iTurnPotei = 8 # Runde, in der das Popup fuer den Menschen erscheinen soll
-      # Die KI reagiert sofort noch in dieser Runde, der Mensch erhaelt erst in der naechsten Runde das Popup
-      # Nur, wenn Poteidaia existiert + von Athen kontrolliert wird
-      pPoteidaia = CyMap().plot(56, 46).getPlotCity()
-      if iTeam == iAthen and ((iGameTurn == iTurnPotei-1 and pPlayer.isHuman()) or (iGameTurn == iTurnPotei and not pPlayer.isHuman())) and not pPoteidaia.isNone() and pPoteidaia != None:
-       if pPoteidaia.getOwner() == iAthen:
-        if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_TRIBUT_DESC",()))
-          popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Poteidaia1")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_TRIBUT_OPTION_1", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_TRIBUT_OPTION_2", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_TRIBUT_OPTION_3", ()), "")
-          popupInfo.addPopup(iPlayer)
-        else:
-          iAiDecision = self.myRandom(3, None)
-          CvScreensInterface.peloponnesianWarKeinpferd_Poteidaia1([iAiDecision])
-      # Event 2: Krieg um Poteidaia
-      iTurnPotei = 18 # Runde, in der die Popups fuer den Menschen erscheinen sollen
-      # Nur, wenn Poteidaia existiert + von Athen kontrolliert wird
-      if iTeam == iAthen and ((iGameTurn == iTurnPotei-1 and pPlayer.isHuman()) or (iGameTurn == iTurnPotei and not pPlayer.isHuman())) and not pPoteidaia.isNone() and pPoteidaia != None:
-        if pPoteidaia.getOwner() == iAthen:
-          # Event 2.1: Reaktion Athens
-          # Poteidaia wechselt zu Korinth (Team 2)
-          self.doRenegadeCity(pPoteidaia, 2, -1, -1, -1)
-          pKorinth = gc.getPlayer(iKorinth)
-          ePantodapoi = gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
-          iRange = self.myRandom(3, None)
-          # Korinth erhaelt 0 - 2 zusaetzliche makedonische Hilfstrupps in Poteidaia
-          for i in range(iRange): pKorinth.initUnit(ePantodapoi, 56, 46, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_WORLDNEWS", ()), None, 2, None, ColorTypes(11), 0, 0, False, False)
-          if pPlayer.isHuman():
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_ATHEN_DESC",()))
-            popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Poteidaia2")
-            popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_ATHEN_OPTION_1", ()), "")
-            popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_ATHEN_OPTION_2", ()), "")
-            popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_ATHEN_OPTION_3", ()), "")
-            popupInfo.addPopup(iPlayer)
-          else:
-            iAiDecision = self.myRandom(3, None)
-            CvScreensInterface.peloponnesianWarKeinpferd_Poteidaia2([iAiDecision])
-      # Nur, wenn Poteidaia existiert + von Korinth oder Athen kontrolliert wird (menschlicher Spieler spielt Korinth: zu diesem Zeitpunkt gehoert Poteidaia noch Athen; KI spielt Korinth: ist bereits zu Korinth gewechselt)
-      elif iTeam == iKorinth and ((iGameTurn == iTurnPotei-1 and pPlayer.isHuman()) or (iGameTurn == iTurnPotei and not pPlayer.isHuman())) and not pPoteidaia.isNone() and pPoteidaia != None:
-        if pPoteidaia.getOwner() == iKorinth or pPoteidaia.getOwner() == iAthen:
-          # Event 2.2: Reaktion Korinths
-          if pPlayer.isHuman():
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_KORINTH_DESC",()))
-            popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Poteidaia3")
-            popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_KORINTH_OPTION_1", ()), "")
-            popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_KORINTH_OPTION_2", ()), "")
-            popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_KORINTH_OPTION_3", ()), "")
-            popupInfo.addPopup(iPlayer)
-          else:
-            iAiDecision = self.myRandom(3, None)
-            CvScreensInterface.peloponnesianWarKeinpferd_Poteidaia3([iAiDecision])
-      # Event 3: Megara unterstuetzt Korinth
-      iTurnMegaraAthen = 22 # Runde, in der die Popups fuer den Menschen erscheinen sollen
-      # Nur, wenn Megara existiert + von Korinth kontrolliert wird
-      pMegara = CyMap().plot(55, 30).getPlotCity()
-      if iTeam == iAthen and ((iGameTurn == iTurnMegaraAthen-1 and pPlayer.isHuman()) or (iGameTurn == iTurnMegaraAthen and not pPlayer.isHuman())) and not pMegara.isNone() and pMegara != None:
-       if pMegara.getOwner() == iKorinth:
-        # Event 3.1: Reaktion Athens
-        if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_ATHEN_DESC",()))
-          popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Megara1")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_ATHEN_OPTION_1", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_ATHEN_OPTION_2", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_ATHEN_OPTION_3", ()), "")
-          popupInfo.addPopup(iPlayer)
-        else:
-          iAiDecision = self.myRandom(3, None)
-          CvScreensInterface.peloponnesianWarKeinpferd_Megara1([iAiDecision])
-      # Event 3.2: Reaktion Spartas (nur wenn Sparta noch keinen Krieg mit Athen hat)
-      iTurnMegaraSparta = 23 # Runde, in der die Popups fuer den Menschen erscheinen sollen
-      # Nur, wenn Megara existiert + von Korinth kontrolliert wird
-      if iTeam == iSparta and ((iGameTurn == iTurnMegaraSparta-1 and pPlayer.isHuman()) or (iGameTurn == iTurnMegaraSparta and not pPlayer.isHuman())) and not pMegara.isNone() and pMegara != None:
-       if pMegara.getOwner() == iKorinth and not gc.getTeam(iTeam).isAtWar(iAthen):
-        if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_SPARTA_DESC",()))
-          popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Megara2")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_SPARTA_OPTION_1", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_SPARTA_OPTION_2", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_SPARTA_OPTION_3", ()), "")
-          popupInfo.addPopup(iPlayer)
-        else:
-          iAiDecision = self.myRandom(3, None)
-          CvScreensInterface.peloponnesianWarKeinpferd_Megara2([iAiDecision])
-      # Event 4: Kriegseintritt Thebens
-      iTurnPlataiai = 28 # Runde, in der die Popups fuer den Menschen erscheinen sollen
-      if iTeam == iTheben and ((iGameTurn == iTurnPlataiai-1 and pPlayer.isHuman()) or (iGameTurn == iTurnPlataiai and not pPlayer.isHuman())):
-        if not gc.getTeam(iTeam).isAtWar(iAthen): # Nur wenn Theben und Athen Frieden haben
-         if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_PLATAIAI_THEBEN_DESC",()))
-          popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Plataiai1")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_PLATAIAI_THEBEN_OPTION_1", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_PLATAIAI_THEBEN_OPTION_2", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_PLATAIAI_THEBEN_OPTION_3", ()), "")
-          popupInfo.addPopup(iPlayer)
-         else:
-          iAiDecision = self.myRandom(3, None)
-          CvScreensInterface.peloponnesianWarKeinpferd_Plataiai1([iAiDecision])
-      # Event 5: Volksversammlung Athens will Krieg gegen Syrakus
-      # Event 5.1: Ankuendigung fuer Athen
-      iTurnSyra1 = 194 # Runde, in der die Popups fuer den Menschen erscheinen sollen
-      pSyrakus = CyMap().plot(15, 24).getPlotCity()
-      # Nur wenn Syrakus (Stadt) noch existiert und der Civ Syrakus gehoert
-      if iTeam == iAthen and (iGameTurn == iTurnSyra1 -1) and not pSyrakus.isNone() and pSyrakus != None:
-       if pSyrakus.getOwner() == iSyrakus:
-        if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_SYRAKUS_ATHEN_SAVEMONEY",()))
-          popupInfo.addPopup(iPlayer)
-      # Event 5.2: Athen waehlt Groesse der Flotte
-      iTurnSyra2 = 204 # Runde, in der die Popups fuer den Menschen erscheinen sollen
-      if iTeam == iAthen and ((iGameTurn == iTurnSyra2 -1 and pPlayer.isHuman()) or (iGameTurn == iTurnSyra2 and not pPlayer.isHuman())):
-        if not gc.getTeam(iTeam).isAtWar(iSyrakus): # Nur wenn Syrakus und Athen Frieden haben
-         if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_SYRAKUS_ATHEN_DESC",()))
-          popupInfo.setOnClickedPythonCallback("peloponnesianWarKeinpferd_Syra1")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_SYRAKUS_ATHEN_OPTION_1", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_SYRAKUS_ATHEN_OPTION_2", ()), "")
-          popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_SYRAKUS_ATHEN_OPTION_3", ()), "")
-          popupInfo.addPopup(iPlayer)
-         else:
-          iAiDecision = self.myRandom(3, None)
-          CvScreensInterface.peloponnesianWarKeinpferd_Syra1([iAiDecision])
-
-      # Temporaere Effekte der Events rueckgaengig machen (Event 3.1 Handelsboykott, Event 3.2 Bronze fuer Sparta)
-      if iGameTurn == iTurnMegaraAthen + 10:
-        iAthen = 0
-        iNordIonien = 12
-        iSuedIonien = 13
-        eHafen = gc.getInfoTypeForString("BUILDING_HARBOR")
-        eMarkt = gc.getInfoTypeForString("BUILDING_MARKET")
-        eHafenClass = gc.getBuildingInfo(eHafen).getBuildingClassType()
-        eMarktClass = gc.getBuildingInfo(eMarkt).getBuildingClassType()
-        lPlayer = [iAthen, iNordIonien, iSuedIonien]
-        for iPlayer in lPlayer:
-          pPlayer = gc.getPlayer(iPlayer)
-          iNumCities = pPlayer.getNumCities()
-          for iCity in range(iNumCities):
-            pCity = pPlayer.getCity(iCity)
-            if pCity != None and not pCity.isNone():
-              if pCity.isHasBuilding(eHafen):
-                iStandard = 0 # Normaler Goldertrag ohne Event
-                pCity.setBuildingCommerceChange(eHafenClass, 0, iStandard) # 0 = Gold
-              if pCity.isHasBuilding(eMarkt):
-                iStandard = 0
-                pCity.setBuildingCommerceChange(eMarktClass, 0, iStandard) # 0 = Gold
-      if iGameTurn == iTurnMegaraSparta + 10:
-        # Bronze wird a
-        eBronze = gc.getInfoTypeForString("BONUS_BRONZE")
-        pCity = CyMap().plot(52, 23).getPlotCity()
-        if pCity != None and not pCity.isNone():
-          if pCity.getFreeBonus(eBronze) > 1:pCity.changeFreeBonus(eBronze, -10)
-
-
-    #---------End PeloponnesianWarKeinpferd-------------------
-
-#    if iPlayer == gc.getGame().getActivePlayer():
-#      lCities = PyPlayer(iPlayer).getCityList()
-#      iCities = len(lCities)
-#
-#      if iCities > 0:
-#        pCity = pPlayer.getCity( lCities[ 0 ].getID( ) )
-#        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Food",pCity.getFood())), None, 2, None, ColorTypes(10), 0, 0, False, False)
-#        pCity.changeFood(10)
-#        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Food",pCity.getFood())), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    if sScenarioName == "PeloponnesianWarKeinpferd":
+      PeloponnesianWarKeinPferd.onBeginPlayerTurn(iGameTurn, pPlayer)
 
 # ----- CHECK CIV on Turn - change Team ID (0 = eg Romans) in gc.getPlayer(0).
     if self.bPAE_ShowMessagePlayerTurn:
@@ -4609,39 +2397,10 @@ class CvEventManager:
                 pPlayer.clearResearchQueue()
                 #pPlayer.pushResearch (iTech, 1)
 
-    # MESSAGES: city growing (nur im Hot-Seat-Modus)
-    if gc.getGame().isHotSeat():
-#     for iPlayer in range(gc.getMAX_PLAYERS()):
-#      pPlayer = gc.getPlayer(iPlayer)
-      if pPlayer.isHuman():
-        iNumCities = pPlayer.getNumCities()
-        for i in range (iNumCities):
-              pCity = pPlayer.getCity(i)
-              if not pCity.isNone():
-                if pCity.getFoodTurnsLeft() == 2  and pCity.foodDifference(True) > 0 and not pCity.isFoodProduction() and not pCity.AI_isEmphasize(5):
-                  # MESSAGE: city will grow / Stadt wird wachsen
-                  iPop = pCity.getPopulation() + 1
-                  CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_WILL_GROW",(pCity.getName(),iPop)), None, 2, None, ColorTypes(13), 0, 0, False, False)
-
-                  # MESSAGE: city gets/is unhappy / Stadt wird/ist unzufrieden
-                  if pCity.happyLevel() - pCity.unhappyLevel(0) <= 0:
-                    if pCity.happyLevel() - pCity.unhappyLevel(0) == 0:
-                      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GETS_UNHAPPY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-                    else:
-                      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_IS_UNHAPPY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-
-                  # MESSAGE: city gets/is unhealthy / Stadt wird/ist ungesund
-                  if pCity.goodHealth() - pCity.badHealth(False) <= 0:
-                    if pCity.goodHealth() - pCity.badHealth(False) == 0:
-                      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GETS_UNHEALTY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-                    else:
-                      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_IS_UNHEALTY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-
 
 # +++++ AI Cities defend with bombardment of located units (Stadtverteidigung/Stadtbelagerung)
 # +++++ AI Hires Units (mercenaries)
     if not pPlayer.isHuman():
-
       iNumCities = pPlayer.getNumCities()
       for iCity in range (iNumCities):
        pCity = pPlayer.getCity(iCity)
@@ -4731,7 +2490,7 @@ class CvEventManager:
                  iRand = self.myRandom(len(lResUnits), None)
                  iUnit = lResUnits[iRand]
 
-                 NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+                 NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                  NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
                  NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
                  NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
@@ -4815,7 +2574,7 @@ class CvEventManager:
                  if not bUnit17 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit17 = true
 
                if pPlayer.getCurrentEra() <= 2:
-                 if not bUnit10 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_CHARIOTS")): bUnit10 = true
+                 if not bUnit10 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL")): bUnit10 = true
                  if Neighbor.hasBonus(iBonus3):
                    if not bUnit11 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PFERDEZUCHT")) and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")):
                      bUnit11 = true
@@ -4826,9 +2585,8 @@ class CvEventManager:
                else:
                  if Neighbor.hasBonus(iBonus3):
                    if not bUnit13 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")): bUnit13 = true
-                   if not bUnit14 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")) and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")):
-                     bUnit14 = true
-                   if not bUnit15 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_CAVALRY")):
+                   if not bUnit14 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")): bUnit14 = true
+                   if not bUnit15 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")):
                      if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
                        bUnit14 = true
                        bUnit15 = true
@@ -4896,7 +2654,7 @@ class CvEventManager:
 
                    pPlayer.changeGold(-iCost)
                    gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                   NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, random.choice(Neighbors).getCivilizationType(), random.choice(Neighbors).getStateReligion())
+                   NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                    NewUnit.setHasPromotion(iPromo, True)
                    #NewUnit.finishMoves()
                    NewUnit.setImmobileTimer(1)
@@ -4913,7 +2671,7 @@ class CvEventManager:
 
 # +++++ STACKs ---------------------------------------------------------
 
-# Belagerugsstacks der KI herausfinden fuer Fernangriff auf die gegnerische Stadt
+# Belagerungsstacks der KI herausfinden fuer Fernangriff auf die gegnerische Stadt
 
 # PAE IV Healer aufladen
 # PAE V: Staedte sind extra
@@ -4936,14 +2694,17 @@ class CvEventManager:
      PlotArrayRebellion = []
      PlotArraySupply = []
      PlotArrayStackAI = []
-     iNumUnits = pPlayer.getNumUnits()
      lHealerPlots = []
      lFormationPlots = []
      iPromoFort = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
      iPromoFort2 = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
 
-     for i in range(iNumUnits):
-       sUnit = pPlayer.getUnit(i)
+
+     #iNumUnits = pPlayer.getNumUnits()
+     #for i in range(iNumUnits):
+     # sUnit = pPlayer.getUnit(i)
+     (sUnit, iter) = pPlayer.firstUnit(false)
+     while sUnit:
        # tmpA: OBJECTS (tmpPlot) KANN MAN NICHT mit NOT IN in einer Liste pruefen!
        tmpA = [sUnit.getX(),sUnit.getY()]
        tmpPlot = gc.getMap().plot(sUnit.getX(),sUnit.getY())
@@ -5005,6 +2766,8 @@ class CvEventManager:
                if gc.getImprovementInfo(iImp).getDefenseModifier() < 10 or tmpPlot.getOwner() != sUnit.getOwner(): self.doUnitFormation (sUnit, -1)
             else: self.doUnitFormation (sUnit, -1)
 
+       (sUnit, iter) = pPlayer.nextUnit(iter, false)
+     # while end
 
      if len(lFormationPlots) > 0:
        for h in lFormationPlots:
@@ -5172,16 +2935,17 @@ class CvEventManager:
                  iMaxHealing *= 3
                  iMaxHealing /= 2
 
-             txt = loopUnit.getScriptData()
+             txt = CvUtil.getScriptData(loopUnit, ["s","t"])
              if txt == "": txt = str(iMaxHealing) # 0 = leer/verbraucht, aber "" ist fabriksneu ;)
              iSupplyValue = int(txt)
+
              if iSupplyValue + iSupplyChange > iMaxHealing:
                iSupplyChange -= iMaxHealing - iSupplyValue
                iSupplyValue = iMaxHealing
              else:
                iSupplyValue += iSupplyChange
                iSupplyChange = 0
-             loopUnit.setScriptData(str(iSupplyValue))
+             CvUtil.addScriptData(loopUnit, "s", iSupplyValue)
 
 
      # +++++ Versorgung der Armee - supply wagon ---------------------------------------
@@ -5237,8 +3001,11 @@ class CvEventManager:
            # 2. Versorgen
            for loopUnit in lHealer:
              if iMounted <= 0 and iMelee <= 0: break
-             if loopUnit.getScriptData() == "" or loopUnit.getScriptData() == "0": iSupplyValue = 0
-             else: iSupplyValue = int(loopUnit.getScriptData())
+             sSup = CvUtil.getScriptData(loopUnit, ["s","t"])
+             if sSup == "" or sSup == "0":
+               iSupplyValue = 0
+             else:
+               iSupplyValue = int(sSup)
 
              # ***TEST***
              #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit init "+str(loopUnit.getID()),iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -5266,8 +3033,7 @@ class CvEventManager:
                  iMelee = -iSupplyValue
                  iSupplyValue = 0
                else: iMelee = 0
-
-               loopUnit.setScriptData(str(iSupplyValue))
+               CvUtil.addScriptData(loopUnit, "s", iSupplyValue)
 
                # ***TEST***
                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit changed",iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -5310,7 +3076,7 @@ class CvEventManager:
       iPromoLeader = gc.getInfoTypeForString('PROMOTION_LEADER')
       iPromoHero = gc.getInfoTypeForString('PROMOTION_HERO')
 # Loyale Einheiten sind dem Feldherren loyal gewesen!
-#      iPromoLoyal = gc.getInfoTypeForString('PROMOTION_LOYAL')
+#      iPromoLoyal = gc.getInfoTypeForString('PROMOTION_LOYALITAT')
 
       for h in PlotArrayRebellion:
         sPlot = gc.getMap().plot(h[0],h[1])
@@ -5410,9 +3176,8 @@ class CvEventManager:
               listNamesStandard = ["Adiantunnus","Divico","Albion","Malorix","Inguiomer","Archelaos","Dorimachos","Helenos","Kerkidas","Mikythos","Philopoimen","Pnytagoras","Sophainetos","Theopomopos","Gylippos","Proxenos","Theseus","Balakros","Bar Kochba","Julian ben Sabar","Justasas","Patricius","Schimon bar Giora","Artaphernes","Harpagos","Atropates","Bahram Chobin","Datis","Schahin","Egnatius","Curius Aentatus","Antiochos II","Spartacus","Herodes I","Calgacus","Suebonius Paulinus","Maxentus","Sapor II","Alatheus","Saphrax","Honorius","Aetius","Achilles","Herodes","Heros","Odysseus","Anytos"]
               iName = self.myRandom(len(listNamesStandard), None)
 
-              iUnitType = gc.getInfoTypeForString("UNIT_GREAT_GENERAL")
-              barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-              unit = barbPlayer.initUnit(iUnitType, rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes.UNITAI_GENERAL, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+              iUnitType = gc.getInfoTypeForString("UNIT_GREAT_GENERAL2")
+              unit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes.UNITAI_GENERAL, DirectionTypes.DIRECTION_SOUTH)
               unit.setName(listNamesStandard[iName])
               self.doNextCityRevolt(sPlot.getX(), sPlot.getY(), iPlayer, gc.getBARBARIAN_PLAYER())
               self.doNextCityRevolt(sPlot.getX(), sPlot.getY(), iPlayer, gc.getBARBARIAN_PLAYER())
@@ -5435,7 +3200,7 @@ class CvEventManager:
 
              if sPlot.getUnit(iRand).getOwner() == iPlayer:
 
-              NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(sPlot.getUnit(iRand).getUnitType(),  rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes(sPlot.getUnit(iRand).getUnitAIType()), DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+              NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(sPlot.getUnit(iRand).getUnitType(),  rebelPlotArray[iRebelPlot].getX(), rebelPlotArray[iRebelPlot].getY(), UnitAITypes(sPlot.getUnit(iRand).getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
               NewUnit.setExperience(sPlot.getUnit(iRand).getExperience(), -1)
               NewUnit.setLevel(sPlot.getUnit(iRand).getLevel())
 
@@ -5558,7 +3323,7 @@ class CvEventManager:
                iRand = 1 + self.myRandom(9, None)
                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DYING_RESERVIST_"+str(iRand),(pCity.getName(),"")),None,2,",Art/Interface/MainScreen/CityScreen/Great_Engineer.dds,Art/Interface/Buttons/Warlords_Atlas_2.dds,7,6",ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
 
-          # Sklaven
+          # Sklavensterben
           elif iTyp != -1:
 
             # PAE V: stehende Sklaven werden zugewiesen
@@ -5593,12 +3358,29 @@ class CvEventManager:
 
             # Haussklaven
             elif iTyp == 2:
-              if not bErsatz:
+              # A) Standard Sklavensterben
+              # B) Tech Patronat: Hausklaven werden freie Buerger
+              iRand = 0
+              if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PATRONAT")): iRand = 2
+
+              # Dying
+              if self.myRandom(iRand, None) == 0:
+                if not bErsatz:
+                  pCity.changeFreeSpecialistCount(16, -1)
+                  iCitySlavesHaus -= 1
+                if pPlayer.isHuman():
+                  iRand = 1 + self.myRandom(14, None)
+                  CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVES_HAUS_"+str(iRand),(pCity.getName(),"")),None,2,"Art/Interface/Buttons/Units/button_slave.dds",ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+              # Patronat
+              else:
+                bErsatz = False
                 pCity.changeFreeSpecialistCount(16, -1)
-                iCitySlavesHaus -= 1
-              if pPlayer.isHuman():
-                iRand = 1 + self.myRandom(14, None)
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVES_HAUS_"+str(iRand),(pCity.getName(),"")),None,2,"Art/Interface/Buttons/Units/button_slave.dds",ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+                iCitySlaves -= 1
+                pCity.changeFreeSpecialistCount(0, +1) # SPECIALIST_CITIZEN2
+                if pPlayer.isHuman():
+                  iRand = 1 + self.myRandom(2, None)
+                  CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVES_PATRONAT_"+str(iRand),(pCity.getName(),"")),None,2,"Art/Interface/Buttons/Units/button_slave.dds",ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
+
 
             if bErsatz:
               if pPlayer.isHuman():
@@ -5606,7 +3388,6 @@ class CvEventManager:
             else:
               # Gesamtsumme aendern
               iCitySlaves -= 1
-
 
 
         # Wenns mehr Sklaven als Einwohner gibt = Revolte
@@ -5740,7 +3521,7 @@ class CvEventManager:
 
                 for i in range(iNumRebels):
                   iPlot = self.myRandom(len(rebelPlotArray), None)
-                  NewUnit = barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+                  NewUnit = barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
                   NewUnit.setImmobileTimer(1)
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Rebell erstellt (Zeile 1116)",iNumRebels)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -5830,7 +3611,7 @@ class CvEventManager:
 
                 for i in range(iNumRebels):
                   iPlot = self.myRandom(len(rebelPlotArray), None)
-                  barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+                  barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gladiatorenaufstand (Zeile 1188)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -5932,7 +3713,6 @@ class CvEventManager:
 
       # Ende Cities ----------------------------------------------------------
 
-
       # Stehende Sklaven / unsettled slaves
       if iPlayer > -1 and iPlayer != gc.getBARBARIAN_PLAYER():
         lSlaves = []
@@ -5948,11 +3728,9 @@ class CvEventManager:
         while iSlave < len(lSlaves):
           pUnit = lSlaves[iSlave]
           iSlave += 1
-
           # Nicht auf Hoher See (als Cargo von Schiffen) , Kueste schon
           xPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
           if xPlot.getTerrainType() != gc.getInfoTypeForString("TERRAIN_OCEAN"):
-
             iChance = 8
             # Civic that increase rebelling
             if gc.getPlayer(iPlayer).isCivic(17): iChance += 4
@@ -5971,7 +3749,7 @@ class CvEventManager:
 
               if bSlave2Christ == True:
                 iUnitType = gc.getInfoTypeForString("UNIT_CHRISTIAN_MISSIONARY")
-                gc.getPlayer(iPlayer).initUnit(iUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iPlayer).getCivilizationType(), ReligionTypes.RELIGION_CHRISTIANITY)
+                gc.getPlayer(iPlayer).initUnit(iUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
                 if gc.getPlayer(iPlayer).isHuman():
                   CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_2_CHRIST",(0,)), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(14), pUnit.getX(), pUnit.getY(), True, True)
                 #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
@@ -5980,9 +3758,7 @@ class CvEventManager:
                # ***TEST***
                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Sklave zu Christ. Missionar (Zeile 1275)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-
               else:
-
                 # Ein Sklave auf fremden Terrain kann nicht rebellieren sondern verschwindet oder macht einen Fluchtversuch 50:50
                 if xPlot.getOwner() != pUnit.getOwner():
                   if pOwner.isHuman():
@@ -6001,7 +3777,7 @@ class CvEventManager:
                     if len(rebelPlotArray) > 0:
                       iPlot = self.myRandom(len(rebelPlotArray), None)
                       iUnitType = gc.getInfoTypeForString("UNIT_SLAVE")
-                      NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+                      NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
                   #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   pUnit.kill(1,pUnit.getOwner())
@@ -6032,7 +3808,7 @@ class CvEventManager:
                   if len(rebelPlotArray) > 0:
                     iPlot = self.myRandom(len(rebelPlotArray), None)
                     iUnitType = gc.getInfoTypeForString("UNIT_REBELL")
-                    NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+                    NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     if pOwner.isHuman():
                       CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_2_REBELL",(0,)), None, 2, "Art/Interface/Buttons/Units/button_rebell.dds", ColorTypes(7), rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), True, True)
                     #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
@@ -6076,7 +3852,7 @@ class CvEventManager:
             pCity = pPlayer.getCity(lCities[0].getID())
 
             iUnitType = gc.getInfoTypeForString("UNIT_GREEK_MISSIONARY")
-            pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_GREEK)
+            pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
 
             if (pPlayer.isHuman()):
               popupInfo = CyPopupInfo()
@@ -6110,7 +3886,7 @@ class CvEventManager:
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pPlayer.getName(),pPlayer.getAnarchyTurns())), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
-# ------ Anarchie wenn mehr als die Haelfte der Staedte revoltieren oder von der Pest heimgesucht werden - 33 %
+# ------ Anarchie wenn mehr als die Haelfte der Staedte revoltieren (mehr als 1 Stadt) oder von der Pest heimgesucht werden - 33 %
     if pPlayer.getAnarchyTurns() <= 0:
       iRand = self.myRandom(3, None)
       if iRand == 1:
@@ -6123,8 +3899,8 @@ class CvEventManager:
             if pPlayer.getCity(i).isHasBuilding(iBuilding): iCityPlague += 1
             if pPlayer.getCity(i).getOccupationTimer() > 0: iCityRevolt += 1
 
-          if iNumCities <= iCityRevolt * 2:
-            pPlayer.changeAnarchyTurns(iCityRevolt)
+          if iCityRevolt > 1 and iNumCities <= iCityRevolt * 2:
+            pPlayer.changeAnarchyTurns(3)
             if pPlayer.isHuman():
               popupInfo = CyPopupInfo()
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -6132,7 +3908,7 @@ class CvEventManager:
               popupInfo.addPopup(iPlayer)
 
           elif iNumCities <= iCityPlague * 2:
-            pPlayer.changeAnarchyTurns(iCityPlague)
+            pPlayer.changeAnarchyTurns(2)
             if pPlayer.isHuman():
               popupInfo = CyPopupInfo()
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -6205,122 +3981,20 @@ class CvEventManager:
     #"""
 
 # +++++ Special inits for Szenario Maps in PAE ++++++++++++++++++++++++++++++++
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-    # +++++ Scenario: FirstPunicWar - Start
-    if sScenarioScriptData == "FirstPunicWar":
-      # Runde 1: In der ersten Runde soll sich Messana an Rom als Vasall anbieten
-      if iGameTurn == 0:
-        iCivRome = 0
-        iCivCarthage = 1
-        iCivMessana = 4
-        iCivSyrakus = 12
-        if iPlayer == iCivMessana:
-
-          iTeamRome = gc.getPlayer(iCivRome).getTeam()
-          iTeamMessana = gc.getPlayer(iCivMessana).getTeam()
-          pTeamMessana = gc.getTeam(iTeamMessana)
-          if not pTeamMessana.isVassal(iTeamRome):
-
-            iTeamRome = gc.getPlayer(iCivRome).getTeam()
-            gc.getTeam(iTeamRome).assignVassal (iTeamMessana, 0) # Vassal, but no surrender
-
-            # Meldungen an die Spieler
-            iRange = gc.getMAX_PLAYERS()
-            for i in range (iRange):
-              ThisPlayer = gc.getPlayer(i)
-              iThisPlayer = ThisPlayer.getID()
-              if ThisPlayer.isHuman():
-                # Meldung Karthago Human
-                if iThisPlayer == iCivCarthage:
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSANA_PLAYER_CARTHAGE",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_WAR_PLAYER_CARTHAGE",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                elif iThisPlayer == iCivRome:
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSANA_PLAYER_ALL",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_WAR_PLAYER_ROME",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                # Meldung an alle Humans
-                else:
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSANA_PLAYER_ALL",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-    # +++++ Scenario: FirstPunicWar - End
-    # +++++ Scenario: PeloponnesianWarKeinpferd - Start
-    elif sScenarioScriptData == "PeloponnesianWarKeinpferd":
-      # Runde 1: In Runde 5 soll das mit Korkyra im Krieg liegende Epidamnos Vasall von Korinth werden
-      if iGameTurn == 5:
-        iCivKorinth = 2
-        iCivKorkyra = 6
-        iCivEpidamnos = 7
-        iCivSparta = 1
-        if iPlayer == iCivEpidamnos:
-
-          iTeamKorinth = gc.getPlayer(iCivKorinth).getTeam()
-          iTeamEpidamnos = gc.getPlayer(iCivEpidamnos).getTeam()
-          pTeamEpidamnos = gc.getTeam(iTeamEpidamnos)
-          if not pTeamEpidamnos.isVassal(iTeamKorinth):
-
-            iTeamKorinth = gc.getPlayer(iCivKorinth).getTeam()
-            gc.getTeam(iTeamKorinth).assignVassal (iTeamEpidamnos, 0) # Vassal, but no surrender
-
-            # Meldungen an die Spieler
-            iRange = gc.getMAX_PLAYERS()
-            for i in range (iRange):
-              ThisPlayer = gc.getPlayer(i)
-              iThisPlayer = ThisPlayer.getID()
-              if ThisPlayer.isHuman():
-                # Meldung Korkyra Human
-                if iThisPlayer == iCivKorkyra:
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_EPIDAMNOS_PLAYER_KERKYRA",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_WAR_PLAYER_KORKYRA",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                elif iThisPlayer == iCivKorinth:
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_EPIDAMNOS_PLAYER_ALL",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_WAR_PLAYER_KORINTH",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-                # Meldung an alle Humans
-                else:
-                  popupInfo = CyPopupInfo()
-                  popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                  popupInfo.setText(CyTranslator().getText("TXT_KEY_EPIDAMNOS_PLAYER_ALL",("",)))
-                  popupInfo.addPopup(iThisPlayer)
-    # +++++ Scenario: PeloponnesianWarKeinpferd - End
-
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    if sScenarioName == "FirstPunicWar":
+      FirstPunicWar.onEndPlayerTurn(iPlayer, iGameTurn)
+    elif sScenarioName == "PeloponnesianWarKeinpferd":
+      PeloponnesianWarKeinpferd.onEndPlayerTurn(iPlayer, iGameTurn)
 
 # +++++ MAP Reveal to black fog - Kriegsnebel - Fog of War (FoW) - Karte schwarz zurueckfaerben
 # AI auch, aber nur alle iPlayer-Runden
 # AI wird wieder reingenommen -> wenn nur alle x Runden wahrscheinlich weniger Einheitenbewegung! -> no MAFs
     if pPlayer != None:
-      # Human oder KI alle 5 Runden, aber abwechslende Civs pro Runde fuer optimale Rundenzeiten
-      if iPlayer > -1 and (pPlayer.isHuman() or iGameTurn % 5 == iPlayer % 5):
-
-        MapH = CyMap().getGridHeight()
-        MapW = CyMap().getGridWidth()
-
-        iTeam = pPlayer.getTeam()
-        pTeam = gc.getTeam(iTeam)
-
+      iTeam = pPlayer.getTeam()
+      pTeam = gc.getTeam(iTeam)
+      # Human oder KI alle x Runden, aber unterschiedliche Civs pro Runde fuer optimale Rundenzeiten
+      if pPlayer.isHuman() or (iGameTurn % 10 == iPlayer % 10 and pTeam.isMapTrading()):
         bDontGoBlackAnymore = False
         bShowCoasts = False
         bShowPeaksAndRivers = False
@@ -6333,35 +4007,25 @@ class CvEventManager:
           bShowCoasts = True
 
         if not bDontGoBlackAnymore:
-
-          #improv1 = gc.getInfoTypeForString("IMPROVEMENT_FORT")
-          #improv2 = gc.getInfoTypeForString("IMPROVEMENT_FORT2")
-
-          for i in range (MapW):
-            for j in range (MapH):
-              pPlot = CyMap().plot(i, j)
-
+          iRange = CyMap().numPlots()
+          for iI in range(iRange):
+              pPlot = CyMap().plotByIndex(iI)
               if not pPlot.isVisible (iTeam, 0):
                 bGoBlack = True
-
                 # fully black or standard fog of war
                 if pPlot.isCity():
                   pCity = pPlot.getPlotCity()
                   if bShowCoasts and pCity.isCapital(): bGoBlack = False
                   elif pCity.getNumWorldWonders() > 0: bGoBlack = False
-
                 # Holy Mountain Quest
                 if bGoBlack:
-                  if pPlot.getScriptData() == "X": bGoBlack = False
-
+                  if CvUtil.getScriptData(pPlot,["H","t"]) == "X": bGoBlack = False
                 # Improvements (to normal fog of war)
                 #if bGoBlack:
                 #  if pPlot.getImprovementType() == improv1 or pPlot.getImprovementType() == improv2: bGoBlack = False
-
                 # 50% Chance Verdunkelung
                 if bGoBlack:
                   if self.myRandom(2, None) == 0: bGoBlack = False
-
                 # Black fog
                 if bGoBlack:
                   if pPlot.isRevealed (iTeam, 0):
@@ -6375,187 +4039,28 @@ class CvEventManager:
                       if pPlot.isRiverSide() or pPlot.isPeak(): continue
                     pPlot.setRevealed (iTeam,0,0,-1)
 
-
-
-
-# Globale Ereignisse pro x-Runden
+    # Globale Ereignisse pro x-Runden
     if iPlayer == gc.getBARBARIAN_PLAYER():
 
-##### Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ####
-# PAE V: Treibgut erstellen
+     ## Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ##
+     # PAE V: Treibgut erstellen
+     # PAE V: Barbarenfort erstellen
+     # PAE Trade Cities Special Bonus
+     if gc.getGame().getGameTurnYear() > -2400:
+       if iGameTurn % 20 == 0:
+         PAE_Barbaren.setGoodyHuts()
+         PAE_Trade.addCityWithSpecialBonus()
 
-     if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_GOODY_HUTS):
-      if not gc.getGame().isGameMultiPlayer():
-       if iGameTurn % 20 == 0 and iGameTurn > 0:
+       # --- PAE Trade:
+       PAE_Trade.doUpdateCitiesWithSpecialBonus()
 
-        iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-        iMapW = gc.getMap().getGridWidth()
-        iMapH = gc.getMap().getGridHeight()
-        iNumSetGoodies = 0
-        iNumSetFlotsam = 0
-
-        impGoody = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
-        # Treibgut spaeter wenn jeder Schiffe hat, die auf Ozean fahren koennen (Bireme)
-        iUnit = gc.getInfoTypeForString("UNIT_TREIBGUT")
-        iTech = gc.getInfoTypeForString("TECH_RUDERER2")
-        if gc.getTeam(pPlayer.getTeam()).isHasTech(iTech): bFlot = True
-        else: bFlot = False
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-        iMapSize = gc.getMap().getWorldSize()
-        if iMapSize == 0: iMaxHuts = 3
-        elif iMapSize == 1: iMaxHuts = 6
-        elif iMapSize == 2: iMaxHuts = 9
-        elif iMapSize == 3: iMaxHuts = 12
-        elif iMapSize == 4: iMaxHuts = 15
-        elif iMapSize == 5: iMaxHuts = 18
-        else: iMaxHuts = 20
-
-        iMaxFlot = iMaxHuts / 2
-
-        # Bis zu iNumTries soll versucht werden, ein Dorf zu erstellen
-        # alt: iMaxHuts * 2
-        iNumTries = iMaxHuts
-        for i in range(iNumTries):
-         iX = self.myRandom(iMapW, None)
-         iY = self.myRandom(iMapH, None)
-
-         if iNumSetGoodies == iMaxHuts: break
-
-         # Terrain checken
-         loopPlot = gc.getMap().plot(iX, iY)
-         if loopPlot != None and not loopPlot.isNone():
-          #Veschachtelte ifs fuer bessere Rundenzeit
-          if loopPlot.getFeatureType() == iDarkIce: continue
-          if loopPlot.getImprovementType() == -1:
-           if loopPlot.getNumUnits() == 0:
-            if not loopPlot.isActiveVisible(0):
-             if not loopPlot.isWater():
-              if not loopPlot.isPeak():
-               if loopPlot.getOwner() == -1 or loopPlot.getOwner() == iPlayer:
-                bSet = True
-
-                # Im Umkreis von 3 Feldern soll kein weiteres Goody sein
-                for x in range(7):
-                  for y in range(7):
-                    loopPlot2 = gc.getMap().plot(iX + x - 3, iY + y - 3)
-                    if loopPlot2 != None and not loopPlot2.isNone():
-                      if loopPlot2.isGoody():
-                        bSet = False
-                        break
-                  if not bSet: break
-
-                # Goody setzen
-                if bSet:
-                  iNumSetGoodies += 1
-                  loopPlot.setImprovementType(impGoody)
-                  #loopPlot.isActiveVisible(0)
-
-                  # ***TEST***
-                  #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goodydorf gesetzt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-             # isWater
-             elif bFlot:
-               if loopPlot.getOwner() == -1:
-                 if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_OCEAN"):
-                   if iNumSetFlotsam < iMaxFlot:
-                     # Treibgut setzen
-                     pPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                     iNumSetFlotsam += 1
-
-     # --------- Strandgut -----------
      # -- PAE V: Treibgut -> Strandgut
-     iTreibgut = gc.getInfoTypeForString("UNIT_TREIBGUT")
-     iStrandgut = gc.getInfoTypeForString("UNIT_STRANDGUT")
-     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-     iNumUnits = pPlayer.getNumUnits()
-     for u in range(iNumUnits):
-       loopUnit = pPlayer.getUnit(u)
-       if loopUnit.getUnitType() == iTreibgut:
-         pPlot = loopUnit.plot()
-         if pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_COAST"):
+     PAE_Barbaren.doStrandgut()
 
-           lPlots = []
-           for i in range(3):
-             for j in range(3):
-               loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 1)
-               if loopPlot == None or loopPlot.isNone(): continue
-               if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
-               lPlots.append(loopPlot)
-
-           if len(lPlots) > 0:
-             iPlot = self.myRandom(len(lPlots), None)
-             # Create Strandgut
-             pPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-             # Disband Treibgut
-             pPlayer.getUnit(u).kill(1,iPlayer)
-     # --------- Strandgut -----------
-
-# ------------------------------------------------------------
-# +++++++++++ Naturkatastrophen / Disasters ++++++++++++++++++
-# ------------------------------------------------------------
-     if iGameTurn > 0 and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES):
-
-       iTurnDisastersModulo = 80
-       bApocalypse = False
-       if not gc.getGame().isGameMultiPlayer():
-         if gc.getPlayer(gc.getGame().getActivePlayer()).getName() == "Apocalypto":
-           iTurnDisastersModulo = 20
-           bApocalypse = True
-
-       if gc.getGame().getGameTurnYear() > -600 and iGameTurn % 25 == 0: self.doNebel()
-
-       # Teiler
-       if gc.getGame().getGameTurnYear() > -400: iTeiler = 2
-       else: iTeiler = 1
-
-       # entweder Erdbeben, Comet, Meteore oder Vulkan
-
-       # Katas erzeugen
-       if iGameTurn % (iTurnDisastersModulo / iTeiler) == 0:
-         iRand = self.myRandom(5, None)
-         if iRand == 0: self.doErdbeben(0,0)
-         elif iRand == 1: self.doVulkan(0,0,0)
-         elif iRand == 2: self.doComet()
-         else: self.doMeteorites()
-
-       # Warnung aussenden
-       elif (iGameTurn + 1) % (iTurnDisastersModulo / iTeiler) == 0:
-         iBuilding1 = gc.getInfoTypeForString("BUILDINGCLASS_ORACLE")
-         iBuilding2 = gc.getInfoTypeForString("BUILDINGCLASS_ORACLE2")
-         iRange = gc.getMAX_PLAYERS()
-         i=0
-         for i in range (iRange):
-           loopPlayer = gc.getPlayer(i)
-           if loopPlayer.isHuman():
-             iChance = 0
-             if loopPlayer.getBuildingClassCount(iBuilding1) > 0: iChance = 100
-             elif loopPlayer.getBuildingClassCount(iBuilding2) > 0: iChance = 50
-             if iChance > 0 and iChance > self.myRandom(100, None):
-               # Player gets warning message
-               CyInterface().addMessage(i, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_ORACLE_WARNING",("",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-       if bApocalypse:
-         if iGameTurn % (85 / iTeiler) == 0: self.doSeesturm()
-         if iGameTurn % (90 / iTeiler) == 0: self.doGrasshopper()
-         if iGameTurn % (60 / iTeiler) == 0: self.doTornado()
-       elif iGameTurn % (70 / iTeiler) == 0:
-         iRand = self.myRandom(2, None)
-         if iRand == 0: self.doSeesturm()
-         elif iRand == 1: self.doGrasshopper()
-         else: self.doTornado()
-
-       if iGameTurn % (90 / iTeiler) == 0: self.doSandsturm()
-
-       if iGameTurn % ((iTurnDisastersModulo / iTeiler) + 20) == 0: self.undoVulkan()
-
-# -- Ende Naturkatastrophen -------------------------------------------
+     # -- PAE Disasters / Katastrophen
+     # Permanent Alliances entspricht = Naturkatastrophen (PAE)
+     self.disastersEnabled = not (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES) or gc.getGame().isGameMultiPlayer())
+     if self.disastersEnabled: PAE_Disasters.doGenerateDisaster(iGameTurn)
 
      # ---------------------
      # Ende if iPlayer == 18
@@ -6587,6 +4092,16 @@ class CvEventManager:
              self.doAIPlanAssignMercenaries(iPlayer)
              # 10% ein drittes Mal damits interessant wird ;)
              if 0 == self.myRandom(10, None): self.doAIPlanAssignMercenaries(iPlayer)
+
+    # Kriegslager soll alle x Runden Einheit erzeugen
+    if iGameTurn > 1 and iGameTurn % 5 == 0:
+       PAE_Barbaren.createCampUnit(iPlayer)
+
+    # MESSAGES: city growing (nur im Hot-Seat-Modus)
+    if gc.getGame().isHotSeat():
+      if pPlayer.isHuman():
+        for pyCity in PyPlayer(iPlayer).getCityList():
+          self.doMessageCityGrowing(pyCity.GetCy())
 
     # PAE Debug Mark
     #"""
@@ -6628,17 +4143,9 @@ class CvEventManager:
 
     # PAE Debug Mark
     #"""
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-    # +++++ Scenario: FirstPunicWar - Start
-    if sScenarioScriptData == "FirstPunicWar":
-      if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_QUADRIREME"):
-        if gc.getPlayer(pWinner.getOwner()).getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
-          iTech = gc.getInfoTypeForString("TECH_WARSHIPS")
-          iTeam = gc.getPlayer(pWinner.getOwner()).getTeam()
-          pTeam = gc.getTeam(iTeam)
-          if not pTeam.isHasTech(iTech):
-            pTeam.setHasTech(iTech, 1, pWinner.getOwner(), 0, 1)
-    # +++++ Scenario: FirstPunicWar - End
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    if sScenarioName == "FirstPunicWar":
+      FirstPunicWar.onCombatResult(pWinner, pLoser)
 
 
 # Weil bSuicide in XML scheinbar so funktioniert, dass auf jeden Fall der Gegner stirbt (was ich nicht will)
@@ -6663,7 +4170,8 @@ class CvEventManager:
     # Each promotion gives +x% Strength
     # Animal Attack brings only 1st Ranking
     if not bUnitDone and (pWinner.isMilitaryHappiness() or pWinner.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
-      if pLoser.isMilitaryHappiness() or pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
+      if pLoser.isMilitaryHappiness() or pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE \
+      or pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
        iCombat1 = gc.getInfoTypeForString('PROMOTION_COMBAT1')
        iCombat2 = gc.getInfoTypeForString('PROMOTION_COMBAT2')
        iCombat3 = gc.getInfoTypeForString('PROMOTION_COMBAT3')
@@ -6686,7 +4194,7 @@ class CvEventManager:
           iChance = 2
           iNewRank = iCombat5
         elif pWinner.isHasPromotion(iCombat3):
-          iChance = 3
+          iChance = 2
           iNewRank = iCombat4
         elif pWinner.isHasPromotion(iCombat2):
           iChance = 3
@@ -6698,10 +4206,10 @@ class CvEventManager:
           iChance = 5
           iNewRank = iCombat1
 
-        # PAE Better AI: always gets it by 100%
-        if not gc.getPlayer(pWinner.getOwner()).isHuman(): iChance = 10
+        # PAE for better AI: always gets it by 50%
+        if not gc.getPlayer(pWinner.getOwner()).isHuman(): iChance = 5
 
-        if iNewRank == iCombat1 or iNewRank == iCombat2 or not pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL:
+        if iNewRank == iCombat1 or iNewRank == iCombat2 or pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
           if iChance > self.myRandom(10, None) and not pWinner.isHasPromotion(iCombat6):
             if (pWinner.getOwner(),pWinner.getID()) not in self.PAEInstanceFightingModifier:
                 self.PAEInstanceFightingModifier.append((pWinner.getOwner(),pWinner.getID()))
@@ -6709,8 +4217,8 @@ class CvEventManager:
                 if gc.getPlayer(pWinner.getOwner()).isHuman():                                                                # unitX.getDescription()
                   CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANKING",(pWinner.getName(),gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
 
-          # War wariness parallel ab Veteran
-          elif pWinner.isHasPromotion(iCombat4) and not pWinner.isHasPromotion(iNeg5):
+          # War weariness parallel ab Elite
+          elif pWinner.isHasPromotion(iCombat5) and not pWinner.isHasPromotion(iNeg5):
             if (pWinner.getOwner(),pWinner.getID()) not in self.PAEInstanceFightingModifier:
               iChance = 0
               if pWinner.isHasPromotion(iNeg4):
@@ -6745,10 +4253,11 @@ class CvEventManager:
 
            bDoIt = false
            if gc.getPlayer(pWinner.getOwner()).isHuman():
+             iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
              iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
              iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
 
-             if pWinner.isLoyal() or pWinner.isHasPromotion(iPromoLeader) or pWinner.isHasPromotion(iPromoLeadership): iChance = 2 #50%
+             if pWinner.isHasPromotion(iPromoLoyal) or pWinner.isHasPromotion(iPromoLeader) or pWinner.isHasPromotion(iPromoLeadership): iChance = 2 #50%
              else: iChance = 4 #25%
 
              if self.myRandom(iChance, None) == 1:
@@ -6762,9 +4271,9 @@ class CvEventManager:
        # Better AI: HI only
        if gc.getPlayer(pWinner.getOwner()).isHuman():
          if pWinner.isHasPromotion(iCombat6):
-           if pWinner.getDamage() < 40: pWinner.setDamage(40, -1)
+           if pWinner.getDamage() < 50: pWinner.setDamage(50, -1)
          elif pWinner.isHasPromotion(iCombat5):
-           if pWinner.getDamage() < 20: pWinner.setDamage(20, -1)
+           if pWinner.getDamage() < 70: pWinner.setDamage(30, -1)
          #elif pWinner.isHasPromotion(iCombat4):
          #  if pWinner.getDamage() < 20: pWinner.setDamage(20, -1)
 
@@ -6819,6 +4328,18 @@ class CvEventManager:
     AnimalArray.append(gc.getInfoTypeForString("UNIT_WILD_CAMEL"))
     AnimalArray.append(gc.getInfoTypeForString("UNIT_ELEFANT"))
 
+    WildAnimals = []
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_LION"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_BEAR"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_PANTHER"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_WOLF"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_BOAR"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_TIGER"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_LEOPARD"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_DEER"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_UR"))
+    WildAnimals.append(gc.getInfoTypeForString("UNIT_BERGZIEGE"))
+
     if pLoser.getUnitType() not in UnitArray and pLoser.getUnitType() not in AnimalArray:
 
       # Seeeinheiten (Treibgut erzeugen)
@@ -6854,7 +4375,7 @@ class CvEventManager:
               iRand = self.myRandom(len(SeaPlots), None)
               loopPlot = SeaPlots[iRand]
               # Unit erzeugen
-              NewUnit = barbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+              NewUnit = barbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
               NewUnit.setImmobileTimer(2)
               if gc.getPlayer(pWinner.getOwner()).isHuman():
                 CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_UNIT_ERSTELLT",(PyInfo.UnitInfo(iUnit).getDescription(),)), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
@@ -6901,7 +4422,7 @@ class CvEventManager:
               #else:
               iX = pWinner.getX()
               iY = pWinner.getY()
-              NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+              NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
               NewUnit.setTransportUnit(pWinner)
               NewUnit.finishMoves()
             else:
@@ -6951,7 +4472,7 @@ class CvEventManager:
               iY = pLoser.getY()
 
             # Create unit
-            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_TREIBGUT"), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_TREIBGUT"), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 
 
@@ -6960,136 +4481,152 @@ class CvEventManager:
     bUnitRenegades = True
 
 # PROMOTION-IDs: LOYALITAT: 0 , LEADER: 45, LEADERSHIP: 46 (ehemals)
-    # iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYAL")
-    # iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
-    # iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
-    # iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
-    # iPromoBrander = gc.getInfoTypeForString("PROMOTION_BRANDER")
-    # iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-    # #iPromoSurrender = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
+    iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
+    iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
+    iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
+    iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
+    iPromoBrander = gc.getInfoTypeForString("PROMOTION_BRANDER")
+    iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
+    #iPromoSurrender = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
 
-    # # Ausnahmen - using UnitArray from above
-    # if pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
-    # elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
-    # elif pLoser.getUnitType() in UnitArray: bUnitRenegades = False
-    # elif pLoser.getUnitType() in AnimalArray: bUnitRenegades = False
-    # # PAE V: Piraten sollen nur kentern: UnitInfos.xml: bNoCapture=1
-    # elif pWinner.isNoCapture(): bUnitRenegades = False
-    # #elif pLoser.isHasPromotion(iPromoSurrender): bUnitRenegades = True
-    # elif pLoser.isHasPromotion(iPromoLoyal) and not pLoser.isHasPromotion(iPromoMercenary): bUnitRenegades = False
-    # elif pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoBrander) or pWinner.isNoCapture(): bUnitRenegades = False
-    # elif pLoser.hasCargo() and pLoser.canAttack(): bUnitRenegades = False
-
-
-    # if bUnitRenegades:
-     # pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
-     # if pLoserPlot.getNumUnits() == 1 and pLoser.getCaptureUnitType(pLoser.getCivilizationType()) > -1: bUnitRenegades = False
-
-     # # Attacking from Coast
-     # if not bUnitDone and pWinner.isCargo():
-      # pWinnerPlot = gc.getMap().plot(pWinner.getX(), pWinner.getY())
-      # if pWinnerPlot.isWater():
-        # iNumCargoSpace = 0
-        # iNumCargoUnits = 0
-        # iRange = pWinnerPlot.getNumUnits()
-        # i=0
-        # for i in range (iRange):
-          # if pWinnerPlot.getUnit(i).getOwner() == pWinner.getOwner():
-            # iNumCargoSpace += pWinnerPlot.getUnit(i).cargoSpace()
-            # iNumCargoUnits += pWinnerPlot.getUnit(i).getCargo()
-
-        # if iNumCargoSpace <= iNumCargoUnits: bUnitRenegades = False
-     # # ----
+    # Ausnahmen - using UnitArray from above
+    if pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
+    elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
+    elif pWinner.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE: bUnitRenegades = False
+    elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE: bUnitRenegades = False
+    elif pLoser.getUnitType() in UnitArray: bUnitRenegades = False
+    elif pLoser.getUnitType() in AnimalArray: bUnitRenegades = False
+    elif pWinner.getUnitType() in WildAnimals: bUnitRenegades = False
+    elif pLoser.getUnitType() in WildAnimals: bUnitRenegades = False
+    # PAE V: Piraten sollen nur kentern: UnitInfos.xml: bNoCapture=1
+    elif pWinner.isNoCapture(): bUnitRenegades = False
+    #elif pLoser.isHasPromotion(iPromoSurrender): bUnitRenegades = True
+    elif pLoser.isHasPromotion(iPromoLoyal) and not pLoser.isHasPromotion(iPromoMercenary): bUnitRenegades = False
+    elif pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoBrander) or pWinner.isNoCapture(): bUnitRenegades = False
+    elif pLoser.hasCargo() and pLoser.canAttack(): bUnitRenegades = False
 
 
-     # if bUnitRenegades:
+    if bUnitRenegades:
+     pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
+     if pLoserPlot.getNumUnits() == 1 and pLoser.getCaptureUnitType(pLoser.getCivilizationType()) > -1: bUnitRenegades = False
 
-      # #if pLoser.isHasPromotion(iPromoSurrender): iRandMax = 0 #100%
+     # Attacking from Coast
+     if not bUnitDone and pWinner.isCargo():
+      pWinnerPlot = gc.getMap().plot(pWinner.getX(), pWinner.getY())
+      if pWinnerPlot.isWater():
+        iNumCargoSpace = 0
+        iNumCargoUnits = 0
+        iRange = pWinnerPlot.getNumUnits()
+        i=0
+        for i in range (iRange):
+          if pWinnerPlot.getUnit(i).getOwner() == pWinner.getOwner():
+            iNumCargoSpace += pWinnerPlot.getUnit(i).cargoSpace()
+            iNumCargoUnits += pWinnerPlot.getUnit(i).getCargo()
 
-      # iUnitRenegadeChance = 20 # 10%
-      # if pWinner.isHasPromotion(iPromoLeader): iUnitRenegadeChance += 20
-      # if pWinner.isHasPromotion(iPromoHero):   iUnitRenegadeChance += 10
-      # if pWinner.isHasPromotion(iPromoLeadership): iUnitRenegadeChance += 10
-      # if pLoser.isHasPromotion(iPromoHero):   iUnitRenegadeChance -= 10
-      # if pLoser.isHasPromotion(iPromoLeadership): iUnitRenegadeChance -= 10
-      # # Trait Charismatic: Mehr Ueberlaeufer / more renegades
-      # if gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance += 10
-      # if gc.getPlayer(pLoser.getOwner() ).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance -= 10
-      # if pLoser.isHasPromotion(iPromoMercenary): iUnitRenegadeChance += 10
+        if iNumCargoSpace <= iNumCargoUnits: bUnitRenegades = False
+     # ----
 
-      # iRand = self.myRandom(100, None)
+
+     if bUnitRenegades:
+
+      #if pLoser.isHasPromotion(iPromoSurrender): iRandMax = 0 #100%
+
+      iUnitRenegadeChance = 20 # 10%
+      if pWinner.isHasPromotion(iPromoLeader): iUnitRenegadeChance += 20
+      if pWinner.isHasPromotion(iPromoHero):   iUnitRenegadeChance += 10
+      if pWinner.isHasPromotion(iPromoLeadership): iUnitRenegadeChance += 10
+      if pLoser.isHasPromotion(iPromoHero):   iUnitRenegadeChance -= 10
+      if pLoser.isHasPromotion(iPromoLeadership): iUnitRenegadeChance -= 10
+      # Trait Charismatic: Mehr Ueberlaeufer / more renegades
+      if gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance += 10
+      if gc.getPlayer(pLoser.getOwner() ).hasTrait(gc.getInfoTypeForString("TRAIT_CHARISMATIC")): iUnitRenegadeChance -= 10
+      if pLoser.isHasPromotion(iPromoMercenary): iUnitRenegadeChance += 10
+
+      iRand = self.myRandom(100, None)
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Einheit allegiance Chance (Zeile 4150)",iRand)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
       # Winner gets Loser Unit
-      # if iRand < iUnitRenegadeChance:
-       # # Winner gets Loser Unit
-       # if self.myRandom(3, None) == 0:
-        # # Piratenschiffe werden normale Schiffe
-        # iNewUnitType = pLoser.getUnitType()
-        # if pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-          # if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"): iNewUnitType = gc.getInfoTypeForString("UNIT_KONTERE")
-          # elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_BIREME"): iNewUnitType = gc.getInfoTypeForString("UNIT_BIREME")
-          # elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"): iNewUnitType = gc.getInfoTypeForString("UNIT_TRIREME")
-          # elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"): iNewUnitType = gc.getInfoTypeForString("UNIT_LIBURNE")
-        # # Create a new unit
-        # NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iNewUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-        # NewUnit.finishMoves()
-        # if pLoser.getUnitCombatType() != -1:
-          # NewUnit.setDamage(90, -1)
-          # NewUnit.setExperience(pLoser.getExperience(), -1)
-          # NewUnit.setLevel(pLoser.getLevel())
-          # # Check its promotions
-          # iRange = gc.getNumPromotionInfos()
-          # for iPromotion in range(iRange):
-            # # init all promotions of the loser unit
-            # if pLoser.isHasPromotion(iPromotion):
-              # NewUnit.setHasPromotion(iPromotion, True)
-          # # PAE V: Loyal weg, Mercenary dazu
-          # if NewUnit.isHasPromotion(iPromoLoyal): NewUnit.setHasPromotion(iPromoLoyal, False)
-          # if not NewUnit.isHasPromotion(iPromoMercenary): NewUnit.setHasPromotion(iPromoMercenary, True)
-          # # Remove formations
-          # self.doUnitFormation (NewUnit, -1)
-          # # PAE V: Trait-Promotions
-          # # 1. Agg und Protect Promos weg
-          # # (2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten) Stimmt nicht, sie erhalten die Promo bei initUnit() sowieso
-          # if not gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
-            # iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")
-            # if NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, False)
-         # # if not gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")):
-         # #   iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_PROTECTIVE")
-         # #   if NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, False)
-        # if gc.getPlayer(pWinner.getOwner()).isHuman():
-          # CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RENEGADE_TO_YOU",(unitY.getDescription(),0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-        # elif gc.getPlayer(pLoser.getOwner()).isHuman():
-          # CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RENEGADE_FROM_YOU",(unitY.getDescription(),0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
-        # bUnitDone = True
-        # # ***TEST***
-        # #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gewinner (" + str(pWinner.getOwner()) + ") bekommt Verlierer (" + str(pLoser.getOwner()) + ")",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-       # # Winner gets Slave
-       # elif pWinner.getDomainType() == DomainTypes.DOMAIN_LAND:
-        # # Ausnahmen
-        # UnitArray = []
-        # UnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
-        # UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
-        # UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
-        # UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"))
-        # UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"))
-        # UnitArray.append(gc.getInfoTypeForString("UNIT_BURNING_PIGS"))
-        # if pLoser.getUnitType() not in UnitArray:
-          # iTechEnslavement = gc.getInfoTypeForString("TECH_ENSLAVEMENT")
-          # iThisTeam = gc.getPlayer(pWinner.getOwner()).getTeam()
-          # team = gc.getTeam(iThisTeam)
-          # if team.isHasTech(iTechEnslavement):
-            # # Create a slave unit
-            # NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            # NewUnit.finishMoves()
-            # if gc.getPlayer(pWinner.getOwner()).isHuman():
-              # CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_TO_YOU",(unitY.getDescription(),0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-            # elif gc.getPlayer(pLoser.getOwner()).isHuman():
-              # CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_FROM_YOU",(unitY.getDescription(),0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
-            # bUnitDone = True
+      if iRand < iUnitRenegadeChance:
+       # Winner gets Loser Unit
+       if self.myRandom(3, None) == 0:
+
+        # Piratenschiffe werden normale Schiffe
+        iNewUnitType = pLoser.getUnitType()
+        if pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
+          if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"): iNewUnitType = gc.getInfoTypeForString("UNIT_KONTERE")
+          elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_BIREME"): iNewUnitType = gc.getInfoTypeForString("UNIT_BIREME")
+          elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"): iNewUnitType = gc.getInfoTypeForString("UNIT_TRIREME")
+          elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"): iNewUnitType = gc.getInfoTypeForString("UNIT_LIBURNE")
+
+        # Create a new unit
+        NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iNewUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        NewUnit.finishMoves()
+
+        if pLoser.getUnitCombatType() != -1:
+          NewUnit.setDamage(90, -1)
+          NewUnit.setExperience(pLoser.getExperience(), -1)
+          NewUnit.setLevel(pLoser.getLevel())
+          # Check its promotions
+          iRange = gc.getNumPromotionInfos()
+          for iPromotion in range(iRange):
+            # init all promotions of the loser unit
+            if pLoser.isHasPromotion(iPromotion):
+              NewUnit.setHasPromotion(iPromotion, True)
+
+          # PAE V: Loyal weg, Mercenary dazu
+          if NewUnit.isHasPromotion(iPromoLoyal): NewUnit.setHasPromotion(iPromoLoyal, False)
+          if not NewUnit.isHasPromotion(iPromoMercenary): NewUnit.setHasPromotion(iPromoMercenary, True)
+
+          # Remove formations
+          self.doUnitFormation (NewUnit, -1)
+
+          # PAE V: Trait-Promotions
+          # 1. Agg und Protect Promos weg
+          # (2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten) Stimmt nicht, sie erhalten die Promo bei initUnit() sowieso
+          if not gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
+            iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")
+            if NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, False)
+         # if not gc.getPlayer(pWinner.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")):
+         #   iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_PROTECTIVE")
+         #   if NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, False)
+
+        if gc.getPlayer(pWinner.getOwner()).isHuman():
+          CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_1",(unitY.getDescription(),0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+        elif gc.getPlayer(pLoser.getOwner()).isHuman():
+          CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_2",(unitY.getDescription(),0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
+        bUnitDone = True
+
+        # ***TEST***
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gewinner (" + str(pWinner.getOwner()) + ") bekommt Verlierer (" + str(pLoser.getOwner()) + ")",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
+
+       # Winner gets Slave
+       elif pWinner.getDomainType() == DomainTypes.DOMAIN_LAND:
+
+        # Ausnahmen
+        UnitArray = []
+        UnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
+        UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
+        UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
+        UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"))
+        UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"))
+        UnitArray.append(gc.getInfoTypeForString("UNIT_BURNING_PIGS"))
+
+        if pLoser.getUnitType() not in UnitArray:
+          iTechEnslavement = gc.getInfoTypeForString("TECH_ENSLAVEMENT")
+          iThisTeam = gc.getPlayer(pWinner.getOwner()).getTeam()
+          team = gc.getTeam(iThisTeam)
+          if team.isHasTech(iTechEnslavement):
+            # Create a slave unit
+            NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit.finishMoves()
+            if gc.getPlayer(pWinner.getOwner()).isHuman():
+              CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_1",(unitY.getDescription(),0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+            elif gc.getPlayer(pLoser.getOwner()).isHuman():
+              CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_2",(unitY.getDescription(),0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
+            bUnitDone = True
 
             # ***TEST***
             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gewinner bekommt Sklave (Zeile 2627)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -7109,7 +4646,7 @@ class CvEventManager:
         if gc.getTeam(iThisTeam).isHasTech(iTech):
           bUnitDone = True
           # Create a new unit
-          NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(pLoser.getUnitType(), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+          NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(pLoser.getUnitType(), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           NewUnit.finishMoves()
           if gc.getPlayer(pWinner.getOwner()).isHuman():
              CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_UNIT_EROBERT",(unitY.getDescription(),0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
@@ -7136,7 +4673,7 @@ class CvEventManager:
     iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
     txtPopUpHero = ""
 # ------- Diese Features betreffen nur attackierende Einheiten (keine defensiven)
-    if pWinner.isMadeAttack():
+    if pWinner.isMadeAttack() and pWinner.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL and pWinner.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
         iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
         pWinnerPlot = gc.getMap().plot(pWinner.getX(), pWinner.getY())
         iNumUnits = pWinnerPlot.getNumUnits()
@@ -7187,7 +4724,6 @@ class CvEventManager:
                     CyInterface().addMessage(pWinner.getOwner(), True, 10, txtPopUpHero, "AS2D_WELOVEKING", 2, pWinnerPlot.getUnit(i).getButton(), ColorTypes(8), pWinner.getX(), pWinner.getY(), True, True)
 
 
-
         # Eine Einheit mit Mercenary-Promo kann diese verlieren, wenn ein General im Stack ist (5% Chance)
         if bLeaderAnwesend:
           iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
@@ -7197,6 +4733,124 @@ class CvEventManager:
               if gc.getPlayer(pWinner.getOwner()).isHuman():
                 CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_HERO_6",(pWinner.getName(),)), "AS2D_WELOVEKING", 2, pWinner.getButton(), ColorTypes(8), pWinner.getX(), pWinner.getY(), True, True)
 
+
+
+        # Attacks not against animals
+        if pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL and pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
+         pPlayer = gc.getPlayer(pWinner.getOwner())
+
+         # PAE Feature 3: Unit Rang Promos (Unit Ranks, Unit Ranking)
+         # ROM Pedes
+         if pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_1")):
+          if not pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_20")):
+            iNumPromos = gc.getNumPromotionInfos()-1
+            iPromo = iNumPromos
+            for iPromo in xrange(iNumPromos,0,-1):
+              iPromoType = gc.getPromotionInfo(iPromo).getType()
+              if "_TRAIT_" in iPromoType: break
+              if "_RANG_ROM_LATE" in iPromoType: continue
+              if "_RANG_ROM_EQUES" in iPromoType: continue
+              if "_RANG_ROM_" in iPromoType:
+                if pWinner.isHasPromotion(iPromo):
+
+                  if iPromo == gc.getInfoTypeForString("PROMOTION_RANG_ROM_5") or iPromo == gc.getInfoTypeForString("PROMOTION_RANG_ROM_9") or iPromo == gc.getInfoTypeForString("PROMOTION_RANG_ROM_14"):
+                    # Auxiliar nur bis Promo V
+                    if pWinner.getUnitType() != gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"):
+                       CvUtil.addScriptData(pWinner, "P", "RangPromoUp")
+                  else:
+                    pWinner.setHasPromotion(iNewPromo, True)
+                    # Der Kommandant Eurer Einheit (%s1) hat nun den Rang: %s2!
+                    if pPlayer.isHuman():
+                      CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_CIV_RANG",(pWinner.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
+                  break
+
+                else:
+                  iNewPromo = iPromo
+         # ROM Eques
+         elif pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_EQUES_1")):
+          if not pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_EQUES_5")):
+           # Chance: 1:4
+           if self.myRandom(4, None) == 1:
+            iNumPromos = gc.getNumPromotionInfos()-1
+            iPromo = iNumPromos
+            for iPromo in xrange(iNumPromos,0,-1):
+              iPromoType = gc.getPromotionInfo(iPromo).getType()
+              if "_TRAIT_" in iPromoType: break
+              if "_RANG_ROM_EQUES" in iPromoType:
+                if pWinner.isHasPromotion(iPromo):
+
+                  if iPromo == gc.getInfoTypeForString("PROMOTION_RANG_ROM_EQUES_3"):
+                     CvUtil.addScriptData(pWinner, "P", "RangPromoUp")
+                  else:
+                    pWinner.setHasPromotion(iNewPromo, True)
+                    # Der Kommandant Eurer Einheit (%s1) hat nun den Rang: %s2!
+                    if pPlayer.isHuman():
+                      CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_CIV_RANG",(pWinner.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
+                  break
+
+                else:
+                  iNewPromo = iPromo
+         # ROM Late Antike
+         elif pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_LATE_1")):
+          if not pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_LATE_15")):
+            iNumPromos = gc.getNumPromotionInfos()-1
+            iPromo = iNumPromos
+            for iPromo in xrange(iNumPromos,0,-1):
+              iPromoType = gc.getPromotionInfo(iPromo).getType()
+              if "_TRAIT_" in iPromoType: break
+              if "_RANG_ROM_LATE" in iPromoType:
+                if pWinner.isHasPromotion(iPromo):
+
+                  if iPromo == gc.getInfoTypeForString("PROMOTION_RANG_ROM_LATE_5") or iPromo == gc.getInfoTypeForString("PROMOTION_RANG_ROM_LATE_10"):
+                       CvUtil.addScriptData(pWinner, "P", "RangPromoUp")
+                  else:
+                    pWinner.setHasPromotion(iNewPromo, True)
+                    # Der Kommandant Eurer Einheit (%s1) hat nun den Rang eines %s2!
+                    if pPlayer.isHuman():
+                      CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_CIV_RANG",(pWinner.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
+                  break
+
+                else:
+                  iNewPromo = iPromo
+
+
+         # Ab Kriegerethos
+         if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_KRIEGERETHOS")):
+           # Kelten, Germanen, Gallier, etc.
+           lGermanen = []
+           lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_GERMANEN"))
+           lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_CELT"))
+           lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_GALLIEN"))
+           lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_DAKER"))
+           lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_BRITEN"))
+           lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_VANDALS"))
+           if pPlayer.getCivilizationType() in lGermanen:
+             if not pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_GER3")):
+               iRand = self.myRandom(10, None)
+               if iRand == 1:
+                 iNewPromo = gc.getInfoTypeForString("PROMOTION_RANG_GER1")
+                 if pWinner.isHasPromotion(iNewPromo): iNewPromo = gc.getInfoTypeForString("PROMOTION_RANG_GER2")
+                 if pWinner.isHasPromotion(iNewPromo): iNewPromo = gc.getInfoTypeForString("PROMOTION_RANG_GER3")
+                 pWinner.setHasPromotion(iNewPromo, True)
+                 if pPlayer.isHuman():
+                   CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_CIV_RANG",(pWinner.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
+             else:
+               CvUtil.addScriptData(pWinner, "P", "RangPromoUp")
+           # Hunnen
+           if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_HUNNEN"):
+             if not pWinner.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_HUN")):
+               iRand = self.myRandom(30, None)
+               if iRand == 1:
+                 iNewPromo = gc.getInfoTypeForString("PROMOTION_RANG_HUN")
+                 pWinner.setHasPromotion(iNewPromo, True)
+                 if pPlayer.isHuman():
+                   CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_CIV_RANG",(pWinner.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
+
+
+
+         # Ende Rang Promos ----------------
+        # end if attacks not against animals
+    # end if pWinner.isMadeAttack
 
 # ------- Furor germanicus / teutonicus: 30% / 20% / 10% Chance
     if not bUnitDone:
@@ -7224,109 +4878,125 @@ class CvEventManager:
 
 # ------- Flucht / Escape
 
-    # # Flucht der Einheit / Escape of units --------
-    # # Defending unit only (inaktiv)
-    # # Nur wenn die Einheit nicht desertiert hat: bUnitDone
-    # #if not bUnitDone and not pLoser.isAttacking():
-    # # PAE V: defending units in cities gets flight (hiding behind walls) with max 70%. units kept on the city plot
-    # bUnitFlucht = False
-    # if not bUnitDone:
-        # # Eine einzelne kaperbare Unit darf nicht fluechten
-        # #if pLoser.getCaptureUnitType(pLoser.getOwner()) > -1 and gc.getMap().plot(pLoser.getX(), pLoser.getY()).getNumUnits() > 1:
-        # if pLoser.getCaptureUnitType(pLoser.getCivilizationType()) == -1:
-          # bIsCity = False
-          # pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
-          # if pLoserPlot.isCity():
-            # iChance = pLoserPlot.getPlotCity().getPopulation()
-            # if iChance > 7: iChance = 7
-            # bIsCity = True
-            # iMaxHealth = 30 # max 30%
-          # else:
-            # iPromoFlucht1 = gc.getInfoTypeForString("PROMOTION_FLUCHT1")
-            # iPromoFlucht2 = gc.getInfoTypeForString("PROMOTION_FLUCHT2")
-            # iPromoFlucht3 = gc.getInfoTypeForString("PROMOTION_FLUCHT3")
-            # if pLoser.isHasPromotion(iPromoFlucht3):
-              # iChance = 8 # Flucht 3 - 80%
-              # iMaxHealth = 20 # max 20%
-            # elif pLoser.isHasPromotion(iPromoFlucht2):
-              # iChance = 6 # Flucht 2 - 60%
-              # iMaxHealth = 15 # max 15%
-            # elif pLoserPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_TOWN"):
-              # bIsCity = True
-              # iChance = 5
-              # iMaxHealth = 12 # max 12%
-            # elif pLoserPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_VILLAGE") \
-            # or pLoserPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_VILLAGE_HILL"):
-              # bIsCity = True
-              # iChance = 5
-              # iMaxHealth = 10 # max 10%
-            # elif pLoser.isHasPromotion(iPromoFlucht1):
-              # iChance = 4 # Flucht 1 - 40%
-              # iMaxHealth = 10 # max 10%
-            # elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL:
-              # if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_UR") or pLoser.getLevel() > 2:
-                # iChance = 8
-                # iMaxHealth = 50
-              # else:
-                # iChance = 3
-                # iMaxHealth = 25
-            # else:
-              # iChance = 2
-              # iMaxHealth = 5 # max 5%
-          # # Bei Schiffen eine Extra-Berechnung
-          # if pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-              # if pWinner.getDamage() >= 50:
-                # iChance = 10 # 100%: somit muss man womoeglich ein Schiff 2x angreifen, bevor es sinkt
-                # iMaxHealth = 20
-              # else:
-                # iChance += 1
-                # iMaxHealth += 5
-          # # Berittene nochmal +10%, except in cities -10%
-          # iCombatMounted = gc.getInfoTypeForString("UNITCOMBAT_MOUNTED")
-          # if pLoser.getUnitCombatType() == iCombatMounted:
-            # if bIsCity: iChance -= 1
-            # else: iChance += 1
-          # iRand = 1+self.myRandom(10, None)
+    # Flucht der Einheit / Escape of units --------
+    # Defending unit only (inaktiv)
+    # Nur wenn die Einheit nicht desertiert hat: bUnitDone
+    #if not bUnitDone and not pLoser.isAttacking():
+    # PAE V: defending units in cities gets flight (hiding behind walls) with max 70%. units kept on the city plot
+    bUnitFlucht = False
+    if not bUnitDone:
+
+        # Eine einzelne kaperbare Unit darf nicht fluechten
+        #if pLoser.getCaptureUnitType(pLoser.getOwner()) > -1 and gc.getMap().plot(pLoser.getX(), pLoser.getY()).getNumUnits() > 1:
+        if pLoser.getCaptureUnitType(pLoser.getCivilizationType()) == -1:
+
+          bIsCity = False
+          pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
+          if pLoserPlot.isCity():
+            iChance = pLoserPlot.getPlotCity().getPopulation()
+            if iChance > 7: iChance = 7
+            bIsCity = True
+            iMaxHealth = 30 # max 30%
+          else:
+            iPromoFlucht1 = gc.getInfoTypeForString("PROMOTION_FLUCHT1")
+            iPromoFlucht2 = gc.getInfoTypeForString("PROMOTION_FLUCHT2")
+            iPromoFlucht3 = gc.getInfoTypeForString("PROMOTION_FLUCHT3")
+            if pLoser.isHasPromotion(iPromoFlucht3):
+              iChance = 8 # Flucht 3 - 80%
+              iMaxHealth = 20 # max 20%
+            elif pLoser.isHasPromotion(iPromoFlucht2):
+              iChance = 6 # Flucht 2 - 60%
+              iMaxHealth = 15 # max 15%
+            elif pLoserPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_TOWN"):
+              bIsCity = True
+              iChance = 5
+              iMaxHealth = 12 # max 12%
+            elif pLoserPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_VILLAGE") \
+            or pLoserPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_VILLAGE_HILL"):
+              bIsCity = True
+              iChance = 5
+              iMaxHealth = 10 # max 10%
+            elif pLoser.isHasPromotion(iPromoFlucht1):
+              iChance = 4 # Flucht 1 - 40%
+              iMaxHealth = 10 # max 10%
+            elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE:
+              if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_UR") or pLoser.getLevel() > 2:
+                iChance = 8
+                iMaxHealth = 50
+              else:
+                iChance = 3
+                iMaxHealth = 25
+            else:
+              iChance = 2
+              iMaxHealth = 5 # max 5%
+
+          # Bei Schiffen eine Extra-Berechnung
+          if pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
+              if pWinner.getDamage() >= 50:
+                iChance = 10 # 100%: somit muss man womoeglich ein Schiff 2x angreifen, bevor es sinkt
+                iMaxHealth = 20
+              else:
+                iChance += 1
+                iMaxHealth += 5
+
+          # Berittene nochmal +10%, except in cities -10%
+          iCombatMounted = gc.getInfoTypeForString("UNITCOMBAT_MOUNTED")
+          if pLoser.getUnitCombatType() == iCombatMounted:
+            if bIsCity: iChance -= 1
+            else: iChance += 1
+
+          iRand = 1+self.myRandom(10, None)
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Fluchtchance (Zeile 2924)",iRand)), None, 2, None, ColorTypes(10), 0, 0, False, False)
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Max Health (Zeile 2925)",iMaxHealth)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-          # if iRand < iChance:
-            # # Create a new unit
-            # #pPlot = pLoser.plot()
-            # #if pPlot.getNumUnits() == 1: pLoser.jumpToNearestValidPlot()
-            # NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(pLoser.getUnitType(),  pLoser.getX(), pLoser.getY(), UnitAITypes(pLoser.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
-            # if pLoser.isMadeAttack(): NewUnit.finishMoves()
-            # if pLoser.getUnitCombatType() != -1 or pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL:
-             # iRandHealth = 1+self.myRandom(iMaxHealth, None)
-             # NewUnit.setDamage(100-iRandHealth,-1) # Max Health
-             # NewUnit.setExperience(pLoser.getExperience(), -1)
-             # NewUnit.setLevel(pLoser.getLevel())
-             # # Check its promotions
-             # iRange = gc.getNumPromotionInfos()
-             # for iPromotion in range(iRange):
-               # # init all promotions the unit had
-               # if pLoser.isHasPromotion(iPromotion):
-                 # NewUnit.setHasPromotion(iPromotion, True)
-            # #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
-            # UnitName = pLoser.getName()
-            # if UnitName != gc.getUnitInfo(pLoser.getUnitType()).getText():
-               # UnitName = re.sub(" \(.*?\)","",UnitName)
-               # NewUnit.setName(UnitName)
-            # if not bIsCity: NewUnit.jumpToNearestValidPlot()
-            # if gc.getPlayer(pLoser.getOwner()).isHuman():
-              # CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_ESCAPE",(NewUnit.getName(),0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-            # if gc.getPlayer(pWinner.getOwner()).isHuman():
-              # CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_ESCAPE_2",(NewUnit.getName(),0)), None, 2, None, ColorTypes(13), 0, 0, False, False)
-            # bUnitDone = True
-            # bUnitFlucht = True
-            # # if Unit was a leader (PROMOTION_LEADER)
-            # if pLoser.getLeaderUnitType() > -1:
-              # NewUnit.setLeaderUnitType(pLoser.getLeaderUnitType())
-              # pLoser.setLeaderUnitType(-1) # avoids ingame message "GG died in combat"
-            # # ***TEST***
-            # #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Einheit fluechtet (Zeile 2774)",iChance)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+          if iRand < iChance:
+
+            # Create a new unit
+            #pPlot = pLoser.plot()
+            #if pPlot.getNumUnits() == 1: pLoser.jumpToNearestValidPlot()
+            NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(pLoser.getUnitType(),  pLoser.getX(), pLoser.getY(), UnitAITypes(pLoser.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
+            if pLoser.isMadeAttack(): NewUnit.finishMoves()
+
+            if pLoser.getUnitCombatType() != -1 or pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE:
+
+             iRandHealth = 1+self.myRandom(iMaxHealth, None)
+
+             NewUnit.setDamage(100-iRandHealth,-1) # Max Health
+             NewUnit.setExperience(pLoser.getExperience(), -1)
+             NewUnit.setLevel(pLoser.getLevel())
+
+             # Check its promotions
+             iRange = gc.getNumPromotionInfos()
+             for iPromotion in range(iRange):
+               # init all promotions the unit had
+               if pLoser.isHasPromotion(iPromotion):
+                 NewUnit.setHasPromotion(iPromotion, True)
+
+            #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
+            UnitName = pLoser.getName()
+            if UnitName != gc.getUnitInfo(pLoser.getUnitType()).getText():
+               UnitName = re.sub(" \(.*?\)","",UnitName)
+               NewUnit.setName(UnitName)
+
+
+            if not bIsCity: NewUnit.jumpToNearestValidPlot()
+            if gc.getPlayer(pLoser.getOwner()).isHuman():
+              CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_ESCAPE",(NewUnit.getName(),0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
+            if gc.getPlayer(pWinner.getOwner()).isHuman():
+              CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_ESCAPE_2",(NewUnit.getName(),0)), None, 2, None, ColorTypes(13), 0, 0, False, False)
+
+            bUnitDone = True
+            bUnitFlucht = True
+
+            # if Unit was a leader (PROMOTION_LEADER)
+            if pLoser.getLeaderUnitType() > -1:
+              NewUnit.setLeaderUnitType(pLoser.getLeaderUnitType())
+              pLoser.setLeaderUnitType(-1) # avoids ingame message "GG died in combat"
+
+            # ***TEST***
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Einheit fluechtet (Zeile 2774)",iChance)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
 # LOSER: Mounted -> Melee or Horse
@@ -7336,12 +5006,10 @@ class CvEventManager:
         bDoIt = False
         iNewUnitType = -1
         if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"):
-          iNewUnitType = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
+          iNewUnitType = gc.getInfoTypeForString("UNIT_FOEDERATI")
           bDoIt = True
         elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"):
           iNewUnitType = gc.getInfoTypeForString("UNIT_PRAETORIAN")
-        elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_PRAETORIAN2_RIDER"):
-          iNewUnitType = gc.getInfoTypeForString("UNIT_PRAETORIAN2")
           bDoIt = True
         elif pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"):
           iNewUnitType = gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE")
@@ -7353,7 +5021,7 @@ class CvEventManager:
           iRand = self.myRandom(10, None)
           if iRand == 0 and iNewUnitType != -1:
             # Create a new unit
-            NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(iNewUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pLoser.getEthnic(), pLoser.getReligion())
+            NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(iNewUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             NewUnit.setExperience(pLoser.getExperience(), -1)
             NewUnit.setLevel(pLoser.getLevel())
             NewUnit.finishMoves()
@@ -7388,9 +5056,9 @@ class CvEventManager:
             if len(rebelPlotArray) > 0:
               barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
               iPlot = self.myRandom(len(rebelPlotArray), None)
-              barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+              barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
             else:
-              gc.getPlayer(pLoser.getOwner()).initUnit(iUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+              gc.getPlayer(pLoser.getOwner()).initUnit(iUnitType, pLoser.getX(), pLoser.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
 
             if gc.getPlayer(pLoser.getOwner()).isHuman():
               CyInterface().addMessage(pLoser.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_ONLY_HORSE_LEFT",(unitY.getDescription(),0)), None, 2, None, ColorTypes(6), 0, 0, False, False)
@@ -7402,10 +5070,16 @@ class CvEventManager:
 
 # ---- Ende Loser Mounted -> Melee
 
+# ---- Blessed Units
+    # Blessed promo only helps one time
+    iPromo = gc.getInfoTypeForString("PROMOTION_BLESSED")
+    if pWinner.isHasPromotion(iPromo): pWinner.setHasPromotion(iPromo, False)
+    if pLoser.isHasPromotion(iPromo): pLoser.setHasPromotion(iPromo, False)
+
 
 # ---- Script DATAs in Units
-    if not bUnitFlucht and pLoser.getScriptData() != "":
-       UnitText = pLoser.getScriptData()
+    UnitText = CvUtil.getScriptData(pLoser, ["U", "t"])
+    if not bUnitFlucht and UnitText != "":
 
        # Commissioned Mercenary  (MercFromCIV=CivID)
        if UnitText[:11] == "MercFromCIV":
@@ -7431,12 +5105,13 @@ class CvEventManager:
             popupInfo.addPopup(pWinner.getOwner())
 
 
-# ------- Feature: Held Promo + 3 XP wenn Stier (Ur) oder Tier mit mehr als 3 Level erlegt wird
+# ------- Feature 1: Held Promo + 3 XP wenn Stier (Ur) oder Tier mit mehr als 3 Level erlegt wird
 # ---------------- nur wenn Einheit nicht schon ein Held ist
 # ---------------- und wenn Combat ST Sieger < als Combat ST vom Gegner
 # ---------------- iPromoHero wird oben (Generalsfeature) init
+# ------- Feature 2: Ab Tech Kriegerethos bekommen Sieger + XP
     if not bUnitDone:
-      if pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL:
+      if pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE:
         if gc.getUnitInfo(pWinner.getUnitType()).getCombat() < gc.getUnitInfo(pLoser.getUnitType()).getCombat():
           if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_UR") or pLoser.getLevel() > 4:
             txtPopUpHero = ""
@@ -7444,7 +5119,7 @@ class CvEventManager:
             if pLoser.getDamage() >= 100:
               if not pWinner.isHasPromotion(iPromoHero):
                  pWinner.setHasPromotion(iPromoHero, True)
-                 pWinner.setExperience(pWinner.getExperience()+3, -1)
+                 pWinner.changeExperience(3, -1, 1, 0, 0)
                  if gc.getPlayer(pWinner.getOwner()).isHuman():
                    txtPopUpHero = CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_HERO_5",(pWinner.getName(),pLoser.getName()))
                    CyInterface().addMessage(pWinner.getOwner(), True, 10, txtPopUpHero, "AS2D_WELOVEKING", 2, pWinner.getButton(), ColorTypes(8), pWinner.getX(), pWinner.getY(), True, True)
@@ -7454,12 +5129,25 @@ class CvEventManager:
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT) # Text PopUp only!
               popupInfo.setText(txtPopUpHero)
               popupInfo.addPopup(pWinner.getOwner())
+      else:
+         # PAE Feature: Kriegerethos
+         iTech = gc.getInfoTypeForString("TECH_KRIEGERETHOS")
+         pWinnerPlayer = gc.getPlayer(pWinner.getOwner())
+         pWinnerTeam = gc.getTeam(pWinnerPlayer.getTeam())
+         if pWinnerTeam.isHasTech(iTech):
+            iXP = 1
+            if pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")) or pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")):
+              iXP = 2
+            pWinner.changeExperience(iXP, -1, 0, 0, 0)
+
 
 # --------- Jagd - Feature ----------------------
 # Ab Tech Jagd (Hunting) bringen Tiere Essen in nahegelegene Stadt
     bAnimal = false
     if not bUnitDone:
-     if pWinner.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL and ( pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitType() in AnimalArray ):
+     if pWinner.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL and \
+     ( pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitType() in AnimalArray ) and \
+     pWinner.getUnitType() not in WildAnimals and pLoser.getUnitType() in WildAnimals:
       bAnimal = true
       if pLoser.getCaptureUnitType(pLoser.getCivilizationType()) == -1:
 
@@ -7582,7 +5270,7 @@ class CvEventManager:
       # pPlot von Change Culture Percent (oben)
       if iNumUnits > 0:
         for i in range(iNumUnits):
-          NewUnit = barbPlayer.initUnit(iUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, barbPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+          NewUnit = barbPlayer.initUnit(iUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
           NewUnit.finishMoves()
 
 #        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iPlayer",pLoser.getOwner())), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -7628,6 +5316,7 @@ class CvEventManager:
                if pTeam.isAtWar(gc.getPlayer(loopPlot.getUnit(iUnit).getOwner()).getTeam()): iUnitAnzahl += 1
 
       # Anz Einheiten in der Stadt (military units)
+      iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
       iUnitCity = 0
       iChanceUnits = 0
       iRange = pPlot.getNumUnits()
@@ -7635,7 +5324,7 @@ class CvEventManager:
          if pPlot.getUnit(i).canFight():
            iUnitCity += 1
            # loyal units ?
-           if pPlot.getUnit(i).isLoyal(): iChanceUnits += 3
+           if pPlot.getUnit(i).isHasPromotion(iPromoLoyal): iChanceUnits += 3
            else: iChanceUnits += 1
 
 
@@ -7822,7 +5511,7 @@ class CvEventManager:
     if not pWinnerTeam.isHasTech(iTech):
        if gc.getPlayer(pWinner.getOwner()).canResearch(iTech, false):
           iCost = gc.getTechInfo(iTech).getResearchCost()
-          iCost = iCost/100
+          iCost = iCost/10
           if iCost <= 1: iCost = 1
           else: iCost = iCost + self.myRandom(iCost, None)
 
@@ -7881,31 +5570,31 @@ class CvEventManager:
     iDamage = genericArgs[3]
 
     # BTS Original
-    if cdDefender.eOwner == cdDefender.eVisualOwner:
-      szDefenderName = gc.getPlayer(cdDefender.eOwner).getNameKey()
-    else:
-      szDefenderName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
-    if cdAttacker.eOwner == cdAttacker.eVisualOwner:
-      szAttackerName = gc.getPlayer(cdAttacker.eOwner).getNameKey()
-    else:
-      szAttackerName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
-
-    if (iIsAttacker == 0):
-      combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szDefenderName, cdDefender.sUnitName, iDamage, cdDefender.iCurrHitPoints, cdDefender.iMaxHitPoints))
-      CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-      CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
-      if (cdDefender.iCurrHitPoints <= 0):
-        combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szAttackerName, cdAttacker.sUnitName, szDefenderName, cdDefender.sUnitName))
-        CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-        CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
-    elif (iIsAttacker == 1):
-      combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szAttackerName, cdAttacker.sUnitName, iDamage, cdAttacker.iCurrHitPoints, cdAttacker.iMaxHitPoints))
-      CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-      CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
-      if (cdAttacker.iCurrHitPoints <= 0):
-        combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szDefenderName, cdDefender.sUnitName, szAttackerName, cdAttacker.sUnitName))
-        CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-        CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+    #if cdDefender.eOwner == cdDefender.eVisualOwner:
+    #  szDefenderName = gc.getPlayer(cdDefender.eOwner).getNameKey()
+    #else:
+    #  szDefenderName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
+    #if cdAttacker.eOwner == cdAttacker.eVisualOwner:
+    #  szAttackerName = gc.getPlayer(cdAttacker.eOwner).getNameKey()
+    #else:
+    #  szAttackerName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
+    #
+    #if (iIsAttacker == 0):
+    #  combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szDefenderName, cdDefender.sUnitName, iDamage, cdDefender.iCurrHitPoints, cdDefender.iMaxHitPoints))
+    #  CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+    #  CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+    #  if (cdDefender.iCurrHitPoints <= 0):
+    #    combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szAttackerName, cdAttacker.sUnitName, szDefenderName, cdDefender.sUnitName))
+    #    CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+    #    CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+    #elif (iIsAttacker == 1):
+    #  combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szAttackerName, cdAttacker.sUnitName, iDamage, cdAttacker.iCurrHitPoints, cdAttacker.iMaxHitPoints))
+    #  CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+    #  CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+    #  if (cdAttacker.iCurrHitPoints <= 0):
+    #    combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szDefenderName, cdDefender.sUnitName, szAttackerName, cdAttacker.sUnitName))
+    #    CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+    #    CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
 
     # PAE Wegen Bekanntgabe der Piraten im Log wird hier auskommentiert!
     #if (iIsAttacker == 0):
@@ -8032,12 +5721,10 @@ class CvEventManager:
     # Kolonie / Provinz ----------
     # Wenn der Palast neu erbaut wird
     if iBuildingType == gc.getInfoTypeForString("BUILDING_PALACE"):
-      #iBuildingKolonie = gc.getInfoTypeForString('BUILDING_KOLONIE')
-      #iBuildingProvinz = gc.getInfoTypeForString('BUILDING_PROVINZ')
-      iBuildingProvinzpalast = gc.getInfoTypeForString("BUILDING_PROVINZPALAST")
-      #pCity.setNumRealBuilding(iBuildingKolonie,0)
-      #pCity.setNumRealBuilding(iBuildingProvinz,0)
-      pCity.setNumRealBuilding(iBuildingProvinzpalast,0)
+      iBuilding = gc.getInfoTypeForString("BUILDING_PROVINZPALAST")
+      pCity.setNumRealBuilding(iBuilding,0)
+      iBuilding = gc.getInfoTypeForString("BUILDING_PRAEFECTUR")
+      pCity.setNumRealBuilding(iBuilding,0)
     # ----------------------------
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Palast erbaut (Zeile 2206)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -8059,13 +5746,15 @@ class CvEventManager:
     iBuilding3 = gc.getInfoTypeForString('BUILDING_LEVEE2')
     if iBuildingType == iBuilding or iBuildingType == iBuilding3:
       bFeatSwamp = False
-      feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
+      terrain_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
+      terrain_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
       for i in range(3):
         for j in range(3):
           loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
-          if None != loopPlot and not loopPlot.isNone() and loopPlot.getFeatureType() == feat_swamp:
-            loopPlot = loopPlot.setFeatureType(-1,0)
-            bFeatSwamp = True
+          if None != loopPlot and not loopPlot.isNone():
+            if loopPlot.getTerrainType() == terrain_swamp:
+              loopPlot = loopPlot.setTerrainType(terrain_grass,1,1)
+              bFeatSwamp = True
       if bFeatSwamp == True and gc.getPlayer(pCity.getOwner()).isHuman():
         if iBuildingType == iBuilding:
           CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SANITATION_BUILT",(pCity.getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
@@ -8083,7 +5772,7 @@ class CvEventManager:
     if iBuildingType == iBuilding and self.myRandom(2, None) == 1:
       terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
       terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-      feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
+      terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
       feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
       bonus_grapes = gc.getInfoTypeForString('BONUS_GRAPES')
 
@@ -8091,10 +5780,9 @@ class CvEventManager:
       iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")
       iImpType2 = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
       iImpType3 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-      iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_WATERMILL")
-      iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
-      iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_MINE")
-      iImpType7 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
+      iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
+      iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_MINE")
+      iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
 
       PlotPrio1 = []
       PlotPrio2 = []
@@ -8106,7 +5794,6 @@ class CvEventManager:
       PlotPrio8 = []
       PlotPrio9 = []
       PlotPrio10 = []
-      PlotPrio11 = []
       correctPlotArray = []
       setWinery = True
 
@@ -8124,7 +5811,7 @@ class CvEventManager:
           # die beste position finden:
           if loopPlot != None and not loopPlot.isNone() and not (i==0 and j==0) and not (i==4 and j==0) and not (i==0 and j==4) and not (i==4 and j==4):
            # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-           if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak():
+           if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak():
             if loopPlot.getBonusType(loopPlot.getOwner()) == -1 and loopPlot.getBonusType(-1) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
 
              # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
@@ -8143,7 +5830,6 @@ class CvEventManager:
               if loopPlot.getImprovementType() == iImpType4: PlotPrio8.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType5: PlotPrio9.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType6: PlotPrio10.append(loopPlot)
-              if loopPlot.getImprovementType() == iImpType7: PlotPrio11.append(loopPlot)
 
       if len(PlotPrio1) > 0: correctPlotArray = PlotPrio1
       elif len(PlotPrio2) > 0: correctPlotArray = PlotPrio2
@@ -8155,7 +5841,6 @@ class CvEventManager:
       elif len(PlotPrio9) > 0: correctPlotArray = PlotPrio9
       #elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4 # Stadt doch nicht
       elif len(PlotPrio10) > 0: correctPlotArray = PlotPrio10
-      elif len(PlotPrio11) > 0: correctPlotArray = PlotPrio11
 
       # Wein setzen
       if setWinery and len(correctPlotArray) > 0:
@@ -8183,7 +5868,7 @@ class CvEventManager:
     if iBuildingType == gc.getInfoTypeForString('BUILDING_PFERDEZUCHT'):
       terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
       terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-      feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
+      terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
       feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
       iBonus = gc.getInfoTypeForString('BONUS_HORSE')
 
@@ -8191,7 +5876,7 @@ class CvEventManager:
       iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")
       iImpType2 = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
       iImpType3 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-      iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_WATERMILL")
+      #iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_WATERMILL")
       iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
       iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_MINE")
       iImpType7 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
@@ -8216,7 +5901,7 @@ class CvEventManager:
           # die beste position finden:
           if loopPlot != None and not loopPlot.isNone() and not (i==0 and j==0) and not (i==4 and j==0) and not (i==0 and j==4) and not (i==4 and j==4):
             # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-            if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
+            if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
 
              # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
              if loopPlot.isCity(): PlotPrio4.append(loopPlot)
@@ -8231,7 +5916,7 @@ class CvEventManager:
               if loopPlot.getImprovementType() == iImpType1: PlotPrio5.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType2: PlotPrio6.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType3: PlotPrio7.append(loopPlot)
-              if loopPlot.getImprovementType() == iImpType4: PlotPrio8.append(loopPlot)
+              #if loopPlot.getImprovementType() == iImpType4: PlotPrio8.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType5: PlotPrio9.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType6: PlotPrio10.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType7: PlotPrio11.append(loopPlot)
@@ -8242,7 +5927,7 @@ class CvEventManager:
       elif len(PlotPrio5) > 0: correctPlotArray = PlotPrio5
       elif len(PlotPrio6) > 0: correctPlotArray = PlotPrio6
       elif len(PlotPrio7) > 0: correctPlotArray = PlotPrio7
-      elif len(PlotPrio8) > 0: correctPlotArray = PlotPrio8
+      #elif len(PlotPrio8) > 0: correctPlotArray = PlotPrio8
       elif len(PlotPrio9) > 0: correctPlotArray = PlotPrio9
       #elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4 # Stadt doch nicht
       elif len(PlotPrio10) > 0: correctPlotArray = PlotPrio10
@@ -8262,12 +5947,147 @@ class CvEventManager:
 
     # HORSE - FEATURE - ENDE ---------------------
 
+    # KAMEL - FEATURE ---------------------
+    # Kamelverbreitung
+    if iBuildingType == gc.getInfoTypeForString('BUILDING_CAMEL_STABLE'):
+      terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
+      terr_desert = gc.getInfoTypeForString('TERRAIN_DESERT')
+      feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
+      iBonus = gc.getInfoTypeForString('BONUS_CAMEL')
+
+      # Improvements fuer Prioritaet
+      iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
+
+      PlotPrio1 = []
+      PlotPrio2 = []
+      PlotPrio3 = []
+      PlotPrio4 = []
+      PlotPrio5 = []
+      correctPlotArray = []
+      bCityHasBonus = False
+
+      for i in range(5):
+        if bCityHasBonus: break
+        for j in range(5):
+          if i==0 and j==0 or i==4 and j==0 or i==0 and j==4 or i==4 and j==4: continue
+          loopPlot = gc.getMap().plot(pCity.getX() + i - 2, pCity.getY() + j - 2)
+
+          # die beste position finden:
+          if loopPlot != None and not loopPlot.isNone():
+            if loopPlot.isHills() or loopPlot.isPeak(): continue
+            if loopPlot.isCity(): continue
+            if loopPlot.getBonusType(loopPlot.getOwner()) == iBonus:
+               bCityHasBonus = True
+               break
+            if loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_desert) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
+
+              # 1. nach Improvements selektieren
+              if loopPlot.getImprovementType() == iImpType1: PlotPrio1.append(loopPlot)
+              # 2. desert, unworked
+              elif loopPlot.getTerrainType() == terr_desert and loopPlot.getImprovementType() == -1: PlotPrio2.append(loopPlot)
+              # 3. plains, unworked
+              elif loopPlot.getTerrainType() == terr_plain and loopPlot.getImprovementType() == -1: PlotPrio3.append(loopPlot)
+              # 4. irgendeinen passenden ohne Improvement
+              elif loopPlot.getImprovementType() == -1: PlotPrio4.append(loopPlot)
+              else: PlotPrio5.append(loopPlot)
+
+      if len(PlotPrio1) > 0: correctPlotArray = PlotPrio1
+      elif len(PlotPrio2) > 0: correctPlotArray = PlotPrio2
+      elif len(PlotPrio3) > 0: correctPlotArray = PlotPrio3
+      elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4
+      elif len(PlotPrio5) > 0: correctPlotArray = PlotPrio5
+
+      # Bonus setzen
+      if len(correctPlotArray) > 0 and not bCityHasBonus:
+        iPlot = self.myRandom(len(correctPlotArray), None)
+        sPlot = correctPlotArray[iPlot]
+        # Feature (Wald) entfernen
+        #sPlot.setFeatureType(-1,0)
+        # Bonus adden
+        sPlot.setBonusType(iBonus)
+        # Improvement adden
+        sPlot.setImprovementType(iImpType1)
+
+    # KAMEL - FEATURE - ENDE ---------------------
+
+    # ELEFANT - FEATURE ---------------------
+    # Elefantverbreitung
+    if iBuildingType == gc.getInfoTypeForString('BUILDING_ELEPHANT_STABLE'):
+      terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
+      terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
+      feat_jungle = gc.getInfoTypeForString('FEATURE_JUNGLE')
+      feat_savanna = gc.getInfoTypeForString('FEATURE_SAVANNA')
+      iBonus = gc.getInfoTypeForString('BONUS_IVORY')
+
+      # Improvements fuer Prioritaet
+      iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
+
+      PlotPrio1 = []
+      PlotPrio2 = []
+      PlotPrio3 = []
+      PlotPrio4 = []
+      PlotPrio5 = []
+      PlotPrio6 = []
+      PlotPrio7 = []
+      correctPlotArray = []
+      bCityHasBonus = False
+
+      for i in range(5):
+        if bCityHasBonus: break
+        for j in range(5):
+          if i==0 and j==0 or i==4 and j==0 or i==0 and j==4 or i==4 and j==4: continue
+          loopPlot = gc.getMap().plot(pCity.getX() + i - 2, pCity.getY() + j - 2)
+
+          # die beste position finden:
+          if loopPlot != None and not loopPlot.isNone():
+            if loopPlot.isHills() or loopPlot.isPeak(): continue
+            if loopPlot.isCity(): continue
+            if loopPlot.getBonusType(loopPlot.getOwner()) == iBonus:
+               bCityHasBonus = True
+               break
+            if loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
+
+              # 1. jungle, unworked
+              if loopPlot.getFeatureType() == feat_jungle and loopPlot.getImprovementType() == -1: PlotPrio1.append(loopPlot)
+              # 2. savanna, unworked
+              elif loopPlot.getFeatureType() == feat_savanna and loopPlot.getImprovementType() == -1: PlotPrio2.append(loopPlot)
+              # 3. nach Improvements selektieren
+              elif loopPlot.getImprovementType() == iImpType1: PlotPrio3.append(loopPlot)
+              # 4. grass, unworked
+              elif loopPlot.getTerrainType() == terr_grass and loopPlot.getImprovementType() == -1: PlotPrio4.append(loopPlot)
+              # 5. plains, unworked
+              elif loopPlot.getTerrainType() == terr_plain and loopPlot.getImprovementType() == -1: PlotPrio5.append(loopPlot)
+              # 6. irgendeinen passenden ohne Improvement
+              elif loopPlot.getImprovementType() == -1: PlotPrio6.append(loopPlot)
+              else: PlotPrio7.append(loopPlot)
+
+      if len(PlotPrio1) > 0: correctPlotArray = PlotPrio1
+      elif len(PlotPrio2) > 0: correctPlotArray = PlotPrio2
+      elif len(PlotPrio3) > 0: correctPlotArray = PlotPrio3
+      elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4
+      elif len(PlotPrio5) > 0: correctPlotArray = PlotPrio5
+      elif len(PlotPrio6) > 0: correctPlotArray = PlotPrio6
+      elif len(PlotPrio7) > 0: correctPlotArray = PlotPrio7
+
+      # Bonus setzen
+      if len(correctPlotArray) > 0 and not bCityHasBonus:
+        iPlot = self.myRandom(len(correctPlotArray), None)
+        sPlot = correctPlotArray[iPlot]
+        # Feature (Wald) entfernen
+        #sPlot.setFeatureType(-1,0)
+        # Bonus adden
+        sPlot.setBonusType(iBonus)
+        # Improvement adden
+        sPlot.setImprovementType(iImpType1)
+
+    # ELEFANT - FEATURE - ENDE ---------------------
+
     # HUNDE - FEATURE ---------------------
     # Hundeverbreitung
     if iBuildingType == gc.getInfoTypeForString('BUILDING_HUNDEZUCHT'):
       terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
       terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-      feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
+      terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
       feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
       iBonus = gc.getInfoTypeForString('BONUS_HUNDE')
 
@@ -8275,7 +6095,7 @@ class CvEventManager:
       iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")
       iImpType2 = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
       iImpType3 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-      iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_WATERMILL")
+      #iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_WATERMILL")
       iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
       iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_MINE")
       iImpType7 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
@@ -8300,7 +6120,7 @@ class CvEventManager:
           # die beste position finden:
           if loopPlot != None and not loopPlot.isNone() and not (i==0 and j==0) and not (i==4 and j==0) and not (i==0 and j==4) and not (i==4 and j==4):
             # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-            if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
+            if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == pCity.getOwner() or loopPlot.getOwner() == -1):
 
              # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
              if loopPlot.isCity(): PlotPrio4.append(loopPlot)
@@ -8315,7 +6135,7 @@ class CvEventManager:
               if loopPlot.getImprovementType() == iImpType1: PlotPrio5.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType2: PlotPrio6.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType3: PlotPrio7.append(loopPlot)
-              if loopPlot.getImprovementType() == iImpType4: PlotPrio8.append(loopPlot)
+              #if loopPlot.getImprovementType() == iImpType4: PlotPrio8.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType5: PlotPrio9.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType6: PlotPrio10.append(loopPlot)
               if loopPlot.getImprovementType() == iImpType7: PlotPrio11.append(loopPlot)
@@ -8326,7 +6146,7 @@ class CvEventManager:
       elif len(PlotPrio5) > 0: correctPlotArray = PlotPrio5
       elif len(PlotPrio6) > 0: correctPlotArray = PlotPrio6
       elif len(PlotPrio7) > 0: correctPlotArray = PlotPrio7
-      elif len(PlotPrio8) > 0: correctPlotArray = PlotPrio8
+      #elif len(PlotPrio8) > 0: correctPlotArray = PlotPrio8
       elif len(PlotPrio9) > 0: correctPlotArray = PlotPrio9
       #elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4 # Stadt doch nicht
       elif len(PlotPrio10) > 0: correctPlotArray = PlotPrio10
@@ -8365,18 +6185,43 @@ class CvEventManager:
         if gc.getTeam(iSecTeam).isHasMet(pPlayer.getTeam()):
           pSecondPlayer.AI_changeAttitudeExtra(iPlayer,+4)
 
-    # Wonder: 10 Gebote => adds 1 prophet and 4 jewish missionaries
+    # Wonder: 10 Gebote => adds 1 prophet and 10 jewish cities
     iBuilding = gc.getInfoTypeForString('BUILDING_10GEBOTE')
     if iBuildingType == iBuilding:
       pPlayer = gc.getPlayer(pCity.getOwner())
       iUnitType = gc.getInfoTypeForString("UNIT_PROPHET")
-      NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_PROPHET, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_JUDAISM)
+      NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_PROPHET, DirectionTypes.DIRECTION_SOUTH)
       NewUnit.setName("Moses")
-      iUnitType = gc.getInfoTypeForString("UNIT_JEWISH_MISSIONARY")
-      Names = ["Sarah","Abraham","Isaak","Jakob","Pinchas","Aaron","Miriam","Josua","Bileam","Jesaja"]
-      for i in range(10):
-        NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_JUDAISM)
-        NewUnit.setName(Names[i])
+
+      # converts up to 10 local cities to judaism (PAE V Patch 4)
+      iReligion = gc.getInfoTypeForString("RELIGION_JUDAISM")
+      Cities = []
+      iNumCities = pPlayer.getNumCities()
+      for i in range (iNumCities):
+                   ThisCity = pPlayer.getCity(i)
+                   if not ThisCity.isNone():
+                     if not ThisCity.isHasReligion(iReligion):
+                       Cities.append(ThisCity)
+
+      a = 10
+      iCities = len(Cities)
+      if iCities < a: iAnz = iCities
+      else: iAnz = a
+      while iCities > 0 and a > 0:
+        iRand = self.myRandom(iCities, None)
+        Cities[iRand].setHasReligion(iReligion,1,1,0)
+        Cities.pop(iRand)
+        a -= 1
+        iCities -= 1
+
+      CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_10GEBOTE",(iAnz,)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+
+
+      #iUnitType = gc.getInfoTypeForString("UNIT_JEWISH_MISSIONARY")
+      #Names = ["Sarah","Abraham","Isaak","Jakob","Pinchas","Aaron","Miriam","Josua","Bileam","Jesaja"]
+      #for i in range(10):
+      #  NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+      #  NewUnit.setName(Names[i])
 
     # PAE Debug Mark
     #"""
@@ -8423,15 +6268,40 @@ class CvEventManager:
       # Add Trade Route to city 26.01.2013
       pCity.changeExtraTradeRoutes(1)
 
-    # Project : Bibel
-    # Wonder: Bible => adds 12 christian missionaries
+    # Project : Bibel / Bible
     if iProjectType == gc.getInfoTypeForString("PROJECT_BIBEL"):
-      pPlayer = gc.getPlayer(pCity.getOwner())
-      iUnitType = gc.getInfoTypeForString("UNIT_CHRISTIAN_MISSIONARY")
-      Names = ["Petrus","Andreas","Jakobus","Johannes","Philippus","Bartholomaeus","Thomas","Matthaeus","Jakobus","Thaddaeus","Simon","Judas"]
-      for i in range(12):
-        NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.RELIGION_CHRISTIANITY)
-        NewUnit.setName(Names[i])
+      # converts up to 12 global cities to christianity (PAE V Patch 4)
+      iReligion = gc.getInfoTypeForString("RELIGION_CHRISTIANITY")
+      Cities = []
+      iRangeMaxPlayers = gc.getMAX_PLAYERS()
+      for iPlayer in range (iRangeMaxPlayers):
+         ThisPlayer = gc.getPlayer(iPlayer)
+         if iPlayer != gc.getBARBARIAN_PLAYER():
+           if ThisPlayer.isAlive():
+                 iNumCities = ThisPlayer.getNumCities()
+                 for i in range (iNumCities):
+                   ThisCity = ThisPlayer.getCity(i)
+                   if not ThisCity.isNone():
+                     if not ThisCity.isHasReligion(iReligion):
+                       Cities.append(ThisCity)
+
+      a = 12
+      iCities = len(Cities)
+      while iCities > 0 and a > 0:
+        iRand = self.myRandom(iCities, None)
+        Cities[iRand].setHasReligion(iReligion,1,1,0)
+        Cities.pop(iRand)
+        CyInterface().addMessage(Cities[iRand].getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_BIBEL",(Cities[iRand].getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+        a -= 1
+        iCities -= 1
+
+      # adds 12 christian missionaries (until PAE V Patch 3)
+      #pPlayer = gc.getPlayer(pCity.getOwner())
+      #iUnitType = gc.getInfoTypeForString("UNIT_CHRISTIAN_MISSIONARY")
+      #Names = ["Petrus","Andreas","Jakobus","Johannes","Philippus","Bartholomaeus","Thomas","Matthaeus","Jakobus","Thaddaeus","Simon","Judas"]
+      #for i in range(12):
+      #  NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
+      #  NewUnit.setName(Names[i])
 
   def onSelectionGroupPushMission(self, argsList):
     'selection group mission'
@@ -8442,24 +6312,37 @@ class CvEventManager:
 
     # Handel (nur Meldung mit der gewonnenen Geldsumme)
     if eMission == MissionTypes.MISSION_TRADE:
-      if gc.getPlayer(eOwner).isHuman():
-        pUnit = gc.getPlayer(eOwner).getUnit(listUnitIds[0])
-        if pUnit.canMove():
+      pUnit = gc.getPlayer(eOwner).getUnit(listUnitIds[0])
+      pPlot = CyMap().plot(pUnit.getX(), pUnit.getY())
+      pCity = pPlot.getPlotCity()
+      if pUnit.canMove():
+        if gc.getPlayer(eOwner).isHuman():
           if eOwner == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
-          pPlot = CyMap().plot(pUnit.getX(), pUnit.getY())
-          pCity = pPlot.getPlotCity()
           iProfit = pUnit.getTradeGold(pPlot)
           CyInterface().addMessage(eOwner, True, 10, CyTranslator().getText("TXT_KEY_MISSION_AUTOMATE_MERCHANT_DONE",(pCity.getName(),iProfit)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
+        # Normaler Handel - Handelsstrasse bauen: Chance 2%
+        if self.myRandom(100, None) < 2:
+          scriptCityId = CvUtil.getScriptData(pUnit, ["c","t"])  # CityID
+          if scriptCityId != "": pSource = gc.getPlayer(eOwner).getCity(int(scriptCityId)).plot()
+          else: pSource = gc.getPlayer(eOwner).getCapitalCity().plot()
+          pSourceCity = pSource.getPlotCity()
+          pPlotTradeRoad = PAE_Trade.getPlotTradingRoad(pSource, CyMap().plot(pUnit.getX(), pUnit.getY()), 0)
+          if pPlotTradeRoad != None:
+            pPlotTradeRoad.setRouteType(gc.getInfoTypeForString("ROUTE_TRADE_ROAD"))
+            if gc.getPlayer(eOwner).isHuman():
+              CyInterface().addMessage(eOwner, True, 10, CyTranslator().getText("TXT_KEY_TRADE_ROUTE_BUILT",(gc.getPlayer(eOwner).getName(),gc.getPlayer(eOwner).getCivilizationShortDescriptionKey(),pCity.getName(),pSourceCity.getName())), "AS2D_WELOVEKING", 2, "Art/Terrain/Routes/handelsstrasse/button_handelsstrasse.dds", ColorTypes(10), pPlotTradeRoad.getX(), pPlotTradeRoad.getY(), True, True)
 
-    # Fernangriff
+
+
+    # Fernangriff / Fernkampfkosten
     # Nur 1x Fernangriff danach nur bewegen => GlobalDefines RANGED_ATTACKS_USE_MOVES=0
     if eMission == MissionTypes.MISSION_RANGE_ATTACK:
       pPlayer = gc.getPlayer(eOwner)
 
       lSkirmishType = []
       lSkirmishType.append(gc.getInfoTypeForString("UNIT_BALEAREN"))
-      lSkirmishType.append(gc.getInfoTypeForString("UNIT_BAKTRIEN"))
+      lSkirmishType.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"))
       lSkirmishType.append(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"))
       lSkirmishType.append(gc.getInfoTypeForString("UNIT_THRAKIEN_PELTAST"))
       lSkirmishClass = []
@@ -8501,21 +6384,22 @@ class CvEventManager:
             iUnitCombat = unit.getUnitCombatType()
 
             # Individuelle Kosten fuer iAirRange-Units
-            #if iUnitClass == gc.getInfoTypeForString("UNITCLASS_HUNTER"): iGold += 1
-            if iUnitClass == gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"): iGold += 1
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_GILDE"): iGold += 3
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER_GILDE") or iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_KRETA"): iGold += 4
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER") or iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER_LEGION"): iGold += 5
-            elif iUnitType == gc.getInfoTypeForString("UNIT_INDIAN_LONGBOW") or iUnitType == gc.getInfoTypeForString("UNIT_LIBYAN_AMAZON"): iGold += 5
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_PELTIST") or iUnitType == gc.getInfoTypeForString("UNIT_BALEAREN"): iGold += 4
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_SKIRMISHER"): iGold += 5
-            elif iUnitType == gc.getInfoTypeForString("UNIT_THRAKIEN_PELTAST"): iGold += 5
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_CHARIOT_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_HETHIT_WARCHARIOT"): iGold += 4
-            elif iUnitType == gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS") or iUnitType == gc.getInfoTypeForString("UNIT_BAKTRIEN"): iGold += 5
-            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER") or iUnitClass == gc.getInfoTypeForString("UNITCLASS_CAMEL_ARCHER"): iGold += 5
-            elif iUnitType == gc.getInfoTypeForString("UNIT_BALLISTA"): iGold += 5
-            elif iUnitCombat == gc.getInfoTypeForString("UNITCOMBAT_SIEGE"): iGold += 4
-            elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_DECAREME"): iGold += 6
+            if iUnitClass == gc.getInfoTypeForString("UNITCLASS_HUNTER"): iGold += 0
+            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"): iGold += 0
+            elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER"): iGold += 1
+            #elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_KRETA"): iGold += 2
+            #elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER") or iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER_LEGION"): iGold += 2
+            elif iUnitType == gc.getInfoTypeForString("UNIT_INDIAN_LONGBOW") or iUnitType == gc.getInfoTypeForString("UNIT_LIBYAN_AMAZON"): iGold += 3
+            #elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_PELTIST") or iUnitType == gc.getInfoTypeForString("UNIT_BALEAREN"): iGold += 2
+            #elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_SKIRMISHER"): iGold += 2
+            #elif iUnitType == gc.getInfoTypeForString("UNIT_THRAKIEN_PELTAST"): iGold += 2
+            #elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_CHARIOT_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_HETHIT_WARCHARIOT"): iGold += 2
+            #elif iUnitType == gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS") or iUnitType == gc.getInfoTypeForString("UNIT_BAKTRIEN"): iGold += 2
+            #elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER") or iUnitClass == gc.getInfoTypeForString("UNITCLASS_CAMEL_ARCHER"): iGold += 2
+            #elif iUnitType == gc.getInfoTypeForString("UNIT_BALLISTA"): iGold += 2
+            elif iUnitCombat == gc.getInfoTypeForString("UNITCOMBAT_SIEGE"): iGold += 3
+            elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_DECAREME"): iGold += 4
+            else: iGold += 2
 
           if iGold > 0:
              pPlayer.changeGold(-iGold)
@@ -8547,6 +6431,14 @@ class CvEventManager:
     'unit move'
     pPlot,pUnit,pOldPlot = argsList
 
+    # Trade (Boggy): If merchant moves from ship to land, land plot is saved as unloadedPlotX/Y
+    # This has already become obsolete before publishing, I think.
+##    eUnitType = pUnit.getUnitType()
+##    if eUnitType in PAE_Trade.lTradeUnits and pUnit.getDomainType() == 2: # 2 = DOMAIN_LAND
+##        if pOldPlot.isWater() and not pPlot.isWater(): # merchant has moved from water to land
+##            CvUtil.addScriptData(pUnit, "unloadedPlotX", pPlot.getX())
+##            CvUtil.addScriptData(pUnit, "unloadedPlotY", pPlot.getY())
+
     # PAE Debug mark
     #"""
 #    if gc.getPlayer(pUnit.getOwner()).isHuman():
@@ -8558,7 +6450,6 @@ class CvEventManager:
       pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"), False)
       #iFormation = gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT")
       #if pUnit.isHasPromotion(iFormation): pUnit.setHasPromotion(iFormation, False)
-
 
 
 # ----------- Verletzte Schiffe / Seeeinheiten sollen langsamer werden, je verletzter sie sind
@@ -8830,18 +6721,23 @@ class CvEventManager:
 
 # --------------------------------------------------------------------- #
 
-    # Merchant can be robbed and killed
+
+    # Handelskarren - Merchant can be robbed and killed
     if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT") and not pUnit.isBarbarian():
       if pPlot.getNumUnits() == 1 and pUnit.getOwner() != pPlot.getOwner() and not pPlot.isCity():
 
         barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
         iBarbCities = barbPlayer.getNumCities()
-        if iBarbCities > 10: iChance = 25  # 4%
-        elif iBarbCities > 4: iChance = 33 # 3%
-        else: iChance = 50 # 2%
+        # Chance in %
+        iMinimumChance = 2
+        if iBarbCities > 10: iChance = 4
+        elif iBarbCities > 4: iChance = 3
+        else: iChance = iMinimumChance
 
-        iRand = self.myRandom(iChance, None)
-        if iRand < 1:
+        iCalcChance = int(100/iChance)
+
+        iRand = self.myRandom(iCalcChance, None)
+        if iRand == 1:
           iPlayer = pUnit.getOwner()
           if gc.getPlayer(iPlayer).isHuman():
             iRand = self.myRandom(5, None)
@@ -8855,14 +6751,21 @@ class CvEventManager:
             if gc.getPlayer(pPlot.getOwner()).isHuman():
               CyInterface().addMessage(pPlot.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_MERCHANT_ROBBERY_1_1",(gc.getPlayer(pUnit.getOwner()).getCivilizationAdjective(3),0)), None, 2, "Art/Interface/Buttons/Units/button_merchant.dds", ColorTypes(14), pPlot.getX(), pPlot.getY(), True, True)
 
-          UnitType = pUnit.getUnitType()
+          # Generelle Info zur Chance
+          text = CyTranslator().getText("TXT_KEY_MESSAGE_MERCHANT_ROBBERY_INFO",(iChance,iMinimumChance))
+          CyInterface().addMessage(iPlayer, True, 5, text, None, 2, None, ColorTypes(13), 0, 0, False, False)
+
+          # PAE Trade: Einheit leeren
+          CvUtil.removeScriptData(pUnit, "b")
+
+          # Einheit killen
           #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-          pUnit.kill(1,pUnit.getOwner())
-          # Merchants gets barbarian or killed: 50:50
-          if pPlot.getNumUnits() == 0:
-            iRand = self.myRandom(2, None)
-            if iRand == 1:
-              barbPlayer.initUnit(gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+          #pUnit.kill(1,pUnit.getOwner())
+          # Merchants gets barbarian: 50:50
+          #if pPlot.getNumUnits() == 0:
+          #  iRand = self.myRandom(2, None)
+          #  if iRand == 1:
+          #    barbPlayer.initUnit(gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"), pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Haendler verschwunden (Zeile 2530)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -9026,7 +6929,7 @@ class CvEventManager:
 
     bCheckCityState = False
     # ++++ AI - Unit Built/Created
-    if not gc.getPlayer(city.getOwner()).isHuman():
+    if not pPlayer.isHuman():
 
       # PAE V: Pirate feature - disabled cause of possible OOS when too many active AI pirates
       #if unit.getDomainType() == gc.getInfoTypeForString("DOMAIN_SEA"):
@@ -9076,7 +6979,7 @@ class CvEventManager:
 
       # 2nd Settler for AI (Immortal, Deity) (PAE V)
       if iHandicap >= 7 and unit.getUnitType() == gc.getInfoTypeForString("UNIT_SETTLER"):
-        pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), ReligionTypes.NO_RELIGION)
+        pPlayer.initUnit(unit.getUnitType(),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
       # -----------------------
       # Experienced units on higher handicap level (PAE V Patch 3)
@@ -9106,11 +7009,15 @@ class CvEventManager:
       city.setFood(city.getFood()/2)
       # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
       if unit.getUnitType() == gc.getInfoTypeForString("UNIT_DRUIDE") or unit.getUnitType() == gc.getInfoTypeForString("UNIT_BRAHMANE"):
-        if gc.getPlayer(unit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): unit.setScriptData("150")
-        else: unit.setScriptData("100")
+        if gc.getPlayer(unit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
+          CvUtil.addScriptData(unit, "s", 150)
+        else:
+          CvUtil.addScriptData(unit, "s", 100)
       else:
-          if gc.getPlayer(unit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): unit.setScriptData("300")
-          else: unit.setScriptData("200")
+          if gc.getPlayer(unit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
+            CvUtil.addScriptData(unit, "s", 300)
+          else:
+            CvUtil.addScriptData(unit, "s", 200)
 
     # ++++ Getreidekarren
     if unit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
@@ -9132,7 +7039,7 @@ class CvEventManager:
               iPlayerCulture = i
       # Sollte auf dem Plot keine Kultur sein (geht eigentlich nicht...), gehoert der Auswanderer zur Kultur des Besitzers
       if iValueCulture < 1: iPlayerCulture = unit.getOwner()
-      unit.setScriptData(str(iPlayerCulture))
+      CvUtil.addScriptData(unit, "p", iPlayerCulture)
       # Pop*100 Kultur von dem Stadtplot abziehen (max. 1000) (es bleibt immer mind. 1 Kultur)
       iCultureMax = pPlot.getCulture(iPlayerCulture) - 1
       if iCultureMax > 1000: iCultureMax = 1000
@@ -9154,11 +7061,10 @@ class CvEventManager:
 
     # --------------------------------------------
 
-    # Ab PAE V Patch 3 werden Schiffe auch mit Nahrung produziert
+    # PAE V Patch 3: Schiffe werden auch mit Nahrung produziert
     # ++++ Polyeren / Polyremen / Schiffe / Schiffsbau verbraucht Pop
     #if unit.getDomainType() == gc.getInfoTypeForString("DOMAIN_SEA"):
     #  BigShips = []
-    #  BigShips.append(gc.getInfoTypeForString("UNIT_GALLEY"))
     #  BigShips.append(gc.getInfoTypeForString("UNIT_QUADRIREME"))
     #  BigShips.append(gc.getInfoTypeForString("UNIT_QUINQUEREME"))
     #  BigShips.append(gc.getInfoTypeForString("UNIT_ROME_DECAREME"))
@@ -9302,25 +7208,6 @@ class CvEventManager:
     # Feature Waldrodung Ende
     # --------------------------------------------
 
-
-    # ++++++++ Names for Legions +++++++++++++++++
-    # Reusing names of fallen Legions
-    if unit.getUnitType() == gc.getInfoTypeForString("UNIT_LEGION2"):
-
-      LegioUsedNames = []
-      iRange = pPlayer.getNumUnits()
-      for i in range(iRange):
-        if pPlayer.getUnit(i).getUnitType() == gc.getInfoTypeForString("UNIT_LEGION2"):
-          LegioUsedNames.append(re.sub(" \(.*?\)","",pPlayer.getUnit(i).getName()))
-
-      LegioNames = ["Legio I Adiutrix","Legio I Germanica","Legio I Italica","Legio I Macriana Liberatrix","Legio I Minervia","Legio I Parthica","Legio II Adiutrix","Legio II Augusta","Legio II Italica","Legio II Parthica","Legio II Traiana Fortis","Legio III Augusta","Legio III Cyrenaica","Legio III Gallica","Legio III Italica","Legio III Parthica","Legio III Macedonica","Legio IV Flavia Felix","Legio IV Scythica","Legio V Alaudae","Legio V Macedonica","Legio VI Ferrata","Legio VI Victrix","Legio VII Claudia","Legio VII Gemina","Legio VIII Augusta","Legio IX Hispana","Legio X Fretensis","Legio X Equestris","Legio XI Claudia","Legio XII Fulminata","Legio XIII Gemina","Legio XIV Gemina","Legio XV Apollinaris","Legio XV Primigenia","Legio XVI Gallica","Legio XVI Flavia Firma","Legio XVII","Legio XVIII","Legio XIX","Legio XX Valeria Victrix","Legio XXI Rapax","Legio XXII Deiotariana","Legio XXII Primigenia","Legio XXX Ulpia Victrix","Legio I Iulia Alpina","Legio I Armeniaca","Legio I Flavia Constantia","Legio I Flavia Gallicana","Legio I Flavia Martis","Legio I Flavia Pacis","Legio I Illyricorum","Legio I Iovia","Legio I Isaura Sagitaria","Legio I Martia","Legio I Maximiana","Legio I Noricorum","Legio I Pontica","Legio II Iulia Alpina","Legio II Armeniaca","Legio II Brittannica","Legio II Flavia Virtutis","Legio II Herculia","Legio II Isaura","Legio III Iulia Alpina","Legio III Diocletiana","Legio III Flavia Salutis","Legio III Herculia","Legio III Isaura","Legio IV Italica","Legio IV Martia","Legio IV Parthica","Legio V Iovia","Legio V Parthica","Legio VI Gallicana","Legio VI Herculia","Legio VI Hispana","Legio VI Parthica","Legio XII Victrix","Legio Thebaica"]
-      iRange = len(LegioNames)
-      for i in range(iRange):
-        if LegioNames[i] not in LegioUsedNames:
-          unit.setName(LegioNames[i])
-          break
-    # --- end Legion Names
-
     # PAE Provinzcheck
     if bCheckCityState:
       self.doCheckCityState(city)
@@ -9333,12 +7220,38 @@ class CvEventManager:
       else:
         self.doCityUnitPromotions(city,unit)
 
-    # # PAE V: Mercenary promotion
-    # if city.getOwner() != city.getOriginalOwner():
-      # if city.getPopulation() < 9:
-        # if city.plot().calculateCulturePercent(city.getOwner()) < 75:
-          # if unit.isMilitaryHappiness() or unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-             # unit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY"), True)
+        # PAE Waffenmanufakturen - adds a second unit (PAE V Patch 4)
+        if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"):
+           if city.isHasBuilding(gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_SCHWERT")):
+              pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+        elif unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"):
+           if city.isHasBuilding(gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_AXT")):
+              pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+        elif unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
+           if city.isHasBuilding(gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_BOGEN")):
+              pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+        elif unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN") or \
+             unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
+           if city.isHasBuilding(gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_SPEER")):
+              pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+
+    # PAE V: Mercenary promotion
+    if city.getOwner() != city.getOriginalOwner():
+      if city.getPopulation() < 9:
+        if city.plot().calculateCulturePercent(city.getOwner()) < 75:
+          if unit.isMilitaryHappiness() or unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
+             unit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY"), True)
+
+    # Blessed Units
+    iBuilding = gc.getInfoTypeForString("BUILDING_CHRISTIAN_CATHEDRAL")
+    if city.isHasBuilding(iBuilding):
+      # Chance: 25% a unit gets blessed
+      if self.myRandom(4, None) == 1:
+        unit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_BLESSED"), True)
 
     # PAE Debug Mark
     #"""
@@ -9358,7 +7271,7 @@ class CvEventManager:
 
     if (not self.__LOG_UNITKILLED):
       return
-    CvUtil.pyPrint('Player %d Civilization %s Unit %s was killed by Player %d'
+    CvUtil.pyPrint(u'Player %d Civilization %s Unit %s was killed by Player %d'
       %(player.getID(), player.getCivilizationName(), unit.getName(), attacker.getID()))
 
   def onUnitLost(self, argsList):
@@ -9442,12 +7355,12 @@ class CvEventManager:
                  iMaxHealing *= 3
                  iMaxHealing /= 2
 
-             txt = loopUnit.getScriptData()
+             txt = CvUtil.getScriptData(loopUnit, ["s","t"])
              if txt == "": txt = str(iMaxHealing) # 0 = leer/verbraucht, aber "" ist fabriksneu ;)
              iSupplyValue = int(txt)
              iSupplyValue += iSupplyChange
              if iSupplyValue > iMaxHealing: iSupplyValue = iMaxHealing
-             loopUnit.setScriptData(str(iSupplyValue))
+             CvUtil.addScriptData(loopUnit, "s", iSupplyValue)
       # -----------------
 
       # Free promotion when pillaging: 20%
@@ -9469,7 +7382,7 @@ class CvEventManager:
 
       # Handelsposten: Plot-ScriptData leeren
       if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"):
-        pPlot.setScriptData("")
+        CvUtil.removeScriptData(pPlot, "p")
 
       # Unit soll sich nachher nicht mehr fortbewegen koennen
       pUnit.finishMoves()
@@ -9657,7 +7570,49 @@ class CvEventManager:
           popupInfo.setText(u"showTechSplash")
           popupInfo.addPopup(iPlayer)
 
+    # ----------------------------------
+    # Trait Creative: Bei Alphabet in jede Stadt Trait-Gebaeude setzen
+    if iTechType == gc.getInfoTypeForString("TECH_ALPHABET") and gc.getPlayer(iPlayer).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")) and iPlayer > -1:
+      lCities = PyPlayer(iPlayer).getCityList()
+      pPlayer = gc.getPlayer(iPlayer)
+      iRangeCities = len(lCities)
+      iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL")
+      for iCity in range(iRangeCities):
+        pCity = pPlayer.getCity(lCities[iCity].getID())
+        pCity.setNumRealBuilding(iBuilding, 1)
     #-----------------------------
+
+    # freier Siedler fuer die KI ab Emperor
+    if iPlayer > -1 and gc.getGame().getHandicapType() > 5:
+      iUnit = -1
+      pPlayer = gc.getPlayer(iPlayer)
+      if not pPlayer.isHuman():
+          if iTechType == gc.getInfoTypeForString("TECH_GEOMETRIE"): iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_SCHIFFSBAU"): iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_DUALISMUS"):  iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_CELTIC"): iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_NORDIC"): iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_COLONIZATION2"):
+              if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON") \
+              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
+              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA") \
+              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MACEDONIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA") \
+              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ASSYRIA") \
+              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_LYDIA") \
+              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
+                 iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_ROME"): iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+          elif iTechType == gc.getInfoTypeForString("TECH_PERSIAN_ROAD"):  iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
+
+      # Einheit erstellen
+      if iUnit > -1:
+        #pPlayer = gc.getPlayer(iPlayer)
+        pCapital = pPlayer.getCapitalCity()
+        if pCapital != None and not pCapital.isNone():
+          iX = pCapital.getX()
+          iY = pCapital.getY()
+          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
+
     # Tech und freie Einheit / Free Unit
     bNewUnit = False
     if iPlayer > -1:
@@ -9685,81 +7640,8 @@ class CvEventManager:
           iRand = self.myRandom(len(lCities), None)
           iX = pPlayer.getCity(lCities[iRand].getID()).getX()
           iY = pPlayer.getCity(lCities[iRand].getID()).getY()
-          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH, pPlayer.getCivilizationType(), pPlayer.getStateReligion())
+          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_MISSIONARY, DirectionTypes.DIRECTION_SOUTH)
           bNewUnit = True
-#      #freier Siedler
-#      iUnit = -1
-#      pPlayer = gc.getPlayer(iPlayer)
-#      if not pPlayer.isHuman():
-#          if iTechType == gc.getInfoTypeForString("TECH_GEOMETRIE"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_SCHIFFSBAU"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_DUALISMUS"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_CELTIC"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_NORDIC"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_COLONIZATION2"):
-#              if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MACEDONIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ASSYRIA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_LYDIA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
-#                  iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_ROME"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_PERSIAN_ROAD"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#
-#      # Einheit erstellen
-#      if iUnit > -1:
-#        #pPlayer = gc.getPlayer(iPlayer)
-#        pCapital = pPlayer.getCapitalCity()
-#        if pCapital != None and not pCapital.isNone():
-#          iX = pCapital.getX()
-#          iY = pCapital.getY()
-#          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
-
-#      #freier Siedler
-#      iUnit = -1
-#      pPlayer = gc.getPlayer(iPlayer)
-#      if not pPlayer.isHuman():
-#          if iTechType == gc.getInfoTypeForString("TECH_GEOMETRIE"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_SCHIFFSBAU"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_DUALISMUS"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_CELTIC"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_NORDIC"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_COLONIZATION2"):
-#              if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MACEDONIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ASSYRIA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_LYDIA") \
-#              or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
-#                  iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_ROME"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#          elif iTechType == gc.getInfoTypeForString("TECH_PERSIAN_ROAD"):
-#              iUnit = gc.getInfoTypeForString("UNIT_SETTLER")
-#
-#      # Einheit erstellen
-#      if iUnit > -1:
-#        #pPlayer = gc.getPlayer(iPlayer)
-#        pCapital = pPlayer.getCapitalCity()
-#        if pCapital != None and not pCapital.isNone():
-#          iX = pCapital.getX()
-#          iY = pCapital.getY()
-#          NewUnit = pPlayer.initUnit(iUnit, iX, iY, UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
 
     # Matriarchist
     if bNewUnit and iTechType == gc.getInfoTypeForString("TECH_FRUCHTBARKEIT"):
@@ -9845,7 +7727,8 @@ class CvEventManager:
 
 
     # Heresy ---------------------
-    if iPlayer > -1 and iTechType == gc.getInfoTypeForString("TECH_HERESY"):
+    #if iPlayer > -1 and iTechType == gc.getInfoTypeForString("TECH_HERESY"):
+    """
         pPlayer = gc.getPlayer(iPlayer)
 
         lCities = PyPlayer(iPlayer).getCityList()
@@ -9896,7 +7779,7 @@ class CvEventManager:
           popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
           popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_HERESY_DARK_AGE_POPUP",("", )))
           popupInfo.addPopup(iPlayer)
-
+    """
     # ---------------------------------------------------------
 
     if (not self.__LOG_TECH):
@@ -9936,36 +7819,6 @@ class CvEventManager:
           gc.getGame().getHolyCity(iReligion).setHasReligion(iReligion,0,0,0)
           gc.getGame().setHolyCity (iReligion, pCapitalCity, 0)
           iCityId = pCapitalCity.getID()
-
-    # Christentum
-    elif iReligion == gc.getInfoTypeForString("RELIGION_CHRISTIANITY"):
-      iJudentum = gc.getInfoTypeForString("RELIGION_JUDAISM")
-      # In der heiligen juedischen Stadt, wenn der Gruender der Besitzer ist
-      pHolyCityJudentum = gc.getGame().getHolyCity(iJudentum)
-      if pHolyCityJudentum.getOwner() == iFounder:
-        if iCityId != pHolyCityJudentum.getID():
-          gc.getGame().getHolyCity(iReligion).setHasReligion(iReligion,0,0,0)
-          gc.getGame().setHolyCity (iReligion, pHolyCityJudentum, 0)
-          iCityId = pHolyCityJudentum.getID()
-      # in der groessten juedischen Stadt des Besitzers
-      else:
-        pNewCity = None
-        iNewCityPop = 0
-        pPlayer = gc.getPlayer(iFounder)
-        iNumCities = pPlayer.getNumCities()
-        for i in range (iNumCities):
-          pCity = pPlayer.getCity(i)
-          if pCity:
-            if pCity.isHasReligion(iJudentum):
-              iPop = pCity.getPopulation()
-              if iPop > iNewCityPop:
-                iNewCityPop = iPop
-                pNewCity = pCity
-        if pNewCity:
-          if iCityId != pNewCity.getID():
-            gc.getGame().getHolyCity(iReligion).setHasReligion(iReligion,0,0,0)
-            gc.getGame().setHolyCity (iReligion, pNewCity, 0)
-            iCityId = pNewCity.getID()
 
     # BTS
     if (gc.getGame().isFinalInitialized() and not gc.getGame().GetWorldBuilderMode()):
@@ -10014,6 +7867,9 @@ class CvEventManager:
     'Corporation Founded'
     iCorporation, iFounder = argsList
     player = PyPlayer(iFounder)
+
+    # Clear cult headquarter
+    CyGame().clearHeadquarters(iCorporation)
 
     if (not self.__LOG_RELIGION):
       return
@@ -10115,9 +7971,25 @@ class CvEventManager:
     CvUtil.pyPrint('City Built Event: %s' %(city.getName()))
 
     # Kolonie / Provinz ----------
-    # Stadt bekommt automatisch das Koloniegebaeude
+    # Stadt bekommt automatisch das Koloniegebaeude und Trait-Gebaeude
     self.doCheckCityState(city)
+    self.doCheckTraitBuildings(city, city.getOwner())
+    self.doCheckGlobalTraitBuildings(city.getOwner())
     # ----------------------------
+
+#    # Trait Maritim (The_J) -------- (durch neue Trait-Gebaeude ersetzt)
+#    pPlayer = gc.getPlayer(city.getOwner())
+#    if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")):
+#      pPlot = CyMap().plot(city.getX(),city.getY())
+#      if pPlot.isCoastalLand ():
+#         # Class
+#         #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_MARITIME"))
+#         iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL")
+#         city.setNumRealBuilding(iBuilding,1)
+
+    # ***TEST***
+    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Neue Kolonie (Zeile 3041)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
 
   def onCityRazed(self, argsList):
     'City Razed'
@@ -10162,7 +8034,7 @@ class CvEventManager:
     if team.isHasTech(iTechEnslavement):
       iSlaves = city.getPopulation()
       for i in range(iSlaves):
-        gc.getPlayer(iPlayer).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+        gc.getPlayer(iPlayer).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
       if gc.getPlayer(iPlayer).isHuman():
         if iSlaves == 1:
@@ -10212,7 +8084,7 @@ class CvEventManager:
 
           for i in range(iAnzahl):
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            pUnit = gc.getPlayer(iOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iOwner).getCivilizationType(), gc.getPlayer(iOwner).getStateReligion())
+            pUnit = gc.getPlayer(iOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             iDamage = self.myRandom(50, None)
             pUnit.setDamage( iDamage, iOwner )
 
@@ -10243,33 +8115,22 @@ class CvEventManager:
     CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
     pPlayer = gc.getPlayer(iNewOwner)
     pPlot = CyMap().plot(pCity.getX(),pCity.getY())
-    # Szenarien
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
 
     # PAE Debug Mark
     #"""
 
-    # +++++ Scenario: FirstPunicWar - Start
-    if sScenarioScriptData == "FirstPunicWar":
-      iCivRome = 0  # Capital: Rome
-      iCivCarthage = 1 # Capital: Carthage
-      sData = pCity.plot().getScriptData()
-      if sData == "Rome" and iNewOwner != iCivRome or sData == "Carthage" and iNewOwner == iCivRome:
+    # Trait-Gebaeude anpassen
+    self.doCheckTraitBuildings(pCity, iNewOwner)
+    self.doCheckGlobalTraitBuildings(iPreviousOwner)
+    self.doCheckGlobalTraitBuildings(iNewOwner)
+    # Szenarien
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    # Assimilation Tech (PAE V Patch 4)
+    if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ASSIMILATION")): bAssimilation = True
+    else: bAssimilation = False
 
-        # PAE Movie
-        if gc.getPlayer(iNewOwner).isHuman():
-          if iNewOwner == iCivRome: iMovie = 1
-          else: iMovie = 2
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON_SCREEN)
-          popupInfo.setData1(iMovie) # dynamicID in CvWonderMovieScreen
-          popupInfo.setData2(0) # fix pCity.getID()
-          popupInfo.setData3(3) # fix PAE Movie ID for victory movies
-          popupInfo.setText(u"showWonderMovie")
-          popupInfo.addPopup(iNewOwner)
-
-        gc.getGame().setWinner(gc.getPlayer(iNewOwner).getTeam(),2)
-    # +++++ Scenario: FirstPunicWar - End
+    if sScenarioName == "FirstPunicWar":
+      FirstPunicWar.onCityAcquired(pCity, iNewOwner)
 
 
 # PAE triumph movies when city is reconquered
@@ -10317,15 +8178,27 @@ class CvEventManager:
           break
 
       # Rename City to CityNameList when there is no B->C entry
-      # Nicht bei Szenarien verwenden (sScenarioScriptData wird ganz oben initialisiert)
-      if NewCityName == "" and sScenarioScriptData == "":
+      # Nicht bei Szenarien verwenden (sScenarioName wird ganz oben initialisiert)
+      if NewCityName == "" and sScenarioName == "":
          pCity.setName(gc.getPlayer(iNewOwner).getNewCityName(),0)
 # ---------------
 
-# Provinzpalast muss raus
+## Trait Maritim (The_J) -------- (durch neue Trait-Gebaeude ersetzt)
+#    pPlayer = gc.getPlayer(iNewOwner)
+#    pPlot = CyMap().plot(pCity.getX(),pCity.getY())
+#    if pPlot.isCoastalLand():
+#      # Class
+##      iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_MARITIME"))
+#      iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL")
+#      if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(iBuilding,1)
+#      else: pCity.setNumRealBuilding(iBuilding,0)
+
+
+# Provinzpalast und Praefectur muss raus, Bischofssitz kann bleiben
     iBuilding = gc.getInfoTypeForString("BUILDING_PROVINZPALAST")
-    if pCity.isHasBuilding(iBuilding):
-       pCity.setNumRealBuilding(iBuilding,0)
+    if pCity.isHasBuilding(iBuilding): pCity.setNumRealBuilding(iBuilding,0)
+    iBuilding = gc.getInfoTypeForString("BUILDING_PRAEFECTUR")
+    if pCity.isHasBuilding(iBuilding): pCity.setNumRealBuilding(iBuilding,0)
 
 # Palisade - Stadtmauer - Hohe/Breite Mauern
     iBuildingPalisade = gc.getInfoTypeForString("BUILDING_PALISADE")
@@ -10341,8 +8214,7 @@ class CvEventManager:
         iBuilding = gc.getCivilizationInfo(gc.getPlayer(iPreviousOwner).getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_WALLS"))
         pCity.setNumRealBuilding(iBuilding,1)
     if pCity.isHasBuilding(iBuildingWalls1) or pCity.isHasBuilding(iBuildingWalls2):
-      if not pCity.isHasBuilding(iBuildingPalisade):
-        pCity.setNumRealBuilding(iBuildingPalisade,1)
+      if not pCity.isHasBuilding(iBuildingPalisade): pCity.setNumRealBuilding(iBuildingPalisade,1)
 
 # Spezialgebaeude muessen raus, weil nicht die Building_X erobert werden, sondern die BuildingClass_X !!!
     for i in range(9):
@@ -10356,30 +8228,12 @@ class CvEventManager:
        if pCity.isHasBuilding(iBuilding):
          pCity.setNumRealBuilding(iBuilding,0)
 
-# Sklaven sollen aus Tempeln reduziert werden
-    if (not bTrade or bConquest):
-     TempleArray = []
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_ROME_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"))
-     TempleArray.append(gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE"))
-     for iTemple in TempleArray:
-      if pCity.isHasBuilding(iTemple):
-        iCulture = pCity.getBuildingCommerceByBuilding(2, iTemple)
-        if iCulture > 3: iCulture = int(iCulture/2)
-        else: iCulture = 0
-        pCity.setBuildingCommerceChange(gc.getBuildingInfo(iTemple).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-
 
 # ------- Create partisans and slaves, catch great people (only during active war), nearest city riots
     if gc.getTeam(gc.getPlayer(iPreviousOwner).getTeam()).isAtWar(gc.getPlayer(iNewOwner).getTeam()):
 
 # --- Partisans!
-      if (not bTrade or bConquest) and not gc.getPlayer(iNewOwner).isBarbarian() and gc.getPlayer(iPreviousOwner).isAlive():
+      if not bAssimilation and (not bTrade or bConquest) and not gc.getPlayer(iNewOwner).isBarbarian() and gc.getPlayer(iPreviousOwner).isAlive():
         # Seek Plots
         rebelPlotArray = []
         PartisanPlot1 = []
@@ -10411,7 +8265,7 @@ class CvEventManager:
 
           for i in range(iAnzahl):
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iPreviousOwner).getCivilizationType(), gc.getPlayer(iPreviousOwner).getStateReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             iDamage = self.myRandom(50, None)
             pUnit.setDamage( iDamage, iPreviousOwner )
 
@@ -10420,7 +8274,7 @@ class CvEventManager:
           pCity.setFreeSpecialistCount(19,0)
           for i in range(iAnzahl):
             iPlot = self.myRandom(len(rebelPlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(iPreviousOwner).getCivilizationType(), gc.getPlayer(iPreviousOwner).getStateReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             iDamage = self.myRandom(25, None)
             pUnit.setDamage( iDamage, iPreviousOwner )
             pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
@@ -10440,48 +8294,43 @@ class CvEventManager:
 # --- Ende Partisans -------------------------
 
 # --- Slaves (max num = City Population)
-      iSlaves = self.myRandom(pCity.getPopulation()-1, None) + 1
-      # Trait Aggressive: Slaves * 2
-      if gc.getPlayer(iNewOwner).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")): iSlaves *= 2
-      iTechEnslavement = gc.getInfoTypeForString("TECH_ENSLAVEMENT")
-      iThisTeam = gc.getPlayer(iNewOwner).getTeam()
-      team = gc.getTeam(iThisTeam)
-      if team.isHasTech(iTechEnslavement):
-        for i in range(iSlaves):
-          gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+      if not bAssimilation:
+        iSlaves = self.myRandom(pCity.getPopulation()-1, None) + 1
+        # Trait Aggressive: Slaves * 2
+        if gc.getPlayer(iNewOwner).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")): iSlaves *= 2
+        iTechEnslavement = gc.getInfoTypeForString("TECH_ENSLAVEMENT")
+        iThisTeam = gc.getPlayer(iNewOwner).getTeam()
+        team = gc.getTeam(iThisTeam)
+        if team.isHasTech(iTechEnslavement):
+          for i in range(iSlaves):
+            gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
-        if gc.getPlayer(iNewOwner).isHuman():
-          if iSlaves == 1:
-            CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_1",(0,0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-          else:
-            CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_2",(iSlaves,0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-        elif gc.getPlayer(iPreviousOwner).isHuman():
-          if iSlaves == 1:
-            CyInterface().addMessage(iPreviousOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_3",(pCity.getName(),0)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-          else:
-            CyInterface().addMessage(iPreviousOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_4",(pCity.getName(),iSlaves)), None, 2, None, ColorTypes(7), 0, 0, False, False)
+          if gc.getPlayer(iNewOwner).isHuman():
+            if iSlaves == 1:
+              CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_1",(0,0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
+            else:
+              CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_2",(iSlaves,0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
+          elif gc.getPlayer(iPreviousOwner).isHuman():
+            if iSlaves == 1:
+              CyInterface().addMessage(iPreviousOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_3",(pCity.getName(),0)), None, 2, None, ColorTypes(7), 0, 0, False, False)
+            else:
+              CyInterface().addMessage(iPreviousOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_SLAVES_4",(pCity.getName(),iSlaves)), None, 2, None, ColorTypes(7), 0, 0, False, False)
 
-      if gc.getPlayer(iNewOwner).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")): iSlaves /= 2 # Trait Aggressive: Popverlust bleibt gleich / loss of pop remains the same
-      iSetPop = pCity.getPopulation() - iSlaves
-      if iSetPop < 1: iSetPop = 1
-      pCity.setPopulation(iSetPop)
+        if gc.getPlayer(iNewOwner).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")): iSlaves /= 2 # Trait Aggressive: Popverlust bleibt gleich / loss of pop remains the same
+        iSetPop = pCity.getPopulation() - iSlaves
+        if iSetPop < 1: iSetPop = 1
+        pCity.setPopulation(iSetPop)
 
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stadt erobert (Zeile 3182)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        # ***TEST***
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stadt erobert (Zeile 3182)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # ---- Settled slaves -> Freed Slaves (Befreite Sklaven)
-      iCitySlaves = pCity.getFreeSpecialistCount(16) + pCity.getFreeSpecialistCount(17) + pCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE = 15,17,18
-      iCityGlads = pCity.getFreeSpecialistCount(15) # SPECIALIST_GLADIATOR = 16
-      # Settled slaves => 0
-      pCity.setFreeSpecialistCount(15,0)
-      pCity.setFreeSpecialistCount(16,0)
-      pCity.setFreeSpecialistCount(17,0)
-      pCity.setFreeSpecialistCount(18,0)
-      # Sklavenmarkt wird entfernt (PAE V Beta 2 Patch 7)
-      #if iCitySlaves > 0:
-      #  iBuildingSklavenmarkt = gc.getInfoTypeForString('BUILDING_SKLAVENMARKT')
-      #  if pCity.isHasBuilding(iBuildingSklavenmarkt):
-      #    pCity.setNumRealBuilding(iBuildingSklavenmarkt,0)
+      if bAssimilation:
+        iCitySlaves = 0
+        iCityGlads = 0
+      else:
+        iCitySlaves = pCity.getFreeSpecialistCount(16) + pCity.getFreeSpecialistCount(17) + pCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE = 16,17,18
+        iCityGlads = pCity.getFreeSpecialistCount(15) # SPECIALIST_GLADIATOR = 15
 
       iFreedSlaves = iCitySlaves + iCityGlads
       if iFreedSlaves > 0:
@@ -10489,34 +8338,34 @@ class CvEventManager:
           iRand = self.myRandom(20, None)
           NewUnit = ""
           if iRand == 0:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_1",(0,0))
           elif iRand == 1:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_UNSTERBLICH'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH, CivilizationTypes.CIVILIZATION_PERSIA, pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_UNSTERBLICH'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_2",(0,0))
           elif iRand == 2:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_3",(0,0))
           elif iRand == 3:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_SPY'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SPY, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_SPY'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SPY, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_4",(0,0))
           elif iRand == 4:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_HOPLIT'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, CivilizationTypes.CIVILIZATION_GREECE, pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_HOPLIT'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_5",(0,0))
           elif iRand == 5:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_ARCHER_KRETA'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_ARCHER_KRETA'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_6",(0,0))
           elif iRand == 6:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_7",(0,0))
           elif iRand == 7:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_BALEAREN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_BALEAREN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_8",(0,0))
           elif iRand == 8:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GERMANNE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GERMANNE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_9",(0,0))
           else:
-            gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_SPECIAL, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_SPECIAL, DirectionTypes.DIRECTION_SOUTH)
             text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_0",(0,0))
 
           if gc.getPlayer(iNewOwner).isHuman():
@@ -10534,32 +8383,41 @@ class CvEventManager:
 
 # --- Great People can be catched as unit to resettle
 # --- gets captured: 50 % | can flee: 40 % | get killed: 10 %
-      iCityGP1 = pCity.getFreeSpecialistCount(8) # SPECIALIST_GREAT_PRIEST
-      iCityGP2 = pCity.getFreeSpecialistCount(9) # SPECIALIST_GREAT_ARTIST
-      iCityGP3 = pCity.getFreeSpecialistCount(10) # SPECIALIST_GREAT_SCIENTIST
-      iCityGP4 = pCity.getFreeSpecialistCount(11) # SPECIALIST_GREAT_MERCHANT
-      iCityGP5 = pCity.getFreeSpecialistCount(12) # SPECIALIST_GREAT_ENGINEER
-      iCityGP6 = pCity.getFreeSpecialistCount(13) # SPECIALIST_GREAT_GENERAL
-      iCityGP7 = pCity.getFreeSpecialistCount(14) # SPECIALIST_GREAT_SPY
-      # guenstigen Plot aussuchen
-      # mit pCityPlot.getNearestLandPlot() ist es sonst immer der gleiche
-      fleePlotArray = []
-      for i in range(3):
-        for j in range(3):
-          loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
-          if None != loopPlot and not loopPlot.isNone() and not loopPlot.isCity():
-            if not loopPlot.isPeak() and not loopPlot.isWater():
-              if loopPlot.getNumUnits() > 0:
-                iRange = loopPlot.getNumUnits()
-                for n in range (iRange):
-                  if loopPlot.getUnit(n).getOwner() == iPreviousOwner:
-                    fleePlotArray.append(loopPlot)
-                    break
-              else:
-                fleePlotArray.append(loopPlot)
-      if len(fleePlotArray) == 0:
-        pCityPlot = CyMap().plot(pCity.getX(), pCity.getY())
-        fleePlotArray.append(pCityPlot.getNearestLandPlot())
+      if bAssimilation:
+        iCityGP1 = 0
+        iCityGP2 = 0
+        iCityGP3 = 0
+        iCityGP4 = 0
+        iCityGP5 = 0
+        iCityGP6 = 0
+        iCityGP7 = 0
+      else:
+        iCityGP1 = pCity.getFreeSpecialistCount(8) # SPECIALIST_GREAT_PRIEST
+        iCityGP2 = pCity.getFreeSpecialistCount(9) # SPECIALIST_GREAT_ARTIST
+        iCityGP3 = pCity.getFreeSpecialistCount(10) # SPECIALIST_GREAT_SCIENTIST
+        iCityGP4 = pCity.getFreeSpecialistCount(11) # SPECIALIST_GREAT_MERCHANT
+        iCityGP5 = pCity.getFreeSpecialistCount(12) # SPECIALIST_GREAT_ENGINEER
+        iCityGP6 = pCity.getFreeSpecialistCount(13) # SPECIALIST_GREAT_GENERAL
+        iCityGP7 = pCity.getFreeSpecialistCount(14) # SPECIALIST_GREAT_SPY
+        # guenstigen Plot aussuchen
+        # mit pCityPlot.getNearestLandPlot() ist es sonst immer der gleiche
+        fleePlotArray = []
+        for i in range(3):
+          for j in range(3):
+            loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
+            if None != loopPlot and not loopPlot.isNone() and not loopPlot.isCity():
+              if not loopPlot.isPeak() and not loopPlot.isWater():
+                if loopPlot.getNumUnits() > 0:
+                  iRange = loopPlot.getNumUnits()
+                  for n in range (iRange):
+                    if loopPlot.getUnit(n).getOwner() == iPreviousOwner:
+                      fleePlotArray.append(loopPlot)
+                      break
+                else:
+                  fleePlotArray.append(loopPlot)
+        if len(fleePlotArray) == 0:
+          pCityPlot = CyMap().plot(pCity.getX(), pCity.getY())
+          fleePlotArray.append(pCityPlot.getNearestLandPlot())
 
 
       # Prophet
@@ -10568,7 +8426,7 @@ class CvEventManager:
         for i in range(iCityGP1):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP1_1",(0,0))
@@ -10577,7 +8435,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10597,7 +8455,7 @@ class CvEventManager:
         for i in range(iCityGP2):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP2_1",(0,0))
@@ -10606,7 +8464,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10626,7 +8484,7 @@ class CvEventManager:
         for i in range(iCityGP3):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP3_1",(0,0))
@@ -10635,7 +8493,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10655,7 +8513,7 @@ class CvEventManager:
         for i in range(iCityGP4):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP4_1",(0,0))
@@ -10664,7 +8522,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
@@ -10684,7 +8542,7 @@ class CvEventManager:
         for i in range(iCityGP5):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = self.myRandom(3, None)
               if iRand == 0:   text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP5_1",(0,0))
@@ -10693,7 +8551,7 @@ class CvEventManager:
               CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(3, None)
@@ -10707,13 +8565,13 @@ class CvEventManager:
         for i in range(iCityGP6):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(11, None)
               CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP6_"+str(iRand),(0,0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(3, None)
@@ -10727,13 +8585,13 @@ class CvEventManager:
         for i in range(iCityGP7):
           iRand = self.myRandom(10, None)
           if iRand < 5:
-            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(4, None)
               CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP7_"+str(iRand),(0,0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
           elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
             iJump2Plot = self.myRandom(len(fleePlotArray), None)
-            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             #pUnit.jumpToNearestValidPlot()
             if gc.getPlayer(iNewOwner).isHuman():
               iRand = 1 + self.myRandom(3, None)
@@ -10742,13 +8600,6 @@ class CvEventManager:
               iRand = 1 + self.myRandom(4, None)
               CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNCATCH_GP7_"+str(iRand),(0,0)), None, 2, None, ColorTypes(7), 0, 0, False, False)
 
-      pCity.setFreeSpecialistCount(8,0)
-      pCity.setFreeSpecialistCount(9,0)
-      pCity.setFreeSpecialistCount(10,0)
-      pCity.setFreeSpecialistCount(11,0)
-      pCity.setFreeSpecialistCount(12,0)
-      pCity.setFreeSpecialistCount(13,0)
-      pCity.setFreeSpecialistCount(14,0)
 # --- Great People Catch end --
 
 
@@ -10763,7 +8614,8 @@ class CvEventManager:
 # ---- nearest city revolts end --
 
 # --- Getting Technology when conquering (Forschungsbonus)
-      if bConquest:
+# --- PAE V Patch4: nur ab Pop 3 (sonst exploit)
+      if bConquest and (bAssimilation or pCity.getPopulation() > 2):
        bGetTech = False
        if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ARCHIVE")) or pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_LIBRARY")): bGetTech = True
 
@@ -10847,17 +8699,22 @@ class CvEventManager:
 
 
 # --- Getting goldkarren / treasure / Beutegold ------
-      iBeute = int(pCity.getPopulation() / 2)
-      if iBeute > 0:
-        for i in range (iBeute):
-          gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+# --- PAE V Patch4: ab Pop 3 (sonst exploit)
+# --- Kein Goldkarren bei Assimilierung
+      if not bAssimilation and pCity.getPopulation() > 2:
+        iBeute = int(pCity.getPopulation() / 2)
+        if iBeute > 0:
+          for i in range (iBeute):
+            gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Beutegold erhalten (Zeile 3475)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
 # --- Bevoelkerungszuwachs bei Nachbarstaedten (50% Chance pro Stadt fuer + 1 Pop)
-      for x in range(11):
+# --- PAE V Patch4: ab Pop 3 (sonst exploit)
+      if not bAssimilation and pCity.getPopulation() > 2:
+       for x in range(11):
         for y in range(11):
           loopPlot = gc.getMap().plot(pCity.getX() - 5 + x, pCity.getY() - 5 + y)
           if loopPlot != None and not loopPlot.isNone():
@@ -10886,341 +8743,22 @@ class CvEventManager:
       # PAE Provinzcheck
       self.doCheckCityState(pCity)
 
-# -------------------------------------
-# --- Vasallen-Feature / Vassal feature
+      # set city slaves to null
+      if not bAssimilation and not bTrade:
+        PAE_Sklaven.doEnslaveCity(pCity)
+
+      # Ab Tech Assimilation soll die Stadtpop mind. 5 sein (PAE V Patch 4)
+      if bAssimilation and pCity.getPopulation() < 5: pCity.setPopulation(5)
+
+    # --- Vasallen-Feature / Vassal feature
       # iPreviousOwner,iNewOwner,pCity,bConquest,bTrade = argsList
       if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_VASSAL_STATES) and gc.getPlayer(iPreviousOwner).isAlive():
-       pWinner = gc.getPlayer(iNewOwner)
-       iWinnerTeam = pWinner.getTeam()
-       pWinnerTeam = gc.getTeam(iWinnerTeam)
-
-       # Der Gewinner muss die TECH Vassallentum erforscht haben
-       iTechVasallentum = gc.getInfoTypeForString("TECH_VASALLENTUM")
-       if pWinnerTeam.isHasTech(iTechVasallentum) and iNewOwner != gc.getBARBARIAN_PLAYER():
-
-        pLoser = gc.getPlayer(iPreviousOwner)
-        iLoserTeam = pLoser.getTeam()
-        pLoserTeam = gc.getTeam(iLoserTeam)
-        iLoserPowerWithVassals = pLoserTeam.getPower(True) # mit Vasallen
-        iWinnerPower = pWinnerTeam.getPower(True) # mit Vasallen
-
-        # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Winner Power",iWinnerPower)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Loser Power",iLoserPowerWithVassals)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-        # Hegemon verliert eine Stadt, Vasallen werden gecheckt
-        iRange = gc.getMAX_PLAYERS()
-        for i in range(iRange):
-         pPlayer = gc.getPlayer(i)
-         iVassal = gc.getPlayer(i).getID()
-         if pPlayer.isAlive():
-          iTeam = pPlayer.getTeam()
-          pTeam = gc.getTeam(iTeam)
-          if pTeam.isVassal(pLoserTeam.getID()):
-            iVassalPower = pTeam.getPower(True)
-
-            iLoserPower = iLoserPowerWithVassals - iVassalPower
-
-            # ***TEST***
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Hegemon Power",iLoserPower)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Vasall Power",iVassalPower)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-            # Wenn Vasall gemeinsam mit dem Feind staerker als Hegemon ist
-            # weiters trotzdem loyal zum Hegemon 1:3
-            if iVassalPower + iWinnerPower > iLoserPower and 10 > ( self.myRandom(30, None) + pPlayer.AI_getAttitude(iPreviousOwner) - pPlayer.AI_getAttitude(iNewOwner) ):
-
-              # ***TEST***
-              #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Vassal interaction",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-              # Initials
-              iWinnerGold = pWinner.getGold()
-
-              # 1/3 Gold, aber mind. > 300
-              if iVassalPower > iLoserPower - iLoserPower/3 + 1:
-                fGold = 0.33
-                iMinGold = 300
-
-              # 1/2 Gold, aber mind. > 400
-              elif iVassalPower > iLoserPower / 2:
-                fGold = 0.5
-                iMinGold = 400
-
-              # 2/3 Gold, aber mind. > 500
-              else:
-                fGold = 0.66
-                iMinGold = 500
+        PAE_Vassal.onCityAcquired(iNewOwner, iPreviousOwner)
 
 
-              # HI Vassal
-              # ------------------------------
-              if pPlayer.isHuman():
-                # Wir sind staerker als der Hegemon
-                if iVassalPower > iLoserPower:
-
-                    popupInfo = CyPopupInfo()
-                    popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-                    popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09",(pLoser.getCivilizationShortDescription(0),pWinner.getCivilizationShortDescription(0),pPlayer.getCivilizationAdjective(3))) )
-                    popupInfo.setData1(iNewOwner)
-                    popupInfo.setData2(iPreviousOwner)
-                    popupInfo.setData3(iVassal)
-                    popupInfo.setOnClickedPythonCallback("popupVassal09") # EntryPoints/CvScreenInterface und CvGameUtils / 688
-                    popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_YES",(pLoser.getCivilizationShortDescription(0),pWinner.getCivilizationShortDescription(0))), "")
-                    popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_NO", (pLoser.getCivilizationShortDescription(0),pWinner.getCivilizationShortDescription(0))), "")
-                    popupInfo.addPopup(iVassal)
-
-                # Gemeinsam sind wir staerker als der Hegemon
-                # HI-HI-Interaktion
-                elif pWinner.isHuman() and iWinnerGold >= iMinGold:
-                    iBribe = int(iWinnerGold * fGold)
-                    if iMinGold > iBribe: iBribe = iMinGold
-
-                    popupInfo = CyPopupInfo()
-                    popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-                    popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_10",(pCity.getName(), pPlayer.getCivilizationAdjective(3), gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getDescription() )) )
-                    popupInfo.setData1(iNewOwner)
-                    popupInfo.setData2(iPreviousOwner)
-                    popupInfo.setData3(iVassal)
-                    popupInfo.setFlags(iBribe)
-                    popupInfo.setOnClickedPythonCallback("popupVassal10") # EntryPoints/CvScreenInterface und CvGameUtils / 689
-                    popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_10_YES",(gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getDescription(),iBribe)), "")
-                    popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_10_NO", (gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getDescription(),)), "")
-                    popupInfo.addPopup(iNewOwner)
-
-
-                # HI-KI Interaktion
-                elif iWinnerGold >= iMinGold:
-                  iBribe = int(iWinnerGold * fGold)
-                  if iMinGold > iBribe: iBribe = iMinGold
-
-                  # KI bietet zu 50% ein Angebot an
-                  if 1 > self.myRandom(2, None):
-                      popupInfo = CyPopupInfo()
-                      popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-                      popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),iBribe,pWinner.getCivilizationShortDescription(0))) )
-                      popupInfo.setData1(iNewOwner)
-                      popupInfo.setData2(iPreviousOwner)
-                      popupInfo.setData3(iVassal)
-                      popupInfo.setFlags(iBribe)
-                      popupInfo.setOnClickedPythonCallback("popupVassal11") # EntryPoints/CvScreenInterface und CvGameUtils / 690
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_YES",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription())), "")
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_NO",()), "")
-                      iRand = 1 + self.myRandom(9, None)
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
-                      popupInfo.addPopup(iVassal)
-
-                  # Winner hat kein Interesse
-                  # Vasall darf entscheiden, ob er Krieg erklaert
-                  else:
-                      popupInfo = CyPopupInfo()
-                      popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-                      popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),pWinner.getCivilizationAdjective(2) )) )
-                      popupInfo.setData1(iNewOwner)
-                      popupInfo.setData2(iPreviousOwner)
-                      popupInfo.setData3(iVassal)
-                      popupInfo.setOnClickedPythonCallback("popupVassal12") # EntryPoints/CvScreenInterface und CvGameUtils / 691
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_YES",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_NO",()), "")
-                      popupInfo.addPopup(iVassal)
-
-                # Winner hat kein Gold
-                # Vasall darf entscheiden, ob er Krieg erklaert
-                else:
-                      popupInfo = CyPopupInfo()
-                      popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-                      popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_13",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),pWinner.getCivilizationAdjective(2) )) )
-                      popupInfo.setData1(iNewOwner)
-                      popupInfo.setData2(iPreviousOwner)
-                      popupInfo.setData3(iVassal)
-                      popupInfo.setOnClickedPythonCallback("popupVassal12") # EntryPoints/CvScreenInterface und CvGameUtils / 691
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_YES",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
-                      popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_12_NO",()), "")
-                      popupInfo.addPopup(iVassal)
-
-                # ------------------------------
-
-              # HI Winner
-              # ----------------------------
-              elif pWinner.isHuman():
-                iBribe = int(iWinnerGold * fGold)
-                if iMinGold > iBribe: iBribe = iMinGold
-
-                if iWinnerGold >= iBribe:
-                    popupInfo = CyPopupInfo()
-                    popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-                    popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_08",(pPlayer.getCivilizationShortDescription(0),gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),iBribe)) )
-                    popupInfo.setData1(iNewOwner)
-                    popupInfo.setData2(iPreviousOwner)
-                    popupInfo.setData3(iVassal)
-                    popupInfo.setFlags(iBribe)
-                    popupInfo.setOnClickedPythonCallback("popupVassal08") # EntryPoints/CvScreenInterface und CvGameUtils / 687
-                    popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_08_YES",(pLoser.getCivilizationShortDescription(0),iBribe)), "")
-                    popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_08_NO",()), "")
-                    popupInfo.addPopup(iNewOwner)
-
-              # KI Vassal
-              # ------------------------------
-              else:
-                bDeclareWar = False
-                if iVassalPower > iLoserPower:
-                  # 2/3 Chance, dass Vasall dem Hegemon Krieg erklaert
-                  if 2 > self.myRandom(3, None):
-                    bDeclareWar = True
-
-                # KI-KI-Interaktion
-                # Winner hat mehr als das erforderte Gold, Akzeptanz: Winner: 50%, Loser: 100%
-                if not bDeclareWar and iMinGold <= iWinnerGold * fGold:
-                    if 1 > self.myRandom(2, None):
-                      bDeclareWar = True
-                      pPlayer.changeGold(int(iWinnerGold * fGold))
-                      pWinner.changeGold(int(iWinnerGold * fGold) * (-1))
-
-                # Winner hat das mindest geforderte Gold, Akzeptanz: Winner: 100%, Loser: 50%
-                if not bDeclareWar and iWinnerGold >= iMinGold:
-                    if 1 > self.myRandom(2, None):
-                      bDeclareWar = True
-                      pPlayer.changeGold(iMinGold)
-                      pWinner.changeGold(iMinGold * (-1))
-
-                if bDeclareWar:
-                  #pHegemonTeam.freeVassal(iTeam)
-                  pTeam.declareWar(iLoserTeam, 0, 4)
-                  if pWinner.isHuman():
-                    popupInfo = CyPopupInfo()
-                    popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                    popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_09_1",(pTeam.getCivilizationAdjective(3),gc.getLeaderHeadInfo(pTeam.getLeaderType()).getDescription(),)) )
-                    popupInfo.addPopup(iNewOwner)
-
-        # Hegemon verliert Stadt Ende -----
-
-
-        # ------------
-        # Wenn man selbst eine Stadt verliert
-        # Loser und Winner-Werte von oben
-        # ------------
-
-        # -------------------------------
-        # Wird der Verlierer zum Vasall ?
-        iMinimumCities = 5
-        if pLoser.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")): iMinimumCities = 3
-
-        if iLoserPowerWithVassals < iWinnerPower and pLoser.getNumCities() > 0 and pLoser.getNumCities() < iMinimumCities and iNewOwner != gc.getBARBARIAN_PLAYER() and iPreviousOwner != gc.getBARBARIAN_PLAYER():
-         #Abfrage ob man als Gewinner den Schwaecheren zum Vasall nimmt
-         # HI-HI
-         if pWinner.isHuman() and pLoser.isHuman():
-          self.VassalHItoHI (iNewOwner, iPreviousOwner, pCity)
-
-         # KI bietet der HI Vasallenstatus an, 120% - 10% pro Stadt
-         elif pWinner.isHuman():
-          if 12 - pLoser.getNumCities() > self.myRandom(10, None):
-              iGold = pLoser.getGold() / 2 + self.myRandom(pLoser.getGold() / 2, None)
-              iGold = int(iGold)
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),pLoser.getCivilizationShortDescription(0),iGold)) )
-              popupInfo.setData1(iNewOwner)
-              popupInfo.setData2(iPreviousOwner)
-              popupInfo.setData3(iGold)
-              popupInfo.setFlags(0) # to Loser
-              popupInfo.setOnClickedPythonCallback("popupVassal01") # EntryPoints/CvScreenInterface und CvGameUtils / 671
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01_YES",()), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01_NO",()), "")
-              iRand = 1 + self.myRandom(9, None)
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPopup(iNewOwner)
-
-         # HI: Abfrage ob HI als Verlierer Vasall werden will
-         elif pLoser.isHuman():
-              iGold = pLoser.getGold() / 2 + self.myRandom(pLoser.getGold() / 2, None)
-              iGold = int(iGold)
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_02",(pCity.getName(),gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),iGold)) )
-              popupInfo.setData1(iNewOwner)
-              popupInfo.setData2(iPreviousOwner)
-              popupInfo.setData3(iGold)
-              popupInfo.setFlags(1) # to Winner
-              popupInfo.setOnClickedPythonCallback("popupVassal01") # EntryPoints/CvScreenInterface und CvGameUtils / 671
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_02_YES",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(), pWinner.getCivilizationShortDescription(0))), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01_NO",()), "")
-              iRand = 1 + self.myRandom(9, None)
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
-              popupInfo.addPopup(iPreviousOwner)
-
-         # KI-KI Vasall, 120% - 10% pro Stadt
-         else:
-          if 12 - pLoser.getNumCities() > self.myRandom(10, None):
-            pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
-            self.VassalHegemonGetsVassal(iPreviousOwner) # Hegemon verliert seine Vasallen
-            iGold = pLoser.getGold() / 2 + self.myRandom(pLoser.getGold() / 2, None)
-            pWinner.changeGold(iGold)
-            pLoser.changeGold(iGold * (-1))
-
-# ---------------------------------------------
       # PAE Debug Mark
       #"""
 
-
-  # Hegemon verliert seine Vasallen
-  def VassalHegemonGetsVassal (self, iHegemon):
-      pHegemon = gc.getPlayer(iHegemon)
-      iHegemonTeam = pHegemon.getTeam()
-      pHegemonTeam = gc.getTeam(iHegemonTeam)
-      iRange = gc.getMAX_PLAYERS()
-      for i in range(iRange):
-        pPlayer = gc.getPlayer(i)
-        if pPlayer.isAlive():
-          iTeam = pPlayer.getTeam()
-          pTeam = gc.getTeam(iTeam)
-          if pTeam.isVassal(pHegemonTeam.getID()):
-            pTeam.assignVassal (-1, 0)
-
-
-  def VassalHItoHI (self, iNewOwner, iPreviousOwner, pCity):
-              pLoser = gc.getPlayer(iPreviousOwner)
-              iLoserTeam = pLoser.getTeam()
-              pLoserTeam = gc.getTeam(iLoserTeam)
-              iLoserPower = pLoserTeam.getPower(False) # ohne Vasallen
-              iLoserPowerWithVassals = pLoserTeam.getPower(True) # mit Vasallen
-              pWinner = gc.getPlayer(iNewOwner)
-              iWinnerTeam = pWinner.getTeam()
-              pWinnerTeam = gc.getTeam(iWinnerTeam)
-              iWinnerPower = pWinnerTeam.getPower(True) # mit Vasallen
-              # HI-HI Interaktion
-              # 1) Der Loser darf beginnen und sich als Vasall vorschlagen
-              # 1a) Wenn negativ, dann soll Winner eine Meldung bekommen und dem Loser einen Vorschlag unterbreiten => 2
-              # 1b) Der Winner darf entscheiden, ob der Vorschlag angenommen wird
-              # 2) Der Loser darf entscheiden, ob er mit dem Angebot des Winners Vasall wird
-              iGold1 = self.myRandom(pLoser.getGold() / 2, None)
-              if iGold1 < pLoser.getGold() / 4: iGold1 = pLoser.getGold() / 4
-              iGold2 = iGold1 * 2
-              iGold1 = int(iGold1)
-              iGold2 = int(iGold2)
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-              if iLoserPower < iWinnerPower / 2: szBuffer = "TXT_KEY_POPUP_VASSAL_03_A"
-              elif iLoserPower < iWinnerPower - iWinnerPower / 3:
-                # Gemeinsam mit unseren Vasallen
-                if iLoserPower < iLoserPowerWithVassals: szBuffer = "TXT_KEY_POPUP_VASSAL_03_C"
-                else: szBuffer = "TXT_KEY_POPUP_VASSAL_03_B"
-              else: szBuffer = "TXT_KEY_POPUP_VASSAL_03_D"
-
-              if pCity == None:
-                CityName = ""
-                szBuffer = "TXT_KEY_POPUP_VASSAL_03_E"
-              else:
-                CityName = pCity.getName()
-              popupInfo.setText( CyTranslator().getText(szBuffer,(CityName,pWinner.getCivilizationAdjective(2),pWinner.getCivilizationShortDescription(0))) )
-              popupInfo.setData1(iNewOwner)
-              popupInfo.setData2(iPreviousOwner)
-              popupInfo.setData3(iGold1)
-              popupInfo.setFlags(iGold2)
-              popupInfo.setOnClickedPythonCallback("popupVassal03") # EntryPoints/CvScreenInterface und CvGameUtils / 682
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_03_1",(pWinner.getCivilizationShortDescription(0),iGold1)), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_03_2",(pWinner.getCivilizationShortDescription(0),iGold2)), "")
-              popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_03_NO",()), "")
-              popupInfo.addPopup(iPreviousOwner)
-
-# ---------------------------------------------
 
   def onCityAcquiredAndKept(self, argsList):
     'City Acquired and Kept'
@@ -11263,6 +8801,7 @@ class CvEventManager:
     'City Lost'
     city = argsList[0]
     player = PyPlayer(city.getOwner())
+    self.doCheckGlobalTraitBuildings(city.getOwner())
     if (not self.__LOG_CITYLOST):
       return
     CvUtil.pyPrint('City %s was lost by Player %d Civilization %s'
@@ -11312,7 +8851,7 @@ class CvEventManager:
                   break
 
             iNewUnit = gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")
-            NewUnit = pHegemon.initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = pHegemon.initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             if pHegemon.isHuman():
               CyInterface().addMessage(pHegemon.getID(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GET_UNIT_SUPPLY_FOOD",(pCity.getName(),)), "AS2D_BUILD_GRANARY", 2, gc.getUnitInfo(iNewUnit).getButton(), ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
@@ -11352,30 +8891,16 @@ class CvEventManager:
     # PAE Debug Mark
     #"""
 
+    # Trade feature: Check for free bonuses aquired via trade (Boggy)
+    PAE_Trade.doCityCheckFreeBonuses(pCity)
+
     # PAE Provinzcheck
     bCheckCityState = False
 
     # MESSAGES: city growing
     if not gc.getGame().isHotSeat():
      if pPlayer.isHuman():
-      if pCity.getFoodTurnsLeft() == 1  and pCity.foodDifference(True) > 0 and not pCity.isFoodProduction() and not pCity.AI_isEmphasize(5):
-        # MESSAGE: city will grow / Stadt wird wachsen
-        iPop = pCity.getPopulation() + 1
-        CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_WILL_GROW",(pCity.getName(),iPop)), None, 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-
-        # MESSAGE: city gets/is unhappy / Stadt wird/ist unzufrieden
-        if pCity.happyLevel() - pCity.unhappyLevel(0) <= 0:
-          if pCity.happyLevel() - pCity.unhappyLevel(0) == 0:
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GETS_UNHAPPY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-          else:
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_IS_UNHAPPY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-
-        # MESSAGE: city gets/is unhealthy / Stadt wird/ist ungesund
-        if pCity.goodHealth() - pCity.badHealth(False) <= 0:
-          if pCity.goodHealth() - pCity.badHealth(False) == 0:
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GETS_UNHEALTY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-          else:
-            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_IS_UNHEALTY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+        self.doMessageCityGrowing(pCity)
 
     # PAE V: Stadtversorgung / City supply: Troubles/Starvation because of unit maintenance in city (food)
 
@@ -11411,8 +8936,9 @@ class CvEventManager:
       for i in range (iRange):
           if pCityPlot.getUnit(i).getUnitCombatType() != -1:
             if pCityPlot.getUnit(i).getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-               if pCityPlot.getUnit(i).getScriptData() != "":
-                 iExtraSupply = int(pCityPlot.getUnit(i).getScriptData())
+               sSup =  CvUtil.getScriptData(pCityPlot.getUnit(i), ["s","t"])
+               if sSup != "":
+                 iExtraSupply = int(sSup)
                  if iExtraSupply < iMaintainUnits:
                    iMaintainUnits -= iExtraSupply
                    iExtraSupply = 0
@@ -11420,7 +8946,7 @@ class CvEventManager:
                    iExtraSupply -= iMaintainUnits
                    iMaintainUnits = 0
                  # set new supply tickets
-                 pCityPlot.getUnit(i).setScriptData(str(iExtraSupply))
+                 CvUtil.addScriptData(pCityPlot.getUnit(i), "s", iExtraSupply)
             else:
               lUnitsAll.append(pCityPlot.getUnit(i))
 
@@ -11494,91 +9020,95 @@ class CvEventManager:
                    lUnits.remove(lUnits[iRandUnit])
 
 
-    # # ++++++++++++++++++++++++++++++++++++++++
-    # # Buildings with prereq bonus gets checked : remove chance 10%
-    # building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_BRONZE")
-    # if pCity.isHasBuilding(building):
-      # iRand = self.myRandom(10, None)
-      # if iRand == 1:
-        # bonus = gc.getInfoTypeForString("BONUS_COPPER")
-        # bonus1 = gc.getInfoTypeForString("BONUS_COAL")
-        # bonus2 = gc.getInfoTypeForString("BONUS_ZINN")
-        # if not pCity.hasBonus(bonus) or not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2)):
-          # pCity.setNumRealBuilding(building,0)
-          # # Welche Resi
-          # if not pCity.hasBonus(bonus): szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1"
-          # else: szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_2"
-          # # Meldung
-          # if pPlayer.isHuman():
-            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            # popupInfo = CyPopupInfo()
-            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            # popupInfo.setText(CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            # popupInfo.addPopup(pCity.getOwner())
-    # building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_MESSING")
-    # if pCity.isHasBuilding(building):
-      # iRand = self.myRandom(10, None)
-      # if iRand == 1:
-        # bonus1 = gc.getInfoTypeForString("BONUS_COPPER")
-        # bonus2 = gc.getInfoTypeForString("BONUS_ZINK")
-        # if not pCity.hasBonus(bonus1) or not pCity.hasBonus(bonus2):
-          # pCity.setNumRealBuilding(building,0)
-          # # Welche Resi
-          # if not pCity.hasBonus(bonus1): bonus = bonus1
-          # elif not pCity.hasBonus(bonus2): bonus = bonus2
-          # # Meldung
-          # if pPlayer.isHuman():
-            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            # popupInfo = CyPopupInfo()
-            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            # popupInfo.addPopup(pCity.getOwner())
-    # building = gc.getInfoTypeForString("BUILDING_BRAUSTAETTE")
-    # if pCity.isHasBuilding(building):
-      # iRand = self.myRandom(10, None)
-      # if iRand == 1:
-        # bonus1 = gc.getInfoTypeForString("BONUS_WHEAT")
-        # bonus2 = gc.getInfoTypeForString("BONUS_GERSTE")
-        # bonus3 = gc.getInfoTypeForString("BONUS_HAFER")
-        # bonus4 = gc.getInfoTypeForString("BONUS_ROGGEN")
-        # bonus5 = gc.getInfoTypeForString("BONUS_HIRSE")
-        # if not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2) or pCity.hasBonus(bonus3) or pCity.hasBonus(bonus4) or pCity.hasBonus(bonus5)):
-          # pCity.setNumRealBuilding(building,0)
-          # # Meldung
-          # if pPlayer.isHuman():
-            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            # popupInfo = CyPopupInfo()
-            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())))
-            # popupInfo.addPopup(pCity.getOwner())
-    # building = gc.getInfoTypeForString("BUILDING_WINERY")
-    # if pCity.isHasBuilding(building):
-      # iRand = self.myRandom(10, None)
-      # if iRand == 1:
-        # bonus = gc.getInfoTypeForString("BONUS_GRAPES")
-        # if not pCity.hasBonus(bonus):
-          # pCity.setNumRealBuilding(building,0)
-          # # Meldung
-          # if pPlayer.isHuman():
-            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            # popupInfo = CyPopupInfo()
-            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            # popupInfo.addPopup(pCity.getOwner())
-    # building = gc.getInfoTypeForString("BUILDING_PAPYRUSPOST")
-    # if pCity.isHasBuilding(building):
-      # iRand = self.myRandom(10, None)
-      # if iRand == 1:
-        # bonus = gc.getInfoTypeForString("BONUS_PAPYRUS")
-        # if not pCity.hasBonus(bonus):
-          # pCity.setNumRealBuilding(building,0)
-          # # Meldung
-          # if pPlayer.isHuman():
-            # CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-            # popupInfo = CyPopupInfo()
-            # popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            # popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
-            # popupInfo.addPopup(pCity.getOwner())
+    # ++++++++++++++++++++++++++++++++++++++++
+    # Buildings with prereq bonus gets checked : remove chance 10%
+    building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_BRONZE")
+    if pCity.isHasBuilding(building):
+      iRand = self.myRandom(10, None)
+      if iRand == 1:
+        bonus = gc.getInfoTypeForString("BONUS_COPPER")
+        bonus1 = gc.getInfoTypeForString("BONUS_COAL")
+        bonus2 = gc.getInfoTypeForString("BONUS_ZINN")
+        if not pCity.hasBonus(bonus) or not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2)):
+          pCity.setNumRealBuilding(building,0)
+          # Welche Resi
+          if not pCity.hasBonus(bonus): szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1"
+          else: szText = "TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_2"
+          # Meldung
+          if pPlayer.isHuman():
+            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            popupInfo = CyPopupInfo()
+            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            popupInfo.setText(CyTranslator().getText(szText,(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            popupInfo.addPopup(pCity.getOwner())
+
+    building = gc.getInfoTypeForString("BUILDING_SCHMIEDE_MESSING")
+    if pCity.isHasBuilding(building):
+      iRand = self.myRandom(10, None)
+      if iRand == 1:
+        bonus1 = gc.getInfoTypeForString("BONUS_COPPER")
+        bonus2 = gc.getInfoTypeForString("BONUS_ZINK")
+        if not pCity.hasBonus(bonus1) or not pCity.hasBonus(bonus2):
+          pCity.setNumRealBuilding(building,0)
+          # Welche Resi
+          if not pCity.hasBonus(bonus1): bonus = bonus1
+          elif not pCity.hasBonus(bonus2): bonus = bonus2
+          # Meldung
+          if pPlayer.isHuman():
+            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            popupInfo = CyPopupInfo()
+            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            popupInfo.addPopup(pCity.getOwner())
+
+    building = gc.getInfoTypeForString("BUILDING_BRAUSTAETTE")
+    if pCity.isHasBuilding(building):
+      iRand = self.myRandom(10, None)
+      if iRand == 1:
+        bonus1 = gc.getInfoTypeForString("BONUS_WHEAT")
+        bonus2 = gc.getInfoTypeForString("BONUS_GERSTE")
+        bonus3 = gc.getInfoTypeForString("BONUS_HAFER")
+        bonus4 = gc.getInfoTypeForString("BONUS_ROGGEN")
+        bonus5 = gc.getInfoTypeForString("BONUS_HIRSE")
+        if not (pCity.hasBonus(bonus1) or pCity.hasBonus(bonus2) or pCity.hasBonus(bonus3) or pCity.hasBonus(bonus4) or pCity.hasBonus(bonus5)):
+          pCity.setNumRealBuilding(building,0)
+          # Meldung
+          if pPlayer.isHuman():
+            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            popupInfo = CyPopupInfo()
+            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_3",(pCity.getName(),"",gc.getBuildingInfo(building).getDescription())))
+            popupInfo.addPopup(pCity.getOwner())
+
+    building = gc.getInfoTypeForString("BUILDING_WINERY")
+    if pCity.isHasBuilding(building):
+      iRand = self.myRandom(10, None)
+      if iRand == 1:
+        bonus = gc.getInfoTypeForString("BONUS_GRAPES")
+        if not pCity.hasBonus(bonus):
+          pCity.setNumRealBuilding(building,0)
+          # Meldung
+          if pPlayer.isHuman():
+            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            popupInfo = CyPopupInfo()
+            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            popupInfo.addPopup(pCity.getOwner())
+
+    building = gc.getInfoTypeForString("BUILDING_PAPYRUSPOST")
+    if pCity.isHasBuilding(building):
+      iRand = self.myRandom(10, None)
+      if iRand == 1:
+        bonus = gc.getInfoTypeForString("BONUS_PAPYRUS")
+        if not pCity.hasBonus(bonus):
+          pCity.setNumRealBuilding(building,0)
+          # Meldung
+          if pPlayer.isHuman():
+            CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())), None, 2, gc.getBuildingInfo(building).getButton(), ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+            popupInfo = CyPopupInfo()
+            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_NOBONUSNOBUILDING_1",(pCity.getName(),gc.getBonusInfo(bonus).getDescription(),gc.getBuildingInfo(building).getDescription())))
+            popupInfo.addPopup(pCity.getOwner())
 
     # ++++++++++++++++++++++++++++++++++++++++
 
@@ -11591,15 +9121,16 @@ class CvEventManager:
       if iCityUnhappy > 0 or iCityUnhealthy > 0:
         if iCityUnhappy < 0: iCityUnhappy = 0
         if iCityUnhealthy < 0: iCityUnhealthy = 0
-        iChance = (iCityUnhappy + iCityUnhealthy) * 2 # * popCity
+        iChance = (iCityUnhappy + iCityUnhealthy) * 4 # * popCity
         iRand = self.myRandom(100, None)
         if iChance > iRand:
           iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-          NewUnit = gc.getPlayer(iPlayer).initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+          NewUnit = gc.getPlayer(iPlayer).initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
 
           # Einheit die richtige Kultur geben
           iPlayerCulture = pCity.findHighestCulture()
-          NewUnit.setScriptData(str(iPlayerCulture))
+          if iPlayerCulture == -1 or iPlayerCulture == "NO_PLAYER": iPlayerCulture = pCity.getOwner()
+          CvUtil.addScriptData(NewUnit, "p", iPlayerCulture)
           # Kultur von der Stadt abziehen
           iCulture = pCity.getCulture(iPlayerCulture)
           pCity.changeCulture(iPlayerCulture,-(iCulture/5),1)
@@ -11790,10 +9321,10 @@ class CvEventManager:
       # end decline city pop
 
       # Sklaven sterben
-      # Prio: Haus, Food, Glads, Prod
+      # Prio: Haus (min 1 bleibt), Food, Glads, Prod
       iSlaves = iCityGlads + iCitySlavesHaus + iCitySlavesFood + iCitySlavesProd
       while iSlaves > 0 and iPopChange > 0:
-        if iCitySlavesHaus >= 1:
+        if iCitySlavesHaus > 1:
           pCity.changeFreeSpecialistCount(16, -1)
           iCitySlavesHaus -= 1
           if pPlayer.isHuman():
@@ -11929,11 +9460,11 @@ class CvEventManager:
         if pOwner.getStateReligion() == iReligion: iChance -= 10 # -1%
 
         # For better AI
-        if not pOwner.isHuman(): iChance += 5
+        if not pOwner.isHuman(): iChance += 10
 
         if self.myRandom(1000, None) < iChance:
           iUnitType = gc.getInfoTypeForString("UNIT_SLAVE")
-          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_WORKER, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_WORKER, DirectionTypes.DIRECTION_SOUTH)
           if pOwner.isHuman():
             CyInterface().addMessage(pOwner.getID(), True, 10, CyTranslator().getText("TXT_KEY_SLAVE_BIRTH",(pCity.getName(),"")),None,2,",Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2",ColorTypes(14),pCity.getX(),pCity.getY(),True,True)
 
@@ -11973,7 +9504,7 @@ class CvEventManager:
         iRand = self.myRandom(50, None)
         if iRand == 1:
           iUnitType = gc.getInfoTypeForString("UNIT_GLADIATOR")
-          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+          pOwner.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
           pCity.changeFreeSpecialistCount(15, -1)
           iCityGlads = iCityGlads - 1
           if pOwner.isHuman():
@@ -12236,7 +9767,7 @@ class CvEventManager:
 #        bRebellion = True
 #
 #        # 2te ueberpruefung treue, loyale Einheiten gegenueber unzufriedene Bevoelkerung
-#        iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYAL")
+#        iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
 #        iLoyalUnits = 0
 #        for iUnit in range (pPlot.getNumUnits()):
 #          # Promotion Loyality = Nr 0
@@ -12339,8 +9870,9 @@ class CvEventManager:
           iCityRevoltTurns = pPlayer.getAnarchyTurns()
           text = "TXT_KEY_MESSAGE_CITY_REVOLT_ANARCHY"
       # city has no state religion (3%, AI 1%)
-      if pPlayer.getStateReligion() != -1:
-       if not pCity.isHasReligion(pPlayer.getStateReligion()):
+      iRel = pPlayer.getStateReligion()
+      if iRel != -1:
+       if not pCity.isHasReligion(iRel):
         iBuilding = gc.getInfoTypeForString("BUILDING_STADT")
         if pCity.isHasBuilding(iBuilding):
           if pPlayer.isHuman(): iTmp = 30
@@ -12551,7 +10083,7 @@ class CvEventManager:
             for i in range(iNumRebels):
                   iPlot = self.myRandom(len(rebelPlotArray), None)
                   iUnitType = self.myRandom(len(rebellTypeArray), None)
-                  newPlayer.initUnit(rebellTypeArray[iUnitType], rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, newPlayer.getCivilizationType(), newPlayer.getStateReligion())
+                  newPlayer.initUnit(rebellTypeArray[iUnitType], rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
 
             for iAllPlayer in range (iRangeMaxPlayers):
                   ThisPlayer = gc.getPlayer(iAllPlayer)
@@ -12584,7 +10116,7 @@ class CvEventManager:
       #if iCityIntervall > 0 and iCityIntervall % 30 == 0 and iPlayer != -1:
 
       # PAE IV: 33 (3%), PAE V: 50 (2%)
-      if self.myRandom(50, None) < 1:
+      if not gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString('TECH_POLYARCHY')) and self.myRandom(50, None) < 1:
 
           iGold = pPlayer.getGold()
 
@@ -12701,15 +10233,15 @@ class CvEventManager:
                 if pCity.canTrain(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"),0,0): lGift.append(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"))
 
               iRand = self.myRandom(len(lGift), None)
-              pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+              pPlayer.initUnit(lGift[iRand], pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
 
           # ***TEST***
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Provinz-HS Tribut-PopUp (Zeile 4367)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
     # Christentum und Haeresie (Heresy) ----------------------------
-    iTech = gc.getInfoTypeForString("TECH_HERESY")
-    if not bRevolt and not pTeam.isHasTech(iTech) and gc.getGame().getGameTurn() % 3 == 0:
+    if not bRevolt and gc.getGame().getGameTurnYear() > 0 and gc.getGame().getGameTurn() % 5 == 0:
       iReligion = gc.getInfoTypeForString("RELIGION_CHRISTIANITY")
       if gc.getGame().isReligionFounded(iReligion):
         # zum Christentum konvertieren
@@ -12722,10 +10254,9 @@ class CvEventManager:
                  pCity.isHasReligion(gc.getInfoTypeForString("RELIGION_JAINISMUS")):
 
             if pCity.isCapital(): iChance = 40 # 2.5%
-            elif pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_PROVINZPALAST")): iChance = 50 # 2%
             elif pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")):
-              if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_SKLAVENMARKT")): iChance = 50 # 2%
-              else: iChance = 75 # 1.5%
+              if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_SKLAVENMARKT")): iChance = 30 # 3%
+              else: iChance = 50 # 2%
             else:
               if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_SKLAVENMARKT")): iChance = 40 # 2.5%
               else: iChance = 75 # 1.5%
@@ -12742,7 +10273,7 @@ class CvEventManager:
 
         # Bei christlich beeinflussten Staedten - Kulte und Religionen langsam raus (alle!)
         else:
-          if self.myRandom(75, None) == 1: # 1.5%
+          if self.myRandom(10, None) == 1: # 10%
 
             # Kult
             lCorp = []
@@ -13060,21 +10591,27 @@ class CvEventManager:
 
   def __eventWBPlayerScriptPopupApply(self, playerID, userData, popupReturn):
     sScript = popupReturn.getEditBoxString(0)
-    gc.getPlayer(userData[0]).setScriptData(CvUtil.convertToStr(sScript))
+    dData = CvUtil.decode_script_data(sScript)
+    for key in dData:
+        CvUtil.addScriptData(gc.getPlayer(userData[0]), key, dData[key])
     WBPlayerScreen.WBPlayerScreen().placeScript()
     return
 
   def __eventWBCityScriptPopupApply(self, playerID, userData, popupReturn):
     sScript = popupReturn.getEditBoxString(0)
     pCity = gc.getPlayer(userData[0]).getCity(userData[1])
-    pCity.setScriptData(CvUtil.convertToStr(sScript))
+    dData = CvUtil.decode_script_data(sScript)
+    for key in dData:
+        CvUtil.addScriptData(pCity, key, dData[key])
     WBCityEditScreen.WBCityEditScreen().placeScript()
     return
 
   def __eventWBUnitScriptPopupApply(self, playerID, userData, popupReturn):
     sScript = popupReturn.getEditBoxString(0)
     pUnit = gc.getPlayer(userData[0]).getUnit(userData[1])
-    pUnit.setScriptData(CvUtil.convertToStr(sScript))
+    dData = CvUtil.decode_script_data(sScript)
+    for key in dData:
+        CvUtil.addScriptData(pUnit, key, dData[key])
     WBUnitScreen.WBUnitScreen(CvPlatyBuilderScreen.CvWorldBuilderScreen()).placeScript()
     return
 
@@ -13083,14 +10620,18 @@ class CvEventManager:
 
   def __eventWBGameScriptPopupApply(self, playerID, userData, popupReturn):
     sScript = popupReturn.getEditBoxString(0)
-    CyGame().setScriptData(CvUtil.convertToStr(sScript))
+    dData = CvUtil.decode_script_data(sScript)
+    for key in dData:
+        CvUtil.addScriptData(CyGame(), key, dData[key])
     WBGameDataScreen.WBGameDataScreen(CvPlatyBuilderScreen.CvWorldBuilderScreen()).placeScript()
     return
 
   def __eventWBPlotScriptPopupApply(self, playerID, userData, popupReturn):
     sScript = popupReturn.getEditBoxString(0)
     pPlot = CyMap().plot(userData[0], userData[1])
-    pPlot.setScriptData(CvUtil.convertToStr(sScript))
+    dData = CvUtil.decode_script_data(sScript)
+    for key in dData:
+        CvUtil.addScriptData(pPlot, key, dData[key])
     WBPlotScreen.WBPlotScreen().placeScript()
     return
 
@@ -13220,6 +10761,11 @@ class CvEventManager:
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iOldCulture",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
+        # Trait-Gebaeude sicherheitshalber entfernen...
+        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"),0)
+        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"),0)
+        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"),0)
+        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"),0)
 
         # Einheiten auslesen bevor die Stadt ueberlaeuft
 
@@ -13319,10 +10865,11 @@ class CvEventManager:
           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",UnitArray[iUnit][1])), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
           if UnitArray[iUnit][0] > -1:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(UnitArray[iUnit][0], iX, iY, UnitAITypes(UnitArray[iUnit][1]), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
+            NewUnit = gc.getPlayer(iNewOwner).initUnit(UnitArray[iUnit][0], iX, iY, UnitAITypes(UnitArray[iUnit][1]), DirectionTypes.DIRECTION_SOUTH)
 
             # Emigrant und dessen Kultur
-            if UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_EMIGRANT'): NewUnit.setScriptData(str(iOldOwner))
+            if UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_EMIGRANT'):
+              CvUtil.addScriptData(NewUnit, "p", iOldOwner)
 
             #NewUnit.setName(UnitArray[iUnit][2])
             if UnitArray[iUnit][2] != gc.getUnitInfo(UnitArray[iUnit][0]).getText():
@@ -13356,9 +10903,9 @@ class CvEventManager:
 
 
         if iNewOwner == gc.getBARBARIAN_PLAYER():
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(4), DirectionTypes.DIRECTION_SOUTH, pAcquiredCity.chooseEthnic(), pAcquiredCity.chooseReligion())
+           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
+           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
+           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(4), DirectionTypes.DIRECTION_SOUTH)
 
         # Kultur regenerieren - funkt net
         if iCulture > 0: pAcquiredCity.changeCulture(gc.getPlayer(iNewOwner).getID(),iCulture,1)
@@ -13388,7 +10935,8 @@ class CvEventManager:
         iRevoltCity = -1
         iCityCheck  = -1
         # City with forbidden palace shall not revolt
-        iBuilding = gc.getInfoTypeForString('BUILDING_PROVINZPALAST')
+        if gc.getTeam(pOwner.getTeam()).isHasTech(gc.getInfoTypeForString('TECH_POLYARCHY')): iBuilding = gc.getInfoTypeForString('BUILDING_PRAEFECTUR')
+        else: iBuilding = gc.getInfoTypeForString('BUILDING_PROVINZPALAST')
         iRange = pOwner.getNumCities()
         for i in range (iRange):
           if not pOwner.getCity(i).isNone():
@@ -13649,9 +11197,8 @@ class CvEventManager:
       else:
          iNewUnitType = gc.getInfoTypeForString("UNIT_AUXILIAR")
 
-    elif iUnitType == gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"): iNewUnitType = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-    elif iUnitType == gc.getInfoTypeForString('UNIT_PRAETORIAN_RIDER'): iNewUnitType = gc.getInfoTypeForString('UNIT_PRAETORIAN')
-    elif iUnitType == gc.getInfoTypeForString('UNIT_PRAETORIAN2_RIDER'): iNewUnitType = gc.getInfoTypeForString('UNIT_PRAETORIAN2')
+    elif iUnitType == gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"): iNewUnitType = gc.getInfoTypeForString("UNIT_FOEDERATI")
+    #elif iUnitType == gc.getInfoTypeForString('UNIT_PRAETORIAN_RIDER'): iNewUnitType = gc.getInfoTypeForString('UNIT_PRAETORIAN')
     elif iUnitType == gc.getInfoTypeForString('UNIT_MOUNTED_SACRED_BAND_CARTHAGE'): iNewUnitType = gc.getInfoTypeForString('UNIT_SACRED_BAND_CARTHAGE')
     elif iUnitType == gc.getInfoTypeForString('UNIT_MOUNTED_SCOUT'):
       if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE"):
@@ -13661,10 +11208,11 @@ class CvEventManager:
 
     if iNewUnitType != -1:
      # Create horse unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_HORSE"), iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
-     NewUnit.changeMoves(90)
+     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_HORSE"), iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
+     #NewUnit.changeMoves(90)
+     NewUnit.finishMoves()
      # Create a new unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
      NewUnit.setExperience(pUnit.getExperience(), -1)
      NewUnit.setLevel(pUnit.getLevel())
      NewUnit.setDamage(pUnit.getDamage(), -1)
@@ -13680,6 +11228,8 @@ class CvEventManager:
        NewUnit.setHasPromotion(iPromotion, True)
      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
      #pUnit.kill(1,pUnit.getOwner())
+
+     NewUnit.finishMoves()
 
      # ***TEST***
      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Horse Down (Zeile 5014)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -13709,16 +11259,15 @@ class CvEventManager:
     lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"))
 
     if iUnitType in lUnitAuxiliar: iNewUnitType = gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE")
-    elif iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"): iNewUnitType = gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN")
-    elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"): iNewUnitType = gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER")
-    elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2"): iNewUnitType = gc.getInfoTypeForString("UNIT_PRAETORIAN2_RIDER")
+    elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"): iNewUnitType = gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN")
+    #elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"): iNewUnitType = gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER")
     elif iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"): iNewUnitType = gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE")
     elif iUnitType == gc.getInfoTypeForString("UNIT_SCOUT") or iUnitType == gc.getInfoTypeForString("UNIT_SCOUT_GREEK"):
        iNewUnitType = gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT")
 
     if iNewUnitType != -1:
      # Create a new unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
      NewUnit.setExperience(pUnit.getExperience(), -1)
      NewUnit.setLevel(pUnit.getLevel())
      NewUnit.changeMoves(-60)
@@ -13740,139 +11289,6 @@ class CvEventManager:
      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Horse Up (Zeile 5057)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
   # end Horse up
-
-  # Slave -> Bordell
-  def doSlave2Bordell(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString('BUILDING_BORDELL')
-    if pCity.isHasBuilding(iBuilding1):
-      iCulture = pCity.getBuildingCommerceByBuilding(2, iBuilding1)
-      iCulture += 1
-      pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Bordell (Zeile 5070)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-  # Slave -> Schule
-  def doSlave2Schule(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString('BUILDING_SCHULE')
-    if pCity.isHasBuilding(iBuilding1):
-      iCulture = pCity.getBuildingCommerceByBuilding(1, iBuilding1)
-      iCulture += 1
-      pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 School (Zeile 5083)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # Slave -> Library / Bibliothek
-  def doSlave2Library(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString('BUILDING_LIBRARY')
-    if pCity.isHasBuilding(iBuilding1):
-      iCulture = pCity.getBuildingCommerceByBuilding(1, iBuilding1)
-      iCulture += 1
-      pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-  # Slave -> Gladiator
-  def doSlave2Gladiator(self, pCity, pUnit):
-    pCity.changeFreeSpecialistCount(15, 1) # Gladiator Specialist ID = 15
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-    #pUnit.kill(1,pUnit.getOwner())
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Gladiator (Zeile 5092)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # Slave -> Theatre
-  def doSlave2Theatre(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString('BUILDING_THEATER')
-    if pCity.isHasBuilding(iBuilding1):
-      iCulture = pCity.getBuildingCommerceByBuilding(2, iBuilding1)
-      iCulture -= 1
-      pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Theater (Zeile 5178)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # Slave -> Manufaktur , iDo: 0 = Nahrung; 1 = Produktion
-  def doSlave2Manufaktur(self, pCity, pUnit, iDo):
-    iBuilding1 = gc.getInfoTypeForString('BUILDING_CORP3')
-    if pCity.isHasBuilding(iBuilding1):
-      if iDo == 1:
-        iProd = pCity.getBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 1)
-        iProd += 1
-        pCity.setBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 1, iProd)
-      else:
-        iProd = pCity.getBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0)
-        iProd += 1
-        pCity.setBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0, iProd)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Manufaktur (Zeile 5196)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # Slave -> Palace
-  def doSlave2Palace(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString('BUILDING_PALACE')
-    if pCity.isHasBuilding(iBuilding1):
-      iCulture = pCity.getBuildingCommerceByBuilding(2, iBuilding1)
-      #iCulture += 1
-      pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Palace (Zeile 6252)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # Slave -> Temple
-  def doSlave2Temple(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE")
-    iBuilding2 = gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE")
-    iBuilding3 = gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE")
-    iBuilding4 = gc.getInfoTypeForString("BUILDING_ROME_TEMPLE")
-    iBuilding5 = gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE")
-    iBuilding6 = gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE")
-    iBuilding7 = gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE")
-    iBuilding8 = gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-    TempleArray = []
-    if pCity.isHasBuilding(iBuilding1): TempleArray.append(iBuilding1)
-    if pCity.isHasBuilding(iBuilding2): TempleArray.append(iBuilding2)
-    if pCity.isHasBuilding(iBuilding3): TempleArray.append(iBuilding3)
-    if pCity.isHasBuilding(iBuilding4): TempleArray.append(iBuilding4)
-    if pCity.isHasBuilding(iBuilding5): TempleArray.append(iBuilding5)
-    if pCity.isHasBuilding(iBuilding6): TempleArray.append(iBuilding6)
-    if pCity.isHasBuilding(iBuilding7): TempleArray.append(iBuilding7)
-    if pCity.isHasBuilding(iBuilding8): TempleArray.append(iBuilding8)
-
-    if len(TempleArray) > 0:
-      iBuilding = self.myRandom(len(TempleArray), None)
-      iCulture = 1
-      # Trait Creative: +2 Kultur pro Sklave / +2 culture per slave
-      if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")): iCulture += 2
-      pCity.changeBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Temple (Zeile 6282)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # Slave -> Feuerwehr
-  def doSlave2Feuerwehr(self, pCity, pUnit):
-    iBuilding1 = gc.getInfoTypeForString("BUILDING_FEUERWEHR")
-    if pCity.isHasBuilding(iBuilding1):
-      iHappyiness = pCity.getBuildingHappyChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType())
-      iHappyiness += 1
-      pCity.setBuildingHappyChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), iHappyiness)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-      # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Feuerwehr (Zeile 6356)",iHappyiness)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
   # Trojanisches Pferd
   def doTrojanHorse(self, pCity, pUnit):
@@ -13909,7 +11325,7 @@ class CvEventManager:
   def doEmigrant(self, pCity, pUnit):
     pPlot = CyMap().plot(pCity.getX(), pCity.getY())
     # Kultur auslesen
-    txt = pUnit.getScriptData()
+    txt = CvUtil.getScriptData(pUnit, ["p", "t"])
     if txt != "": iPlayerCulture = int(txt)
     else: iPlayerCulture = pUnit.getOwner()
     # Kultur = 100*Pop, max. 1000
@@ -13979,1738 +11395,6 @@ class CvEventManager:
 #          triggerData = pPlayer.initTriggeredData(iEvent, True, -1, pCity.getX(), pCity.getY(), iPlayer, pCity.getID(), -1, -1, -1, -1)
 #       else: pCity.setOccupationTimer(2)
 #    else: pCity.setOccupationTimer(2)
-
-
-# ----------- Unit kill from GameUtils
-#  def doKillUnitFromGameUtils (self, pUnit):
-
-
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ++++++++++++++++++ Naturkatastrophen / Disasters +++++++++++++++++++++++++++++
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  def doSandsturm(self):
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      feat_desertstorm = gc.getInfoTypeForString('FEATURE_FALLOUT')
-
-      feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-      feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-      terr_desert = gc.getInfoTypeForString('TERRAIN_DESERT')
-      terr_coast = gc.getInfoTypeForString('TERRAIN_COAST')
-
-      improv1 = gc.getInfoTypeForString('IMPROVEMENT_FORT')
-      improv2 = gc.getInfoTypeForString('IMPROVEMENT_FORT2')
-      improv3 = gc.getInfoTypeForString('IMPROVEMENT_TURM2')
-
-      iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-      iMaxEffect = 0
-      iMapSize = gc.getMap().getWorldSize()
-      if iMapSize < 3: iMax = 1
-      elif iMapSize < 5: iMax = 3
-      else: iMax = 5
-
-      # 20 Versuche max. iMax Sandstuerme zu kreieren
-      for i in range (20):
-
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-
-        pPlot = gc.getMap().plot(iRandX, iRandY)
-        if None != pPlot and not pPlot.isNone():
-
-          if pPlot.getFeatureType() == iDarkIce: continue
-          if pPlot.getFeatureType() != feat_oasis and pPlot.getFeatureType() != feat_flood_plains and pPlot.getTerrainType() == terr_desert and not pPlot.isPeak():
-            OwnerArray = []
-            iMaxEffect += 1
-            for i in range(3):
-              for j in range(5):
-                # An den aeusseren Sturmgrenzen etwas auflockern
-                if j == 0 or j == 4: iSetStorm = self.myRandom(2, None)
-                else: iSetStorm = 1
-                # Sturm setzen
-                if iSetStorm == 1:
-                  loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 2)
-                  if None != loopPlot and not loopPlot.isNone():
-                    if (not (loopPlot.isWater() or loopPlot.isPeak()) and loopPlot.getTerrainType() == terr_desert and loopPlot.getFeatureType() != feat_oasis and loopPlot.getFeatureType() != feat_flood_plains) or loopPlot.getTerrainType() == terr_coast:
-                      if loopPlot.getImprovementType() != improv1 and loopPlot.getImprovementType() != improv2 and loopPlot.getImprovementType() != improv3:
-                        if loopPlot.getRouteType() == 0 and not loopPlot.isCity(): loopPlot.setRouteType(-1)
-                        if loopPlot.getImprovementType() != gc.getInfoTypeForString('IMPROVEMENT_MINE'): loopPlot.setImprovementType(-1)
-                      loopPlot.setFeatureType(feat_desertstorm,0)
-                  # Besitzer herausfinden
-                  if loopPlot.getOwner() != -1 and loopPlot.getOwner() not in OwnerArray:
-                    OwnerArray.append(loopPlot.getOwner())
-
-            # Sturmmeldung an die Plot-Besitzer
-            iRange = len(OwnerArray)
-            for i in range (iRange):
-              if gc.getPlayer(OwnerArray[i]).isHuman():
-                CyInterface().addMessage(gc.getPlayer(OwnerArray[i]).getID(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_DESERTSTORM",("",)),None,2,gc.getFeatureInfo(feat_desertstorm).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-
-        # Maximal iMax Stuerme
-        if iMaxEffect == iMax: break
-
-  def doGrasshopper(self):
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      feat_grasshopper = gc.getInfoTypeForString('FEATURE_GRASSHOPPER')
-
-      lFeatures = []
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_JUNGLE'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_SAVANNA'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_FOREST'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_DICHTERWALD'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_FOREST_BURNT'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_OASIS'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_SWAMP'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS'))
-      lFeatures.append(gc.getInfoTypeForString('FEATURE_SEUCHE'))
-
-      terr_desert = gc.getInfoTypeForString('TERRAIN_DESERT')
-      terr_plains = gc.getInfoTypeForString('TERRAIN_PLAINS')
-
-      improv1 = gc.getInfoTypeForString('IMPROVEMENT_FORT')
-      improv2 = gc.getInfoTypeForString('IMPROVEMENT_FORT2')
-      improv3 = gc.getInfoTypeForString('IMPROVEMENT_TURM2')
-
-      iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-      iMaxEffect = 0
-      iMapSize = gc.getMap().getWorldSize()
-      if iMapSize < 3: iMax = 1
-      elif iMapSize < 5: iMax = 2
-      else: iMax = 4
-
-      # 10 Versuche max. 4 Heuschreckenplagen zu kreieren
-      for i in range (10):
-
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-
-        pPlot = gc.getMap().plot(iRandX, iRandY)
-        if None != pPlot and not pPlot.isNone():
-
-          if pPlot.getFeatureType() == iDarkIce: continue
-          if pPlot.getFeatureType() not in lFeatures and not pPlot.isPeak() \
-          and (pPlot.getTerrainType() == terr_desert or pPlot.getTerrainType() == terr_plains):
-            OwnerArray = []
-            iMaxEffect += 1
-            for i in range(3):
-              for j in range(5):
-                # An den aeusseren Grenzen etwas auflockern
-                if j == 0 or j == 4: iSetStorm = self.myRandom(2, None)
-                else: iSetStorm = 1
-                # Sturm setzen
-                if iSetStorm == 1:
-                  loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 2)
-                  if None != loopPlot and not loopPlot.isNone():
-                    if not (loopPlot.isWater() or loopPlot.isPeak()) and loopPlot.getFeatureType() not in lFeatures \
-                    and (loopPlot.getTerrainType() == terr_desert or loopPlot.getTerrainType() == terr_plains):
-                      if loopPlot.getImprovementType() != improv1 and loopPlot.getImprovementType() != improv2 and loopPlot.getImprovementType() != improv3:
-                        if loopPlot.getImprovementType() != gc.getInfoTypeForString("IMPROVEMENT_MINE") and loopPlot.getImprovementType() != gc.getInfoTypeForString("IMPROVEMENT_QUARRY"):
-                          loopPlot.setImprovementType(-1)
-                      loopPlot.setFeatureType(feat_grasshopper,0)
-                  # Besitzer herausfinden
-                  if loopPlot.getOwner() != -1 and loopPlot.getOwner() not in OwnerArray:
-                    OwnerArray.append(loopPlot.getOwner())
-
-            # Sturmmeldung an die Plot-Besitzer
-            iRange = len(OwnerArray)
-            for i in range (iRange):
-              if gc.getPlayer(OwnerArray[i]).isHuman():
-                CyInterface().addMessage(gc.getPlayer(OwnerArray[i]).getID(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_GRASSHOPPERS",("",)),None,2,gc.getFeatureInfo(feat_grasshopper).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-
-        # Maximal iMax Heuschreckenplagen
-        if iMaxEffect == iMax: break
-
-  def doNebel(self):
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      feat_nebel = gc.getInfoTypeForString('FEATURE_NEBEL')
-      feat_ice = gc.getInfoTypeForString('FEATURE_ICE')
-
-      terr_ocean = gc.getInfoTypeForString('TERRAIN_OCEAN')
-      iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-      iMaxEffect = 0
-      iMapSize = gc.getMap().getWorldSize()
-      if iMapSize < 3: iMax = 1
-      else: iMax = 3
-
-      # 10 Versuche max. iMax Nebel zu kreieren
-      for i in range (10):
-
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-
-        pPlot = gc.getMap().plot(iRandX, iRandY)
-        if None != pPlot and not pPlot.isNone():
-
-          if pPlot.getFeatureType() == iDarkIce: continue
-          if pPlot.getFeatureType() != feat_ice and pPlot.getTerrainType() == terr_ocean:
-            OwnerArray = []
-            iMaxEffect += 1
-            for i in range(10):
-              for j in range(7):
-                # An den aeusseren Grenzen etwas auflockern
-                if i == 0 or i == 9 or j == 0 or j == 6: iSetStorm = self.myRandom(3, None)
-                elif i == 1 or i == 8 or j == 1 or j == 5: iSetStorm = self.myRandom(2, None)
-                else: iSetStorm = 1
-                # Sturm setzen
-                if iSetStorm == 1:
-                  loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 2)
-                  if None != loopPlot and not loopPlot.isNone():
-                    if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-                      loopPlot.setFeatureType(feat_nebel,0)
-                  # Besitzer herausfinden
-                  if loopPlot.getOwner() != -1 and loopPlot.getOwner() not in OwnerArray:
-                    OwnerArray.append(loopPlot.getOwner())
-
-            # Sturmmeldung an die Plot-Besitzer
-            iRange = len(OwnerArray)
-            for i in range (iRange):
-              if gc.getPlayer(OwnerArray[i]).isHuman():
-                CyInterface().addMessage(gc.getPlayer(OwnerArray[i]).getID(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_NEBEL",("",)),None,2,gc.getFeatureInfo(feat_nebel).getButton(),ColorTypes(14),iRandX,iRandY,True,True)
-
-        # Maximal 3 Nebeldecken
-        if iMaxEffect == iMax: break
-
-  def doSeesturm(self):
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      feat_seesturm = gc.getInfoTypeForString('FEATURE_SEESTURM')
-      feat_ice = gc.getInfoTypeForString('FEATURE_ICE')
-
-      terr_coast = gc.getInfoTypeForString('TERRAIN_COAST')
-      terr_ocean = gc.getInfoTypeForString('TERRAIN_OCEAN')
-      iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-      iMaxEffect = 0
-      iMapSize = gc.getMap().getWorldSize()
-      if iMapSize == 0: iMax = 1
-      elif iMapSize == 1: iMax = 2
-      elif iMapSize == 2: iMax = 2
-      elif iMapSize == 3: iMax = 3
-      elif iMapSize == 4: iMax = 3
-      elif iMapSize == 5: iMax = 4
-      else: iMax = 5
-
-      # 20 Versuche max. iMax Seestuerme zu kreieren
-      for i in range (20):
-
-        # Maximal 5 Seestuerme
-        if iMaxEffect == iMax: break
-
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-
-        pPlot = gc.getMap().plot(iRandX, iRandY)
-        if None != pPlot and not pPlot.isNone():
-
-          if pPlot.getFeatureType() == iDarkIce: continue
-          if pPlot.getFeatureType() != feat_ice and pPlot.getTerrainType() == terr_coast or pPlot.getTerrainType() == terr_ocean:
-            OwnerArray = []
-            iMaxEffect += 1
-            for i in range(8):
-              for j in range(5):
-                # An den aeusseren Grenzen etwas auflockern
-                if i == 0 or i == 7 or j == 0 or j == 4: iSetStorm = self.myRandom(2, None)
-                else: iSetStorm = 1
-                # Sturm setzen
-                if iSetStorm == 1:
-                  loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 2)
-                  if None != loopPlot and not loopPlot.isNone():
-                    if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_coast or loopPlot.getTerrainType() == terr_ocean:
-                      if loopPlot.getImprovementType() > -1:
-                        loopPlot.setImprovementType(-1)
-                        if loopPlot.getOwner() > -1:
-                          if gc.getPlayer(loopPlot.getOwner()).isHuman():
-                            CyInterface().addMessage(gc.getPlayer(loopPlot.getOwner()).getID(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_SEESTURM_FISCHERBOOT",("",)),None,2,gc.getFeatureInfo(feat_seesturm).getButton(),ColorTypes(7),loopPlot.getX(),loopPlot.getY(),True,True)
-                      loopPlot.setFeatureType(feat_seesturm,0)
-                      self.doKillUnits(pPlot, 10)
-                  # Besitzer herausfinden
-                  if loopPlot.getOwner() != -1 and loopPlot.getOwner() not in OwnerArray:
-                    OwnerArray.append(loopPlot.getOwner())
-
-            # Sturmmeldung an die Plot-Besitzer
-            iRange = len(OwnerArray)
-            for i in range (iRange):
-              if gc.getPlayer(OwnerArray[i]).isHuman():
-                CyInterface().addMessage(gc.getPlayer(OwnerArray[i]).getID(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_SEESTURM",("",)),None,2,gc.getFeatureInfo(feat_seesturm).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-
-
-  def doTornado(self):
-    iMaxEffect = 0
-
-    feat_tornado = gc.getInfoTypeForString('FEATURE_TORNADO')
-    feat_sturm = gc.getInfoTypeForString('FEATURE_STURM')
-    feat_seesturm = gc.getInfoTypeForString('FEATURE_SEESTURM')
-
-    feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
-    feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-    feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-    iMapSize = gc.getMap().getWorldSize()
-    if iMapSize == 0: iMax = 1
-    elif iMapSize == 1: iMax = 2
-    elif iMapSize == 2: iMax = 3
-    elif iMapSize == 3: iMax = 4
-    elif iMapSize == 4: iMax = 5
-    elif iMapSize == 5: iMax = 6
-    else: iMax = 7
-
-    # 10 Versuche fuer max. iMax Tornados
-    for i in range (10):
-
-        # Maximal iMax Effekte
-        if iMaxEffect == iMax: break
-
-        iMapW = gc.getMap().getGridWidth()
-        iMapH = gc.getMap().getGridHeight()
-
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-        pPlot = gc.getMap().plot(iRandX, iRandY)
-        if None != pPlot and not pPlot.isNone():
-
-         if pPlot.getFeatureType() == iDarkIce: continue
-         if not pPlot.isPeak():
-          if pPlot.getFeatureType() != feat_swamp and pPlot.getFeatureType() != feat_flood_plains and pPlot.getFeatureType() != feat_oasis:
-            iMaxEffect += 1
-            if not pPlot.isCity(): pPlot.setRouteType(-1)
-            pPlot.setImprovementType(-1)
-            pPlot.setFeatureType(feat_tornado,0)
-
-            iPlayer = pPlot.getOwner()
-            pOwner = gc.getPlayer(iPlayer)
-
-            if iPlayer != -1:
-
-              if pPlot.isVisibleToWatchingHuman(): CyCamera().JustLookAtPlot(pPlot)
-
-              if gc.getPlayer(iPlayer).isHuman():
-                popupInfo = CyPopupInfo()
-                popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                popupInfo.setText(CyTranslator().getText("TXT_KEY_DISASTER_TORNADO",("", )))
-                popupInfo.addPopup(iPlayer)
-                CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_TORNADO",("",)),None,2,gc.getFeatureInfo(feat_tornado).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-
-            if pPlot.isCity():
-              pCity = pPlot.getPlotCity()
-              iPop_alt = pCity.getPopulation()
-              iPop_neu = int(pCity.getPopulation() / 2)
-              if iPop_neu < 1: iPop_neu = 1
-              pCity.setPopulation(iPop_neu)
-              if iPlayer != -1:
-                if gc.getPlayer(iPlayer).isHuman() and pPlot.isVisibleToWatchingHuman():
-                  if gc.getPlayer(iPlayer).isHuman():
-                    CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_TORNADO_CITY",(pCity.getName(),iPop_neu,iPop_alt)),None,2,gc.getFeatureInfo(feat_tornado).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-                  else:
-                    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_TORNADO_CITY_OTHER",(pOwner.getCivilizationAdjective(2),pCity.getName())),None,2,gc.getFeatureInfo(feat_tornado).getButton(),ColorTypes(2),iRandX,iRandY,True,True)
-              # City, Wahrscheinlichkeit in %
-              self.doDestroyCityBuildings(pCity,25)
-              self.doKillUnits(pPlot, 10)
-              self.doCheckCityState(pCity)
-
-            # rundherum Sturm kreieren
-            for i in range(3):
-              for j in range(3):
-                loopPlot = gc.getMap().plot(iRandX - 1 + i, iRandY - 1 + j)
-                if None != loopPlot and not loopPlot.isNone():
-                  if loopPlot.getFeatureType() == iDarkIce: continue
-                  if loopPlot.getFeatureType() == -1 and not loopPlot.isPeak():
-                    if loopPlot.isWater(): loopPlot.setFeatureType(feat_seesturm,0)
-                    else: loopPlot.setFeatureType(feat_sturm,0)
-
-
-  def doErdbeben(self, iX, iY):
-    # Effekt
-    earthquakeEffect = gc.getInfoTypeForString("EFFECT_RES_BOMB")
-    bonusPlotArray = []
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    # Effekt beim Vulkanausbruch
-    if iX > 0 and iY > 0:
-      CyEngine().triggerEffect( earthquakeEffect, gc.getMap().plot(iX, iY).getPoint() )
-
-    else:
-
-      feat_erdbeben = gc.getInfoTypeForString('FEATURE_ERDBEBEN')
-      feat_brand = gc.getInfoTypeForString('FEATURE_SMOKE')
-
-      feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
-      feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-      feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-      feat_forest = gc.getInfoTypeForString('FEATURE_FOREST')
-      feat_forest2 = gc.getInfoTypeForString('FEATURE_DICHTERWALD')
-      feat_forest_burnt = gc.getInfoTypeForString('FEATURE_FOREST_BURNT')
-
-      feat_ice = gc.getInfoTypeForString('FEATURE_ICE')
-      terr_snow = gc.getInfoTypeForString('TERRAIN_SNOW')
-
-      # Staerkegrad des Erdbebens 6 - 9
-      # 6 - Radius 1: Modernisierungen 60%, Stadt: Gebaeude 15%, Units 10%
-      # 7 - Radius 1: Modernisierungen 70%, Stadt: Gebaeude 30%, Units 30%, -2 Pop, Land: Units 10%
-      # 8 - Radius 2: Modernisierungen 80%
-      #               Epi + 1:  Stadt: Gebaeude 50%, Units 50%, Pop / 2,   Land: Units 20%
-      #               Radius 2: Stadt: Gebaeude 30%, Units 30%, Pop - 1/3, Land: Units 10%
-      # 9 - Radius 3: Modernisierungen 90%
-      #               Epi + 1: Pop < 6: Stadt und Units 100%,
-      #                        Pop > 5: 3/4 Pop weg, Gebaeude 80%, Wunder 50%, Units 80%
-      #                        Land: Units 40%
-      #               Radius 2: Pop / 2, Stadt:   Gebaeude 60%, Units 60%, Land: Units 30%
-      #               Radius 3: Pop - 1/3, Stadt: Gebaeude 40%, Units 40%, Land: Units 20%
-      iSkala = 6 + self.myRandom(4, None)
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      # Plot soll nicht ganz am Rand sein
-      iRandX = 3 + self.myRandom(iMapW - 3, None)
-      iRandY = 3 + self.myRandom(iMapH - 3, None)
-      pPlot = gc.getMap().plot(iRandX, iRandY)
-      iPlayer = pPlot.getOwner()
-
-      if None != pPlot and not pPlot.isNone():
-
-       if not pPlot.isWater() and pPlot.getFeatureType() != iDarkIce:
-
-        if pPlot.isVisibleToWatchingHuman(): CyCamera().JustLookAtPlot(pPlot)
-
-        # ERDBEBEN 6, 7
-        if iSkala < 8:
-
-          if iPlayer != -1:
-            if gc.getPlayer(iPlayer).isHuman():
-              # Message: Ein gewaltiges Erdbeben der Staerke %d erschuettert Euer Land!
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-              popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_6_OR_7",(iSkala,0)))
-              popupInfo.addPopup(iPlayer)
-              CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_6_OR_7",(iSkala,0)), "AS2D_EARTHQUAKE", 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-
-          for i in range(3):
-            for j in range(3):
-              loopPlot = gc.getMap().plot(iRandX - 1 + i, iRandY - 1 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if not loopPlot.isWater(): CyEngine().triggerEffect( earthquakeEffect, loopPlot.getPoint() )
-
-                # Plot fuer Bonus Resource checken
-                # Vergabe unten
-                if not loopPlot.isWater() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and not loopPlot.isPeak() and loopPlot.isHills():
-                   bonusPlotArray.append(loopPlot)
-
-                # Stadt
-                if loopPlot.isCity():
-                  pCity = loopPlot.getPlotCity()
-                  pCity.setFood(0)
-                  if iSkala == 6:
-                    self.doDestroyCityBuildings(pCity, 15)
-                    self.doKillUnits(loopPlot, 10)
-                  else:
-                    self.doDestroyCityBuildings(pCity, 30)
-                    self.doKillUnits(loopPlot, 30)
-                    iPopAlt = pCity.getPopulation()
-                    iPopNeu = 0
-                    if iPopAlt > 4: iPopNeu = iPopAlt - 2
-                    elif iPopAlt > 2: iPopNeu = iPopAlt - 1
-                    else: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-
-                    if iPopNeu and iPlayer != -1:
-                      if gc.getPlayer(iPlayer).isHuman():
-                        # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
-                        CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-
-                  self.doCheckCityState(pCity)
-
-                # Modernisierungen zerstoeren
-                elif not loopPlot.isWater():
-                  iRand = self.myRandom(10, None)
-                  if iSkala == 6:
-                    iLimit = 6
-                  else:
-                    iLimit = 7
-                    self.doKillUnits(loopPlot, 10)
-                  if iRand < iLimit:
-                    loopPlot.setRouteType(-1)
-                    loopPlot.setImprovementType(-1)
-                  # Brand setzen
-                  if not loopPlot.isPeak():
-                   if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_oasis:
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2:
-                      if self.myRandom(3, None) == 1: loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else:
-                      if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() != terr_snow:
-                         loopPlot.setFeatureType(feat_brand,0)
-
-        # ERDBEBEN 8
-        elif iSkala == 8:
-
-          if gc.getPlayer(gc.getGame().getActivePlayer()).isHuman():
-            if pPlot.isVisibleToWatchingHuman():
-              CyCamera().JustLookAtPlot(pPlot)
-              # Message: Ein verheerendes Erdbeben der Staerke 8 erschuetterte das Land.
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-              popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_8",("",)))
-              popupInfo.addPopup(gc.getGame().getActivePlayer())
-              CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_8",("",)), "AS2D_EARTHQUAKE", 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-            else:
-              # Message: Ein verheerendes Erdbeben der Staerke 8 erschuetterte ein fernes Land.
-              CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_8_FAR_AWAY",("",)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(12), pPlot.getX(), pPlot.getY(), True, True)
-
-          for i in range(5):
-            for j in range(5):
-              loopPlot = gc.getMap().plot(iRandX - 2 + i, iRandY - 2 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if not loopPlot.isWater(): CyEngine().triggerEffect( earthquakeEffect, loopPlot.getPoint() )
-
-                # Plot fuer Bonus Resource checken
-                # Vergabe unten
-                if not loopPlot.isWater() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and not loopPlot.isPeak() and loopPlot.isHills():
-                   bonusPlotArray.append(loopPlot)
-
-                # Entfernung zum Epizentrum berechnen
-                iBetrag = (iRandX - loopPlot.getX()) * (iRandX - loopPlot.getX()) + (iRandY - loopPlot.getY()) * (iRandY - loopPlot.getY())
-
-                # Stadt
-                if loopPlot.isCity():
-                  pCity = loopPlot.getPlotCity()
-                  iPopAlt = pCity.getPopulation()
-                  if iBetrag < 2:
-                    self.doDestroyCityBuildings(pCity, 50)
-                    self.doKillUnits(loopPlot, 50)
-                    iPopNeu = int(iPopAlt / 2)
-                    if iPopNeu < 2: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-                  else:
-                    self.doDestroyCityBuildings(pCity, 30)
-                    self.doKillUnits(loopPlot, 30)
-                    iPopNeu = iPopAlt - int(iPopAlt / 3)
-                    if iPopNeu < 2: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-                  pCity.setFood(0)
-
-                  if iPlayer != -1:
-                    if gc.getPlayer(iPlayer).isHuman():
-                      # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
-                      CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-
-                  self.doCheckCityState(pCity)
-
-                # Modernisierungen zerstoeren
-                elif not loopPlot.isWater():
-                  iRand = self.myRandom(10, None)
-                  if iRand < 8:
-                    loopPlot.setRouteType(-1)
-                    loopPlot.setImprovementType(-1)
-                  # Brand setzen
-                  if not loopPlot.isPeak():
-                   if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_oasis:
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2:
-                      if self.myRandom(2, None) == 1: loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else:
-                      if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() != terr_snow:
-                         loopPlot.setFeatureType(feat_brand,0)
-                  # Units killen
-                  if iBetrag < 2: self.doKillUnits(loopPlot, 20)
-                  else: self.doKillUnits(loopPlot, 10)
-
-        # ERDBEBEN 9
-        elif iSkala > 8:
-
-          if gc.getPlayer(gc.getGame().getActivePlayer()).isHuman():
-            if pPlot.isVisibleToWatchingHuman():
-              CyCamera().JustLookAtPlot(pPlot)
-              # Message: Ein katastrophales Erdbeben der Staerke 9 erschuetterte das Land.
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-              popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_9",("",)))
-              popupInfo.addPopup(gc.getGame().getActivePlayer())
-              CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_9",("",)), "AS2D_EARTHQUAKE", 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-            else:
-              # Message: Ein verheerendes Erdbeben der Staerke 8 erschuetterte ein fernes Land.
-              CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_9_FAR_AWAY",("",)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(12), pPlot.getX(), pPlot.getY(), True, True)
-
-          for i in range(7):
-            for j in range(7):
-              loopPlot = gc.getMap().plot(iRandX - 3 + i, iRandY - 3 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if not loopPlot.isWater(): CyEngine().triggerEffect( earthquakeEffect, loopPlot.getPoint() )
-
-                # Plot fuer Bonus Resource checken
-                # Vergabe unten
-                if not loopPlot.isWater() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and not loopPlot.isPeak() and loopPlot.isHills():
-                   bonusPlotArray.append(loopPlot)
-
-                # Entfernung zum Epizentrum berechnen
-                iBetrag = (iRandX - loopPlot.getX()) * (iRandX - loopPlot.getX()) + (iRandY - loopPlot.getY()) * (iRandY - loopPlot.getY())
-
-                # Stadt
-                if loopPlot.isCity():
-                  pCity = loopPlot.getPlotCity()
-                  iPopAlt = pCity.getPopulation()
-                  if iBetrag < 2:
-                    if iPopAlt < 6:
-                      self.doDestroyCityWonders(pCity, 100, feat_erdbeben)
-                      self.doKillUnits(loopPlot, 100)
-                      pCity.kill()
-                      if gc.getPlayer(iPlayer).isHuman():
-                        # Message: Die Stadt %s und dessen Bevoelkerung wurde in ihren Truemmern begraben....
-                        CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_EARTHQUAKE_CITY_DESTROYED",(pCity.getName(),)), "AS2D_EARTHQUAKE", 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-                    else:
-                      self.doDestroyCityWonders(pCity, 50, feat_erdbeben)
-                      self.doDestroyCityBuildings(pCity, 80)
-                      self.doKillUnits(loopPlot, 80)
-                      iPopNeu = int(iPopAlt / 4)
-                      pCity.setPopulation(iPopNeu)
-                  elif iBetrag < 3:
-                    self.doDestroyCityBuildings(pCity, 60)
-                    self.doKillUnits(loopPlot, 60)
-                    iPopNeu = int(iPopAlt / 2)
-                    if iPopNeu < 2: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-                  else:
-                    self.doDestroyCityBuildings(pCity, 40)
-                    self.doKillUnits(loopPlot, 40)
-                    iPopNeu = iPopAlt - int(iPopAlt / 3)
-                    if iPopNeu < 2: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-
-
-                  if not pCity.isNone() and iPlayer != -1:
-                    pCity.setFood(0)
-                    if gc.getPlayer(iPlayer).isHuman():
-                      # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
-                      CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-
-                  self.doCheckCityState(pCity)
-
-                # Modernisierungen zerstoeren
-                elif not loopPlot.isWater():
-                  iRand = self.myRandom(100, None)
-                  if iRand < 90:
-                    loopPlot.setRouteType(-1)
-                    loopPlot.setImprovementType(-1)
-                  # Brand setzen
-                  if not loopPlot.isPeak():
-                   if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_oasis:
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2:
-                       loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else:
-                      if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() != terr_snow:
-                         loopPlot.setFeatureType(feat_brand,0)
-                  # Units killen
-                  if iBetrag < 2: self.doKillUnits(loopPlot, 40)
-                  elif iBetrag < 3: self.doKillUnits(loopPlot, 30)
-                  else: self.doKillUnits(loopPlot, 20)
-
-
-        # Vergabe einer Bonus Resource 20%
-        if len(bonusPlotArray) > 0:
-          if 2 > self.myRandom(10, None):
-            lBonus = []
-            lBonus.append(gc.getInfoTypeForString("BONUS_GEMS"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_COPPER"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_IRON"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_MARBLE"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_STONE"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_OBSIDIAN"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_MAGNETIT"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_ZINK"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_ZINN"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_COAL"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_ELEKTRON"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_GOLD"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_SILVER"))
-            lBonus.append(gc.getInfoTypeForString("BONUS_SALT"))
-            iRand = self.myRandom(len(lBonus), None)
-            iBonus = lBonus[iRand]
-
-            iRandPlot = self.myRandom(len(bonusPlotArray), None)
-            bonusPlotArray[iRandPlot].setBonusType(iBonus)
-            if bonusPlotArray[iRandPlot].getOwner() > -1:
-              if gc.getPlayer(bonusPlotArray[iRandPlot].getOwner()).isHuman():
-                CyInterface().addMessage(bonusPlotArray[iRandPlot].getOwner(), True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS",(gc.getBonusInfo(iBonus).getDescription(),)), None, 2, gc.getBonusInfo(iBonus).getButton(), ColorTypes(14), bonusPlotArray[iRandPlot].getX(), bonusPlotArray[iRandPlot].getY(), True, True)
-
-
-        # Zusaetzliche Gefahren durch das Erdbeben
-
-        # Vulkan
-        if pPlot.isPeak() and iSkala > 7:
-          self.doVulkan(iRandX, iRandY, iSkala)
-
-       # Unterwassererdbeben
-       elif iSkala > 8:
-
-         # Testen ob es ein Ozean ist
-         iNumWaterTiles = 0
-         for i in range(5):
-           for j in range(5):
-             loopPlot = gc.getMap().plot(iRandX - 2 + i, iRandY - 2 + j)
-             if None != loopPlot and not loopPlot.isNone():
-               if loopPlot.getFeatureType() == iDarkIce: continue
-               if loopPlot.isWater(): iNumWaterTiles += 1
-         # Statt dem Erbeben wird ein Tsunami zum Leben erweckt
-         if iNumWaterTiles > 9:
-           self.doTsunami(iRandX, iRandY)
-
-
-  def doVulkan(self, iX, iY, iSkala):
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    # iX, iY und iSkala vom Feature Erbeben: iSkala 8 oder 9
-    # Wenn das nicht gegeben ist, einen eigenen Vulkanausbruch erzeugen
-    if iSkala == 0:
-      iSkala = 8 + self.myRandom(2, None)
-
-      iMapW = gc.getMap().getGridWidth()
-      iMapH = gc.getMap().getGridHeight()
-
-      # 10 Versuche einen Berg ausfindig zu machen
-      for i in range (10):
-        # Plot soll nicht ganz am Rand sein
-        iRandX = 3 + self.myRandom(iMapW - 3, None)
-        iRandY = 3 + self.myRandom(iMapH - 3, None)
-        if gc.getMap().plot(iRandX, iRandY).isPeak():
-          iX = iRandX
-          iY = iRandY
-          break
-
-    if iX > 0 and iY > 0:
-      pPlot = gc.getMap().plot(iX, iY)
-
-      terr_peak   = gc.getInfoTypeForString("TERRAIN_PEAK")
-      terr_tundra = gc.getInfoTypeForString("TERRAIN_TUNDRA")
-      terr_coast  = gc.getInfoTypeForString("TERRAIN_COAST")
-      feat_vulkan = gc.getInfoTypeForString("FEATURE_VOLCANO")
-      feat_brand  = gc.getInfoTypeForString("FEATURE_SMOKE")
-      feat_saurer_regen = gc.getInfoTypeForString("FEATURE_SAURER_REGEN")
-
-      feat_swamp = gc.getInfoTypeForString("FEATURE_SWAMP")
-      feat_flood_plains = gc.getInfoTypeForString("FEATURE_FLOOD_PLAINS")
-      feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-
-      feat_forest = gc.getInfoTypeForString('FEATURE_FOREST')
-      feat_forest2 = gc.getInfoTypeForString('FEATURE_DICHTERWALD')
-      feat_jungle = gc.getInfoTypeForString('FEATURE_JUNGLE')
-      feat_forest_burnt = gc.getInfoTypeForString('FEATURE_FOREST_BURNT')
-
-      bonus_magnetit = gc.getInfoTypeForString("BONUS_MAGNETIT")
-      bonus_obsidian = gc.getInfoTypeForString("BONUS_OBSIDIAN")
-      bonusPlotArray = []
-
-      if pPlot.isPeak():
-        pPlot.setPlotType (PlotTypes.PLOT_LAND,True,True)
-        pPlot.setTerrainType(terr_tundra,1,1)
-
-      pPlot.setFeatureType(feat_vulkan,0)
-
-      # Meldungen -----
-      # Staerke 1
-      if iSkala == 8:
-        if gc.getPlayer(gc.getGame().getActivePlayer()).isHuman():
-          if pPlot.isVisibleToWatchingHuman():
-            CyCamera().JustLookAtPlot(pPlot)
-            # Message: Ein verheerender Vulkanausbruch legt das Land in Schutt und Asche.
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_1",("",)))
-            popupInfo.addPopup(gc.getGame().getActivePlayer())
-            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_1",("",)), "AS2D_EARTHQUAKE", 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-
-      # Staerke 2
-      else:
-        if gc.getPlayer(gc.getGame().getActivePlayer()).isHuman():
-          if pPlot.isVisibleToWatchingHuman():
-            CyCamera().JustLookAtPlot(pPlot)
-            # Message: Ein katastrophaler Vulkanausbruch legt das Land in Schutt und Asche.
-            popupInfo = CyPopupInfo()
-            popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-            popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_2",("",)))
-            popupInfo.addPopup(gc.getGame().getActivePlayer())
-            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_2",("",)), "AS2D_EARTHQUAKE", 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-          else:
-            # Message: Ein katastrophaler Vulkanausbruch legt ein fernes Land in Schutt und Asche.
-            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_2_FAR_AWAY",("",)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(12), pPlot.getX(), pPlot.getY(), True, True)
-
-      # Staerke 1 (iSkala 8): 1 Plot Radius
-      #   Stadt: Pop / 2, Gebaeude 50%, Units 50%
-      #   Land:  Units 25%
-      #   Feature: Sauerer Regen: Umkreis von 5 Plots
-
-      # Staerke 2 (iSkala 9): 2 Plots Radius
-      #   Radius 1:
-      #     Stadt: Pop = 1/4, Gebaeude 75%, Units 75%
-      #     Land:  Units 50%
-      #   Radius 2:
-      #     Stadt: Pop / 2, Gebaeude 50%, Units 50%
-      #     Land:  Units 25%
-      #   Feature: Sauerer Regen: Umkreis von 1 Plot, Ellipse nach Osten oder Westen: 15 Plots
-
-      iRandX = iX
-      iRandY = iY
-
-      # Effekt
-      earthquakeEffect = gc.getInfoTypeForString("EFFECT_RES_BOMB")
-      volcanoEffect = gc.getInfoTypeForString("EFFECT_OMEN_HORSEMAN")
-      CyEngine().triggerEffect( volcanoEffect, pPlot.getPoint() )
-
-      PlayerPopUpFood = []
-
-      # Staerke 1
-      if iSkala == 8:
-
-          for i in range(3):
-            for j in range(3):
-              loopPlot = gc.getMap().plot(iRandX - 1 + i, iRandY - 1 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if not loopPlot.isWater() and i != 1 and j != 1: CyEngine().triggerEffect( earthquakeEffect, loopPlot.getPoint() )
-
-                # Entfernung zum Epizentrum berechnen
-                iBetrag = (iRandX - loopPlot.getX()) * (iRandX - loopPlot.getX()) + (iRandY - loopPlot.getY()) * (iRandY - loopPlot.getY())
-
-                # Stadt
-                if loopPlot.isCity():
-                  pCity = loopPlot.getPlotCity()
-                  iPlayer = pCity.getOwner()
-                  iPopAlt = pCity.getPopulation()
-
-                  self.doDestroyCityBuildings(pCity, 50)
-                  self.doKillUnits(loopPlot, 50)
-                  iPopNeu = int(iPopAlt / 2)
-                  if iPopNeu < 2: iPopNeu = 1
-                  pCity.setPopulation(iPopNeu)
-                  pCity.setFood(0)
-
-                  if iPlayer != -1:
-                    if gc.getPlayer(iPlayer).isHuman():
-                      # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
-                      CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-
-                  self.doCheckCityState(pCity)
-
-                # Modernisierungen zerstoeren
-                else:
-                  loopPlot.setRouteType(-1)
-                  loopPlot.setImprovementType(-1)
-                  # Brand setzen
-                  if not loopPlot.isWater() and not loopPlot.isPeak():
-                   if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_vulkan and loopPlot.getFeatureType() != feat_oasis:
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2 or loopPlot.getFeatureType() == feat_jungle:
-                       loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else: loopPlot.setFeatureType(feat_brand,0)
-                  # Units killen
-                  self.doKillUnits(loopPlot, 25)
-
-                # Plot fuer Bonus checken
-                # Vergabe ganz unten
-                if not loopPlot.isWater() and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and loopPlot.getBonusType(-1) == -1 and loopPlot.isHills():
-                  bonusPlotArray.append(loopPlot)
-
-                # Dem Plot +1 Nahrung geben (25%)
-                if not loopPlot.isWater() and not loopPlot.isCity() and not loopPlot.isPeak() and not (i==1 and j==1):
-                 if loopPlot.getFeatureType != feat_vulkan and loopPlot.getTerrainType() != terr_tundra:
-                  if self.myRandom(4, None) == 1:
-                    gc.getGame().setPlotExtraYield(iRandX - 2 + i, iRandY - 2 + j, 0, 1) # x,y,YieldType,iChange
-                    iOwner = loopPlot.getOwner()
-                    if iOwner != -1:
-                     if gc.getPlayer(iOwner).isHuman():
-                      CyInterface().addMessage(iOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_FOOD",("",)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(8), loopPlot.getX(), loopPlot.getY(), True, True)
-                      # fuer spaeteres popup
-                      if gc.getPlayer(iOwner).getID() not in PlayerPopUpFood: PlayerPopUpFood.append(gc.getPlayer(iOwner).getID())
-
-                # Verbreitbare Resi vernichten
-                if loopPlot.getBonusType(loopPlot.getOwner()) > -1 or loopPlot.getBonusType(-1) > -1:
-                  self.doEraseBonusFromDisaster(loopPlot)
-
-          # Sauerer Regen
-          for i in range(7):
-            for j in range(7):
-              loopPlot = gc.getMap().plot(iRandX - 3 + i, iRandY - 3 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                #loopPlot.setRouteType(-1)
-                if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_oasis \
-                and loopPlot.getFeatureType() != feat_brand and loopPlot.getFeatureType() != feat_vulkan and not loopPlot.isPeak():
-                  if loopPlot.getFeatureType() != feat_forest_burnt:
-                    loopPlot.setFeatureType(feat_saurer_regen,0)
-
-
-      # Staerke 2
-      else:
-
-          for i in range(5):
-            for j in range(5):
-              loopPlot = gc.getMap().plot(iRandX - 2 + i, iRandY - 2 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if not loopPlot.isWater() and i != 2 and j != 2: CyEngine().triggerEffect( earthquakeEffect, loopPlot.getPoint() )
-
-                # Entfernung zum Vulkan berechnen
-                iBetrag = (iRandX - loopPlot.getX()) * (iRandX - loopPlot.getX()) + (iRandY - loopPlot.getY()) * (iRandY - loopPlot.getY())
-
-                # Stadt
-                if loopPlot.isCity():
-                  pCity = loopPlot.getPlotCity()
-                  iPlayer = pCity.getOwner()
-                  iPopAlt = pCity.getPopulation()
-
-                  if iBetrag < 2:
-                    self.doDestroyCityBuildings(pCity, 75)
-                    self.doKillUnits(loopPlot, 75)
-                    iPopNeu = int(iPopAlt / 4)
-                    if iPopNeu < 1: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-                  else:
-                    self.doDestroyCityBuildings(pCity, 50)
-                    self.doKillUnits(loopPlot, 50)
-                    iPopNeu = iPopAlt - int(iPopAlt / 2)
-                    if iPopNeu < 1: iPopNeu = 1
-                    pCity.setPopulation(iPopNeu)
-                  pCity.setFood(0)
-
-                  if iPlayer != -1:
-                    if gc.getPlayer(iPlayer).isHuman():
-                      # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
-                      CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-
-                  self.doCheckCityState(pCity)
-
-                # Modernisierungen zerstoeren
-                else:
-                  loopPlot.setRouteType(-1)
-                  loopPlot.setImprovementType(-1)
-                  # Brand setzen
-                  if not loopPlot.isWater() and loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains \
-                  and loopPlot.getFeatureType() != feat_vulkan and not loopPlot.isPeak() and loopPlot.getFeatureType() != feat_oasis:
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2 or loopPlot.getFeatureType() == feat_jungle:
-                       loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else: loopPlot.setFeatureType(feat_brand,0)
-                  # Units killen
-                  if iBetrag < 2: self.doKillUnits(loopPlot, 50)
-                  else: self.doKillUnits(loopPlot, 25)
-
-                # Plot fuer Bonus checken
-                # Nur 1 Plot rund um den Vulkan
-                # Vergabe ganz unten
-                if i > 0 and i < 4 and j > 0 and j < 4:
-                  if not loopPlot.isWater() and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and loopPlot.getBonusType(-1) == -1 and loopPlot.isHills():
-                    bonusPlotArray.append(loopPlot)
-
-                # Dem Plot +1 Nahrung geben (25%)
-                if not loopPlot.isWater() and not loopPlot.isCity() and not loopPlot.isPeak() and not (i==2 and j==2):
-                 if loopPlot.getFeatureType != feat_vulkan and loopPlot.getTerrainType() != terr_tundra:
-                  if self.myRandom(4, None) == 1:
-                    gc.getGame().setPlotExtraYield(iRandX - 2 + i, iRandY - 2 + j, 0, 1) # x,y,YieldType,iChange
-                    iOwner = loopPlot.getOwner()
-                    if iOwner != -1:
-                     if gc.getPlayer(iOwner).isHuman():
-                      CyInterface().addMessage(iOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_FOOD",("",)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(8), loopPlot.getX(), loopPlot.getY(), True, True)
-                      # fuer spaeteres popup
-                      if gc.getPlayer(iOwner).getID() not in PlayerPopUpFood: PlayerPopUpFood.append(gc.getPlayer(iOwner).getID())
-
-                # Verbreitbare Resi vernichten
-                if loopPlot.getBonusType(loopPlot.getOwner()) > -1 or loopPlot.getBonusType(-1) > -1:
-                  self.doEraseBonusFromDisaster(loopPlot)
-
-          # Sauerer Regen
-          # Ellipse nach Osten oder Westen: 15 Plots
-          iRand_W_O = self.myRandom(2, None)
-          for i in range(20):
-            for j in range(11):
-
-              if iRand_W_O == 1:
-                loopPlot = gc.getMap().plot(iRandX + i, iRandY - 5 + j)
-              else:
-                loopPlot = gc.getMap().plot(iRandX - i, iRandY - 5 + j)
-
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_oasis \
-                and loopPlot.getFeatureType() != feat_vulkan and not loopPlot.isPeak():
-                  bDraw = False
-                  if   (i == 0 or i == 19) and j > 3 and j < 8: bDraw = True
-                  elif (i == 1 or i == 18) and j > 2 and j < 8: bDraw = True
-                  elif (i == 2 or i == 17) and j > 1 and j < 9: bDraw = True
-                  elif (i == 3 or i == 4 or i == 15 or i == 16) and j > 0 and j < 10: bDraw = True
-                  elif (i > 4 and i < 15): bDraw = True
-                  if bDraw:
-                    #loopPlot.setRouteType(-1)
-                    bSetRegen = False
-                    if loopPlot.getFeatureType() == -1: bSetRegen = True
-                    elif loopPlot.getFeatureType() != feat_forest_burnt:
-                      if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2 or loopPlot.getFeatureType() == feat_jungle:
-                        if self.myRandom(2, None) == 1: bSetRegen = True
-
-                    if bSetRegen:
-                      loopPlot.setFeatureType(feat_saurer_regen,0)
-
-
-
-          # Vulkan wird zu Wasser, wenn auf einer (Halb)Insel
-          # Sprengt sich weg (somit keine Vulkan-Feature-Grafik notwendig)
-          iNumWaterTiles = 0
-          for i in range(3):
-            for j in range(3):
-              loopPlot = gc.getMap().plot(iRandX - 1 + i, iRandY - 1 + j)
-              if None != loopPlot and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if loopPlot.isWater(): iNumWaterTiles += 1
-          # Statt dem Erbeben wird ein Tsunami zum Leben erweckt
-          if iNumWaterTiles > 3:
-            pPlot.setFeatureType(-1,0)
-            pPlot.setTerrainType(terr_coast,1,1)
-            pPlot.setPlotType(PlotTypes.PLOT_OCEAN,True,True)
-            self.doTsunami(iRandX,iRandY)
-
-
-      # Message: PopUp wegen +1 Food
-      iRange = len(PlayerPopUpFood)
-      if iRange > 0:
-        for i in range (iRange):
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-          popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_VOLCANO_FOOD_POPUP",("",)))
-          popupInfo.addPopup(PlayerPopUpFood[i])
-
-      # Chance einer Magnetit und Obsidian Bonus Resource jeweils 50%
-      iRange = len(bonusPlotArray)
-      if iRange > 0:
-        iRand = self.myRandom(3, None)
-        iBonus = -1
-        if iRand == 1: iBonus = bonus_magnetit
-        elif iRand == 2: iBonus = bonus_obsidian
-
-        if iBonus != -1:
-          for iLoopPlot in range(iRange):
-            iRand = self.myRandom(100, None)
-            if iRand < 100 / (iLoopPlot+1):
-              bonusPlotArray[iLoopPlot].setBonusType(iBonus)
-              if bonusPlotArray[iLoopPlot].getOwner() > -1:
-                if gc.getPlayer(bonusPlotArray[iLoopPlot].getOwner()).isHuman():
-                  CyInterface().addMessage(bonusPlotArray[iLoopPlot].getOwner(), True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS",(gc.getBonusInfo(iBonus).getDescription(),)), None, 2, gc.getBonusInfo(iBonus).getButton(), ColorTypes(14), bonusPlotArray[iLoopPlot].getX(), bonusPlotArray[iLoopPlot].getY(), True, True)
-
-
-
-  def undoVulkan(self):
-
-    terr_peak = gc.getInfoTypeForString("TERRAIN_PEAK")
-    feat_vulkan = gc.getInfoTypeForString("FEATURE_VOLCANO")
-
-    iMapW = gc.getMap().getGridWidth()
-    iMapH = gc.getMap().getGridHeight()
-
-    for i in range (iMapW):
-      for j in range (iMapH):
-        pPlot = CyMap().plot(i, j)
-
-        if pPlot.getFeatureType() == feat_vulkan:
-          #iYield = pPlot.getYield(0)
-          #if iYield > 0: gc.getGame().setPlotExtraYield(i, j, 0, -iYield) # x,y,YieldType,iChange
-          # Reihenfolge einhalten! wichtig!!!
-          pPlot.setFeatureType(-1,0)
-          pPlot.setTerrainType(terr_peak,1,1)
-          pPlot.setPlotType(PlotTypes.PLOT_PEAK,True,True)
-
-  # --------- Ende Vulkan / Volcano ------------
-
-  def doTsunami(self, iX, iY):
-
-    feat_seuche = gc.getInfoTypeForString("FEATURE_SEUCHE")
-    feat_saurer_regen = gc.getInfoTypeForString("FEATURE_SAURER_REGEN")
-
-    feat_swamp = gc.getInfoTypeForString("FEATURE_SWAMP")
-    feat_flood_plains = gc.getInfoTypeForString("FEATURE_FLOOD_PLAINS")
-    feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-    feat_vulkan = gc.getInfoTypeForString("FEATURE_VOLCANO")
-    feat_tsunami = gc.getInfoTypeForString("FEATURE_TSUNAMI")
-
-    iBuildingPalisade = gc.getInfoTypeForString('BUILDING_PALISADE')
-    iBuildingWalls = gc.getInfoTypeForString('BUILDING_WALLS')
-    iBuildingHW1 = gc.getInfoTypeForString('BUILDING_HIGH_WALLS')
-    iBuildingHW2 = gc.getInfoTypeForString('BUILDING_CELTIC_DUN')
-    iBuildingHW3 = gc.getInfoTypeForString('BUILDING_HIGH_WALLS_GRECO')
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    iMapW = gc.getMap().getGridWidth()
-    iMapH = gc.getMap().getGridHeight()
-
-    # Der Tsunamieffekt muss im 2ten Wasserfeld vor der Kueste (Land) gestartet werden
-    # Der Schaden soll bis einschliesslich 4 Landplots reingehen
-    # Der Einschlag/Das Epizentrum darf maximal 3 Felder ausserhalb der Kueste (Land) sein, sonst unwirksam
-    # Huegel und Berge stoppen den Schaden an weiteren Feldern
-    # Plot 1: Stadt: Pop - 1/2, Units 15%, Gebaeude 10%, Mods + Streets
-    # Plot 2: Stadt: Pop - 1/3, Units 10%, Gebaeude  5%, Mods + Streets
-    #         Ausgenommen: Stadt auf Huegel mit Stadtmauer: Pop - 1/4, Units und Gebaeude 0%
-    # Plot 3: Stadt: Pop - 1/4, Units  5%, Mods + Streets
-    #         Ausgenommen: Stadt auf Huegel mit Stadtmauer: Sicher
-    # Plot 4: Nur Modernisierungen
-    # Stadtmauer 50%, Palisade 100% und Hohe Mauer 20% weg
-
-    for iHimmelsrichtung in range(4):
-      iDamageMaxPlots = 4
-      bEffectDone = False
-      bDoTsunami = False
-
-      # 3 Plots dicke Flutkatastrophe
-      for d in range(3):
-       # Checken ob innerhalb von 4 Feldern Land ist
-       for i in range(4):
-         if iHimmelsrichtung == 0:   loopPlot = CyMap().plot(iX - 1 + d, iY + i) # Norden
-         elif iHimmelsrichtung == 1: loopPlot = CyMap().plot(iX - 1 - d, iY - i) # Sueden
-         elif iHimmelsrichtung == 2: loopPlot = CyMap().plot(iX + i, iY - 1 + d) # Osten
-         elif iHimmelsrichtung == 3: loopPlot = CyMap().plot(iX - i, iY - 1 + d) # Westen
-         if None != loopPlot and not loopPlot.isNone():
-           if loopPlot.getFeatureType() == iDarkIce: continue
-           if not loopPlot.isWater(): bDoTsunami = True
-
-      if bDoTsunami == True:
-
-       for d in range(3):
-         iDamagePlots = 0
-
-         if iHimmelsrichtung == 0:   iRange = iMapH - iY
-         elif iHimmelsrichtung == 1: iRange = iY
-         elif iHimmelsrichtung == 2: iRange = iMapW - iX
-         elif iHimmelsrichtung == 3: iRange = iX
-
-         for i in range(iRange):
-
-          if iHimmelsrichtung == 0:   loopPlot = CyMap().plot(iX - 1 + d, iY + i)
-          elif iHimmelsrichtung == 1: loopPlot = CyMap().plot(iX - 1 + d, iY - i)
-          elif iHimmelsrichtung == 2: loopPlot = CyMap().plot(iX + i, iY - 1 + d)
-          elif iHimmelsrichtung == 3: loopPlot = CyMap().plot(iX - i, iY - 1 + d)
-
-          # 0: Einschlag/Epizentrum
-          # Ende bei Max Plots
-          if iDamagePlots >= iDamageMaxPlots: break
-          # Ende bei DarkIce
-          if loopPlot.getFeatureType() == iDarkIce: break
-          # Ende bei Berg oder aktivem Vulkan
-          if loopPlot.isPeak() or loopPlot.getFeatureType() == feat_vulkan: break
-          # Ende wenn es ein Landstrich ist
-          if iDamagePlots > 0 and loopPlot.isWater(): break
-
-          # Land
-          if i > 0 and not loopPlot.isWater():
-           iDamagePlots += 1
-
-           # Effekt
-           if not bEffectDone and d == 1:
-             if iHimmelsrichtung == 0:
-               iEffect = gc.getInfoTypeForString("EFFECT_TSUNAMI_N")
-               pEffectPlot = CyMap().plot(iX, iY + i - 2)
-             elif iHimmelsrichtung == 1:
-               iEffect = gc.getInfoTypeForString("EFFECT_TSUNAMI_S")
-               pEffectPlot = CyMap().plot(iX, iY - i + 2)
-             elif iHimmelsrichtung == 2:
-               iEffect = gc.getInfoTypeForString("EFFECT_TSUNAMI_E")
-               pEffectPlot = CyMap().plot(iX + i - 2, iY)
-             elif iHimmelsrichtung == 3:
-               iEffect = gc.getInfoTypeForString("EFFECT_TSUNAMI_W")
-               pEffectPlot = CyMap().plot(iX - i + 2, iY)
-             CyEngine().triggerEffect( iEffect, pEffectPlot.getPoint() )
-             bEffectDone = True
-
-             if gc.getPlayer(gc.getGame().getActivePlayer()).isHuman():
-               if pEffectPlot.isVisibleToWatchingHuman():
-                 CyCamera().JustLookAtPlot(pEffectPlot)
-                 # Message: Eine gigantische Flutwelle trifft die Kueste und versetzt das Land in aergste Not!
-                 popupInfo = CyPopupInfo()
-                 popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                 popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_TSUNAMI",("",)))
-                 popupInfo.addPopup(gc.getGame().getActivePlayer())
-                 CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_TSUNAMI",("",)), "AS2D_TSUNAMI", 2, gc.getFeatureInfo(feat_tsunami).getButton(), ColorTypes(7), pEffectPlot.getX(), pEffectPlot.getY(), True, True)
-
-
-           # Stadt
-           if loopPlot.isCity():
-             pCity = loopPlot.getPlotCity()
-             iPlayer = pCity.getOwner()
-             iPopAlt = pCity.getPopulation()
-             iPopNeu = iPopAlt
-
-             if iDamagePlots == 0:
-               self.doDestroyCityBuildings(pCity, 10)
-               self.doKillUnits(loopPlot, 15)
-               iPopNeu = iPopAlt - int(iPopAlt / 2)
-               if iPopNeu < 1: iPopNeu = 1
-               pCity.setPopulation(iPopNeu)
-             elif iDamagePlots == 1:
-               # Stadt mit Stadtmauern und Huegel
-               if loopPlot.isHills() and (pCity.isHasBuilding(iBuildingWalls) or pCity.isHasBuilding(iBuildingHW1) or pCity.isHasBuilding(iBuildingHW2) or pCity.isHasBuilding(iBuildingHW3) ):
-                 iPopNeu = iPopAlt - int(iPopAlt / 4)
-                 if iPopNeu < 1: iPopNeu = 1
-                 pCity.setPopulation(iPopNeu)
-               else:
-                 self.doDestroyCityBuildings(pCity, 5)
-                 self.doKillUnits(loopPlot, 10)
-                 iPopNeu = iPopAlt - int(iPopAlt / 3)
-                 if iPopNeu < 1: iPopNeu = 1
-                 pCity.setPopulation(iPopNeu)
-             elif iDamagePlots == 2:
-               # Stadt mit Stadtmauern und Huegel
-               if loopPlot.isHills() and (pCity.isHasBuilding(iBuildingWalls) or pCity.isHasBuilding(iBuildingHW1) or pCity.isHasBuilding(iBuildingHW2) or pCity.isHasBuilding(iBuildingHW3) ):
-                 break
-               else:
-                 self.doKillUnits(loopPlot, 5)
-                 iPopNeu = iPopAlt - int(iPopAlt / 4)
-                 if iPopNeu < 1: iPopNeu = 1
-                 pCity.setPopulation(iPopNeu)
-             pCity.setFood(0)
-
-             # Stadtmauern zerstoeren
-             self.doDestroyWalls(pCity)
-
-             if iPlayer != -1 and iPopNeu != iPopAlt:
-               if gc.getPlayer(iPlayer).isHuman():
-                 # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
-                 CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_tsunami).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
-
-             self.doCheckCityState(pCity)
-
-           # Land
-           else:
-             if iDamagePlots + 1 < iDamageMaxPlots: loopPlot.setRouteType(-1)
-             loopPlot.setImprovementType(-1)
-             if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains \
-             and loopPlot.getFeatureType() != feat_saurer_regen and loopPlot.getFeatureType() != feat_oasis:
-               loopPlot.setFeatureType(feat_seuche,0)
-             self.doKillUnits(loopPlot, 30)
-
-           # Bei Huegel Tsunami stoppen
-           if loopPlot.isHills(): iDamagePlots = iDamageMaxPlots
-
-# ----------- Ende Tsunami ------------
-
-  def doMeteorites(self):
-
-    feat_meteor = gc.getInfoTypeForString('FEATURE_METEORS')
-    feat_brand = gc.getInfoTypeForString('FEATURE_SMOKE')
-
-    feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
-    feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-    feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-
-    feat_forest = gc.getInfoTypeForString('FEATURE_FOREST')
-    feat_forest2 = gc.getInfoTypeForString('FEATURE_DICHTERWALD')
-    feat_forest_burnt = gc.getInfoTypeForString('FEATURE_FOREST_BURNT')
-
-    feat_ice = gc.getInfoTypeForString('FEATURE_ICE')
-    terr_snow = gc.getInfoTypeForString('TERRAIN_SNOW')
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-
-    bonus_magnetit = gc.getInfoTypeForString("BONUS_MAGNETIT")
-    bonus_oreichalkos = gc.getInfoTypeForString("BONUS_OREICHALKOS")
-    bonusPlotArray = []
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-    iMaxEffect = 0
-    iMapSize = gc.getMap().getWorldSize()
-    if iMapSize == 0: iMax = 1
-    elif iMapSize == 1: iMax = 2
-    elif iMapSize == 2: iMax = 4
-    elif iMapSize == 3: iMax = 6
-    elif iMapSize == 4: iMax = 8
-    elif iMapSize == 5: iMax = 10
-    else: iMax = 12
-
-    # 20 Chancen fuer max. iMax Meteorstrikes
-    for i in range (20):
-
-        # Maximal iMax Effekte
-        if iMaxEffect == iMax: break
-
-        iMapW = gc.getMap().getGridWidth()
-        iMapH = gc.getMap().getGridHeight()
-
-        iRandX = self.myRandom(iMapW, None)
-        iRandY = self.myRandom(iMapH, None)
-        pPlot = gc.getMap().plot(iRandX, iRandY)
-        if None != pPlot and not pPlot.isNone():
-
-            if pPlot.getFeatureType() == iDarkIce: continue
-            iMaxEffect += 1
-
-            # Modernisierung und Strasse entfernen
-            if not pPlot.isCity():
-               pPlot.setRouteType(-1)
-               pPlot.setImprovementType(-1)
-
-            iPlayer = pPlot.getOwner()
-
-            if pPlot.isVisibleToWatchingHuman():
-              CyCamera().JustLookAtPlot(pPlot)
-              popupInfo = CyPopupInfo()
-              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-              popupInfo.setText(CyTranslator().getText("TXT_KEY_DISASTER_METEORITES",("",)))
-              popupInfo.addPopup(gc.getGame().getActivePlayer())
-              CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_METEORITES",("",)),"AS2D_METEORSTRIKE",2,gc.getFeatureInfo(feat_meteor).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-
-
-            # Effekt
-            iEffect = gc.getInfoTypeForString("EFFECT_METEORS")
-            CyEngine().triggerEffect( iEffect, pPlot.getPoint() )
-
-            # Stadt
-            if pPlot.isCity():
-              pCity = pPlot.getPlotCity()
-              iPop_alt = pCity.getPopulation()
-              iPop_neu = int(pCity.getPopulation() / 2)
-              if iPop_neu < 2: iPop_neu = 1
-              pCity.setPopulation(iPop_neu)
-              pCity.setFood(0)
-              if iPlayer != -1:
-                if pPlot.isVisibleToWatchingHuman():
-                  if iPlayer == gc.getGame().getActivePlayer():
-                    CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_METEORITES_CITY",(pCity.getName(),iPop_neu,iPop_alt)),None,2,gc.getFeatureInfo(feat_meteor).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-                  else:
-                    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_METEORITES_CITY_OTHER",(gc.getPlayer(pCity.getOwner()).getCivilizationAdjective(2),pCity.getName())),None,2,gc.getFeatureInfo(feat_meteor).getButton(),ColorTypes(2),iRandX,iRandY,True,True)
-
-              # City, Wahrscheinlichkeit in %
-              self.doKillUnits(pPlot,10)
-              self.doDestroyCityBuildings(pCity,33)
-              # Stadtmauern zerstoeren
-              self.doDestroyWalls(pCity)
-              self.doCheckCityState(pCity)
-
-            # rundherum Brand generieren und dabei 50:50 Modernis und Strassen entfernen
-            for i in range(3):
-              for j in range(3):
-                loopPlot = gc.getMap().plot(iRandX - 1 + i, iRandY - 1 + j)
-                if None != loopPlot and not loopPlot.isNone():
-                  if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() \
-                  and not loopPlot.isWater() and loopPlot.getFeatureType() != feat_oasis:
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2:
-                       loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else:
-                      if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() != terr_snow:
-                         loopPlot.setFeatureType(feat_brand,0)
-                    if loopPlot.getImprovementType() == iImpType1: loopPlot.setImprovementType(-1)
-
-                  if self.myRandom(2, None) == 1:
-                    if not loopPlot.isCity():
-                      loopPlot.setRouteType(-1)
-                      loopPlot.setImprovementType(-1)
-                  self.doKillUnits(loopPlot,20)
-
-                # Plot fuer Magnetit/Oreichalkos Bonus checken
-                if not loopPlot.isWater() and not loopPlot.isCity() and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and loopPlot.getBonusType(-1) == -1:
-                  bonusPlotArray.append(loopPlot)
-
-                # Verbreitbare Resi vernichten
-                if loopPlot.getBonusType(loopPlot.getOwner()) > -1 or loopPlot.getBonusType(-1) > -1:
-                  self.doEraseBonusFromDisaster(loopPlot)
-
-
-    # Chance einer neuen Bonus Resource, 25% - danach 50:50 - Magnetit:Oreichalkos
-    if len(bonusPlotArray) > 0:
-        iRand = self.myRandom(8, None)
-        if iRand < 2:
-          if iRand == 0: iNewBonus = bonus_magnetit
-          else: iNewBonus = bonus_oreichalkos
-          iRandPlot = self.myRandom(len(bonusPlotArray), None)
-          bonusPlotArray[iRandPlot].setBonusType(iNewBonus)
-          if bonusPlotArray[iRandPlot].getOwner() > -1:
-            if gc.getPlayer(bonusPlotArray[iRandPlot].getOwner()).isHuman():
-              CyInterface().addMessage(bonusPlotArray[iRandPlot].getOwner(), True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS",(gc.getBonusInfo(iNewBonus).getDescription(),)), None, 2, gc.getBonusInfo(iNewBonus).getButton(), ColorTypes(14), bonusPlotArray[iRandPlot].getX(), bonusPlotArray[iRandPlot].getY(), True, True)
-
-
-  def doComet(self):
-
-    feat_comet = gc.getInfoTypeForString('FEATURE_COMET')
-    feat_brand = gc.getInfoTypeForString('FEATURE_SMOKE')
-
-    feat_swamp = gc.getInfoTypeForString('FEATURE_SWAMP')
-    feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-    feat_oasis = gc.getInfoTypeForString('FEATURE_OASIS')
-
-    feat_forest = gc.getInfoTypeForString('FEATURE_FOREST')
-    feat_forest2 = gc.getInfoTypeForString('FEATURE_DICHTERWALD')
-    feat_forest_burnt = gc.getInfoTypeForString('FEATURE_FOREST_BURNT')
-
-    feat_ice = gc.getInfoTypeForString('FEATURE_ICE')
-    terr_snow = gc.getInfoTypeForString('TERRAIN_SNOW')
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-
-    bonus_magnetit = gc.getInfoTypeForString("BONUS_MAGNETIT")
-    bonus_oreichalkos = gc.getInfoTypeForString("BONUS_OREICHALKOS")
-
-    iMapW = gc.getMap().getGridWidth()
-    iMapH = gc.getMap().getGridHeight()
-
-    iRangeMaxPlayers = gc.getMAX_PLAYERS()
-
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-    iMaxEffect = 0
-    iMapSize = gc.getMap().getWorldSize()
-    if iMapSize < 3: iMax = 1
-    elif iMapSize < 5: iMax = 2
-    else: iMax = 3
-
-    # iMax Kometen
-    for i in range (iMax):
-
-     # Soll nicht ganz am Rand sein
-     iRandX = 3 + self.myRandom(iMapW - 3, None)
-     iRandY = 3 + self.myRandom(iMapH - 3, None)
-     pPlot = gc.getMap().plot(iRandX, iRandY)
-     if None != pPlot and not pPlot.isNone():
-
-      if pPlot.getFeatureType() == iDarkIce: continue
-
-      # Modernisierung und Strasse entfernen
-      if not pPlot.isCity():
-        pPlot.setRouteType(-1)
-        pPlot.setImprovementType(-1)
-
-      iPlayer = pPlot.getOwner()
-
-      if pPlot.isVisibleToWatchingHuman():
-        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_COMET",("",)),"AS2D_BOMBARD",2,gc.getFeatureInfo(feat_comet).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-        CyCamera().JustLookAtPlot(pPlot)
-
-      # Effekt
-      if pPlot.isWater():
-        CyEngine().triggerEffect( gc.getInfoTypeForString("EFFECT_COMET_WATER"), pPlot.getPoint() )
-        # Loest Tsunami aus
-        self.doTsunami(iRandX,iRandY)
-      else:
-        CyEngine().triggerEffect( gc.getInfoTypeForString("EFFECT_COMET"), pPlot.getPoint() )
-
-        # Stadt
-        if pPlot.isCity():
-              pCity = pPlot.getPlotCity()
-              iPop_alt = pCity.getPopulation()
-              iPop_neu = int(pCity.getPopulation() / 6)
-              if iPop_neu < 2: iPop_neu = 1
-              pCity.setPopulation(iPop_neu)
-              pCity.setFood(0)
-
-              # Messages
-              for iPlayer2 in range(iRangeMaxPlayers):
-                pSecondPlayer = gc.getPlayer(iPlayer2)
-                iSecondPlayer = pSecondPlayer.getID()
-                if pSecondPlayer.isHuman():
-                  iSecTeam = pSecondPlayer.getTeam()
-                  if pPlot.isVisible(iSecTeam, 0) and pSecondPlayer.isHuman():
-                    if iPlayer == iSecondPlayer:
-                      popupInfo = CyPopupInfo()
-                      popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-                      popupInfo.setText(CyTranslator().getText("TXT_KEY_DISASTER_COMET_CITY",(pCity.getName(),iPop_neu,iPop_alt)))
-                      popupInfo.addPopup(iPlayer)
-                      CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_COMET_CITY",(pCity.getName(),iPop_neu,iPop_alt)),None,2,gc.getFeatureInfo(feat_comet).getButton(),ColorTypes(7),iRandX,iRandY,True,True)
-                    else:
-                      # Message an alle
-                      CyInterface().addMessage(iSecondPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_COMET_CITY_OTHER",(pOwner.getCivilizationAdjective(2),pCity.getName())),None,2,gc.getFeatureInfo(feat_comet).getButton(),ColorTypes(2),iRandX,iRandY,True,True)
-
-              # City, Wahrscheinlichkeit in %
-              self.doKillUnits(pPlot,100)
-              self.doDestroyCityBuildings(pCity,80)
-              self.doDestroyCityWonders(pCity,25,feat_comet)
-              self.doCheckCityState(pCity)
-
-        # rundherum Brand generieren und dabei 50:50 Modernis und Strassen entfernen
-        for i in range(7):
-          for j in range(7):
-                loopPlot = gc.getMap().plot(iRandX - 3 + i, iRandY - 3 + j)
-                if None != loopPlot and not loopPlot.isNone():
-                  if loopPlot.getFeatureType() == iDarkIce: continue
-                  if loopPlot.getFeatureType() != feat_swamp and loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getFeatureType() != feat_oasis \
-                  and not loopPlot.isPeak() and not loopPlot.isWater():
-                    if loopPlot.getFeatureType() == feat_forest or loopPlot.getFeatureType() == feat_forest2:
-                       loopPlot.setFeatureType(feat_forest_burnt,0)
-                    else:
-                      if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() != terr_snow:
-                         loopPlot.setFeatureType(feat_brand,0)
-                    if loopPlot.getImprovementType() == iImpType1: loopPlot.setImprovementType(-1)
-
-                  if self.myRandom(2, None) == 1:
-                    if not loopPlot.isCity():
-                      loopPlot.setRouteType(-1)
-                      loopPlot.setImprovementType(-1)
-                  # Entfernung zum Einschlag berechnen
-                  iBetrag = (iRandX - loopPlot.getX()) * (iRandX - loopPlot.getX()) + (iRandY - loopPlot.getY()) * (iRandY - loopPlot.getY())
-                  if iBetrag == 1:
-                    self.doKillUnits(loopPlot,50)
-                    if loopPlot.isCity(): self.doDestroyCityBuildings(loopPlot.getPlotCity(),50)
-                  elif iBetrag == 2:
-                    self.doKillUnits(loopPlot,25)
-                    if loopPlot.isCity(): self.doDestroyCityBuildings(loopPlot.getPlotCity(),25)
-                  elif iBetrag == 3:
-                    self.doKillUnits(loopPlot,10)
-                    if loopPlot.isCity(): self.doDestroyCityBuildings(loopPlot.getPlotCity(),10)
-
-                # Stadtmauern zerstoeren
-                if loopPlot.isCity(): self.doDestroyWalls(loopPlot.getPlotCity())
-
-                # Verbreitbare Resi vernichten (nur Radius 2)
-                if i>0 and i<6 and j>1 and j<6:
-                  if loopPlot.getBonusType(loopPlot.getOwner()) > -1 or loopPlot.getBonusType(-1) > -1:
-                    self.doEraseBonusFromDisaster(loopPlot)
-
-        # Chance einer neuen Bonus Resource fix auf pPlot
-        # Chance 50% - danach 50:50 - Magnetit:Oreichalkos
-        if not pPlot.isWater() and not pPlot.isPeak() and pPlot.getBonusType(pPlot.getOwner()) == -1 and pPlot.getBonusType(-1) == -1:
-          iRand = self.myRandom(4, None)
-          if iRand < 2:
-            if iRand == 0: iNewBonus = bonus_magnetit
-            else: iNewBonus = bonus_oreichalkos
-            pPlot.setBonusType(iNewBonus)
-            if pPlot.getOwner() > -1:
-              if gc.getPlayer(pPlot.getOwner()).isHuman():
-                CyInterface().addMessage(pPlot.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS",(gc.getBonusInfo(iNewBonus).getDescription(),)), None, 2, gc.getBonusInfo(iNewBonus).getButton(), ColorTypes(14), pPlot.getX(), pPlot.getY(), True, True)
-
-
-
-  # ------------------- Anfang Gebaeude, Wunder und Einheiten Damage  -----------------
-
-
-  # iChance = Wahrscheinlichkeit, dass ein Gebaeude zerstoert wird
-  def doDestroyCityBuildings(self, pCity, iChance):
-    iOwner = pCity.getOwner()
-    lIgnoreBuildings = []
-    lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_SIEDLUNG"))
-    lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_KOLONIE"))
-    lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_STADT"))
-    lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_PROVINZ"))
-    lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_METROPOLE"))
-    # PAE IV Update: Palast darf zerstoert werden... hehe ;)
-    #iBuildingPalace = gc.getInfoTypeForString('BUILDING_PALACE')
-
-
-    if pCity.getNumBuildings() > 0:
-      iRange = gc.getNumBuildingInfos()
-      for iBuilding in range(iRange):
-        pBuilding = gc.getBuildingInfo(iBuilding)
-        if pCity.getNumBuilding(iBuilding):
-          if iBuilding not in lIgnoreBuildings and not isWorldWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType()):
-            iRand = self.myRandom(100, None)
-            if iRand < iChance:
-              pCity.setNumRealBuilding(iBuilding,0)
-              if iOwner != -1:
-                if gc.getPlayer(iOwner).isHuman():
-                  CyInterface().addMessage(gc.getPlayer(iOwner).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-
-  # iChance = Wahrscheinlichkeit, dass ein Wunder zerstoert wird
-  # iFeatureType = Art der Katastrophe
-  def doDestroyCityWonders(self, pCity, iChance, iFeatureType):
-    iOwner = pCity.getOwner()
-    iFeature_Erdbeben = gc.getInfoTypeForString("FEATURE_ERDBEBEN")
-    iFeature_Komet = gc.getInfoTypeForString("FEATURE_COMET")
-
-    iRangeMaxPlayers = gc.getMAX_PLAYERS()
-
-    if pCity.getNumBuildings() > 0:
-      iRange = gc.getNumBuildingInfos()
-      for iBuilding in range(iRange):
-        pBuilding = gc.getBuildingInfo(iBuilding)
-        if pCity.getNumBuilding(iBuilding):
-          if isWorldWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType()):
-            iRand = self.myRandom(100, None)
-            if iRand < iChance:
-              pCity.setNumRealBuilding(iBuilding,0)
-
-              # Messages
-              pOwner = gc.getPlayer(iOwner)
-              iOwnerTeam = pOwner.getTeam()
-              for iAllPlayer in range (iRangeMaxPlayers):
-                ThisPlayer = gc.getPlayer(iAllPlayer)
-                iThisPlayer = ThisPlayer.getID()
-                iThisTeam = ThisPlayer.getTeam()
-                ThisTeam = gc.getTeam(iThisTeam)
-                if ThisTeam.isHasMet(iOwnerTeam) and ThisPlayer.isHuman():
-
-                  if iFeatureType == iFeature_Erdbeben:
-                    CyInterface().addMessage(iThisPlayer, True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_WONDER_ERDBEBEN",(pOwner.getCivilizationAdjective(1),pCity.getName(),pBuilding.getDescription())),"AS2D_EARTHQUAKE",2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-                  elif iFeatureType == iFeature_Komet:
-                    CyInterface().addMessage(iThisPlayer, True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_WONDER_KOMET",(pOwner.getCivilizationAdjective(1),pCity.getName(),pBuilding.getDescription())),"AS2D_PLAGUE",2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-                  else:
-                    CyInterface().addMessage(iThisPlayer, True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_WONDER",(pOwner.getCivilizationAdjective(1),pCity.getName(),pBuilding.getDescription())),"AS2D_PLAGUE",2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-
-  # iChance = Wahrscheinlichkeit, dass eine Unit gekillt wird
-  def doKillUnits(self, pPlot, iChance):
-    iRange = pPlot.getNumUnits()
-    for iUnit in range (iRange):
-      pUnit = pPlot.getUnit(iUnit)
-      if pUnit != None:
-        iRand = self.myRandom(100, None)
-        if iRand < iChance:
-
-          # Wenn ein General draufgeht hat das Auswirkungen
-          if pUnit.getLeaderUnitType() > -1:
-            self.doDyingGeneral(pUnit)
-
-          if pUnit.getOwner() > -1:
-            if gc.getPlayer(pUnit.getOwner()).isHuman():
-              # Message: Eure Einheit %s hat diese schreckliche Naturgewalt nicht ueberlebt!
-              CyInterface().addMessage( pUnit.getOwner(), True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_UNIT_KILLED",(pPlot.getUnit(iUnit).getName(),0)), "AS2D_PLAGUE", 2, pPlot.getUnit(iUnit).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-
-          # VOID kill (BOOL bDelay, INT PlayerType ePlayer)
-          #pPlot.getUnit(iUnit).kill(1,pPlot.getUnit(iUnit).getOwner())
-          pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-
-        else:
-          pPlot.getUnit(iUnit).setDamage(60, -1)
-          pPlot.getUnit(iUnit).setImmobileTimer(1)
-
-
-  def doDestroyWalls(self, pCity):
-    iPlayer = pCity.getOwner()
-    iBuildingPalisade = gc.getInfoTypeForString('BUILDING_PALISADE')
-    iBuildingWalls = gc.getInfoTypeForString('BUILDING_WALLS')
-    iBuildingHW1 = gc.getInfoTypeForString('BUILDING_HIGH_WALLS')
-    iBuildingHW2 = gc.getInfoTypeForString('BUILDING_CELTIC_DUN')
-    iBuildingHW3 = gc.getInfoTypeForString('BUILDING_HIGH_WALLS_GRECO')
-
-    # Stadtmauern zerstoeren
-    if pCity.isHasBuilding(iBuildingPalisade):
-              pBuilding = gc.getBuildingInfo(iBuildingPalisade)
-              pCity.setNumRealBuilding(iBuildingPalisade,0)
-              if iPlayer != -1:
-                if gc.getPlayer(iPlayer).isHuman():
-                  CyInterface().addMessage(gc.getPlayer(iPlayer).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-    if pCity.isHasBuilding(iBuildingWalls):
-              if self.myRandom(100, None) < 50:
-               pBuilding = gc.getBuildingInfo(iBuildingWalls)
-               pCity.setNumRealBuilding(iBuildingWalls,0)
-               if iPlayer != -1:
-                if gc.getPlayer(iPlayer).isHuman():
-                 CyInterface().addMessage(gc.getPlayer(iPlayer).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-    if pCity.isHasBuilding(iBuildingHW1):
-              if self.myRandom(100, None) < 20:
-               pBuilding = gc.getBuildingInfo(iBuildingHW1)
-               pCity.setNumRealBuilding(iBuildingHW1,0)
-               if iPlayer != -1:
-                if gc.getPlayer(iPlayer).isHuman():
-                 CyInterface().addMessage(gc.getPlayer(iPlayer).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-    if pCity.isHasBuilding(iBuildingHW2):
-              if self.myRandom(100, None) < 20:
-               pBuilding = gc.getBuildingInfo(iBuildingHW2)
-               pCity.setNumRealBuilding(iBuildingHW2,0)
-               if iPlayer != -1:
-                if gc.getPlayer(iPlayer).isHuman():
-                 CyInterface().addMessage(gc.getPlayer(iPlayer).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-    if pCity.isHasBuilding(iBuildingHW3):
-              if self.myRandom(100, None) < 20:
-               pBuilding = gc.getBuildingInfo(iBuildingHW3)
-               pCity.setNumRealBuilding(iBuildingHW3,0)
-               if iPlayer != -1:
-                if gc.getPlayer(iPlayer).isHuman():
-                 CyInterface().addMessage(gc.getPlayer(iPlayer).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
-
-  # Naturkatastrophen vernichten verbreitbare Bonusresourcen
-  # Nur bei Vulkan, Meteoriten und Kometen
-  def doEraseBonusFromDisaster(self, pPlot):
-    # Inits (von doBonusCityGetPlot)
-    lGetreide = []
-    lGetreide.append(gc.getInfoTypeForString("BONUS_WHEAT"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_GERSTE"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_HAFER"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_ROGGEN"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_HIRSE"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_RICE"))
-    lVieh1 = []
-    lVieh1.append(gc.getInfoTypeForString("BONUS_COW"))
-    lVieh1.append(gc.getInfoTypeForString("BONUS_PIG"))
-    lVieh1.append(gc.getInfoTypeForString("BONUS_SHEEP"))
-    lSpice = []
-    lSpice.append(gc.getInfoTypeForString("BONUS_OLIVES"))
-    lSpice.append(gc.getInfoTypeForString("BONUS_DATTELN"))
-    lTier1 = []
-    lTier1.append(gc.getInfoTypeForString("BONUS_CAMEL"))
-
-    # known bonus or unknown bonus(?)
-    iPlayer = pPlot.getOwner()
-    iBonus = pPlot.getBonusType(iPlayer)
-    if iBonus == -1: iBonus = pPlot.getBonusType(-1)
-
-    if iBonus > -1:
-      if iBonus in lGetreide or iBonus in lVieh1 or iBonus in lSpice or iBonus in lTier1:
-        pPlot.setBonusType(-1)
-        if iPlayer > -1:
-          if gc.getPlayer(iPlayer).isHuman():
-            if iBonus in lGetreide:
-              CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BONUS1",(gc.getBonusInfo(iBonus).getDescription(),)),None,2,gc.getBonusInfo(iBonus).getButton(),ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
-            elif iBonus in lVieh1 or iBonus in lTier1:
-              CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BONUS2",(gc.getBonusInfo(iBonus).getDescription(),)),None,2,gc.getBonusInfo(iBonus).getButton(),ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
-            elif iBonus in lSpice:
-              CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BONUS3",(gc.getBonusInfo(iBonus).getDescription(),)),None,2,gc.getBonusInfo(iBonus).getButton(),ColorTypes(7),pPlot.getX(),pPlot.getY(),True,True)
-
-
-# ++++++++++++++++++ ENDE Naturkatastrophen / Disasters +++++++++++++++++++++++++++++
 
 
 # New Seewind-Feature together with Elwood (ideas) and the TAC-Team (diagonal arrows)
@@ -15984,725 +11668,6 @@ class CvEventManager:
     pPlot = gc.getMap().plot(pUnit.getX(),pUnit.getY())
     pUnit.getGroup().pushMission (MissionTypes.MISSION_SKIP,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pPlot,pUnit)
 
-# AI Torture Mercenary Commission (cheaper for AI)
-  def doAIMercTorture(self, iPlayer, iMercenaryCiv):
-      pPlayer = gc.getPlayer(iPlayer)
-      iGold = pPlayer.getGold()
-
-      if iGold >= 550:
-        if 1 == self.myRandom(2, None):
-          pPlayer.changeGold(-50)
-          pPlayer.AI_changeAttitudeExtra(iMercenaryCiv,-2)
-          self.doAIPlanAssignMercenaries(iMercenaryCiv)
-          # nochmal, wenn AI in Geld schwimmt
-          if pPlayer.getGold() >= 500: self.doAIPlanAssignMercenaries(iMercenaryCiv)
-      elif iGold >= 350:
-        if 1 == self.myRandom(2, None):
-          pPlayer.changeGold(-50)
-          pPlayer.AI_changeAttitudeExtra(iMercenaryCiv,-2)
-          self.doAIPlanAssignMercenaries(iMercenaryCiv)
-
-# AI Mercenary Commissions
-  def doAIPlanAssignMercenaries(self, iPlayer):
-      pPlayer = gc.getPlayer(iPlayer)
-      iFaktor = 0
-      iCost = 0
-      iSize = 0
-
-      # Check neighbours
-      # ATTITUDE_FRIENDLY
-      # ATTITUDE_PLEASED
-      # ATTITUDE_CAUTIOUS
-      # ATTITUDE_ANNOYED
-      # ATTITUDE_FURIOUS
-      Neighbors = []
-      iRangeMaxPlayers = gc.getMAX_PLAYERS()
-      for iAllPlayer in range (iRangeMaxPlayers):
-         ThisPlayer = gc.getPlayer(iAllPlayer)
-         if iAllPlayer != gc.getBARBARIAN_PLAYER() and iAllPlayer != iPlayer:
-           if ThisPlayer.isAlive():
-             if gc.getTeam(ThisPlayer.getTeam()).isHasMet(pPlayer.getTeam()):
-               Att = pPlayer.AI_getAttitude(iAllPlayer)
-               if Att == AttitudeTypes.ATTITUDE_ANNOYED or Att == AttitudeTypes.ATTITUDE_FURIOUS:
-
-                 # Check: Coastal cities for naval mercenary units
-                 iAttackAtSea = 0
-                 iCoastalCities = 0
-                 iLandCities = 0
-                 iNumCities = ThisPlayer.getNumCities()
-                 for i in range (iNumCities):
-                   if ThisPlayer.getCity(i).isCoastal(6): iCoastalCities += 1
-                   else: iLandCities += 1
-
-                 if iCoastalCities > 0:
-                   if iCoastalCities >= iLandCities:
-                     if 1 == self.myRandom(2, None): iAttackAtSea = 1
-                   else:
-                     iChance = iNumCities - iCoastalCities
-                     if 0 == self.myRandom(iChance, None): iAttackAtSea = 1
-
-                 Neighbors.append((iAllPlayer,iAttackAtSea))
-
-      # iFaktor: 1111 - 4434
-      # ---- inter/national
-      # urban 200+    iFaktor: +1
-      # own 300+      iFaktor: +2
-      #internat 400+  iFaktor: +3
-      #elite 500+     iFaktor: +4
-
-      # ---- size
-      #small +0      iFaktor: +10
-      #medium +150   iFaktor: +20
-      #big +300      iFaktor: +30
-      #huge +400     iFaktor: +40
-
-      # ---- type
-      #defense      iFaktor: +100
-      #ranged       iFaktor: +200
-      #offense      iFaktor: +300
-      #city         iFaktor: +400
-      #naval        iFaktor: +500
-
-      # ---- siege
-      #0           iFaktor: +1000
-      #2 +50       iFaktor: +2000
-      #4 +90       iFaktor: +3000
-      #6 +120      iFaktor: +4000
-
-      if len(Neighbors) > 0:
-        iRand = self.myRandom(len(Neighbors), None)
-        iTargetPlayer = Neighbors[iRand][0]
-        iTargetAtSea = Neighbors[iRand][1]
-        iGold = pPlayer.getGold()
-
-        # inter/national
-        if pPlayer.getTechScore() > gc.getPlayer(iTargetPlayer).getTechScore():
-          if iGold > 1000:
-            if 1 == self.myRandom(3, None):
-              iFaktor += 3
-              iCost += 400
-            else:
-              iFaktor += 2
-              iCost += 300
-          elif iGold > 500:
-            iFaktor += 2
-            iCost += 300
-          else:
-            iFaktor += 1
-            iCost += 200
-        else:
-          if iGold > 1000:
-            if 1 == self.myRandom(3, None):
-              iFaktor += 3
-              iCost += 400
-            else:
-              iFaktor += 1
-              iCost += 200
-          else:
-            iFaktor += 1
-            iCost += 200
-
-        # size
-        if pPlayer.getPower() > gc.getPlayer(iTargetPlayer).getPower():
-          if iGold > iCost + 150:
-            if 1 == self.myRandom(3, None):
-              iFaktor += 10
-              iSize = 1
-            else:
-              iFaktor += 20
-              iCost += 150
-              iSize = 2
-          else:
-            iFaktor += 10
-            iSize = 1
-        else:
-          if iGold > iCost + 150:
-            if 1 != self.myRandom(3, None):
-              iFaktor += 10
-              iSize = 1
-            else:
-              iFaktor += 20
-              iCost += 150
-              iSize = 2
-          else:
-            iFaktor += 10
-            iSize = 1
-
-        # type
-        if iTargetAtSea == 1: iType = 5
-        else: iType = 1 + self.myRandom(4, None)
-        iFaktor += iType * 100
-
-        # siege units
-        if iType == 4:
-          if iSize == 1: iFaktor += 1000
-          else:
-            if pPlayer.getPower() > gc.getPlayer(iTargetPlayer).getPower():
-              if iGold > iCost + 50: iFaktor += 2000
-              else: iFaktor += 1000
-            else:
-              if iGold > iCost + 90: iFaktor += 3000
-              elif iGold > iCost + 50: iFaktor += 2000
-              else: iFaktor += 1000
-        else: iFaktor += 1000
-
-        if iTargetPlayer != -1:
-          self.doComissionMercenaries(iTargetPlayer, iFaktor, iPlayer)
-
-
-# Commission Mercenaries
-  def doComissionMercenaries(self, iTargetPlayer, iFaktor, iPlayer):
-       #  iTargetPlayer, iFaktor, iPlayer
-       # iFaktor: 1111 - 4534
-       # Naval attack: sFaktor[1] = 5
-       pPlayer = gc.getPlayer(iPlayer)
-       sFaktor = str(iFaktor)
-       iCost = 0
-       iSize = 0
-
-
-       # siege units
-       iSiegeUnitAnz = 0
-       if sFaktor[0]   == "2": iCost +=  50
-       elif sFaktor[0] == "3": iCost +=  90
-       elif sFaktor[0] == "4": iCost += 120
-
-       # size
-       if sFaktor[2]   == "2": iCost += 150
-       elif sFaktor[2] == "3": iCost += 300
-       elif sFaktor[2] == "4": iCost += 400
-
-       # inter/national/elite units
-       if sFaktor[3]   == "1": iCost += 200
-       elif sFaktor[3] == "2": iCost += 300
-       elif sFaktor[3] == "3": iCost += 400
-       elif sFaktor[3] == "4": iCost += 500
-       # ----------
-
-       if pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_SOELDNERTUM")):
-         iCost -= iCost/4
-
-       if pPlayer.getGold() < iCost:
-         if gc.getPlayer(iPlayer).isHuman():
-           CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-           popupInfo = CyPopupInfo()
-           popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-           popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("", )))
-           popupInfo.addPopup(iPlayer)
-       else:
-         pPlayer.changeGold(-iCost)
-         gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-
-         # Siege Units
-         iAnzSiege = 0
-         iUnitSiege = -1
-         if sFaktor[0] == "2":   iAnzSiege = 2
-         elif sFaktor[0] == "3": iAnzSiege = 4
-         elif sFaktor[0] == "4": iAnzSiege = 6
-
-         if iAnzSiege > 0:
-           if gc.getGame().countKnownTechNumTeams(gc.getInfoTypeForString("TECH_MECHANIK")) > 0: iUnitSiege = gc.getInfoTypeForString("UNIT_BATTERING_RAM2")
-           elif gc.getGame().countKnownTechNumTeams(gc.getInfoTypeForString("TECH_WEHRTECHNIK")) > 0: iUnitSiege = gc.getInfoTypeForString("UNIT_BATTERING_RAM")
-           elif gc.getGame().countKnownTechNumTeams(gc.getInfoTypeForString("TECH_BELAGERUNG")) > 0: iUnitSiege = gc.getInfoTypeForString("UNIT_RAM")
-         # --------
-
-         #  Techs for inter/national units
-         Neighbors = []
-         # on-site
-         if sFaktor[3] == "1": Neighbors.append(gc.getPlayer(iTargetPlayer))
-         # national (own)
-         elif sFaktor[3] == "2": Neighbors.append(pPlayer)
-         # international or elite
-         elif sFaktor[3] == "3" or sFaktor[3] == "4":
-           iRangeMaxPlayers = gc.getMAX_PLAYERS()
-           for iAllPlayer in range (iRangeMaxPlayers):
-             ThisPlayer = gc.getPlayer(iAllPlayer)
-             # Nachbarn inkludieren
-             if ThisPlayer.isAlive():
-               if gc.getTeam(ThisPlayer.getTeam()).isHasMet(pPlayer.getTeam()):
-                 Neighbors.append(ThisPlayer)
-         # ------------------
-
-         # Unit initials
-         # size and types
-         iAnzSpear = 0
-         iAnzAxe = 0
-         iAnzSword = 0
-         iAnzArcher = 0
-         iAnzSlinger = 0
-         iAnzShip1 = 0
-         iAnzShip2 = 0
-         if sFaktor[2] == "1":
-           if sFaktor[1] == "1":
-             iAnzSpear = 2
-             iAnzAxe = 1
-             iAnzSword = 0
-             iAnzArcher = 1
-             iAnzSlinger = 0
-           elif sFaktor[1] == "2":
-             iAnzSpear = 1
-             iAnzAxe = 1
-             iAnzSword = 0
-             iAnzArcher = 2
-             iAnzSlinger = 0
-           elif sFaktor[1] == "3":
-             iAnzSpear = 1
-             iAnzAxe = 2
-             iAnzSword = 0
-             iAnzArcher = 1
-             iAnzSlinger = 0
-           elif sFaktor[1] == "4":
-             iAnzSpear = 0
-             iAnzAxe = 0
-             iAnzSword = 2
-             iAnzArcher = 2
-             iAnzSlinger = 0
-           elif sFaktor[1] == "5":
-             iAnzShip1 = 1 # weak
-             iAnzShip2 = 1 # strong
-
-         elif sFaktor[2] == "2":
-           if sFaktor[1] == "1":
-             iAnzSpear = 3
-             iAnzAxe = 2
-             iAnzSword = 0
-             iAnzArcher = 3
-             iAnzSlinger = 0
-           elif sFaktor[1] == "2":
-             iAnzSpear = 1
-             iAnzAxe = 2
-             iAnzSword = 0
-             iAnzArcher = 4
-             iAnzSlinger = 1
-           elif sFaktor[1] == "3":
-             iAnzSpear = 2
-             iAnzAxe = 4
-             iAnzSword = 0
-             iAnzArcher = 2
-             iAnzSlinger = 0
-           elif sFaktor[1] == "4":
-             iAnzSpear = 1
-             iAnzAxe = 1
-             iAnzSword = 2
-             iAnzArcher = 3
-             iAnzSlinger = 1
-           elif sFaktor[1] == "5":
-             iAnzShip1 = 2
-             iAnzShip2 = 2
-
-         elif sFaktor[2] == "3":
-           if sFaktor[1] == "1":
-             iAnzSpear = 4
-             iAnzAxe = 3
-             iAnzSword = 0
-             iAnzArcher = 4
-             iAnzSlinger = 1
-           elif sFaktor[1] == "2":
-             iAnzSpear = 2
-             iAnzAxe = 2
-             iAnzSword = 0
-             iAnzArcher = 5
-             iAnzSlinger = 3
-           elif sFaktor[1] == "3":
-             iAnzSpear = 2
-             iAnzAxe = 5
-             iAnzSword = 0
-             iAnzArcher = 2
-             iAnzSlinger = 3
-           elif sFaktor[1] == "4":
-             iAnzSpear = 2
-             iAnzAxe = 1
-             iAnzSword = 4
-             iAnzArcher = 3
-             iAnzSlinger = 2
-           elif sFaktor[1] == "5":
-             iAnzShip1 = 3
-             iAnzShip2 = 2
-
-         elif sFaktor[2] == "4":
-           if sFaktor[1] == "1":
-             iAnzSpear = 5
-             iAnzAxe = 5
-             iAnzSword = 0
-             iAnzArcher = 5
-             iAnzSlinger = 1
-           elif sFaktor[1] == "2":
-             iAnzSpear = 3
-             iAnzAxe = 3
-             iAnzSword = 0
-             iAnzArcher = 7
-             iAnzSlinger = 3
-           elif sFaktor[1] == "3":
-             iAnzSpear = 3
-             iAnzAxe = 7
-             iAnzSword = 0
-             iAnzArcher = 4
-             iAnzSlinger = 2
-           elif sFaktor[1] == "4":
-             iAnzSpear = 2
-             iAnzAxe = 2
-             iAnzSword = 6
-             iAnzArcher = 4
-             iAnzSlinger = 2
-           elif sFaktor[1] == "5":
-             iAnzShip1 = 3
-             iAnzShip2 = 3
-
-         if pPlayer.getCurrentEra() > 2:
-           iAnzSword += iAnzAxe
-           iAnzAxe = 0
-         # ----------
-
-         # Set units
-
-         # Elite
-         lEliteUnits = []
-
-         # UNIT_LIGHT_SPEARMAN: TECH_SPEERSPITZEN
-         # UNIT_AXEWARRIOR: TECH_BEWAFFNUNG
-         # UNIT_AXEMAN: TECH_BEWAFFNUNG2 + Bronze or Iron
-         # UNITCLASS_KURZSCHWERT: TECH_BEWAFFNUNG3 + Bronze or Iron
-         # UNIT_SPEARMAN: TECH_ARMOR + Bronze or Iron
-         # UNIT_SCHILDTRAEGER: TECH_BEWAFFNUNG4 + Bronze or Iron
-         # UNIT_SWORDSMAN: TECH_BEWAFFNUNG5 + Iron
-
-         iUnitSpear   =  gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN")
-         iUnitAxe     =  gc.getInfoTypeForString("UNIT_AXEWARRIOR")
-         iUnitArcher  = gc.getInfoTypeForString("UNIT_ARCHER")
-         iUnitSlinger = gc.getInfoTypeForString("UNIT_PELTIST")
-         iUnitSword   = -1
-         bLongsword = False
-
-         iBonus1 = gc.getInfoTypeForString("BONUS_BRONZE")
-         iBonus2 = gc.getInfoTypeForString("BONUS_IRON")
-         for Neighbor in Neighbors:
-
-           # elite units
-           if sFaktor[3] == "4":
-             lNeighborUnits = []
-             NeighborCapital = Neighbor.getCapitalCity()
-
-             # Naval units
-             if sFaktor[1] == "5":
-               lNeighborUnits.append ( gc.getInfoTypeForString("UNIT_CARVEL_WAR") )
-               lNeighborUnits.append ( gc.getInfoTypeForString("UNIT_QUINQUEREME") )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_KONTERE")) ) # Gaulos
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPECIAL2")) ) # Quadrireme
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) ) # Decareme
-
-             # Land units
-             else:
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPECIAL1")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPECIAL2")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPECIAL3")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPECIAL4")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPECIAL5")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) )
-               lNeighborUnits.append ( gc.getCivilizationInfo(Neighbor.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE3")) )
-               lNeighborUnits.append ( gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER") )
-               lNeighborUnits.append ( gc.getInfoTypeForString("UNIT_SWORDSMAN") )
-
-             for iUnitElite in lNeighborUnits:
-               if iUnitElite != None and iUnitElite != -1:
-                 # Naval units
-                 if sFaktor[1] == "5" and gc.getUnitInfo(iUnitElite).getDomainType() == DomainTypes.DOMAIN_SEA:
-                     if NeighborCapital.canTrain(iUnitElite,0,0):
-                       lEliteUnits.append(iUnitElite)
-                 # Land units
-                 elif gc.getUnitInfo(iUnitElite).getDomainType() != DomainTypes.DOMAIN_SEA:
-                     if NeighborCapital.canTrain(iUnitElite,0,0):
-                       lEliteUnits.append(iUnitElite)
-
-           # normal units
-           # else: Falls es keine Elite gibt, sollen normale Einheiten einspringen
-
-           # Naval units
-           if sFaktor[1] == "5":
-
-               # UNIT_KONTERE: TECH_COLONIZATION2
-               # UNIT_BIREME:  TECH_RUDERER2
-               # UNIT_TRIREME: TECH_RUDERER3
-               # UNIT_LIBURNE: TECH_WARSHIPS2
-               # iAnzShip1 = weak
-               # iAnzShip2 = strong
-               iShip1 = -1
-               iShip2 = -1
-               if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WARSHIPS2")):
-                  iShip1 = gc.getInfoTypeForString("UNIT_TRIREME")
-                  iShip2 = gc.getInfoTypeForString("UNIT_LIBURNE")
-               elif gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_RUDERER3")):
-                  iShip1 = gc.getInfoTypeForString("UNIT_BIREME")
-                  iShip2 = gc.getInfoTypeForString("UNIT_TRIREME")
-               elif gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_RUDERER2")):
-                  iShip1 = gc.getInfoTypeForString("UNIT_KONTERE")
-                  iShip2 = gc.getInfoTypeForString("UNIT_BIREME")
-               elif gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_COLONIZATION2")):
-                  iShip1 = gc.getInfoTypeForString("UNIT_KONTERE")
-                  iShip2 = gc.getInfoTypeForString("UNIT_KONTERE")
-
-           # Land units
-           # PAE V Patch 3: nun auch fuer Besatzung der Schiffe
-           #else:
-           #if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): iUnitArcher = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-           if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARMOR")): iUnitSpear = gc.getInfoTypeForString("UNIT_SPEARMAN")
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): iUnitAxe = gc.getInfoTypeForString("UNIT_AXEMAN2")
-                 elif gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG2")): iUnitAxe = gc.getInfoTypeForString("UNIT_AXEMAN")
-                 if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")): iUnitSword = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-                 if iUnitSword == -1:
-                   if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG3")): iUnitSword = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_KURZSCHWERT"))
-           if not bLongsword:
-                 if Neighbor.hasBonus(iBonus2):
-                   if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG5")): bLongsword = True
-
-         # for neighbors
-
-         # wenns schon langschwert gibt
-         if bLongsword: iUnitSword = gc.getInfoTypeForString("UNIT_SWORDSMAN")
-
-         # wenns noch keine Schwerter gibt
-         if iUnitSword == -1:
-           iAnzAxe += iAnzSword
-           iAnzSword = 0
-
-         # Choose plots
-         # Initialise CIV cultural plots
-         iMapW = gc.getMap().getGridWidth()
-         iMapH = gc.getMap().getGridHeight()
-         iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-         CivPlots = []
-         for x in range(iMapW):
-           for y in range(iMapH):
-             loopPlot = gc.getMap().plot(x,y)
-             if loopPlot != None and not loopPlot.isNone():
-               if loopPlot.getFeatureType() == iDarkIce: continue
-               if loopPlot.getOwner() == iTargetPlayer:
-                 if not loopPlot.isPeak() and not loopPlot.isCity() and loopPlot.getNumUnits() == 0:
-
-                   # Naval units
-                   if sFaktor[1] == "5":
-                     # Nicht auf Seen
-                     if loopPlot.isWater() and not loopPlot.isLake():
-                       CivPlots.append(loopPlot)
-
-                   # Land units
-                   elif not loopPlot.isWater():
-
-                     # Nicht auf Inseln
-                     iLandPlots = 0
-                     for x2 in range(3):
-                       for y2 in range(3):
-                         loopPlot2 = gc.getMap().plot(x-1+x2,y-1+y2)
-                         if loopPlot2 != None and not loopPlot2.isNone():
-                           if not loopPlot2.isWater(): iLandPlots += 1
-
-                         # earlier break
-                         if x2 == 1 and y2 > 0 and iLandPlots <= 1:
-                           break
-
-                       # earlier breaks
-                       if iLandPlots >= 5:
-                         CivPlots.append(loopPlot)
-                         break
-                       elif x2 == 2 and iLandPlots <= 2:
-                         break
-
-         # Big stacks and elite only on border plots
-         if sFaktor[2] == "4" or sFaktor[3] == "4":
-           if len(CivPlots) > 0:
-             NewCivPlots = []
-             x2=0
-             y2=0
-             for loopPlot in CivPlots:
-               bDone = false
-               for x2 in range(3):
-                 if bDone: break
-                 for y2 in range(3):
-                   loopPlot2 = gc.getMap().plot(loopPlot.getX()-1+x2,loopPlot.getY()-1+y2)
-                   if loopPlot2 == None or loopPlot2.isNone() or loopPlot2.getOwner() != loopPlot.getOwner():
-                       NewCivPlots.append(loopPlot)
-                       bDone = true
-                       break
-
-             if len(NewCivPlots) > 0:
-               CivPlots = NewCivPlots
-
-         # set units
-         if len(CivPlots) > 0:
-           iPlot = self.myRandom(len(CivPlots), None)
-           iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-           # Loyality disabled for elite units
-           iPromo2 = gc.getInfoTypeForString("PROMOTION_LOYAL")
-           iMinRanking = 0
-           iMaxRanking = 4 # 4 = Veteran
-
-           # instead of UnitAITypes.NO_UNITAI
-           if sFaktor[1] == "4": UnitAI_Type = UnitAITypes.UNITAI_ATTACK_CITY
-           else: UnitAI_Type = UnitAITypes.UNITAI_ATTACK
-
-           # prevents CtD in MP
-           #UnitAI_Type = UnitAITypes.NO_UNITAI
-
-           ScriptUnit = []
-           # set units
-           # elite
-           if sFaktor[3] == "4" and len(lEliteUnits) > 0:
-
-             # Naval units
-             if sFaktor[1] == "5":
-               if sFaktor[2] == "1": iAnz = 2
-               elif sFaktor[2] == "2": iAnz = 3
-               elif sFaktor[2] == "3": iAnz = 4
-               else: iAnz = 5
-             # Land units
-             else:
-               if sFaktor[2] == "1": iAnz = 4
-               elif sFaktor[2] == "2": iAnz = 8
-               elif sFaktor[2] == "3": iAnz = 10
-               else: iAnz = 12
-
-             for i in range(iAnz):
-                 iRand = self.myRandom (len(lEliteUnits), None)
-                 NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-                 NewUnit.setHasPromotion(iPromo, True)
-                 NewUnit.setHasPromotion(iPromo2, False)
-                 # Unit Rang / Unit ranking
-                 self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                 NewUnit.setImmobileTimer(1)
-                 ScriptUnit.append(NewUnit)
-             # Goldkarren
-             gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-             gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-           # standard units
-           else:
-            if iAnzSpear > 0:
-              for i in range(iAnzSpear):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSpear, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-                ScriptUnit.append(NewUnit)
-            if iAnzAxe > 0:
-              for i in range(iAnzAxe):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitAxe, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-                ScriptUnit.append(NewUnit)
-            if iAnzSword > 0 and iUnitSword != -1:
-              for i in range(iAnzSword):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSword, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-                ScriptUnit.append(NewUnit)
-            if iAnzArcher > 0:
-              for i in range(iAnzArcher):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitArcher, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-            if iAnzSlinger > 0:
-              for i in range(iAnzSlinger):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlinger, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-            if iAnzSiege > 0 and iUnitSiege != -1:
-              for i in range(iAnzSiege):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSiege, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-
-            # Vessels / Naval units : get land unit
-            if iAnzShip1 > 0 or iAnzShip2 > 0:
-              lUnit = []
-              lUnit.append(iUnitSpear)
-              lUnit.append(iUnitAxe)
-              if iUnitSword != -1: lUnit.append(iUnitSword)
-
-            if iAnzShip1 > 0 and iShip1 != -1:
-              for i in range(iAnzShip1):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip1, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-
-                # Cargo
-                iRand = self.myRandom(len(lUnit), None)
-                NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                NewLandUnit.setTransportUnit(NewUnit)
-
-            if iAnzShip2 > 0 and iShip2 != -1:
-              for i in range(iAnzShip2):
-                NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip2, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                if not NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, True)
-                # Unit Rang / Unit ranking
-                self.doMercenaryRanking(NewUnit,iMinRanking,iMaxRanking)
-                NewUnit.setImmobileTimer(1)
-
-                # Cargo
-                iRand = self.myRandom(len(lUnit), None)
-                NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-                NewLandUnit.setTransportUnit(NewUnit)
-
-            # Goldkarren bei Landeinheiten
-            if not CivPlots[iPlot].isWater():
-              gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
-
-
-           # Plot anzeigen
-           CivPlots[iPlot].setRevealed (gc.getPlayer(iPlayer).getTeam(),1,0,-1)
-
-           # Eine Einheit bekommt iPlayer als Auftraggeber
-           if len(ScriptUnit) > 0:
-              iRand = self.myRandom(len(ScriptUnit), None)
-              ScriptUnit[iRand].setScriptData("MercFromCIV=" + str(iPlayer))
-
-           # Meldungen
-           if gc.getPlayer(iPlayer).isHuman():
-             CyCamera().JustLookAtPlot(CivPlots[iPlot])
-             if CivPlots[iPlot].isWater(): szText = CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_DONE_3",(gc.getPlayer(iTargetPlayer).getCivilizationDescription(0),))
-             else: szText = CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_DONE_1",(gc.getPlayer(iTargetPlayer).getCivilizationDescription(0),))
-             CyInterface().addMessage(iPlayer, True, 10, szText, None, 2, None, ColorTypes(8), 0, 0, False, False)
-             popupInfo = CyPopupInfo()
-             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-             popupInfo.setText(szText)
-             popupInfo.addPopup(iPlayer)
-           if gc.getPlayer(iTargetPlayer).isHuman():
-             CyCamera().JustLookAtPlot(CivPlots[iPlot])
-             if CivPlots[iPlot].isWater(): szText = CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_DONE_4",("",))
-             else: szText = CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_DONE_2",("",))
-             CyInterface().addMessage(iTargetPlayer, True, 15, szText, "AS2D_THEIRDECLAREWAR", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), True, True)
-             popupInfo = CyPopupInfo()
-             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-             popupInfo.setText(szText)
-             popupInfo.addPopup(iTargetPlayer)
-
-           # TEST
-           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Plots",len(CivPlots))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-           #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Plots",int(sFaktor[1]))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-  # Failed Mercenary Torture (from 716 and 717)
-  def doFailedMercenaryTortureMessage(self, iPlayer):
-      iRand = self.myRandom(8, None) + 1
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_FAILED_0",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-      popupInfo = CyPopupInfo()
-      popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-      popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_FAILED_" + str(iRand),("", )))
-      popupInfo.addPopup(iPlayer)
 
   # Upgrade Veteran Unit to Elite Unit - Belobigung
       # CommandUpgrade geht nur, wenn
@@ -16710,7 +11675,7 @@ class CvEventManager:
       # - alle Vorraussetzungen fuer die neuen Einheit erfuellt sind
       # - im eigenen Territorium
       #pUnit.doCommand (CommandTypes.COMMAND_UPGRADE, gc.getInfoTypeForString("UNIT_TRIARII2"), 0)
-  def doUpgradeVeteran( self, pUnit, iNewUnit):
+  def doUpgradeVeteran( self, pUnit, iNewUnit, bChangeCombatPromo):
     if pUnit != None:
       pUnitOwner = gc.getPlayer(pUnit.getOwner())
 
@@ -16719,7 +11684,7 @@ class CvEventManager:
       iPromoCombat5 = gc.getInfoTypeForString("PROMOTION_COMBAT5")
       iPromoCombat6 = gc.getInfoTypeForString("PROMOTION_COMBAT6")
 
-      NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+      NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
       forbiddenPromos = []
       if pUnit.getUnitCombatType() != gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
@@ -16747,15 +11712,17 @@ class CvEventManager:
             NewUnit.setHasPromotion(j, True)
 
       # Einheit: Rang -2
-      if NewUnit.isHasPromotion(iPromoCombat6):
-        NewUnit.setHasPromotion(iPromoCombat6, False)
-        NewUnit.setHasPromotion(iPromoCombat5, False)
-      elif NewUnit.isHasPromotion(iPromoCombat5):
-        NewUnit.setHasPromotion(iPromoCombat5, False)
-        NewUnit.setHasPromotion(iPromoCombat4, False)
-      elif NewUnit.isHasPromotion(iPromoCombat4):
-        NewUnit.setHasPromotion(iPromoCombat4, False)
-        NewUnit.setHasPromotion(iPromoCombat3, False)
+      if bChangeCombatPromo:
+        if NewUnit.isHasPromotion(iPromoCombat6):
+          NewUnit.setHasPromotion(iPromoCombat6, False)
+          NewUnit.setHasPromotion(iPromoCombat5, False)
+        elif NewUnit.isHasPromotion(iPromoCombat5):
+          NewUnit.setHasPromotion(iPromoCombat5, False)
+          NewUnit.setHasPromotion(iPromoCombat4, False)
+        elif NewUnit.isHasPromotion(iPromoCombat4):
+          NewUnit.setHasPromotion(iPromoCombat4, False)
+          NewUnit.setHasPromotion(iPromoCombat3, False)
+
       NewUnit.setExperience(pUnit.getExperience(), -1)
       NewUnit.setLevel(pUnit.getLevel())
 
@@ -16778,48 +11745,94 @@ class CvEventManager:
       #pUnit.kill(1,pUnit.getOwner())
       pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
+  # Unit Rang Promos (PAE, ModMessage:751)
+  def doUpgradeRang(self,iPlayer,iUnit):
+        pPlayer = gc.getPlayer(iPlayer)
+        pUnit = pPlayer.getUnit(iUnit)
+        iUnitType = pUnit.getUnitType()
+        iNewUnit = -1
+
+        # Rome
+        if iUnitType == gc.getInfoTypeForString("UNIT_LEGION"):    iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_OPTIO")
+        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION2"): iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_OPTIO2")
+        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_OPTIO"):  iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_CENTURIO")
+        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"): iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2")
+        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"):
+          iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_TRIBUN")
+          self.setLegionName(pUnit)
+        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"):
+          iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_TRIBUN")
+          self.setLegionName(pUnit)
+        elif iUnitType == gc.getInfoTypeForString("UNIT_EQUITES") or iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"):
+          iNewUnit = gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO")
+        elif iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO"):
+          iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_TRIBUN")
+          self.setLegionName(pUnit)
+        elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES"): iNewUnit = gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2")
+        elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2"): iNewUnit = gc.getInfoTypeForString("UNIT_ROME_COMITATENSES3")
+
+        if iNewUnit == -1:
+          # Kelten, Germanen, Gallier, etc.
+          lGermanen = []
+          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_GERMANEN"))
+          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_CELT"))
+          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_GALLIEN"))
+          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_DAKER"))
+          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_BRITEN"))
+          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_VANDALS"))
+          if pPlayer.getCivilizationType() in lGermanen:
+             iNewUnit = gc.getInfoTypeForString("UNIT_STAMMESFUERST")
+
+        # ScriptData leeren
+        CvUtil.removeScriptData(pUnit, "P")
+        # Neue Einheit
+        self.doUpgradeVeteran(pUnit, iNewUnit, False)
+        if pPlayer.isHuman(): pPlayer.changeGold(-100)
+
+
+
   # PAE City status --------------------------
   # Check City colony or province after events
   # once getting a province: keep being a province
   # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
   def doCheckCityState(self, pCity):
+    if pCity.isNone(): return
 
     iBuildingSiedlung = gc.getInfoTypeForString("BUILDING_SIEDLUNG")
     iBuildingKolonie = gc.getInfoTypeForString("BUILDING_KOLONIE")
     iBuildingCity = gc.getInfoTypeForString("BUILDING_STADT")
     iBuildingProvinz = gc.getInfoTypeForString("BUILDING_PROVINZ")
     iBuildingMetropole = gc.getInfoTypeForString("BUILDING_METROPOLE")
-    ##doch eigentlich immer?
-    #if pCity.getPopulation() <= 2 and pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
+
     if pCity.getNumRealBuilding(iBuildingSiedlung) == 0:
       pCity.setNumRealBuilding(iBuildingSiedlung,1)
 
-    if pCity.getPopulation() > 2 and pCity.getNumRealBuilding(iBuildingKolonie) == 0:
+    if pCity.getPopulation() >= self.iPopDorf and pCity.getNumRealBuilding(iBuildingKolonie) == 0:
       pCity.setNumRealBuilding(iBuildingKolonie,1)
       if gc.getPlayer(pCity.getOwner()).isHuman():
         CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_CITYSTATUS_1",(pCity.getName(),0)), "AS2D_WELOVEKING", 2, gc.getBuildingInfo(iBuildingKolonie).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
-    if pCity.getPopulation() > 5 and pCity.getNumRealBuilding(iBuildingCity) == 0:
+    if pCity.getPopulation() >= self.iPopStadt and pCity.getNumRealBuilding(iBuildingCity) == 0:
       pCity.setNumRealBuilding(iBuildingCity,1)
       if gc.getPlayer(pCity.getOwner()).isHuman():
         CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_CITYSTATUS_2",(pCity.getName(),0)), "AS2D_WELOVEKING", 2, gc.getBuildingInfo(iBuildingCity).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
     # Falls extremer Wachstum: Meldungen von kleinerem Status beginnend
-    if pCity.getPopulation() > 9 and pCity.getNumRealBuilding(iBuildingProvinz) == 0:
+    if pCity.getPopulation() >= self.iPopProvinz and pCity.getNumRealBuilding(iBuildingProvinz) == 0:
       pCity.setNumRealBuilding(iBuildingProvinz,1)
       if gc.getPlayer(pCity.getOwner()).isHuman():
         CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_CITYSTATUS_3",(pCity.getName(),0)), "AS2D_WELOVEKING", 2, gc.getBuildingInfo(iBuildingProvinz).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-    if pCity.getPopulation() > 17 and pCity.getNumRealBuilding(iBuildingMetropole) == 0:
+    if pCity.getPopulation() >= self.iPopMetropole and pCity.getNumRealBuilding(iBuildingMetropole) == 0:
       pCity.setNumRealBuilding(iBuildingMetropole,1)
       if gc.getPlayer(pCity.getOwner()).isHuman():
         CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_CITYSTATUS_5",(pCity.getName(),0)), "AS2D_WELOVEKING", 2, gc.getBuildingInfo(iBuildingMetropole).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
     # Falls extremer Bev.rueckgang: Meldungen von hoeheren Status beginnend
-    if pCity.getPopulation() <= 17 and pCity.getNumRealBuilding(iBuildingMetropole) == 1:
+    if pCity.getPopulation() < self.iPopMetropole and pCity.getNumRealBuilding(iBuildingMetropole) == 1:
       pCity.setNumRealBuilding(iBuildingMetropole,0)
       if gc.getPlayer(pCity.getOwner()).isHuman():
         CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_CITYSTATUS_6",(pCity.getName(),0)), "AS2D_PLAGUE", 2, gc.getBuildingInfo(iBuildingProvinz).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
-    if pCity.getPopulation() <= 9 and pCity.getNumRealBuilding(iBuildingProvinz) == 1:
+    if pCity.getPopulation() < self.iPopProvinz and pCity.getNumRealBuilding(iBuildingProvinz) == 1:
       pCity.setNumRealBuilding(iBuildingProvinz,0)
       if gc.getPlayer(pCity.getOwner()).isHuman():
         CyInterface().addMessage(pCity.getOwner(), True, 15, CyTranslator().getText("TXT_INFO_CITYSTATUS_4",(pCity.getName(),0)), "AS2D_PLAGUE", 2, gc.getBuildingInfo(iBuildingCity).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
@@ -16831,10 +11844,8 @@ class CvEventManager:
   # PAE UNIT FORMATIONS ------------------------------
   def canDoFormation (self, pUnit, iFormation):
       if not pUnit.canMove(): return False
-      # Flunky: no formations for ethnic BARBARIAN
-      # if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return False
-      if pUnit.getEthnic() == gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(): return False
-      
+      if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return False
+
       lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
       lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
 
@@ -16879,7 +11890,7 @@ class CvEventManager:
                 UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
                 UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"))
                 UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_BAKTRIEN"))
+                UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"))
                 UnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
                 if iUnitType in UnitArray:
                   # Partherschuss
@@ -16911,12 +11922,16 @@ class CvEventManager:
                       UnitArray = []
                       UnitArray.append(gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_EQUITES"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_TRIBUN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT_PERSIA"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII_ROME"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIBERIAN_CAVALRY"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2_RIDER"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"))
                       if iUnitType in UnitArray:
@@ -16943,7 +11958,6 @@ class CvEventManager:
                       UnitArray.append(gc.getInfoTypeForString("UNIT_AXEMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_GALLIER_GILDE"))
                       if iUnitType not in UnitArray:
                         return True
 
@@ -16952,8 +11966,17 @@ class CvEventManager:
         if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
           # Roman Legion (Kohorte)
           if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"):
-            if iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2"):
-              return True
+                        UnitArray = []
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
+                        if pUnit.getUnitType() in UnitArray:
+                          return True
           # Treffen-Taktik
           elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"):
             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TREFFEN")):
@@ -16985,11 +12008,13 @@ class CvEventManager:
                         UnitArray = []
                         UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
                         UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_GILDE"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
                         UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
                         UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
-                        if iUnitType in UnitArray:
+                        if pUnit.getUnitType() in UnitArray:
                           return True
         # -- Drill end
 
@@ -17217,12 +12242,10 @@ class CvEventManager:
 
 
   def doAIUnitFormations (self, pUnit, bOffensive, bCity, bElefant):
-    # Flunky: no formations for ethnic BARBARIAN
-    # if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return
-    if pUnit.getEthnic() == gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(): return
+    if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return
     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")): return
     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")): return
-    if pUnit.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: return
+    if pUnit.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pUnit.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE: return
 
     iUnitType = pUnit.getUnitType()
     pUnitOwner = gc.getPlayer(pUnit.getOwner())
@@ -17264,7 +12287,7 @@ class CvEventManager:
                   UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
                   UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"))
                   UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_BAKTRIEN"))
+                  UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"))
                   UnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
                   if iUnitType in UnitArray:
                     CivArray = []
@@ -17293,12 +12316,14 @@ class CvEventManager:
                       UnitArray = []
                       UnitArray.append(gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_EQUITES"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_TRIBUN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT_PERSIA"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII_ROME"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIBERIAN_CAVALRY"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2_RIDER"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"))
                       if pUnit.getUnitType() in UnitArray:
@@ -17310,24 +12335,29 @@ class CvEventManager:
 
             if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
 
+              # Legionaries
+              UnitArray = []
+              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
+              UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
+
               # Testudo
               if bCity:
                 if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TESTUDO")):
-                      UnitArray = []
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_GILDE"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
-                      if pUnit.getUnitType() in UnitArray and self.myRandom(2, None) == 0:
-                        self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))
-                        return
+                  if pUnit.getUnitType() in UnitArray and self.myRandom(2, None) == 0:
+                    self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))
+                    return
 
-              # Kohorte / Legion
-              if iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2"):
+              # Kohorte / Legion (ersetzt alles)
+              if pUnit.getUnitType() in UnitArray:
                 self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"))
                 return
+
 
             # Elefantengasse
             if bElefant:
@@ -17405,7 +12435,6 @@ class CvEventManager:
                   UnitArray.append(gc.getInfoTypeForString("UNIT_AXEMAN"))
                   UnitArray.append(gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"))
                   UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_GALLIER_GILDE"))
 
                   if pUnit.getUnitType() not in UnitArray:
                     self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"))
@@ -17439,7 +12468,7 @@ class CvEventManager:
     # isHills: PROMOTION_GUERILLA1 - 5
     # FEATURE_FOREST, FEATURE_DICHTERWALD: PROMOTION_WOODSMAN1 - 5
     # FEATURE_JUNGLE: PROMOTION_JUNGLE1 - 5
-    # FEATURE_SWAMP: PROMOTION_SUMPF1 - 5
+    # TERRAIN_SWAMP: PROMOTION_SUMPF1 - 5
     # TERRAIN_DESERT: PROMOTION_DESERT1 - 5
     # Extra promos -------------------
     # City Attack: PROMOTION_CITY_RAIDER1 - 5
@@ -17577,7 +12606,7 @@ class CvEventManager:
           elif pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_JUNGLE"):
             if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE5")):
               lTerrain.append("Jungle")
-          elif pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_SWAMP"):
+          elif pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_SWAMP"):
             if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF5")):
               lTerrain.append("Swamp")
 
@@ -17684,7 +12713,7 @@ class CvEventManager:
     # isHills: PROMOTION_GUERILLA1
     # FEATURE_FOREST, FEATURE_DICHTERWALD: PROMOTION_WOODSMAN1
     # FEATURE_JUNGLE: PROMOTION_JUNGLE1
-    # FEATURE_SWAMP: PROMOTION_SUMPF1
+    # TERRAIN_SWAMP: PROMOTION_SUMPF1
     # TERRAIN_DESERT: PROMOTION_DESERT1
     # City Attack: PROMOTION_CITY_RAIDER1
     # City Defense: PROMOTION_CITY_GARRISON1
@@ -17731,9 +12760,9 @@ class CvEventManager:
               if loopPlot.isHills() or loopPlot.isPeak(): iHills += 1
               #if loopPlot.isRiverSide(): iRiver += 1
               if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"): iDesert += 1
+              elif loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_SWAMP"): iSwamp += 1
               if loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_FOREST"): iForest += 1
               elif loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_DICHTERWALD"): iForest += 1
-              elif loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_SWAMP"): iSwamp += 1
               elif loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_JUNGLE"): iJungle += 1
 
     # City
@@ -17829,6 +12858,7 @@ class CvEventManager:
 
   def doRetireVeteran (self, pUnit):
     lPromos = []
+    lPromos.append(gc.getInfoTypeForString("PROMOTION_COMBAT3"))
     lPromos.append(gc.getInfoTypeForString("PROMOTION_COMBAT4"))
     lPromos.append(gc.getInfoTypeForString("PROMOTION_COMBAT5"))
     lPromos.append(gc.getInfoTypeForString("PROMOTION_COMBAT6"))
@@ -17850,311 +12880,6 @@ class CvEventManager:
     #  pUnit.setLevel(1)
 
 
-  # PAE V: Bonusverbreitung 726
-  def doBonusCityGetPlot (self, pCity, iBonus):
-    iPlayer = pCity.getOwner()
-
-    # Check if bonus is available
-    # pCity.hasBonus(iBonus)
-    # pCity.getNumBonuses(iBonus)
-    # pPlayer.getNumAvailableBonuses(iBonus)
-    # pPlayer.countOwnedBonuses(iBonus) = alle (auch unverbundene Boni) im Einflussgebiet
-    if not pCity.hasBonus(iBonus): return None,0
-
-    # Standardchance
-    iChance = 80
-    # Stadtkoordinaten
-    iX = pCity.getX()
-    iY = pCity.getY()
-
-    """
-    # Kartengroesse
-    iMapH = gc.getMap().getGridHeight()
-    iMapW = gc.getMap().getGridWidth()
-
-    # Richtwert fuer Breitengrad definieren
-    iRichtwertBreitengrad = iMapH/2
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-    if sScenarioScriptData != "":
-      if sScenarioScriptData == "Hellas":   iRichtwertBreitengrad = iMapH
-      elif sScenarioScriptData == "Orient": iRichtwertBreitengrad = iMapH
-
-    # 1. Ausnahmen (iY)
-    #if iBonus == gc.getInfoTypeForString("BONUS_RICE"):
-    #  if iNumJungle == 0: return
-    # Getreide
-    if iBonus == gc.getInfoTypeForString("BONUS_WHEAT"):
-      # Generell 100%, Sueden besser als Norden
-      iChance = 100 - (iY * 100/iMapH)
-    elif iBonus == gc.getInfoTypeForString("BONUS_ROGGEN") or iBonus == gc.getInfoTypeForString("BONUS_HAFER"):
-      # Norden, kalt und feucht
-      if iY < iRichtwertBreitengrad: return None,0
-      else:
-        # Norden besser als Sueden
-        iChance += (iY - iMapH) * iChance/iRichtwertBreitengrad
-    elif iBonus == gc.getInfoTypeForString("BONUS_GERSTE"):
-      # Sueden, trocken
-      if iY > iRichtwertBreitengrad: return None,0
-      else:
-        # Sueden besser als Norden
-        iChance -= iY * iChance/iRichtwertBreitengrad
-    # ----------
-    """
-
-
-    # Inits, auch in:
-    # -) iData1 == 726
-    # -) doEraseBonusFromDisaster
-    # -) GameUtils: doBonusverbreitung_AI
-    lGetreide = []
-    lGetreide.append(gc.getInfoTypeForString("BONUS_WHEAT"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_GERSTE"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_HAFER"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_ROGGEN"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_HIRSE"))
-    lGetreide.append(gc.getInfoTypeForString("BONUS_RICE"))
-    lVieh1 = []
-    lVieh1.append(gc.getInfoTypeForString("BONUS_COW"))
-    lVieh1.append(gc.getInfoTypeForString("BONUS_PIG"))
-    lVieh1.append(gc.getInfoTypeForString("BONUS_SHEEP"))
-    lSpice = []
-    lSpice.append(gc.getInfoTypeForString("BONUS_OLIVES"))
-    lSpice.append(gc.getInfoTypeForString("BONUS_DATTELN"))
-    lTier1 = []
-    lTier1.append(gc.getInfoTypeForString("BONUS_CAMEL"))
-
-    # Wenn ueberwiegend Wueste (>=50%)
-    lNotNextDeserts = []
-    lNotNextDeserts.append(gc.getInfoTypeForString("BONUS_COW"))
-    lNotNextDeserts.append(gc.getInfoTypeForString("BONUS_PIG"))
-    lNotNextDeserts.append(gc.getInfoTypeForString("BONUS_SHEEP"))
-
-    # For Rice (no more)
-    #iNumJungle = 0 # not in use
-    # For Olives
-    iNumPlains = 0
-    # Desert
-    iNumDesert = 0
-
-    iTerrainPlains = gc.getInfoTypeForString("TERRAIN_PLAINS")
-    iTerrainGrass  = gc.getInfoTypeForString("TERRAIN_GRASS")
-    iTerrainDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
-    iFeatureJunge  = gc.getInfoTypeForString("FEATURE_JUNGLE")
-    iFeatureFlood  = gc.getInfoTypeForString("FEATURE_FLOOD_PLAINS")
-    iFeatureSumpf  = gc.getInfoTypeForString("FEATURE_SWAMP")
-    iDorf = gc.getInfoTypeForString("IMPROVEMENT_VILLAGE")
-    iGemeinde = gc.getInfoTypeForString("IMPROVEMENT_TOWN")
-    iFarm = gc.getInfoTypeForString("IMPROVEMENT_FARM")
-    lImprovements = []
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_CAMP"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_PASTURE"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM3"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM4"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM5"))
-
-    # Aufplopp-Prio:
-    # Kuh, Schwein, Datteln: nur auf Ebenen
-    # -- Kuh Prio: Weide (Fluss), Weide, Gras, Plains
-    # -- Schwein Prio: Sumpf (Weide), Weide, Fluss, Gras, Plains
-    # -- Datteln: Desert
-    # Schafe, Wild und Kamele: nur auf Hills (Prio: Grass, Plains)
-    # -- Kamel: Desert
-    # Getreide: nur auf Ebenen mit FreshWater (Prio: Schwemmland, Plains, Gras)
-    # Reis (zus. zum Getreide): nur auf Ebenen, Fluss und Gras
-    # Spices: nur auf Plains oder Gras (Prio: Plains, Gras)
-    lPlotPrio1 = []
-    lPlotPrio2 = []
-    lPlotPrio3 = []
-    lPlotPrio4 = []
-    pCurrentPlot = None
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    # Fruchtbare Plots holen
-    for x in range(3):
-      for y in range(3):
-        loopPlot = gc.getMap().plot(iX + x - 1, iY + y - 1)
-
-        if loopPlot.getFeatureType() == iDarkIce: continue
-
-        # nicht auf Wasserplots oder dem Stadtplot
-        if not loopPlot.isWater() and not loopPlot.isCity() and not loopPlot.isPeak():
-
-         # Klimazonen
-         if loopPlot.getTerrainType() == iTerrainPlains: iNumPlains += 1
-         if loopPlot.getTerrainType() == iTerrainDesert: iNumDesert += 1
-         #if loopPlot.getFeatureType() == iFeatureJunge : iNumJungle += 1
-
-         # nicht auf ausgewachsenen Huetten
-         if loopPlot.getImprovementType() != iDorf and loopPlot.getImprovementType() != iGemeinde:
-          iPlotBonus = loopPlot.getBonusType(iPlayer)
-          # Unerforschte Resource?
-          if iPlotBonus == -1: iPlotBonus = loopPlot.getBonusType(-1)
-
-          # Plot hat bereits ne Bonusresi
-          if iPlotBonus != -1:
-            if iPlotBonus in lGetreide:
-              if iBonus in lGetreide: pCurrentPlot = loopPlot
-            elif iPlotBonus in lVieh1:
-              if iBonus in lVieh1: pCurrentPlot = loopPlot
-            elif iPlotBonus in lSpice:
-              if iBonus in lSpice: pCurrentPlot = loopPlot
-            elif iPlotBonus in lTier1:
-              if iBonus in lTier1: pCurrentPlot = loopPlot
-
-          # leerer Plot
-          else:
-
-            if loopPlot.getImprovementType() == -1: bImproved = False
-            else: bImproved = True
-
-            # Getreide und Reis: Nur auf Ebenen und FreshWater
-            if iBonus in lGetreide:
-              if not loopPlot.isHills() and not loopPlot.isPeak() and loopPlot.isFreshWater():
-                # Rice: Fluss und Gras
-                if iBonus == gc.getInfoTypeForString("BONUS_RICE"):
-                  if loopPlot.isRiver() and loopPlot.getTerrainType() == iTerrainGrass:
-                    if loopPlot.getImprovementType() == iFarm: lPlotPrio1.append(loopPlot)
-                    elif not bImproved: lPlotPrio2.append(loopPlot)
-                    else: lPlotPrio3.append(loopPlot)
-                # Getreide Prio: Schwemmland, Ebene, Gras
-                else:
-                  if loopPlot.getFeatureType() == iFeatureFlood:
-                    if loopPlot.getImprovementType() == iFarm: lPlotPrio1.append(loopPlot)
-                    elif not bImproved: lPlotPrio2.append(loopPlot)
-                    else: lPlotPrio4.append(loopPlot)
-                  elif loopPlot.getTerrainType() == iTerrainPlains:
-                    if loopPlot.getImprovementType() == iFarm: lPlotPrio2.append(loopPlot)
-                    elif not bImproved: lPlotPrio3.append(loopPlot)
-                    else: lPlotPrio4.append(loopPlot)
-                  elif loopPlot.getTerrainType() == iTerrainGrass:
-                    if loopPlot.getImprovementType() == iFarm: lPlotPrio2.append(loopPlot)
-                    elif not bImproved: lPlotPrio3.append(loopPlot)
-                    else: lPlotPrio4.append(loopPlot)
-
-            # Kuh, Schwein und Schaf
-            if iBonus in lVieh1:
-                # nur auf Gras oder Plains
-                if loopPlot.getTerrainType() == iTerrainGrass or loopPlot.getTerrainType() == iTerrainPlains:
-
-                 # Hills: Schaf
-                 if loopPlot.isHills():
-                  if iBonus == gc.getInfoTypeForString("BONUS_SHEEP"):
-                    if loopPlot.getImprovementType() in lImprovements: lPlotPrio1.append(loopPlot)
-                    elif loopPlot.getTerrainType() == iTerrainGrass: lPlotPrio2.append(loopPlot)
-                    else: lPlotPrio3.append(loopPlot)
-
-                 # Flachland: Kuh und Schwein
-                 else:
-                  if iBonus == gc.getInfoTypeForString("BONUS_COW"):
-                    if loopPlot.isFreshWater():
-                      if loopPlot.getImprovementType() in lImprovements: lPlotPrio1.append(loopPlot)
-                      elif loopPlot.getTerrainType() == iTerrainGrass:
-                        if not bImproved: lPlotPrio2.append(loopPlot)
-                        else: lPlotPrio4.append(loopPlot)
-                      else:
-                        if not bImproved: lPlotPrio3.append(loopPlot)
-                        else: lPlotPrio4.append(loopPlot)
-                    elif loopPlot.getImprovementType() in lImprovements: lPlotPrio2.append(loopPlot)
-                    else:
-                      if not bImproved: lPlotPrio3.append(loopPlot)
-                      else: lPlotPrio4.append(loopPlot)
-
-                  elif iBonus == gc.getInfoTypeForString("BONUS_PIG"):
-                    if loopPlot.getFeatureType() == iFeatureSumpf:
-                      if loopPlot.getImprovementType() in lImprovements: lPlotPrio1.append(loopPlot)
-                      elif not bImproved: lPlotPrio2.append(loopPlot)
-                      else: lPlotPrio4.append(loopPlot)
-                    elif loopPlot.getImprovementType() in lImprovements: lPlotPrio2.append(loopPlot)
-                    else:
-                      if not bImproved: lPlotPrio3.append(loopPlot)
-                      else: lPlotPrio4.append(loopPlot)
-
-            # Oliven, Datteln und Gewuerze
-            if iBonus in lSpice:
-              # Oliven: Plains, Kueste
-              if iBonus == gc.getInfoTypeForString("BONUS_OLIVES"):
-                if loopPlot.getTerrainType() == iTerrainPlains:
-                  if loopPlot.isCoastalLand():
-                    if loopPlot.isHills():
-                      if not bImproved: lPlotPrio1.append(loopPlot)
-                      else: lPlotPrio3.append(loopPlot)
-                    else:
-                      if not bImproved: lPlotPrio2.append(loopPlot)
-                      else: lPlotPrio4.append(loopPlot)
-              # Datteln
-              elif iBonus == gc.getInfoTypeForString("BONUS_DATTELN"):
-                if loopPlot.getTerrainType() == iTerrainDesert: lPlotPrio1.append(loopPlot)
-              # Spices: Plains, Grass
-              else:
-                if loopPlot.getTerrainType() == iTerrainPlains:
-                  if not bImproved: lPlotPrio1.append(loopPlot)
-                  else: lPlotPrio3.append(loopPlot)
-                elif loopPlot.getTerrainType() == iTerrainGrass:
-                  if not bImproved: lPlotPrio2.append(loopPlot)
-                  else: lPlotPrio4.append(loopPlot)
-
-            # Kamel
-            if iBonus in lTier1:
-              # nicht auf Hills
-              if not loopPlot.isHills():
-                if iBonus == gc.getInfoTypeForString("BONUS_CAMEL"):
-                  # Desert (eben)
-                  if loopPlot.getTerrainType() == iTerrainDesert:
-                    if loopPlot.isFreshWater():
-                      if not bImproved: lPlotPrio1.append(loopPlot)
-                      else: lPlotPrio3.append(loopPlot)
-                    else:
-                      if not bImproved: lPlotPrio2.append(loopPlot)
-                      else: lPlotPrio4.append(loopPlot)
-
-
-    # Weitere Ausnahmen ------------------
-    # zuviel Wueste
-    if iNumDesert > 0:
-      if iBonus in lNotNextDeserts: iChance -= iNumDesert * 45
-      if iBonus in lGetreide: iChance -= iNumDesert * 20
-
-    # Getreide
-    if iBonus == gc.getInfoTypeForString("BONUS_ROGGEN") or iBonus == gc.getInfoTypeForString("BONUS_HAFER"):
-      # kalt und feucht
-      iChance -= iNumPlains * 40
-    elif iBonus == gc.getInfoTypeForString("BONUS_GERSTE"):
-      # trocken
-      if iNumPlains == 0: return None,0
-
-    # Bei zu geringer Chance
-    if iChance <= 0: return None,0
-
-    # Plot selektieren
-    # Wenn bereits ne gruppengleiche Resi drauf is
-    if pCurrentPlot != None:
-      if pCurrentPlot.getOwner() != iPlayer: return None,0
-      else:
-        # Wenn es keinen erlaubten Plot gibt
-        #if len(lPlotPrio1) == 0 and len(lPlotPrio2) == 0 and len(lPlotPrio3) == 0 and len(lPlotPrio4) == 0: return None,0
-        #else:
-        return pCurrentPlot, iChance
-
-    # andere Plots und deren Prioritaeten
-    if len(lPlotPrio1) > 0:
-      iRand = self.myRandom(len(lPlotPrio1), None)
-      return lPlotPrio1[iRand], iChance
-    elif len(lPlotPrio2) > 0:
-      iRand = self.myRandom(len(lPlotPrio2), None)
-      return lPlotPrio2[iRand], iChance
-    elif len(lPlotPrio3) > 0:
-      iRand = self.myRandom(len(lPlotPrio3), None)
-      return lPlotPrio3[iRand], iChance
-    elif len(lPlotPrio4) > 0:
-      iRand = self.myRandom(len(lPlotPrio4), None)
-      return lPlotPrio4[iRand], iChance
-    else: return None,0
-
-  # --------------------------------
-
   # PAE Feature: Auswirkungen, wenn ein General stirbt
   def doDyingGeneral (self, pUnit):
         # Inits
@@ -18164,14 +12889,14 @@ class CvEventManager:
         pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
         iNumLeadersOnPlot = 1
 
-        # Anzahl der Generals des Spielers
+        # Anzahl der Generaele des Spielers
         iLeader = 0
-        iNumUnits = pPlayer.getNumUnits()
-        i=0
-        for i in range(iNumUnits):
-          if pPlayer.getUnit(i).getLeaderUnitType() > -1:
-            if pPlayer.getUnit(i).getID() != pUnit.getID():
+        (loopUnit, iter) = pPlayer.firstUnit(false)
+        while loopUnit:
+          if loopUnit.getLeaderUnitType() > -1:
+            if loopUnit.getID() != pUnit.getID():
               iLeader += 1
+          (loopUnit, iter) = pPlayer.nextUnit(iter, false)
 
         # Units: bekommen Mercenary-Promo
         iNumUnits = pPlot.getNumUnits()
@@ -18190,23 +12915,24 @@ class CvEventManager:
               pPlot.getUnit(i).setHasPromotion(iPromoMercenary, True)
 
         # Cities: Stadtaufruhr
-#        iTeam = pPlayer.getTeam()
-#        pTeam = gc.getTeam(iTeam)
-#        lCities = PyPlayer(iPlayer).getCityList()
-#
-#        iRange = len(lCities)
-#        i=0
-#        for i in range(iRange):
-#
-#          if 0 == self.myRandom(iLeader, None):
-#            loopCity = pPlayer.getCity(lCities[i].getID())
-#            iRand = 2 + self.myRandom(3, None)
-#            loopCity.changeHurryAngerTimer (iRand)
-#            # 2 bis 4 Runden Aufstand!
-#            iRand = 2 + self.myRandom(3, None)
-#            loopCity.setOccupationTimer(iRand)
-#            if pPlayer.isHuman():
-#               CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MAIN_CITY_RIOT",(loopCity.getName(),)), "AS2D_REVOLTSTART", 2, ",Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10", ColorTypes(7), loopCity.getX(), loopCity.getY(), True, True)
+        iTeam = pPlayer.getTeam()
+        pTeam = gc.getTeam(iTeam)
+        lCities = PyPlayer(iPlayer).getCityList()
+
+        iRange = len(lCities)
+        i=0
+        for i in range(iRange):
+
+          if 0 == self.myRandom(iLeader, None):
+            loopCity = pPlayer.getCity(lCities[i].getID())
+            iRand = 2 + self.myRandom(2, None)
+            loopCity.changeHurryAngerTimer (iRand)
+            # 2 bis 4 Runden Aufstand!
+            #iRand = 2 + self.myRandom(3, None)
+            # Stadt ohne Kulturgrenzen
+            #loopCity.setOccupationTimer (iRand)
+            if pPlayer.isHuman():
+               CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MAIN_CITY_RIOT",(loopCity.getName(),)), "AS2D_REVOLTSTART", 2, ",Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10", ColorTypes(7), loopCity.getX(), loopCity.getY(), True, True)
 
         # PopUp
         if pPlayer.isHuman():
@@ -18236,7 +12962,7 @@ class CvEventManager:
         if iCityGlads > 0:
           while iCityGlads > 0 and iCityPop < iCityGlads + iCitySlaves:
             # Create slave unit
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             NewUnit.finishMoves()
             # Decrease specialist
             pCity.changeFreeSpecialistCount(15, -1)
@@ -18249,155 +12975,25 @@ class CvEventManager:
         if iCitySlaves > 0:
           # 1st prio: research
           while iCitySlavesHaus > 0 and iCityPop < iCitySlaves:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(16, -1)
             iCitySlavesHaus -= 1
             iCitySlaves -= 1
           # 2nd prio: prod
           while iCitySlavesProd > 0 and iCityPop < iCitySlaves:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(18, -1)
             iCitySlavesProd -= 1
             iCitySlaves -= 1
           # 3rd prio: food
           while iCitySlavesFood > 0 and iCityPop < iCitySlaves:
-            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pCity.chooseEthnic(), pCity.chooseReligion())
+            NewUnit = pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             NewUnit.finishMoves()
             pCity.changeFreeSpecialistCount(17, -1)
             iCitySlavesFood -= 1
             iCitySlaves -= 1
-
-  # --- Mission: automated merchant
-  def doAutomateMerchant (self, pUnit):
-      iPlayer = pUnit.getOwner()
-      pPlayer = gc.getPlayer(iPlayer)
-      pPlot = pUnit.plot()
-
-      # Handel ausfuehren
-      if pPlot.isCity() and pPlot.getOwner() != -1 and pPlot.getOwner() != iPlayer and pPlot.getOwner() != gc.getBARBARIAN_PLAYER():
-        pUnit.getGroup().pushMission(MissionTypes.MISSION_TRADE, 0, 0, 0, False, False, MissionAITypes.NO_MISSIONAI, pPlot, pUnit)
-
-      # Stadt auswaehlen
-      else:
-        if pUnit.getDomainType() == DomainTypes.DOMAIN_LAND: bLandUnit = true
-        else: bLandUnit = false
-
-        iTeam = pPlayer.getTeam()
-        pTeam = gc.getTeam(iTeam)
-
-        lNeighbors = []
-
-        iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-        # friedliche Nachbarn raussuchen
-        iRange = gc.getMAX_PLAYERS()
-        for i in range(iRange):
-         loopPlayer = gc.getPlayer(i)
-         if loopPlayer.isAlive() and i != iPlayer:
-           if pTeam.isHasMet(loopPlayer.getTeam()):
-             if pTeam.isOpenBorders (loopPlayer.getTeam()):
-             #if not pTeam.isAtWar(loopPlayer.getTeam()):
-               # Distanz mittels Abstand zur Hauptstadt herausfinden
-               if not loopPlayer.getCity(0).isNone():
-                 iDistanz = CyMap().calculatePathDistance(pPlot, loopPlayer.getCity(0).plot())
-                 if iDistanz != -1: lNeighbors.append([iDistanz,loopPlayer])
-
-        if len(lNeighbors):
-          # Nach Distanz sortieren
-          lNeighbors.sort()
-
-          # Bestimmte Anzahl an Nachbarn raussuchen
-          iMaxNeighbors = 4
-          n = 0
-
-          pSeekCity = None
-          iDistanz = 0
-
-          i = 0
-          iRange = len(lNeighbors)
-          for i in range(iRange):
-            if n >= iMaxNeighbors: break
-            n += 1
-
-            iNumCities = lNeighbors[i][1].getNumCities()
-            for j in range (iNumCities):
-              loopCity = lNeighbors[i][1].getCity(j)
-              if not loopCity.isNone():
-
-               if pUnit.canMoveInto (loopCity.plot(), 0, 0, 0):
-
-                # Fuer Landeinheiten alle cities
-                # Fuer Schiffe nur coastal cities
-                if bLandUnit or loopCity.isCoastal(4):
-
-                  # Weil calculatePathDistance bei Schiffen nur auf Wasserplots funktioniert:
-                  pPlot1 = None
-                  pPlot2 = None
-                  if bLandUnit:
-                    pPlot1 = pPlot
-                    pPlot2 = loopCity.plot()
-                  else:
-                    iX=pPlot.getX()
-                    iY=pPlot.getY()
-                    x=0
-                    y=0
-                    for x in range(3):
-                      if pPlot1 != None: break
-                      for y in range(3):
-                        loopPlot = gc.getMap().plot(iX + x - 1, iY + y - 1)
-                        if loopPlot != None and not loopPlot.isNone():
-                          if loopPlot.getFeatureType() == iDarkIce: continue
-                          if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_COAST"):
-                            pPlot1 = loopPlot
-                            break
-
-                    iX=loopCity.plot().getX()
-                    iY=loopCity.plot().getY()
-                    x=0
-                    y=0
-                    for x in range(3):
-                      if pPlot2 != None: break
-                      for y in range(3):
-                        loopPlot = gc.getMap().plot(iX + x - 1, iY + y - 1)
-                        if loopPlot != None and not loopPlot.isNone():
-                          if loopPlot.getFeatureType() == iDarkIce: continue
-                          if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_COAST"):
-                            pPlot2 = loopPlot
-                            break
-
-
-                  # Distanz berechnen
-                  if pPlot1 != None and pPlot2 != None:
-                    d = CyMap().calculatePathDistance(pPlot1, pPlot2)
-                    if d > -1:
-                      if iDistanz == 0 or iDistanz > d:
-                        iDistanz = d
-                        pSeekCity = loopCity
-
-
-          # TEST
-          #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pSeekCity.getName(),iDistanz)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-          # Es wurde eine Stadt gewaehlt
-          if pSeekCity != None and not pSeekCity.isNone():
-             pUnit.getGroup().pushMoveToMission (pSeekCity.getX(), pSeekCity.getY())
-             #if not pPlayer.isHuman():
-             pUnit.getGroup().pushMission(MissionTypes.MISSION_TRADE, 0, 0, 0, True, False, MissionAITypes.NO_MISSIONAI, pSeekCity.plot(), pUnit)
-             return True
-
-  # Einheiten einen Zufallsrang vergeben (max. Elite)
-  def doMercenaryRanking (self, pUnit, iMinRang, iMaxRang):
-    iRang = self.myRandom(iMaxRang+1, None)
-    if iRang < iMinRang: iRang = iMinRang
-    if iRang >= 1:
-      pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
-      if iRang >= 2: pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
-      if iRang >= 3: pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
-      if iRang >= 4: pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4"), True)
-      if iRang >= 5: pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5"), True)
-      pUnit.setLevel(iRang)
 
   # Feldsklaven und Minensklaven checken
   def doCheckSlavesAfterPillage(self,pUnit,pPlot):
@@ -18480,7 +13076,7 @@ class CvEventManager:
           for i in range(iSlaves):
             iRand = self.myRandom(len(lFluchtPlots), None)
             # gc.getBARBARIAN_PLAYER() statt pCity.getOwner()
-            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlave, lFluchtPlots[iRand].getX(), lFluchtPlots[iRand].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType(), ReligionTypes.NO_RELIGION)
+            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlave, lFluchtPlots[iRand].getX(), lFluchtPlots[iRand].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
           # Meldung
           if pUnit.getOwner() == gc.getGame().getActivePlayer() or pCity.getOwner() == gc.getGame().getActivePlayer():
@@ -18495,17 +13091,68 @@ class CvEventManager:
       if pCity != None:
         iPromoFort = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
         iPromoFort2 = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
-        iNumUnits = pPlayer.getNumUnits()
-        for i in range(iNumUnits):
-          pPlayer.getUnit(i).setHasPromotion(iPromoFort, False)
-          pPlayer.getUnit(i).setHasPromotion(iPromoFort2, False)
+        (pUnit, iter) = pPlayer.firstUnit(false)
+        while pUnit:
+          pUnit.setHasPromotion(iPromoFort, False)
+          pUnit.setHasPromotion(iPromoFort2, False)
+          (pUnit, iter) = pPlayer.nextUnit(iter, false)
+
+  # --------------------------------
+  # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
+  def doCheckTraitBuildings (self, pCity, iOwner):
+      pOwner = gc.getPlayer(iOwner)
+      # Trait-Gebaeude
+      lTraitBuildings = []
+      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
+      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"))
+      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"))
+      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
+      # Tech, ab der Creative_Local gesetzt wird
+      iTechCreativeLocal = gc.getInfoTypeForString("TECH_ALPHABET")
+      # Alle nicht passenden Gebaeude entfernen
+      # Nur lokale hinzufuegen, globale nicht
+      if pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(lTraitBuildings[0], 1)
+      else: pCity.setNumRealBuilding(lTraitBuildings[0], 0)
+      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")):
+          pCity.setNumRealBuilding(lTraitBuildings[1], 0)
+          pCity.setNumRealBuilding(lTraitBuildings[2], 0)
+      else:
+          if gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal): pCity.setNumRealBuilding(lTraitBuildings[1], 1)
+          else: pCity.setNumRealBuilding(lTraitBuildings[1], 0)
+      if not pOwner.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")): pCity.setNumRealBuilding(lTraitBuildings[3], 0)
+
+  # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
+  def doCheckGlobalTraitBuildings (self, iPlayer):
+      pPlayer = gc.getPlayer(iPlayer)
+
+      lTraitBuildings = []
+      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"))
+      lTraitBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
+      lTraits = []
+      lTraits.append(gc.getInfoTypeForString("TRAIT_CREATIVE"))
+      lTraits.append(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL"))
+      iRangeTraitBuildings = len(lTraitBuildings)
+
+      lCities = PyPlayer(iPlayer).getCityList()
+      iRangeCities = len(lCities)
+
+      for i in range(iRangeTraitBuildings):
+          if not pPlayer.hasTrait(lTraits [i]): continue
+          iTraitBuilding = lTraitBuildings [i]
+          iCount = 0
+          for iCity in range(iRangeCities):
+             pCity = pPlayer.getCity(lCities[iCity].getID())
+             if pCity.getNumRealBuilding(iTraitBuilding) > 0:
+                 iCount += 1
+                 if iCount > 1: pCity.setNumRealBuilding(iTraitBuilding, 0)
+          if iCount == 0 and iRangeCities > 0: pPlayer.getCity(lCities[0].getID()).setNumRealBuilding(iTraitBuilding, 1)
 
   # Handelsposten errichten
   def doBuildHandelsposten(self, pUnit):
       pPlot = pUnit.plot()
       pPlot.setRouteType(0)
       pPlot.setImprovementType(gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"))
-      pPlot.setScriptData(str(pUnit.getOwner()))
+      CvUtil.addScriptData(pPlot, "p", pUnit.getOwner())
       pPlot.setCulture(pUnit.getOwner(),1,True)
       pPlot.setOwner(pUnit.getOwner())
       gc.getPlayer(pUnit.getOwner()).changeGold(-30)
@@ -18514,3 +13161,106 @@ class CvEventManager:
   # PAE Statthalter Tribut
   def getPAEStatthalterTribut(self):
     return self.PAEStatthalterTribut
+
+
+  # ++++++++ Names for Legions +++++++++++++++++
+  # Reusing names of fallen Legions
+  def setLegionName(self, pUnit):
+    pPlayer = gc.getPlayer(pUnit.getOwner())
+
+    LegioUsedNames = []
+    (loopUnit, iter) = pPlayer.firstUnit(false)
+    while loopUnit:
+      sName = loopUnit.getName()
+      if "Legio" in sName:
+        LegioUsedNames.append(re.sub(" \(.*?\)","",sName))
+      (loopUnit, iter) = pPlayer.nextUnit(iter, false)
+
+    LegioNames = ["Legio I Adiutrix","Legio I Germanica","Legio I Italica","Legio I Macriana Liberatrix","Legio I Minervia","Legio I Parthica","Legio II Adiutrix","Legio II Augusta","Legio II Italica","Legio II Parthica","Legio II Traiana Fortis","Legio III Augusta","Legio III Cyrenaica","Legio III Gallica","Legio III Italica","Legio III Parthica","Legio III Macedonica","Legio IV Flavia Felix","Legio IV Scythica","Legio V Alaudae","Legio V Macedonica","Legio VI Ferrata","Legio VI Victrix","Legio VII Claudia","Legio VII Gemina","Legio VIII Augusta","Legio IX Hispana","Legio X Fretensis","Legio X Equestris","Legio XI Claudia","Legio XII Fulminata","Legio XIII Gemina","Legio XIV Gemina","Legio XV Apollinaris","Legio XV Primigenia","Legio XVI Gallica","Legio XVI Flavia Firma","Legio XVII","Legio XVIII","Legio XIX","Legio XX Valeria Victrix","Legio XXI Rapax","Legio XXII Deiotariana","Legio XXII Primigenia","Legio XXX Ulpia Victrix","Legio I Iulia Alpina","Legio I Armeniaca","Legio I Flavia Constantia","Legio I Flavia Gallicana","Legio I Flavia Martis","Legio I Flavia Pacis","Legio I Illyricorum","Legio I Iovia","Legio I Isaura Sagitaria","Legio I Martia","Legio I Maximiana","Legio I Noricorum","Legio I Pontica","Legio II Iulia Alpina","Legio II Armeniaca","Legio II Brittannica","Legio II Flavia Virtutis","Legio II Herculia","Legio II Isaura","Legio III Iulia Alpina","Legio III Diocletiana","Legio III Flavia Salutis","Legio III Herculia","Legio III Isaura","Legio IV Italica","Legio IV Martia","Legio IV Parthica","Legio V Iovia","Legio V Parthica","Legio VI Gallicana","Legio VI Herculia","Legio VI Hispana","Legio VI Parthica","Legio XII Victrix","Legio Thebaica"]
+    iRange = len(LegioNames)
+    for i in range(iRange):
+      if LegioNames[i] not in LegioUsedNames:
+        pUnit.setName(LegioNames[i])
+        break
+  # --- end Legion Names
+
+
+  def doBlessUnits(self,iX,iY,iOwner,iUnitID):
+    pPlot = gc.getMap().plot(iX, iY)
+    pPlayer = gc.getPlayer(iOwner)
+    iPromo = gc.getInfoTypeForString("PROMOTION_BLESSED")
+    iCost = 100
+
+    iNumUnits = pPlot.getNumUnits()
+    for i in range (iNumUnits):
+      if pPlayer.getGold() < iCost: break
+      loopUnit = pPlot.getUnit(i)
+      if loopUnit.IsSelected():
+        if not loopUnit.isHasPromotion(iPromo):
+          # Gold abziehen
+          pPlayer.changeGold(-iCost)
+          # Formation geben
+          loopUnit.setHasPromotion(iPromo, True)
+          loopUnit.finishMoves()
+  # -----------------
+
+  def doMessageCityGrowing(self, pCity):
+    if pCity.isNone(): return
+
+    if pCity.getFoodTurnsLeft() == 1 and pCity.foodDifference(True) > 0 and not pCity.isFoodProduction() and not pCity.AI_isEmphasize(5):
+
+      # Inits
+      iBuildingDorf = gc.getInfoTypeForString("BUILDING_KOLONIE")
+      iBuildingStadt = gc.getInfoTypeForString("BUILDING_STADT")
+      iBuildingProvinz = gc.getInfoTypeForString("BUILDING_PROVINZ")
+      iBuildingMetropole = gc.getInfoTypeForString("BUILDING_METROPOLE")
+
+      kBuildingDorf = gc.getBuildingInfo(iBuildingDorf)
+      kBuildingStadt = gc.getBuildingInfo(iBuildingStadt)
+      kBuildingProvinz = gc.getBuildingInfo(iBuildingProvinz)
+      kBuildingMetropole = gc.getBuildingInfo(iBuildingMetropole)
+
+      iPlayer = pCity.getOwner()
+      # ---
+
+      # MESSAGE: city will grow / Stadt wird wachsen
+      iPop = pCity.getPopulation() + 1
+      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_WILL_GROW",(pCity.getName(),iPop)), None, 2, None, ColorTypes(13), 0, 0, False, False)
+
+      # MESSAGE: city gets/is unhappy / Stadt wird/ist unzufrieden
+      iBonusHealth = 0
+      iBonusHappy = 0
+      if iPop == self.iPopDorf:
+        iBonusHealth = kBuildingDorf.getHealth()
+        iBonusHappy = kBuildingDorf.getHappiness()
+        # for iBonus in gc.getNumBonuses():
+            # iAddHealth = kBuildingDorf.getBonusHealthChanges(iBonus)
+            # if iAddHealth != -1:
+              # iBonusHealth += iAddHealth
+            # iAddHappy = kBuildingDorf.getBonusHappinessChanges(iBonus)
+            # if iAddHappy != -1:
+              # iBonusHappy += iAddHappy
+      elif iPop == self.iPopStadt:
+        iBonusHealth = kBuildingStadt.getHealth()
+        iBonusHappy = kBuildingStadt.getHappiness()
+      elif iPop == self.iPopProvinz:
+        iBonusHealth = kBuildingProvinz.getHealth()
+        iBonusHappy = kBuildingProvinz.getHappiness()
+      elif iPop == self.iPopMetropole:
+        iBonusHealth = kBuildingMetropole.getHealth()
+        iBonusHappy = kBuildingMetropole.getHappiness()
+
+      if pCity.happyLevel() - pCity.unhappyLevel(0) + iBonusHappy <= 0:
+        if pCity.happyLevel() - pCity.unhappyLevel(0) == 0:
+          CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GETS_UNHAPPY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+        else:
+          CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_IS_UNHAPPY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+
+      # MESSAGE: city gets/is unhealthy / Stadt wird/ist ungesund
+      if pCity.goodHealth() - pCity.badHealth(False) + iBonusHealth <= 0:
+        if pCity.goodHealth() - pCity.badHealth(False) == 0:
+          CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GETS_UNHEALTY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+        else:
+          CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_IS_UNHEALTY",(pCity.getName(),)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+
+  # -----------------

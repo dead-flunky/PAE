@@ -1057,6 +1057,8 @@ class TerrainGenerator:
                 self.terrainIce = self.gc.getInfoTypeForString("TERRAIN_SNOW")
                 self.terrainTundra = self.gc.getInfoTypeForString("TERRAIN_TUNDRA")
                 self.terrainGrass = self.gc.getInfoTypeForString("TERRAIN_GRASS")
+                # PAE
+                self.terrainSwamp = self.gc.getInfoTypeForString("TERRAIN_SWAMP")
 
         def getLatitudeAtPlot(self, iX, iY):
                 """given a point (iX,iY) such that (0,0) is in the NW,
@@ -1089,17 +1091,13 @@ class TerrainGenerator:
         def generateTerrainAtPlot(self,iX,iY):
                 lat = self.getLatitudeAtPlot(iX,iY)
 
-                if (self.map.plot(iX, iY).isWater()):
-                        return self.map.plot(iX, iY).getTerrainType()
+                if (self.map.plot(iX, iY).isWater()): return self.map.plot(iX, iY).getTerrainType()
 
                 terrainVal = self.terrainGrass
 
-                if lat >= self.fSnowLatitude:
-                        terrainVal = self.terrainIce
-                elif lat >= self.fTundraLatitude:
-                        terrainVal = self.terrainTundra
-                elif lat < self.fGrassLatitude:
-                        terrainVal = self.terrainGrass
+                if lat >= self.fSnowLatitude: terrainVal = self.terrainIce
+                elif lat >= self.fTundraLatitude: terrainVal = self.terrainTundra
+                elif lat < self.fGrassLatitude: terrainVal = self.terrainGrass
                 else:
                         desertVal = self.deserts.getHeight(iX, iY)
                         plainsVal = self.plains.getHeight(iX, iY)
@@ -1108,8 +1106,12 @@ class TerrainGenerator:
                         elif ((plainsVal >= self.iPlainsBottom) and (plainsVal <= self.iPlainsTop)):
                                 terrainVal = self.terrainPlains
 
-                if (terrainVal == TerrainTypes.NO_TERRAIN):
-                        return self.map.plot(iX, iY).getTerrainType()
+                if (terrainVal == TerrainTypes.NO_TERRAIN): return self.map.plot(iX, iY).getTerrainType()
+
+                # PAE
+                if terrainVal == self.terrainGrass and not self.map.plot(iX, iY).isPeak() and not self.map.plot(iX, iY).isHills():
+                   if self.mapRand.get(10, "Add Terrain Swamp") == 1:
+                      return self.terrainSwamp
 
                 return terrainVal
 
@@ -1175,12 +1177,27 @@ class FeatureGenerator:
                 self.featureDenseForest = self.gc.getInfoTypeForString("FEATURE_DICHTERWALD")
                 self.featureOasis = self.gc.getInfoTypeForString("FEATURE_OASIS")
                 self.featureSavanna = self.gc.getInfoTypeForString("FEATURE_SAVANNA")
+                # for PAE
+                self.terrainSwamp = self.gc.getInfoTypeForString("TERRAIN_SWAMP")
+                self.terrainGrass = self.gc.getInfoTypeForString("TERRAIN_GRASS")
 
         def addFeatures(self):
+
+                # for PAE
+                self.terrainSwamp = self.gc.getInfoTypeForString("TERRAIN_SWAMP")
+                self.terrainGrass = self.gc.getInfoTypeForString("TERRAIN_GRASS")
+
                 "adds features to all plots as appropriate"
                 for iX in range(self.iGridW):
                         for iY in range(self.iGridH):
                                 self.addFeaturesAtPlot(iX, iY)
+
+                                # PAE: hier, weil die Fluesse bei, TerrainGenerator noch nicht gesetzt sind
+                                pPlot = self.map.sPlot(iX, iY)
+                                if not pPlot.isWater() and not pPlot.isPeak() and not pPlot.isHills() and pPlot.isRiver():
+                                   if pPlot.getTerrainType() == self.terrainGrass:
+                                      if self.mapRand.get(5, "Add Terrain Swamp") == 1:
+                                         pPlot.setTerrainType(self.terrainSwamp, 0,0)
 
         def getLatitudeAtPlot(self, iX, iY):
                 "returns a value in the range of 0.0 (tropical) to 1.0 (polar)"

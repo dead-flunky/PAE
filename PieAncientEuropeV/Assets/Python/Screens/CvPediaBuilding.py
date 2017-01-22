@@ -1,6 +1,6 @@
 ## Sid Meier's Civilization 4
 ## Copyright Firaxis Games 2005
-## Edited by pie (pierre@voak.at), Austria 2011
+## Edited by pie (pierre@voak.at), Austria 2016
 from CvPythonExtensions import *
 import CvUtil
 import ScreenInput
@@ -24,41 +24,41 @@ class CvPediaBuilding:
                 self.X_BUILDING_PANE = 10
                 self.Y_BUILDING_PANE = 57
                 self.W_BUILDING_PANE = 405
-                self.H_BUILDING_PANE = 210
+                self.H_BUILDING_PANE = 200
 
-                self.X_BUILDING_ANIMATION = 431
+                self.X_BUILDING_ANIMATION = 421
                 self.Y_BUILDING_ANIMATION = 65
-                self.W_BUILDING_ANIMATION = 342
-                self.H_BUILDING_ANIMATION = 201
+                self.W_BUILDING_ANIMATION = 365
+                self.H_BUILDING_ANIMATION = 191
                 self.X_ROTATION_BUILDING_ANIMATION = -20
                 self.Z_ROTATION_BUILDING_ANIMATION = 30
                 self.SCALE_ANIMATION = 1.0
 
                 self.X_STATS_PANE = 157
-                self.Y_STATS_PANE = 120
+                self.Y_STATS_PANE = 100
                 self.W_STATS_PANE = 250
                 self.H_STATS_PANE = 200
 
                 self.X_ICON = 40
-                self.Y_ICON = 110
+                self.Y_ICON = 90
                 self.W_ICON = 100
                 self.H_ICON = 100
                 self.ICON_SIZE = 64
 
                 self.X_PREREQ_PANE = 10
-                self.Y_PREREQ_PANE = 287
+                self.Y_PREREQ_PANE = 257
                 self.W_PREREQ_PANE = 405
-                self.H_PREREQ_PANE = 124
+                self.H_PREREQ_PANE = 100
 
                 self.X_SPECIAL_PANE = 10
-                self.Y_SPECIAL_PANE = 424
+                self.Y_SPECIAL_PANE = 365
                 self.W_SPECIAL_PANE = 405
-                self.H_SPECIAL_PANE = 281
+                self.H_SPECIAL_PANE = 345
 
-                self.X_HISTORY_PANE = 430
-                self.Y_HISTORY_PANE = 335
-                self.W_HISTORY_PANE = 583
-                self.H_HISTORY_PANE = 370
+                self.X_HISTORY_PANE = 420
+                self.Y_HISTORY_PANE = 257
+                self.W_HISTORY_PANE = 366
+                self.H_HISTORY_PANE = 453
 
         # Screen construction function
         def interfaceScreen(self, iBuilding):
@@ -70,7 +70,7 @@ class CvPediaBuilding:
                 screen = self.top.getScreen()
 
                 bNotActive = (not screen.isActive())
-                if bNotActive:
+                if bNotActive: # or self.top.iLastScreen != CvScreenEnums.PEDIA_BUILDING: # PAE different Link menu height
                         self.top.setPediaCommonWidgets()
 
                 # Header...
@@ -85,7 +85,7 @@ class CvPediaBuilding:
                         link = CivilopediaPageTypes.CIVILOPEDIA_PAGE_BUILDING
                 screen.setText(self.top.getNextWidgetName(), "Background", self.top.MENU_TEXT, CvUtil.FONT_LEFT_JUSTIFY, self.top.X_MENU, self.top.Y_MENU, 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_PEDIA_MAIN, link, -1)
 
-                if self.top.iLastScreen        != CvScreenEnums.PEDIA_BUILDING or bNotActive or self.bLastBuildingType != self.getBuildingType(self.iBuilding):
+                if self.top.iLastScreen != CvScreenEnums.PEDIA_BUILDING or bNotActive or self.bLastBuildingType != self.getBuildingType(self.iBuilding):
                         self.placeLinks(true)
                         self.top.iLastScreen = CvScreenEnums.PEDIA_BUILDING
                 else:
@@ -218,7 +218,7 @@ class CvPediaBuilding:
 
                 panelName = self.top.getNextWidgetName()
                 screen.addPanel( panelName, localText.getText("TXT_KEY_PEDIA_REQUIRES", ()), "", false, true,
-                                 self.X_PREREQ_PANE, self.Y_PREREQ_PANE, self.W_PREREQ_PANE, self.H_PREREQ_PANE, PanelStyles.PANEL_STYLE_BLUE50 )
+                                 self.X_PREREQ_PANE, self.Y_PREREQ_PANE, self.W_PREREQ_PANE, self.H_PREREQ_PANE+10, PanelStyles.PANEL_STYLE_BLUE50 )
 
                 screen.attachLabel(panelName, "", "  ")
 
@@ -307,8 +307,8 @@ class CvPediaBuilding:
                         szText += u"\n\n"
                 szText += localText.getText("TXT_KEY_CIVILOPEDIA_BACKGROUND", ())
                 szText += gc.getBuildingInfo(self.iBuilding).getCivilopedia()
-                screen.addMultilineText( textName, szText, self.X_HISTORY_PANE + 15, self.Y_HISTORY_PANE + 40,
-                    self.W_HISTORY_PANE - (15 * 2), self.H_HISTORY_PANE - (15 * 2) - 25, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+                screen.addMultilineText( textName, szText, self.X_HISTORY_PANE + 10, self.Y_HISTORY_PANE + 40,
+                    self.W_HISTORY_PANE - 10, self.H_HISTORY_PANE - 55, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 
         def placeLinks(self, bRedraw):
 
@@ -337,22 +337,35 @@ class CvPediaBuilding:
 
         def getBuildingType(self, iBuilding):
                 if (isWorldWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType())):
-                        return true
+                        return 1
 
                 if (isTeamWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType())):
-                        return true
+                        return 1
 
                 if (isNationalWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType())):
-                        return true
+                        return 2
+
+                # Special Building
+                lBuildingClasses = self.getStandardBuildings()
+                if iBuilding not in lBuildingClasses: return 3
 
                 # Regular building
-                return false
+                return 0
 
-        def getBuildingSortedList(self, bWonder):
+        # iTyp: 0=normal, 1=wonder, 2=national, 3=special
+        def getBuildingSortedList(self, iTyp):
                 listBuildings = []
                 iCount = 0
+
+                lBuildingClasses = []
+                if iTyp == 0 or iTyp == 3: lBuildingClasses = self.getStandardBuildings()
+
                 for iBuilding in range(gc.getNumBuildingInfos()):
-                        if (self.getBuildingType(iBuilding) == bWonder and not gc.getBuildingInfo(iBuilding).isGraphicalOnly() and gc.getBuildingInfo(iBuilding).getArtDefineTag() != "ART_DEF_BUILDING_FAKE"):
+                        if not gc.getBuildingInfo(iBuilding).isGraphicalOnly() and gc.getBuildingInfo(iBuilding).getArtDefineTag() != "ART_DEF_BUILDING_FAKE":
+                           if iTyp == 0 and self.getBuildingType(iBuilding) == 0 and iBuilding in lBuildingClasses or \
+                              iTyp == 1 and self.getBuildingType(iBuilding) == 1 or \
+                              iTyp == 2 and self.getBuildingType(iBuilding) == 2 or \
+                              iTyp == 3 and self.getBuildingType(iBuilding) == 3: #0 and iBuilding not in lBuildingClasses:
                                 listBuildings.append(iBuilding)
                                 iCount += 1
 
@@ -363,6 +376,14 @@ class CvPediaBuilding:
                         iI += 1
                 listSorted.sort()
                 return listSorted
+
+        def getStandardBuildings(self):
+            list = []
+            for i in range(gc.getNumBuildingClassInfos()):
+                iBuilding = gc.getBuildingClassInfo(i).getDefaultBuildingIndex()
+                if iBuilding != -1 and gc.getBuildingInfo(iBuilding).getProductionCost() > 0:
+                   list.append(iBuilding)
+            return list
 
 
         # Will handle the input for this screen...

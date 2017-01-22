@@ -78,7 +78,8 @@ def ResortCivs(Debuging):
         while(loopUnit):
                 unitOwner = loopUnit.getOwner()
                 if ( not loopUnit.isNone() and loopUnit.getOwner() == pLoopCiv.getID() ): #only valid units
-                        loopUnit.setXY(-1,-1, False,False,False)
+                        #loopUnit.setXY(-1,-1, False,False,False)
+                        loopUnit.setXY(gc.getINVALID_PLOT_COORD(),gc.getINVALID_PLOT_COORD(), False,False,False)
                 (loopUnit, iter) = pLoopCiv.nextUnit(iter, false)
 
 ###this loop replaces the current units/moves them to the right place
@@ -132,7 +133,7 @@ def ResortCivs(Debuging):
     # PAE: do not replace missing civ
     if CounterInvalid > 0: AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debuging)
     FlushVisibleArea()
-    
+
 ### place barbarian cities
 def PlaceBarbarianCities(Debuging):
     pBarb = gc.getPlayer(gc.getBARBARIAN_PLAYER())
@@ -143,7 +144,7 @@ def PlaceBarbarianCities(Debuging):
         pCity.setName(BarbCity.CityName, 0)
         pCity.setPopulation(BarbCity.CityPopulation)
         eWarrior = gc.getInfoTypeForString("UNIT_WARRIOR")
-        for i in range(BarbCity.CityNumDefenders): pBarb.initUnit(eWarrior, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pBarb.getCivilizationType(), ReligionTypes.NO_RELIGION)
+        for i in range(BarbCity.CityNumDefenders): pBarb.initUnit(eWarrior, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
     FlushVisibleArea()
 
 
@@ -270,26 +271,26 @@ def AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Deb
 ###to the map, because just adding a player will give a civ really completly nothing
 def AddTechsAndUnits(iCivID,j,CurCiv):
         ThisPlayer = gc.getPlayer(iCivID)
-        ThisPlayer.initUnit( gc.getInfoTypeForString("UNIT_SETTLER"), SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION , ThisPlayer.getCivilizationType(), ThisPlayer.getStateReligion())
-        ThisPlayer.initUnit( gc.getInfoTypeForString("UNIT_WARRIOR"), SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION , ThisPlayer.getCivilizationType(), ThisPlayer.getStateReligion())
+        ThisPlayer.initUnit( gc.getInfoTypeForString("UNIT_SETTLER"), SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION )
+        ThisPlayer.initUnit( gc.getInfoTypeForString("UNIT_WARRIOR"), SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION )
         ThisTeam = gc.getTeam(ThisPlayer.getTeam())
         DifficultyLevel = gc. getHandicapInfo(CyGame().getHandicapType ())
         iWorkers = DifficultyLevel.getAIStartingWorkerUnits ()
         for iWorkUnits in xrange(iWorkers):
                 iCivWorker = CurCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_WORKER"))
-                ThisPlayer.initUnit( iCivWorker, SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION , ThisPlayer.getCivilizationType(), ThisPlayer.getStateReligion())
+                ThisPlayer.initUnit( iCivWorker, SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION )
         iArchers = DifficultyLevel.getAIStartingDefenseUnits ()
         for iArcher in xrange(iArchers):
                 iCivArcher = CurCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARCHER"))
-                ThisPlayer.initUnit( iCivArcher, SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION , ThisPlayer.getCivilizationType(), ThisPlayer.getStateReligion())
+                ThisPlayer.initUnit( iCivArcher, SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION )
         iScouts = DifficultyLevel.getAIStartingExploreUnits ()
         for iScout in xrange(iScouts):
                 iCivScout = CurCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SCOUT"))
-                ThisPlayer.initUnit(iCivScout , SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION , ThisPlayer.getCivilizationType(), ThisPlayer.getStateReligion())
+                ThisPlayer.initUnit(iCivScout , SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION )
         iSettlers = DifficultyLevel.getAIStartingUnitMultiplier ()
         for iSettler in xrange(iSettlers):
                 iCivSettler = CurCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SETTLER"))
-                ThisPlayer.initUnit( iCivSettler, SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION , ThisPlayer.getCivilizationType(), ThisPlayer.getStateReligion())
+                ThisPlayer.initUnit( iCivSettler, SpawnCivList[j].SpawnX[0],SpawnCivList[j].SpawnY[0], UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION )
 
         iNumTechs = gc.getNumTechInfos ()
         for iTechs in xrange(iNumTechs):

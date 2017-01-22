@@ -18,7 +18,7 @@ class CvPediaProject:
                 self.top = main
 
 
-                self.X_MAIN_PANE = 45
+                self.X_MAIN_PANE = 50
                 self.Y_MAIN_PANE = 60
                 self.W_MAIN_PANE = 460
                 self.H_MAIN_PANE = 160
@@ -46,7 +46,7 @@ class CvPediaProject:
 
                 self.X_TEXT = self.X_MAIN_PANE
                 self.Y_TEXT = self.Y_SPECIAL + self.H_SPECIAL + 12
-                self.W_TEXT = 915
+                self.W_TEXT = 705
                 self.H_TEXT = 321
 
         # Screen construction function

@@ -18,7 +18,7 @@ class CvPediaSpecialist:
                 self.iSpecialist = -1
                 self.top = main
 
-                self.X_MAIN_PANEL = 40
+                self.X_MAIN_PANEL = 20
                 self.Y_MAIN_PANEL = 80
                 self.W_MAIN_PANEL = 250
                 self.H_MAIN_PANEL = 250
@@ -31,12 +31,12 @@ class CvPediaSpecialist:
 
                 self.X_SPECIAL = self.X_MAIN_PANEL + self.W_MAIN_PANEL + 40
                 self.Y_SPECIAL = self.Y_MAIN_PANEL
-                self.W_SPECIAL = 300
+                self.W_SPECIAL = 420
                 self.H_SPECIAL = self.H_MAIN_PANEL
 
                 self.X_TEXT = self.X_MAIN_PANEL
                 self.Y_TEXT = self.Y_MAIN_PANEL + self.H_MAIN_PANEL + 26
-                self.W_TEXT = 940
+                self.W_TEXT = 755
                 self.H_TEXT = 343
 
         # Screen construction function

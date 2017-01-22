@@ -12,6 +12,8 @@ import PyHelpers
 import re
 import time # Seed! MP-OOS
 import random # Seed! MP-OOS
+import CvRiverUtil
+import PAE_Trade
 
 # globals
 gc = CyGlobalContext()
@@ -143,6 +145,86 @@ class CvGameUtils:
     return BuildingTypes.NO_BUILDING
 
   def updateColoredPlots(self):
+    pHeadSelectedUnit = CyInterface().getHeadSelectedUnit()
+    if pHeadSelectedUnit:
+      iX = pHeadSelectedUnit.getX()
+      iY = pHeadSelectedUnit.getY()
+      iUnitType = pHeadSelectedUnit.getUnitType()
+
+      # Cultivation
+      if iUnitType in PAE_Trade.lCultivationUnits:
+        sScriptDataString = CvUtil.getScriptData(pHeadSelectedUnit, ["b"])
+        if sScriptDataString != "":
+          lStoredBonuses = PAE_Trade.convertStringToIntList(sScriptDataString)
+          if lStoredBonuses and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
+            iRange = 4
+            for iDX in xrange(-iRange, iRange):
+              for iDY in xrange(-iRange, iRange):
+                pLoopPlot = plotXY(iX, iY, iDX, iDY)
+                if pLoopPlot:
+                      #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
+                      bCanCultivate = False
+                      for eBonus in lStoredBonuses:
+                        bCanCultivate = bCanCultivate or PAE_Trade.getBonusCultivationChance(gc.getGame().getActivePlayer(), pLoopPlot, eBonus)
+                      if bCanCultivate:
+                        CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+
+      # Elefant
+      elif iUnitType == gc.getInfoTypeForString("UNIT_ELEFANT"):
+        pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
+        terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
+        terr_plains = gc.getInfoTypeForString("TERRAIN_PLAINS")
+        feat_jungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
+
+        (pCity, iter) = pPlayer.firstCity(false)
+        while pCity:
+          if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
+            # Check plots (Klima / climate)
+            bOK1 = false
+            bOK2 = false
+            bOK = false
+            for i in range(-1,1):
+              for j in range(-1,1):
+                loopPlot = gc.getMap().plot(pCity.getX() + i, pCity.getY() + j)
+                if loopPlot != None and not loopPlot.isNone():
+                  if loopPlot.getTerrainType() == terr_desert or loopPlot.getFeatureType() == feat_jungle:
+                    bOK1 = true
+                  if loopPlot.getTerrainType() == terr_plains and loopPlot.getBonusType(loopPlot.getOwner()) == -1:
+                    bOK2 = true
+                  if bOK1 and bOK2:
+                     bOK = true
+                     break
+              if bOK: break
+
+            if bOK:
+               CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+
+          (pCity,iter) = pPlayer.nextCity(iter, false)
+
+      # Kamel
+      elif iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
+        pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
+        terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
+
+        (pCity, iter) = pPlayer.firstCity(false)
+        while pCity:
+          if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
+            # Check plots (Klima / climate)
+            bOK = false
+            for i in range(-1,1):
+              for j in range(-1,1):
+                loopPlot = gc.getMap().plot(pCity.getX() + i, pCity.getY() + j)
+                if loopPlot != None and not loopPlot.isNone():
+                  if loopPlot.getTerrainType() == terr_desert and loopPlot.getBonusType(loopPlot.getOwner()) == -1:
+                    bOK = true
+                    break
+              if bOK: break
+
+            if bOK:
+               CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+
+          (pCity,iter) = pPlayer.nextCity(iter, false)
+
     return False
 
   def isActionRecommended(self,argsList):
@@ -232,11 +314,11 @@ class CvGameUtils:
     eCivic = argsList[1]
     # Civic Hohepriester darf ohne Staatsreligion nicht genutzt werden
     if eCivic == gc.getInfoTypeForString("CIVIC_HOHEPRIESTER") and gc.getPlayer(ePlayer).getStateReligion() == -1: return True
-    sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
     iRound = gc.getGame().getGameTurn() - gc.getGame().getStartTurn()
-    if sScenarioScriptData == "PeloponnesianWarKeinpferd" or sScenarioScriptData == "FirstPunicWar" or sScenarioScriptData == "WarOfDiadochi":
+    if sScenarioName == "PeloponnesianWarKeinpferd" or sScenarioName == "FirstPunicWar" or sScenarioName == "WarOfDiadochi":
         if not gc.getPlayer(ePlayer).isHuman() and iRound <= 50: return True
-    if sScenarioScriptData == "480BC" or sScenarioScriptData == "LimesGermanicus":
+    if sScenarioName == "480BC" or sScenarioName == "LimesGermanicus":
         if not gc.getPlayer(ePlayer).isHuman() and iRound <= 20: return True
     return False
 
@@ -310,276 +392,359 @@ class CvGameUtils:
     iCiv = pPlayer.getCivilizationType()
     eTeam = gc.getTeam(pPlayer.getTeam())
     iTech = -1
-    iBronze = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_BRONZE')
-    iHorse = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_HORSE')
-    iEles = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_IVORY')
-    iCamel = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_CAMEL')
-    iStone = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_STONE')
-    iMarble = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_MARBLE')
+    iBronze = gc.getInfoTypeForString('BONUS_BRONZE')
+    iHorse  = gc.getInfoTypeForString('BONUS_HORSE')
+    iEles   = gc.getInfoTypeForString('BONUS_IVORY')
+    iCamel  = gc.getInfoTypeForString('BONUS_CAMEL')
+    iStone  = gc.getInfoTypeForString('BONUS_STONE')
+    iMarble = gc.getInfoTypeForString('BONUS_MARBLE')
 
-    # Generell nur 1 Hauptabfrage, um nicht immer soviel zu haben:
+    # Hauptabfragen, um nicht zuviele if-Checks zu haben:
 
     # vor Fuehrerschaft
     if not eTeam.isHasTech(gc.getInfoTypeForString('TECH_LEADERSHIP')):
-      # 1. Mystik
-      iTech = gc.getInfoTypeForString('TECH_MYSTICISM')
-      if not eTeam.isHasTech(iTech):
-        return iTech
 
-      # 2. Jagd
+      # 1. Jagd (Lager)
       iTech = gc.getInfoTypeForString('TECH_HUNTING')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 3. Schamanismus
+      # 2. Mystik (Forschung)
+      iTech = gc.getInfoTypeForString('TECH_MYSTICISM')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # 3. Schamanismus (Monolith)
       iTech = gc.getInfoTypeForString('TECH_SCHAMANISMUS')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
       # Hindu
       iTech = gc.getInfoTypeForString('TECH_RELIGION_HINDU')
-      if pPlayer.canResearch(iTech, False):
-        return iTech
+      if pPlayer.canResearch(iTech, False): return iTech
 
-      # 3. Polytheismus
-      iTech = gc.getInfoTypeForString('TECH_POLYTHEISM')
-      if not eTeam.isHasTech(iTech):
-        return iTech
-
+      # Religionsweg
       # Egypt und Sumer
-      if iCiv == gc.getInfoTypeForString('CIVILIZATION_EGYPT'):
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_EGYPT') or iCiv == gc.getInfoTypeForString('CIVILIZATION_SUMERIA'):
+
+        # 4. Polytheismus (Kleines Orakel)
+        iTech = gc.getInfoTypeForString('TECH_POLYTHEISM')
+        if not eTeam.isHasTech(iTech): return iTech
+
+        # 5. Religion
         iTech = gc.getInfoTypeForString('TECH_RELIGION_EGYPT')
-        if pPlayer.canResearch(iTech, False):
-          return iTech
+        if pPlayer.canResearch(iTech, False): return iTech
 
-      if iCiv == gc.getInfoTypeForString('CIVILIZATION_SUMERIA'):
+        # 5. Religion
         iTech = gc.getInfoTypeForString('TECH_RELIGION_SUMER')
-        if pPlayer.canResearch(iTech, False):
-          return iTech
+        if pPlayer.canResearch(iTech, False): return iTech
 
-      # 4. Fuehrerschaft beeline
+        # 6. Priestertum (Civic)
+        iTech = gc.getInfoTypeForString('TECH_PRIESTHOOD')
+        if not eTeam.isHasTech(iTech): return iTech
+
+      # Wirtschaftsweg
+      else:
+
+        # Coastal cities
+        if pPlayer.countNumCoastalCities() > 0:
+          # 4. Fischen
+          iTech = gc.getInfoTypeForString('TECH_FISHING')
+          if not eTeam.isHasTech(iTech): return iTech
+        else:
+          # 4. Viehzucht
+          iTech = gc.getInfoTypeForString('TECH_ANIMAL_HUSBANDRY')
+          if not eTeam.isHasTech(iTech): return iTech
+
+        # 5. Bogenschiessen
+        iTech = gc.getInfoTypeForString('TECH_ARCHERY')
+        if not eTeam.isHasTech(iTech): return iTech
+
+        # 6. Metallverarbeitung
+        iTech = gc.getInfoTypeForString('TECH_METAL_CASTING')
+        if not eTeam.isHasTech(iTech): return iTech
+
+      # Wieder Alle
+
+      # 7. Fuehrerschaft
       return gc.getInfoTypeForString('TECH_LEADERSHIP')
+
 
     # vor Binnenkolonisierung
     if not eTeam.isHasTech(gc.getInfoTypeForString('TECH_COLONIZATION')):
-      # Those Civs shall get their neighbour religion at least after leadership
-      if iCiv == gc.getInfoTypeForString('CIVILIZATION_NUBIA'):
-        iTech = gc.getInfoTypeForString('TECH_RELIGION_EGYPT')
-        if not eTeam.isHasTech(iTech):
-          return iTech
 
-      elif iCiv == gc.getInfoTypeForString('CIVILIZATION_BABYLON'):
-        iTech = gc.getInfoTypeForString('TECH_RELIGION_SUMER')
-        if not eTeam.isHasTech(iTech):
-          return iTech
-
-      # 6. Landwirtschaft
+      # Landwirtschaft  (Worker)
       iTech = gc.getInfoTypeForString('TECH_AGRICULTURE')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 7. Viehzucht
+      # Viehzucht
       iTech = gc.getInfoTypeForString('TECH_ANIMAL_HUSBANDRY')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 8. Bootsbau beeline falls Kuestenstadt
-      iTech = gc.getInfoTypeForString('TECH_BOOTSBAU')
+      # Coastal cities
       if pPlayer.countNumCoastalCities() > 0:
-        if not eTeam.isHasTech(iTech):
-          return iTech
+        iTech = gc.getInfoTypeForString('TECH_BOOTSBAU')
+        if pPlayer.canResearch(iTech, False): return iTech
 
-      # 9. Pflug
+      # Pflug (Farm)
       iTech = gc.getInfoTypeForString('TECH_PFLUG')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 10. Bogenschiessen
+      # aegyptischer Papyrus
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_EGYPT'):
+        iTech = gc.getInfoTypeForString('TECH_FISHING')
+        if not eTeam.isHasTech(iTech): return iTech
+        iTech = gc.getInfoTypeForString('TECH_BOOTSBAU')
+        if not eTeam.isHasTech(iTech): return iTech
+
+      # Polytheismus (Kleines Orakel)
+      iTech = gc.getInfoTypeForString('TECH_POLYTHEISM')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Those Civs shall get their neighbour religion at least after leadership
+      iTech = gc.getInfoTypeForString('TECH_RELIGION_EGYPT')
+      if pPlayer.canResearch(iTech, False): return iTech
+      iTech = gc.getInfoTypeForString('TECH_RELIGION_SUMER')
+      if pPlayer.canResearch(iTech, False): return iTech
+
+      # Bogenschiessen
       iTech = gc.getInfoTypeForString('TECH_ARCHERY')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 11. Bergbau beeline
+      # Metallverarbeitung
+      iTech = gc.getInfoTypeForString('TECH_METAL_CASTING')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Keramik
+      iTech = gc.getInfoTypeForString('TECH_POTTERY')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Rad
+      iTech = gc.getInfoTypeForString('TECH_THE_WHEEL')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Steinabbau
+      iTech = gc.getInfoTypeForString('TECH_STEINABBAU')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Priestertum (Civic)
+      iTech = gc.getInfoTypeForString('TECH_PRIESTHOOD')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Astronomie (Sternwarte)
+      iTech = gc.getInfoTypeForString('TECH_ASTRONOMIE')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Bergbau
       iTech = gc.getInfoTypeForString('TECH_MINING')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 12. Staatenbildung beeline
+      # Religious Civs
+      if pPlayer.getStateReligion() != -1:
+        iTech = gc.getInfoTypeForString('TECH_CEREMONIAL')
+        if not eTeam.isHasTech(iTech): return iTech
+
+      # Staatenbildung
       iTech = gc.getInfoTypeForString('TECH_STAATENBILDUNG')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 12. Binnenkolonisierung beeline
+      # Bronzezeit
+      iTech = gc.getInfoTypeForString('TECH_BRONZE_WORKING')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Steinmetzkunst fuer Sphinx
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_EGYPT'):
+        iTech = gc.getInfoTypeForString('TECH_MASONRY')
+        if not eTeam.isHasTech(iTech): return iTech
+
+      # Binnenkolonisierung
       return gc.getInfoTypeForString('TECH_COLONIZATION')
+
 
     # vor der EISENZEIT
     if not eTeam.isHasTech(gc.getInfoTypeForString('TECH_IRON_WORKING')):
-      # Restliche Grundtechs und andere Basics nach Binnenkolonisierung:
-      # 1. Rad
-      iTech = gc.getInfoTypeForString('TECH_THE_WHEEL')
-      if not eTeam.isHasTech(iTech):
-        return iTech
 
-      # 2. Kriegsaxt
-      iTech = gc.getInfoTypeForString('TECH_BEWAFFNUNG')
-      if not eTeam.isHasTech(iTech):
-        return iTech
-
-      # 3. Gesteinsabbau
-      iTech = gc.getInfoTypeForString('TECH_STEINABBAU')
-      if not eTeam.isHasTech(iTech):
-        return iTech
-
-      # 4. Astronomie
-      iTech = gc.getInfoTypeForString('TECH_ASTRONOMIE')
-      if not eTeam.isHasTech(iTech):
-        return iTech
-
-      # 5. Zeremonielles Begraebnis
-      iTech = gc.getInfoTypeForString('TECH_CEREMONIAL')
-      if not eTeam.isHasTech(iTech):
-        return iTech
-
-      # 6. Zahlensysteme fuer Spezialisten
+      # Hochkulturen
+      iTech = gc.getInfoTypeForString('TECH_WRITING')
+      if pPlayer.canResearch(iTech, False): return iTech
+      iTech = gc.getInfoTypeForString('TECH_WRITING2')
+      if pPlayer.canResearch(iTech, False): return iTech
       iTech = gc.getInfoTypeForString('TECH_ZAHLENSYSTEME')
-      if not eTeam.isHasTech(iTech):
-        # Zahlensysteme
-        if pPlayer.canResearch(iTech, false): return iTech
-        # 6a. Hieroglyphen
-        iTech = gc.getInfoTypeForString('TECH_WRITING2')
-        if not eTeam.isHasTech(iTech):
-          if pPlayer.canResearch(iTech, false): return iTech
-        # 6b. Keilschrift
-        iTech = gc.getInfoTypeForString('TECH_WRITING')
-        if not eTeam.isHasTech(iTech):
-          if pPlayer.canResearch(iTech, false): return iTech
-
-      # 7. Steinmetzkunst nur fuer Spezialisten
-      iTech = gc.getInfoTypeForString('TECH_MASONRY')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ZAHLENSYSTEME')):
-          return iTech
-
-      # 8. Geometrie fuer Spezialisten
+      if pPlayer.canResearch(iTech, False): return iTech
       iTech = gc.getInfoTypeForString('TECH_GEOMETRIE')
-      if pPlayer.canResearch(iTech, False):
-        return iTech
+      if pPlayer.canResearch(iTech, False): return iTech
 
-      # 9. Fruchtbarkeitskult beeline ueber Sonnen- / Mondkalender
+      # Restliche Grundtechs und andere Basics nach Binnenkolonisierung:
+      iTech = gc.getInfoTypeForString('TECH_CEREMONIAL')
+      if not eTeam.isHasTech(iTech): return iTech
+      iTech = gc.getInfoTypeForString('TECH_CALENDAR')
+      if not eTeam.isHasTech(iTech): return iTech
       iTech = gc.getInfoTypeForString('TECH_FRUCHTBARKEIT')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      if not eTeam.isHasTech(iTech): return iTech
 
+      # phoenizische Religion
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_PHON'):
+        iTech = gc.getInfoTypeForString('TECH_RELIGION_PHOEN')
+        if not eTeam.isHasTech(iTech): return iTech
 
-      # Fuer Abu Simbel beim Nubier
+      # Abu Simbel beim Nubier
       if iCiv == gc.getInfoTypeForString('CIVILIZATION_NUBIA'):
-        iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
-        if not eTeam.isHasTech(iTech):
-          return iTech
-          
-      # 10. Kurzbogen beeline ueber Speerspitzen
-      iTech = gc.getInfoTypeForString('TECH_ARCHERY2')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+        iTech = gc.getInfoTypeForString('TECH_ASTROLOGIE')
+        if not eTeam.isHasTech(iTech): return iTech
 
-      # 11. Streitaxt mit Bronze
+      iTech = gc.getInfoTypeForString('TECH_BEWAFFNUNG')
+      if not eTeam.isHasTech(iTech): return iTech
+      iTech = gc.getInfoTypeForString('TECH_SPEERSPITZEN')
+      if not eTeam.isHasTech(iTech): return iTech
+      iTech = gc.getInfoTypeForString('TECH_ARCHERY2')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Streitaxt mit Bronze
       iTech = gc.getInfoTypeForString('TECH_BEWAFFNUNG2')
       if not eTeam.isHasTech(iTech):
-        if pPlayer.getNumAvailableBonuses(iBronze) > 0:
-          return iTech
+        if pPlayer.getNumAvailableBonuses(iBronze) > 0: return iTech
 
-      # 12. Wein, wenn Trauben vorhanden
+      iTech = gc.getInfoTypeForString('TECH_KULTIVIERUNG')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Wein, wenn Trauben vorhanden
       iTech = gc.getInfoTypeForString('TECH_WEINBAU')
       if not eTeam.isHasTech(iTech):
-        if pPlayer.countOwnedBonuses(gc.getInfoTypeForString('BONUS_GRAPES')) > 0:
-          return iTech
+        if pPlayer.countOwnedBonuses(gc.getInfoTypeForString('BONUS_GRAPES')) > 0: return iTech
 
-      # 13. Kultivierung
-      iTech = gc.getInfoTypeForString('TECH_KULTIVIERUNG')
-      if not eTeam.isHasTech(iTech):
-        return iTech
+      iTech = gc.getInfoTypeForString('TECH_SOELDNERTUM')
+      if not eTeam.isHasTech(iTech): return iTech
+      iTech = gc.getInfoTypeForString('TECH_KONSERVIERUNG')
+      if not eTeam.isHasTech(iTech): return iTech
+      iTech = gc.getInfoTypeForString('TECH_WARENHANDEL')
+      if not eTeam.isHasTech(iTech): return iTech
 
-      # 14. Arithmetik beeline nach Seidenstrasse
-      iTech = gc.getInfoTypeForString('TECH_ARITHMETIK')
+      # Schiffsbau
+      iTech = gc.getInfoTypeForString('TECH_SCHIFFSBAU')
       if not eTeam.isHasTech(iTech):
-        if CyGame().getProjectCreatedCount(gc.getInfoTypeForString('PROJECT_SILKROAD')) > 0:
-          return iTech
+        if pPlayer.countNumCoastalCities() > 0:
+          if pPlayer.canResearch(iTech, False): return iTech
 
-      # 15.Codex / Indra
-      # bis Versklavung freies Techen
-      iTech = gc.getInfoTypeForString('TECH_CODEX')
-      if not eTeam.isHasTech(iTech):
-        if pPlayer.canResearch(iTech, False):
-           return iTech
+      iTech = gc.getInfoTypeForString('TECH_ENSLAVEMENT')
+      if not eTeam.isHasTech(iTech): return iTech
+      iTech = gc.getInfoTypeForString('TECH_THE_WHEEL2')
+      if not eTeam.isHasTech(iTech): return iTech
+
+      # Religionen
+      if eTeam.isHasTech(gc.getInfoTypeForString('TECH_GREEK')):
+        iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_ASTROLOGIE')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_RELIGION_GREEK')
+        if pPlayer.canResearch(iTech, False): return iTech
+
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_PERSIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ASSYRIA'):
+        iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_ASTROLOGIE')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_DUALISMUS')
+        if pPlayer.canResearch(iTech, False): return iTech
+
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_CELT') or iCiv == gc.getInfoTypeForString('CIVILIZATION_GALLIEN'):
+        iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_ASTROLOGIE')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_MANTIK')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_RELIGION_CELTIC')
+        if pPlayer.canResearch(iTech, False): return iTech
+
+      if iCiv == gc.getInfoTypeForString('CIVILIZATION_GERMANEN'):
+        iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_ASTROLOGIE')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_MANTIK')
+        if pPlayer.canResearch(iTech, False): return iTech
+        iTech = gc.getInfoTypeForString('TECH_RELIGION_NORDIC')
+        if pPlayer.canResearch(iTech, False): return iTech
+
+      # Ab nun freie Entscheidung der KI
+
 
     # --- Eisenzeit ---
+
+    # Judentum
+    if iCiv == gc.getInfoTypeForString('CIVILIZATION_ISRAEL'):
+      if not eTeam.isHasTech(gc.getInfoTypeForString('TECH_MONOTHEISM')):
+        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_IRON_WORKING')):
+          iTech = gc.getInfoTypeForString('TECH_COLONIZATION2')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_CODEX')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_TEMPELWIRTSCHAFT')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_BUCHSTABEN')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_KRYPTOGRAPHIE')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_ALPHABET')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_THEOKRATIE')
+          if not eTeam.isHasTech(iTech): return iTech
+          iTech = gc.getInfoTypeForString('TECH_MONOTHEISM')
+          if not eTeam.isHasTech(iTech): return iTech
+
+
     # Camels / Kamele
     iTech = gc.getInfoTypeForString('TECH_KAMELZUCHT')
     if not eTeam.isHasTech(iTech):
-      if pPlayer.getNumAvailableBonuses(iCamel) > 0:
-        return iTech
+      if pPlayer.getNumAvailableBonuses(iCamel) > 0: return iTech
 
     # Eledome
     iTech = gc.getInfoTypeForString('TECH_ELEFANTENZUCHT')
     if not eTeam.isHasTech(iTech):
       if pPlayer.getNumAvailableBonuses(iEles) > 0:
-        if pPlayer.canResearch(iTech, False):
-          return iTech
+        if pPlayer.canResearch(iTech, False): return iTech
 
     iTech = gc.getInfoTypeForString('TECH_THE_WHEEL3')
     if not eTeam.isHasTech(iTech):
       if pPlayer.getNumAvailableBonuses(iHorse) > 0:
-        if pPlayer.canResearch(iTech, False):
-          return iTech
-
-    iTech = gc.getInfoTypeForString('TECH_SCHIFFSBAU')
-    if not eTeam.isHasTech(iTech):
-      if pPlayer.countNumCoastalCities() > 0:
-        if pPlayer.canResearch(iTech, False):
-          return iTech
+        if pPlayer.canResearch(iTech, False): return iTech
 
     iTech = gc.getInfoTypeForString('TECH_KUESTE')
     if not eTeam.isHasTech(iTech):
       if pPlayer.countNumCoastalCities() > 3:
         if eTeam.isHasTech(gc.getInfoTypeForString('TECH_KARTEN')):
-          if pPlayer.canResearch(iTech, False):
-            return iTech
+          if pPlayer.canResearch(iTech, False): return iTech
 
     # Heroen
     iTech = gc.getInfoTypeForString('TECH_GLADIATOR')
     if not eTeam.isHasTech(iTech):
-      if pPlayer.canResearch(iTech, False):
-        return iTech
+      if pPlayer.canResearch(iTech, False): return iTech
 
     # Kriegstechs
     if eTeam.isHasTech(gc.getInfoTypeForString('TECH_IRON_WORKING')):
       iTech = gc.getInfoTypeForString('TECH_BELAGERUNG')
       if not eTeam.isHasTech(iTech):
         if pPlayer.canResearch(iTech, False):
-          if eTeam.getAtWarCount(True) >= 1:
-            return iTech
+          if eTeam.getAtWarCount(True) >= 1: return iTech
 
     if eTeam.isHasTech(gc.getInfoTypeForString('TECH_MECHANIK')):
       iTech = gc.getInfoTypeForString('TECH_CATAPULT')
       if not eTeam.isHasTech(iTech):
         if pPlayer.canResearch(iTech, False):
-          if eTeam.getAtWarCount(True) >= 1:
-            return iTech
+          if eTeam.getAtWarCount(True) >= 1: return iTech
 
     # Wissen
     iTech = gc.getInfoTypeForString('TECH_LIBRARY')
     if not eTeam.isHasTech(iTech):
      if pPlayer.canResearch(iTech, False):
-      if iCiv == gc.getInfoTypeForString('CIVILIZATION_ROME') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ETRUSCANS') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_GREECE') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ATHENS') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_THEBAI') or iCiv == gc.getInfoTypeForString('CIVILIZATION_SPARTA') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_MACEDONIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_HETHIT') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_LYDIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_PHON') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_PERSIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_BABYLON') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_SUMERIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ASSYRIA') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_CARTHAGE') or iCiv == gc.getInfoTypeForString('CIVILIZATION_EGYPT') \
-      or iCiv == gc.getInfoTypeForString('CIVILIZATION_IBERER'):
-        return iTech
+      #if iCiv == gc.getInfoTypeForString('CIVILIZATION_ROME') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ETRUSCANS') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_GREECE') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ATHENS') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_THEBAI') or iCiv == gc.getInfoTypeForString('CIVILIZATION_SPARTA') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_MACEDONIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_HETHIT') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_LYDIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_PHON') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_PERSIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_BABYLON') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_SUMERIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ASSYRIA') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_CARTHAGE') or iCiv == gc.getInfoTypeForString('CIVILIZATION_EGYPT') \
+      #or iCiv == gc.getInfoTypeForString('CIVILIZATION_IBERER'):
+      return iTech
 
     # Wunder
     # Mauern von Babylon
@@ -611,56 +776,18 @@ class CvGameUtils:
           return iTech
 
     # CIV - Trennung: zB Religionen
-    if iCiv == gc.getInfoTypeForString('CIVILIZATION_CELT') or iCiv == gc.getInfoTypeForString('CIVILIZATION_GALLIEN'):
-      iTech = gc.getInfoTypeForString('TECH_RELIGION_CELTIC')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ENSLAVEMENT')):
-          return iTech
-
-    if iCiv == gc.getInfoTypeForString('CIVILIZATION_GERMANEN'):
-      iTech = gc.getInfoTypeForString('TECH_RELIGION_NORDIC')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ENSLAVEMENT')):
-          return iTech
-
-    if eTeam.isHasTech(gc.getInfoTypeForString('TECH_GREEK')):
-      iTech = gc.getInfoTypeForString('TECH_RELIGION_GREEK')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ENSLAVEMENT')):
-          return iTech
-
-    if iCiv == gc.getInfoTypeForString('CIVILIZATION_PHON'):
-      iTech = gc.getInfoTypeForString('TECH_RELIGION_PHOEN')
-      if not eTeam.isHasTech(iTech):
-        return iTech
-
-    if iCiv == gc.getInfoTypeForString('CIVILIZATION_PERSIA') or iCiv == gc.getInfoTypeForString('CIVILIZATION_ASSYRIA'):
-      iTech = gc.getInfoTypeForString('TECH_DUALISMUS')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ENSLAVEMENT')):
-          return iTech
-
+    # Buddhismus
     if iCiv == gc.getInfoTypeForString('CIVILIZATION_INDIA'):
       iTech = gc.getInfoTypeForString('TECH_MEDITATION')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_CODE_OF_LAWS')):
-          return iTech
+      if pPlayer.canResearch(iTech, False): return iTech
       iTech = gc.getInfoTypeForString('TECH_ASKESE')
-      if not eTeam.isHasTech(iTech):
-        if pPlayer.canResearch(iTech, False):
-          return iTech
+      if pPlayer.canResearch(iTech, False): return iTech
 
+    # Roman Gods
     if iCiv == gc.getInfoTypeForString('CIVILIZATION_ROME'):
       iTech = gc.getInfoTypeForString('TECH_RELIGION_ROME')
       if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_ALPHABET')):
-          return iTech
-
-    # Judentum
-    if iCiv == gc.getInfoTypeForString('CIVILIZATION_ISRAEL'):
-      iTech = gc.getInfoTypeForString('TECH_MONOTHEISM')
-      if not eTeam.isHasTech(iTech):
-        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_COLONIZATION2')):
+        if eTeam.isHasTech(gc.getInfoTypeForString('TECH_THEOKRATIE')):
           return iTech
 
     # Voelkerspezifisches Wissen
@@ -677,7 +804,7 @@ class CvGameUtils:
       if not eTeam.isHasTech(iTech):
         if pPlayer.canResearch(iTech, False):
           return iTech
-          
+
     if eTeam.isHasTech(gc.getInfoTypeForString('TECH_GREEK')):
       iTech = gc.getInfoTypeForString('TECH_PHALANX')
       if not eTeam.isHasTech(iTech):
@@ -726,6 +853,11 @@ class CvGameUtils:
         if pPlayer.canResearch(iTech, False):
           return iTech
 
+
+    if iTech != -1:
+      if not eTeam.isHasTech(iTech) and pPlayer.canResearch(iTech, false):
+        return iTech
+
     return TechTypes.NO_TECH
 
   def AI_chooseProduction(self,argsList):
@@ -737,20 +869,21 @@ class CvGameUtils:
     if iOwner == gc.getBARBARIAN_PLAYER(): return False
 
     # AI soll sofort Palast bauen, wenn baubar
-    if pPlayer.getCapitalCity().getID() == -1:
+    #if pPlayer.getCapitalCity().getID() == -1:
+    if pPlayer.getCapitalCity() == None:
       iBuilding = gc.getInfoTypeForString("BUILDING_PALACE")
+      iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(iBuilding)
       if pCity.canConstruct (iBuilding,0,0,0):
         bDoIt = True
         # Stadtproduktionen durchgehen
         lCities = PyPlayer(iOwner).getCityList()
         for lCity in lCities:
-          pCityX = pPlayer.getCity( lCity.getID() )
-          if pCityX.getBuildingProduction (iBuilding):
+          if lCity.getProductionBuilding() == iBuilding:
             bDoIt = False
             break
 
         if bDoIt:
-          gc.getMap().plot(pCity.getX(), pCity.getY()).getPlotCity().pushOrder(OrderTypes.ORDER_CONSTRUCT, iBuilding, -1, False, False, False, True)
+          pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT, iBuilding, -1, False, False, False, False)
           return True
 
     # Projects
@@ -769,10 +902,8 @@ class CvGameUtils:
         iNumCitiesWithChristianity = 0
         iReligion = gc.getInfoTypeForString("RELIGION_CHRISTIANITY")
         lCities = PyPlayer(iOwner).getCityList()
-        iRange = len(lCities)
-        for iCity in range(iRange):
-          pCityX = pPlayer.getCity( lCities[iCity].getID() )
-          if pCityX.isHasReligion(iReligion): iNumCitiesWithChristianity += 1
+        for pyCity in lCities:
+          if pyCity.hasReligion(iReligion): iNumCitiesWithChristianity += 1
 
         if iNumCitiesWithChristianity > len(lCities) / 2: iProject = iProjectX
 
@@ -793,15 +924,13 @@ class CvGameUtils:
         bDoIt = True
         # Stadtproduktionen durchgehen
         lCities = PyPlayer(iOwner).getCityList()
-        iRange = len(lCities)
-        for iCity in range(iRange):
-          pCityX = pPlayer.getCity( lCities[iCity].getID() )
-          if pCityX.isProductionProject():
+        for pyCity in lCities:
+          if pyCity.getProductionProject() != ProjectTypes.NO_PROJECT:
             bDoIt = False
             break
 
         if bDoIt:
-          gc.getMap().plot(pCity.getX(), pCity.getY()).getPlotCity().pushOrder(OrderTypes.ORDER_CREATE, iProject, -1, False, False, True, False)
+          pCity.pushOrder(OrderTypes.ORDER_CREATE, iProject, -1, False, False, True, False)
           return True
     # ---------------
 
@@ -878,7 +1007,7 @@ class CvGameUtils:
         lUnitTypes = []
         iRange = len(lUnits)
         for iUnit in range(iRange):
-          lUnitTypes.append( pPlayer.getUnit(lUnits[iUnit].getID()).getUnitType() )
+          lUnitTypes.append( lUnits[iUnit].getUnitType() )
 
         if Unit1 in lUnitTypes: bUnit1 = True
         if Unit2 in lUnitTypes: bUnit2 = True
@@ -890,9 +1019,8 @@ class CvGameUtils:
 
         # Stadtproduktion durchgehen
         lCities = PyPlayer(iOwner).getCityList()
-        iRange = len(lCities)
-        for iCity in range(iRange):
-          pCityX = gc.getPlayer(iOwner).getCity( lCities[iCity].getID() )
+        for lCity in lCities:
+          pCityX = lCity.GetCy()
           if pCityX.isProductionUnit():
             if not bUnit1:
               if pCityX.getUnitProduction(Unit1): bUnit1 = True
@@ -974,18 +1102,36 @@ class CvGameUtils:
           if self.doElefant_AI(pUnit):
             return True
 
-      # Bonusverbreitung
-      if iUnitType == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD") and iOwner != gc.getBARBARIAN_PLAYER():
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("AI Supply Food",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        if self.doBonusverbreitung_AI(pUnit):
-          return True
+      # Kamel (Zucht/Kamellager)
+      if iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("AI Camel",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KAMELZUCHT")):
+          if self.doCamel_AI(pUnit):
+            return True
 
-      # Trade merchant (aber nicht Great Merchant)
-      if pUnit.getUnitAIType() == gc.getInfoTypeForString("UNITAI_MERCHANT") and iUnitType != gc.getInfoTypeForString("UNIT_MERCHANT") and iOwner != gc.getBARBARIAN_PLAYER():
-        # AI vergibt UNITAITyp beim Bau
-        # or iUnitType == gc.getInfoTypeForString("UNIT_GAULOS") or iUnitType == gc.getInfoTypeForString("UNIT_CARVEL_TRADE"):
-        if CvEventInterface.getEventManager().doAutomateMerchant(pUnit):
-          return True
+      # Trade and cultivation (Boggy). First, try cultivation. If unsuccessfull, try trade.
+      #if pUnit.getUnitAIType() == gc.getInfoTypeForString("UNITAI_MERCHANT") and iUnitType != gc.getInfoTypeForString("UNIT_MERCHANT") and iOwner != gc.getBARBARIAN_PLAYER():
+      if iUnitType in PAE_Trade.lCultivationUnits:
+          if PAE_Trade.doCultivation_AI(pUnit):
+              return True
+
+      s = pOwner.getName()
+      if iUnitType in PAE_Trade.lTradeUnits:
+          # CyInterface().addMessage(iHumanPlayer, True, 10, "Vor doAutom 1 " + s, None, 2, None, ColorTypes(5), pUnit.getX(), pUnit.getY(), False, False)
+          if PAE_Trade.doAutomateMerchant(pUnit, True):
+              return True
+          elif PAE_Trade.doAssignTradeRoute_AI(pUnit):
+              # CyInterface().addMessage(iHumanPlayer, True, 10, "Vor doAutom 2 " + s, None, 2, None, ColorTypes(6), pUnit.getX(), pUnit.getY(), False, False)
+              # try again
+              if PAE_Trade.doAutomateMerchant(pUnit, True):
+                  return True
+
+##          #if PAE_Trade.doAutomateMerchant_AI(pUnit):
+##              return True
+##        # AI vergibt UNITAITyp beim Bau
+##        # or iUnitType == gc.getInfoTypeForString("UNIT_GAULOS") or iUnitType == gc.getInfoTypeForString("UNIT_CARVEL_TRADE"):
+##        if CvEventInterface.getEventManager().doAutomateMerchant(pUnit):
+##          return True
 
 # Veteran -> Eliteunit (netMessage 705)
 # und weiter unten aendern!
@@ -993,50 +1139,111 @@ class CvGameUtils:
       # Ab Kampferfahren Status (nur Streitwagen)
       if iUnitType == gc.getInfoTypeForString("UNIT_CHARIOT"):
         if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3")):
-          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_WAR_CHARIOT"))
+          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_WAR_CHARIOT"), True)
           return True
 
+
+      # Ab Elite Status
+      if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
+
+          if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
+                # Elite Cohors Equitata -> Equites Singulares Augusti
+                if iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"), True)
+                     return True
+          else:
+                # Elite Limitanei -> Imperial Guard
+                if iUnitType == gc.getInfoTypeForString("UNIT_ROME_LIMITANEI"):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_LIMITANEI_GARDE"), True)
+                     return True
+                # Elite Comitatenses -> Palatini
+                elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2"):
+                   if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ROME_PALATINI")) < 3:
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_PALATINI"), True)
+                     return True
+                # Elite Praetorians or Cohorte praetoriae -> Praetorian Garde
+                elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"):
+                   if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_PRAETORIAN3")) < 3:
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN3"), True)
+                     return True
+
+          # Elite Palatini or Clibanari or Cataphracti -> Scholae
+          if iUnitType == gc.getInfoTypeForString("UNIT_ROME_PALATINI") \
+          or iUnitType == gc.getInfoTypeForString("UNIT_CLIBANARII_ROME") or iUnitType == gc.getInfoTypeForString("UNIT_CATAPHRACT_ROME"):
+                   if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ROME_SCHOLAE")) < 3:
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_SCHOLAE"), True)
+                     return True
+
+
       # Ab Veteran Status
-      if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
+      elif pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
 
         # ROME
         if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME") \
         or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-          # Principes oder Hastati -> Triarii
-          if iUnitType == gc.getInfoTypeForString("UNIT_PRINCIPES2") \
-          or iUnitType == gc.getInfoTypeForString("UNIT_HASTATI2") :
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_TRIARII2"))
-              return True
-          # Triari, Legion or Legion 2 -> Praetorians or Cohortes Praetoriae
-          elif iUnitType == gc.getInfoTypeForString("UNIT_TRIARII2") \
-          or iUnitType == gc.getInfoTypeForString("UNIT_LEGION") \
-          or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") :
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BERUFSSOLDATEN")):
-              iRand = 0
-              if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
-                iRand = self.myRandom(2, None)
-              if iRand == 1:
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
-                return True
-              else:
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"))
-                return True
-          # Praetorian -> Praetorian Garde
-          elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") :
-            if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
-              if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
-                return True
-          # Hasta Warrior -> Celeres
-          elif iUnitType == gc.getInfoTypeForString("UNIT_HASTATI1") :
-            if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_CELERES"))
-              return True
-          # Archer -> Reflex
-          elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_ROME") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_LEGION"))
-            return True
+
+          if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
+
+                # Sagittarii (Reflex) -> Arquites
+                if iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_ROME") :
+                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_LEGION"), True)
+                     return True
+                # Arquites -> Equites Sagittarii (Horse Archer)
+                elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_LEGION") :
+                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"), True)
+                     return True
+
+          # sollte ueber XML funktionieren
+          #elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"):
+          #     #UNIT_PRAETORIAN ->
+          #     #UNIT_PRAETORIAN2 : Cohors Praetoria
+          #     #UNIT_ROME_COHORTES_URBANAE: Cohors Urbana
+          #     #UNIT_HORSEMAN_EQUITES2 (Lorica): Cohors Equitata
+          #
+          #     # fix Cohors Urbana machen, wenn Anz = 0
+          #     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PRINCIPAT")):
+          #       if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_PRAETORIAN2")) < 3:
+          #          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN2"), True)
+          #          return True
+          #     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
+          #       if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_HORSEMAN_EQUITES2")) < 5:
+          #          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"), True)
+          #          return True
+          #     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_FEUERWEHR")):
+          #          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"), True)
+          #          return True
+
+          else:
+
+                # Legion or Legion 2 -> Praetorians
+                if iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2"):
+                  # obsolete with Marching/Border Army
+                  if not pTeam.isHasTech(gc.getInfoTypeForString("TECH_GRENZHEER")):
+                    # Rang: Immunes
+                    if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_3")):
+                      if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) < 3:
+                        self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"), True)
+                        return True
+                 # Triari -> Praetorians
+                elif iUnitType == gc.getInfoTypeForString("UNIT_TRIARII2") and pTeam.isHasTech(gc.getInfoTypeForString("TECH_BERUFSSOLDATEN")):
+                  # obsolete with Marching/Border Army
+                  if not pTeam.isHasTech(gc.getInfoTypeForString("TECH_GRENZHEER")):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"), True)
+                     return True
+                 # Principes or Hastati -> Triarii
+                elif iUnitType == gc.getInfoTypeForString("UNIT_PRINCIPES2") \
+                or iUnitType == gc.getInfoTypeForString("UNIT_HASTATI2") :
+                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_TRIARII2"), True)
+                     return True
+                # Hasta Warrior -> Celeres
+                elif iUnitType == gc.getInfoTypeForString("UNIT_HASTATI1") :
+                     #if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
+                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_CELERES"), True)
+                     return True
+
 
         # GREEKS
         elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
@@ -1045,26 +1252,38 @@ class CvGameUtils:
         or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
           # Hoplit -> Elite Hoplit
           if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"))
+            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"), True)
             return True
           # Archer -> Reflex
           elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"))
+            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"), True)
             return True
 
         # SPARTA
         if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
           # Sparta Hoplit -> Elite Hoplit
           if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_SPARTA") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SPARTAN"))
+            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SPARTAN"), True)
+            return True
+
+        # CARTHAGE
+        elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"):
+          # Punic Hoplite -> Sacred Band
+          if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_CARTHAGE") :
+            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"), True)
             return True
 
         # PERSIA
         elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
-          # Unsterblich -> Garde
-          if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"))
-            return True
+                # Unsterblich -> Garde
+                if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH") :
+                   self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"), True)
+                   return True
+                # Unsterblichen Garde || Pezoi -> Apfeltraeger
+                if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH_2") or iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_PERSIA") :
+                  if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) < 3:
+                   self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_APFELTRAEGER"), True)
+                   return True
 
         # MACEDONIA
         elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"):
@@ -1072,38 +1291,36 @@ class CvGameUtils:
           if iUnitType == gc.getInfoTypeForString("UNIT_HYPASPIST") \
           or iUnitType == gc.getInfoTypeForString("UNIT_SARISSA_MACEDON") :
             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"))
+             if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) < 3:
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"), True)
               return True
           #  Argyraspidai -> Argyraspidai 2 (Silberschild)
           elif iUnitType == gc.getInfoTypeForString("UNIT_ARGYRASPIDAI") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"))
+           if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARGYRASPIDAI2")) < 3:
+            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"), True)
             return True
           # Archer -> Reflex
           elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"))
+            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"), True)
             return True
 
         # EGYPT
         elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
           # Gaufuerst -> Pharaonengarde
           if iUnitType == gc.getInfoTypeForString("UNIT_GAUFUERST") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PHARAONENGARDE"))
-            return True
+            if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) < 3:
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PHARAONENGARDE"), True)
+              return True
 
         # Schildtraeger
         if iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER") :
 
           if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_GAUFUERST"))
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_GAUFUERST"), True)
               return True
 
           elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_NUBIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_NUBIAFUERST"))
-              return True
-
-          if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MILIT_STRAT")):
-            if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_MACCABEE"))
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_NUBIAFUERST"), True)
               return True
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
@@ -1111,11 +1328,14 @@ class CvGameUtils:
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GALLIEN") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BRITEN") :
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_STAMMESFUERST"))
+                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_STAMMESFUERST"), True)
                 return True
             elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_DAKER") :
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_FUERST_DAKER"))
+                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_FUERST_DAKER"), True)
                 return True
+            elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") :
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_MACCABEE"), True)
+              return True
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON") \
@@ -1123,7 +1343,7 @@ class CvGameUtils:
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SUMERIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SYRIAN_GARDE"))
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SYRIAN_GARDE"), True)
               return True
 
         # Axeman
@@ -1131,31 +1351,42 @@ class CvGameUtils:
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"))
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"), True)
               return True
 
         # Spearman
         elif iUnitType == gc.getInfoTypeForString("UNIT_SPEARMAN") :
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_ARMOR")):
-            if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"))
+            if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_RADSCHA"), True)
               return True
-            elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_RADSCHA"))
+            # GREEKS
+            elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
+            or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
+            or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") \
+            or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HOPLIT"), True)
               return True
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_GERMAN_HARIER"))
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_GERMAN_HARIER"), True)
               return True
 
         # Swordsman
         elif iUnitType == gc.getInfoTypeForString("UNIT_SWORDSMAN") :
 
           if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"))
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"), True)
               return True
+
+        # Steppenreiter -> Geissel Gottes
+        elif iUnitType == gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"):
+              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN_HUN"), True)
+              return True
+
+
 
         # Allgemein Veteran -> Reservist
         elif 1 == self.myRandom(20, None):
@@ -1163,6 +1394,13 @@ class CvGameUtils:
             return True
 
       # ---- ENDE Veteran -------
+
+      # Unit Rang Promo -------
+      # KI: immer und kostenlos
+      if CvUtil.getScriptData(pUnit, ["P","t"]) == "RangPromoUp":
+        CvEventInterface.getEventManager().doUpgradeRang(pUnit.getOwner(),pUnit.getID())
+        return True
+
 
 # Terrain Promos - Ausbildner / Trainer (in City)
       if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN5")) or pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA5")) \
@@ -1181,25 +1419,25 @@ class CvGameUtils:
         pPlot = pUnit.plot()
 
         # self.lUnitAuxiliar: globale Variable
+        #or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
         if iUnitType in self.lUnitAuxiliar \
-        or iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER") \
-        or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
+        or iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI") \
         or iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE") :
 
           bSearchPlot = False
 
-          if iUnitType in self.lUnitAuxiliar and pTeam.isHasTech(gc.getInfoTypeForString("TECH_HUFEISEN")):
+          if iUnitType in self.lUnitAuxiliar:
               iNewUnitType = gc.getInfoTypeForString('UNIT_AUXILIAR_HORSE')
               bSearchPlot = True
-          elif iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_CAVALRY")):
+          elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"):
+            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_HUFEISEN")):
               iNewUnitType = gc.getInfoTypeForString('UNIT_HEAVY_HORSEMAN')
               bSearchPlot = True
           else:
             TechHorse3 = gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")
             if pTeam.isHasTech(TechHorse3):
-              if iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"):
-                iNewUnitType = gc.getInfoTypeForString('UNIT_PRAETORIAN_RIDER')
+              #if iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"):
+              #  iNewUnitType = gc.getInfoTypeForString('UNIT_PRAETORIAN_RIDER')
               if iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"):
                 iNewUnitType = gc.getInfoTypeForString('UNIT_MOUNTED_SACRED_BAND_CARTHAGE')
               bSearchPlot = True
@@ -1220,7 +1458,7 @@ class CvGameUtils:
               iX = pUnit.getX()
               iY = pUnit.getY()
               # Create a new unit
-              NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+              NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
               NewUnit.setExperience(pUnit.getExperience(), -1)
               NewUnit.setLevel(pUnit.getLevel())
               NewUnit.changeMoves(90)
@@ -1269,7 +1507,7 @@ class CvGameUtils:
               if iOwner != gc.getBARBARIAN_PLAYER() and lCities > len(self.PAE_AI_Cities_Slavemarket):
                if self.myRandom(10, None) < 2:
                 for lCity in lCities:
-                  xCity = pOwner.getCity( lCity.getID() )
+                  xCity = lCity.GetCy()
 
                   if xCity.getID() not in self.PAE_AI_Cities_Slavemarket:
 
@@ -1456,6 +1694,38 @@ class CvGameUtils:
               # PAE AI City Instance
               self.PAE_AI_Cities_Slaves.append(pCity.getID())
 
+        # end: if pPlot.isCity
+
+        # Slave -> Latifundium
+        if pTeam.isHasTech(gc.getInfoTypeForString("TECH_RESERVISTEN")):
+
+          lLatifundien = []
+          lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"))
+          lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"))
+          lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM3"))
+          lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM4"))
+
+          bLatifundien = False
+          for iLati in lLatifundien:
+            if pPlayer.getImprovementCount(iLati) > 0:
+               bLatifundien = True
+               break
+
+          if bLatifundien:
+            MapH = CyMap().getGridHeight()
+            MapW = CyMap().getGridWidth()
+            for i in range (MapW):
+              if not bLatifundien: break
+              for j in range (MapH):
+                pPlot = CyMap().plot(i, j)
+                if pPlot.getOwner() == iOwner:
+                  iImp = pPlot.getImprovementType()
+                  if iImp in lLatifundien:
+                    if pPlot.getUpgradeTimeLeft(iImp, iOwner) > 1:
+                      pPlot.changeUpgradeProgress(10)
+                      pUnit.kill(1,iOwner)
+                      bLatifundien = False
+                      break
 
 # Horses - create stables
       if iUnitType == gc.getInfoTypeForString("UNIT_HORSE"):
@@ -1484,7 +1754,7 @@ class CvGameUtils:
             # Weitere Cities auf Stallungen checken und Pferd dort hinschicken
             if iOwner != gc.getBARBARIAN_PLAYER():
              for lCity in lCities:
-              xCity = pOwner.getCity( lCity.getID() )
+              xCity = lCity.GetCy()
               if xCity.getID() not in self.PAE_AI_Cities_Horses:
 
                 # PAE AI City Horse Instance
@@ -1497,45 +1767,43 @@ class CvGameUtils:
 
 
 # Auswanderer / Emigrant -> zu schwachen Staedten
-      if iUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT") and iOwner != gc.getBARBARIAN_PLAYER():
+      if iUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT"): # and iOwner != gc.getBARBARIAN_PLAYER():
 
         pPlot = pUnit.plot()
         if pPlot.isCity() and pPlot.getOwner() == iOwner:
 
-          iCityX = -1
+          lCityX = None
           iCityPop = 0
           iRange = len(lCities)
-          for i in range(iRange):
-            iPop = pOwner.getCity(lCities[i].getID()).getPopulation()
-            if iCityX == -1 or iPop < iCityPop:
+          for lCity in lCities:
+            iPop = lCity.getPopulation()
+            if lCityX == None or iPop < iCityPop:
               iCityPop = iPop
-              iCityX = i
+              lCityX = lCity
 
-          if iCityX > -1:
-            pCity = pOwner.getCity(lCities[iCityX].getID())
-            if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
-              pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+          if lCityX:
+            if not pUnit.atPlot(lCityX.plot()):
+              pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, lCityX.getX(), lCityX.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
             else:
-              pCity.changePopulation(1)
+              lCityX.changePopulation(1)
               pUnit.kill(1,pUnit.getOwner())
             return True
 
 # Beutegold / Treasure / Goldkarren -> zur Hauptstadt
       if iUnitType == gc.getInfoTypeForString("UNIT_GOLDKARREN") and iOwner != gc.getBARBARIAN_PLAYER():
         pCapital = pOwner.getCapitalCity()
-        lCities = PyPlayer(iOwner).getCityList()
-        if pCapital.getID() == -1: pCity = pOwner.getCity(lCities[0].getID())
-        else: pCity = pCapital
-        if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
-          pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+        if pCapital.getID() == -1: pCityX = lCities[0].GetCy()
+        else: pCityX = pCapital
+        if not pUnit.atPlot(pCityX.plot()):
+          pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, pCityX.getX(), pCityX.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
           return True
         else:
-          if pCapital.getID() == pCity.getID():
+          if pCapital.getID() == pCityX.getID():
             iGold = 80 + self.myRandom(71, None)
             pOwner.changeGold(iGold)
             pUnit.kill(1,pUnit.getOwner())
             #iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_PALACE')
-            #pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, 1)
+            #pCityX.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, 1)
           else:
             pUnit.finishMoves()
           return True
@@ -1549,7 +1817,7 @@ class CvGameUtils:
 
         for x in range(3):
             for y in range(3):
-              loopPlot = gc.getMap().plot(iX + x - 1, iY + y - 1)
+              loopPlot = plotXY(iX, x - 1, iY, y - 1)
               if loopPlot != None and not loopPlot.isNone():
                 if loopPlot.isCity():
                   pCity = loopPlot.getPlotCity()
@@ -1569,7 +1837,7 @@ class CvGameUtils:
             pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
             if pPlot.getOwner() == iOwner:
 
-                 pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pUnit.getEthnic(), pUnit.getReligion())
+                 pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
                  iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT4")
                  if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)
@@ -1590,11 +1858,12 @@ class CvGameUtils:
 
       # -----------------
 
-# Kaufbare Promotions ------------------
+      # Kaufbare Promotions ------------------
 
       # Kauf einer edlen Ruestung (Promotion)
-      pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
+      pPlot = pUnit.plot()
       if pPlot.isCity():
+        pCity = pPlot.getPlotCity()
         if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARMOR")):
           iPromo = gc.getInfoTypeForString("PROMOTION_EDLE_RUESTUNG")
           iPromoPrereq = gc.getInfoTypeForString("PROMOTION_COMBAT5")
@@ -1622,14 +1891,11 @@ class CvGameUtils:
               iUnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN"))
               iUnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
               iUnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
-              iUnitArray.append(gc.getInfoTypeForString("UNIT_CARTHAGE_NUMIDIAN_CAVALRY"))
-              iUnitArray.append(gc.getInfoTypeForString("UNIT_GALLIER_GILDE"))
               iUnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
               iUnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
               iUnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
               iUnitArray.append(gc.getInfoTypeForString("UNIT_BURNING_PIGS"))
               if pUnit.getUnitType() not in iUnitArray:
-                pCity = pPlot.getPlotCity()
                 iBuilding = gc.getInfoTypeForString("BUILDING_FORGE")
                 bonus1 = gc.getInfoTypeForString("BONUS_OREICHALKOS")
                 bonus2 = gc.getInfoTypeForString("BONUS_MESSING")
@@ -1645,22 +1911,33 @@ class CvGameUtils:
                       pUnit.finishMoves()
                       return True
 
-# Kauf eines Wellen-Oils (Promotion)
-      pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
-      if pPlot.isCity():
-       if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_KUESTE")):
-        if pUnit.getUnitCombatType() == gc.getInfoTypeForString('UNITCOMBAT_NAVAL'):
-         pCity = pPlot.getPlotCity()
-         bonus1 = gc.getInfoTypeForString("BONUS_OLIVES")
-         iPromo = gc.getInfoTypeForString("PROMOTION_OIL_ON_WATER")
-         iPromo2 = gc.getInfoTypeForString("PROMOTION_COMBAT2")
+        # Kauf eines Wellen-Oils (Promotion)
+        if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
+         if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_KUESTE")):
+          bonus1 = gc.getInfoTypeForString("BONUS_OLIVES")
+          iPromo = gc.getInfoTypeForString("PROMOTION_OIL_ON_WATER")
+          iPromo2 = gc.getInfoTypeForString("PROMOTION_COMBAT2")
 
-         if not pUnit.isHasPromotion(iPromo) and pUnit.isHasPromotion(iPromo2) and pCity.hasBonus(bonus1):
+          if not pUnit.isHasPromotion(iPromo) and pUnit.isHasPromotion(iPromo2) and pCity.hasBonus(bonus1):
             pOwner = gc.getPlayer(iOwner)
             iCost = PyInfo.UnitInfo(pUnit.getUnitType()).getProductionCost()
             if iCost <= 0: iCost = 180
             if pOwner.getGold() > iCost:
-              # AI soll zu 25% das Oil kaufen
+                # AI soll zu 25% das Oil kaufen
+                pOwner.changeGold(-iCost)
+                pUnit.setHasPromotion(iPromo, True)
+                pUnit.finishMoves()
+                return True
+
+        # Bless units (PAE V Patch 4)
+        if pUnit.isMilitaryHappiness():
+          iCost = 50 # 50% of HI
+          if pOwner.getGold() > iCost:
+            iPromo = gc.getInfoTypeForString("PROMOTION_BLESSED")
+            if not pUnit.isHasPromotion(iPromo):
+              iBuilding1 = gc.getInfoTypeForString("BUILDING_CHRISTIAN_CATHEDRAL")
+              iBuilding2 = gc.getInfoTypeForString("BUILDING_HAGIA_SOPHIA")
+              if pCity.isHasBuilding(iBuilding1) or pCity.isHasBuilding(iBuilding2):
                 pOwner.changeGold(-iCost)
                 pUnit.setHasPromotion(iPromo, True)
                 pUnit.finishMoves()
@@ -1970,6 +2247,14 @@ class CvGameUtils:
           return CyTranslator().getText("TXT_KEY_INFO_SCREEN", ())
         elif iData2 == 34:
           return CyTranslator().getText("TXT_KEY_CONCEPT_TRADE", ())
+        elif iData2 == 35:
+          return CyTranslator().getText("TXT_KEY_WB_RIVER_FORD",())
+        elif iData2 == 36:
+          return CyTranslator().getText("TXT_KEY_WB_RIVER_AUTOMATIC",())
+        elif iData2 == 37:
+          return CyTranslator().getText("TXT_KEY_WB_RIVER_BRANCH",())
+        elif iData2 == 38:
+          return CyTranslator().getText("TXT_KEY_WB_RIVER_COMPLETE",())
       elif iData1 > 1029 and iData1 < 1040:
         if iData1 %2:
           return "-"
@@ -2161,12 +2446,46 @@ class CvGameUtils:
         else:
           sText += "\n" + CyTranslator().getText("TXT_KEY_CIVICS_SCREEN_NO_UPKEEP", ())
         return sText
+## River Feature Widget Text##
+      elif iData1 == 8999:
+        return CyTranslator().getText("TXT_KEY_WB_RIVER_DATA",())
+      elif iData1 in [9000, 9001]:
+        if iData2 == -1:
+          return CyTranslator().getText("TXT_KEY_CULTURELEVEL_NONE", ())
+        """
+        iFeatureRiver = CvUtil.findInfoTypeNum(
+            gc.getFeatureInfo,
+            gc.getNumFeatureInfos(),
+            'FEATURE_RIVER')
+        return CyGameTextMgr().getFeatureHelp(iFeatureRiver, False)
+        """
+        if iData2 in [1000,1001]:
+            sText = CyTranslator().getText(CvRiverUtil.RiverKeymap["EMPTY"], ())
+            if iData2 == 1001:
+                sText += "\n" + CyTranslator().getText("TXT_KEY_WITH_RIVER_FORD", ())
+            return sText
+        iRow = 0
+        for rtype, aligns in CvRiverUtil.RiverTypes.iteritems():
+            for align, versions in aligns.iteritems():
+                if iRow == iData2:
+                    sText = CyTranslator().getText(CvRiverUtil.RiverKeymap[rtype+"_"+align], ())
+                    if iData1 == 9001:
+                        sText += "\n" + CyTranslator().getText("TXT_KEY_WITH_RIVER_FORD", ())
+                    return sText
+                iRow += 1
+      elif iData1 in [9010, 9020, 9030, 9040, 9050, 9060, 9070]:
+          return " " # Returning of empty string would be problematic..
 ## ---------------------- ##
 ## Platy WorldBuilder End ##
 ## ---------------------- ##
 
-    iType = WidgetTypes.WIDGET_GENERAL
-    if (eWidgetType == iType):
+    if (eWidgetType == WidgetTypes.WIDGET_ACTION):
+      #PAE TradeRoute Advisor
+      if iData1 == -1:
+        if iData2 == 1: return CyTranslator().getText("TXT_KEY_TRADE_ROUTE_ADVISOR_SCREEN",())
+        if iData2 == 2: return CyTranslator().getText("TXT_KEY_TRADE_ROUTE2_ADVISOR_SCREEN",())
+
+    elif (eWidgetType == WidgetTypes.WIDGET_GENERAL):
       #Inquisitor
       if iData1 == 665:
         return CyTranslator().getText("TXT_KEY_GODS_INQUISTOR_CLEANSE_MOUSE_OVER",())
@@ -2308,9 +2627,12 @@ class CvGameUtils:
 
       # Elefantenstall
       if (iData1 == 721):
-        if iData2 == 1: return CyTranslator().getText("TXT_KEY_HELP_ELEFANTENSTALL1",())
+        if   iData2 == 1: return CyTranslator().getText("TXT_KEY_HELP_ELEFANTENSTALL1",())
         elif iData2 == 2: return CyTranslator().getText("TXT_KEY_HELP_ELEFANTENSTALL2",())
-        else: return CyTranslator().getText("TXT_KEY_HELP_ELEFANTENSTALL3",())
+        elif iData2 == 3: return CyTranslator().getText("TXT_KEY_HELP_ELEFANTENSTALL3",())
+        elif iData2 == 4: return CyTranslator().getText("TXT_KEY_HELP_KAMELSTALL1",())
+        elif iData2 == 5: return CyTranslator().getText("TXT_KEY_HELP_KAMELSTALL2",())
+        elif iData2 == 6: return CyTranslator().getText("TXT_KEY_HELP_KAMELSTALL3",())
 
       # Piraten-Feature
       if (iData1 == 722):
@@ -2327,7 +2649,7 @@ class CvGameUtils:
       # Reservist -> Veteran
       if (iData1 == 725):
         return CyTranslator().getText("TXT_KEY_HELP_RESERVIST_TO_VETERAN",())
-      # Bonusverbreitung
+      # Bonusverbreitung (FREI?)
       if (iData1 == 726):
         return CyTranslator().getText("TXT_KEY_HELP_BONUSVERBREITUNG",())
       # Bonusverbreitung
@@ -2346,8 +2668,8 @@ class CvGameUtils:
       if (iData1 == 731):
         return CyTranslator().getText("TXT_KEY_BUTTON_SPREAD_RELIGION",())
       # Send Trade Merchant into next foreign city
-      if (iData1 == 732):
-        return CyTranslator().getText("TXT_KEY_MISSION_AUTOMATE_MERCHANT",())
+      #if (iData1 == 732):
+      #  return CyTranslator().getText("TXT_KEY_MISSION_AUTOMATE_MERCHANT",())
       # Limes
       if (iData1 == 733):
         if iData2 == -1: return CyTranslator().getText("TXT_KEY_INFO_LIMES_0",())
@@ -2373,16 +2695,49 @@ class CvGameUtils:
       # Provinzstatthalter / Tribut
       if (iData1 == 737):
         return CyTranslator().getText("TXT_KEY_BUTTON_CONTACT_STATTHALTER",())
+      # Cultivation / Trade
+      if (iData1 == 738):
+        if bOption: return CyTranslator().getText("TXT_KEY_BUTTON_CULTIVATE_BONUS_FROM_CITY",())
+        else: return CyTranslator().getText("TXT_KEY_BUTTON_CULTIVATE_BONUS",())
+      if (iData1 == 739):
+        if bOption:
+          if iData2 == 1: return CyTranslator().getText("TXT_KEY_BUTTON_COLLECT_BONUS_CITY",())
+          else: return CyTranslator().getText("TXT_KEY_BUTTON_COLLECT_BONUS",())
+        else: return CyTranslator().getText("TXT_KEY_BUTTON_COLLECT_BONUS_IMPOSSIBLE",())
+      if (iData1 == 740):
+        return CyTranslator().getText("TXT_KEY_BUTTON_BUY_BONUS",())
+      if (iData1 == 741):
+        return CyTranslator().getText("TXT_KEY_BUTTON_SELL_BONUS",(iData2,))
+      if (iData1 == 742):
+        return CyTranslator().getText("TXT_KEY_SPREAD_IMPOSSIBLE_" + str(iData2),())
+      if (iData1 == 744):
+        return CyTranslator().getText("TXT_KEY_CREATE_TRADE_ROUTE",())
+      if (iData1 == 748):
+        return CyTranslator().getText("TXT_KEY_CANCEL_TRADE_ROUTE",())
 
       # -------------------------------------
       # Allgemeine Infos (aktionslose Buttons)
       # 1: no cults with civic Animism
-      if (iData1 == 738):
+      if (iData1 == 749):
         if iData2 == 1: return CyTranslator().getText("TXT_KEY_INFO_CIVIC_NOCULT",())
       # -------------------------------------
 
+      # Unit Ethnic (MainInterface Unit Detail Promo Icons)
+      if iData1 == 750 and iData2 > -1: return gc.getCivilizationInfo(iData2).getAdjective(0)
 
+      # Unit Rang Promo
+      if iData1 == 751:
+        if bOption and gc.getPlayer(iData2).getGold() > 100: return CyTranslator().getText("TXT_KEY_BUTTON_RANG_PROMO_UP",())
+        else: return CyTranslator().getText("TXT_KEY_BUTTON_RANG_PROMO_UP2",())
+      # Bless units
+      if iData1 == 752: return CyTranslator().getText("TXT_KEY_BUTTON_BLESS_UNITS",())
+      # Slave -> Latifundium
+      if iData1 == 753:
+        return CyTranslator().getText("TXT_KEY_BUTTON_SLAVE2LATIFUNDIUM",())
 
+      # Obsolete units (Tech Screen)
+      if iData1 == 754:
+        return CyTranslator().getText("TXT_KEY_TECH_OBSOLETES_NO_LINK", (gc.getUnitInfo(iData2).getDescription(),))
 
       # CITY_TAB replacements
       if (iData1 == 88000):
@@ -2434,15 +2789,16 @@ class CvGameUtils:
       iDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
       iJungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
 
-      iRange = len(lCities)
-      for iCity in range(iRange):
-        pCity = pPlayer.getCity( lCities[ iCity ].getID( ) )
+      for lCity in lCities:
+        pCity = lCity.GetCy()
         if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
            # Check plots (Klima / climate)
            bOK = false
+           iX = pCity.getX()
+           iY = pCity.getY()
            for i in range(3):
              for j in range(3):
-               loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
+               loopPlot = plotXY(iX, i-1, iY, j-1)
                if loopPlot != None and not loopPlot.isNone():
                  if loopPlot.getTerrainType() == iDesert or loopPlot.getFeatureType() == iJungle:
                    bOK = true
@@ -2451,15 +2807,57 @@ class CvGameUtils:
 
            if bOK:
              if pUnit.generatePath( pCity.plot(), 0, False, None ):
-               if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
+               if not pUnit.atPlot(pCity.plot()):
                  pUnitGroup.clearMissionQueue()
-                 pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+                 pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
                else:
                  pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"),1)
                  #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                  pUnit.kill(1,pUnit.getOwner())
                  return True
 
+  # Kamellager
+  def doCamel_AI( self, pUnit ):
+    pUnitGroup = pUnit.getGroup()
+    if pUnitGroup.getMissionType(0) != 0:
+     iOwner = pUnit.getOwner()
+
+     # Nur 1x pro Runde alle Staedte checken
+     # PAE AI Unit Instances (better turn time)
+     if self.PAE_AI_ID != iOwner:
+      self.PAE_AI_ID = iOwner
+
+      pPlayer = gc.getPlayer(iOwner)
+
+      lCities = PyPlayer(iOwner).getCityList()
+      iDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
+
+      for lCity in lCities:
+        pCity = lCity.GetCy()
+        if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
+           # Check plots (Klima / climate)
+           iX = pCity.getX()
+           iY = pCity.getY()
+           bOK = false
+           for i in range(3):
+             for j in range(3):
+               loopPlot = plotXY(iX, i-1, iY, j-1)
+               if loopPlot != None and not loopPlot.isNone():
+                 if loopPlot.getTerrainType() == iDesert:
+                   bOK = true
+                   break
+             if bOK: break
+
+           if bOK:
+             if pUnit.generatePath( pCity.plot(), 0, False, None ):
+               if not pUnit.atPlot(pCity.plot()):
+                 pUnitGroup.clearMissionQueue()
+                 pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+               else:
+                 pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE"),1)
+                 #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+                 pUnit.kill(1,pUnit.getOwner())
+                 return True
 
   # Inquisitor -------------------
   def doInquisitorCore_AI( self, pUnit ):
@@ -2664,8 +3062,8 @@ class CvGameUtils:
 
   # Upgrade Veteran Unit to Elite Unit
   # Veteran -> Eliteunit
-  def doUpgradeVeteran_AI( self, pUnit, iNewUnit):
-    CvEventInterface.getEventManager().doUpgradeVeteran(pUnit, iNewUnit)
+  def doUpgradeVeteran_AI( self, pUnit, iNewUnit, bChangeCombatPromo):
+    CvEventInterface.getEventManager().doUpgradeVeteran(pUnit, iNewUnit, bChangeCombatPromo)
     return
 
 

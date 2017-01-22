@@ -12,6 +12,7 @@ import CvCorporationScreen
 import CvCivicsScreen
 import CvVictoryScreen
 import CvEspionageAdvisor
+import CvTradeRouteAdvisor
 
 import CvOptionsScreen
 import CvReplayScreen
@@ -49,6 +50,8 @@ import random
 from CvScreenEnums import *
 from CvPythonExtensions import *
 
+import PAE_Trade
+
 gc = CyGlobalContext()
 
 g_bIsScreenActive = -1
@@ -56,6 +59,7 @@ g_bIsScreenActive = -1
 ## World Builder ##
 import CvPlatyBuilderScreen
 import WBPlotScreen
+import WBRiverScreen
 import WBEventScreen
 import WBBuildingScreen
 import WBCityDataScreen
@@ -136,6 +140,11 @@ domesticAdvisor = CvDomesticAdvisor.CvDomesticAdvisor()
 def showDomesticAdvisor(argsList):
         if CyGame().getActivePlayer() > -1:
                 domesticAdvisor.interfaceScreen()
+
+traderouteAdvisor = CvTradeRouteAdvisor.CvTradeRouteAdvisor()
+def showTradeRouteAdvisor(argsList):
+        if CyGame().getActivePlayer() > -1:
+                traderouteAdvisor.interfaceScreen()
 
 militaryAdvisor = CvMilitaryAdvisor.CvMilitaryAdvisor(MILITARY_ADVISOR)
 def showMilitaryAdvisor():
@@ -1451,6 +1460,111 @@ def popupBonusverbreitung(argsList):
           else:
             CyMessageControl().sendModNetMessage( 726, iData3, iButtonId, iData1, iData2 )
 
+# Cultivation / Trade / Boggy
+# Called when player has selected bonus to buy
+def popupTradeChooseBonus(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2]
+    pPlayer = gc.getPlayer(iUnitOwner)
+    pUnit = pPlayer.getUnit(iUnitId)
+    # Since CyPopup can only store 3 values, the city needs to be identified by the merchant's position...
+    pCity = CyMap().plot(pUnit.getX(), pUnit.getY()).getPlotCity()
+    lGoods = PAE_Trade.getCitySaleableGoods(pCity, iUnitOwner)
+    if iButtonId < len(lGoods): # Otherwise: Cancel button
+        CyMessageControl().sendModNetMessage( 742, lGoods[iButtonId], pCity.getOwner(), iUnitOwner, iUnitId )
+
+# Cultivation / Trade / Boggy
+# Called when player has selected cultivation bonus to buy
+def popupTradeChooseBonus4Cultivation(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2]
+    pPlayer = gc.getPlayer(iUnitOwner)
+    pUnit = pPlayer.getUnit(iUnitId)
+    # Since CyPopup can only store 3 values, the city needs to be identified by the merchant's position...
+    pCity = CyMap().plot(pUnit.getX(), pUnit.getY()).getPlotCity()
+    lGoods = PAE_Trade.getCollectableGoods4Cultivation(pUnit)
+    if iButtonId < len(lGoods): # Otherwise: Cancel button
+        CyMessageControl().sendModNetMessage( 739, lGoods[iButtonId], 0, iUnitOwner, iUnitId )
+
+# Called when player has selected civ to trade with. Next step: Select city.
+def popupTradeRouteChooseCiv(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2]
+    bFirst = argsList[3]
+    pUnit = gc.getPlayer(iUnitOwner).getUnit(iUnitId)
+    lCivList = PAE_Trade.getPossibleTradeCivs(iUnitOwner)
+    if iButtonId < len(lCivList):
+        #CyMessageControl().sendModNetMessage( 745, lCivList[iButtonId], -1, iUnitOwner, iUnitId )
+        # Next step: if bFirst: choose city 1, else: choose city 2
+        if bFirst: iNewType = 2
+        else: iNewType = 5
+        PAE_Trade.doPopupAutomatedTradeRoute(pUnit, iNewType, lCivList[iButtonId], -1)
+
+# Called when player has selected city to trade with. Next step: Select bonus.
+def popupTradeRouteChooseCity1(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2]
+    iCityOwner = argsList[3]
+    pUnit = gc.getPlayer(iUnitOwner).getUnit(iUnitId)
+    bWater = False
+    if pUnit.getDomainType() == DomainTypes.DOMAIN_SEA: bWater = True
+    lCityList = PAE_Trade.getPossibleTradeCitiesForCiv(iUnitOwner, iCityOwner, bWater)
+    if iButtonId < len(lCityList):
+        CyMessageControl().sendModNetMessage( 745, iCityOwner, lCityList[iButtonId].getID(), iUnitOwner, iUnitId )
+
+# Same as above, but for second city in trade route. Two functions are needed bc. popupInfo only stores 4 values (5 needed)
+def popupTradeRouteChooseCity2(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2]
+    iCityOwner = argsList[3]
+    pUnit = gc.getPlayer(iUnitOwner).getUnit(iUnitId)
+    bWater = False
+    if pUnit.getDomainType() == DomainTypes.DOMAIN_SEA: bWater = True
+    lCityList = PAE_Trade.getPossibleTradeCitiesForCiv(iUnitOwner, iCityOwner, bWater)
+    if iButtonId < len(lCityList):
+        CyMessageControl().sendModNetMessage( 746, iCityOwner, lCityList[iButtonId].getID(), iUnitOwner, iUnitId )
+
+# Called when has selected bonus to buy in city. Next step: Select civ 2 or start trade route (if finished)
+def popupTradeRouteChooseBonus(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2]
+    bFirst = argsList[3]
+    pUnit = gc.getPlayer(iUnitOwner).getUnit(iUnitId)
+    if bFirst:
+        iX = int(CvUtil.getScriptData(pUnit, ["automX1"], -1))
+        iY = int(CvUtil.getScriptData(pUnit, ["automY1"], -1))
+    else:
+        iX = int(CvUtil.getScriptData(pUnit, ["automX2"], -1))
+        iY = int(CvUtil.getScriptData(pUnit, ["automY2"], -1))
+
+
+    pCity = CyMap().plot(iX, iY).getPlotCity()
+    lGoods = PAE_Trade.getCitySaleableGoods(pCity, -1)
+    lGoods.append(-1)
+    if iButtonId < len(lGoods):
+      CyMessageControl().sendModNetMessage( 747, lGoods[iButtonId], bFirst, iUnitOwner, iUnitId )
+
+# Called when player has selected bonus to cultivate
+def popupCultivationChooseBonus(argsList):
+    iButtonId = argsList[0]
+    iUnitOwner = argsList[1]
+    iUnitId = argsList[2] # Cultivation unit
+    iIsCity = argsList[3]
+
+    pUnitOwner = gc.getPlayer(iUnitOwner)
+    pUnit = pUnitOwner.getUnit(iUnitId)
+    lCultivatableBonuses = PAE_Trade.getCultivatableBonusesForUnit(pUnit, iIsCity)
+    if iButtonId < len(lCultivatableBonuses): # Otherwise: Cancel button
+        CyMessageControl().sendModNetMessage( 743, lCultivatableBonuses[iButtonId], iIsCity, iUnitOwner, iUnitId )
+
+# --- End of cultivation / trade
+
 def popupKartenzeichnungen(argsList):
         # iData1 (iPlayer), iData2 (iUnitId)
         iButtonId = argsList[0]
@@ -1518,6 +1632,12 @@ def popupStatthalterTribut(argsList):
           CyMessageControl().sendModNetMessage( 737, iData1, iData2, iData3, iButtonId )
 
 
+
+
+##############################################################
+####################### for scenarios ########################
+##############################################################
+
 # ----- Scenario Peloponnesian War ----------------
 def peloponnesianWarKeinpferd_Poteidaia1(argsList):
         iButtonId = argsList[0]
@@ -1581,23 +1701,23 @@ def peloponnesianWarKeinpferd_Poteidaia2(argsList):
             eSupply = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
             eSkirmish = gc.getInfoTypeForString("UNIT_SKIRMISHER")
             eTrireme = gc.getInfoTypeForString("UNIT_TRIREME")
-            for i in range(2): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(2): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(3):
-                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 if i == 0: pUnit.setName("Pausanias")
                 elif i == 1: pUnit.setName("Archestartos")
-            pAthen.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-            pSupply = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-            pSupply.setScriptData("200")
-            pAthen.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            pAthen.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pSupply = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            CvUtil.addScriptData(pSupply,"s","200")
+            pAthen.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             # 500 Gold pro Hoplit+Trireme, 2 Triremen erhaelt man immer -> iPay beginnt bei 1000 und man benoetigt mind. 1500, um mehr zu erhalten
             # Maximal 10 Triremen
             iPay = 1000
             for i in range(8):
                 iPay += 500
                 if iPay > iGold: break
-                pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-                pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if bIsHuman:
               popupInfo = CyPopupInfo()
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -1623,7 +1743,7 @@ def peloponnesianWarKeinpferd_Poteidaia2(argsList):
             if gc.getTeam(iAthen).canDeclareWar(iKorinth): gc.getTeam(iAthen).declareWar(iKorinth, 0, 5) #WARPLAN_TOTAL
             if gc.getTeam(iAthen).canDeclareWar(iMakedonien): gc.getTeam(iAthen).declareWar(iMakedonien, 0, 4) #WARPLAN_LIMITED
             # General in Athen
-            pGeneral = pAthen.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), 57, 30, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            pGeneral = pAthen.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), 57, 30, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             pGeneral.setName("Kallias")
             if bIsHuman:
               popupInfo = CyPopupInfo()
@@ -1646,19 +1766,19 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           eHorseman = gc.getInfoTypeForString("UNIT_HORSEMAN")
           eSkirmisher = gc.getInfoTypeForString("UNIT_SKIRMISHER")
           eSupply = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
-          pKorinth.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pSupply.setScriptData("200")
-          pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pKorinth.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
+          pKorinth.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          CvUtil.addScriptData(pSupply,"s","200")
+          pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          pKorinth.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           # 250 Gold pro Hoplit+Skirmisher, jeweils 1 erhaelt man immer -> iPay beginnt bei 250 und man benoetigt mind. 500, um mehr zu erhalten
           # Maximal 8 Hopliten und Skirmisher (insgesamt)
           iPay = 250
           for i in range(7):
               iPay += 250
               if iPay > iGold: break
-              pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-              pKorinth.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
+              pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+              pKorinth.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           if bIsHuman:
             popupInfo = CyPopupInfo()
             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -1670,8 +1790,8 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           pKorinth.changeGold(-150)
           iX = 36
           iY = 48
-          eGallier = gc.getInfoTypeForString("UNIT_GALLIER_GILDE")
-          pKorinth.initUnit(eGallier, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
+          eGallier = gc.getInfoTypeForString("UNIT_HOPLIT")
+          pKorinth.initUnit(eGallier, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           if bIsHuman:
             popupInfo = CyPopupInfo()
             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -1687,13 +1807,13 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           eSupply = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
           eGeneral = gc.getInfoTypeForString("UNIT_GREAT_GENERAL")
           eTrireme = gc.getInfoTypeForString("UNIT_TRIREME")
-          for i in range(2): pKorinth.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          for i in range(2): pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pKorinth.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pKorinth.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
-          pSupply.setScriptData("200")
-          pGeneral = pKorinth.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pKorinth.getCivilizationType(), pKorinth.getStateReligion())
+          for i in range(2): pKorinth.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          for i in range(2): pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          pKorinth.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          pKorinth.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+          CvUtil.addScriptData(pSupply, "s","200")
+          pGeneral = pKorinth.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pGeneral.setName("Iolaos")
           if bIsHuman:
             popupInfo = CyPopupInfo()
@@ -1903,7 +2023,6 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
         iAthen = 0
         iTheben = 4
         pTheben = gc.getPlayer(iTheben)
-        pAthen = gc.getPlayer(iAthen)
         iX = 55
         iY = 33
         pPlotPlataiai = CyMap().plot(iX, iY)
@@ -1925,7 +2044,7 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
             # Garantieren, dass Theben den Plot besitzt
             pPlotPlataiai.changeCulture(iTheben, iCultAthen, 1)
             eHoplit = gc.getInfoTypeForString("UNIT_HOPLIT")
-            pTheben.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
+            pTheben.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if bIsHuman:
                 popupInfo = CyPopupInfo()
                 popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -1943,12 +2062,12 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
             iCultTheben = pPlotPlataiai.getCulture(iTheben)
             iCultAthen = pPlotPlataiai.getCulture(iAthen)
             pPlotPlataiai.changeCulture(iAthen, iCultTheben, 1)
-            pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            gc.getPlayer(iAthen).initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             eSkirmisher = gc.getInfoTypeForString("UNIT_SKIRMISHER")
             eHorseman = gc.getInfoTypeForString("UNIT_HORSEMAN")
-            for i in range(5): pTheben.initUnit(eHoplit, iX-1, iY-1, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
-            for i in range(3): pTheben.initUnit(eSkirmisher, iX-1, iY-1, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
-            pTheben.initUnit(eHorseman, iX-1, iY-1, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
+            for i in range(5): pTheben.initUnit(eHoplit, iX-1, iY-1, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(3): pTheben.initUnit(eSkirmisher, iX-1, iY-1, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pTheben.initUnit(eHorseman, iX-1, iY-1, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if bIsHuman:
                 popupInfo = CyPopupInfo()
                 popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -1969,11 +2088,12 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
             eHoplit = gc.getInfoTypeForString("UNIT_HOPLIT")
             eSupply = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
             eGeneral = gc.getInfoTypeForString("UNIT_GREAT_GENERAL")
-            for i in range(10): pTheben.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
-            for i in range(5): pTheben.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
-            for i in range(4): pTheben.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
-            for i in range(2): pTheben.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion())
-            pTheben.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pTheben.getCivilizationType(), pTheben.getStateReligion()).setScriptData("200")
+            for i in range(10): pTheben.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(5): pTheben.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(4): pTheben.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(2): pTheben.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            pUnit = pTheben.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            CvUtil.addScriptData(pUnit,"s","200")
             if bIsHuman:
                 popupInfo = CyPopupInfo()
                 popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -1990,7 +2110,7 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
             iCultTheben = pPlotPlataiai.getCulture(iTheben)
             iCultAthen = pPlotPlataiai.getCulture(iAthen)
             pPlotPlataiai.changeCulture(iAthen, iCultTheben, 1)
-            pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            gc.getPlayer(iAthen).initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if bIsHuman:
                 popupInfo = CyPopupInfo()
                 popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -2084,9 +2204,9 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
             elif iGold <= 5000: pAthen.setGold(0)
             else: pAthen.changeGold(-5000)
             # Einheiten, die man immer erhaelt
-            for i in range(12): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(12): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(1):
-                pUnit = pAthen.initUnit(eHippeus, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHippeus, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eRang1, True)
                 pUnit.setHasPromotion(eRang2, True)
                 pUnit.setHasPromotion(eRang3, True)
@@ -2096,35 +2216,35 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
                 pUnit.setHasPromotion(eCityRaid1, True)
                 pUnit.setName("Nikias")
             for i in range(8):
-                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eRang1, True)
                 pUnit.setHasPromotion(eRang2, True)
                 pUnit.setHasPromotion(eRang3, True)
-            for i in range(8): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-            for i in range(12): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(8): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(12): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(4):
-                pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-                pUnit.setScriptData("200")
+                pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                CvUtil.addScriptData(pUnit, "s","200")
             for i in range(2):
-                pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eFlank1, True)
                 pUnit.setHasPromotion(eFlank2, True)
-            for i in range(1): pAthen.initUnit(eSpy, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(1): pAthen.initUnit(eSpy, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             # Ab 2500 zusaetzliche Einheiten fuer je 500 Gold (max. 5000 Gold)
             iPay = 2500
             for i in range(5):
                 iPay += 500
                 if iPay > iGold: break
-                for i in range(2): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-                for i in range(1): pAthen.initUnit(eBireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                for i in range(2): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                for i in range(1): pAthen.initUnit(eBireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 for i in range(3):
-                    pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                    pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     pUnit.setHasPromotion(eRang1, True)
                     pUnit.setHasPromotion(eRang2, True)
                     pUnit.setHasPromotion(eRang3, True)
-                for i in range(2): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                for i in range(2): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 for i in range(1):
-                    pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                    pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     pUnit.setHasPromotion(eFlank1, True)
                     pUnit.setHasPromotion(eFlank2, True)
             if bIsHuman:
@@ -2136,21 +2256,21 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
               popupInfo.addPopup(iAthen)
           elif iButtonId == 1:
             pAthen.changeGold(-2000)
-            for i in range(9): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(9): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(8):
-                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eRang1, True)
                 pUnit.setHasPromotion(eRang2, True)
-            for i in range(8): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-            for i in range(6): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(8): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(6): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(2):
-                pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-                pUnit.setScriptData("200")
+                pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                CvUtil.addScriptData(pUnit,"s","200")
             for i in range(2):
-                pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eFlank1, True)
                 pUnit.setHasPromotion(eFlank2, True)
-            for i in range (1): pAthen.initUnit(eSpy, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range (1): pAthen.initUnit(eSpy, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             if bIsHuman:
               popupInfo = CyPopupInfo()
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -2158,15 +2278,15 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
               popupInfo.addPopup(iAthen)
           elif iButtonId == 2:
             pAthen.changeGold(-1000)
-            for i in range(4): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(4): pAthen.initUnit(eTrireme, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(5):
-                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+                pUnit = pAthen.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eRang1, True)
-            for i in range(4): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-            for i in range(2): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
+            for i in range(4): pAthen.initUnit(eArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for i in range(2): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(1):
-                pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH, pAthen.getCivilizationType(), pAthen.getStateReligion())
-                pUnit.setScriptData("200")
+                pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                CvUtil.addScriptData(pUnit,"s","200")
             if bIsHuman:
               popupInfo = CyPopupInfo()
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -2242,6 +2362,7 @@ HandleInputMap = {  MAIN_INTERFACE : mainInterface,
 
                                         ## World Builder ##
                                         WB_PLOT : WBPlotScreen.WBPlotScreen(),
+                                        WB_PLOT_RIVER : WBRiverScreen.WBRiverScreen(),
                                         WB_EVENT: WBEventScreen.WBEventScreen(),
                                         WB_BUILDING : WBBuildingScreen.WBBuildingScreen(),
                                         WB_CITYDATA : WBCityDataScreen.WBCityDataScreen(),
@@ -2259,6 +2380,8 @@ HandleInputMap = {  MAIN_INTERFACE : mainInterface,
                                         WB_CORPORATION : WBCorporationScreen.WBCorporationScreen(),
                                         WB_INFO : WBInfoScreen.WBInfoScreen(),
                                         WB_TRADE : WBTradeScreen.WBTradeScreen(),
+
+                                        TRADEROUTE_ADVISOR : traderouteAdvisor,
 
                                 }
 

@@ -1,6 +1,6 @@
 ## Sid Meier's Civilization 4
 ## Copyright Firaxis Games 2005
-## Edited by Pierre (Pie) Voak, Austria
+## Edited by Pie, Austria
 from CvPythonExtensions import *
 import CvUtil
 import ScreenInput
@@ -8,6 +8,8 @@ import CvScreenEnums
 import CvEventInterface
 import time
 import PyHelpers
+
+import PAE_Trade
 
 # globals
 gc = CyGlobalContext()
@@ -32,7 +34,7 @@ MAX_BONUS_ROWS = 10
 
 # BUG - field of view slider - start
 DEFAULT_FIELD_OF_VIEW = 44
-bFieldOfView = True # PAE (false for better ingame python programming)
+bFieldOfView = False # PAE (false for better ingame python programming)
 # BUG - field of view slider - end
 
 # SPECIALIST STACKER        05/02/07      JOHNY
@@ -161,6 +163,7 @@ g_pSelectedUnit = 0
 
 m_iNumPlotListButtons = 0
 
+
 class CvMainInterface:
   "Main Interface Screen"
 
@@ -176,6 +179,14 @@ class CvMainInterface:
     self.szSliderId = "FieldOfViewSlider"
     self.iField_View_Prev = -1
 # BUG - field of view slider - end
+
+# Ramk - City Widgets
+    self.buildWidges = [
+        WidgetTypes.WIDGET_TRAIN,
+        WidgetTypes.WIDGET_CONSTRUCT,
+        WidgetTypes.WIDGET_CREATE,
+        WidgetTypes.WIDGET_MAINTAIN
+    ]
 
   def numPlotListButtons(self):
     return self.m_iNumPlotListButtons
@@ -249,16 +260,9 @@ class CvMainInterface:
     screen.setForcedRedraw(True)
 
     # Find out our resolution
-    xResolution = screen.getXResolution()
-    yResolution = screen.getYResolution()
     self.m_iNumPlotListButtons = (xResolution - (iMultiListXL+iMultiListXR) - 68) / 34
     self.m_iNumMenuButtons = (xResolution - (iMultiListXL+iMultiListXR) - 18) / 50 # PAE, Ramk 34=>50
-    self.buildWidges = [
-        WidgetTypes.WIDGET_TRAIN,
-        WidgetTypes.WIDGET_CONSTRUCT,
-        WidgetTypes.WIDGET_CREATE,
-        WidgetTypes.WIDGET_MAINTAIN,
-        ]
+
     # To decide if mouse clicked on first or second row of the menu.
     self.secondRowBorder  = yResolution-113+50
     self.ySecondRow = 0
@@ -355,7 +359,7 @@ class CvMainInterface:
     iBtnWidth = 28
     iBtnAdvance = 28
     iBtnY = 27
-    iBtnX = 117
+    iBtnX = 37
 
     # Turn log Button
     screen.setImageButton( "TurnLogButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_TURN_LOG).getActionInfoIndex(), -1 )
@@ -367,15 +371,25 @@ class CvMainInterface:
     screen.setStyle( "VictoryAdvisorButton", "Button_HUDAdvisorVictory_Style" )
     screen.hide( "VictoryAdvisorButton" )
 
-    iBtnX += iBtnAdvance
+    iBtnX += iBtnAdvance + 5
     screen.setImageButton( "InfoAdvisorButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_INFO).getActionInfoIndex(), -1 )
     screen.setStyle( "InfoAdvisorButton", "Button_HUDAdvisorRecord_Style" )
     screen.hide( "InfoAdvisorButton" )
 
-    iBtnX += iBtnAdvance
+    iBtnX += iBtnAdvance + 5
     screen.setImageButton( "EspionageAdvisorButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_ESPIONAGE_SCREEN).getActionInfoIndex(), -1 )
     screen.setStyle( "EspionageAdvisorButton", "Button_HUDAdvisorEspionage_Style" )
     screen.hide( "EspionageAdvisorButton" )
+
+    # PAE TradeRouteAdvisor
+    iBtnX += iBtnAdvance + 5
+    screen.setImageButton( "TradeRouteAdvisorButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, -1, 1 )
+    screen.setStyle( "TradeRouteAdvisorButton", "Button_HUDAdvisorTradeRoute_Style" )
+    screen.hide( "TradeRouteAdvisorButton" )
+    iBtnX += iBtnAdvance + 5
+    screen.setImageButton( "TradeRouteAdvisorButton2", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, -1, 2 )
+    screen.setStyle( "TradeRouteAdvisorButton2", "Button_HUDAdvisorTradeRoute2_Style" )
+    screen.hide( "TradeRouteAdvisorButton2" )
 
     iBtnX = xResolution - 247
 
@@ -663,7 +677,7 @@ class CvMainInterface:
     screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
     screen.hide( "GreatGeneralBar" )
 # PAE - Great General Bar - end
-# PAE (meets BUG) - Great Person Bar - start
+# PAE (meets BUG) - Great Person Bar - start // >=1440
     if (xResolution >= 1280):
       xCoord = xResolution - 470
       yCoord = 2
@@ -787,12 +801,13 @@ class CvMainInterface:
     i = 0
     for i in range(gc.getNumPromotionInfos()):
       szName = "PromotionButton" + str(i)
-      screen.addDDSGFC( szName, gc.getPromotionInfo(i).getButton(), 180, yResolution - 18, 24, 24, WidgetTypes.WIDGET_ACTION, gc.getPromotionInfo(i).getActionInfoIndex(), -1 )
+      # PAE: Widget changed to HELP Promotion
+      screen.addDDSGFC( szName, gc.getPromotionInfo(i).getButton(), 180, yResolution - 18, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, i, -1 )
       screen.hide( szName )
 # BUG - Stack Promotions - start
       szName = "PromotionButtonCircle" + str(i)
       x, y = self.calculatePromotionButtonPosition(screen, i)
-      screen.addDDSGFC( szName, ArtFileMgr.getInterfaceArtInfo("WHITE_CIRCLE_40").getPath(), x + 11, y + 9, 16, 16, WidgetTypes.WIDGET_ACTION, -1, -1 )
+      screen.addDDSGFC( szName, ArtFileMgr.getInterfaceArtInfo("WHITE_CIRCLE_40").getPath(), x + 11, y + 9, 16, 16, WidgetTypes.WIDGET_HELP_PROMOTION, i, -1 )
       screen.hide( szName )
 # BUG - Stack Promotions - end
 
@@ -992,6 +1007,15 @@ class CvMainInterface:
       CyInterface().setDirty(InterfaceDirtyBits.GlobeInfo_DIRTY_BIT, False)
       self.updateGlobeviewButtons()
 
+    # PAE - River tiles
+    if CvEventInterface.getEventManager().bRiverTiles_WaitOnMainInterface:
+      CvEventInterface.getEventManager().bRiverTiles_WaitOnMainInterface = False
+      CvEventInterface.getEventManager().bRiverTiles_NeedUpdate = True
+      # Force update call. (The update event would not be propagte into
+      # python as default.)
+      CvEventInterface.getEventManager().onUpdate((0.0,))
+    # PAE - River tiles end
+
     return 0
 
   # Will update the percent buttons
@@ -1023,17 +1047,17 @@ class CvMainInterface:
 
           if (gc.getActivePlayer().isCommerceFlexible(eCommerce) or (CyInterface().isCityScreenUp() and (eCommerce == CommerceTypes.COMMERCE_GOLD))):
             szString1 = "IncreasePercent" + str(eCommerce)
-            screen.setButtonGFC( szString1, u"", "", 90, 50 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, gc.getDefineINT("COMMERCE_PERCENT_CHANGE_INCREMENTS"), ButtonStyles.BUTTON_STYLE_CITY_PLUS )
+            screen.setButtonGFC( szString1, u"", "", 90, 52 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, gc.getDefineINT("COMMERCE_PERCENT_CHANGE_INCREMENTS"), ButtonStyles.BUTTON_STYLE_CITY_PLUS )
             screen.show( szString1 )
             szString2 = "DecreasePercent" + str(eCommerce)
-            screen.setButtonGFC( szString2, u"", "", 110, 50 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, -gc.getDefineINT("COMMERCE_PERCENT_CHANGE_INCREMENTS"), ButtonStyles.BUTTON_STYLE_CITY_MINUS )
+            screen.setButtonGFC( szString2, u"", "", 110, 52 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, -gc.getDefineINT("COMMERCE_PERCENT_CHANGE_INCREMENTS"), ButtonStyles.BUTTON_STYLE_CITY_MINUS )
             screen.show( szString2 )
 # Min/Max Sliders - start
             szString3 = "MaxPercent" + str(eCommerce)
-            screen.setButtonGFC( szString3, u"", "", 70, 50 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, 50, ButtonStyles.BUTTON_STYLE_CITY_PLUS )
+            screen.setButtonGFC( szString3, u"", "", 70, 52 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, 50, ButtonStyles.BUTTON_STYLE_CITY_PLUS )
             screen.show( szString3 )
             szString4 = "MinPercent" + str(eCommerce)
-            screen.setButtonGFC( szString4, u"", "", 130, 50 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, -50, ButtonStyles.BUTTON_STYLE_CITY_MINUS )
+            screen.setButtonGFC( szString4, u"", "", 130, 52 + (19 * iCount), 20, 20, WidgetTypes.WIDGET_CHANGE_PERCENT, eCommerce, -50, ButtonStyles.BUTTON_STYLE_CITY_MINUS )
             screen.show( szString4 )
 # Min/Max Sliders - end
 
@@ -1136,6 +1160,9 @@ class CvMainInterface:
       screen.hide(self.szSliderTextId)
       screen.hide(self.szSliderId)
 
+      screen.hide( "TradeRouteAdvisorButton" )
+      screen.hide( "TradeRouteAdvisorButton2" )
+
     elif ( CyInterface().isCityScreenUp() ):
       screen.show( "InterfaceLeftBackgroundWidget" )
       screen.show( "InterfaceTopBackgroundWidget" )
@@ -1161,6 +1188,9 @@ class CvMainInterface:
       # Field of View slider
       screen.hide(self.szSliderTextId)
       screen.hide(self.szSliderId)
+
+      screen.hide( "TradeRouteAdvisorButton" )
+      screen.hide( "TradeRouteAdvisorButton2" )
 
     elif ( CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_HIDE):
       screen.hide( "InterfaceLeftBackgroundWidget" )
@@ -1200,6 +1230,11 @@ class CvMainInterface:
       screen.hide(self.szSliderTextId)
       screen.hide(self.szSliderId)
 
+      screen.show( "TradeRouteAdvisorButton" )
+      screen.moveToFront( "TradeRouteAdvisorButton" )
+      screen.show( "TradeRouteAdvisorButton2" )
+      screen.moveToFront( "TradeRouteAdvisorButton2" )
+
     elif (CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_ADVANCED_START):
       screen.hide( "InterfaceLeftBackgroundWidget" )
       screen.hide( "InterfaceTopBackgroundWidget" )
@@ -1221,6 +1256,9 @@ class CvMainInterface:
       screen.hide( "MilitaryAdvisorButton" )
       screen.hide( "VictoryAdvisorButton" )
       screen.hide( "InfoAdvisorButton" )
+
+      screen.hide( "TradeRouteAdvisorButton" )
+      screen.hide( "TradeRouteAdvisorButton2" )
 
     elif ( CyEngine().isGlobeviewUp() ):
       screen.hide( "InterfaceLeftBackgroundWidget" )
@@ -1260,6 +1298,11 @@ class CvMainInterface:
       screen.hide(self.szSliderTextId)
       screen.hide(self.szSliderId)
 
+      screen.show( "TradeRouteAdvisorButton" )
+      screen.moveToFront( "TradeRouteAdvisorButton" )
+      screen.show( "TradeRouteAdvisorButton2" )
+      screen.moveToFront( "TradeRouteAdvisorButton2" )
+
     else:
       screen.show( "InterfaceLeftBackgroundWidget" )
       screen.show( "InterfaceTopBackgroundWidget" )
@@ -1297,6 +1340,11 @@ class CvMainInterface:
       # Field of View slider
       screen.show(self.szSliderTextId)
       screen.show(self.szSliderId)
+
+      screen.show( "TradeRouteAdvisorButton" )
+      screen.moveToFront( "TradeRouteAdvisorButton" )
+      screen.show( "TradeRouteAdvisorButton2" )
+      screen.moveToFront( "TradeRouteAdvisorButton2" )
 
     screen.updateMinimapVisibility()
 
@@ -1344,7 +1392,7 @@ class CvMainInterface:
 
       elif ( CyInterface().getHeadSelectedUnit() ):
         screen.addUnitGraphicGFC( "InterfaceUnitModel", CyInterface().getHeadSelectedUnit().getUnitType(), 175, yResolution - 138, 123, 132, WidgetTypes.WIDGET_UNIT_MODEL, CyInterface().getHeadSelectedUnit().getUnitType(), -1,  -20, 30, 1, False )
-        screen.moveToFront("SelectedUnitText")
+        #screen.moveToFront("SelectedUnitText")  # disabled for PAE Unit Detail Promo Icons
       else:
         screen.hide( "InterfaceUnitModel" )
     else:
@@ -1722,15 +1770,15 @@ class CvMainInterface:
         - Unterteilung in in linken und rechten Block.
         - Maximale Anzahl von Icons pro Zeile: N.
         - Normale Aufteilung Links/Rechts: Jeweils N/2. ( links + N%2 )
-        - Links und rechts werden zeilenweise Listen angelegt. Die Zeilen koennen beliebig lang sein.
-        - Beginnt eine Zeile mit 'None', so erzwingt das immer eine neue Zeile fuer das folgende Icon.
-          (Beispiel: Sprung von Gebaeuden zu Wundern)
-        - Danach werden Icons zeilenweise durchlaufen. Sind zu viele fuer die Maximalbreite angegeben,
-          werden die ueberschuessigen in die naechste Zeile verschoben.
+        - Links und rechts werden zeilenweise Listen angelegt. Die Zeilen können beliebig lang sein.
+        - Beginnt eine Zeile mit 'None', so erzwingt das immer eine neue Zeile für das folgende Icon.
+          (Beispiel: Sprung von Gebäuden zu Wundern)
+        - Danach werden Icons zeilenweise durchlaufen. Sind zu viele für die Maximalbreite angegeben,
+          werden die überschüssigen in die nächste Zeile verschoben.
         - Falls links die Maximalbreite (N/2) nicht erreicht wird, wird der rechten Seite mehr Platz
-          eingeraeumt (sofern notwendig).
-        - Am Ende werden die beiden Listen nebeneinander in den "BottomButtonContainer" eingefuegt, wobei
-          die Freistellen mit Platzhaltern gefuellt werden.
+          eingeräumt (sofern notwendig).
+        - Am Ende werden die beiden Listen nebeneinander in den "BottomButtonContainer" eingefügt, wobei
+          die Freistellen mit Platzhaltern gefüllt werden.
         """
         #numIcons = 23
         numIcons = max(2,self.m_iNumMenuButtons) - 1
@@ -1754,7 +1802,7 @@ class CvMainInterface:
         """
 
         # Units to construct
-        for i in range ( g_NumUnitClassInfos ):
+        for i in range(g_NumUnitClassInfos):
 
           # PAE - Abbruch bei unbaubare Einheiten
           if i == gc.getInfoTypeForString("UNITCLASS_PROPHET"): break
@@ -1772,16 +1820,29 @@ class CvMainInterface:
               self.iconsLeft.append([])
             bFound = False
 
-          if (pHeadSelectedCity.canTrain(eLoopUnit, False, True)):
-            szButton = gc.getPlayer(pHeadSelectedCity.getOwner()).getUnitButton(eLoopUnit)
-            self.iconsLeft[rowLeft].append( (
-              [szButton, WidgetTypes.WIDGET_TRAIN, i, -1, False],
-              pHeadSelectedCity.canTrain(eLoopUnit, False, False),
-              cityTab
-              ) )
+          # Ramks city widgets
+          if pHeadSelectedCity.canTrain(eLoopUnit, False, True):
 
-            iCount = iCount + 1
-            bFound = True
+            # PAE: Sobald die Einheit mit irgendeiner CLASS upgradebar ist, soll diese nicht mehr angezeigt werden
+            bShow = True
+            #j=i # Upgrade Classes kommen im XML eigentlich immer nachher, erspart den check von Beginn an
+            #for j in range(g_NumUnitClassInfos):
+            #  if gc.getUnitInfo(eLoopUnit).getUpgradeUnitClass(j):
+            #    eLoopUnit2 = gc.getCivilizationInfo(pHeadSelectedCity.getCivilizationType()).getCivilizationUnits(j)
+            #    if pHeadSelectedCity.canTrain(eLoopUnit2, False, False):
+            #      bShow = False
+            #      break
+
+            if bShow:
+              szButton = gc.getPlayer(pHeadSelectedCity.getOwner()).getUnitButton(eLoopUnit)
+              self.iconsLeft[rowLeft].append( (
+                [szButton, WidgetTypes.WIDGET_TRAIN, i, -1, False],
+                pHeadSelectedCity.canTrain(eLoopUnit, False, False),
+                cityTab
+                ) )
+
+              iCount = iCount + 1
+              bFound = True
 
         iCount = 0
         if (bFound):
@@ -1950,9 +2011,11 @@ class CvMainInterface:
           pTeam = gc.getTeam(pUnitOwner.getTeam())
 
           if pUnitOwner.isTurnActive():
+            bCapital = False
             if gc.getMap().plot( g_pSelectedUnit.getX(), g_pSelectedUnit.getY() ).isCity():
               bCity = True
               pCity = gc.getMap().plot( g_pSelectedUnit.getX(), g_pSelectedUnit.getY() ).getPlotCity( )
+              if pCity.isCapital() and pCity.getOwner() == pUnit.getOwner(): bCapital = True
             else:
               bCity = False
 
@@ -1966,11 +2029,11 @@ class CvMainInterface:
 
             # ----------
             # Haendler in die naechste fremde Stadt schicken
-            if pUnit.getUnitAIType() == gc.getInfoTypeForString("UNITAI_MERCHANT") or iUnitType == gc.getInfoTypeForString("UNIT_GAULOS") or iUnitType == gc.getInfoTypeForString("UNIT_CARVEL_TRADE"):
-               if iUnitType != gc.getInfoTypeForString("UNIT_GREAT_SPY"):
-                 screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_action_merchant.dds", 0, WidgetTypes.WIDGET_GENERAL, 732, 732, False )
-                 screen.show( "BottomButtonContainer" )
-                 iCount = iCount + 1
+            #if pUnit.getUnitAIType() == gc.getInfoTypeForString("UNITAI_MERCHANT") or iUnitType == gc.getInfoTypeForString("UNIT_GAULOS") or iUnitType == gc.getInfoTypeForString("UNIT_CARVEL_TRADE"):
+            #   if iUnitType != gc.getInfoTypeForString("UNIT_GREAT_SPY"):
+            #     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_action_merchant.dds", 0, WidgetTypes.WIDGET_GENERAL, 732, 732, False )
+            #     screen.show( "BottomButtonContainer" )
+            #     iCount = iCount + 1
 
             # ----------
             # Inquisitor
@@ -1992,7 +2055,7 @@ class CvMainInterface:
                           return
 
             # --------------------
-            # Elefant
+            # Elefant / Kamel
             if iUnitType == gc.getInfoTypeForString("UNIT_ELEFANT"):
               # in city
               if bCity:
@@ -2023,32 +2086,63 @@ class CvMainInterface:
                           return
               # not in city
               else:
-                          screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_elestall_grau.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, -1, False )
+                          screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_elestall_grau.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, 3, False )
+                          screen.show( "BottomButtonContainer" )
+                          iCount = iCount + 1
+                          return
+            # --------------------
+            elif iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
+              # in city
+              if bCity:
+                if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
+                  pCityPlayer = gc.getPlayer( pCity.getOwner() )
+                  if pCity.getOwner() == pUnit.getOwner() or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(pUnit.getOwner()).getTeam()):
+                    # Check plots (Klima / climate)
+                    bOK = false
+                    for i in range(3):
+                      for j in range(3):
+                        loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
+                        if loopPlot != None and not loopPlot.isNone():
+                          if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"):
+                            bOK = true
+                            break
+                      if bOK: break
+
+                    if bOK:
+                          screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Buildings/button_camel_stable.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, 4, False )
+                          screen.show( "BottomButtonContainer" )
+                          iCount = iCount + 1
+                          return
+
+                    else:
+                          screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_camel_stable_gray.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, 5, False )
+                          screen.show( "BottomButtonContainer" )
+                          iCount = iCount + 1
+                          return
+              # not in city
+              else:
+                          screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_camel_stable_gray.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, 6, False )
                           screen.show( "BottomButtonContainer" )
                           iCount = iCount + 1
                           return
 
             # ----------
-            # Cultist cannot spread cult due to civic (738:1)
-            # in city
+            # PAE - Cultist cannot spread cult due to civic (749:1) => Show INFO Button !
             if bCity:
-              # PAE - No Cults INFO BUTTON: First(!) units that spread cults
-              # Flunky-Patch: Initialize Cultists list after XML file reading.
               Cultists = []
               Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_1"))
               Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_2"))
               Cultists.append(gc.getInfoTypeForString("UNIT_EXECUTIVE_3"))
-              # PAE - No Cults INFO BUTTON end
-
               if iUnitType in Cultists:
                 if pUnitOwner.isCivic(gc.getInfoTypeForString("CIVIC_ANIMISM")):
-                  screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_cult_grey.dds", 0, WidgetTypes.WIDGET_GENERAL, 738, 1, False )
+                  screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_cult_grey.dds", 0, WidgetTypes.WIDGET_GENERAL, 749, 1, False )
                   screen.show( "BottomButtonContainer" )
                   iCount = iCount + 1
 
 # --------------------
 
 # Veteran -> Eliteunit (netMessage 705) - Belobigung
+# Auch in GameUtils fuer die KI aendern !
             if pUnit.canMove():
 
               # Kampferfahren (Streitwagen)
@@ -2058,48 +2152,112 @@ class CvMainInterface:
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
 
-              # Veteran
+              # Rome: Roman praetorians ->  Cohors Praetoria | Cohors Urbana | Equites LH
+              # Sollte ueber XML gehen. Auch wenn iCost -1
+              #if iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"):
+              #    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PRINCIPAT")):
+              #      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian2.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN2"), False )
+              #      screen.show( "BottomButtonContainer" )
+              #      iCount = iCount + 1
+              #    elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_FEUERWEHR")):
+              #      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_cohortes_urbanae.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"), False )
+              #      screen.show( "BottomButtonContainer" )
+              #      iCount = iCount + 1
+              #    elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
+              #      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_cohors_equitata.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"), False )
+              #      screen.show( "BottomButtonContainer" )
+              #      iCount = iCount + 1
+
+              # Veterans ++++++++++++++++++++++++++++
               if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
+
                # ROME
                if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME") \
                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-                # Reflex -> Legion
-                if iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_ROME") :
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
-                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_arquites_legionis.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ARCHER_LEGION"), False )
-                    screen.show( "BottomButtonContainer" )
-                    iCount = iCount + 1
-                # Principes or Hastati -> Triarii
-                elif iUnitType == gc.getInfoTypeForString("UNIT_PRINCIPES2") \
-                or iUnitType == gc.getInfoTypeForString("UNIT_HASTATI2") :
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
-                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_triarii2.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_TRIARII2"), False )
-                    screen.show( "BottomButtonContainer" )
-                    iCount = iCount + 1
-                # Triari, Legion or Legion 2 -> Praetorians or Cohorte praetoriae
-                elif iUnitType == gc.getInfoTypeForString("UNIT_TRIARII2") \
-                or iUnitType == gc.getInfoTypeForString("UNIT_LEGION") \
-                or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") :
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BERUFSSOLDATEN")):
-                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN"), False )
-                    screen.show( "BottomButtonContainer" )
-                    iCount = iCount + 1
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
-                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian2.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN2"), False )
-                    screen.show( "BottomButtonContainer" )
-                    iCount = iCount + 1
-                # Elite Praetorians or Cohorte praetoriae -> Praetorian Garde
-                elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2"):
-                  if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")) and pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
-                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian3.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN3"), False )
-                    screen.show( "BottomButtonContainer" )
-                    iCount = iCount + 1
-                # Hasta Warrior -> Celeres
-                elif iUnitType == gc.getInfoTypeForString("UNIT_HASTATI1") :
-                  if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_celeres.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_CELERES"), False )
-                    screen.show( "BottomButtonContainer" )
-                    iCount = iCount + 1
+
+                 if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
+
+                   # Sagittarii (Reflex) -> Arquites
+                   if iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_ROME") :
+                     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_arquites_legionis.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ARCHER_LEGION"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Arquites -> Equites Sagittarii (Horse Archer)
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_LEGION") :
+                     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")):
+                       screen.appendMultiListButton( "BottomButtonContainer", ",Art/Interface/Buttons/Units/HorseArcher.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,1,11", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+
+                 elif pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
+
+                   # Elite Cohors Equitata -> Equites Singulares Augusti
+                   if iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2") :
+                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian2_horse.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+
+                 else:
+
+                   # Elite Limitanei -> Imperial Guard
+                   if iUnitType == gc.getInfoTypeForString("UNIT_ROME_LIMITANEI"):
+                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_limit_garde.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ROME_LIMITANEI_GARDE"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Elite Comitatenses -> Palatini
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2"):
+                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_palatini.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ROME_PALATINI"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Elite Cohorte praetoriae + Cohors urbana -> Praetorian Garde (max 3)
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"):
+                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
+                      if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_PRAETORIAN3")) < 3:
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian3.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN3"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Legion or Legion 2 -> Praetorians
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2"):
+                     # obsolete with Marching/Border Army
+                     if not pTeam.isHasTech(gc.getInfoTypeForString("TECH_GRENZHEER")):
+                      # Rang: Immunes
+                      if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_3")):
+                        screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN"), False )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+                   # Elite Palatini or Clibanari or Cataphracti -> Scholae
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_PALATINI") \
+                   or iUnitType == gc.getInfoTypeForString("UNIT_CLIBANARII_ROME") or iUnitType == gc.getInfoTypeForString("UNIT_CATAPHRACT_ROME"):
+                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")):
+                      if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ROME_SCHOLAE")) < 3:
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_scholae.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ROME_SCHOLAE"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Triari -> Praetorians
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_TRIARII2") and  pTeam.isHasTech(gc.getInfoTypeForString("TECH_BERUFSSOLDATEN")):
+                     # obsolete with Marching/Border Army
+                     if not pTeam.isHasTech(gc.getInfoTypeForString("TECH_GRENZHEER")):
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_praetorian.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PRAETORIAN"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Principes or Hastati -> Triarii
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_PRINCIPES2") \
+                   or iUnitType == gc.getInfoTypeForString("UNIT_HASTATI2") :
+                     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
+                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_triarii2.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_TRIARII2"), False )
+                       screen.show( "BottomButtonContainer" )
+                       iCount = iCount + 1
+                   # Hasta Warrior -> Celeres
+                   elif iUnitType == gc.getInfoTypeForString("UNIT_HASTATI1") :
+                     #if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
+                     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_celeres.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_CELERES"), False )
+                     screen.show( "BottomButtonContainer" )
+                     iCount = iCount + 1
+
 
                # GREEKS
                elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
@@ -2125,11 +2283,24 @@ class CvMainInterface:
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
 
+               # KARTHAGO
+               elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"):
+                 if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_CARTHAGE") :
+                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_sacred_carthage.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"), False )
+                      screen.show( "BottomButtonContainer" )
+                      iCount = iCount + 1
+
                # PERSIA
                elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
                 # Unsterblich -> Garde
                 if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH") :
                     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_immortalguard.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"), False )
+                    screen.show( "BottomButtonContainer" )
+                    iCount = iCount + 1
+                # Unsterblichen Garde || Pezoi -> Apfeltraeger
+                if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH_2") or iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_PERSIA") :
+                   if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) < 3:
+                    screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_persian_pezoi.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_APFELTRAEGER"), False )
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
 
@@ -2144,11 +2315,13 @@ class CvMainInterface:
                 elif iUnitType == gc.getInfoTypeForString("UNIT_HYPASPIST") \
                 or iUnitType == gc.getInfoTypeForString("UNIT_SARISSA_MACEDON") :
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
+                   if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) < 3:
                     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/macedon_garde.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"), False )
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
                 #  Argyraspidai -> Argyraspidai 2 (Silberschild)
                 elif iUnitType == gc.getInfoTypeForString("UNIT_ARGYRASPIDAI") :
+                  if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARGYRASPIDAI2")) < 3:
                     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/macedon_argy.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"), False )
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
@@ -2157,6 +2330,7 @@ class CvMainInterface:
                elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
                 #  Gaufuerst -> Pharaonengarde
                 if iUnitType == gc.getInfoTypeForString("UNIT_GAUFUERST") :
+                  if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) < 3:
                     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_pharaonengarde.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_PHARAONENGARDE"), False )
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
@@ -2175,12 +2349,6 @@ class CvMainInterface:
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
 
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MILIT_STRAT")):
-                    if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL"):
-                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_israel_maccaber.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_MACCABEE"), False )
-                      screen.show( "BottomButtonContainer" )
-                      iCount = iCount + 1
-
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
                     if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT") \
                     or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GALLIEN") \
@@ -2191,6 +2359,10 @@ class CvMainInterface:
                       iCount = iCount + 1
                     elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_DAKER"):
                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_dacianchief.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_FUERST_DAKER"), False )
+                      screen.show( "BottomButtonContainer" )
+                      iCount = iCount + 1
+                    elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL"):
+                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_israel_maccaber.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_MACCABEE"), False )
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
 
@@ -2217,12 +2389,18 @@ class CvMainInterface:
                elif iUnitType == gc.getInfoTypeForString("UNIT_SPEARMAN"):
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_ARMOR")):
 
-                    if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") :
-                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_sacred_carthage.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"), False )
+                    # INDIA
+                    if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA"):
+                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_inder_radscha.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_RADSCHA"), False )
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
-                    elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
-                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_inder_radscha.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_RADSCHA"), False )
+                    # GREEKS
+                    elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
+                    or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
+                    or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") \
+                    or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
+                      # Spearman -> Hoplit
+                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_hoplit_peze.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_HOPLIT"), False )
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
 
@@ -2234,14 +2412,18 @@ class CvMainInterface:
                       iCount = iCount + 1
 
                # Swordsman
-               elif iUnitType == gc.getInfoTypeForString("UNIT_SWORDSMAN") :
+               elif iUnitType == gc.getInfoTypeForString("UNIT_SWORDSMAN"):
 
-                  if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
+                  if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA"):
                       screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_nayar.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"), False )
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
 
-
+               # Steppenreiter -> Geissel Gottes
+               elif iUnitType == gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"):
+                      screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Units/button_heavy_horseman.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN_HUN"), False )
+                      screen.show( "BottomButtonContainer" )
+                      iCount = iCount + 1
 
 
                # Allgemein Veteran -> Reservist
@@ -2252,7 +2434,17 @@ class CvMainInterface:
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
 
-            # end Veteran -> Elite / Reservist -----------------------
+              # if Veteran -> Elite / Reservist -----------------------
+
+              # Unit Rang Promos
+              if CvUtil.getScriptData(pUnit, ["P", "t"]) == "RangPromoUp":
+                 if pUnitOwner.getGold() < 100: bCapital = False
+                 screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Rang/button_rang_up.dds", 0, WidgetTypes.WIDGET_GENERAL, 751, pUnit.getOwner(), bCapital )
+                 screen.show( "BottomButtonContainer" )
+                 iCount = iCount + 1
+
+
+            # if can move
 
 
 # --------------------
@@ -2267,8 +2459,7 @@ class CvMainInterface:
 
                 if iUnitType == gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"): bButtonDown = True
                 elif iUnitType == gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"): bButtonDown = True
-                elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"): bButtonDown = True
-                elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2_RIDER"): bButtonDown = True
+                #elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"): bButtonDown = True
                 elif iUnitType == gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"): bButtonDown = True
                 elif iUnitType == gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"): bButtonDown = True
 
@@ -2285,21 +2476,16 @@ class CvMainInterface:
                 lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"))
 
                 if iUnitType in lUnitAuxiliar \
-                or iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER") \
-                or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
-                or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") \
+                or iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI") \
                 or iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE") :
+                  #or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
+                  #or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") \
 
 
                   if iUnitType in lUnitAuxiliar and pTeam.isHasTech(gc.getInfoTypeForString("TECH_HUFEISEN")): bSearchPlot = True
-                  elif iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"):
-                    TechHorse3 = gc.getInfoTypeForString("TECH_CAVALRY")
+                  elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"):
+                    TechHorse3 = gc.getInfoTypeForString("TECH_HUFEISEN")
                     if pTeam.isHasTech(TechHorse3): bSearchPlot = True
-                  elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2"):
-                    TechHorse3 = gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")
-                    if iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"): TechHorse4 = gc.getInfoTypeForString("TECH_BERUFSSOLDATEN")
-                    else: TechHorse4 = gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")
-                    if pTeam.isHasTech(TechHorse3) and pTeam.isHasTech(TechHorse4): bSearchPlot = True
                   elif iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"):
                     TechHorse3 = gc.getInfoTypeForString("TECH_HUFEISEN")
                     TechHorse4 = gc.getInfoTypeForString("TECH_KETTENPANZER")
@@ -2328,6 +2514,71 @@ class CvMainInterface:
             # Ende Horse <-> Unit
 
 # ------------------
+# BEGIN Merchant trade/cultivation/collect Bonus (738-741) (Boggy)
+            if pUnit.canMove(): # and not pUnit.hasMoved():
+                pPlot = g_pSelectedUnit.plot()
+                if iUnitType in PAE_Trade.lCultivationUnits:
+                  if pPlot.getOwner() == pUnit.getOwner():
+                    if pPlot.isCity(): iIsCity = 1
+                    else: iIsCity = 0
+
+                    sScriptDataString = CvUtil.getScriptData(pUnit, ["b"])
+
+                    # Collect bonus from plot or city
+                    ePlotBonus = pPlot.getBonusType(pUnit.getOwner()) # Invisible bonuses can NOT be collected
+                    if ePlotBonus in PAE_Trade.lCultivatable or iIsCity:
+                      if sScriptDataString == "" or iIsCity:
+                        # remove from plot => iData2 = 0. 1 = charge all goods without removing
+                        if ePlotBonus != -1:
+                          screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True )
+                          screen.show( "BottomButtonContainer" )
+                          iCount = iCount + 1
+
+                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_BUY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 1, True )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+
+                      else:
+                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT_IMPOSSIBLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 739, False )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+
+                    # Cultivate bonus onto plot
+                    if sScriptDataString != "":
+                      lCultivatableBonuses = PAE_Trade.getCultivatableBonusesForUnit(pUnit, iIsCity)
+                      if len(lCultivatableBonuses) > 0:
+                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_CULTIVATE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 738, 738, iIsCity )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+
+                # Buy / sell goods in cities (domestic or foreign)
+                if iUnitType in PAE_Trade.lTradeUnits:
+                    if pPlot.isCity():
+                        eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
+                        # Sell
+                        if eBonus != -1:
+                            iPrice = PAE_Trade.calculateBonusSellingPrice(pUnit, pPlot.getPlotCity())
+                            screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_SELL").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 741, iPrice, False )
+                            screen.show( "BottomButtonContainer" )
+                            iCount = iCount + 1
+                        # Buy
+                        else:
+                             screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_BUY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 740, 740, False )
+                             screen.show( "BottomButtonContainer" )
+                             iCount = iCount + 1
+                        # Automated Trade Route
+                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_AUTO_START").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 744, 744, False )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+            # Cancel automated trade route
+            if iUnitType in PAE_Trade.lTradeUnits:
+                bTradeRouteActive = int(CvUtil.getScriptData(pUnit, ["automActive"], 0))
+                if bTradeRouteActive:
+                    screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_AUTO_STOP").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 748, 748, False )
+                    screen.show( "BottomButtonContainer" )
+                    iCount = iCount + 1
+
+# END Merchant -----
 
 # --------- Einheiten in einer Stadt
             if gc.getMap().plot( g_pSelectedUnit.getX(), g_pSelectedUnit.getY() ).isCity():
@@ -2358,8 +2609,9 @@ class CvMainInterface:
                           bTribut = False
                           break
 
-                  # Provinzstatthalter / Tribut
+                  # Provinzstatthalter / Tribut - Patch 4: und nur moeglich, wenn Stadtzufriedenheit <= :)
                   if bTribut and pCity.isHasBuilding(iBuilding1):
+                   if not pTeam.isHasTech(gc.getInfoTypeForString("TECH_POLYARCHY")) and pCity.happyLevel() - pCity.unhappyLevel(0) <= 0:
                     screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_statthalter_main.dds", 0, WidgetTypes.WIDGET_GENERAL, 737, 737, False )
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
@@ -2371,7 +2623,7 @@ class CvMainInterface:
                     iCount = iCount + 1
                 # --------------------------------------------------------
 
-                # Sklaven
+                # Sklaven in der Stadt
                 if iUnitType == gc.getInfoTypeForString("UNIT_SLAVE"):
 
                   # Sklaven zu Feld oder Bergwerksklaven
@@ -2554,8 +2806,6 @@ class CvMainInterface:
                       iUnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN"))
                       iUnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
                       iUnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
-                      iUnitArray.append(gc.getInfoTypeForString("UNIT_CARTHAGE_NUMIDIAN_CAVALRY"))
-                      iUnitArray.append(gc.getInfoTypeForString("UNIT_GALLIER_GILDE"))
                       iUnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
                       iUnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
                       iUnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
@@ -2578,7 +2828,7 @@ class CvMainInterface:
                           screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_EDLE_RUESTUNG2").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 699, -1, False )
                         screen.show( "BottomButtonContainer" )
                         iCount = iCount + 1
-                # Ende Kauf einer Edlen Ruestung
+                # Ende Kauf einer Edlen Rüstung
 
                 # Terrain Promos - Ausbildner / Trainer (in City) ID 719
                 if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN5")):
@@ -2639,7 +2889,7 @@ class CvMainInterface:
 
                 # Auswanderer / Emigrant -> in der eigenen Stadt
                 if iUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT"):
-                  # Stadt aufloesen / disband city
+                  # Stadt auflösen / disband city
                   if pUnitOwner.getNumCities() > 1 and pCity.getPopulation() < 3 and not pCity.isCapital():
                     screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_DISBAND_CITY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 673, 673, True )
                   else:
@@ -2650,6 +2900,12 @@ class CvMainInterface:
                   screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_EMIGRANT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 672, 672, False )
                   screen.show( "BottomButtonContainer" )
                   iCount = iCount + 1
+                # Siedler -> in der eigenen Stadt
+                elif iUnitType == gc.getInfoTypeForString("UNIT_SETTLER"):
+                  # Stadt auflösen / disband city
+                  if pUnitOwner.getNumCities() > 1 and pCity.getPopulation() < 3 and not pCity.isCapital():
+                    screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_DISBAND_CITY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 673, 673, True )
+                    iCount = iCount + 1
 
                 # Goldkarren / Treasure / Beutegold -> in die Hauptstadt
                 if iUnitType == gc.getInfoTypeForString("UNIT_GOLDKARREN"):
@@ -2676,9 +2932,9 @@ class CvMainInterface:
                    screen.show( "BottomButtonContainer" )
                    iCount = iCount + 1
                    # Bonus verbreiten
-                   screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_bonusverbreitung.dds", 0, WidgetTypes.WIDGET_GENERAL, 726, 726, False )
-                   screen.show( "BottomButtonContainer" )
-                   iCount = iCount + 1
+                   #screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_bonusverbreitung.dds", 0, WidgetTypes.WIDGET_GENERAL, 726, 726, False )
+                   #screen.show( "BottomButtonContainer" )
+                   #iCount = iCount + 1
 
                 # Karten zeichnen (innerhalb eigene Stadt)
                 #if pCity.isCapital():
@@ -2704,7 +2960,7 @@ class CvMainInterface:
               # ---- ENDE if Einheit -> in der eigenen Stadt
 
               # ++++++++++++++++++++++++++++++++
-              # In eigenen und fremden Staedten:
+              # In eigenen und fremden Städten:
               # ++++++++++++++++++++++++++++++++
 
               # Verkauf von Einheiten
@@ -2717,6 +2973,17 @@ class CvMainInterface:
                     screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_SELL_UNITS").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 695, iCost, False )
                     screen.show( "BottomButtonContainer" )
                     iCount = iCount + 1
+
+                # Einheit segnen / bless unit (PAE V Patch 4)
+                iPromo = gc.getInfoTypeForString("PROMOTION_BLESSED")
+                if not pUnit.isHasPromotion(iPromo):
+                  iBuilding1 = gc.getInfoTypeForString("BUILDING_CHRISTIAN_CATHEDRAL")
+                  iBuilding2 = gc.getInfoTypeForString("BUILDING_HAGIA_SOPHIA")
+                  if pCity.isHasBuilding(iBuilding1) or pCity.isHasBuilding(iBuilding2):
+                    screen.appendMultiListButton( "BottomButtonContainer","Art/Interface/Buttons/Promotions/button_promo_blessed.dds", 0, WidgetTypes.WIDGET_GENERAL, 752, 0, False )
+                    screen.show( "BottomButtonContainer" )
+                    iCount = iCount + 1
+
 
               # Kauf von Wellen-Oil -----------
               if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KUESTE")):
@@ -2735,6 +3002,8 @@ class CvMainInterface:
                     screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_PROMO_OIL2").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 701, -1, False )
                   screen.show( "BottomButtonContainer" )
                   iCount = iCount + 1
+
+
 
 
             # ---- ENDE if Einheit in einer Stadt --------
@@ -2771,7 +3040,7 @@ class CvMainInterface:
                     iCount = iCount + 1
 
               # Piraten-Feature
-              # Nur fuer bestimmte Nationen (ab PAE V Patch 3)
+              # Nur für bestimmte Nationen (ab PAE V Patch 3)
               if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
                 if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
 
@@ -2816,7 +3085,8 @@ class CvMainInterface:
                           iCount = iCount + 1
 
               # Limes
-              if iUnitType == gc.getInfoTypeForString("UNIT_ROMAN_WORKER") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") or iUnitType == gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"):
+              if iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") \
+              or iUnitType == gc.getInfoTypeForString("UNIT_AUXILIAR_ROME") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_LIMITANEI"):
                 if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_LIMES")):
                         screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Buildings/button_building_limes.dds", 0, WidgetTypes.WIDGET_GENERAL, 733, -1, False )
                         screen.show( "BottomButtonContainer" )
@@ -2835,6 +3105,21 @@ class CvMainInterface:
                         screen.show( "BottomButtonContainer" )
                         iCount = iCount + 1
 
+              # Sklaven ausserhalb der Stadt
+              if iUnitType == gc.getInfoTypeForString("UNIT_SLAVE"):
+                pPlot = pUnit.plot()
+                if pPlot.getOwner() == pUnit.getOwner():
+                  lLatifundien = []
+                  lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"))
+                  lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"))
+                  lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM3"))
+                  lLatifundien.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM4"))
+                  if pPlot.getImprovementType() in lLatifundien:
+                    if pPlot.getUpgradeTimeLeft (pPlot.getImprovementType(), pUnit.getOwner()) > 1:
+                        screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_action_slave2latifundium.dds", 0, WidgetTypes.WIDGET_GENERAL, 753, -1, False )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+
             # Ende ausserhalb der Stadt --------
 
 
@@ -2850,8 +3135,7 @@ class CvMainInterface:
                   bFormationUndo = False
 
               # PAE V Patch 2: disabled for fights on his own units
-              if pUnit.getEthnic() != gc.getPlayer(gc.getBARBARIAN_PLAYER()).getCivilizationType():
-              #if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
+              if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
 
                 lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
                 lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
@@ -2948,7 +3232,7 @@ class CvMainInterface:
                     UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
                     UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"))
                     UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS"))
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_BAKTRIEN"))
+                    UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"))
                     UnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
                     if pUnit.getUnitType() in UnitArray:
                       CivArray = []
@@ -2995,14 +3279,19 @@ class CvMainInterface:
                       UnitArray = []
                       UnitArray.append(gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_EQUITES"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_TRIBUN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT_PERSIA"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII_ROME"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIBERIAN_CAVALRY"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2_RIDER"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"))
+
                       if pUnit.getUnitType() in UnitArray:
                         # Keil
                         iFormation = gc.getInfoTypeForString("PROMOTION_FORM_KEIL")
@@ -3052,7 +3341,6 @@ class CvMainInterface:
                       UnitArray.append(gc.getInfoTypeForString("UNIT_AXEMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"))
                       UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_GALLIER_GILDE"))
 
                       if pUnit.getUnitType() not in UnitArray:
                         iFormation = gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL")
@@ -3070,7 +3358,17 @@ class CvMainInterface:
                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
 
                       # Roman Legion (Kohorte / ersetzt alles)
-                      if iUnitType == gc.getInfoTypeForString("UNIT_LEGION") or iUnitType == gc.getInfoTypeForString("UNIT_LEGION2") or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2"):
+                      UnitArray = []
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
+                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
+
+                      if pUnit.getUnitType() in UnitArray:
                         # Kohorte
                         iFormation = gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE")
                         if pUnit.isHasPromotion(iFormation):
@@ -3226,8 +3524,10 @@ class CvMainInterface:
                         UnitArray = []
                         UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
                         UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_GILDE"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
+                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
                         UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
                         UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
                         if pUnit.getUnitType() in UnitArray:
@@ -3310,6 +3610,8 @@ class CvMainInterface:
 
             # Legend can become a Great General
             if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT6")):
+               lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
+               if pUnit.getUnitCombatType() not in lArcher:
                   if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_LEADER")):
                     screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEGEND_HERO_TO_GENERAL").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 720, 720, False )
                     screen.show( "BottomButtonContainer" )
@@ -3322,36 +3624,16 @@ class CvMainInterface:
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_CURRENCY")):
                     # +x Gold pro Promotion
                     FormationArray = []
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KEIL"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_GASSE"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"))
                     FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYAL"))
+                    FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
                     FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
                     iGold = 0
                     iRange = gc.getNumPromotionInfos()
                     for j in range(iRange):
+                      if "_FORM_" in gc.getPromotionInfo(j).getType(): continue
+                      if "_RANG_" in gc.getPromotionInfo(j).getType(): continue
+                      if "_MORAL_" in gc.getPromotionInfo(j).getType(): continue
+                      if "_TRAIT_" in gc.getPromotionInfo(j).getType(): continue
                       if pUnit.isHasPromotion(j) and j not in FormationArray: iGold += 20
                     if iGold == 0: iGold = 20
                     if gc.getPlayer(pUnit.getOwner()).hasBonus(gc.getInfoTypeForString("BONUS_SALT")): iGold -= iGold / 4
@@ -3893,9 +4175,9 @@ class CvMainInterface:
           iGreatPersonNum = 0
           iGreatPersonType = -1
           for i in range( gc.getNumSpecialistInfos() ):
-            if iGreatPersonNum < pCity.getMaxSpecialistCount(i):
-               iGreatPersonNum = pCity.getMaxSpecialistCount(i)
-               iGreatPersonType = i
+            if iGreatPersonNum < pCity.getSpecialistCount(i):
+              iGreatPersonNum  = pCity.getSpecialistCount(i)
+              iGreatPersonType = i
 
           # Bei Chancengleichheit allg
           bGleicheChance = False
@@ -4735,7 +5017,7 @@ class CvMainInterface:
         # Religion und Corporation END
 
 
-        # Allgemeine Variablen fuer Revolten und Rebellionen
+        # Allgemeine Variablen für Revolten und Rebellionen
         pCity = pHeadSelectedCity
         pPlot = gc.getMap().plot(pCity.getX(), pCity.getY())
         iPlayer = pHeadSelectedCity.getOwner()
@@ -4769,9 +5051,10 @@ class CvMainInterface:
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_ALTE_HEIMAT", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), (iChance) ))
 
           if szBuffer == "":
+            iRel = pPlayer.getStateReligion()
             if pPlayer.getAnarchyTurns() > 0:
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_ANARCHY", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
-            elif pPlayer.getStateReligion() != -1 and not pCity.isHasReligion(pPlayer.getStateReligion()):
+            elif iRel != -1 and not pCity.isHasReligion(iRel):
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_RELIGION", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
             elif pCity.unhappyLevel(0) > pCity.happyLevel():
               szBuffer = localText.getText("TXT_KEY_MAIN_REVOLT_UNHAPPY", (CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR), () ))
@@ -4936,7 +5219,7 @@ class CvMainInterface:
 #
 #          if gc.getPlayer(iPlayer).getCapitalCity().getOccupationTimer() > 0: iChanceOfRebellion += pCity.getOccupationTimer() * 20
 #
-#          if pPlayer.getStateReligion() != -1 and not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
+#          if not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
 #
 #          if pPlayer.isCivic(1)  or   pPlayer.isCivic(2): iChanceOfRebellion += 10
 #          if pPlayer.isCivic(18): iChanceOfRebellion += 10
@@ -4951,7 +5234,7 @@ class CvMainInterface:
 #
 #          if pPlayer.getCommercePercent(0) > 50: iChanceOfRebellion += pPlayer.getCommercePercent(0) - 50
 #
-#          # Verstaerkung, weil nur jede 4te Runde check
+#          # Verstärkung, weil nur jede 4te Runde check
 #          iChanceOfRebellion = iChanceOfRebellion * 3
 #
 #          fPercent = iChanceOfRebellion / 10.0
@@ -5005,7 +5288,7 @@ class CvMainInterface:
               if pPlot.getUnit(i).isHasPromotion(0): iChanceUnits += 3
               else: iChanceUnits += 1
 
-          # Verhaeltnis 1:4
+          # Verhältnis 1:4
           # gemeinsamen Nenner herausfinden
           if iUnitAnzahl == iUnitCity:
            iV1 = iV2 = 1
@@ -5190,15 +5473,29 @@ class CvMainInterface:
     screen.setStyle( "SelectedUnitPanel", "Panel_Game_HudStat_Style" )
     screen.hide( "SelectedUnitPanel" )
 
-    screen.addTableControlGFC( "SelectedUnitText", 3, 10, yResolution - 109, 183, 102, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
+    screen.addTableControlGFC( "SelectedUnitText", 3, 6, yResolution - 109, 188, 102, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
     screen.setStyle( "SelectedUnitText", "Table_EmptyScroll_Style" )
     screen.hide( "SelectedUnitText" )
     screen.hide( "SelectedUnitLabel" )
+    # PAE Unit Detail Promo Icons:
     # PAE: Unit Combat Type
-    screen.hide( "SelectedUnitCombatType" )    
+    screen.hide( "SelectedUnitCombatType" )
     # PAE Unit Ethnic und Religion
     screen.hide( "SelectedUnitEthnic" )
-    screen.hide( "SelectedUnitReligion" )  
+    screen.hide( "SelectedUnitReligion" )
+    # PAE Ranking etc
+    screen.hide( "SelectedUnitLoyalty" )
+    screen.hide( "SelectedBadMoral" )
+    screen.hide( "SelectedUnitCombatRank" )
+    screen.hide( "SelectedUnitRang" )
+    screen.hide( "SelectedUnitTrait" )
+    screen.hide( "SelectedUnitFormation" )
+    screen.hide( "SelectedUnitHero" )
+    # PAE Trade Infos
+    screen.addTableControlGFC( "SelectedTradeText", 1, 6, yResolution - 40, 300, 32, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
+    screen.setStyle( "SelectedTradeText", "Table_EmptyScroll_Style" )
+    screen.hide( "SelectedTradeText" )
+
 
     screen.addTableControlGFC( "SelectedCityText", 3, 10, yResolution - 139, 183, 128, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
     screen.setStyle( "SelectedCityText", "Table_EmptyScroll_Style" )
@@ -5269,7 +5566,7 @@ class CvMainInterface:
 
     elif (pHeadSelectedUnit and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW):
 
-      screen.setTableColumnHeader( "SelectedUnitText", 0, u"", 100 )
+      screen.setTableColumnHeader( "SelectedUnitText", 0, u"", 110 )
       screen.setTableColumnHeader( "SelectedUnitText", 1, u"", 75 )
       screen.setTableColumnHeader( "SelectedUnitText", 2, u"", 10 )
       screen.setTableColumnRightJustify( "SelectedUnitText", 1 )
@@ -5300,7 +5597,8 @@ class CvMainInterface:
 
                           UnitBarType = "HEALER"
                           # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-                          if pUnit.getScriptData() != "": iValue1 += int(pUnit.getScriptData())
+                          sSup = CvUtil.getScriptData(pUnit, ["s", "t"])
+                          if sSup != "": iValue1 += int(sSup)
 
                           if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_WAGON"): iValue3 = 200
                           else: iValue3 = 100
@@ -5311,12 +5609,16 @@ class CvMainInterface:
 
                           iValue2 += iValue3
 
-                        elif UnitBarType != "HEALER" and pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
+                        elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
 
                           UnitBarType = "EMIGRANT"
-                          if pUnit.getScriptData() != "": iValue1 = int(pUnit.getScriptData())
+                          sPlayer = CvUtil.getScriptData(pUnit, ["p", "t"])
+                          if sPlayer != "": iValue1 = int(sPlayer)
                           else: iValue1 = pUnit.getOwner()
 
+                        elif pUnit.getUnitType() in PAE_Trade.lTradeUnits:
+                            UnitBarType = "TRADE"
+                            iValue1 = CvUtil.getScriptData(pUnit, ["b"], -1)
 
         if CyInterface().getLengthSelectionList() > 19 and UnitBarType != "HEALER": UnitBarType = "NO_HEALER"
         # ------
@@ -5382,9 +5684,11 @@ class CvMainInterface:
         # PAE change: x  / Original: y - 137
         screen.setText( "SelectedUnitLabel", "Background", szBuffer, CvUtil.FONT_LEFT_JUSTIFY, x, yResolution - 138, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_UNIT_NAME, -1, -1 )
 
-        if ((pSelectedGroup == 0) or (pSelectedGroup.getLengthMissionQueue() <= 1)):
+        if (pSelectedGroup == 0 or pSelectedGroup.getLengthMissionQueue() <= 1):
           screen.show( "SelectedUnitText" )
           screen.show( "SelectedUnitPanel" )
+
+          iNumPromos = gc.getNumPromotionInfos()
 
           szBuffer = u""
 
@@ -5433,7 +5737,6 @@ class CvMainInterface:
           else:
             szRightBuffer = u"%d/%d%c" %(iCurrMoves, pHeadSelectedUnit.baseMoves(), CyGame().getSymbolID(FontSymbols.MOVES_CHAR) )
 
-          szBuffer = szLeftBuffer + "  " + szRightBuffer
           screen.appendTableRow( "SelectedUnitText" )
           screen.setTableText( "SelectedUnitText", 0, iRow, szLeftBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
           screen.setTableText( "SelectedUnitText", 1, iRow, szRightBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY )
@@ -5446,7 +5749,6 @@ class CvMainInterface:
             szLeftBuffer = localText.getText("INTERFACE_PANE_LEVEL", ())
             szRightBuffer = u"%d" %(pHeadSelectedUnit.getLevel())
 
-            szBuffer = szLeftBuffer + "  " + szRightBuffer
             screen.appendTableRow( "SelectedUnitText" )
             screen.setTableText( "SelectedUnitText", 0, iRow, szLeftBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
             screen.setTableText( "SelectedUnitText", 1, iRow, szRightBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY )
@@ -5455,9 +5757,10 @@ class CvMainInterface:
             iRow += 1
 
           if ((pHeadSelectedUnit.getExperience() > 0) and not pHeadSelectedUnit.isFighting()):
+
             szLeftBuffer = localText.getText("INTERFACE_PANE_EXPERIENCE", ())
             szRightBuffer = u"(%d/%d)" %(pHeadSelectedUnit.getExperience(), pHeadSelectedUnit.experienceNeeded())
-            szBuffer = szLeftBuffer + "  " + szRightBuffer
+
             screen.appendTableRow( "SelectedUnitText" )
             screen.setTableText( "SelectedUnitText", 0, iRow, szLeftBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
             screen.setTableText( "SelectedUnitText", 1, iRow, szRightBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY )
@@ -5465,20 +5768,145 @@ class CvMainInterface:
             screen.show( "SelectedUnitPanel" )
             iRow += 1
 
+          # PAE Unit Detail Promo Icons:
+
+          # ZEILE 1 (Staerke)
+
+          # PAE Combat Ranking
+          iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT1")
+          if pHeadSelectedUnit.isHasPromotion(iPromo):
+             if pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT6")):   iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT6")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT5")): iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT5")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")): iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT4")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3")): iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT3")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2")): iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT2")
+             screen.setImageButton("SelectedUnitCombatRank", gc.getPromotionInfo(iPromo).getButton(), 60, yResolution - 110, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+
+          # PAE War Weariness
+          iPromo = gc.getInfoTypeForString("PROMOTION_MORAL_NEG1")
+          if pHeadSelectedUnit.isHasPromotion(iPromo):
+             if pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MORAL_NEG5")):   iPromo = gc.getInfoTypeForString("PROMOTION_MORAL_NEG5")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MORAL_NEG4")): iPromo = gc.getInfoTypeForString("PROMOTION_MORAL_NEG4")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MORAL_NEG3")): iPromo = gc.getInfoTypeForString("PROMOTION_MORAL_NEG3")
+             elif pHeadSelectedUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MORAL_NEG2")): iPromo = gc.getInfoTypeForString("PROMOTION_MORAL_NEG2")
+             screen.setImageButton("SelectedBadMoral", gc.getPromotionInfo(iPromo).getButton(), 84, yResolution - 110, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+
+          # PAE Loyalty
+          iPromo = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
+          iPromo2 = gc.getInfoTypeForString("PROMOTION_MERCENARY")
+          if pHeadSelectedUnit.isHasPromotion(iPromo):
+             screen.setImageButton("SelectedUnitLoyalty", gc.getPromotionInfo(iPromo).getButton(), 108, yResolution - 110, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+          elif pHeadSelectedUnit.isHasPromotion(iPromo2):
+             screen.setImageButton("SelectedUnitLoyalty", gc.getPromotionInfo(iPromo2).getButton(), 108, yResolution - 110, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo2, -1)
+
+
+          # ZEILE 2 (Fortbewegung)
+
+          # PAE Formation SelectedUnitFormation
+          iPromo = 0
+          for iPromo in range(iNumPromos):
+            if "_FORM_" in gc.getPromotionInfo(iPromo).getType() and pHeadSelectedUnit.isHasPromotion(iPromo):
+              screen.setImageButton("SelectedUnitFormation", gc.getPromotionInfo(iPromo).getButton(), 108, yResolution - 85, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+
+          # ZEILE 3 (Stufe)
+
+          # PAE Trait
+          iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")
+          if pHeadSelectedUnit.isHasPromotion(iPromo):
+             screen.setImageButton("SelectedUnitTrait", gc.getPromotionInfo(iPromo).getButton(), 60, yResolution - 60, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+          iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME")
+          if pHeadSelectedUnit.isHasPromotion(iPromo):
+             screen.setImageButton("SelectedUnitTrait", gc.getPromotionInfo(iPromo).getButton(), 60, yResolution - 60, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+
           # PAE Unit Ethnic und Religion
-          iUnitEthnic = pHeadSelectedUnit.getEthnic()
-          if iUnitEthnic > -1 and iUnitEthnic < gc.getNumCivilizationInfos():
-            screen.setImageButton("SelectedUnitEthnic", gc.getCivilizationInfo(iUnitEthnic).getButton(), 80, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, iUnitEthnic, -1)
-          
-          iUnitReligion = pHeadSelectedUnit.getReligion()
-          if iUnitReligion > -1 and iUnitReligion < gc.getNumReligionInfos():
-            screen.setImageButton("SelectedUnitReligion", gc.getReligionInfo(iUnitReligion).getButton(), 104, yResolution - 36, 24, 24, WidgetTypes.WIDGET_PEDIA_JUMP_TO_RELIGION, iUnitReligion, -1)
-          # ----  
+          #if 1 != -1:
+          #   iUnitEthnic = 4 # => pHeadSelectedUnit.getEthnic()
+          #   screen.setImageButton("SelectedUnitEthnic", gc.getCivilizationInfo(iUnitEthnic).getButton(), 84, yResolution - 60, 24, 24, WidgetTypes.WIDGET_GENERAL, 750, iUnitEthnic)
+          #if 1 != -1:
+          #   iUnitReligion = 4 # => pHeadSelectedUnit.getReligion()
+          #   screen.setImageButton("SelectedUnitReligion", gc.getReligionInfo(iUnitReligion).getButton(), 108, yResolution - 60, 24, 24, WidgetTypes.WIDGET_HELP_RELIGION, iUnitReligion, -1)
+
+          # ZEILE 4 (Erfahrung)
+
+          # PAE Held
+          iPromo = gc.getInfoTypeForString("PROMOTION_HERO")
+          if pHeadSelectedUnit.isHasPromotion(iPromo):
+             screen.setImageButton("SelectedUnitHero", gc.getPromotionInfo(iPromo).getButton(), 84, yResolution - 36, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+
+          # PAE Unit Rang Promos
+          iPromo = iNumPromos-1
+          for iPromo in xrange(iNumPromos-1,0,-1):
+            if "_TRAIT_" in gc.getPromotionInfo(iPromo).getType(): break
+            if "_RANG_" in gc.getPromotionInfo(iPromo).getType():
+              if pHeadSelectedUnit.isHasPromotion(iPromo):
+                screen.setImageButton("SelectedUnitRang", gc.getPromotionInfo(iPromo).getButton(), 108, yResolution - 36, 24, 24, WidgetTypes.WIDGET_HELP_PROMOTION, iPromo, -1)
+                break
+          # ----
+
+          # PAE Cultivation and Trade (Boggy)
+          szText = ""
+          if pHeadSelectedUnit.getUnitType() in PAE_Trade.lTradeUnits:
+              szText = localText.getText("TXT_UNIT_INFO_BAR_5", ()) + u" "
+              iValue1 = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
+              if iValue1 != -1:
+                  sBonusDesc = gc.getBonusInfo(iValue1).getDescription()
+                  iBonusChar = gc.getBonusInfo(iValue1).getChar()
+                  szText += localText.getText("TXT_UNIT_INFO_BAR_4", (iBonusChar,sBonusDesc))
+              else:
+                  szText += localText.getText("TXT_KEY_NO_BONUS_STORED", ())
+
+          elif pHeadSelectedUnit.getUnitType() in PAE_Trade.lCultivationUnits:
+              szText = localText.getText("TXT_UNIT_INFO_BAR_5", ())
+              iValue1 = CvUtil.getScriptData(pHeadSelectedUnit, ["b"])
+              if iValue1 != "":
+                  lBonusList = PAE_Trade.convertStringToIntList(iValue1)
+                  for eBonus in lBonusList:
+                      iBonusChar = gc.getBonusInfo(eBonus).getChar()
+                      szText += u" %c" %(iBonusChar)
+                      if len(lBonusList) < 3: szText += gc.getBonusInfo(eBonus).getDescription()
+              else:
+                  szText += u" " + localText.getText("TXT_KEY_NO_BONUS_STORED", ())
+          if szText != "":
+            screen.setTableColumnHeader( "SelectedTradeText", 0, u"", 300 )
+            screen.appendTableRow( "SelectedTradeText" )
+            screen.setTableText( "SelectedTradeText", 0, 0, szText, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+            screen.show( "SelectedTradeText" )
+          # ----
+
+          # PAE HEALER and EMIGRANT + Unit Info Bar
+          if pHeadSelectedUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
+            UnitBarType = "HEALER"
+            # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
+            sSup = CvUtil.getScriptData(pHeadSelectedUnit, ["s", "t"])
+            if sSup != "": iValue1 += int(sSup)
+            if pHeadSelectedUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_WAGON"):
+              if gc.getPlayer(pHeadSelectedUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): iValue2 += 300
+              else: iValue2 += 200
+            else:
+              if gc.getPlayer(pHeadSelectedUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): iValue2 += 150
+              else: iValue2 += 100
+
+            szLeftBuffer = localText.getText("TXT_UNIT_INFO_BAR_6", ())
+            szRightBuffer = u"(%d/%d)" %(iValue1, iValue2)
+
+            screen.appendTableRow( "SelectedUnitText" )
+            screen.setTableText( "SelectedUnitText", 0, iRow, szLeftBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+            screen.setTableText( "SelectedUnitText", 1, iRow, szRightBuffer, "", WidgetTypes.WIDGET_HELP_SELECTED, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY )
+            screen.show( "SelectedUnitText" )
+            screen.show( "SelectedUnitPanel" )
+            iRow += 1
+
+          elif pHeadSelectedUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
+            UnitBarType = "EMIGRANT"
+            txt = CvUtil.getScriptData(pHeadSelectedUnit, ["p", "t"])
+            # txt kann "NO_PLAYER" oder eine list mit "NO_PLAYER" enthalten
+            if txt != "" and isinstance(txt, int): iValue1 = txt
+            else: iValue1 = pHeadSelectedUnit.getOwner()
+          # ---
+
 
 ## Hidden Promotions: changed by Pie for PAE to avoid info type XY not found errors!
           lIgnorePromos = []
-          lIgnorePromos.append("PROMOTION_COMBAT7")
-          lIgnorePromos.append("PROMOTION_MORAL_NEG6")
           lIgnorePromos.append("PROMOTION_COVER4")
           lIgnorePromos.append("PROMOTION_PARADE_SKIRM4")
           lIgnorePromos.append("PROMOTION_PARADE_AXE4")
@@ -5503,16 +5931,25 @@ class CvMainInterface:
           lIgnorePromos.append("PROMOTION_DESERT6")
           lIgnorePromos.append("PROMOTION_FLUCHT4")
           lIgnorePromos.append("PROMOTION_FUROR4")
-          lIgnorePromos.append("PROMOTION_FORM_PHALANX3")
-          lIgnorePromos.append("PROMOTION_FORM_FORTRESS3")
 
           iPromotionCount = 0
           i = 0
-          for i in range(gc.getNumPromotionInfos()):
-            if (pHeadSelectedUnit.isHasPromotion(i)):
+          for i in range(iNumPromos):
+            sPromotion = gc.getPromotionInfo(i).getType()
+
+            # PAE seperate Rankings etc
+            if "_COMBAT" in sPromotion: continue
+            if "_RANG_"  in sPromotion: continue
+            if "_LOYAL"  in sPromotion: continue
+            if "_TRAIT_" in sPromotion: continue
+            if "_FORM_"  in sPromotion: continue
+            if "_MORAL_" in sPromotion: continue
+            if "_MERC"   in sPromotion: continue
+            if "_HERO"   in sPromotion: continue
+
+            if pHeadSelectedUnit.isHasPromotion(i):
 ## Hidden Promotions (Platyping) ##
-## adapted for PAE by Pie to avoid info type XY not found errors!
-              sPromotion = gc.getPromotionInfo(i).getType()
+## adapted for PAE by Pie to avoid info type XY not found warnings
               sLast = sPromotion[len(sPromotion)-1]
               if sLast.isdigit():
                  sPromotion = sPromotion[:len(sPromotion)-1] + str(int(sLast)+1)
@@ -5527,23 +5964,6 @@ class CvMainInterface:
 
               iPromotionCount = iPromotionCount + 1
 
-        # PAE Unit Info Bar
-        if pHeadSelectedUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-          UnitBarType = "HEALER"
-          # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-          if pHeadSelectedUnit.getScriptData() != "": iValue1 += int(pHeadSelectedUnit.getScriptData())
-          if pHeadSelectedUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_WAGON"):
-            if gc.getPlayer(pHeadSelectedUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): iValue2 += 300
-            else: iValue2 += 200
-          else:
-            if gc.getPlayer(pHeadSelectedUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): iValue2 += 150
-            else: iValue2 += 100
-        elif UnitBarType != "HEALER":
-          if pHeadSelectedUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
-            UnitBarType = "EMIGRANT"
-            if pHeadSelectedUnit.getScriptData() != "" and pHeadSelectedUnit.getScriptData() != "NO_PLAYER": iValue1 = int(pHeadSelectedUnit.getScriptData())
-            else: iValue1 = pHeadSelectedUnit.getOwner()
-        # ---
 
       if (pSelectedGroup):
 
@@ -5577,7 +5997,7 @@ class CvMainInterface:
     return 0
 
 # PAE - Unit Info Bar - start
-  def updateUnitInfoBar(self, screen,UnitBarType,iValue1,iValue2):
+  def updateUnitInfoBar(self, screen, UnitBarType, iValue1, iValue2):
       #if not CyInterface().isCityScreenUp():
           pPlayer = gc.getActivePlayer()
           xResolution = screen.getXResolution()
@@ -5633,9 +6053,10 @@ class CvMainInterface:
   # Will update the scores
   def updateScoreStrings( self ):
 
-                # Platy Scoreboard adapted and changed by Pie
+                # Platy Scoreboard adapted and changed by Pie and debugged by Ramk
                 screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
                 screen.hide("ScoreBackground")
+                screen.hide("ScoreBackground2")
                 screen.hide("ScoreRowPlus")
                 screen.hide("ScoreRowMinus")
                 screen.hide("ScoreWidthPlus")
@@ -5688,14 +6109,22 @@ class CvMainInterface:
                 nRows = len(lPlayers)
                 self.iScoreRows = max(0, min(self.iScoreRows, nRows - 1))
                 iHeight = min(yResolution - 300, max(1, (nRows - self.iScoreRows)) * 24 + 2)
-                screen.addTableControlGFC("ScoreBackground", 6, xResolution - self.iScoreWidth - 230, yResolution - iHeight - 180, self.iScoreWidth + 230, iHeight, False, False, 24, 24, TableStyles.TABLE_STYLE_EMPTY)
-                screen.enableSelect("ScoreBackground", False)
-                screen.setTableColumnHeader("ScoreBackground", 0, "", self.iScoreWidth)
-                screen.setTableColumnHeader("ScoreBackground", 1, "", 23)
-                screen.setTableColumnHeader("ScoreBackground", 2, "", 23)
-                screen.setTableColumnHeader("ScoreBackground", 3, "", 23)
-                screen.setTableColumnHeader("ScoreBackground", 4, "", 90)
-                screen.setTableColumnHeader("ScoreBackground", 5, "", 73)
+#                screen.addTableControlGFC("ScoreBackground", 6, xResolution - self.iScoreWidth - 230, yResolution - iHeight - 180, self.iScoreWidth + 230, iHeight, False, False, 24, 24, TableStyles.TABLE_STYLE_EMPTY)
+#                screen.enableSelect("ScoreBackground", False)
+#                screen.setTableColumnHeader("ScoreBackground", 0, "", self.iScoreWidth)
+#                screen.setTableColumnHeader("ScoreBackground", 1, "", 23)
+#                screen.setTableColumnHeader("ScoreBackground", 2, "", 23)
+#                screen.setTableColumnHeader("ScoreBackground", 3, "", 23)
+#                screen.setTableColumnHeader("ScoreBackground", 4, "", 90)
+#                screen.setTableColumnHeader("ScoreBackground", 5, "", 73)
+                screen.addTableControlGFC("ScoreBackground2", 6, xResolution - self.iScoreWidth - 230, yResolution - iHeight - 180, self.iScoreWidth + 230, iHeight, False, False, 24, 24, TableStyles.TABLE_STYLE_EMPTY)
+                screen.enableSelect("ScoreBackground2", False)
+                screen.setTableColumnHeader("ScoreBackground2", 0, "", self.iScoreWidth)
+                screen.setTableColumnHeader("ScoreBackground2", 1, "", 23)
+                screen.setTableColumnHeader("ScoreBackground2", 2, "", 23)
+                screen.setTableColumnHeader("ScoreBackground2", 3, "", 23)
+                screen.setTableColumnHeader("ScoreBackground2", 4, "", 90)
+                screen.setTableColumnHeader("ScoreBackground2", 5, "", 73)
                 if self.iScoreWidth > 0:
                   screen.setButtonGFC("ScoreWidthMinus", "", "", xResolution - 48, yResolution - 179, 17, 17, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_ARROW_RIGHT)
                 screen.setButtonGFC("ScoreRowMinus", "", "", xResolution - 70, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_CITY_MINUS )
@@ -5704,7 +6133,8 @@ class CvMainInterface:
                 if self.iScoreWidth < 200:
                   screen.setButtonGFC("ScoreWidthPlus", "", "", xResolution - 129, yResolution - 179, 17, 17, WidgetTypes.WIDGET_GENERAL, 1, -1, ButtonStyles.BUTTON_STYLE_ARROW_LEFT)
                 for iPlayer in lPlayers:
-                        iRow = screen.appendTableRow("ScoreBackground")
+#                        iRow = screen.appendTableRow("ScoreBackground")
+                        iRow = screen.appendTableRow("ScoreBackground2")
                         pPlayer = gc.getPlayer(iPlayer)
                         iTeam = pPlayer.getTeam()
                         pTeam = gc.getTeam(iTeam)
@@ -5732,13 +6162,13 @@ class CvMainInterface:
                           iAtt = pPlayer.AI_getAttitude(gc.getGame().getActivePlayer())
                           sButton = u"%c" %(CyGame().getSymbolID(FontSymbols.POWER_CHAR) + 4 + iAtt)
                         # None was: ArtFileMgr.getInterfaceArtInfo(sButton).getPath()
-                        screen.setTableText("ScoreBackground", 1, iRow, sButton, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
+                        screen.setTableText("ScoreBackground2", 1, iRow, sButton, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
                         #szTempBuffer = u"<color=%d,%d,%d,%d>%s</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getName())
-                        #screen.setTableText("ScoreBackground", 2, iRow, szTempBuffer, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
-                        screen.setTableText("ScoreBackground", 2, iRow, "", gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getButton(), WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
-                        screen.setTableText("ScoreBackground", 3, iRow, "", gc.getCivilizationInfo(pPlayer.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        #screen.setTableText("ScoreBackground2", 2, iRow, szTempBuffer, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
+                        screen.setTableText("ScoreBackground2", 2, iRow, "", gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getButton(), WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
+                        screen.setTableText("ScoreBackground2", 3, iRow, "", gc.getCivilizationInfo(pPlayer.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
                         szTempBuffer = u"<color=%d,%d,%d,%d>%s</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getCivilizationShortDescription(0))
-                        screen.setTableText("ScoreBackground", 4, iRow, szTempBuffer, None, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        screen.setTableText("ScoreBackground2", 4, iRow, szTempBuffer, None, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
 
                         if pTeam.isAVassal():
                                 sText1 += CyTranslator().getText("[ICON_SILVER_STAR]", ())
@@ -5771,7 +6201,7 @@ class CvMainInterface:
                         if not self.iScoreHidePoints:
                            sText1 += u"<color=%d,%d,%d,%d>%d</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), CyGame().getPlayerScore(iPlayer))
 
-                        screen.setTableText("ScoreBackground", 0, iRow, sText1, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
+                        screen.setTableText("ScoreBackground2", 0, iRow, sText1, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
 
                         bEspionageCanSeeResearch = false
                         for iMissionLoop in xrange(gc.getNumEspionageMissionInfos()):
@@ -5783,7 +6213,7 @@ class CvMainInterface:
                                 iTech = pPlayer.getCurrentResearch()
                                 if iTech > -1:
                                         sTech = u"<color=%d,%d,%d,%d>%d</color>" %( pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getResearchTurnsLeft(pPlayer.getCurrentResearch(), True))
-                                        screen.setTableText("ScoreBackground", 5, iRow, sTech, gc.getTechInfo(iTech).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_TECH, iTech, 1, CvUtil.FONT_LEFT_JUSTIFY)
+                                        screen.setTableText("ScoreBackground2", 5, iRow, sTech, gc.getTechInfo(iTech).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_TECH, iTech, 1, CvUtil.FONT_LEFT_JUSTIFY)
         # Platy Scoreboard - End
 
   # Will update the scores - TEAMS Ansicht
@@ -5794,7 +6224,8 @@ class CvMainInterface:
     xResolution = screen.getXResolution()
     yResolution = screen.getYResolution()
 
-    screen.hide( "ScoreBackground" )
+    screen.hide("ScoreBackground")
+    screen.hide("ScoreBackground2")
 
     for i in range( gc.getMAX_PLAYERS() ):
       szName = "ScoreText" + str(i)
@@ -5946,6 +6377,7 @@ class CvMainInterface:
 
   def calculatePromotionButtonPosition( self, screen, iPromotionCount ):
     yResolution = screen.getYResolution()
+    # x=266, y=144
     return (266 - (24 * (iPromotionCount / 6)), yResolution - 144 + (24 * (iPromotionCount % 6)))
 # BUG - Stack Promotions - end
 
@@ -6009,7 +6441,8 @@ class CvMainInterface:
         bHasOptions = True
       else:
         bHasOptions = False
-        screen.hide( "ScoreBackground" )
+        screen.hide("ScoreBackground")
+        screen.hide("ScoreBackground2")
 
       # set up toggle button
       screen.setState("GlobeToggle", True)
@@ -6230,51 +6663,66 @@ class CvMainInterface:
        self.setFieldofView_Text(screen)
 # -------------
 
+    # PAE TradeRouteAdvisor Screen
+    if inputClass.getButtonType() == WidgetTypes.WIDGET_ACTION and inputClass.getData1() == -1 and inputClass.getData2() == 1:
+       import CvTradeRouteAdvisor
+       CvTradeRouteAdvisor.CvTradeRouteAdvisor().interfaceScreen()
+       return 1
+    if inputClass.getButtonType() == WidgetTypes.WIDGET_ACTION and inputClass.getData1() == -1 and inputClass.getData2() == 2:
+       import CvTradeRouteAdvisor2
+       CvTradeRouteAdvisor2.CvTradeRouteAdvisor().interfaceScreen()
+       return 1
+
     # Initialisierung
     if g_pSelectedUnit:
       iOwner = g_pSelectedUnit.getOwner()
       iUnitID = g_pSelectedUnit.getID()
-      pPlot = gc.getMap().plot( g_pSelectedUnit.getX(), g_pSelectedUnit.getY() )
+      pPlot = g_pSelectedUnit.plot()
 
     if inputClass.getButtonType() == WidgetTypes.WIDGET_GENERAL:
+     if inputClass.getNotifyCode() == 11:
+      iData1  = inputClass.getData1()
+      iData2  = inputClass.getData2()
+      bOption = inputClass.getOption()
+
       # Inquisitor
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 665 and inputClass.getData2() == 665):
+      if iData1 == 665 and iData2 == 665:
         CyMessageControl().sendModNetMessage( 665, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Horse down
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 666 and inputClass.getData2() == 666):
+      elif iData1 == 666 and iData2 == 666:
         CyAudioGame().Play2DSound('AS2D_HORSE_DOWN')
         CyMessageControl().sendModNetMessage( 666, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Horse up
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 667 and inputClass.getData2() == 667):
+      elif iData1 == 667 and iData2 == 667:
         CyAudioGame().Play2DSound('AS2D_HORSE_UP')
         CyMessageControl().sendModNetMessage( 667, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave -> Bordell / Freudenhaus
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 668 and inputClass.getData2() == 668):
+      elif iData1 == 668 and iData2 == 668:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 668, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave -> Gladiator
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 669 and inputClass.getData2() == 669):
+      elif iData1 == 669 and iData2 == 669:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 669, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave -> Theater
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 670 and inputClass.getData2() == 670):
+      elif iData1 == 670 and iData2 == 670:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 670, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # ID 671 frei
 
       # Auswanderer / Emigrant
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 672 and inputClass.getData2() == 672):
+      elif iData1 == 672 and iData2 == 672:
         CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_SETTLER')
         CyMessageControl().sendModNetMessage( 672, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
-      # Stadt aufloesen / disband city
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 673 and inputClass.getData2() == 673 and inputClass.getOption()):
+      # Stadt auflösen / disband city
+      elif iData1 == 673 and iData2 == 673 and bOption:
         CyMessageControl().sendModNetMessage( 673, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # ID 674 vergeben durch Hunnen-PopUp (CvScreensInterface - popupHunsPayment)
@@ -6284,24 +6732,24 @@ class CvMainInterface:
       # ID 676 vergeben durch freie Unit durch Tech (Kulte)
 
       # Gold in die Schatzkammer bringen
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 677 and inputClass.getData2() == 677):
+      elif iData1 == 677 and iData2 == 677:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 677, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # ID 678 vergeben durch Provinz-PopUp
 
       # Sklave -> Schule
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 679 and inputClass.getData2() == 679):
+      elif iData1 == 679 and iData2 == 679:
         CyAudioGame().Play2DSound('AS2D_BUILD_UNIVERSITY')
         CyMessageControl().sendModNetMessage( 679, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave -> Manufaktur Nahrung
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 680 and inputClass.getData2() == 680):
+      elif iData1 == 680 and iData2 == 680:
         CyAudioGame().Play2DSound('AS2D_BUILD_GRANARY')
         CyMessageControl().sendModNetMessage( 680, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave -> Manufaktur Produktion
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 681 and inputClass.getData2() == 681):
+      elif iData1 == 681 and iData2 == 681:
         CyAudioGame().Play2DSound('AS2D_BUILD_FORGE')
         CyMessageControl().sendModNetMessage( 681, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
@@ -6317,50 +6765,50 @@ class CvMainInterface:
       # ID 691 PopUp Vassal12
 
       # Sklave -> Palast
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 692 and inputClass.getData2() == 692):
+      elif iData1 == 692 and iData2 == 692:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 692, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave -> Tempel
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 693 and inputClass.getData2() == 693):
+      elif iData1 == 693 and iData2 == 693:
         CyAudioGame().Play2DSound('AS2D_BUILD_TAOIST')
         CyMessageControl().sendModNetMessage( 693, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Sklave wird verkauft
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 694 and inputClass.getData2() == 694):
+      elif iData1 == 694 and iData2 == 694:
         CyAudioGame().Play2DSound('AS2D_COINS')
-        CyMessageControl().sendModNetMessage( 694, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
+        CyMessageControl().sendModNetMessage( 694, iOwner, iUnitID, 0, 0 )
 
       # Unit wird verkauft
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 695):
+      elif iData1 == 695:
         # Confirmation required
         CyMessageControl().sendModNetMessage( 695, 0, 0, iOwner, iUnitID )
 
       # Sklave -> Feuerwehr
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 696 and inputClass.getData2() == 696):
+      elif iData1 == 696 and iData2 == 696:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 696, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Trojanisches Pferd
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 697 and inputClass.getData2() == 697):
+      elif iData1 == 697 and iData2 == 697:
         CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_UNIT')
         CyMessageControl().sendModNetMessage( 697, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # ID 698 vergeben durch freie Unit durch Tech (Religion)
 
       # ID 699 Kauf einer Edlen Ruestung
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 699 and inputClass.getOption()):
+      elif iData1 == 699 and bOption:
         CyAudioGame().Play2DSound('AS2D_COINS')
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 699, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # ID 700 Pillage Road
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 700 and inputClass.getData2() == 700):
+      elif iData1 == 700 and iData2 == 700:
         CyAudioGame().Play2DSound('AS2D_PILLAGE')
         CyMessageControl().sendModNetMessage( 700, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # ID 701 Kauf des Wellen-Oels
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 701 and inputClass.getOption()):
+      elif iData1 == 701 and bOption:
         CyAudioGame().Play2DSound('AS2D_COINS')
         CyMessageControl().sendModNetMessage( 701, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
@@ -6370,22 +6818,22 @@ class CvMainInterface:
 
       # ID 705 Update Veteran Einheit zu neuer Elite Einheit
       # Bsp: Principes or Hastati Veterans -> Triarii
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 705):
+      elif iData1 == 705:
         CyAudioGame().Play2DSound("AS2D_IF_LEVELUP")
         CyAudioGame().Play2DSound("AS2D_WELOVEKING")
-        CyMessageControl().sendModNetMessage( 705, 0, inputClass.getData2(), iOwner, iUnitID )
+        CyMessageControl().sendModNetMessage( 705, 0, iData2, iOwner, iUnitID )
 
       # ID 706 PopUp Renegade City (keep or raze)
 
       # ID 707 Soeldner anheuern / Mercenaries hire or assign
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 707 and inputClass.getData2() == 707):
+      elif iData1 == 707 and iData2 == 707:
         CyMessageControl().sendModNetMessage( 707, pPlot.getPlotCity().getID(), -1, -1, iOwner )
 
       # ID 708-715 Hire/Assign Mercenaries
       # ID 716-717 Mercenary Torture
 
       # ID 718 Unit Formations
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData2() == 718 and inputClass.getOption()):
+      elif iData2 == 718 and bOption:
         if g_pSelectedUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
           CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_GALLEY')
         else:
@@ -6393,95 +6841,151 @@ class CvMainInterface:
         CyMessageControl().sendModNetMessage( 718, 0, inputClass.getData1(), iOwner, iUnitID )
 
       # ID 719 Promotion Trainer Building (Forest 1, Hills1, ...)
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 719):
+      elif iData1 == 719:
         CyAudioGame().Play2DSound('AS2D_BUILD_BARRACKS')
-        CyMessageControl().sendModNetMessage( 719, pPlot.getPlotCity().getID(), inputClass.getData2(), iOwner, iUnitID )
+        CyMessageControl().sendModNetMessage( 719, pPlot.getPlotCity().getID(), iData2, iOwner, iUnitID )
 
       # ID 720 Legendary Hero can become a Great General
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 720):
+      elif iData1 == 720:
         CyAudioGame().Play2DSound('AS2D_WELOVEKING')
         CyMessageControl().sendModNetMessage( 720, 0, 0, iOwner, iUnitID )
 
       # ID 721 Elefantenstall
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 721 and inputClass.getData2() == 1):
-        CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_WAR_ELEPHANT')
-        CyMessageControl().sendModNetMessage( 721, pPlot.getPlotCity().getID(), 0, iOwner, iUnitID )
+      elif iData1 == 721:
+        if iData2 == 1:
+          CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_WAR_ELEPHANT')
+          CyMessageControl().sendModNetMessage( 721, pPlot.getPlotCity().getID(), 1, iOwner, iUnitID )
+        if iData2 == 4:
+          CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_ARABIAN_CAMEL_ARCHER')
+          CyMessageControl().sendModNetMessage( 721, pPlot.getPlotCity().getID(), 2, iOwner, iUnitID )
+
 
       # ID 722 Piraten-Feature
       # Data2=1: Pirat->Normal, Data2=2: Normal->Pirat
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 722):
-        if inputClass.getData2() != 3:
+      elif iData1 == 722:
+        if iData2 != 3:
           CyAudioGame().Play2DSound('AS2D_UNIT_BUILD_GALLEY')
-          CyMessageControl().sendModNetMessage( 722, inputClass.getData2(), 0, iOwner, iUnitID )
+          CyMessageControl().sendModNetMessage( 722, iData2, 0, iOwner, iUnitID )
 
       # ID 723 EspionageMission Info im TechChooser
 
       # ID 724 Veteran Unit -> Reservist in city
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 724):
+      elif iData1 == 724:
         CyAudioGame().Play2DSound("AS2D_GOODY_SETTLER")
         CyMessageControl().sendModNetMessage( 724, pPlot.getPlotCity().getID(), 0, iOwner, iUnitID )
 
       # ID 725 Reservist -> Veteran Unit
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 725):
+      elif iData1 == 725:
         CyMessageControl().sendModNetMessage( 725, pPlot.getPlotCity().getID(), iOwner, -1, 0 )
 
-      # ID 726 Bonusverbreitung
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 726):
-        CyMessageControl().sendModNetMessage( 726, -1, -1, iOwner, iUnitID )
+      # ID 726 Bonusverbreitung (Obsolete)
+      #elif iData1 == 726:
+      #  CyMessageControl().sendModNetMessage( 726, -1, -1, iOwner, iUnitID )
 
       # ID 727 Nahrung an Stadt liefern
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 727):
+      elif iData1 == 727:
         CyAudioGame().Play2DSound("AS2D_BUILD_GRANARY")
         CyMessageControl().sendModNetMessage( 727, pPlot.getPlotCity().getID(), 0, iOwner, iUnitID )
 
       # ID 728 Karte zeichnen
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 728):
+      elif iData1 == 728:
         CyMessageControl().sendModNetMessage( 728, -1, -1, iOwner, iUnitID )
 
       # Sklave -> Library
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 729):
+      elif iData1 == 729:
         CyAudioGame().Play2DSound('AS2D_BUILD_UNIVERSITY')
         CyMessageControl().sendModNetMessage( 729, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
 
       # Release slaves
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 730):
+      elif iData1 == 730:
         CyMessageControl().sendModNetMessage( 730, pPlot.getPlotCity().getID(), 0, iOwner, -1 )
 
       # Send Missionary to a friendly city
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 731):
+      elif iData1 == 731:
         CyMessageControl().sendModNetMessage( 731, -1, -1, iOwner, iUnitID )
 
-      # Send Trade merchant into next foreign city
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 732):
-        CyMessageControl().sendModNetMessage( 732, -1, -1, iOwner, iUnitID )
+      # Send Trade merchant into next foreign city (Obsolete)
+      #elif iData1 == 732:
+      #  CyMessageControl().sendModNetMessage( 732, -1, -1, iOwner, iUnitID )
 
       # Build Limes PopUp
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 733):
+      elif iData1 == 733:
         CyMessageControl().sendModNetMessage( 733, -1, -1, iOwner, iUnitID )
 
       # Sklaven zu Feldsklaven oder Bergwerkssklaven
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 734):
-        if inputClass.getData2() == 1:
-          if inputClass.getOption(): CyMessageControl().sendModNetMessage( 734, pPlot.getPlotCity().getID(), 1, iOwner, iUnitID )
-        elif inputClass.getData2() == 2:
-          if inputClass.getOption(): CyMessageControl().sendModNetMessage( 734, pPlot.getPlotCity().getID(), 2, iOwner, iUnitID )
+      elif iData1 == 734:
+        if iData2 == 1:
+          if bOption: CyMessageControl().sendModNetMessage( 734, pPlot.getPlotCity().getID(), 1, iOwner, iUnitID )
+        elif iData2 == 2:
+          if bOption: CyMessageControl().sendModNetMessage( 734, pPlot.getPlotCity().getID(), 2, iOwner, iUnitID )
 
       # Salae oder Dezimierung
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 735):
-        if inputClass.getData2() == 1:
-          if inputClass.getOption(): CyMessageControl().sendModNetMessage( 735, 1, 0, iOwner, iUnitID )
-        elif inputClass.getData2() == 2:
-          if inputClass.getOption(): CyMessageControl().sendModNetMessage( 735, 2, 0, iOwner, iUnitID )
+      elif iData1 == 735:
+        if iData2 == 1:
+          if bOption: CyMessageControl().sendModNetMessage( 735, 1, 0, iOwner, iUnitID )
+        elif iData2 == 2:
+          if bOption: CyMessageControl().sendModNetMessage( 735, 2, 0, iOwner, iUnitID )
 
       # Handelsposten erstellen
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 736):
+      elif iData1 == 736:
         CyMessageControl().sendModNetMessage( 736, 0, 0, iOwner, iUnitID )
 
       # Provinzstatthalter / Tribut
-      if (inputClass.getNotifyCode() == 11 and inputClass.getData1() == 737):
+      elif iData1 == 737:
         CyMessageControl().sendModNetMessage( 737, pPlot.getPlotCity().getID(), iOwner, -1, -1 )
 
-      # 738: Generelle MouseOverInfos lediglich fuer (aktionslose) Buttons
+      # Bonus cultivation (Boggy)
+      elif iData1 == 738:
+        # Karren aufladen
+        if bOption: iIsCity = 1
+        else: iIsCity = 0
+        CyMessageControl().sendModNetMessage( 738, iOwner, iUnitID, iIsCity, -1)
+
+      # Collect bonus (iData2: 0 = remove, 1 = kaufen)
+      elif iData1 == 739:
+        if bOption: CyMessageControl().sendModNetMessage( 739, -1, iData2, iOwner, iUnitID )
+
+      # Buy bonus (in city)
+      elif iData1 == 740:
+        CyMessageControl().sendModNetMessage( 740, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
+
+      # Sell bonus (in city)
+      elif iData1 == 741:
+        CyMessageControl().sendModNetMessage( 741, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
+
+      # 742 and 743 are used by CvScreensInterface.
+
+      # Automated trade route - choose civ 1
+      elif iData1 == 744:
+        CyMessageControl().sendModNetMessage( 744, -1, -1, iOwner, iUnitID )
+
+      # 745, 746, 747 are used by CvScreensInterface.
+
+      elif iData1 == 748:
+        CyMessageControl().sendModNetMessage( 748, -1, -1, iOwner, iUnitID )
+
+      # 749: Generelle MouseOverInfos lediglich fuer (aktionslose) Buttons
+
+      # 750: Unit Ethnic Info
+
+      # Unit Rang Promo / Upgrade to new unit with new rank
+      elif iData1 == 751:
+       # Unit is in capital city
+       if bOption:
+          CyAudioGame().Play2DSound('AS2D_COINS')
+          CyAudioGame().Play2DSound("AS2D_IF_LEVELUP")
+          CyAudioGame().Play2DSound("AS2D_WELOVEKING")
+          CyMessageControl().sendModNetMessage( 751, -1, -1, iOwner, iUnitID )
+
+      # Bless units
+      elif iData1 == 752:
+        CyAudioGame().Play2DSound('AS2D_BUILD_CHRISTIAN')
+        CyMessageControl().sendModNetMessage( 752, pPlot.getX(), pPlot.getY(), iOwner, iUnitID )
+
+      # Slave -> Latifundium
+      elif iData1 == 753:
+        CyAudioGame().Play2DSound('AS2D_BUILD_GRANARY')
+        CyMessageControl().sendModNetMessage( 753, 0, 0, iOwner, iUnitID )
 
 
 # Zusatz: Eigenes Widget for Formations !!!
@@ -6512,7 +7016,7 @@ class CvMainInterface:
 # Platy ScoreBoard - End
 
 # PAE, Ramk - Fix jumping in build menu
-    if( inputClass.getButtonType() in self.buildWidges ):
+    if inputClass.getButtonType() in self.buildWidges:
       if( inputClass.getFunctionName() == "BottomButtonContainer" ):
         screen = CyGInterfaceScreen("MainInterface", CvScreenEnums.MAIN_INTERFACE)
         """ This just work in fullscreen mode
@@ -6530,7 +7034,7 @@ class CvMainInterface:
         CyInterface().setCityTabSelectionRow(iRow)
         screen.selectMultiList( "BottomButtonContainer", iRow )
 
-    elif( inputClass.getData1() == 88000 ):
+    elif inputClass.getData1() == 88000:
       # CITY_TAB replacements
       screen = CyGInterfaceScreen("MainInterface", CvScreenEnums.MAIN_INTERFACE)
       iRow = self.cityTabsJumpmarks[inputClass.getData2()]
@@ -6590,7 +7094,7 @@ class CvMainInterface:
         numRows -= 1
         continue
 
-      # Entfernte None-Eintraege nach ihrer Benutzung und bevor die Laenge der Liste benutzt wird.
+      # Entfernte None-Einträge nach ihrer Benutzung und bevor die Länge der Liste benutzt wird.
       if buttons[iRow][0] == None:
         del buttons[iRow][0]
         continue
@@ -6610,7 +7114,7 @@ class CvMainInterface:
 
 
   # Ermittle, ob links weniger genutzt wird als vorhanden ist
-  # und gebe es der rechten Seite, falls es dort benoetigt wird.
+  # und gebe es der rechten Seite, falls es dort benötigt wird.
   def optimalPartition( self, numIconsLeft, numIconsRight, leftButtons, rightButtons):
     if len(leftButtons) > 0:
       maxUsedWidthLeft = max( [ len(x) for x in leftButtons ] )
@@ -6649,7 +7153,7 @@ class CvMainInterface:
           if iconData == None:
             continue
           # Die Liste iconData[0] entspricht fast der Argumentliste von appendMultiListButton.
-          # Es muss aber noch das dritte Argument eingefuegt werden
+          # Es muss aber noch das dritte Argument eingefügt werden
           iconData[0].insert(1,iRow)
           screen.appendMultiListButton( "BottomButtonContainer", *(iconData[0]) )
           if not iconData[1]:
@@ -6667,7 +7171,7 @@ class CvMainInterface:
         for iconData in rightButtons[iRow]:
           if iconData == None:
             continue
-          if len(iconData[0]) != 5: # Ursache fuer teilweise falsche Listenlaenge unbekannt.
+          if len(iconData[0]) != 5: # Ursache für teilweise falsche Listenlänge unbekannt.
             continue
           iconData[0].insert(1,iRow)
           screen.appendMultiListButton( "BottomButtonContainer", *(iconData[0]) )
@@ -6695,7 +7199,7 @@ class CvMainInterface:
     return len(buttons)
 
   # Achtung, in iconData[0] wird in der insertButtons-Methode
-  # vorne ein Element eingefuegt. Das verschiebt Listenelemente nach hinten.
+  # vorne ein Element eingefügt. Das verschiebt Listenelemente nach hinten.
   def findIconRow(self, buildType, index ):
     offset = 0
     if buildType == WidgetTypes.WIDGET_TRAIN:
@@ -6714,11 +7218,11 @@ class CvMainInterface:
     return 0
 
 
-  #  PAE, Ramk:
-  #  Die urspruenglichen CITY_TAB-Buttons koennen nur auf die Zeilen 0,1 und 2 springen und
-  #  diese stehen immer fuer Einheiten, Gebaeude und Wunder.
-  #  Daher sind die Buttons durch eigene (WIDGET_GENERAL) ausgetauscht worden.
-  
+  """PAE, Ramk:
+    Die ursprünglichen CITY_TAB-Buttons koennen nur auf die Zeilen 0,1 und 2 springen und
+    diese stehen immer für Einheiten, Gebaeude und Wunder.
+    Daher sind die Buttons durch eigene (WIDGET_GENERAL) ausgetauscht worden.
+  """
   def updateCityTabs(self, screen):
     iBtnX = self.xResolution - 324
     iBtnY = self.yResolution - 94

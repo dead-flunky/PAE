@@ -144,35 +144,35 @@ class CvDawnOfMan:
 
 
                 # +++++ Special dawn of man texts for Szenario Maps in PAE ++++++++++++++++++++++++++++++++
-                sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-                if sScenarioScriptData == "FirstPunicWar":
+                sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"]) 
+                if sScenarioName == "FirstPunicWar":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_FIRST_PUNIC_WAR"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_FIRST_PUNIC_WAR"
-                elif sScenarioScriptData == "WarOfDiadochi":
+                elif sScenarioName == "WarOfDiadochi":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_300"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_300"
-                elif sScenarioScriptData == "RiseOfEgypt":
+                elif sScenarioName == "RiseOfEgypt":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_NIL"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_NIL"
-                elif sScenarioScriptData == "PeloponnesianWar":
+                elif sScenarioName == "PeloponnesianWar":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_PELOPONNESIAN_WAR"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_PELOPONNESIAN_WAR"
-                elif sScenarioScriptData == "PeloponnesianWarKeinpferd":
+                elif sScenarioName == "PeloponnesianWarKeinpferd":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_PELOPONNESIAN_WAR_KEINPFERD"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_PELOPONNESIAN_WAR_KEINPFERD"
-                elif sScenarioScriptData == "SchmelzEuro":
+                elif sScenarioName == "SchmelzEuro":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_ICE_AGE"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_ICE_AGE"
-                elif sScenarioScriptData == "SchmelzWelt":
+                elif sScenarioName == "SchmelzWelt":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_ICE_AGE"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_ICE_AGE2"
-                elif sScenarioScriptData == "LimesGermanicus":
+                elif sScenarioName == "LimesGermanicus":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_LIMES_GERMANICUS"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_LIMES_GERMANICUS"
-                elif sScenarioScriptData == "SmallLimesGermanicus":
+                elif sScenarioName == "SmallLimesGermanicus":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_SMALL_LIMES_GERMANICUS"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_SMALL_LIMES_GERMANICUS"
-                elif sScenarioScriptData == "480BC":
+                elif sScenarioName == "480BC":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_480BC"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_480BC"
                 else:

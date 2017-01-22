@@ -738,8 +738,8 @@ class CvVictoryScreen:
 
 
                 # PAE - Scenario Victories
-                sScenarioScriptData = CyMap().plot(0, 0).getScriptData()
-                if sScenarioScriptData == "FirstPunicWar":
+                sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+                if sScenarioName == "FirstPunicWar":
                    if gc.getPlayer(self.iActivePlayer).getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
                      cityName = localText.getText("TXT_KEY_CITY_NAME_CARTHAGE", ("", ))
                    else:
@@ -770,19 +770,19 @@ class CvVictoryScreen:
                 self.drawTabs()
 
         def getListCultureCities(self, iPlayer):
-                if iPlayer >= 0:
-                        player = PyPlayer(iPlayer)
-                        if player.isAlive():
-                                cityList = player.getCityList()
-                                listCultureCities = len(cityList) * [(0, 0)]
-                                i = 0
-                                for city in cityList:
-                                        listCultureCities[i] = (city.getCulture(), city)
-                                        i += 1
-                                listCultureCities.sort()
-                                listCultureCities.reverse()
-                                return listCultureCities
-                return []
+          if iPlayer >= 0:
+            player = PyPlayer(iPlayer)
+            if player.isAlive():
+              cityList = player.getCityList()
+              listCultureCities = len(cityList) * [(0, 0)]
+              i = 0
+              for city in cityList:
+                listCultureCities[i] = (city.getCulture(), city)
+                i += 1
+              listCultureCities.sort()
+              listCultureCities.reverse()
+              return listCultureCities
+          return []
 
 
         # returns a unique ID for a widget in this screen

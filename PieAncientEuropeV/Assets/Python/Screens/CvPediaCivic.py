@@ -17,7 +17,7 @@ class CvPediaCivic:
                 self.iCivic = -1
                 self.top = main
 
-                self.X_MAIN_PANE = 45
+                self.X_MAIN_PANE = 50
                 self.Y_MAIN_PANE = 60
                 self.W_MAIN_PANE = 433
                 self.H_MAIN_PANE = 210
@@ -45,7 +45,7 @@ class CvPediaCivic:
 
                 self.X_TEXT = self.X_MAIN_PANE
                 self.Y_TEXT = self.Y_SPECIAL + self.H_SPECIAL + 12
-                self.W_TEXT = 945 # 805
+                self.W_TEXT = 705
                 self.H_TEXT = 283
 
         # Screen construction function
@@ -179,4 +179,3 @@ class CvPediaCivic:
         # Will handle the input for this screen...
         def handleInput (self, inputClass):
                 return 0
-

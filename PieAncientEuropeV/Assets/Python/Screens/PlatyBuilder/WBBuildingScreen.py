@@ -308,6 +308,8 @@ class WBBuildingScreen:
           iHolyReligion = ItemInfo.getHolyCity()
           if iHolyReligion > -1 and not loopCity.isHolyCityByType(iHolyReligion): bModify = False
           if not loopCity.canConstruct(item, True, False, True): bModify = False
+          #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(item)
+          #if not loopCity.canConstruct(iBuilding, True, False, True): bModify = False
         if bModify:
           if iChangeType == 2 and not bAvailable:
             iType = not loopCity.getNumRealBuilding(item)
@@ -319,6 +321,8 @@ class WBBuildingScreen:
         iHolyReligion = ItemInfo.getHolyCity()
         if iHolyReligion > -1 and not pCity.isHolyCityByType(iHolyReligion): return
         if not pCity.canConstruct(item, True, False, True): return
+        #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(item)
+        #if not pCity.canConstruct(iBuilding, True, False, True): return
       if iChangeType == 2 and not bAvailable:
         iType = not pCity.getNumRealBuilding(item)
       self.doEffects(pCity, item, iType)

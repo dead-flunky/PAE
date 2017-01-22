@@ -37,24 +37,24 @@ class CvPediaImprovement:
     self.ICON_SIZE = 64
 
     self.X_IMPROVEMENTS_PANE = 10
-    self.Y_IMPROVEMENTS_PANE = self.Y_UPPER_PANE + self.H_UPPER_PANE + 20
+    self.Y_IMPROVEMENTS_PANE = self.Y_UPPER_PANE + self.H_UPPER_PANE + 10
     self.W_IMPROVEMENTS_PANE = 500
-    self.H_IMPROVEMENTS_PANE = 189
+    self.H_IMPROVEMENTS_PANE = 160
 
     self.X_BONUS_YIELDS_PANE = self.X_IMPROVEMENTS_PANE + self.W_IMPROVEMENTS_PANE + 25
-    self.Y_BONUS_YIELDS_PANE = self.Y_UPPER_PANE + self.H_UPPER_PANE + 20
+    self.Y_BONUS_YIELDS_PANE = self.Y_UPPER_PANE + self.H_UPPER_PANE + 10
     self.W_BONUS_YIELDS_PANE = 236
-    self.H_BONUS_YIELDS_PANE = 459
+    self.H_BONUS_YIELDS_PANE = 460
 
     self.X_REQUIRES = 10
-    self.Y_REQUIRES = self.Y_IMPROVEMENTS_PANE + self.H_IMPROVEMENTS_PANE + 20
+    self.Y_REQUIRES = self.Y_IMPROVEMENTS_PANE + self.H_IMPROVEMENTS_PANE + 10
     self.W_REQUIRES = 500
     self.H_REQUIRES = 110
 
     self.X_EFFECTS = 10
-    self.Y_EFFECTS = self.Y_REQUIRES + self.H_REQUIRES + 20
+    self.Y_EFFECTS = self.Y_REQUIRES + self.H_REQUIRES + 10
     self.W_EFFECTS = 500
-    self.H_EFFECTS = 120
+    self.H_EFFECTS = 170
 
   # Screen construction function
   def interfaceScreen(self, iImprovement):
@@ -237,7 +237,7 @@ class CvPediaImprovement:
     # PAE : isFreshWaterValid
     if gc.getImprovementInfo(self.iImprovement).isFreshWaterMakesValid():
       szSpecialText += u"\n" + localText.getText("TXT_KEY_INFO_FRESHWATERMAKESVALID", ())
-    screen.addMultilineText(listName, szSpecialText, self.X_EFFECTS+5, self.Y_EFFECTS+5, self.W_EFFECTS-10, self.H_EFFECTS-10, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+    screen.addMultilineText(listName, szSpecialText, self.X_EFFECTS+5, self.Y_EFFECTS+35, self.W_EFFECTS-10, self.H_EFFECTS-35, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 
   def placeLinks(self, bRedraw):
 

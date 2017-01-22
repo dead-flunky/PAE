@@ -4,8 +4,10 @@ import CvScreensInterface
 import ScreenInput
 import CvEventInterface
 import CvScreenEnums
+import CvRiverUtil
 import time
 import WBPlotScreen
+import WBRiverScreen
 import WBEventScreen
 import WBCityEditScreen
 import WBCityDataScreen
@@ -30,6 +32,11 @@ gc = CyGlobalContext()
 iChange = 1
 bPython = True
 bHideInactive = True
+
+# PAE, Ramk
+# Add more space for buttons in top right menu
+iExtraWidth = 50
+# PAE - End
 
 class CvWorldBuilderScreen:
 
@@ -66,7 +73,7 @@ class CvWorldBuilderScreen:
 
 ## Platy Builder ##
     self.PlayerMode = ["Ownership", "Units", "Buildings", "City", "StartingPlot"]
-    self.MapMode = ["AddLandMark", "PlotData", "River", "Improvements", "Bonus", "PlotType", "Terrain", "Routes", "Features"]
+    self.MapMode = ["AddLandMark", "PlotData", "River", "Improvements", "Bonus", "PlotType", "Terrain", "Routes", "Features", "RiverData"]
     self.RevealMode = ["RevealPlot", "INVISIBLE_SUBMARINE", "INVISIBLE_STEALTH"]
     self.iBrushWidth = 1
     self.iBrushHeight = 1
@@ -414,8 +421,7 @@ class CvWorldBuilderScreen:
   ## Python Effects ##
     elif self.iPlayerAddMode == "Units":
       for i in xrange(iChange):
-        player = gc.getPlayer(self.m_iCurrentPlayer)
-        player.initUnit(self.iSelection, self.m_pCurrentPlot.getX(), self.m_pCurrentPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION, player.getCivilizationType(), player.getStateReligion())
+        gc.getPlayer(self.m_iCurrentPlayer).initUnit(self.iSelection, self.m_pCurrentPlot.getX(), self.m_pCurrentPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)
     elif self.iPlayerAddMode == "Buildings":
       if self.m_pCurrentPlot.isCity():
         pCity = self.m_pCurrentPlot.getPlotCity()
@@ -449,7 +455,13 @@ class CvWorldBuilderScreen:
       elif self.iSelection == gc.getInfoTypeForString("TERRAIN_OCEAN"):
         self.m_pCurrentPlot.setPlotType(PlotTypes.PLOT_OCEAN, True, True)
     elif self.iPlayerAddMode == "Features":
-      self.m_pCurrentPlot.setFeatureType(self.iSelection, self.iSelectClass2)
+      global riverIds
+      self.m_pCurrentPlot.setFeatureType(-1, 0)
+      if CvRiverUtil.isRiverFeature(self.iSelection):
+          CvRiverUtil.addRiverFeatureSimple(self.m_pCurrentPlot, self.iSelection, self.iSelectClass2)
+      else:
+          CvUtil.removeScriptData(self.m_pCurrentPlot, "r")
+          self.m_pCurrentPlot.setFeatureType(self.iSelection, self.iSelectClass2)
     elif self.iPlayerAddMode == "River":
       if self.m_pRiverStartPlot == self.m_pCurrentPlot:
         self.m_pRiverStartPlot = -1
@@ -575,6 +587,7 @@ class CvWorldBuilderScreen:
       self.m_pCurrentPlot.setBonusType(-1)
       return 1
     elif self.iPlayerAddMode == "Features":
+      CvUtil.removeScriptData(self.m_pCurrentPlot, "r")
       self.m_pCurrentPlot.setFeatureType(FeatureTypes.NO_FEATURE, -1)
     elif self.iPlayerAddMode == "Routes":
       self.m_pCurrentPlot.setRouteType(-1)
@@ -802,6 +815,7 @@ class CvWorldBuilderScreen:
             iOldVariety = self.m_pCurrentPlot.getFeatureVariety()
             self.m_pCurrentPlot.setFeatureType(-1, 0)
             if self.m_pCurrentPlot.canHaveFeature(self.iSelection):
+              CvUtil.removeScriptData(self.m_pCurrentPlot, "r")
               self.placeObject()
             else:
               self.m_pCurrentPlot.setFeatureType(iOldFeature, iOldVariety)
@@ -880,13 +894,13 @@ class CvWorldBuilderScreen:
     iButtonWidth = 32
     iAdjust = iButtonWidth + 3
 
-    iScreenWidth = 16 + iAdjust * 6
+    iScreenWidth = 16 + iAdjust * 6 + iExtraWidth
     iScreenHeight = 16 + iAdjust * 4
 
     iXStart = screen.getXResolution() - iScreenWidth
     if CyInterface().isInAdvancedStart():
       iXStart = 0
-      iScreenWidth = 226
+      iScreenWidth = 226 + iExtraWidth
       iScreenHeight = 10 + 37 * 2
 
     screen.addPanel( "WorldBuilderBackgroundPanel", "", "", True, True, iXStart, 0, iScreenWidth, iScreenHeight, PanelStyles.PANEL_STYLE_MAIN )
@@ -998,7 +1012,7 @@ class CvWorldBuilderScreen:
     CyEngine().clearAreaBorderPlots(AreaBorderLayers.AREA_BORDER_LAYER_REVEALED_PLOTS)
     iButtonWidth = 32
     iAdjust = iButtonWidth + 3
-    iScreenWidth = 16 + iAdjust * 6
+    iScreenWidth = 16 + iAdjust * 6 + iExtraWidth
     iScreenHeight = 16 + iAdjust * 4
 
     if CyInterface().isInAdvancedStart():
@@ -1028,6 +1042,7 @@ class CvWorldBuilderScreen:
       screen.deleteWidget("AddCityButton")
       screen.deleteWidget("EditStartingPlot")
       screen.deleteWidget("EditPlotData")
+      screen.deleteWidget("EditRiverData")
       screen.deleteWidget("AddImprovementButton")
       screen.deleteWidget("AddBonusButton")
       screen.deleteWidget("AddPlotTypeButton")
@@ -1126,6 +1141,9 @@ class CvWorldBuilderScreen:
         screen.addCheckBoxGFC("AddRiverButton", CyArtFileMgr().getInterfaceArtInfo("WORLDBUILDER_RIVER_PLACEMENT").getPath(), CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
            iX, iY, iButtonWidth, iButtonWidth, WidgetTypes.WIDGET_PYTHON, 1029, 11, ButtonStyles.BUTTON_STYLE_LABEL)
         iX += iAdjust
+        screen.addCheckBoxGFC("EditRiverData", ",Art/Interface/Buttons/TerrainFeatures/Oasis.dds,Art/Interface/Buttons/BaseTerrain_TerrainFeatures_Atlas.dds,6,3", CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
+           iX, iY, iButtonWidth, iButtonWidth, WidgetTypes.WIDGET_PYTHON, 8999, -1, ButtonStyles.BUTTON_STYLE_LABEL)
+        iX += iAdjust
         screen.addCheckBoxGFC("WorldBuilderLandmarkButton", CyArtFileMgr().getInterfaceArtInfo("WORLDBUILDER_LANDMARK_MODE").getPath(), CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
           iX, iY, iButtonWidth, iButtonWidth, WidgetTypes.WIDGET_WB_LANDMARK_BUTTON, -1, -1, ButtonStyles.BUTTON_STYLE_LABEL)
         iX += iAdjust
@@ -1141,10 +1159,10 @@ class CvWorldBuilderScreen:
 
         iX = iXStart + 8
         iY += iAdjust
-        screen.addCheckBoxGFC("AddImprovementButton", CyArtFileMgr().getInterfaceArtInfo("INTERFACE_TECH_FEATURE_PRODUCTION").getPath(), CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
+        screen.addCheckBoxGFC("AddImprovementButton", ",Art/Interface/Buttons/Builds/BuildCottage.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,2,7", CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
            iX, iY, iButtonWidth, iButtonWidth, WidgetTypes.WIDGET_PYTHON, 1029, 12, ButtonStyles.BUTTON_STYLE_LABEL)
         iX += iAdjust
-        screen.addCheckBoxGFC("AddBonusButton", ",Art/Interface/Buttons/WorldBuilder/Gems.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,7,9", CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
+        screen.addCheckBoxGFC("AddBonusButton", ",Art/Interface/Buttons/WorldBuilder/Gold.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,3,13", CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
            iX, iY, iButtonWidth, iButtonWidth, WidgetTypes.WIDGET_PYTHON, 1029, 13, ButtonStyles.BUTTON_STYLE_LABEL)
         iX += iAdjust
         screen.addCheckBoxGFC("AddPlotTypeButton", CyArtFileMgr().getInterfaceArtInfo("WORLDBUILDER_CHANGE_ALL_PLOTS").getPath(), CyArtFileMgr().getInterfaceArtInfo("BUTTON_HILITE_SQUARE").getPath(),
@@ -1241,6 +1259,7 @@ class CvWorldBuilderScreen:
     screen.setState("AddCityButton", self.iPlayerAddMode == "City")
     screen.setState("EditStartingPlot", self.iPlayerAddMode == "StartingPlot")
     screen.setState("EditPlotData", self.iPlayerAddMode == "PlotData")
+    screen.setState("EditRiverData", self.iPlayerAddMode == "RiverData")
     screen.setState("EditEvents", self.iPlayerAddMode == "Events")
     screen.setState("AddRiverButton", self.iPlayerAddMode == "River")
     screen.setState("AddImprovementButton", self.iPlayerAddMode == "Improvements")
@@ -1547,7 +1566,7 @@ class CvWorldBuilderScreen:
     if self.iPlayerAddMode == "Units":
       ItemInfo = gc.getUnitInfo(self.iSelection)
       sText = "<font=3>" + CyTranslator().getText("[COLOR_HIGHLIGHT_TEXT]", ()) + ItemInfo.getDescription() + "</color></font>"
-      screen.setTableText("WBCurrentItem", 0, 0 , sText, ItemInfo.getButton(), WidgetTypes.WIDGET_PYTHON, 8202, self.iSelection, CvUtil.FONT_LEFT_JUSTIFY)
+      if ItemInfo: screen.setTableText("WBCurrentItem", 0, 0 , sText, ItemInfo.getButton(), WidgetTypes.WIDGET_PYTHON, 8202, self.iSelection, CvUtil.FONT_LEFT_JUSTIFY)
     elif self.iPlayerAddMode == "Buildings":
       ItemInfo = gc.getBuildingInfo(self.iSelection)
       sText = "<font=3>" + CyTranslator().getText("[COLOR_HIGHLIGHT_TEXT]", ()) + ItemInfo.getDescription() + "</color></font>"
@@ -1722,6 +1741,8 @@ class CvWorldBuilderScreen:
         self.setMultipleReveal(True)
     elif self.iPlayerAddMode == "PlotData":
       WBPlotScreen.WBPlotScreen().interfaceScreen(self.m_pCurrentPlot)
+    elif self.iPlayerAddMode == "RiverData":
+      WBRiverScreen.WBRiverScreen().interfaceScreen(self.m_pCurrentPlot)
     elif self.iPlayerAddMode == "Events":
       WBEventScreen.WBEventScreen().interfaceScreen(self.m_pCurrentPlot)
     elif self.iPlayerAddMode == "StartingPlot":
@@ -1860,6 +1881,10 @@ class CvWorldBuilderScreen:
 
     elif inputClass.getFunctionName() == "EditPlotData":
       self.iPlayerAddMode = "PlotData"
+      self.refreshSideMenu()
+
+    elif inputClass.getFunctionName() == "EditRiverData":
+      self.iPlayerAddMode = "RiverData"
       self.refreshSideMenu()
 
     elif inputClass.getFunctionName() == "EditEvents":

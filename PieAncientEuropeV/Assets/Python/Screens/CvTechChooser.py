@@ -7,13 +7,14 @@ import CvScreenEnums
 import CvScreensInterface
 
 PIXEL_INCREMENT = 7
-BOX_INCREMENT_WIDTH = 30 # Used to be 33 #Should be a multiple of 3...
+BOX_INCREMENT_WIDTH = 33 # Used to be 33 #Should be a multiple of 3...
 BOX_INCREMENT_HEIGHT = 9 #Should be a multiple of 3...
 BOX_INCREMENT_Y_SPACING = 6 #Should be a multiple of 3...
 BOX_INCREMENT_X_SPACING = 9 #Should be a multiple of 3...
 
+TECH_BUTTON_SIZE = 49  # PAE: 49 bigger Techbutton  40 unten: y=12 statt 8 ?
 TEXTURE_SIZE = 24
-X_START = 6
+X_START = 6 + TECH_BUTTON_SIZE
 X_INCREMENT = 27
 Y_ROW = 32
 
@@ -179,14 +180,12 @@ class CvTechChooser:
                                 self.aiCurrentState.append(CIV_IS_RESEARCHING)
                         elif ( gc.getPlayer(self.iCivSelected).canEverResearch(i) ):
                                 # Dieses Farbschema ist 2x in dieser Datei enthalten !!!
-                                if gc.getTechInfo(i).getEra() == 0:
-                                  screen.setPanelColor(szTechRecord, 140, 140, 140)
-                                elif gc.getTechInfo(i).getEra() == 1:
-                                  screen.setPanelColor(szTechRecord, 255, 170, 0)
-                                elif gc.getTechInfo(i).getEra() == 3:
-                                  screen.setPanelColor(szTechRecord, 165, 30, 185)
-                                else:
-                                  screen.setPanelColor(szTechRecord, 100, 104, 160)
+                                iEra = gc.getTechInfo(i).getEra()
+                                if iEra == 4: screen.setPanelColor(szTechRecord, 130, 70, 0) #braun
+                                elif iEra == 3: screen.setPanelColor(szTechRecord, 165, 30, 185) #purpur
+                                elif iEra == 2: screen.setPanelColor(szTechRecord, 100, 104, 160) #blau
+                                elif iEra == 1: screen.setPanelColor(szTechRecord, 255, 170, 0) #orange
+                                else: screen.setPanelColor(szTechRecord, 140, 140, 140) #grau
                                 self.aiCurrentState.append(CIV_NO_RESEARCH)
                         else:
                                 screen.setPanelColor(szTechRecord, 206, 65, 69)
@@ -198,11 +197,13 @@ class CvTechChooser:
                                 szTechString = szTechString + str(gc.getPlayer(self.iCivSelected).getQueuePosition(i)) + ". "
                         szTechString += gc.getTechInfo(i).getDescription()
                         szTechString = szTechString + "</font>"
-                        screen.setTextAt( szTechID, szTechRecord, szTechString, CvUtil.FONT_LEFT_JUSTIFY, iX + 6 + X_INCREMENT, iY + 6, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_TECH_TREE, i, -1 )
+                        # PAE
+                        screen.setTextAt( szTechID, szTechRecord, szTechString, CvUtil.FONT_LEFT_JUSTIFY, iX + 6 + TECH_BUTTON_SIZE, iY + 6, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_TECH_TREE, i, -1 )
                         screen.setActivation( szTechID, ActivationTypes.ACTIVATE_MIMICPARENTFOCUS )
 
+                        # PAE
                         szTechButtonID = "TechButtonID" + str(i)
-                        screen.addDDSGFCAt( szTechButtonID, szTechRecord, gc.getTechInfo(i).getButton(), iX + 6, iY + 3, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_TECH_TREE, i, -1, False )
+                        screen.addDDSGFCAt( szTechButtonID, szTechRecord, gc.getTechInfo(i).getButton(), iX + 6, iY + 8, TECH_BUTTON_SIZE, TECH_BUTTON_SIZE, WidgetTypes.WIDGET_TECH_TREE, i, -1, False )
 
                         fX = X_START
 
@@ -659,7 +660,7 @@ class CvTechChooser:
                         j = 0
 
 
-                        ### Tech - Free Unit
+                        ### Techs - Special things made in python possible (free units, unit formations, obsolete units)
                         if i == gc.getInfoTypeForString("TECH_RELIGION_NORDIC"):
                                 screen.addDDSGFCAt( "", szTechRecord, "Art/Interface/Buttons/Units/button_missionar_nordic.dds", iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 698, 698, False )
                                 fX += X_INCREMENT
@@ -823,6 +824,14 @@ class CvTechChooser:
                         elif i == gc.getInfoTypeForString("TECH_DEZIMATION"):
                                 screen.addDDSGFCAt( "", szTechRecord, "Art/Interface/Buttons/Actions/button_action_dezimierung.dds", iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 735, 2, False )
                                 fX += X_INCREMENT
+                        # Obsolete units
+                        elif i == gc.getInfoTypeForString("TECH_GRENZHEER"):
+                               j = gc.getInfoTypeForString("UNIT_PRAETORIAN")
+                               szObsoleteSpecialButton = "ObsoleteUnit" + str(j)
+                               szObsoleteSpecialX = "ObsoleteUnitX" + str(j)
+                               screen.addDDSGFCAt( szObsoleteSpecialButton, szTechRecord, gc.getUnitInfo(j).getButton(), iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 754, j, False )
+                               screen.addDDSGFCAt( szObsoleteSpecialX, szTechRecord, ArtFileMgr.getInterfaceArtInfo("INTERFACE_BUTTONS_RED_X").getPath(), iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 754, j, False )
+                               fX += X_INCREMENT
                         ### End -----------
 
                         # PAE: Espionage Missions
@@ -907,7 +916,8 @@ class CvTechChooser:
                                         szTechString += str(gc.getPlayer(self.iCivSelected).getResearchTurnsLeft(i, ( gc.getPlayer(self.iCivSelected).getCurrentResearch() == i )))
                                         szTechString += ")"
                                 szTechString = szTechString + "</font>"
-                                screen.setTextAt( szTechID, "TechList", szTechString, CvUtil.FONT_LEFT_JUSTIFY, iX + 6 + X_INCREMENT, iY + 6, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_TECH_TREE, i, -1 )
+                                # PAE
+                                screen.setTextAt( szTechID, "TechList", szTechString, CvUtil.FONT_LEFT_JUSTIFY, iX + 6 + TECH_BUTTON_SIZE, iY + 6, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_TECH_TREE, i, -1 )
                                 screen.setActivation( szTechID, ActivationTypes.ACTIVATE_MIMICPARENTFOCUS )
 
                                 if ( gc.getTeam(gc.getPlayer(self.iCivSelected).getTeam()).isHasTech(i) ):
@@ -917,16 +927,14 @@ class CvTechChooser:
                                 elif ( gc.getPlayer(self.iCivSelected).isResearchingTech(i) ):
                                         screen.setPanelColor(szTechRecord, 104, 158, 165)
                                 elif ( gc.getPlayer(self.iCivSelected).canEverResearch(i) ):
-                                  if gc.getTechInfo(i).getEra() == 0:
-                                    screen.setPanelColor(szTechRecord, 140, 140, 140)
-                                  elif gc.getTechInfo(i).getEra() == 1:
-                                    screen.setPanelColor(szTechRecord, 255, 170, 0)
-                                  elif gc.getTechInfo(i).getEra() == 3:
-                                    screen.setPanelColor(szTechRecord, 165, 30, 185)
-                                  else:
-                                    screen.setPanelColor(szTechRecord, 100, 104, 160)
+                                       iEra = gc.getTechInfo(i).getEra()
+                                       if iEra == 4: screen.setPanelColor(szTechRecord, 130, 70, 0) #braun
+                                       elif iEra == 3: screen.setPanelColor(szTechRecord, 165, 30, 185) #purpur
+                                       elif iEra == 2: screen.setPanelColor(szTechRecord, 100, 104, 160) #blau
+                                       elif iEra == 1: screen.setPanelColor(szTechRecord, 255, 170, 0) #orange
+                                       else: screen.setPanelColor(szTechRecord, 140, 140, 140) #grau
                                 else:
-                                        screen.setPanelColor(szTechRecord, 206, 65, 69)
+                                     screen.setPanelColor(szTechRecord, 206, 65, 69)
 
         # Will draw the arrows
         def drawArrows (self):
@@ -948,7 +956,7 @@ class CvTechChooser:
 
                         bFirst = 1
 
-                        fX = (BOX_INCREMENT_WIDTH * PIXEL_INCREMENT) - 8
+                        fX = (BOX_INCREMENT_WIDTH * PIXEL_INCREMENT) - 10  # - 8
 
                         for j in range( gc.getNUM_AND_TECH_PREREQS() ):
 

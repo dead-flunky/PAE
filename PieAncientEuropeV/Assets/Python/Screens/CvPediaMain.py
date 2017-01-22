@@ -1,11 +1,12 @@
 ## Sid Meier's Civilization 4
 ## Copyright Firaxis Games 2005
+## Changes by Pie for PAE V
 from CvPythonExtensions import *
 import string
 import CvUtil
 import ScreenInput
 import CvScreenEnums
-import CvPediaScreen                # base class
+import CvPediaScreen # base class
 import CvPediaTech
 import CvPediaUnit
 import CvPediaBuilding
@@ -78,8 +79,10 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
 
                 self.X_LINKS = 797
                 self.Y_LINKS = 51
-                self.H_LINKS = 297
+                self.H_LINKS = 300
                 self.W_LINKS = 225
+
+                self.H_LINKS_FULL_H = 650
 
                 self.nWidgetCount = 0
 
@@ -116,24 +119,29 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 self.mapCategories = {
                         CivilopediaPageTypes.CIVILOPEDIA_PAGE_TECH        : self.placeTechs,
                         CivilopediaPageTypes.CIVILOPEDIA_PAGE_UNIT        : self.placeUnits,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_BUILDING        : self.placeBuildings,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_WONDER        : self.placeWonders,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_TERRAIN        : self.placeTerrains,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_FEATURE        : self.placeFeatures,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_BONUS        : self.placeBoni,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_IMPROVEMENT        : self.placeImprovements,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_SPECIALIST        : self.placeSpecialists,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_PROMOTION        : self.placePromotions,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_UNIT_GROUP        : self.placeUnitGroups,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CIV        : self.placeCivs,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_LEADER        : self.placeLeaders,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_RELIGION        : self.placeReligions,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CORPORATION        : self.placeCorporations,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CIVIC        : self.placeCivics,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_PROJECT        : self.placeProjects,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT        : self.placeConcepts,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW        : self.placeNewConcepts,
-                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_HINTS        : self.placeHints,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_BUILDING    : self.placeBuildings,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_WONDER      : self.placeWonders,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_TERRAIN     : self.placeTerrains,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_FEATURE     : self.placeFeatures,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_BONUS       : self.placeBoni,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_IMPROVEMENT : self.placeImprovements,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_SPECIALIST  : self.placeSpecialists,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_PROMOTION   : self.placePromotions,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_UNIT_GROUP  : self.placeUnitGroups,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CIV         : self.placeCivs,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_LEADER      : self.placeLeaders,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_RELIGION    : self.placeReligions,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CORPORATION : self.placeCorporations,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CIVIC       : self.placeCivics,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_PROJECT     : self.placeProjects,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT     : self.placeConcepts,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_CONCEPT_NEW : self.placeNewConcepts,
+                        CivilopediaPageTypes.CIVILOPEDIA_PAGE_HINTS       : self.placeHints,
+                        20 : self.placeSpecialUnits,
+                        21 : self.placeFormations,
+                        22 : self.placeRanks,
+                        23 : self.placeSpecialBuildings,
+                        24 : self.placeNationalBuildings
                         }
 
         def getScreen(self):
@@ -144,6 +152,9 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 self.BACK_TEXT = u"<font=4>" + localText.getText("TXT_KEY_PEDIA_SCREEN_BACK", ()).upper() + "</font>"
                 self.FORWARD_TEXT = u"<font=4>" + localText.getText("TXT_KEY_PEDIA_SCREEN_FORWARD", ()).upper() + "</font>"
                 self.MENU_TEXT = u"<font=4>" + localText.getText("TXT_KEY_PEDIA_SCREEN_TOP", ()).upper() + "</font>"
+
+                # PAE check
+                #self.MENU_TEXT = self.MENU_TEXT + u" " + str(self.iLastScreen) + u" / " + str(self.iCategory)
 
                 self.szCategoryTech = localText.getText("TXT_KEY_PEDIA_CATEGORY_TECH", ())
                 self.szCategoryUnit = localText.getText("TXT_KEY_PEDIA_CATEGORY_UNIT", ())
@@ -162,30 +173,42 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 self.szCategoryCorporation = localText.getText("TXT_KEY_CONCEPT_CORPORATIONS", ())
                 self.szCategoryCivic = localText.getText("TXT_KEY_PEDIA_CATEGORY_CIVIC", ())
                 self.szCategoryProject = localText.getText("TXT_KEY_PEDIA_CATEGORY_PROJECT", ())
-                self.szCategoryConcept = localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT", ())
+                self.szCategoryConcept = localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_PAE", ())
                 self.szCategoryConceptNew = localText.getText("TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW", ())
                 self.szCategoryHints = localText.getText("TXT_KEY_PEDIA_CATEGORY_HINTS", ())
 
+                self.szCategoryRank = localText.getText("TXT_KEY_PEDIA_CATEGORY_RANKS", ())
+                self.szCategoryForm = localText.getText("TXT_KEY_PEDIA_CATEGORY_FORMATIONS", ())
+                self.szCategorySpecialUnits = localText.getText("TXT_KEY_PEDIA_CATEGORY_SPECIAL_UNITS", ())
+                self.szCategoryNationalBuildings = localText.getText("TXT_KEY_PEDIA_CATEGORY_NATIONAL_WONDERS", ())
+                self.szCategorySpecialBuildings = localText.getText("TXT_KEY_PEDIA_CATEGORY_SPECIAL_BUILDINGS", ())
+
                 self.listCategories = [ self.szCategoryTech,
-                                                                self.szCategoryUnit,
-                                                                self.szCategoryBuilding,
-                                                                self.szCategoryWonder,
-                                                                self.szCategoryTerrain,
-                                                                self.szCategoryFeature,
-                                                                self.szCategoryBonus,
-                                                                self.szCategoryImprovement,
-                                                                self.szCategorySpecialist,
-                                                                self.szCategoryPromotion,
-                                                                self.szCategoryUnitCombat,
-                                                                self.szCategoryCiv,
-                                                                self.szCategoryLeader,
-                                                                self.szCategoryReligion,
-                                                                self.szCategoryCorporation,
-                                                                self.szCategoryCivic,
-                                                                self.szCategoryProject,
-                                                                self.szCategoryConcept,
-                                                                self.szCategoryConceptNew,
-                                                                self.szCategoryHints]
+                                        self.szCategoryUnit,
+                                        self.szCategoryBuilding,
+                                        self.szCategoryWonder,
+                                        self.szCategoryTerrain,
+                                        self.szCategoryFeature,
+                                        self.szCategoryBonus,
+                                        self.szCategoryImprovement,
+                                        self.szCategorySpecialist,
+                                        self.szCategoryPromotion,
+                                        self.szCategoryUnitCombat,
+                                        self.szCategoryCiv,
+                                        self.szCategoryLeader,
+                                        self.szCategoryReligion,
+                                        self.szCategoryCorporation,
+                                        self.szCategoryCivic,
+                                        self.szCategoryProject,
+                                        self.szCategoryConcept,
+                                        self.szCategoryConceptNew,
+                                        self.szCategoryHints,
+                                        self.szCategorySpecialUnits,
+                                        self.szCategoryForm,
+                                        self.szCategoryRank,
+                                        self.szCategorySpecialBuildings,
+                                        self.szCategoryNationalBuildings
+                                      ]
 
                 # Create a new screen
                 screen = self.getScreen()
@@ -208,8 +231,23 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 # Forward
                 screen.setText(self.NEXT_ID, "Background", self.FORWARD_TEXT, CvUtil.FONT_LEFT_JUSTIFY, self.X_FORWARD, self.Y_FORWARD, 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_PEDIA_FORWARD, 1, -1)
 
+                # Can't find out: first click (f12) doesn't create a full height bar
+
                 # List of items on the right
-                screen.addListBoxGFC(self.LIST_ID, "", self.X_LINKS, self.Y_LINKS, self.W_LINKS, self.H_LINKS, TableStyles.TABLE_STYLE_STANDARD)
+                # PAE different Link menu height
+                #lPediaLinksExtra = [0,1,2,3,20]
+                #lPediaScreenExtra = [200,201,202]
+                ##if self.iLastScreen != CvScreenEnums.PEDIA_MAIN:
+                ##  screen.addListBoxGFC(self.LIST_ID, "", self.X_LINKS, self.Y_LINKS, self.W_LINKS, self.H_LINKS_FULL_H, TableStyles.TABLE_STYLE_STANDARD)
+                #if self.iCategory in lPediaLinksExtra and self.iLastScreen not in lPediaScreenExtra and self.iLastScreen > -1:
+                #  screen.addListBoxGFC(self.LIST_ID, "", self.X_LINKS, self.Y_LINKS, self.W_LINKS, self.H_LINKS, TableStyles.TABLE_STYLE_STANDARD)
+                #elif self.iCategory == -1 and self.iLastScreen == -1 or self.iLastScreen in lPediaScreenExtra:
+                #  screen.addListBoxGFC(self.LIST_ID, "", self.X_LINKS, self.Y_LINKS, self.W_LINKS, self.H_LINKS, TableStyles.TABLE_STYLE_STANDARD)
+                #else:
+                #  screen.addListBoxGFC(self.LIST_ID, "", self.X_LINKS, self.Y_LINKS, self.W_LINKS, self.H_LINKS_FULL_H, TableStyles.TABLE_STYLE_STANDARD)
+
+                screen.addListBoxGFC(self.LIST_ID, "", self.X_LINKS, self.Y_LINKS, self.W_LINKS, self.H_LINKS_FULL_H, TableStyles.TABLE_STYLE_STANDARD)
+
                 screen.enableSelect(self.LIST_ID, True)
                 screen.setStyle(self.LIST_ID, "Table_StandardCiv_Style")
 
@@ -222,10 +260,10 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 screen = self.getScreen()
 
                 bNotActive = (not screen.isActive())
-                if bNotActive:
-                        self.setPediaCommonWidgets()
+                if bNotActive or self.iLastScreen != CvScreenEnums.PEDIA_MAIN:
+                   self.setPediaCommonWidgets()
 
-                # Header...
+                # Header...                                                               + " "+str(self.iLastScreen)+" "+str(self.iCategory)
                 szHeader = u"<font=4b>" +localText.getText("TXT_KEY_WIDGET_HELP", ()).upper() + u"</font>"
                 szHeaderId = self.getNextWidgetName()
                 screen.setLabel(szHeaderId, "Background", szHeader, CvUtil.FONT_CENTER_JUSTIFY, self.X_SCREEN, self.Y_TITLE, 0, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_PEDIA_DESCRIPTION, -1, -1)
@@ -234,13 +272,13 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 screen.addPanel(self.panelName, "", "", false, false,
                         self.X_ITEMS_PANE, self.Y_ITEMS_PANE, self.W_ITEMS_PANE, self.H_ITEMS_PANE, PanelStyles.PANEL_STYLE_BLUE50)
 
-                if self.iLastScreen        != CvScreenEnums.PEDIA_MAIN or bNotActive:
+                if self.iLastScreen != CvScreenEnums.PEDIA_MAIN or bNotActive:
                         self.placeLinks(true)
                         self.iLastScreen = CvScreenEnums.PEDIA_MAIN
                 else:
                         self.placeLinks(false)
 
-                if (self.mapCategories.has_key(iCategory)):
+                if self.mapCategories.has_key(iCategory):
                         self.mapCategories.get(iCategory)()
 
         def placeTechs(self):
@@ -275,7 +313,8 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 screen = self.getScreen()
 
                 # Create and place a tech pane
-                list = self.getSortedList( gc.getNumUnitInfos(), gc.getUnitInfo )
+                #list = self.getSortedList( gc.getNumUnitInfos(), gc.getUnitInfo )
+                list = self.pediaUnitScreen.getUnitSortedList(0)
 
                 if gc.getDefineINT("CIVILOPEDIA_SHOW_ACTIVE_CIVS_ONLY") and gc.getGame().isFinalInitialized():
                         listCopy = list[:]
@@ -308,11 +347,50 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                         screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", szButton, WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
                         iCounter += 1
 
+        def placeSpecialUnits(self):
+                screen = self.getScreen()
+
+                # Create and place a tech pane
+                #list = self.getSortedList( gc.getNumUnitInfos(), gc.getUnitInfo )
+                list = self.pediaUnitScreen.getUnitSortedList(1)
+
+                if gc.getDefineINT("CIVILOPEDIA_SHOW_ACTIVE_CIVS_ONLY") and gc.getGame().isFinalInitialized():
+                        listCopy = list[:]
+                        for item in listCopy:
+                                if not gc.getGame().isUnitEverActive(item[1]):
+                                        list.remove(item)
+
+                nColumns = 4
+                nEntries = len(list)
+                nRows = nEntries // nColumns
+                if (nEntries % nColumns):
+                        nRows += 1
+                tableName = self.getNextWidgetName()
+                screen.addTableControlGFC(tableName, nColumns, self.X_ITEMS_PANE, self.Y_ITEMS_PANE+5, self.W_ITEMS_PANE, self.H_ITEMS_PANE-5, False, False, 24, 24, TableStyles.TABLE_STYLE_STANDARD);
+                screen.enableSelect(tableName, False)
+                for i in range(nColumns):
+                        screen.setTableColumnHeader(tableName, i, "", self.W_ITEMS_PANE/nColumns)
+
+                iCounter = 0
+                iNumRows = 0
+                for item in list:
+                    if item[1] > 0:
+                        iRow = iCounter % nRows
+                        iColumn = iCounter // nRows
+                        if iRow >= iNumRows:
+                                iNumRows += 1
+                                screen.appendTableRow(tableName)
+                        szButton = gc.getUnitInfo(item[1]).getButton()
+                        if self.iActivePlayer != -1:
+                                szButton = gc.getPlayer(self.iActivePlayer).getUnitButton(item[1])
+                        screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", szButton, WidgetTypes.WIDGET_PEDIA_JUMP_TO_UNIT, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        iCounter += 1
+
         def placeBuildings(self):
                 screen = self.getScreen()
 
                 # Create and place a tech pane
-                list = self.pediaBuildingScreen.getBuildingSortedList(false)
+                list = self.pediaBuildingScreen.getBuildingSortedList(0)
 
                 if gc.getDefineINT("CIVILOPEDIA_SHOW_ACTIVE_CIVS_ONLY") and gc.getGame().isFinalInitialized():
                         listCopy = list[:]
@@ -342,11 +420,74 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                         screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", gc.getBuildingInfo(item[1]).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
                         iCounter += 1
 
+        def placeSpecialBuildings(self):
+                screen = self.getScreen()
+
+                # Create and place a tech pane
+                list = self.pediaBuildingScreen.getBuildingSortedList(3)
+
+                if gc.getDefineINT("CIVILOPEDIA_SHOW_ACTIVE_CIVS_ONLY") and gc.getGame().isFinalInitialized():
+                        listCopy = list[:]
+                        for item in listCopy:
+                                if not gc.getGame().isBuildingEverActive(item[1]):
+                                        list.remove(item)
+
+                nColumns = 3
+                nEntries = len(list)
+                nRows = nEntries // nColumns
+                if (nEntries % nColumns):
+                        nRows += 1
+                tableName = self.getNextWidgetName()
+                screen.addTableControlGFC(tableName, nColumns, self.X_ITEMS_PANE, self.Y_ITEMS_PANE+5, self.W_ITEMS_PANE, self.H_ITEMS_PANE-5, False, False, 24, 24, TableStyles.TABLE_STYLE_STANDARD);
+                screen.enableSelect(tableName, False)
+                for i in range(nColumns):
+                        screen.setTableColumnHeader(tableName, i, "", self.W_ITEMS_PANE/nColumns)
+
+                iCounter = 0
+                iNumRows = 0
+                for item in list:
+                        iRow = iCounter % nRows
+                        iColumn = iCounter // nRows
+                        if iRow >= iNumRows:
+                                iNumRows += 1
+                                screen.appendTableRow(tableName)
+                        screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", gc.getBuildingInfo(item[1]).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        iCounter += 1
+
         def placeWonders(self):
                 screen = self.getScreen()
 
                 # Create and place a tech pane
-                list = self.pediaBuildingScreen.getBuildingSortedList(true)
+                list = self.pediaBuildingScreen.getBuildingSortedList(1)
+
+                nColumns = 3
+                nEntries = len(list)
+                nRows = nEntries // nColumns
+                if (nEntries % nColumns):
+                        nRows += 1
+                tableName = self.getNextWidgetName()
+                screen.addTableControlGFC(tableName, nColumns, self.X_ITEMS_PANE, self.Y_ITEMS_PANE+5, self.W_ITEMS_PANE, self.H_ITEMS_PANE-5, False, False, 24, 24, TableStyles.TABLE_STYLE_STANDARD);
+                screen.enableSelect(tableName, False)
+                for i in range(nColumns):
+                        screen.setTableColumnHeader(tableName, i, "", self.W_ITEMS_PANE/nColumns)
+
+                iCounter = 0
+                iNumRows = 0
+                for item in list:
+                        iRow = iCounter % nRows
+                        iColumn = iCounter // nRows
+                        if iRow >= iNumRows:
+                                iNumRows += 1
+                                screen.appendTableRow(tableName)
+                        screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", gc.getBuildingInfo(item[1]).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        iCounter += 1
+
+
+        def placeNationalBuildings(self):
+                screen = self.getScreen()
+
+                # Create and place a tech pane
+                list = self.pediaBuildingScreen.getBuildingSortedList(2)
 
                 nColumns = 3
                 nEntries = len(list)
@@ -404,7 +545,7 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 # Create and place a tech pane
                 list = self.getSortedList( gc.getNumImprovementInfos(), gc.getImprovementInfo )
 
-                nColumns = 2
+                nColumns = 3
                 nEntries = len(list)
                 nRows = nEntries // nColumns
                 if (nEntries % nColumns):
@@ -429,10 +570,67 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
         def placePromotions(self):
                 screen = self.getScreen()
 
-                # Create and place a tech pane
-                list = self.getSortedList( gc.getNumPromotionInfos(), gc.getPromotionInfo )
+                # PAE : normale Promotions
+                list = self.pediaPromotionScreen.getPromoSortedList(0)
 
                 nColumns = 4
+                nEntries = len(list)
+                nRows = nEntries // nColumns
+                if (nEntries % nColumns):
+                        nRows += 1
+                tableName = self.getNextWidgetName()
+                screen.addTableControlGFC(tableName, nColumns, self.X_ITEMS_PANE, self.Y_ITEMS_PANE+5, self.W_ITEMS_PANE, self.H_ITEMS_PANE-5, False, False, 24, 24, TableStyles.TABLE_STYLE_STANDARD);
+                screen.enableSelect(tableName, False)
+                i=0
+                for i in range(nColumns):
+                        screen.setTableColumnHeader(tableName, i, "", self.W_ITEMS_PANE/nColumns)
+
+                iCounter = 0
+                iNumRows = 0
+                for item in list:
+                        iRow = iCounter % nRows
+                        iColumn = iCounter // nRows
+                        if iRow >= iNumRows:
+                                iNumRows += 1
+                                screen.appendTableRow(tableName)
+                        screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", gc.getPromotionInfo(item[1]).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_PROMOTION, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        iCounter += 1
+
+        def placeFormations(self):
+                screen = self.getScreen()
+
+                # PAE : Formationen
+                list = self.pediaPromotionScreen.getPromoSortedList(1)
+
+                nColumns = 3
+                nEntries = len(list)
+                nRows = nEntries // nColumns
+                if (nEntries % nColumns):
+                        nRows += 1
+                tableName = self.getNextWidgetName()
+                screen.addTableControlGFC(tableName, nColumns, self.X_ITEMS_PANE, self.Y_ITEMS_PANE+5, self.W_ITEMS_PANE, self.H_ITEMS_PANE-5, False, False, 24, 24, TableStyles.TABLE_STYLE_STANDARD);
+                screen.enableSelect(tableName, False)
+                for i in range(nColumns):
+                        screen.setTableColumnHeader(tableName, i, "", self.W_ITEMS_PANE/nColumns)
+
+                iCounter = 0
+                iNumRows = 0
+                for item in list:
+                        iRow = iCounter % nRows
+                        iColumn = iCounter // nRows
+                        if iRow >= iNumRows:
+                                iNumRows += 1
+                                screen.appendTableRow(tableName)
+                        screen.setTableText(tableName, iColumn, iRow, u"<font=3>" + item[0] + u"</font>", gc.getPromotionInfo(item[1]).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_PROMOTION, item[1], 1, CvUtil.FONT_LEFT_JUSTIFY)
+                        iCounter += 1
+
+        def placeRanks(self):
+                screen = self.getScreen()
+
+                # PAE : Rangsystem
+                list = self.pediaPromotionScreen.getPromoSortedList(2)
+
+                nColumns = 3
                 nEntries = len(list)
                 nRows = nEntries // nColumns
                 if (nEntries % nColumns):
@@ -460,7 +658,7 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 # Create and place a tech pane
                 list = self.getSortedList( gc.getNumUnitCombatInfos(), gc.getUnitCombatInfo )
 
-                nColumns = 1
+                nColumns = 2
                 nEntries = len(list)
                 nRows = nEntries // nColumns
                 if (nEntries % nColumns):
@@ -494,7 +692,7 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                                 if not gc.getGame().isCivEverActive(item[1]):
                                         list.remove(item)
 
-                nColumns = 2
+                nColumns = 3
                 nEntries = len(list)
                 nRows = nEntries // nColumns
                 if (nEntries % nColumns):
@@ -530,7 +728,7 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                                 if not gc.getGame().isLeaderEverActive(item[1]):
                                         list.remove(item)
 
-                nColumns = 3
+                nColumns = 4
                 nEntries = len(list)
                 nRows = nEntries // nColumns
                 if (nEntries % nColumns):
@@ -768,7 +966,7 @@ class CvPediaMain( CvPediaScreen.CvPediaScreen ):
                 # Create and place a tech pane
                 list = self.getSortedList( gc.getNumNewConceptInfos(), gc.getNewConceptInfo )
 
-                nColumns = 3
+                nColumns = 2
                 nEntries = len(list)
                 nRows = nEntries // nColumns
                 if (nEntries % nColumns):
