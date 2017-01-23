@@ -1,0 +1,3 @@
+Jan 2016: Hinzufügen der NiStencil-Knoten und Austausch von Model 'railroadb09.nif'
+					durch eine andere Datei. Die neue Version verwendet intern die gleiche NIF-Version
+					wie die anderen Straßen.
