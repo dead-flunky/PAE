@@ -960,7 +960,7 @@ def doAIPlanAssignMercenaries(iPlayer):
     else: iFaktor += 1000
 
     if iTargetPlayer != -1:
-      doComissionMercenaries(iTargetPlayer, iFaktor, iPlayer)
+      doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer)
 
 
 # Commission Mercenaries
@@ -1258,8 +1258,8 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
         # Land units
         # PAE V Patch 3: nun auch fuer Besatzung der Schiffe
         #else:
-        #if gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): iUnitArcher = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-        if pNeighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
+        #if gc.getTeam(pNeighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): iUnitArcher = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
+        if pNeighbor.hasBonus(iBonus1) or pNeighbor.hasBonus(iBonus2):
           if pNeighborTeam.isHasTech(gc.getInfoTypeForString("TECH_ARMOR")): iUnitSpear = gc.getInfoTypeForString("UNIT_SPEARMAN")
           if pNeighborTeam.isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): iUnitAxe = gc.getInfoTypeForString("UNIT_AXEMAN2")
           elif pNeighborTeam.isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG2")): iUnitAxe = gc.getInfoTypeForString("UNIT_AXEMAN")
