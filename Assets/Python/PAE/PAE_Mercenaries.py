@@ -1291,6 +1291,8 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
       for iI in range(iRange):
         pPlot = CyMap().plotByIndex(iI)
         if pPlot != None and not pPlot.isNone():
+          iX = pPlot.getX()
+          iY = pPlot.getY()
           if pPlot.getFeatureType() == iDarkIce: continue
           if pPlot.getOwner() == iTargetPlayer:
             if not pPlot.isPeak() and not pPlot.isCity() and pPlot.getNumUnits() == 0:
@@ -1305,7 +1307,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
                 iLandPlots = 0
                 for x2 in range(3):
                   for y2 in range(3):
-                    loopPlot2 = gc.getMap().plot(x-1+x2,y-1+y2)
+                    loopPlot2 = gc.getMap().plot(iX-1+x2,iY-1+y2)
                     if loopPlot2 != None and not loopPlot2.isNone():
                       if not loopPlot2.isWater(): iLandPlots += 1
 
@@ -1327,11 +1329,13 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
           x2=0
           y2=0
           for loopPlot in CivPlots:
+            iLX = loopPlot.getX()
+            iLY = loopPlot.getY()
             bDone = false
-            for x2 in range(3):
+            for x2 in [-1,0,1]:
               if bDone: break
-              for y2 in range(3):
-                loopPlot2 = plotXY(loopPlot.getX(), x2-1,loopPlot.getY(),y2-1)
+              for y2 in [-1,0,1]:
+                loopPlot2 = plotXY(iLX, x2,iLY,y2)
                 if loopPlot2 == None or loopPlot2.isNone() or loopPlot2.getOwner() != loopPlot.getOwner():
                   NewCivPlots.append(loopPlot)
                   bDone = true
