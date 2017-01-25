@@ -197,7 +197,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
         eBronze = gc.getInfoTypeForString("BONUS_BRONZE")
         pCity = CyMap().plot(52, 23).getPlotCity()
         if pCity != None and not pCity.isNone():
-          if pCity.getFreeBonus(eBronze) > 1:pCity.changeFreeBonus(eBronze, -10)
+          if pCity.getFreeBonus(eBronze) > 1:pCity.changeFreeBonus(eBronze, -1)
 
 def onEndPlayerTurn(iPlayer, iGameTurn):
   # Runde 1: In Runde 5 soll das mit Korkyra im Krieg liegende Epidamnos Vasall von Korinth werden

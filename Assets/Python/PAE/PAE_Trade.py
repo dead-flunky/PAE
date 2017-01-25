@@ -41,7 +41,7 @@ lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
 # "automLastTurnChecked": latest turn when "doAutomateMerchant" was called for this unit. Sometimes it is called multiple times per turn, this prevents unnecessary calculations
 
 # Used keys for CityScriptData:
-# "freeBonuses": free bonuses acquired via turns and how long they are available, e.g. "43,4;23,8;12,10" (bonus index + ',' + num turns + ';' + bonus index + ...)
+# "b": free bonuses acquired via turns and how long they are available, e.g. "43,4;23,8;12,10" (bonus index + ',' + num turns + ';' + bonus index + ...)
 
 def init():
     global bInitialised
@@ -723,33 +723,50 @@ def doResearchPush(iPlayer1, iValue1):
     if eTech1 != -1: pTeam1.changeResearchProgress(eTech1, iValue1, iPlayer1)
 #    if eTech2 != -1: pTeam2.changeResearchProgress(eTech2, iValue2, iPlayer2)
 
+#~ # City can use bonus for x turns
+#~ def doCityProvideBonus(pCity, eBonus, iTurns):
+    #~ # ScriptDataString (e.g.) = "43,4;23,8;12,10" (bonus index + ',' + num turns + ';' + bonus index + ...)
+    #~ sScriptDataString = CvUtil.getScriptData(pCity, ["b"])
+    #~ if sScriptDataString != "": sScriptDataString += ";" + str(eBonus) + "," + str(iTurns)
+    #~ else: sScriptDataString = str(eBonus) + "," + str(iTurns) # prevent semicolon at the beginning of string
+    #~ CvUtil.addScriptData(pCity, "b", sScriptDataString)
+    #~ pCity.changeFreeBonus(eBonus, 1)
+
 # City can use bonus for x turns
 def doCityProvideBonus(pCity, eBonus, iTurns):
-    # ScriptDataString (e.g.) = "43,4;23,8;12,10" (bonus index + ',' + num turns + ';' + bonus index + ...)
-    sScriptDataString = CvUtil.getScriptData(pCity, ["freeBonus"])
-    if sScriptDataString != "": sScriptDataString += ";" + str(eBonus) + "," + str(iTurns)
-    else: sScriptDataString = str(eBonus) + "," + str(iTurns) # prevent semicolon at the beginning of string
-    CvUtil.addScriptData(pCity, "freeBonus", sScriptDataString)
+    # ScriptData value is dict, e.g. {43:4; 23:8; 12:10}
+    # Key is 'iBonus' and value is 'iTurns'
+
+    iBonus = int(eBonus)
+    iTurns = int(iTurns)
+    bonusDict = CvUtil.getScriptData(pCity, ["b"], {})
+    if type(bonusDict) == str:
+      # Konvertiere altes Format "iB,iTurn;..." in dict
+      bonusDict, bonusStr = {}, bonusDict
+      bonusDict.update([paar.split(",") for paar in bonusStr.split(";")])
+
+    # Addiere alten und neuen Rundenwert
+    bonusDict[iBonus] = iTurns + bonusDict.setdefault(iBonus, 0)
+    CvUtil.addScriptData(pCity, "b", bonusDict)
+
     pCity.changeFreeBonus(eBonus, 1)
 
 # Called each turn (onCityDoTurn, EventManager), makes sure free bonus disappears after x turns
 def doCityCheckFreeBonuses(pCity):
-    sScriptDataString = CvUtil.getScriptData(pCity, ["freeBonus"])
-    if sScriptDataString == "": return
-    lFreeBonuses = sScriptDataString.split(";") # current list of free bonuses
-    lNewFreeBonuses = [] # new list (timer of each bonus decreased by 1)
-    for sString in lFreeBonuses:
-        # sString = "bonusIndex,numTurns"
-        sBonus, sTurns = sString.split(",")
-        eBonus = int(sBonus)
-        iTurns = int(sTurns) - 1
-        if iTurns <= 0: pCity.changeFreeBonus(eBonus, -1) # Time over: remove bonus from city
-        else: lNewFreeBonuses.append(sBonus + "," + str(iTurns))
-    sScriptDataString = ""
-    for sString in lNewFreeBonuses:
-        sScriptDataString += ";" + sString
-    sScriptDataString = sScriptDataString[1:] # Remove semicolon at the beginning
-    CvUtil.addScriptData(pCity, "freeBonus", sScriptDataString)
+    bonusDict = CvUtil.getScriptData(pCity, ["b"], {})
+    if type(bonusDict) == str:
+      # Konvertiere altes Format "iB,iTurn;..." in dict
+      bonusDict, bonusStr = {}, bonusDict
+      bonusDict.update([paar.split(",") for paar in bonusStr.split(";")])
+
+    for eBonus in bonusDict:
+        iTurns = bonusDict[eBonus] - 1
+        if iTurns <= 0:
+            pCity.changeFreeBonus(eBonus, -1) # Time over: remove bonus from city
+            bonusDict.pop(eBonus, None)
+        else: bonusDict[eBonus] = iTurns
+
+    CvUtil.addScriptData(pCity, "b", bonusDict)
 
 # Creates popup with all the affordable bonuses for UnitOwner (bonuses too expensive for UnitOwner are cut)
 def doPopupChooseBonus(pUnit, pCity):

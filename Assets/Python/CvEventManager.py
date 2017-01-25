@@ -5088,7 +5088,7 @@ class CvEventManager:
           if not gc.getPlayer(pWinner.getOwner()).isHuman():
             # Ein minimaler Vorteil fuer die KI
             if pWinner.getOwner() != iMercenaryCiv:
-              self.doAIMercTorture(pWinner.getOwner(),iMercenaryCiv)
+              PAE_Mercenaries.doAIMercTorture(pWinner.getOwner(),iMercenaryCiv)
           else:
 
             szText = CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE",("",))
