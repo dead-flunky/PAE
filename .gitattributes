@@ -1,6 +1,6 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 # Use LF in the repo, but checkouts as CRLF on Windows.
-* text=auto
+* text=crlf
 
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
