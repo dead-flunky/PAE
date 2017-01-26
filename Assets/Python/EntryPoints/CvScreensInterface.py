@@ -1550,19 +1550,6 @@ def popupTradeRouteChooseBonus(argsList):
     if iButtonId < len(lGoods):
       CyMessageControl().sendModNetMessage( 747, lGoods[iButtonId], bFirst, iUnitOwner, iUnitId )
 
-#~ # Called when player has selected bonus to cultivate
-#~ def popupCultivationChooseBonus(argsList):
-    #~ iButtonId = argsList[0]
-    #~ iUnitOwner = argsList[1]
-    #~ iUnitId = argsList[2] # Cultivation unit
-    #~ iIsCity = argsList[3]
-
-    #~ pUnitOwner = gc.getPlayer(iUnitOwner)
-    #~ pUnit = pUnitOwner.getUnit(iUnitId)
-    #~ lCultivatableBonuses = PAE_Trade.getCultivatableBonusesForUnit(pUnit, iIsCity)
-    #~ if iButtonId < len(lCultivatableBonuses): # Otherwise: Cancel button
-        #~ CyMessageControl().sendModNetMessage( 743, lCultivatableBonuses[iButtonId], iIsCity, iUnitOwner, iUnitId )
-
 # --- End of cultivation / trade
 
 def popupKartenzeichnungen(argsList):

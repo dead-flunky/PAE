@@ -156,8 +156,8 @@ class CvGameUtils:
         eBonus = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
         if eBonus != -1 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
           iRange = 4
-          for iDX in xrange(-iRange, iRange):
-            for iDY in xrange(-iRange, iRange):
+          for iDX in range(-iRange, iRange+1):
+            for iDY in range(-iRange, iRange+1):
               pLoopPlot = plotXY(iX, iY, iDX, iDY)
               if pLoopPlot != None and not pLoopPlot.isNone():
                 #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
@@ -1810,20 +1810,19 @@ class CvGameUtils:
         iX = pUnit.getX()
         iY = pUnit.getY()
 
-        for x in range(3):
-            for y in range(3):
-              loopPlot = plotXY(iX, x - 1, iY, y - 1)
-              if loopPlot != None and not loopPlot.isNone():
-                if loopPlot.isCity():
-                  pCity = loopPlot.getPlotCity()
-                  if pCity.getOwner() != pUnit.getOwner():
-                    if gc.getTeam(pUnit.getOwner()).isAtWar(gc.getPlayer(pCity.getOwner()).getTeam()):
-                      iDamage = pCity.getDefenseModifier(0)
-                      if iDamage > 100:
-                        pCity.changeDefenseDamage(iDamage)
-                        #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                        pUnit.kill(1,pUnit.getOwner())
-                        return True
+        for x in [-1, 0, 1]:
+          for y in [-1, 0, 1]:
+            loopPlot = plotXY(iX, iY, x, y)
+            if loopPlot != None and not loopPlot.isNone():
+              if loopPlot.isCity():
+                pCity = loopPlot.getPlotCity()
+                if pCity.getOwner() != pUnit.getOwner():
+                  if gc.getTeam(pUnit.getOwner()).isAtWar(gc.getPlayer(pCity.getOwner()).getTeam()):
+                    iDamage = pCity.getDefenseModifier(0)
+                    if iDamage > 100:
+                      pCity.changeDefenseDamage(iDamage)
+                      pUnit.kill(1,pUnit.getOwner())
+                      return True
       # -----------------
 
 # Legend can become a Great General
@@ -2787,29 +2786,29 @@ class CvGameUtils:
       for lCity in lCities:
         pCity = lCity.GetCy()
         if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
-           # Check plots (Klima / climate)
-           bOK = false
-           iX = pCity.getX()
-           iY = pCity.getY()
-           for i in range(3):
-             for j in range(3):
-               loopPlot = plotXY(iX, i-1, iY, j-1)
-               if loopPlot != None and not loopPlot.isNone():
-                 if loopPlot.getTerrainType() == iDesert or loopPlot.getFeatureType() == iJungle:
-                   bOK = true
-                   break
-             if bOK: break
+          # Check plots (Klima / climate)
+          bOK = false
+          iX = pCity.getX()
+          iY = pCity.getY()
+          for i in [-1,0,1]:
+            for j in [-1,0,1]:
+              loopPlot = plotXY(iX, iY, i-1, j-1)
+              if loopPlot != None and not loopPlot.isNone():
+                if loopPlot.getTerrainType() == iDesert or loopPlot.getFeatureType() == iJungle:
+                  bOK = true
+                  break
+            if bOK: break
 
-           if bOK:
-             if pUnit.generatePath( pCity.plot(), 0, False, None ):
-               if not pUnit.atPlot(pCity.plot()):
-                 pUnitGroup.clearMissionQueue()
-                 pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
-               else:
-                 pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"),1)
-                 #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                 pUnit.kill(1,pUnit.getOwner())
-                 return True
+          if bOK:
+            if pUnit.generatePath( pCity.plot(), 0, False, None ):
+              if not pUnit.atPlot(pCity.plot()):
+                pUnitGroup.clearMissionQueue()
+                pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+              else:
+                pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"),1)
+                #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+                pUnit.kill(1,pUnit.getOwner())
+                return True
 
   # Kamellager
   def doCamel_AI( self, pUnit ):
@@ -2834,9 +2833,9 @@ class CvGameUtils:
            iX = pCity.getX()
            iY = pCity.getY()
            bOK = false
-           for i in range(3):
-             for j in range(3):
-               loopPlot = plotXY(iX, i-1, iY, j-1)
+           for i in [-1,0,1]:
+             for j in [-1,0,1]:
+               loopPlot = plotXY(iX, iY, i-1, j-1)
                if loopPlot != None and not loopPlot.isNone():
                  if loopPlot.getTerrainType() == iDesert:
                    bOK = true

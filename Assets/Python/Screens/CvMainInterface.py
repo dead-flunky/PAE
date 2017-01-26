@@ -2521,35 +2521,28 @@ class CvMainInterface:
                   if pPlot.getOwner() == pUnit.getOwner():
                     if pPlot.isCity(): iIsCity = 1
                     else: iIsCity = 0
-
-                    eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
-
+                    eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
                     # Collect bonus from plot or city
                     ePlotBonus = pPlot.getBonusType(pUnit.getOwner()) # Invisible bonuses can NOT be collected
                     if ePlotBonus in PAE_Trade.lCultivatable or iIsCity:
-                      if eBonus == -1 or iIsCity:
-                        # remove from plot => iData2 = 0. 1 = charge all goods without removing
-                        if ePlotBonus != -1:
-                          screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True )
-                          screen.show( "BottomButtonContainer" )
-                          iCount = iCount + 1
-
+                      # remove from plot => iData2 = 0. 1 = charge all goods without removing. Nur bei leerem Karren.
+                      if eBonus == -1 and ePlotBonus != -1:
+                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True )
+                        screen.show( "BottomButtonContainer" )
+                        iCount = iCount + 1
+                      if iIsCity:
                         screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_BUY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 1, True )
                         screen.show( "BottomButtonContainer" )
                         iCount = iCount + 1
-
-                      else:
-                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT_IMPOSSIBLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 739, False )
-                        screen.show( "BottomButtonContainer" )
-                        iCount = iCount + 1
-
+                    else:
+                      screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT_IMPOSSIBLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 739, False )
+                      screen.show( "BottomButtonContainer" )
+                      iCount = iCount + 1
                     # Cultivate bonus onto plot
-                    eBonus = PAE_Trade.getCultivatableBonusesForUnit(pUnit, iIsCity)
-                    if eBonus != -1:
+                    if eBonus != -1 and PAE_Trade.isBonusCultivatable(pUnit):
                       screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_CULTIVATE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 738, 738, iIsCity )
                       screen.show( "BottomButtonContainer" )
                       iCount = iCount + 1
-
                 # Buy / sell goods in cities (domestic or foreign)
                 if iUnitType in PAE_Trade.lTradeUnits:
                   if pPlot.isCity():
@@ -5609,15 +5602,14 @@ class CvMainInterface:
                           iValue2 += iValue3
 
                         elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
-
                           UnitBarType = "EMIGRANT"
                           sPlayer = CvUtil.getScriptData(pUnit, ["p", "t"])
                           if sPlayer != "": iValue1 = int(sPlayer)
                           else: iValue1 = pUnit.getOwner()
 
                         elif pUnit.getUnitType() in PAE_Trade.lTradeUnits:
-                            UnitBarType = "TRADE"
-                            iValue1 = CvUtil.getScriptData(pUnit, ["b"], -1)
+                          UnitBarType = "TRADE"
+                          iValue1 = CvUtil.getScriptData(pUnit, ["b"], -1)
 
         if CyInterface().getLengthSelectionList() > 19 and UnitBarType != "HEALER": UnitBarType = "NO_HEALER"
         # ------

@@ -1334,7 +1334,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
             for x2 in [-1,0,1]:
               if bDone: break
               for y2 in [-1,0,1]:
-                loopPlot2 = plotXY(iLX, x2,iLY,y2)
+                loopPlot2 = plotXY(iLX,iLY,x2,y2)
                 if loopPlot2 == None or loopPlot2.isNone() or loopPlot2.getOwner() != loopPlot.getOwner():
                   NewCivPlots.append(loopPlot)
                   bDone = true

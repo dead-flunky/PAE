@@ -246,23 +246,22 @@ def getCityCultivationPlot(pCity, eBonus):
 # Returns list of bonuses which can be cultivated by this particular cultivation unit
 # Checks fertility conditions AND unit store
 # if iIsCity == 1, 5x5 square is checked. Otherwise: Only current plot.
-def getCultivatableBonusesForUnit(pUnit, iIsCity):
+def isBonusCultivatable(pUnit):
   global lCultivationUnits
   if not pUnit.getUnitType() in lCultivationUnits:
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("getCultivatableBonusesForUnit mit falscher Unit aufgerufen")), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    return -1
+    return False
 
   eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
   if eBonus == -1:
-    return eBonus
-  if iIsCity:
+    return False
+
+  if pUnit.plot().isCity():
     # Cultivation from city (comfort function), no replacement of existing bonuses
-    if bonusIsCultivatableFromCity(pUnit.getOwner(), pUnit.plot().getPlotCity(), eBonus):
-      return eBonus
+    return bonusIsCultivatableFromCity(pUnit.getOwner(), pUnit.plot().getPlotCity(), eBonus)
   else:
     # Cultivation on current plot, bonus can be replaced (player knows what he's doing)
-    if bonusIsCultivatable(pUnit.getOwner(), pUnit.plot(), eBonus):
-      return eBonus
+    return bonusIsCultivatable(pUnit.getOwner(), pUnit.plot(), eBonus)
+
 
 # Returns true if eBonus can be (principally) cultivated by iPlayer in a radius of iRange around pPlot
 # Independent from cultivation unit, only checks fertility conditions
@@ -349,8 +348,8 @@ def doCultivation_AI(pUnit):
     if isCityCultivationPossible(pLoopCity, True):
       bFood = True
       lBonuses = getIntersection(lBonuses, lFood)
-    eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
 
+    eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
     # wir haben was geladen
     if eUnitBonus != -1:
       # kann man das hier brauchen?
@@ -557,42 +556,42 @@ def doBuyBonus(pUnit, eBonus, iCityOwner):
 
 # Unit's store is emptied, unit owner gets money, city gets bonus, research push
 def doSellBonus(pUnit, pCity):
-  global lTradeUnits
-  if not pUnit.getUnitType() in lTradeUnits: return
+  #~ global lTradeUnits
+  #~ if not pUnit.getUnitType() in lTradeUnits: return
 
   eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
-  if eBonus == -1: return
-  iPrice = calculateBonusSellingPrice(pUnit, pCity)
-  iBuyer = pCity.getOwner()
-  pBuyer = gc.getPlayer(iBuyer)
-  iSeller = pUnit.getOwner()
-  pSeller = gc.getPlayer(iSeller)
-  pSeller.changeGold(iPrice)
-  iOriginCiv = int(CvUtil.getScriptData(pUnit, ["originCiv"], -1)) # where the goods come from
-  CvUtil.removeScriptData(pUnit, "b")
-  if iOriginCiv != iBuyer:
+  if eBonus != -1:
+    iPrice = calculateBonusSellingPrice(pUnit, pCity)
+    iBuyer = pCity.getOwner()
+    pBuyer = gc.getPlayer(iBuyer)
+    iSeller = pUnit.getOwner()
+    pSeller = gc.getPlayer(iSeller)
+    pSeller.changeGold(iPrice)
+    iOriginCiv = int(CvUtil.getScriptData(pUnit, ["originCiv"], -1)) # where the goods come from
+    CvUtil.removeScriptData(pUnit, "b")
+    if iOriginCiv != iBuyer:
 
-      # Buyer has bonus or not (fuer Handelsstrasse)
-      if pBuyer.hasBonus(eBonus): iChance = 10
-      else: iChance = 20
+        # Buyer has bonus or not (fuer Handelsstrasse)
+        if pBuyer.hasBonus(eBonus): iChance = 10
+        else: iChance = 20
 
-      doResearchPush(iBuyer, iPrice/10)
-      doCityProvideBonus(pCity, eBonus, 3)
+        doResearchPush(iBuyer, iPrice/10)
+        doCityProvideBonus(pCity, eBonus, 3)
 
-      # Trade route / Handelsstrasse
-      if eBonus in lLuxury + lRarity:
+        # Trade route / Handelsstrasse
+        if eBonus in lLuxury + lRarity:
 
-        if not hasBonusIgnoreFreeBonuses(pCity, eBonus) and pUnit.getDomainType != gc.getInfoTypeForString("DOMAIN_SEA"):
+          if not hasBonusIgnoreFreeBonuses(pCity, eBonus) and pUnit.getDomainType != gc.getInfoTypeForString("DOMAIN_SEA"):
 
-          # Rarities doubles chance
-          if eBonus in lRarity: iChance *= 2
+            # Rarities doubles chance
+            if eBonus in lRarity: iChance *= 2
 
-          if myRandom(100) < iChance:
-            iOriginX = CvUtil.getScriptData(pUnit, ["x"], -1)
-            iOriginY = CvUtil.getScriptData(pUnit, ["y"], -1)
-            pOriginPlot = CyMap().plot(iOriginX, iOriginY)
-            if pOriginPlot != None and not pOriginPlot.isNone():
-              if pOriginPlot.isCity():
+            if myRandom(100) < iChance:
+              iOriginX = CvUtil.getScriptData(pUnit, ["x"], -1)
+              iOriginY = CvUtil.getScriptData(pUnit, ["y"], -1)
+              pOriginPlot = CyMap().plot(iOriginX, iOriginY)
+              if pOriginPlot != None and not pOriginPlot.isNone():
+                if pOriginPlot.isCity():
                   iRouteType = gc.getInfoTypeForString("ROUTE_TRADE_ROAD")
                   pOriginCity = pOriginPlot.getPlotCity()
                   #CyInterface().addMessage(iSeller, True, 10, "Vor Traderoute", None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
@@ -601,11 +600,11 @@ def doSellBonus(pUnit, pCity):
                   if pPlotTradeRoad != None:
                     pPlotTradeRoad.setRouteType(iRouteType)
                     if pBuyer.isHuman():
-                        CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_TRADE_ROUTE_BUILT",(pSeller.getName(),pSeller.getCivilizationShortDescriptionKey(),pCity.getName(),pOriginCity.getName())), "AS2D_WELOVEKING", 2, "Art/Terrain/Routes/handelsstrasse/button_handelsstrasse.dds", ColorTypes(10), pPlotTradeRoad.getX(), pPlotTradeRoad.getY(), True, True)
+                      CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_TRADE_ROUTE_BUILT",(pSeller.getName(),pSeller.getCivilizationShortDescriptionKey(),pCity.getName(),pOriginCity.getName())), "AS2D_WELOVEKING", 2, "Art/Terrain/Routes/handelsstrasse/button_handelsstrasse.dds", ColorTypes(10), pPlotTradeRoad.getX(), pPlotTradeRoad.getY(), True, True)
                     if pSeller.isHuman() and iBuyer != iSeller:
-                        CyInterface().addMessage(iSeller, True, 10, CyTranslator().getText("TXT_KEY_TRADE_ROUTE_BUILT2",(pCity.getName(),pOriginCity.getName())), "AS2D_WELOVEKING", 2, "Art/Terrain/Routes/handelsstrasse/button_handelsstrasse.dds", ColorTypes(10), pPlotTradeRoad.getX(), pPlotTradeRoad.getY(), True, True)
+                      CyInterface().addMessage(iSeller, True, 10, CyTranslator().getText("TXT_KEY_TRADE_ROUTE_BUILT2",(pCity.getName(),pOriginCity.getName())), "AS2D_WELOVEKING", 2, "Art/Terrain/Routes/handelsstrasse/button_handelsstrasse.dds", ColorTypes(10), pPlotTradeRoad.getX(), pPlotTradeRoad.getY(), True, True)
                     if iBuyer != iSeller and iSeller == gc.getGame().getActivePlayer() or iBuyer == gc.getGame().getActivePlayer():
-                       CyAudioGame().Play2DSound("AS2D_WELOVEKING")
+                      CyAudioGame().Play2DSound("AS2D_WELOVEKING")
 
                   # Sobald von einer Stadt 3 Handelsstrassen (bzw 2 bei einer Kuestenstadt) weggehen,
                   # wird es zum Handelszentrum (Building: 100% auf Trade Routes)
@@ -629,21 +628,21 @@ def doSellBonus(pUnit, pCity):
 
 
 
-  sBonusName = gc.getBonusInfo(eBonus).getDescription()
-  if pBuyer.isHuman() and iBuyer != iSeller:
-    CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_BONUS_SOLD",(sBonusName, pSeller.getName())), None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
-  else:
-    CyInterface().addMessage(iSeller, True, 10, CyTranslator().getText("TXT_KEY_BONUS_SOLD2",(sBonusName, iPrice)), None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
+    sBonusName = gc.getBonusInfo(eBonus).getDescription()
+    if pBuyer.isHuman() and iBuyer != iSeller:
+      CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_BONUS_SOLD",(sBonusName, pSeller.getName())), None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
+    else:
+      CyInterface().addMessage(iSeller, True, 10, CyTranslator().getText("TXT_KEY_BONUS_SOLD2",(sBonusName, iPrice)), None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
 
-  if iSeller == gc.getGame().getActivePlayer() or iBuyer == gc.getGame().getActivePlayer():
-    CyAudioGame().Play2DSound("AS2D_COINS")
+    if iSeller == gc.getGame().getActivePlayer() or iBuyer == gc.getGame().getActivePlayer():
+      CyAudioGame().Play2DSound("AS2D_COINS")
 
-  # Special Order
-  if iOriginCiv != iBuyer:
-    if eBonus in lLuxury + lRarity:
-      doCheckCitySpecialBonus(pUnit,pCity,eBonus)
+    # Special Order
+    if iOriginCiv != iBuyer:
+      if eBonus in lLuxury + lRarity:
+        doCheckCitySpecialBonus(pUnit,pCity,eBonus)
 
-  pUnit.finishMoves()
+    pUnit.finishMoves()
 
 # Player gets research points for current project (called when foreign goods are sold to player's cities)
 def doResearchPush(iPlayer1, iValue1):
