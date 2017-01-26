@@ -955,25 +955,25 @@ class CvEventManager:
        iReservists = pCity.getFreeSpecialistCount(19) # SPECIALIST_RESERVIST
 
        # Units
-       bUnit1 = true
-       bUnit2 = true
-       bUnit3 = true
-       bUnit4 = true
+       bUnit1 = True
+       bUnit2 = True
+       bUnit3 = True
+       bUnit4 = True
 
        # Unit 1
        iUnit1 = gc.getInfoTypeForString("UNIT_SCHILDTRAEGER")
-       if not pCity.canTrain(iUnit1,0,0): bUnit1 = false
+       if not pCity.canTrain(iUnit1,0,0): bUnit1 = False
        # Unit 2
        iUnit2 = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER"))
        if not pCity.canTrain(iUnit2,0,0):
-          bUnit2 = false
+          bUnit2 = False
           iUnit2 = gc.getInfoTypeForString("UNIT_ARCHER")
        # Unit 3
        iUnit3 = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_AUXILIAR"))
-       if not pTeam.isHasTech(gc.getUnitInfo(iUnit3).getPrereqAndTech()): bUnit3 = false
+       if not pTeam.isHasTech(gc.getUnitInfo(iUnit3).getPrereqAndTech()): bUnit3 = False
        # Unit 4
        iUnit4 = gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE")
-       if not (pTeam.isHasTech(gc.getUnitInfo(iUnit4).getPrereqAndTech()) and pCity.hasBonus(gc.getInfoTypeForString("BONUS_HORSE"))): bUnit4 = false
+       if not (pTeam.isHasTech(gc.getUnitInfo(iUnit4).getPrereqAndTech()) and pCity.hasBonus(gc.getInfoTypeForString("BONUS_HORSE"))): bUnit4 = False
 
        # Reservist aufstellen
        if iData4 != -1:
@@ -1123,7 +1123,7 @@ class CvEventManager:
 
        else:
 
-         bRemoveUnit = false
+         bRemoveUnit = False
          iTeam = pPlayer.getTeam()
          MapH = CyMap().getGridHeight()
          MapW = CyMap().getGridWidth()
@@ -1138,7 +1138,7 @@ class CvEventManager:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
              pPlayer.changeGold(-iGold)
-             bRemoveUnit = true
+             bRemoveUnit = True
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
                for i in range (MapW):
@@ -1160,7 +1160,7 @@ class CvEventManager:
            if pPlayer.getGold() < iGold:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
-             bRemoveUnit = true
+             bRemoveUnit = True
              pPlayer.changeGold(-iGold)
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
@@ -1185,7 +1185,7 @@ class CvEventManager:
            if pPlayer.getGold() < iGold:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
-             bRemoveUnit = true
+             bRemoveUnit = True
              pPlayer.changeGold(-iGold)
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
@@ -1210,7 +1210,7 @@ class CvEventManager:
            if pPlayer.getGold() < iGold:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
-             bRemoveUnit = true
+             bRemoveUnit = True
              pPlayer.changeGold(-iGold)
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
@@ -1235,7 +1235,7 @@ class CvEventManager:
            if pPlayer.getGold() < iGold:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
-             bRemoveUnit = true
+             bRemoveUnit = True
              pPlayer.changeGold(-iGold)
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
@@ -1260,7 +1260,7 @@ class CvEventManager:
            if pPlayer.getGold() < iGold:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
-             bRemoveUnit = true
+             bRemoveUnit = True
              pPlayer.changeGold(-iGold)
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
@@ -1283,7 +1283,7 @@ class CvEventManager:
            if pPlayer.getGold() < iGold:
              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MERCENARIES_NOT_ENOUGH_MONEY",("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
            else:
-             bRemoveUnit = true
+             bRemoveUnit = True
              pPlayer.changeGold(-iGold)
              if iPlayer == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_COINS")
              if iChance >= self.myRandom(100, None):
@@ -1349,7 +1349,7 @@ class CvEventManager:
       elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_MISSIONARY_JAINISMUS"): iReligion = 12
 
       if iReligion != -1:
-        bCanSpread = false
+        bCanSpread = False
         iNumCities = pPlayer.getNumCities()
         for i in range (iNumCities):
           pCity = pPlayer.getCity(i)
@@ -1357,7 +1357,7 @@ class CvEventManager:
             if not pCity.isHasReligion(iReligion):
               pUnit.getGroup().pushMoveToMission (pCity.getX(), pCity.getY())
               pUnit.getGroup().pushMission(MissionTypes.MISSION_SPREAD, iReligion, 0, 0, True, False, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
-              bCanSpread = true
+              bCanSpread = True
 
         if not bCanSpread:
           CyInterface().addMessage(iData4, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SPREAD_RELIGION_NEG",(gc.getReligionInfo(iReligion).getDescription(),"")), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -2005,7 +2005,7 @@ class CvEventManager:
   def onLoadGame(self, argsList):
 
     # force deactivation, otherwise CtD when choosing a religion with forbidden tech require
-    gc.getGame().setOption(gc.getInfoTypeForString("GAMEOPTION_PICK_RELIGION"), false)
+    gc.getGame().setOption(gc.getInfoTypeForString("GAMEOPTION_PICK_RELIGION"), False)
 
     # PAE - River tiles
     self.bRiverTiles_WaitOnMainInterface = True
@@ -2036,12 +2036,12 @@ class CvEventManager:
       if pPlayer.isAlive():
         #iNumUnits = pPlayer.getNumUnits()
         #for j in range(iNumUnits):
-        (pUnit, iter) = pPlayer.firstUnit(false)
+        (pUnit, iter) = pPlayer.firstUnit(False)
         while pUnit:
         #  if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT") \
         #  or pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_MERCHANT"):
            pUnit.kill(1,pUnit.getOwner())
-           (pUnit, iter) = pPlayer.nextUnit(iter, false)
+           (pUnit, iter) = pPlayer.nextUnit(iter, False)
         # City buildings
         iNumCities = pPlayer.getNumCities()
         for iCity in range (iNumCities):
@@ -2072,7 +2072,7 @@ class CvEventManager:
     #self.onGameStartAndKickSomeAss()
 
     # force deactivation, otherwise CtD when choosing a religion with forbidden tech require
-    gc.getGame().setOption(gc.getInfoTypeForString("GAMEOPTION_PICK_RELIGION"), false)
+    gc.getGame().setOption(gc.getInfoTypeForString("GAMEOPTION_PICK_RELIGION"), False)
 
     # PAE - River tiles
     self.bRiverTiles_WaitOnMainInterface = True
@@ -2156,7 +2156,7 @@ class CvEventManager:
       if player.isAlive():
         ##Flunky: (unit, iter) statt for range
         # +++++ Correct naming for units (not available in BTS)
-        (unit, iter) = player.firstUnit(false)
+        (unit, iter) = player.firstUnit(False)
         while unit:
           UnitText = unit.getName()
           if UnitText[:7] == "TXT_KEY":
@@ -2174,7 +2174,7 @@ class CvEventManager:
           #     #unit.setScriptData(str(pPlot.getPlotCity().getID()))
           #     CvUtil.addScriptData(unit, "c", pPlot.getPlotCity().getID()) # CityID
 
-          (unit, iter) = player.nextUnit(iter, false)
+          (unit, iter) = player.nextUnit(iter, False)
 
         ##Flunky: Einrueckung angepasst
         # Trait-Gebaeude ueberpruefen
@@ -2183,11 +2183,11 @@ class CvEventManager:
         ##Flunky: (city, iter) statt for range
         # +++++ Check city status
         # und Trait-Gebaeude / trait buildings
-        (city, iter) = player.firstCity(false)
+        (city, iter) = player.firstCity(False)
         while city:
           self.doCheckCityState(city)
           self.doCheckTraitBuildings(city, iPlayer)
-          (city,iter) = player.nextCity(iter, false)
+          (city,iter) = player.nextCity(iter, False)
         ##/Flunky
 
         #Start in spaeterer Aera -> unerforschbare und Relitechs entfernen
@@ -2386,7 +2386,7 @@ class CvEventManager:
         techs = []
         iRange = gc.getNumTechInfos()
         for iTech in range(iRange):
-                if pPlayer.canResearch(iTech, false):
+                if pPlayer.canResearch(iTech, False):
                     iCost = pTeam.getResearchLeft(iTech)
                     if iCost > 0:
                         techs.append((-iCost, iTech))
@@ -2527,23 +2527,23 @@ class CvEventManager:
 
              if len(Neighbors) > 0:
               # check units
-              bUnit1 = false
-              bUnit2 = false
-              bUnit3 = false
-              bUnit4 = false
-              bUnit5 = false
-              bUnit6 = false
-              bUnit7 = false
-              bUnit8 = false
-              bUnit9 = false
-              bUnit10 = false
-              bUnit11 = false
-              bUnit12 = false
-              bUnit13 = false
-              bUnit14 = false
-              bUnit15 = false
-              bUnit16 = false
-              bUnit17 = false
+              bUnit1 = False
+              bUnit2 = False
+              bUnit3 = False
+              bUnit4 = False
+              bUnit5 = False
+              bUnit6 = False
+              bUnit7 = False
+              bUnit8 = False
+              bUnit9 = False
+              bUnit10 = False
+              bUnit11 = False
+              bUnit12 = False
+              bUnit13 = False
+              bUnit14 = False
+              bUnit15 = False
+              bUnit16 = False
+              bUnit17 = False
 
               # Archers werden fix angeheuert
               iUnitArcher1 = gc.getInfoTypeForString("UNIT_ARCHER")
@@ -2559,40 +2559,40 @@ class CvEventManager:
               OtherUnits = []
               OtherUnits.append(gc.getInfoTypeForString("UNIT_PELTIST"))
               for Neighbor in Neighbors:
-               if not bUnit1 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")): bUnit1 = true
-               if not bUnit2 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): bUnit2 = true
-               if not bUnit3 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")): bUnit3 = true
+               if not bUnit1 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")): bUnit1 = True
+               if not bUnit2 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): bUnit2 = True
+               if not bUnit3 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")): bUnit3 = True
 
                if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                 if not bUnit4 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG2")): bUnit4 = true
-                 if not bUnit5 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit5 = true
-                 if not bUnit6 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG3")): bUnit6 = true
-                 if not bUnit7 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")): bUnit7 = true
+                 if not bUnit4 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG2")): bUnit4 = True
+                 if not bUnit5 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit5 = True
+                 if not bUnit6 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG3")): bUnit6 = True
+                 if not bUnit7 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")): bUnit7 = True
                if Neighbor.hasBonus(iBonus2):
-                 if not bUnit8 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG5")): bUnit8 = true
-                 if not bUnit9 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WURFAXT")): bUnit9 = true
-                 if not bUnit17 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit17 = true
+                 if not bUnit8 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG5")): bUnit8 = True
+                 if not bUnit9 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WURFAXT")): bUnit9 = True
+                 if not bUnit17 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit17 = True
 
                if pPlayer.getCurrentEra() <= 2:
-                 if not bUnit10 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL")): bUnit10 = true
+                 if not bUnit10 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL")): bUnit10 = True
                  if Neighbor.hasBonus(iBonus3):
                    if not bUnit11 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PFERDEZUCHT")) and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")):
-                     bUnit11 = true
+                     bUnit11 = True
                    if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
                      if not bUnit12 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL3")):
-                       bUnit11 = true
-                       bUnit12 = true
+                       bUnit11 = True
+                       bUnit12 = True
                else:
                  if Neighbor.hasBonus(iBonus3):
-                   if not bUnit13 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")): bUnit13 = true
-                   if not bUnit14 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")): bUnit14 = true
+                   if not bUnit13 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")): bUnit13 = True
+                   if not bUnit14 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")): bUnit14 = True
                    if not bUnit15 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")):
                      if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                       bUnit14 = true
-                       bUnit15 = true
+                       bUnit14 = True
+                       bUnit15 = True
 
                if Neighbor.hasBonus(iBonus4):
-                 if not bUnit16 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ELEFANTENZUCHT")): bUnit16 = true
+                 if not bUnit16 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ELEFANTENZUCHT")): bUnit16 = True
 
 
               # Fill OtherUnits
@@ -2703,7 +2703,7 @@ class CvEventManager:
      #iNumUnits = pPlayer.getNumUnits()
      #for i in range(iNumUnits):
      # sUnit = pPlayer.getUnit(i)
-     (sUnit, iter) = pPlayer.firstUnit(false)
+     (sUnit, iter) = pPlayer.firstUnit(False)
      while sUnit:
        # tmpA: OBJECTS (tmpPlot) KANN MAN NICHT mit NOT IN in einer Liste pruefen!
        tmpA = [sUnit.getX(),sUnit.getY()]
@@ -2766,7 +2766,7 @@ class CvEventManager:
                if gc.getImprovementInfo(iImp).getDefenseModifier() < 10 or tmpPlot.getOwner() != sUnit.getOwner(): self.doUnitFormation (sUnit, -1)
             else: self.doUnitFormation (sUnit, -1)
 
-       (sUnit, iter) = pPlayer.nextUnit(iter, false)
+       (sUnit, iter) = pPlayer.nextUnit(iter, False)
      # while end
 
      if len(lFormationPlots) > 0:
@@ -4079,11 +4079,11 @@ class CvEventManager:
        iGold = pPlayer.getGold()
 
        if iGold > 400:
-         bDoIt = false
+         bDoIt = False
 
          if iGold > 800: iChance = 20
          else: iChance = 10
-         if iChance > self.myRandom(100, None): bDoIt = true
+         if iChance > self.myRandom(100, None): bDoIt = True
 
          if bDoIt:
            PAE_Mercenaries.doAIPlanAssignMercenaries(iPlayer)
@@ -4251,7 +4251,7 @@ class CvEventManager:
          iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
          if pWinner.isHasPromotion(iPromoMercenary):
 
-           bDoIt = false
+           bDoIt = False
            if gc.getPlayer(pWinner.getOwner()).isHuman():
              iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
              iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
@@ -4261,8 +4261,8 @@ class CvEventManager:
              else: iChance = 4 #25%
 
              if self.myRandom(iChance, None) == 1:
-               bDoIt = true
-           else: bDoIt = true
+               bDoIt = True
+           else: bDoIt = True
 
            if bDoIt:
              pWinner.setHasPromotion(iPromoMercenary, False)
@@ -4297,9 +4297,9 @@ class CvEventManager:
 
 ########################################################
 # ---- Schiffe sollen nach dem Angriff die Haelfte der uebrigen Bewegungspunkte haben "
-    bNavalUnit = false
+    bNavalUnit = False
     if pWinner.getDomainType() == DomainTypes.DOMAIN_SEA:
-      bNavalUnit = true
+      bNavalUnit = True
       pWinner.changeMoves((pWinner.maxMoves()-pWinner.getMoves())/2)
 
 ########################################################
@@ -5143,12 +5143,12 @@ class CvEventManager:
 
 # --------- Jagd - Feature ----------------------
 # Ab Tech Jagd (Hunting) bringen Tiere Essen in nahegelegene Stadt
-    bAnimal = false
+    bAnimal = False
     if not bUnitDone:
      if pWinner.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL and \
      ( pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitType() in AnimalArray ) and \
      pWinner.getUnitType() not in WildAnimals and pLoser.getUnitType() in WildAnimals:
-      bAnimal = true
+      bAnimal = True
       if pLoser.getCaptureUnitType(pLoser.getCivilizationType()) == -1:
 
        iJagd = gc.getInfoTypeForString("TECH_HUNTING")
@@ -5445,13 +5445,13 @@ class CvEventManager:
     if pLoser.getUnitCombatType() != -1 and not bAnimal:
       if pWinner.isMadeAttack() and gc.getPlayer(pWinner.getOwner()).isTurnActive():
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("pLoser.plot",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        self.doUnitGetsPromo(pWinner,pLoser,pLoser.plot(),true)
+        self.doUnitGetsPromo(pWinner,pLoser,pLoser.plot(),True)
       else:
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("pWinner.plot",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        self.doUnitGetsPromo(pWinner,pLoser,pWinner.plot(),false)
+        self.doUnitGetsPromo(pWinner,pLoser,pWinner.plot(),False)
 
     if not bCityRenegade and bUnitFlucht:
-      self.doUnitGetsPromo(pLoser,pWinner,pLoser.plot(),false)
+      self.doUnitGetsPromo(pLoser,pWinner,pLoser.plot(),False)
 
 
 # +++++++++++++++++++++++++++++++++++++
@@ -5468,10 +5468,10 @@ class CvEventManager:
       else: sUnit = pLoser
 
       # Forts only 2%, except with catapults
-      bFortress = false
+      bFortress = False
       if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_FORT") or iImprovement == gc.getInfoTypeForString("IMPROVEMENT_FORT2"):
         iChance = 2
-        bFortress = true
+        bFortress = True
 
         lCatapults = []
         lCatapults.append(gc.getInfoTypeForString("UNIT_ONAGER"))
@@ -5509,7 +5509,7 @@ class CvEventManager:
     iTech = gc.getUnitInfo(pLoser.getUnitType()).getPrereqAndTech()
     pWinnerTeam = gc.getTeam(gc.getPlayer(pWinner.getOwner()).getTeam())
     if not pWinnerTeam.isHasTech(iTech):
-       if gc.getPlayer(pWinner.getOwner()).canResearch(iTech, false):
+       if gc.getPlayer(pWinner.getOwner()).canResearch(iTech, False):
           iCost = gc.getTechInfo(iTech).getResearchCost()
           iCost = iCost/10
           if iCost <= 1: iCost = 1
@@ -6407,8 +6407,8 @@ class CvEventManager:
 
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Ranged Attack - Owner",eOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-      #(unit, iter) = pPlayer.firstUnit(false)
-      #(unit, iter) = pPlayer.nextUnit(iter, false)
+      #(unit, iter) = pPlayer.firstUnit(False)
+      #(unit, iter) = pPlayer.nextUnit(iter, False)
 
 
     # Wenn die Mission nicht ausgefuehrt werden soll
@@ -11662,8 +11662,8 @@ class CvEventManager:
 
     #pUnit.getGroup().setActivityType(ActivityTypes.ACTIVITY_HOLD)
 
-    #(unit, iter) = pPlayer.firstUnit(false)
-    #(unit, iter) = pPlayer.nextUnit(iter, false)
+    #(unit, iter) = pPlayer.firstUnit(False)
+    #(unit, iter) = pPlayer.nextUnit(iter, False)
 
     pPlot = gc.getMap().plot(pUnit.getX(),pUnit.getY())
     pUnit.getGroup().pushMission (MissionTypes.MISSION_SKIP,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pPlot,pUnit)
@@ -12735,8 +12735,8 @@ class CvEventManager:
     iSwamp = 0
     iDesert = 0
     iRiver = 0
-    if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")): bProvinz = true
-    else: bProvinz = false
+    if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")): bProvinz = True
+    else: bProvinz = False
     iX = pCity.getX()
     iY = pCity.getY()
 
@@ -12891,12 +12891,12 @@ class CvEventManager:
 
         # Anzahl der Generaele des Spielers
         iLeader = 0
-        (loopUnit, iter) = pPlayer.firstUnit(false)
+        (loopUnit, iter) = pPlayer.firstUnit(False)
         while loopUnit:
           if loopUnit.getLeaderUnitType() > -1:
             if loopUnit.getID() != pUnit.getID():
               iLeader += 1
-          (loopUnit, iter) = pPlayer.nextUnit(iter, false)
+          (loopUnit, iter) = pPlayer.nextUnit(iter, False)
 
         # Units: bekommen Mercenary-Promo
         iNumUnits = pPlot.getNumUnits()
@@ -13091,11 +13091,11 @@ class CvEventManager:
       if pCity != None:
         iPromoFort = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
         iPromoFort2 = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
-        (pUnit, iter) = pPlayer.firstUnit(false)
+        (pUnit, iter) = pPlayer.firstUnit(False)
         while pUnit:
           pUnit.setHasPromotion(iPromoFort, False)
           pUnit.setHasPromotion(iPromoFort2, False)
-          (pUnit, iter) = pPlayer.nextUnit(iter, false)
+          (pUnit, iter) = pPlayer.nextUnit(iter, False)
 
   # --------------------------------
   # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
@@ -13169,12 +13169,12 @@ class CvEventManager:
     pPlayer = gc.getPlayer(pUnit.getOwner())
 
     LegioUsedNames = []
-    (loopUnit, iter) = pPlayer.firstUnit(false)
+    (loopUnit, iter) = pPlayer.firstUnit(False)
     while loopUnit:
       sName = loopUnit.getName()
       if "Legio" in sName:
         LegioUsedNames.append(re.sub(" \(.*?\)","",sName))
-      (loopUnit, iter) = pPlayer.nextUnit(iter, false)
+      (loopUnit, iter) = pPlayer.nextUnit(iter, False)
 
     LegioNames = ["Legio I Adiutrix","Legio I Germanica","Legio I Italica","Legio I Macriana Liberatrix","Legio I Minervia","Legio I Parthica","Legio II Adiutrix","Legio II Augusta","Legio II Italica","Legio II Parthica","Legio II Traiana Fortis","Legio III Augusta","Legio III Cyrenaica","Legio III Gallica","Legio III Italica","Legio III Parthica","Legio III Macedonica","Legio IV Flavia Felix","Legio IV Scythica","Legio V Alaudae","Legio V Macedonica","Legio VI Ferrata","Legio VI Victrix","Legio VII Claudia","Legio VII Gemina","Legio VIII Augusta","Legio IX Hispana","Legio X Fretensis","Legio X Equestris","Legio XI Claudia","Legio XII Fulminata","Legio XIII Gemina","Legio XIV Gemina","Legio XV Apollinaris","Legio XV Primigenia","Legio XVI Gallica","Legio XVI Flavia Firma","Legio XVII","Legio XVIII","Legio XIX","Legio XX Valeria Victrix","Legio XXI Rapax","Legio XXII Deiotariana","Legio XXII Primigenia","Legio XXX Ulpia Victrix","Legio I Iulia Alpina","Legio I Armeniaca","Legio I Flavia Constantia","Legio I Flavia Gallicana","Legio I Flavia Martis","Legio I Flavia Pacis","Legio I Illyricorum","Legio I Iovia","Legio I Isaura Sagitaria","Legio I Martia","Legio I Maximiana","Legio I Noricorum","Legio I Pontica","Legio II Iulia Alpina","Legio II Armeniaca","Legio II Brittannica","Legio II Flavia Virtutis","Legio II Herculia","Legio II Isaura","Legio III Iulia Alpina","Legio III Diocletiana","Legio III Flavia Salutis","Legio III Herculia","Legio III Isaura","Legio IV Italica","Legio IV Martia","Legio IV Parthica","Legio V Iovia","Legio V Parthica","Legio VI Gallicana","Legio VI Herculia","Legio VI Hispana","Legio VI Parthica","Legio XII Victrix","Legio Thebaica"]
     iRange = len(LegioNames)

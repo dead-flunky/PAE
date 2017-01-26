@@ -34,7 +34,7 @@ MAX_BONUS_ROWS = 10
 
 # BUG - field of view slider - start
 DEFAULT_FIELD_OF_VIEW = 44
-bFieldOfView = False # PAE (false for better ingame python programming)
+bFieldOfView = False # PAE (False for better ingame python programming)
 # BUG - field of view slider - end
 
 # SPECIALIST STACKER        05/02/07      JOHNY
@@ -2063,13 +2063,13 @@ class CvMainInterface:
                   pCityPlayer = gc.getPlayer( pCity.getOwner() )
                   if pCity.getOwner() == pUnit.getOwner() or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(pUnit.getOwner()).getTeam()):
                     # Check plots (Klima / climate)
-                    bOK = false
+                    bOK = False
                     for i in range(3):
                       for j in range(3):
                         loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
                         if loopPlot != None and not loopPlot.isNone():
                           if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT") or loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_JUNGLE"):
-                            bOK = true
+                            bOK = True
                             break
                       if bOK: break
 
@@ -2098,13 +2098,13 @@ class CvMainInterface:
                   pCityPlayer = gc.getPlayer( pCity.getOwner() )
                   if pCity.getOwner() == pUnit.getOwner() or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(pUnit.getOwner()).getTeam()):
                     # Check plots (Klima / climate)
-                    bOK = false
+                    bOK = False
                     for i in range(3):
                       for j in range(3):
                         loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
                         if loopPlot != None and not loopPlot.isNone():
                           if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"):
-                            bOK = true
+                            bOK = True
                             break
                       if bOK: break
 
@@ -2522,12 +2522,16 @@ class CvMainInterface:
                     if pPlot.isCity(): iIsCity = 1
                     else: iIsCity = 0
 
-                    sScriptDataString = CvUtil.getScriptData(pUnit, ["b"])
+                    lBonuses = CvUtil.getScriptData(pUnit, ["b"], [])
+                    # Konvertiere altes Format
+                    if type(lBonuses) == str:
+                        lBonuses=[int(x) for x in lBonuses.split()]
+                        if -1 in lBonuses: lBonuses.remove(-1)
 
                     # Collect bonus from plot or city
                     ePlotBonus = pPlot.getBonusType(pUnit.getOwner()) # Invisible bonuses can NOT be collected
                     if ePlotBonus in PAE_Trade.lCultivatable or iIsCity:
-                      if sScriptDataString == "" or iIsCity:
+                      if len(lBonuses) == 0 or iIsCity:
                         # remove from plot => iData2 = 0. 1 = charge all goods without removing
                         if ePlotBonus != -1:
                           screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True )
@@ -2544,7 +2548,7 @@ class CvMainInterface:
                         iCount = iCount + 1
 
                     # Cultivate bonus onto plot
-                    if sScriptDataString != "":
+                    if len(lBonuses) > 0:
                       lCultivatableBonuses = PAE_Trade.getCultivatableBonusesForUnit(pUnit, iIsCity)
                       if len(lCultivatableBonuses) > 0:
                         screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_CULTIVATE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 738, 738, iIsCity )
@@ -2554,9 +2558,12 @@ class CvMainInterface:
                 # Buy / sell goods in cities (domestic or foreign)
                 if iUnitType in PAE_Trade.lTradeUnits:
                     if pPlot.isCity():
-                        eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
+                        eBonusList = CvUtil.getScriptData(pUnit, ["b"], [])
+                        # Konvertiere altes Format
+                        if type(eBonusList) == str: eBonusList = [int(x) for x in eBonusList.split()]
                         # Sell
-                        if eBonus != -1:
+                        if len(eBonusList) > 0 and eBonusList[0] != -1:
+                            # eBonus = eBonusList[0]
                             iPrice = PAE_Trade.calculateBonusSellingPrice(pUnit, pPlot.getPlotCity())
                             screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_SELL").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 741, iPrice, False )
                             screen.show( "BottomButtonContainer" )
@@ -5618,7 +5625,10 @@ class CvMainInterface:
 
                         elif pUnit.getUnitType() in PAE_Trade.lTradeUnits:
                             UnitBarType = "TRADE"
-                            iValue1 = CvUtil.getScriptData(pUnit, ["b"], -1)
+                            iBonusList = CvUtil.getScriptData(pUnit, ["b"], [-1])
+                            # Konvertiere altes Format
+                            if type(iBonusList) == str: iValue1 = [int(x) for x in iBonusList.split()]
+                            iValue1 = iBonusList[0]
 
         if CyInterface().getLengthSelectionList() > 19 and UnitBarType != "HEALER": UnitBarType = "NO_HEALER"
         # ------
@@ -5847,19 +5857,23 @@ class CvMainInterface:
           szText = ""
           if pHeadSelectedUnit.getUnitType() in PAE_Trade.lTradeUnits:
               szText = localText.getText("TXT_UNIT_INFO_BAR_5", ()) + u" "
-              iValue1 = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
-              if iValue1 != -1:
-                  sBonusDesc = gc.getBonusInfo(iValue1).getDescription()
-                  iBonusChar = gc.getBonusInfo(iValue1).getChar()
-                  szText += localText.getText("TXT_UNIT_INFO_BAR_4", (iBonusChar,sBonusDesc))
+              iBonusList = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], [])
+              # Konvertiere altes Format
+              if type(iBonusList) == str: iValue1 = [int(x) for x in iBonusList.split()]
+              if len(iBonusList) > 0 and iBonusList[0] > -1:
+                  for iValue1 in iBonusList:
+                    sBonusDesc = gc.getBonusInfo(iValue1).getDescription()
+                    iBonusChar = gc.getBonusInfo(iValue1).getChar()
+                    szText += localText.getText("TXT_UNIT_INFO_BAR_4", (iBonusChar,sBonusDesc))
               else:
                   szText += localText.getText("TXT_KEY_NO_BONUS_STORED", ())
 
           elif pHeadSelectedUnit.getUnitType() in PAE_Trade.lCultivationUnits:
               szText = localText.getText("TXT_UNIT_INFO_BAR_5", ())
-              iValue1 = CvUtil.getScriptData(pHeadSelectedUnit, ["b"])
-              if iValue1 != "":
-                  lBonusList = PAE_Trade.convertStringToIntList(iValue1)
+              lBonusList = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], [])
+              # Konvertiere altes Format
+              if type(lBonusList) == str: lBonusList = PAE_Trade.convertStringToIntList(lBonusList)
+              if len(lBonusList) > 0 and lBonusList[0] > -1:
                   for eBonus in lBonusList:
                       iBonusChar = gc.getBonusInfo(eBonus).getChar()
                       szText += u" %c" %(iBonusChar)
@@ -6203,7 +6217,7 @@ class CvMainInterface:
 
                         screen.setTableText("ScoreBackground2", 0, iRow, sText1, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
 
-                        bEspionageCanSeeResearch = false
+                        bEspionageCanSeeResearch = False
                         for iMissionLoop in xrange(gc.getNumEspionageMissionInfos()):
                                 if (gc.getEspionageMissionInfo(iMissionLoop).isSeeResearch()):
                                         bEspionageCanSeeResearch = gc.getPlayer(CyGame().getActivePlayer()).canDoEspionageMission(iMissionLoop, iPlayer, None, -1)
@@ -7009,8 +7023,8 @@ class CvMainInterface:
       self.iScoreWidth = max(0, self.iScoreWidth - 10)
       self.updateScoreStrings()
     elif inputClass.getFunctionName() == "ScoreHidePoints":
-      if not self.iScoreHidePoints: self.iScoreHidePoints = true
-      else:  self.iScoreHidePoints = false
+      if not self.iScoreHidePoints: self.iScoreHidePoints = True
+      else:  self.iScoreHidePoints = False
       self.updateScoreStrings()
 
 # Platy ScoreBoard - End
@@ -7021,7 +7035,7 @@ class CvMainInterface:
         screen = CyGInterfaceScreen("MainInterface", CvScreenEnums.MAIN_INTERFACE)
         """ This just work in fullscreen mode
         iRow = self.findIconRow( inputClass.getButtonType(), inputClass.getData1() )
-        #This change could be false in window mode.
+        #This change could be False in window mode.
         if self.secondRowBorder < CyInterface().getMousePos().y:
           iRow -= 1
         """

@@ -153,21 +153,24 @@ class CvGameUtils:
 
       # Cultivation
       if iUnitType in PAE_Trade.lCultivationUnits:
-        sScriptDataString = CvUtil.getScriptData(pHeadSelectedUnit, ["b"])
-        if sScriptDataString != "":
-          lStoredBonuses = PAE_Trade.convertStringToIntList(sScriptDataString)
-          if lStoredBonuses and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
+        lStoredBonuses = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], [])
+
+        # Konvertiere altes Format
+        if type(lStoredBonuses) == str:
+          lStoredBonuses = PAE_Trade.convertStringToIntList(lStoredBonuses)
+
+        if len(lStoredBonuses) > 0 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
             iRange = 4
             for iDX in xrange(-iRange, iRange):
-              for iDY in xrange(-iRange, iRange):
-                pLoopPlot = plotXY(iX, iY, iDX, iDY)
-                if pLoopPlot:
-                      #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
-                      bCanCultivate = False
-                      for eBonus in lStoredBonuses:
-                        bCanCultivate = bCanCultivate or PAE_Trade.getBonusCultivationChance(gc.getGame().getActivePlayer(), pLoopPlot, eBonus)
-                      if bCanCultivate:
-                        CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+                for iDY in xrange(-iRange, iRange):
+                    pLoopPlot = plotXY(iX, iY, iDX, iDY)
+                    if pLoopPlot:
+                        #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
+                        bCanCultivate = False
+                        for eBonus in lStoredBonuses:
+                            bCanCultivate = bCanCultivate or PAE_Trade.getBonusCultivationChance(gc.getGame().getActivePlayer(), pLoopPlot, eBonus)
+                        if bCanCultivate:
+                            CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
       # Elefant
       elif iUnitType == gc.getInfoTypeForString("UNIT_ELEFANT"):
@@ -176,54 +179,54 @@ class CvGameUtils:
         terr_plains = gc.getInfoTypeForString("TERRAIN_PLAINS")
         feat_jungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
 
-        (pCity, iter) = pPlayer.firstCity(false)
+        (pCity, iter) = pPlayer.firstCity(False)
         while pCity:
           if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
             # Check plots (Klima / climate)
-            bOK1 = false
-            bOK2 = false
-            bOK = false
+            bOK1 = False
+            bOK2 = False
+            bOK = False
             for i in range(-1,1):
               for j in range(-1,1):
                 loopPlot = gc.getMap().plot(pCity.getX() + i, pCity.getY() + j)
                 if loopPlot != None and not loopPlot.isNone():
                   if loopPlot.getTerrainType() == terr_desert or loopPlot.getFeatureType() == feat_jungle:
-                    bOK1 = true
+                    bOK1 = True
                   if loopPlot.getTerrainType() == terr_plains and loopPlot.getBonusType(loopPlot.getOwner()) == -1:
-                    bOK2 = true
+                    bOK2 = True
                   if bOK1 and bOK2:
-                     bOK = true
+                     bOK = True
                      break
               if bOK: break
 
             if bOK:
                CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
-          (pCity,iter) = pPlayer.nextCity(iter, false)
+          (pCity,iter) = pPlayer.nextCity(iter, False)
 
       # Kamel
       elif iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
         pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
         terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
 
-        (pCity, iter) = pPlayer.firstCity(false)
+        (pCity, iter) = pPlayer.firstCity(False)
         while pCity:
           if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
             # Check plots (Klima / climate)
-            bOK = false
+            bOK = False
             for i in range(-1,1):
               for j in range(-1,1):
                 loopPlot = gc.getMap().plot(pCity.getX() + i, pCity.getY() + j)
                 if loopPlot != None and not loopPlot.isNone():
                   if loopPlot.getTerrainType() == terr_desert and loopPlot.getBonusType(loopPlot.getOwner()) == -1:
-                    bOK = true
+                    bOK = True
                     break
               if bOK: break
 
             if bOK:
                CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
-          (pCity,iter) = pPlayer.nextCity(iter, false)
+          (pCity,iter) = pPlayer.nextCity(iter, False)
 
     return False
 
@@ -855,7 +858,7 @@ class CvGameUtils:
 
 
     if iTech != -1:
-      if not eTeam.isHasTech(iTech) and pPlayer.canResearch(iTech, false):
+      if not eTeam.isHasTech(iTech) and pPlayer.canResearch(iTech, False):
         return iTech
 
     return TechTypes.NO_TECH
@@ -2793,7 +2796,7 @@ class CvGameUtils:
         pCity = lCity.GetCy()
         if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
            # Check plots (Klima / climate)
-           bOK = false
+           bOK = False
            iX = pCity.getX()
            iY = pCity.getY()
            for i in range(3):
@@ -2801,7 +2804,7 @@ class CvGameUtils:
                loopPlot = plotXY(iX, i-1, iY, j-1)
                if loopPlot != None and not loopPlot.isNone():
                  if loopPlot.getTerrainType() == iDesert or loopPlot.getFeatureType() == iJungle:
-                   bOK = true
+                   bOK = True
                    break
              if bOK: break
 
@@ -2838,13 +2841,13 @@ class CvGameUtils:
            # Check plots (Klima / climate)
            iX = pCity.getX()
            iY = pCity.getY()
-           bOK = false
+           bOK = False
            for i in range(3):
              for j in range(3):
                loopPlot = plotXY(iX, i-1, iY, j-1)
                if loopPlot != None and not loopPlot.isNone():
                  if loopPlot.getTerrainType() == iDesert:
-                   bOK = true
+                   bOK = True
                    break
              if bOK: break
 
@@ -3184,8 +3187,8 @@ class CvGameUtils:
         if pOwner.getNumAvailableBonuses(lBonuses[i]) > 0:
           lAIBonuses.append(lBonuses[i])
 
-      if len(lAIBonuses): bAIHasBonus = true
-      else: bAIHasBonus = false
+      if len(lAIBonuses): bAIHasBonus = True
+      else: bAIHasBonus = False
 
       # -------
 
@@ -3271,10 +3274,11 @@ class CvGameUtils:
       # Check 2: Foodstorage
       for iCity in range(iCities):
         pCity = pOwner.getCity( lCities[ iCity ].getID( ) )
-        bCheck = true
+        bCheck = True
 
         if pThisPlotCity != None and not pThisPlotCity.isNone():
-          if pCity.getID() == pThisPlotCity.getID(): bCheck = false
+          if pCity.getID() == pThisPlotCity.getID():
+              bCheck = False
 
         # 1: BONUS
         # anfangs leere Liste StadtBoni (falls eine stadt 2 gleiche boni hat)
