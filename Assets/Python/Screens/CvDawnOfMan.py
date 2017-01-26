@@ -144,7 +144,7 @@ class CvDawnOfMan:
 
 
                 # +++++ Special dawn of man texts for Szenario Maps in PAE ++++++++++++++++++++++++++++++++
-                sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"]) 
+                sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
                 if sScenarioName == "FirstPunicWar":
                   szDawnText1 = "TXT_KEY_DAWN_OF_MAN_SCREEN_TITLE_FIRST_PUNIC_WAR"
                   szDawnText2 = "TXT_KEY_DAWN_OF_MAN_FIRST_PUNIC_WAR"
