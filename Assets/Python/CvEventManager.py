@@ -1031,7 +1031,7 @@ class CvEventManager:
 ##    if iData1 == 726:  frei
 
     # Getreidelieferung UNIT_SUPPLY_FOOD
-    if iData1 == 727:
+    elif iData1 == 727:
        # 727, iCityID, 0, iPlayer, iUnitID
        pPlayer = gc.getPlayer(iData4)
        pCity = pPlayer.getCity(iData2)
@@ -1306,7 +1306,7 @@ class CvEventManager:
 
 
     # Sklaven -> Bibliothek / Library
-    if iData1 == 729:
+    elif iData1 == 729:
       pPlot = CyMap().plot(iData2, iData3)
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
@@ -1314,14 +1314,14 @@ class CvEventManager:
       PAE_Sklaven.doSlave2Library(pCity, pUnit)
 
     # Release slaves
-    if iData1 == 730:
+    elif iData1 == 730:
       # 730, iCityID, 0, iPlayer, -1/iButton
       pPlayer = gc.getPlayer(iData4)
       pCity = pPlayer.getCity(iData2)
       PAE_Sklaven.doReleaseSlaves(pPlayer, pCity, iData5)
 
     # Spread religion with a missionary
-    if iData1 == 731:
+    elif iData1 == 731:
       # 731, -1, -1, iPlayer, iUnitID
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
@@ -1371,7 +1371,7 @@ class CvEventManager:
 ##      self.doAutomateMerchant(pUnit)
 
     # Build Limes PopUp
-    if iData1 == 733:
+    elif iData1 == 733:
       # 733, -1 oder iButtonID, -1, iPlayer, iUnitID
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
@@ -1447,7 +1447,7 @@ class CvEventManager:
 
 
     # Sklaven zu Feldsklaven oder Bergwerksklaven (HI only)
-    if iData1 == 734:
+    elif iData1 == 734:
       # 731, iCityID, Typ: 1=Feld 2=Bergwerk, iPlayer, iUnitID
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
@@ -1462,7 +1462,7 @@ class CvEventManager:
       pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
     # Salae oder Dezimierung
-    if iData1 == 735:
+    elif iData1 == 735:
       # 735, Typ: 1=Sold 2=Dezimierung, 0=PopUp oder 1=Anwenden,  iPlayer, iUnitID
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
@@ -1653,13 +1653,13 @@ class CvEventManager:
           self.doGoToNextUnit(pPlayer, pUnit)
 
     # Handelsposten errichten
-    if iData1 == 736:
+    elif iData1 == 736:
       # 736, 0, 0, iPlayer, iUnitID
       pUnit = gc.getPlayer(iData4).getUnit(iData5)
       self.doBuildHandelsposten(pUnit)
 
     # Statthalter / Tribut
-    if iData1 == 737:
+    elif iData1 == 737:
        # iData1, iData2, ... , iData5
        # First:  737, iCityID, iPlayer, -1, -1
        # Second: 737, iCityID, iPlayer, iButtonID (Typ), -1
@@ -1832,15 +1832,28 @@ class CvEventManager:
     # 738-743: Cultivation feature / Bonusverbreitung ( Cultivation / Trade / Boggy )
     # 744-748: Automated trade routes
 
-    # 738: Create popup for bonus cultivation
+    #~ # 738: Create popup for bonus cultivation
+    #~ if iData1 == 738:
+        #~ pPlayer = gc.getPlayer(iData2)
+        #~ pUnit = pPlayer.getUnit(iData3)
+        #~ # iData4 = int von iIsCity
+        #~ PAE_Trade.doPopupChooseBonusForCultivation(pUnit, iData4)
+
+    # 738, iPlayer, iUnit, iIsCity
+    # Cultivate bonus.
     if iData1 == 738:
         pPlayer = gc.getPlayer(iData2)
         pUnit = pPlayer.getUnit(iData3)
-        # iData4 = int von iIsCity
-        PAE_Trade.doPopupChooseBonusForCultivation(pUnit, iData4)
+        eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
+        if eBonus != -1:
+          pPlot = pUnit.plot()
+          if pPlot.isCity():
+            pPlot = PAE_Trade.getCityCultivationPlot(pPlot().getPlotCity(), eBonus)
+          PAE_Trade.doCultivateBonus(pPlot, pUnit, eBonus)
+
 
     # Collect bonus from plot
-    if iData1 == 739:
+    elif iData1 == 739:
         pPlayer = gc.getPlayer(iData4)
         pUnit = pPlayer.getUnit(iData5)
         pPlot = pUnit.plot()
@@ -1853,7 +1866,7 @@ class CvEventManager:
           self.doGoToNextUnit(pPlayer, pUnit)
 
     # Create popup for buying bonus (in city)
-    if iData1 == 740:
+    elif iData1 == 740:
         pPlayer = gc.getPlayer(iData4)
         pUnit = pPlayer.getUnit(iData5)
         pCity = CyMap().plot(iData2,iData3).getPlotCity()
@@ -1861,7 +1874,7 @@ class CvEventManager:
         #self.doGoToNextUnit(pPlayer, pUnit)
 
     # Sell bonus (in city)
-    if iData1 == 741:
+    elif iData1 == 741:
         pPlayer = gc.getPlayer(iData4)
         pUnit = pPlayer.getUnit(iData5)
         pCity = CyMap().plot(iData2,iData3).getPlotCity()
@@ -1869,25 +1882,15 @@ class CvEventManager:
         self.doGoToNextUnit(pPlayer, pUnit)
 
     # Buy bonus (in city). Called by CvScreensInterface.
-    if iData1 == 742:
+    elif iData1 == 742:
         pPlayer = gc.getPlayer(iData4)
         pUnit = pPlayer.getUnit(iData5)
         eBonus = iData2
         iCityOwner = iData3
         PAE_Trade.doBuyBonus(pUnit, eBonus, iCityOwner)
 
-    # Cultivate bonus. Called by CvScreensInterface.
-    if iData1 == 743:
-        pPlayer = gc.getPlayer(iData4)
-        pUnit = pPlayer.getUnit(iData5)
-        eBonus = iData2
-        # iData3 = iIsCity
-        pPlot = pUnit.plot()
-        if iData3 == 1: PAE_Trade.doCultivateBonusFromCity(pUnit, eBonus)
-        else: PAE_Trade.doCultivateBonus(pPlot, pUnit, eBonus)
-
     # Automated trade route: first popup (choose civ 1)
-    if iData1 == 744:
+    elif iData1 == 744:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         # Falls Erstellung der Route zwischendurch abgebrochen wird, kann eine halbfertige Route im
         # ScriptData gespeichert sein - daher wird die Route zunaechst auf inaktiv gesetzt und erst
@@ -1897,7 +1900,7 @@ class CvEventManager:
         PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 1, -1, -1)
 
     # Automated trade route: after choosing city 1
-    if iData1 == 745:
+    elif iData1 == 745:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         pCity = gc.getPlayer(iData2).getCity(iData3)
         CvUtil.addScriptData(pUnit, "automX1", pCity.getX())
@@ -1906,7 +1909,7 @@ class CvEventManager:
         PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 3, iData2, iData3)
 
     # Automated trade route: after choosing city 2
-    if iData1 == 746:
+    elif iData1 == 746:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         pCity = gc.getPlayer(iData2).getCity(iData3)
         CvUtil.addScriptData(pUnit, "automX2", pCity.getX())
@@ -1915,7 +1918,7 @@ class CvEventManager:
         PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 6, iData2, iData3)
 
     # Automated trade route: after choosing bonus
-    if iData1 == 747:
+    elif iData1 == 747:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         eBonus = iData2
         bFirst = iData3
@@ -1932,7 +1935,7 @@ class CvEventManager:
             #if pUnit.canMove():
             #    PAE_Trade.doAutomateMerchant(pUnit, False)
 
-    if iData1 == 748:
+    elif iData1 == 748:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         CvUtil.addScriptData(pUnit, "automActive", 0)
         self.doGoToNextUnit(gc.getPlayer(iData4), pUnit)
@@ -1943,19 +1946,19 @@ class CvEventManager:
     # --------------------------------
 
     # 751: Unit Rang Promo / Upgrade to new unit with new additional PAE ranking system
-    if iData1 == 751:
+    elif iData1 == 751:
        # iData1, iData2, ... , iData5
        # 751, -1, -1, iPlayer, iUnitID
        self.doUpgradeRang(iData4,iData5)
 
     # 752: bless units
-    if iData1 == 752:
+    elif iData1 == 752:
        # iData1, iData2, ... , iData5
        # 752, iX, iY, iPlayer, iUnitID
        self.doBlessUnits(iData2,iData3,iData4,iData5)
 
     # Slave -> Latifundium
-    if iData1 == 753:
+    elif iData1 == 753:
       # 733, -1 oder iButtonID, -1, iPlayer, iUnitID
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
@@ -2336,7 +2339,7 @@ class CvEventManager:
         while pLoopUnit:
             iUnitType = pLoopUnit.getUnitType()
             if iUnitType in PAE_Trade.lTradeUnits:
-                bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["automActive","t"]))
+                bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["automActive","t"], 0))
                 if bTradeRouteActive and pLoopUnit.getGroup().getLengthMissionQueue() == 0:
                     PAE_Trade.doAutomateMerchant(pLoopUnit, False)
                     #pLoopUnit.finishMoves()
@@ -8881,7 +8884,7 @@ class CvEventManager:
     pPlayer = gc.getPlayer(iPlayer)
     iTeam = pPlayer.getTeam()
     pTeam = gc.getTeam(iTeam)
-    pCityPlot = gc.getMap().plot(pCity.getX(), pCity.getY())
+    pCityPlot = pCity.plot()
     popCity = pCity.getPopulation()
     iCityFoodDifference = pCity.foodDifference(True)
     iCityUnits = pCityPlot.getNumDefenders(iPlayer)

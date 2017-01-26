@@ -153,21 +153,16 @@ class CvGameUtils:
 
       # Cultivation
       if iUnitType in PAE_Trade.lCultivationUnits:
-        sScriptDataString = CvUtil.getScriptData(pHeadSelectedUnit, ["b"])
-        if sScriptDataString != "":
-          lStoredBonuses = PAE_Trade.convertStringToIntList(sScriptDataString)
-          if lStoredBonuses and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
-            iRange = 4
-            for iDX in xrange(-iRange, iRange):
-              for iDY in xrange(-iRange, iRange):
-                pLoopPlot = plotXY(iX, iY, iDX, iDY)
-                if pLoopPlot:
-                      #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
-                      bCanCultivate = False
-                      for eBonus in lStoredBonuses:
-                        bCanCultivate = bCanCultivate or PAE_Trade.getBonusCultivationChance(gc.getGame().getActivePlayer(), pLoopPlot, eBonus)
-                      if bCanCultivate:
-                        CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+        eBonus = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
+        if eBonus != -1 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
+          iRange = 4
+          for iDX in xrange(-iRange, iRange):
+            for iDY in xrange(-iRange, iRange):
+              pLoopPlot = plotXY(iX, iY, iDX, iDY)
+              if pLoopPlot != None and not pLoopPlot.isNone():
+                #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
+                if PAE_Trade.getBonusCultivationChance(gc.getActivePlayer(), pLoopPlot, eBonus) > 0:
+                  CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
       # Elefant
       elif iUnitType == gc.getInfoTypeForString("UNIT_ELEFANT"):
