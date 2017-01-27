@@ -1553,8 +1553,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=2,y=16
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -2151,8 +2150,7 @@ BeginPlot
 	x=4,y=12
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -2160,8 +2158,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=4,y=13
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -2454,8 +2451,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -3545,8 +3541,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=8,y=33
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=14,
 	Player14Culture=2
@@ -3880,8 +3875,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=9,y=32
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=14,40,
 	Player14Culture=2
@@ -4229,8 +4223,7 @@ BeginPlot
 	x=10,y=28
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -4240,8 +4233,7 @@ BeginPlot
 	x=10,y=29
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -4258,8 +4250,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=10,y=31
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=14,40,
 	Player18Culture=2
@@ -4270,8 +4261,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	BonusType=BONUS_WHEAT
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=14,40,
 	Player14Culture=2
@@ -4451,8 +4441,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=11,y=13
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -4638,8 +4627,7 @@ BeginPlot
 	x=11,y=32
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=14,40,
 EndPlot
@@ -4833,8 +4821,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=12,y=18
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=12,
 	Player12Culture=2
@@ -5674,8 +5661,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=14,y=39
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -6035,8 +6021,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=15,y=40
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -6268,8 +6253,7 @@ BeginPlot
 	x=16,y=31
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=4,40,
 	Player18Culture=2
@@ -6305,8 +6289,7 @@ BeginPlot
 	x=16,y=35
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -6604,8 +6587,7 @@ BeginPlot
 	x=17,y=35
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -7284,8 +7266,7 @@ BeginPlot
 	x=19,y=38
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -7599,8 +7580,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=20,y=38
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -7611,8 +7591,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	BonusType=BONUS_COW
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -7921,8 +7900,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=21,y=35
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -7982,8 +7960,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -8294,8 +8271,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=22,y=36
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -8328,8 +8304,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=22,y=40
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -8545,8 +8520,7 @@ EndPlot
 BeginPlot
 	x=23,y=27
 	BonusType=BONUS_PIG
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -8690,8 +8664,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=23,y=42
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -9034,8 +9007,7 @@ BeginPlot
 	x=24,y=42
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -9045,8 +9017,7 @@ BeginPlot
 	x=24,y=43
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -9240,8 +9211,7 @@ BeginPlot
 	x=25,y=27
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -9524,8 +9494,7 @@ BeginPlot
 	x=26,y=22
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=0,
 	Player0Culture=2
@@ -9591,8 +9560,7 @@ BeginPlot
 	x=26,y=28
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -9716,8 +9684,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -9867,8 +9834,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=27,y=21
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=0,
 	Player0Culture=2
@@ -9924,8 +9890,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=27,y=26
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -10074,8 +10039,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=27,y=40
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -10092,8 +10056,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=27,y=42
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -10401,8 +10364,7 @@ BeginPlot
 	x=28,y=41
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -10662,8 +10624,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=29,y=33
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=5,
 EndPlot
@@ -10677,8 +10638,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=29,y=35
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=1
 	TeamReveal=5,40,
 EndPlot
@@ -11372,8 +11332,7 @@ BeginPlot
 	x=31,y=33
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -11694,8 +11653,7 @@ BeginPlot
 	x=32,y=30
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -12034,8 +11992,7 @@ BeginPlot
 	x=33,y=28
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -12349,8 +12306,7 @@ BeginPlot
 	RiverWEDirection=1
 	isWOfRiver
 	BonusType=BONUS_COW
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -12401,8 +12357,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	BonusType=BONUS_PIG
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -12826,8 +12781,7 @@ BeginPlot
 	x=35,y=41
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=9,40,
 EndPlot
@@ -12835,8 +12789,7 @@ BeginPlot
 	x=35,y=42
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=9,40,
 EndPlot
@@ -13060,8 +13013,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=36,y=31
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=16,40,
 	Player16Culture=2
@@ -13391,8 +13343,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=37,y=31
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=0
 	TeamReveal=16,40,
 	Player16Culture=2
@@ -13506,8 +13457,7 @@ BeginPlot
 	x=37,y=42
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -13831,8 +13781,7 @@ BeginPlot
 	x=38,y=40
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=13,40,
 	Player18Culture=2
@@ -14119,8 +14068,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -14128,8 +14076,7 @@ BeginPlot
 	x=39,y=29
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=16,40,
 EndPlot
@@ -14214,8 +14161,7 @@ BeginPlot
 	x=39,y=40
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=13,40,
 	Player18Culture=2
@@ -15240,8 +15186,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=42,y=30
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -15253,8 +15198,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -15322,8 +15266,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=42,y=38
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=13,40,
 	Player13Culture=2
@@ -15594,15 +15537,13 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=43,y=32
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
 BeginPlot
 	x=43,y=33
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -15613,8 +15554,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=43,y=35
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -15632,15 +15572,13 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=13,40,
 EndPlot
 BeginPlot
 	x=43,y=38
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=13,40,
 EndPlot
@@ -15933,8 +15871,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=44,y=35
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -15943,8 +15880,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	ImprovementType=IMPROVEMENT_GOODY_HUT
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -15953,8 +15889,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	BonusType=BONUS_PIG
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -15973,8 +15908,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=44,y=39
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -16298,8 +16232,7 @@ BeginPlot
 	x=45,y=39
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=7,40,
 	Player18Culture=2
@@ -16620,8 +16553,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=46,y=39
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=7,40,
 	Player18Culture=2
@@ -16927,8 +16859,7 @@ BeginPlot
 	x=47,y=39
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=7,40,
 	Player7Culture=2
@@ -16937,8 +16868,7 @@ BeginPlot
 	x=47,y=40
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=7,40,
 	Player7Culture=2
@@ -16953,8 +16883,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=47,y=42
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -18194,8 +18123,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 EndPlot
@@ -18510,8 +18438,7 @@ BeginPlot
 	x=53,y=9
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
@@ -18847,8 +18774,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=54,y=9
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 	TeamReveal=40,
 	Player18Culture=2
