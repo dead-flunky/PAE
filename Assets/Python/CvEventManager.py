@@ -1848,7 +1848,8 @@ class CvEventManager:
         if eBonus != -1:
           pPlot = pUnit.plot()
           if pPlot.isCity():
-            pPlot = PAE_Trade.getCityCultivationPlot(pPlot().getPlotCity(), eBonus)
+            pPlot = PAE_Trade.getCityCultivationPlot(pPlot.getPlotCity(), eBonus)
+
           PAE_Trade.doCultivateBonus(pPlot, pUnit, eBonus)
 
 

@@ -210,10 +210,15 @@ def doCultivateBonus(pPlot, pUnit, eBonus):
   pPlayer = gc.getPlayer(iPlayer)
   iChance = getBonusCultivationChance(iPlayer, pPlot, eBonus)
 
-  # If there is an invisible (tech reveal), uncultivatable bonus on pPlot, doCultivateBonus can be called, but the chance is nullified.
-  # Player receives NO unique message, just the normal one ("cultivation failed").
-  ePlotBonus = pPlot.getBonusType(-1)
-  if ePlotBonus != -1 and ePlotBonus not in lCultivatable: iChance = 0
+  if pPlot is None:
+    # Selection of target plot failed. Set cultivation chance to zero, which
+    # removes the bonus.
+    iChance = 0
+  else:
+    # If there is an invisible (tech reveal), uncultivatable bonus on pPlot, doCultivateBonus can be called, but the chance is nullified.
+    # Player receives NO unique message, just the normal one ("cultivation failed").
+    ePlotBonus = pPlot.getBonusType(-1)
+    if ePlotBonus != -1 and ePlotBonus not in lCultivatable: iChance = 0
 
   #CyInterface().addMessage(iPlayer, True, 10, str(eBonus), None, 2, None, ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
   if iChance > myRandom(100):
@@ -240,6 +245,9 @@ def getCityCultivationPlot(pCity, eBonus):
       ePlotBonus = pLoopPlot.getBonusType(-1)
       if ePlotBonus == -1 and getBonusCultivationChance(iPlayer, pLoopPlot, eBonus) > 0:
         lPlotList.append(pLoopPlot)
+
+  if len(lPlotList) == 0: return None
+
   iRand = myRandom(len(lPlotList))
   return lPlotList[iRand]
 
@@ -354,7 +362,7 @@ def doCultivation_AI(pUnit):
 
       if eUnitBonus in lBonuses:
         if pLocalCity and pLoopCity.getID() == pLocalCity.getID():
-          CyMessageControl().sendModNetMessage(738, iPlayer, iUnit, iIsCity)
+          CyMessageControl().sendModNetMessage(738, iPlayer, pUnit.getID(), -1, -1)
           return True
           #~ pPlot = PAE_Trade.getCityCultivationPlot(pLocalCity, eBonus)
           #~ if doCultivateBonus(pPlot, pUnit, eBonus):
