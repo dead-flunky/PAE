@@ -23,7 +23,6 @@ PAEInstanceHiringModifier = []
 # "b": [int] array with index of bonus stored in merchant (only one at a time)
 # "b": [int1, int2, ...] indices of bonuses stored in cultivation unit, e.g. [23, 21, 4]
 # "originCiv": original owner of the bonus stored in merchant (owner of the city where it was bought)
-
 def myRandom (num):
     #return gc.getGame().getMapRandNum(num, None)
     if num <= 1: return 0

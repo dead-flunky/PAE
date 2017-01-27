@@ -136,14 +136,8 @@ class CvTradeRouteAdvisor:
 
       # Unit load
       szText = localText.getText("TXT_UNIT_INFO_BAR_5", ()) + u" "
-      iValueList = CvUtil.getScriptData(pUnit, ["b"], [])
-      # Konvertiere altes Format
-      if type(iValueList) == str:
-          iValueList = [int(x) for x in iValueList.split()]
-
-      if len(iValueList) > 0 and iValueList[0] > -1:
-          for iValue1 in iValueList:
-              iValue1 = iValueList[0]
+      iValue1 = CvUtil.getScriptData(pUnit, ["b"], -1)
+      if iValue1 != -1:
               sBonusDesc = gc.getBonusInfo(iValue1).getDescription()
               iBonusChar = gc.getBonusInfo(iValue1).getChar()
               szText += localText.getText("TXT_UNIT_INFO_BAR_4", (iBonusChar,sBonusDesc))
