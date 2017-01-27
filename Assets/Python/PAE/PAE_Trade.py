@@ -429,7 +429,7 @@ def doCollectBonus(pUnit):
 
   if len(lUnitBonuses) > 0:
     # TODO: Popup Ressource geladen, ueberschreiben?
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.")), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
   CvUtil.addScriptData(pUnit, "b", [eBonus])
   pPlot.setBonusType(-1) # remove bonus
@@ -453,12 +453,12 @@ def doCollectBonus4Cultivation(pUnit,eBonus):
 
     eUnitBonus = lBonusList[0]  # Kann -1 sein
     if eBonus == eUnitBonus:
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.")), None, 2, None, ColorTypes(10), 0, 0, False, False)
+      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
       return False
 
     if -1 != eUnitBonus:
       # TODO: Popup Ressource geladen, ueberschreiben?
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.")), None, 2, None, ColorTypes(10), 0, 0, False, False)
+      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     iPrice = calculateBonusBuyingPrice4Cultivation(iPlayer,pUnit.plot(),eBonus)
     pPlayer = gc.getPlayer(iPlayer)
