@@ -34,7 +34,7 @@ MAX_BONUS_ROWS = 10
 
 # BUG - field of view slider - start
 DEFAULT_FIELD_OF_VIEW = 44
-bFieldOfView = False # PAE (false for better ingame python programming)
+bFieldOfView = False # PAE (False for better ingame python programming)
 # BUG - field of view slider - end
 
 # SPECIALIST STACKER        05/02/07      JOHNY
@@ -2063,13 +2063,13 @@ class CvMainInterface:
                   pCityPlayer = gc.getPlayer( pCity.getOwner() )
                   if pCity.getOwner() == pUnit.getOwner() or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(pUnit.getOwner()).getTeam()):
                     # Check plots (Klima / climate)
-                    bOK = false
+                    bOK = False
                     for i in range(3):
                       for j in range(3):
                         loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
                         if loopPlot != None and not loopPlot.isNone():
                           if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT") or loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_JUNGLE"):
-                            bOK = true
+                            bOK = True
                             break
                       if bOK: break
 
@@ -2098,13 +2098,13 @@ class CvMainInterface:
                   pCityPlayer = gc.getPlayer( pCity.getOwner() )
                   if pCity.getOwner() == pUnit.getOwner() or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(pUnit.getOwner()).getTeam()):
                     # Check plots (Klima / climate)
-                    bOK = false
+                    bOK = False
                     for i in range(3):
                       for j in range(3):
                         loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
                         if loopPlot != None and not loopPlot.isNone():
                           if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"):
-                            bOK = true
+                            bOK = True
                             break
                       if bOK: break
 
@@ -2546,7 +2546,7 @@ class CvMainInterface:
                 # Buy / sell goods in cities (domestic or foreign)
                 if iUnitType in PAE_Trade.lTradeUnits:
                   if pPlot.isCity():
-                    eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
+                    eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
                     # Sell
                     if eBonus != -1:
                       iPrice = PAE_Trade.calculateBonusSellingPrice(pUnit, pPlot.getPlotCity())
@@ -6183,7 +6183,7 @@ class CvMainInterface:
 
                         screen.setTableText("ScoreBackground2", 0, iRow, sText1, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
 
-                        bEspionageCanSeeResearch = false
+                        bEspionageCanSeeResearch = False
                         for iMissionLoop in xrange(gc.getNumEspionageMissionInfos()):
                                 if (gc.getEspionageMissionInfo(iMissionLoop).isSeeResearch()):
                                         bEspionageCanSeeResearch = gc.getPlayer(CyGame().getActivePlayer()).canDoEspionageMission(iMissionLoop, iPlayer, None, -1)
@@ -6989,8 +6989,8 @@ class CvMainInterface:
       self.iScoreWidth = max(0, self.iScoreWidth - 10)
       self.updateScoreStrings()
     elif inputClass.getFunctionName() == "ScoreHidePoints":
-      if not self.iScoreHidePoints: self.iScoreHidePoints = true
-      else:  self.iScoreHidePoints = false
+      if not self.iScoreHidePoints: self.iScoreHidePoints = True
+      else:  self.iScoreHidePoints = False
       self.updateScoreStrings()
 
 # Platy ScoreBoard - End
@@ -7001,7 +7001,7 @@ class CvMainInterface:
         screen = CyGInterfaceScreen("MainInterface", CvScreenEnums.MAIN_INTERFACE)
         """ This just work in fullscreen mode
         iRow = self.findIconRow( inputClass.getButtonType(), inputClass.getData1() )
-        #This change could be false in window mode.
+        #This change could be False in window mode.
         if self.secondRowBorder < CyInterface().getMousePos().y:
           iRow -= 1
         """

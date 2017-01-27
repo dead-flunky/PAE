@@ -26,11 +26,11 @@ lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
 
 # Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["b"], -1), CvUtil.addScriptData(pUnit, "b", eBonus) (add uses string, get list of strings)
 # getScriptData returns string => cast might be necessary
+# Update (Ramk): No, CvUtil-Functions unpack an dict. You could directly use int, etc.
 
 # Used keys for UnitScriptData:
 # "x"/"y": coordinates of plots where bonus was picked up (merchants)
-# "b": index of bonus stored in merchant (only one at a time)
-# "b": indices of bonuses stored in cultivation unit, e.g. "23,21,4"
+# "b": index of bonus stored in merchant/cultivation unit (only one at a time)
 # "originCiv": original owner of the bonus stored in merchant (owner of the city where it was bought)
 
 # For automated trade routes:
@@ -41,7 +41,8 @@ lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
 # "automLastTurnChecked": latest turn when "doAutomateMerchant" was called for this unit. Sometimes it is called multiple times per turn, this prevents unnecessary calculations
 
 # Used keys for CityScriptData:
-# "b": free bonuses acquired via turns and how long they are available, e.g. "43,4;23,8;12,10" (bonus index + ',' + num turns + ';' + bonus index + ...)
+# "b": free bonuses acquired via turns and until which turn they are available,
+# e.g. {43:4, 23:8, 12:10} key: bonus index (int), value: num turns (int)
 
 def init():
     global bInitialised
@@ -113,11 +114,11 @@ def init():
         for i in range(iRange):
           loopPlayer = gc.getPlayer(i)
           if loopPlayer.isAlive():
-            (pLoopCity, iter) = loopPlayer.firstCity(false)
+            (pLoopCity, iter) = loopPlayer.firstCity(False)
             while pLoopCity:
               if int(CvUtil.getScriptData(pLoopCity, ["tsb"], -1)) != -1:
                 lCitiesSpecialBonus.append(pLoopCity)
-              (pLoopCity,iter) = loopPlayer.nextCity(iter, false)
+              (pLoopCity,iter) = loopPlayer.nextCity(iter, False)
             if len(lCitiesSpecialBonus) == iMaxCitiesSpecialBonus: break
 
           if len(lCitiesSpecialBonus) == iMaxCitiesSpecialBonus: break
@@ -262,14 +263,13 @@ def isBonusCultivatable(pUnit):
     # Cultivation on current plot, bonus can be replaced (player knows what he's doing)
     return bonusIsCultivatable(pUnit.getOwner(), pUnit.plot(), eBonus)
 
-
-# Returns true if eBonus can be (principally) cultivated by iPlayer in a radius of iRange around pPlot
+# Returns True if eBonus can be (principally) cultivated by iPlayer in a radius of iRange around pPlot
 # Independent from cultivation unit, only checks fertility conditions
-# if bRemove == false, only plots without bonus are considered
+# if bRemove == False, only plots without bonus are considered
 def bonusIsCultivatable(iPlayer, pPlot, eBonus):
   return getBonusCultivationChance(iPlayer, pPlot, eBonus) > 0
 
-# Returns true if eBonus can be (principally) cultivated by iPlayer from pCity
+# Returns True if eBonus can be (principally) cultivated by iPlayer from pCity
 # Independent from cultivation unit, only checks fertility conditions
 def bonusIsCultivatableFromCity(iPlayer, pCity, eBonus):
   for iI in range(gc.getNUM_CITY_PLOTS()):
@@ -283,7 +283,7 @@ def bonusIsCultivatableFromCity(iPlayer, pCity, eBonus):
 
 # Returns list of bonuses which can (principally) be cultivated by iPlayer in a radius of iRange around pPlot
 # Independent from cultivation unit, only checks fertility conditions
-# if bRemove == false, only plots without bonus are considered
+# if bRemove == False, only plots without bonus are considered
 def getCultivatableBonusesFromCity(pCity, lCityBonuses):
   lBonuses = [] # List which will be returned
   for eBonus in lCityBonuses:
@@ -408,14 +408,13 @@ def doCollectBonus(pUnit):
   pPlot = pUnit.plot()
   #~ if pPlot == None or pPlot.isNone(): return False
   eBonus = pPlot.getBonusType(iTeam) # If there is an invisible bonus on pPlot, it will not be removed
-
   if eBonus == -1:
     return False
 
   eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
   if eUnitBonus != -1:
     # TODO: Popup Ressource geladen, ueberschreiben?
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.")), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
   CvUtil.addScriptData(pUnit, "b", eBonus)
   pPlot.setBonusType(-1) # remove bonus
@@ -435,12 +434,12 @@ def doCollectBonus4Cultivation(pUnit,eBonus):
     eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
 
     if eBonus == eUnitBonus:
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.")), None, 2, None, ColorTypes(10), 0, 0, False, False)
+      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
       return False
 
     if -1 != eUnitBonus:
       # TODO: Popup Ressource geladen, ueberschreiben?
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.")), None, 2, None, ColorTypes(10), 0, 0, False, False)
+      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     iPrice = calculateBonusBuyingPrice4Cultivation(iPlayer,pUnit.plot(),eBonus)
     pPlayer = gc.getPlayer(iPlayer)
@@ -559,7 +558,7 @@ def doSellBonus(pUnit, pCity):
   #~ global lTradeUnits
   #~ if not pUnit.getUnitType() in lTradeUnits: return
 
-  eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
+  eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
   if eBonus != -1:
     iPrice = calculateBonusSellingPrice(pUnit, pCity)
     iBuyer = pCity.getOwner()
@@ -666,8 +665,7 @@ def doCityProvideBonus(pCity, eBonus, iTurn):
   if type(bonusDict) == str:
     # Konvertiere altes Format "iB,iTurn;..." in dict
     tmp = [paar.split(",") for paar in bonusDict.split(";")]
-    bonusDict = {}
-    bonusDict.update([ map(int, pair) for pair in tmp])
+    bonusDict = dict([ map(int, pair) for pair in tmp])
 
   # Addiere alten und neuen Rundenwert
   iCurrentTurn = gc.getGameTurn()
@@ -970,21 +968,12 @@ def getPossibleTradeCitiesForCiv(iPlayer1, iPlayer2, bWater):
 
 # Converts e.g. "34,56,23" to [ 34, 56, 23 ] (list entries are ints, not strings!). Used for cultivation unit ScriptData.
 def convertStringToIntList(sString):
-    if sString == "": return []
-    lStoredBonusesString = sString.split(",") # e.g. = [ "32", "21", 43" ], contains bonuses as strings
-    lStoredBonusesInt = []
-    for sBonus in lStoredBonusesString:
-        lStoredBonusesInt.append(int(sBonus))
-    return lStoredBonusesInt
+    if len(sString) == 0: return []
+    return [int(s) for s in ",".split(sString)]
 
 # Like convertStringToIntList, but the other way around
 def convertIntListToString(lList):
-    if len(lList) == 0: return ""
-    sString = ""
-    for l in lList:
-        sString += "," + str(l)
-    sString = sString[1:] # remove comma at the beginning
-    return sString
+    return ",".join([str(i) for i in lList])
 
 # Returns intersection of two lists (Schnitt beider Listen).
 def getIntersection(lList1, lList2):
@@ -1344,10 +1333,10 @@ def addCityWithSpecialBonus():
       for i in range(iRange):
         loopPlayer = gc.getPlayer(i)
         if loopPlayer.isAlive() and not loopPlayer.isHuman():
-          (pLoopCity, iter) = loopPlayer.firstCity(false)
+          (pLoopCity, iter) = loopPlayer.firstCity(False)
           while pLoopCity:
             if pLoopCity not in lCitiesSpecialBonus: lNewCities.append(pLoopCity)
-            (pLoopCity,iter) = loopPlayer.nextCity(iter, false)
+            (pLoopCity,iter) = loopPlayer.nextCity(iter, False)
 
       if len(lNewCities):
         # Stadt auswaehlen
@@ -1449,10 +1438,8 @@ def doCheckCitySpecialBonus(pUnit,pCity,eBonus):
         if iNewUnit == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
             lGoods = getAvailableCultivatableBonuses(pCity)
 
-            lBonusList = [lGoods[myRandom(len(lGoods))]]
-            CvUtil.addScriptData(pUnit1, "b", convertIntListToString(lBonusList))
-            lBonusList = [lGoods[myRandom(len(lGoods))]]
-            CvUtil.addScriptData(pUnit2, "b", convertIntListToString(lBonusList))
+            eBonus = lGoods[myRandom(len(lGoods))]
+            CvUtil.addScriptData(pUnit1, "b", eBonus)
 
 
         CvUtil.removeScriptData(pCity, "tsb")
