@@ -173,7 +173,7 @@ class CvCorporationScreen:
     screen.addPanel( self.TITLE_TOP_PANEL, u"", u"", True, False, 0, 0, self.W_SCREEN, self.PANEL_HEIGHT, PanelStyles.PANEL_STYLE_TOPBAR )
     screen.addPanel( self.TITLE_BOTTOM_PANEL, u"", u"", True, False, 0, self.H_SCREEN - self.PANEL_HEIGHT, self.W_SCREEN, self.PANEL_HEIGHT, PanelStyles.PANEL_STYLE_BOTTOMBAR )
     screen.addPanel(self.CORPORATION_PANEL_ID, "", "", False, True, -10, 50, self.W_SCREEN + 20, self.H_CORPORATION_AREA, PanelStyles.PANEL_STYLE_MAIN)
-                screen.showWindowBackground(False)
+    screen.showWindowBackground(False)
 
     # Set the background and exit button, and show the screen
     screen.setDimensions(screen.centerX(0), screen.centerY(0), self.W_SCREEN, self.H_SCREEN)
@@ -294,9 +294,9 @@ class CvCorporationScreen:
     for i in range(gc.getNumCorporationInfos()):
       if (gc.getGame().getCorporationGameTurnFounded(i) >= 0):
         szFounded = CyGameTextMgr().getTimeStr(gc.getGame().getCorporationGameTurnFounded(i), false)
-                                screen.setLabelAt("", "CivicList", szFounded, CvUtil.FONT_CENTER_JUSTIFY, xLoop, self.Y_FOUNDED, self.DZ, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
+        screen.setLabelAt("", "CivicList", szFounded, CvUtil.FONT_CENTER_JUSTIFY, xLoop, self.Y_FOUNDED, self.DZ, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
 
-                                xLoop += self.DX_CORPORATION
+        xLoop += self.DX_CORPORATION
 
     # Headquarters
     screen.setLabelAt("", "CivicList", localText.getText("TXT_KEY_CORPORATION_SCREEN_HEADQUARTERS", ()), CvUtil.FONT_LEFT_JUSTIFY, self.LEFT_EDGE_TEXT, self.Y_HEADQUARTERS, self.DZ, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
