@@ -16,11 +16,12 @@ PAEInstanceHiringModifier = []
 
 # Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["b"], -1), CvUtil.addScriptData(pUnit, "b", eBonus) (add uses string, get list of strings)
 # getScriptData returns string => cast might be necessary
+# Update (Ramk): No, CvUtil-Functions unpack an dict. You could directly use int, etc.
 
 # Used keys for UnitScriptData:
 # "x"/"y": coordinates of plots where bonus was picked up (merchants)
-# "b": index of bonus stored in merchant (only one at a time)
-# "b": indices of bonuses stored in cultivation unit, e.g. "23,21,4"
+# "b": [int] array with index of bonus stored in merchant (only one at a time)
+# "b": [int1, int2, ...] indices of bonuses stored in cultivation unit, e.g. [23, 21, 4]
 # "originCiv": original owner of the bonus stored in merchant (owner of the city where it was bought)
 
 def myRandom (num):
@@ -135,11 +136,11 @@ def onModNetMessage(iData1, iData2, iData3, iData4, iData5):
             iMultiplier += 1
 
         # List Units
-        bUnit3 = false
+        bUnit3 = False
         for pNeighbor in lNeighbors:
           if gc.getTeam(pNeighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")):
             ## ab Plaenkler duerfen alle Kompositbogis
-            bUnit3 = true
+            bUnit3 = True
             break
 
         lUnits = []
@@ -1330,14 +1331,14 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
           for loopPlot in CivPlots:
             iLX = loopPlot.getX()
             iLY = loopPlot.getY()
-            bDone = false
+            bDone = False
             for x2 in [-1,0,1]:
               if bDone: break
               for y2 in [-1,0,1]:
                 loopPlot2 = plotXY(iLX,iLY,x2,y2)
                 if loopPlot2 == None or loopPlot2.isNone() or loopPlot2.getOwner() != loopPlot.getOwner():
                   NewCivPlots.append(loopPlot)
-                  bDone = true
+                  bDone = True
                   break
 
           if len(NewCivPlots) > 0:

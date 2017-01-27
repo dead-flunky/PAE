@@ -28078,7 +28078,7 @@ BeginPlot
     CityOwner=0
     CityName=TXT_KEY_CITY_NAME_ETRUS_15
     CityPopulation=5
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_PALISADE
     BuildingType=BUILDING_WALLS
     BuildingType=BUILDING_SOELDNERPOSTEN
@@ -32017,41 +32017,41 @@ BeginPlot
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit
   BeginUnit
-    UnitType=UNIT_ROMAN_WORKER, UnitOwner=0
+    UnitType=UNIT_WORKER, UnitOwner=0
     Level=1, Experience=0
     FacingDirection=5
     UnitAIType=UNITAI_WORKER
   EndUnit
   BeginUnit
-    UnitType=UNIT_ROMAN_WORKER, UnitOwner=0
-    Level=1, Experience=0
-    FacingDirection=5
-    Sleep
-    UnitAIType=UNITAI_WORKER
-  EndUnit
-  BeginUnit
-    UnitType=UNIT_ROMAN_WORKER, UnitOwner=0
+    UnitType=UNIT_WORKER, UnitOwner=0
     Level=1, Experience=0
     FacingDirection=5
     Sleep
     UnitAIType=UNITAI_WORKER
   EndUnit
   BeginUnit
-    UnitType=UNIT_ROMAN_WORKER, UnitOwner=0
+    UnitType=UNIT_WORKER, UnitOwner=0
     Level=1, Experience=0
     FacingDirection=5
     Sleep
     UnitAIType=UNITAI_WORKER
   EndUnit
   BeginUnit
-    UnitType=UNIT_ROMAN_WORKER, UnitOwner=0
+    UnitType=UNIT_WORKER, UnitOwner=0
     Level=1, Experience=0
     FacingDirection=5
     Sleep
     UnitAIType=UNITAI_WORKER
   EndUnit
   BeginUnit
-    UnitType=UNIT_ROMAN_WORKER, UnitOwner=0
+    UnitType=UNIT_WORKER, UnitOwner=0
+    Level=1, Experience=0
+    FacingDirection=5
+    Sleep
+    UnitAIType=UNITAI_WORKER
+  EndUnit
+  BeginUnit
+    UnitType=UNIT_WORKER, UnitOwner=0
     Level=1, Experience=0
     FacingDirection=5
     Sleep

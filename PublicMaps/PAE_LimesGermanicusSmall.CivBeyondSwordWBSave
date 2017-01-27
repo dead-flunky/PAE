@@ -7036,7 +7036,7 @@ BeginPlot
     CityOwner=0
     CityName=Noviomagus Batavorum
     CityPopulation=6
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_SOELDNERPOSTEN
     BuildingType=BUILDING_ARENA
     BuildingType=BUILDING_CURINGHUT
@@ -8778,7 +8778,7 @@ BeginPlot
     CityOwner=0
     CityName=Colonia Ulpia Traiana
     CityPopulation=3
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_PALISADE
     BuildingType=BUILDING_WALLS
     BuildingType=BUILDING_SOELDNERPOSTEN
@@ -9031,7 +9031,7 @@ BeginPlot
     CityOwner=0
     CityName=Augusta Rauricu
     CityPopulation=8
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_SOELDNERPOSTEN
     BuildingType=BUILDING_ARENA
     BuildingType=BUILDING_CURINGHUT
@@ -12583,7 +12583,7 @@ BeginPlot
     CityOwner=0
     CityName=Vindonissa
     CityPopulation=6
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_SOELDNERPOSTEN
     BuildingType=BUILDING_ARENA
     BuildingType=BUILDING_CURINGHUT
@@ -17152,7 +17152,7 @@ BeginPlot
     CityOwner=0
     CityName=Augusta Vindelicum
     CityPopulation=10
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_SOELDNERPOSTEN
     BuildingType=BUILDING_PROVINZPALAST
     BuildingType=BUILDING_ARENA
@@ -31493,7 +31493,7 @@ BeginPlot
     CityOwner=0
     CityName=Carnuntum
     CityPopulation=6
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_PALISADE
     BuildingType=BUILDING_WALLS
     BuildingType=BUILDING_SOELDNERPOSTEN
@@ -34005,7 +34005,7 @@ BeginPlot
     CityOwner=0
     CityName=Aquincum
     CityPopulation=6
-    ProductionUnit=UNIT_ROMAN_WORKER
+    ProductionUnit=UNIT_WORKER
     BuildingType=BUILDING_PALISADE
     BuildingType=BUILDING_WALLS
     BuildingType=BUILDING_SOELDNERPOSTEN

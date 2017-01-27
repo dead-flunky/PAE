@@ -815,8 +815,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=2,y=30
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -1010,8 +1009,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=3,y=30
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -1342,8 +1340,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=5,y=22
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -2504,8 +2501,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=11,y=23
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -2720,8 +2716,7 @@ BeginPlot
 	x=12,y=25
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_PLAINS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -2907,8 +2902,7 @@ BeginPlot
 	x=13,y=25
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -3120,8 +3114,7 @@ BeginPlot
 	x=14,y=27
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -3284,8 +3277,7 @@ BeginPlot
 	x=15,y=23
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -3299,8 +3291,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=15,y=25
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -3315,8 +3306,7 @@ BeginPlot
 	x=15,y=27
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4097,8 +4087,7 @@ BeginPlot
 	x=19,y=24
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4127,8 +4116,7 @@ BeginPlot
 	x=19,y=28
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4314,8 +4302,7 @@ BeginPlot
 	x=20,y=26
 	RiverNSDirection=0
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4328,8 +4315,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=20,y=28
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4496,8 +4482,7 @@ BeginPlot
 	x=21,y=23
 	isNOfRiver
 	RiverWEDirection=3
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4508,8 +4493,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=21,y=25
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -4927,8 +4911,7 @@ BeginPlot
 	RiverNSDirection=0
 	isWOfRiver
 	BonusType=BONUS_BERNSTEIN
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -5101,8 +5084,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=24,y=25
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -5269,8 +5251,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=25,y=21
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -5306,8 +5287,7 @@ EndPlot
 BeginPlot
 	x=25,y=27
 	BonusType=BONUS_ROGGEN
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -5656,8 +5636,7 @@ BeginPlot
 	x=27,y=19
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -5713,8 +5692,7 @@ BeginPlot
 	x=27,y=28
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -6455,16 +6433,14 @@ BeginPlot
 	x=31,y=20
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
 	x=31,y=21
 	isNOfRiver
 	RiverWEDirection=1
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -6673,8 +6649,7 @@ BeginPlot
 	x=32,y=24
 	RiverNSDirection=2
 	isWOfRiver
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -6871,8 +6846,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=33,y=25
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
@@ -8271,8 +8245,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=40,y=28
-	FeatureType=FEATURE_SWAMP, FeatureVariety=0
-	TerrainType=TERRAIN_GRASS
+	TerrainType=TERRAIN_SWAMP
 	PlotType=2
 EndPlot
 BeginPlot
