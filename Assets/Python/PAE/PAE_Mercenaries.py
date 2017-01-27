@@ -14,7 +14,7 @@ gc = CyGlobalContext()
 ### Globals
 PAEInstanceHiringModifier = []
 
-# Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["bonus"], -1), CvUtil.addScriptData(pUnit, "bonus", eBonus) (add uses string, get list of strings)
+# Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["b"], -1), CvUtil.addScriptData(pUnit, "b", eBonus) (add uses string, get list of strings)
 # getScriptData returns string => cast might be necessary
 # Update (Ramk): No, CvUtil-Functions unpack an dict. You could directly use int, etc.
 
@@ -1291,37 +1291,36 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
       iRange = CyMap().numPlots()
       for iI in range(iRange):
         pPlot = CyMap().plotByIndex(iI)
-        if pPlot != None and not pPlot.isNone():
-          iX = pPlot.getX()
-          iY = pPlot.getY()
-          if pPlot.getFeatureType() == iDarkIce: continue
-          if pPlot.getOwner() == iTargetPlayer:
-            if not pPlot.isPeak() and not pPlot.isCity() and pPlot.getNumUnits() == 0:
-              # Naval units
-              if sFaktor[1] == "5":
-                # Nicht auf Seen
-                if pPlot.isWater() and not pPlot.isLake():
+        iX = pPlot.getX()
+        iY = pPlot.getY()
+        if pPlot.getFeatureType() == iDarkIce: continue
+        if pPlot.getOwner() == iTargetPlayer:
+          if not pPlot.isPeak() and not pPlot.isCity() and pPlot.getNumUnits() == 0:
+            # Naval units
+            if sFaktor[1] == "5":
+              # Nicht auf Seen
+              if pPlot.isWater() and not pPlot.isLake():
+                CivPlots.append(pPlot)
+            # Land units
+            elif not pPlot.isWater():
+              # Nicht auf Inseln
+              iLandPlots = 0
+              for x2 in range(3):
+                for y2 in range(3):
+                  loopPlot2 = gc.getMap().plot(iX-1+x2,iY-1+y2)
+                  if loopPlot2 != None and not loopPlot2.isNone():
+                    if not loopPlot2.isWater(): iLandPlots += 1
+
+                  # earlier break
+                  if x2 == 1 and y2 > 0 and iLandPlots <= 1:
+                    break
+
+                # earlier breaks
+                if iLandPlots >= 5:
                   CivPlots.append(pPlot)
-              # Land units
-              elif not pPlot.isWater():
-                # Nicht auf Inseln
-                iLandPlots = 0
-                for x2 in range(3):
-                  for y2 in range(3):
-                    loopPlot2 = gc.getMap().plot(iX-1+x2,iY-1+y2)
-                    if loopPlot2 != None and not loopPlot2.isNone():
-                      if not loopPlot2.isWater(): iLandPlots += 1
-
-                    # earlier break
-                    if x2 == 1 and y2 > 0 and iLandPlots <= 1:
-                      break
-
-                  # earlier breaks
-                  if iLandPlots >= 5:
-                    CivPlots.append(pPlot)
-                    break
-                  elif x2 == 2 and iLandPlots <= 2:
-                    break
+                  break
+                elif x2 == 2 and iLandPlots <= 2:
+                  break
 
       # Big stacks and elite only on border plots
       if sFaktor[2] == "4" or sFaktor[3] == "4":
@@ -1336,7 +1335,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
             for x2 in [-1,0,1]:
               if bDone: break
               for y2 in [-1,0,1]:
-                loopPlot2 = plotXY(iLX, x2,iLY,y2)
+                loopPlot2 = plotXY(iLX,iLY,x2,y2)
                 if loopPlot2 == None or loopPlot2.isNone() or loopPlot2.getOwner() != loopPlot.getOwner():
                   NewCivPlots.append(loopPlot)
                   bDone = True

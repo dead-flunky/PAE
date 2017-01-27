@@ -122,7 +122,7 @@ def myExceptHook(type, value, tb):
 
 def pyPrint(stuff):
   stuff = 'PY:' + stuff + "\n"
-  stuff = stuff.encode('utf-8')  
+  stuff = stuff.encode('utf-8')
   sys.stdout.write(stuff)
 
 def pyAssert(cond, msg):
