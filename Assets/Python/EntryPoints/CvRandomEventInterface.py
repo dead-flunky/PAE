@@ -12,6 +12,7 @@
 import CvUtil
 from CvPythonExtensions import *
 import CvEventInterface
+import PAE_City
 
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -3544,7 +3545,7 @@ def doCheckCityStatus(argsList):
   player = gc.getPlayer(kTriggeredData.ePlayer)
   pCity = player.getCity(kTriggeredData.iCityId)
 
-  CvEventInterface.getEventManager().doCheckCityState( pCity )
+  PAE_City.doCheckCityState( pCity )
 
 ######## BIER ###########
 

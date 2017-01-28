@@ -1277,50 +1277,46 @@ def getAreas():
         return areas
 
 def findStartingPlot(playerID, validFn = None):
-        gc = CyGlobalContext()
-        map = CyMap()
-        player = gc.getPlayer(playerID)
+    gc = CyGlobalContext()
+    map = CyMap()
+    player = gc.getPlayer(playerID)
 
-        player.AI_updateFoundValues(True)
+    player.AI_updateFoundValues(True)
 
-        iRange = player.startingPlotRange()
-        iPass = 0
+    iRange = player.startingPlotRange()
+    iPass = 0
 
-        while (true):
-                iBestValue = 0
-                pBestPlot = None
+    while (true):
+        iBestValue = 0
+        pBestPlot = None
 
-                for iX in range(map.getGridWidth()):
-                        for iY in range(map.getGridHeight()):
-                                if validFn != None and not validFn(playerID, iX, iY):
-                                        continue
-                                pLoopPlot = map.plot(iX, iY)
+        for iX in range(map.getGridWidth()):
+            for iY in range(map.getGridHeight()):
+                if validFn != None and not validFn(playerID, iX, iY):
+                    continue
+                pLoopPlot = map.plot(iX, iY)
+                val = pLoopPlot.getFoundValue(playerID)
+                if val > iBestValue:
+                    valid = True
+                    for iI in range(gc.getMAX_CIV_PLAYERS()):
+                        if (gc.getPlayer(iI).isAlive()):
+                            if (iI != playerID):
+                                if gc.getPlayer(iI).startingPlotWithinRange(pLoopPlot, playerID, iRange, iPass):
+                                    valid = False
+                                    break
 
-                                val = pLoopPlot.getFoundValue(playerID)
+                    if valid:
+                        iBestValue = val
+                        pBestPlot = pLoopPlot
 
-                                if val > iBestValue:
+        if pBestPlot != None:
+            return map.plotNum(pBestPlot.getX(), pBestPlot.getY())
 
-                                        valid = True
+        print "player", playerID, "pass", iPass, "failed"
 
-                                        for iI in range(gc.getMAX_CIV_PLAYERS()):
-                                                if (gc.getPlayer(iI).isAlive()):
-                                                        if (iI != playerID):
-                                                                if gc.getPlayer(iI).startingPlotWithinRange(pLoopPlot, playerID, iRange, iPass):
-                                                                        valid = False
-                                                                        break
+        iPass += 1
 
-                                        if valid:
-                                                        iBestValue = val
-                                                        pBestPlot = pLoopPlot
-
-                if pBestPlot != None:
-                        return map.plotNum(pBestPlot.getX(), pBestPlot.getY())
-
-                print "player", playerID, "pass", iPass, "failed"
-
-                iPass += 1
-
-        return -1
+    return -1
 
 def argmin(list):
         best = None

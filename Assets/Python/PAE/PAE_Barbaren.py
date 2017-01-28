@@ -210,9 +210,12 @@ def doStrandgut():
          if pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_COAST"):
 
            lPlots = []
-           for i in range(3):
-             for j in range(3):
-               loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 1)
+           iX = pPlot.getX()
+           iY = pPlot.getY()
+           iRange = 1
+           for i in range(-iRange, iRange+1):
+             for j in range(-iRange, iRange+1):
+               loopPlot = gc.getMap().plot(iX, iY, i, j)
                if loopPlot == None or loopPlot.isNone(): continue
                if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
                lPlots.append(loopPlot)
@@ -271,63 +274,60 @@ def setGoodyHuts():
         # Bis zu iNumTries soll versucht werden, ein Dorf zu erstellen
         iNumTries = iMaxHuts
         for i in range(iNumTries):
-         iX = myRandom(iMapW)
-         iY = myRandom(iMapH)
+            iX = myRandom(iMapW)
+            iY = myRandom(iMapH)
 
-         if iNumSetGoodies >= iMaxHuts: break
+            if iNumSetGoodies >= iMaxHuts: break
 
-         # Terrain checken
-         loopPlot = gc.getMap().plot(iX, iY)
-         if loopPlot != None and not loopPlot.isNone():
-          if loopPlot.getFeatureType() == iDarkIce: continue
-          if not loopPlot.isWater():
-           if not loopPlot.isPeak():
-            if loopPlot.getImprovementType() == -1:
-             if loopPlot.getNumUnits() == 0:
-              if not loopPlot.isActiveVisible(0):
-               if loopPlot.getOwner() == -1 or loopPlot.getOwner() == iBarbPlayer:
-                bSet = True
+            # Terrain checken
+            loopPlot = CyMap().plot(iX, iY)
+            if loopPlot != None and not loopPlot.isNone():
+                if loopPlot.getFeatureType() == iDarkIce: continue
+                if not loopPlot.isWater():
+                    if not loopPlot.isPeak() and loopPlot.getImprovementType() == -1 and loopPlot.getNumUnits() == 0 and not loopPlot.isActiveVisible(0):
+                        if loopPlot.getOwner() == -1 or loopPlot.getOwner() == iBarbPlayer:
+                            bSet = True
+                            iRange = 5
+                            # Im Umkreis von 5 Feldern soll kein weiteres Goody oder City sein
+                            for x in range(-iRange,iRange+1):
+                              for y in range(-iRange,iRange+1):
+                                loopPlot2 = plotXY(iX, iY, x, y)
+                                if loopPlot2 != None and not loopPlot2.isNone():
+                                  if loopPlot2.isGoody() or loopPlot2.isCity():
+                                    bSet = False
+                                    break
+                              if not bSet: break
 
-                # Im Umkreis von 5 Feldern soll kein weiteres Goody oder City sein
-                for x in range(-5,5):
-                  for y in range(-5,5):
-                    loopPlot2 = gc.getMap().plot(iX + x, iY + y)
-                    if loopPlot2 != None and not loopPlot2.isNone():
-                      if loopPlot2.isGoody() or loopPlot2.isCity():
-                        bSet = False
-                        break
-                  if not bSet: break
+                            # Goody setzen oder Barbarenfort
+                            if bSet:
+                              # No extra Goody Huts in MultiBarbPlayer Mode
+                              if bMultiPlayer: imp = -1
+                              else: imp = impGoody
 
-                # Goody setzen oder Barbarenfort
-                if bSet:
-                  # No extra Goody Huts in MultiBarbPlayer Mode
-                  if bMultiPlayer: imp = -1
-                  else: imp = impGoody
+                              # Barbarian Forts nur mit aktivierten Barbaren
+                              if bBarbForts:
+                                if bRageBarbs:
+                                  if loopPlot.isHills( ) or myRandom(2) == 1: imp = impBarbFort
+                                elif loopPlot.isHills() and myRandom(2) == 1: imp = impBarbFort
+                              loopPlot.setImprovementType(imp)
+                              iNumSetGoodies += 1
+                              #loopPlot.isActiveVisible(0)
 
-                  # Barbarian Forts nur mit aktivierten Barbaren
-                  if bBarbForts:
-                    if bRageBarbs:
-                      if loopPlot.isHills() or myRandom(2) == 1: imp = impBarbFort
-                    elif loopPlot.isHills() and myRandom(2) == 1: imp = impBarbFort
-                  loopPlot.setImprovementType(imp)
-                  iNumSetGoodies += 1
-                  #loopPlot.isActiveVisible(0)
+                              # Einheit in die Festung setzen
+                              if imp == impBarbFort: setFortDefence(loopPlot)
 
-                  # Einheit in die Festung setzen
-                  if imp == impBarbFort: setFortDefence(loopPlot)
+                              # ***TEST***
+                              #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-                  # ***TEST***
-                  #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-          # isWater
-          elif bFlot:
-            if not bMultiPlayer:
-               if loopPlot.getOwner() == -1:
-                 if loopPlot.getTerrainType() == terrOzean:
-                   if iNumSetFlotsam < iMaxFlot:
-                     # Treibgut setzen
-                     pBarbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.UNITAI_EXPLORE_SEA, DirectionTypes.DIRECTION_SOUTH)
-                     iNumSetFlotsam += 1
+                # isWater
+                elif bFlot:
+                    if not bMultiPlayer:
+                        if loopPlot.getOwner() == -1:
+                            if loopPlot.getTerrainType() == terrOzean:
+                                if iNumSetFlotsam < iMaxFlot:
+                                    # Treibgut setzen
+                                    pBarbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.UNITAI_EXPLORE_SEA, DirectionTypes.DIRECTION_SOUTH)
+                                    iNumSetFlotsam += 1
      # -------------------------------
 
 # leere Festung mit barbarischen Einheiten belegen
@@ -595,8 +595,8 @@ def doHuns():
     CivHuns = gc.getInfoTypeForString("CIVILIZATION_HUNNEN")
     bHunsAlive = False
 
-    iRange = gc.getMAX_PLAYERS()
-    for iPlayer in range(iRange):
+    iMaxPlayers = gc.getMAX_PLAYERS()
+    for iPlayer in range(iMaxPlayers):
       pPlayer = gc.getPlayer(iPlayer)
       # Hunnen sollen nur auftauchen, wenn es nicht bereits Hunnen gibt
       if pPlayer.getCivilizationType() == CivHuns and pPlayer.isAlive():
@@ -604,8 +604,7 @@ def doHuns():
         break
 
     if not bHunsAlive:
-      iRange = gc.getMAX_PLAYERS()
-      for iPlayer in range(iRange):
+      for iPlayer in range(iMaxPlayers):
         pPlayer = gc.getPlayer(iPlayer)
 
         # Message PopUps
@@ -628,7 +627,7 @@ def doHuns():
         # Diese Koordinaten entsprechen Nord-Osten
         iRandX = iMapW - 15 + myRandom(15)
         iRandY = iMapH - 15 + myRandom(15)
-        loopPlot = gc.getMap().plot(iRandX, iRandY)
+        loopPlot = CyMap().plot(iRandX, iRandY)
         if None != loopPlot and not loopPlot.isNone():
           if loopPlot.getFeatureType() != iDarkIce:
             if not loopPlot.isUnit() and not loopPlot.isWater() and not loopPlot.isOwned() and not loopPlot.isPeak():
@@ -638,19 +637,20 @@ def doHuns():
       # wenn ein Plot gefunden wurde
       if bPlot:
 
-          # Hunnen versuchen zu erstellen  1 == 2: Ausgeschaltet!
-        if gc.getGame().getGameTurnYear() >= 250 and gc.getGame().countCivPlayersAlive() < 18 and 1 == 2:
+        # Hunnen versuchen zu erstellen  1 == 2: Ausgeschaltet!
+        iMaxPlayers = gc.getMAX_PLAYERS()
+        if gc.getGame().getGameTurnYear() >= 250 and gc.getGame().countCivPlayersAlive() < iMaxPlayers and 1 == 2:
           # freie PlayerID herausfinden
           iHunsID = 0
-          for i in range(18):
+          for i in range(iMaxPlayers):
             pPlayer = gc.getPlayer(i)
             if not pPlayer.isEverAlive():
               iHunsID = i
               break
           # wenn keine nagelneue ID frei ist, dann eine bestehende nehmen
           if iHunsID == 0:
-            for i in range(18):
-              j = 18-i
+            for i in range(iMaxPlayers):
+              j = iMaxPlayers-i
               pPlayer = gc.getPlayer(j)
               if not pPlayer.isAlive():
                 iHunsID = j
@@ -661,19 +661,27 @@ def doHuns():
             LeaderHuns = gc.getInfoTypeForString("LEADER_ATTILA")
             gc.getGame().addPlayer(iHunsID,LeaderHuns,CivHuns)
             pPlayer = gc.getPlayer(iHunsID)
-
-            for i in range(3):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SETTLER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            for i in range(4):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SPEARMAN"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            for i in range(6):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_WORKER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            for i in range(8):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            for i in range(9):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_REFLEX_ARCHER"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            for i in range(9):
-              pPlayer.initUnit(gc.getInfoTypeForString("UNIT_HORSE"), loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            
+            iX = loopPlot.getX()
+            iY = loopPlot.getY()
+            iUnitSettler = gc.getInfoTypeForString("UNIT_SETTLER")
+            iUnitSpearman = gc.getInfoTypeForString("UNIT_SPEARMAN")
+            iUnitWorker = gc.getInfoTypeForString("UNIT_WORKER")
+            iUnitKeshik = gc.getInfoTypeForString("UNIT_MONGOL_KESHIK")
+            iUnitArcher = gc.getInfoTypeForString("UNIT_REFLEX_ARCHER")
+            iUnitHorse = gc.getInfoTypeForString("UNIT_HORSE")
+            for _ in range(3):
+                pPlayer.initUnit(iUnitSettler, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for _ in range(4):
+                pPlayer.initUnit(iUnitSpearman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for _ in range(6):
+                pPlayer.initUnit(iUnitWorker, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for _ in range(8):
+                pPlayer.initUnit(iUnitKeshik, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for _ in range(9):
+                pPlayer.initUnit(iUnitArcher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            for _ in range(9):
+                pPlayer.initUnit(iUnitHorse, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             pPlayer.setCurrentEra(3)
             pPlayer.setGold(300)
@@ -683,32 +691,33 @@ def doHuns():
             pTeam = gc.getTeam(pPlayer.getTeam())
             iPlayerBestTechScore = -1
             iTechScore = 0
-            iRange = gc.getMAX_PLAYERS()
-            for i in range(iRange):
-              pSecondPlayer = gc.getPlayer(i)
-              # increases Anger for all AIs
-              if pSecondPlayer.getID() != pPlayer.getID() and pSecondPlayer.isAlive():
-                # Haltung aendern
-                pPlayer.AI_changeAttitudeExtra(i,-5)
-                # Krieg erklaeren
-                pTeam.declareWar(pSecondPlayer.getTeam(), 0, 6)
-                # TechScore herausfinden
-                if iTechScore < pSecondPlayer.getTechScore():
-                  iTechScore = pSecondPlayer.getTechScore()
-                  iPlayerBestTechScore = i
+            for i in range(iMaxPlayers):
+                pSecondPlayer = gc.getPlayer(i)
+                # increases Anger for all AIs
+                if pSecondPlayer.getID() != pPlayer.getID() and pSecondPlayer.isAlive():
+                    # Haltung aendern
+                    pPlayer.AI_changeAttitudeExtra(i,-5)
+                    # Krieg erklaeren
+                    pTeam.declareWar(pSecondPlayer.getTeam(), 0, 6)
+                    # TechScore herausfinden
+                    if iTechScore < pSecondPlayer.getTechScore():
+                        iTechScore = pSecondPlayer.getTechScore()
+                        iPlayerBestTechScore = i
 
             # Techs geben
             if iPlayerBestTechScore > -1:
-              xTeam = gc.getTeam(gc.getPlayer(iPlayerBestTechScore).getTeam())
-              iTechNum = gc.getNumTechInfos()
-              for iTech in range(iTechNum):
-                if gc.getTechInfo(iTech) != None:
-                  if xTeam.isHasTech(iTech) and not pTeam.isHasTech(iTech):
-                    if gc.getTechInfo(iTech).isTrade():
-                      pTeam.setHasTech(iTech, 1, iHunsID, 0, 0)
+                xTeam = gc.getTeam(gc.getPlayer(iPlayerBestTechScore).getTeam())
+                iTechNum = gc.getNumTechInfos()
+                for iTech in range(iTechNum):
+                    if gc.getTechInfo(iTech) != None:
+                        if xTeam.isHasTech(iTech) and not pTeam.isHasTech(iTech):
+                            if gc.getTechInfo(iTech).isTrade():
+                                pTeam.setHasTech(iTech, 1, iHunsID, 0, 0)
 
         else:
-          iUnitType = gc.getInfoTypeForString('UNIT_MONGOL_KESHIK')
-          barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-          for j in range(iHuns):
-            barbPlayer.initUnit(iUnitType, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            iUnitType = gc.getInfoTypeForString('UNIT_MONGOL_KESHIK')
+            barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+            iX = loopPlot.getX()
+            iY = loopPlot.getY()
+            for _ in range(iHuns):
+                barbPlayer.initUnit(iUnitType, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
