@@ -1846,11 +1846,11 @@ class CvEventManager:
         pUnit = pPlayer.getUnit(iData3)
         eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
         if eBonus != -1:
-          pPlot = pUnit.plot()
-          if pPlot.isCity():
-            pPlot = PAE_Trade.getCityCultivationPlot(pPlot.getPlotCity(), eBonus)
+            pPlot = pUnit.plot()
+            if pPlot.isCity():
+                pPlot = PAE_Trade.getCityCultivationPlot(pPlot.getPlotCity(), eBonus)
 
-          PAE_Trade.doCultivateBonus(pPlot, pUnit, eBonus)
+            PAE_Trade.doCultivateBonus(pPlot, pUnit, eBonus)
 
 
     # Collect bonus from plot
@@ -1859,12 +1859,12 @@ class CvEventManager:
         pUnit = pPlayer.getUnit(iData5)
         pPlot = pUnit.plot()
         if iData2 == -1:
-          # Kaufen
-          if iData3 == 1: PAE_Trade.doPopupChooseBonus4Collection(pUnit)
-          # Collect
-          elif iData3 == 0: PAE_Trade.doCollectBonus(pUnit)
+            # Kaufen
+            if iData3 == 1: PAE_Trade.doPopupChooseBonus4Collection(pUnit)
+            # Collect
+            elif iData3 == 0: PAE_Trade.doCollectBonus(pUnit)
         elif PAE_Trade.doCollectBonus4Cultivation(pUnit, iData2):
-          self.doGoToNextUnit(pPlayer, pUnit)
+            self.doGoToNextUnit(pPlayer, pUnit)
 
     # Create popup for buying bonus (in city)
     elif iData1 == 740:

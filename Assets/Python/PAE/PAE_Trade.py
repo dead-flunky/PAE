@@ -206,19 +206,17 @@ def isCityCultivationPossible(pCity, bFood):
 
 # Cultivates eBonus on current plot (80% chance). Unit does not need to stand on pPlot (cultivation from city)
 def doCultivateBonus(pPlot, pUnit, eBonus):
+  if pPlot == None or pUnit == None or eBonus == -1:
+    return False
+    
   iPlayer = pUnit.getOwner()
   pPlayer = gc.getPlayer(iPlayer)
   iChance = getBonusCultivationChance(iPlayer, pPlot, eBonus)
 
-  if pPlot is None:
-    # Selection of target plot failed. Set cultivation chance to zero, which
-    # removes the bonus.
-    iChance = 0
-  else:
-    # If there is an invisible (tech reveal), uncultivatable bonus on pPlot, doCultivateBonus can be called, but the chance is nullified.
-    # Player receives NO unique message, just the normal one ("cultivation failed").
-    ePlotBonus = pPlot.getBonusType(-1)
-    if ePlotBonus != -1 and ePlotBonus not in lCultivatable: iChance = 0
+  # If there is an invisible (tech reveal), uncultivatable bonus on pPlot, doCultivateBonus can be called, but the chance is nullified.
+  # Player receives NO unique message, just the normal one ("cultivation failed").
+  ePlotBonus = pPlot.getBonusType(-1)
+  if ePlotBonus != -1 and ePlotBonus not in lCultivatable: iChance = 0
 
   #CyInterface().addMessage(iPlayer, True, 10, str(eBonus), None, 2, None, ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
   if iChance > myRandom(100):
