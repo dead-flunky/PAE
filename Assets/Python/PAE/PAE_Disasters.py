@@ -435,7 +435,7 @@ def doTornado():
               # City, Wahrscheinlichkeit in %
               doDestroyCityBuildings(pCity,25)
               doKillUnits(pPlot, 10)
-              doCheckCityState(pCity)
+              PAE_City.doCheckCityState(pCity)
 
             # rundherum Sturm kreieren
             for i in range(3):
@@ -544,7 +544,7 @@ def doErdbeben(iX, iY):
                         # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
                         CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
 
-                  doCheckCityState(pCity)
+                  PAE_City.doCheckCityState(pCity)
 
                 # Modernisierungen zerstoeren
                 elif not loopPlot.isWater():
@@ -620,7 +620,7 @@ def doErdbeben(iX, iY):
                       # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
                       CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
 
-                  doCheckCityState(pCity)
+                  PAE_City.doCheckCityState(pCity)
 
                 # Modernisierungen zerstoeren
                 elif not loopPlot.isWater():
@@ -709,7 +709,7 @@ def doErdbeben(iX, iY):
                       # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
                       CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_erdbeben).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
 
-                  if pCity: doCheckCityState(pCity)
+                  if pCity: PAE_City.doCheckCityState(pCity)
 
                 # Modernisierungen zerstoeren
                 elif not loopPlot.isWater():
@@ -914,7 +914,7 @@ def doVulkan(iX, iY, iSkala):
                       # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
                       CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
 
-                  doCheckCityState(pCity)
+                  PAE_City.doCheckCityState(pCity)
 
                 # Modernisierungen zerstoeren
                 else:
@@ -1001,7 +1001,7 @@ def doVulkan(iX, iY, iSkala):
                       # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
                       CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_vulkan).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
 
-                  doCheckCityState(pCity)
+                  PAE_City.doCheckCityState(pCity)
 
                 # Modernisierungen zerstoeren
                 else:
@@ -1292,7 +1292,7 @@ def doTsunami(iX, iY):
                  # Message: Die Bevoelkerung der Stadt %s sank von %alt auf %neu!
                  CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_CITY_SHRINKS_TO",(pCity.getName(),iPopAlt,iPopNeu)), None, 2, gc.getFeatureInfo(feat_tsunami).getButton(), ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
 
-             doCheckCityState(pCity)
+             PAE_City.doCheckCityState(pCity)
 
            # Land
            else:
@@ -1398,7 +1398,7 @@ def doMeteorites():
           doDestroyCityBuildings(pCity,33)
           # Stadtmauern zerstoeren
           doDestroyWalls(pCity)
-          doCheckCityState(pCity)
+          PAE_City.doCheckCityState(pCity)
 
         # rundherum Brand generieren und dabei 50:50 Modernis und Strassen entfernen
         for i in range(3):
@@ -1539,7 +1539,7 @@ def doComet():
               doKillUnits(pPlot,100)
               doDestroyCityBuildings(pCity,80)
               doDestroyCityWonders(pCity,25,feat_comet)
-              doCheckCityState(pCity)
+              PAE_City.doCheckCityState(pCity)
 
         # rundherum Brand generieren und dabei 50:50 Modernis und Strassen entfernen
         for i in range(7):
@@ -1777,3 +1777,75 @@ def doEraseBonusFromDisaster(pPlot):
 # ++++++++++++++++++ ENDE Naturkatastrophen / Disasters +++++++++++++++++++++++++++++
 
 
+      
+# Spreading Plague -------------------------
+def doSpreadPlague(pCity):
+    pCityOrig = pCity
+    CityX = pCity.getX()
+    CityY = pCity.getY()
+    iBuildingPlague = gc.getInfoTypeForString('BUILDING_PLAGUE')
+    bSpread = False
+
+    # ***TEST***
+    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Pestausbreitung (Zeile 4818)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
+    # Umkreis von 5 Feldern
+    for i in range(11):
+      for j in range(11):
+        sPlot = plotXY(pCity.getX(), pCity.getY(),i - 5, j - 5)
+        if sPlot.isCity():
+            sCity = sPlot.getPlotCity()
+            if sCity.isConnectedTo(pCity) and not sCity.isHasBuilding(iBuildingPlague) and sCity.getPopulation() > 3:
+                tmpX = sCity.getX()
+                tmpY = sCity.getY()
+                iBetrag = (CityX - tmpX) * (CityX - tmpX) + (CityY - tmpY) * (CityY - tmpY)
+                if iBetrag > 0 and (not bSpread or iCityCheck > iBetrag):
+                    iCityCheck = iBetrag
+                    PlagueCity = sCity
+                    bSpread = True
+
+    # Handelsstaedte dieser Stadt
+    if not bSpread:
+        iTradeRoutes = pCity.getTradeRoutes()
+        for i in range(iTradeRoutes):
+            sCity = pCity.getTradeCity(i)
+            if not sCity.isHasBuilding(iBuildingPlague) and sCity.getPopulation() > 3:
+                PlagueCity = sCity
+                bSpread = True
+                break
+
+    # Ausbreiten
+    if bSpread == True:
+        pCity = PlagueCity
+        iPlayer = PlagueCity.getOwner()
+        pPlayer = gc.getPlayer(iPlayer)
+        iThisTeam = pPlayer.getTeam()
+        team = gc.getTeam(iThisTeam)
+
+        #iMedicine1 = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_MEDICINE1')
+        #iMedicine2 = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_MEDICINE2')
+        #iMedicine3 = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_MEDICINE3')
+        #iMedicine4 = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_HEILKUNDE')
+
+        # City Revolt
+        #if team.isHasTech(iMedicine1) or  team.isHasTech(iMedicine2) or  team.isHasTech(iMedicine3) or  team.isHasTech(iMedicine4): pCity.setOccupationTimer(2)
+        #else: pCity.setOccupationTimer(3)
+
+        # message for all
+        iRange = gc.getMAX_PLAYERS()
+        for iPlayer2 in range(iRange):
+            pSecondPlayer = gc.getPlayer(iPlayer2)
+            iSecondPlayer = pSecondPlayer.getID()
+            if (pSecondPlayer.isHuman()):
+                iSecTeam = pSecondPlayer.getTeam()
+                if gc.getTeam(iSecTeam).isHasMet(pPlayer.getTeam()):
+                    if pSecondPlayer.isHuman():
+                      CyInterface().addMessage(iSecondPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_SPREAD",(pCityOrig.getName(), pCity.getName())), "AS2D_PLAGUE", 2, 'Art/Interface/Buttons/Actions/button_skull.dds', ColorTypes(13), pCity.getX(),  pCity.getY(), True, True)
+
+        if pPlayer.isHuman():
+            CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_SPREAD",(pCityOrig.getName(), pCity.getName())), "AS2D_PLAGUE", 2, 'Art/Interface/Buttons/Actions/button_skull.dds', ColorTypes(13), pCity.getX(),  pCity.getY(), True, True)
+        # end message
+
+        # Plague building gets added into city => culture -50
+        pCity.setNumRealBuilding(iBuildingPlague,1)
+  # --- plague spread

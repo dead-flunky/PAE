@@ -448,7 +448,7 @@ class CvWorldBuilderScreen:
     # Stadtstatus pruefen / check city state
     pCity = self.m_pActivePlot.getPlotCity()
     pCity.setPopulation(iNewPop)
-    CvEventInterface.getEventManager().doCheckCityState(pCity)
+    PAE_City.doCheckCityState(pCity)
     return 1
 
   def handleCityEditCultureCB (self, argsList) :
@@ -851,9 +851,9 @@ class CvWorldBuilderScreen:
           iY = self.m_pCurrentPlot.getY()
           pCity = pPlayer.initCity(iX, iY)
           # Trait-Gebaeude und Stadtstatus platzieren
-          CvEventInterface.getEventManager().doCheckCityState(pCity)
-          CvEventInterface.getEventManager().doCheckTraitBuildings(pCity, self.m_iCurrentPlayer)
-          CvEventInterface.getEventManager().doCheckGlobalTraitBuildings(self.m_iCurrentPlayer)
+          PAE_City.doCheckCityState(pCity)
+          PAE_City.doCheckTraitBuildings(pCity, self.m_iCurrentPlayer)
+          PAE_City.doCheckGlobalTraitBuildings(self.m_iCurrentPlayer)
     elif ((self.m_bNormalMap) and (self.m_normalMapTabCtrl.getActiveTab() == self.m_iImprovementTabID)):
       iImprovementType = self.m_iNormalMapCurrentIndexes[self.m_normalMapTabCtrl.getActiveTab()]
       iIndex = -1
@@ -1069,7 +1069,7 @@ class CvWorldBuilderScreen:
         if (iBuildingType == 0) :
           self.m_pCurrentPlot.getPlotCity().kill()
           # Globale Trait-Gebaeude anpassen / adapt global trait buildings
-          CvEventInterface.getEventManager().doCheckGlobalTraitBuildings(self.m_iCurrentPlayer)
+          PAE_City.doCheckGlobalTraitBuildings(self.m_iCurrentPlayer)
         else:
           self.m_pCurrentPlot.getPlotCity().setNumRealBuilding(iBuildingType-1, 0)
     elif ((self.m_bNormalMap) and (self.m_normalMapTabCtrl.getActiveTab() == self.m_iImprovementTabID)):

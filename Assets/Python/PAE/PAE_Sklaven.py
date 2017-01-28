@@ -369,3 +369,134 @@ def doSell(iPlayer, iUnit):
   # New kill / neuer Kill befehl
   pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
   #pUnit.kill(1,pUnit.getOwner())
+  
+  
+  ##############
+# AI: Release slaves when necessary (eg city shrinks)
+def doAIReleaseSlaves (pCity):
+    # Inits
+    iCityPop = pCity.getPopulation()
+    iCityGlads = pCity.getFreeSpecialistCount(15) # SPECIALIST_GLADIATOR
+    iCitySlavesHaus = pCity.getFreeSpecialistCount(16) # SPECIALIST_SLAVE
+    iCitySlavesFood = pCity.getFreeSpecialistCount(17) # SPECIALIST_SLAVE_FOOD
+    iCitySlavesProd = pCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE_PROD
+    iCitySlaves = iCitySlavesHaus + iCitySlavesFood + iCitySlavesProd + iCityGlads
+
+    if iCityPop >= iCitySlaves: return
+    
+    iUnitSlave = gc.getInfoTypeForString("UNIT_SLAVE")
+    iX = pCity.getX()
+    iY = pCity.getY()
+    
+    pPlayer = gc.getPlayer(pCity.getOwner())
+    
+    while iCitySlaves > 0 and iCityPop < iCitySlaves:
+        # First prio: glads
+        if iCityGlads > 0:
+            iSpezi  = 15
+            iCityGlads -= 1
+        # 1st prio: research
+        elif iCitySlavesHaus > 0 :
+            iSpezi = 16
+            iCitySlavesHaus -= 1
+        # 2nd prio: prod
+        elif iCitySlavesProd > 0:
+            iSpezi = 18
+            iCitySlavesProd -= 1
+        # 3rd prio: food
+        else: #iCitySlavesFood > 0:
+            iSpezi = 17
+            iCitySlavesFood -= 1
+         
+        NewUnit = pPlayer.initUnit(iUnitSlave, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        NewUnit.finishMoves()         
+        pCity.changeFreeSpecialistCount(iSpezi, -1)
+        iCitySlaves -= 1
+            
+        
+
+# Feldsklaven und Minensklaven checken
+def doCheckSlavesAfterPillage(pUnit,pPlot):
+    pCity = pPlot.getWorkingCity()
+
+    if pCity != None:
+        # PAE V ab Patch 3: Einheiten mobilisieren 
+        # Flunky: was hat das hier zu suchen?
+        if pCity.isCapital():
+            PAE_Unit.doMobiliseFortifiedArmy(pCity.getOwner())
+
+        # TEST
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pCity.getName(),0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
+        iCitySlavesFood = pCity.getFreeSpecialistCount(17) # SPECIALIST_SLAVE_FOOD
+        iCitySlavesProd = pCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE_PROD
+        iUnitSlave = gc.getInfoTypeForString("UNIT_SLAVE")
+
+        bFarms = False
+        lFarms = []
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_PASTURE"))
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_FARM"))
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"))
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"))
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM3"))
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM4"))
+        lFarms.append(gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM5"))
+
+        bMines = False
+        lMines = []
+        lMines.append(gc.getInfoTypeForString("IMPROVEMENT_MINE"))
+        lMines.append(gc.getInfoTypeForString("IMPROVEMENT_QUARRY"))
+
+        iX = pCity.getX()
+        iY = pCity.getY()
+        for x in range(5):
+            for y in range(5):
+                loopPlot = plotXY(iX, iY, x - 2, y - 2)
+                if loopPlot != None and not loopPlot.isNone():
+                    if not loopPlot.isWater():
+                        # Plot besetzt?
+                        if pCity.canWork(loopPlot):
+                            if loopPlot.getImprovementType() in lFarms: bFarms = True
+                            elif loopPlot.getImprovementType() in lMines: bMines = True
+                # Schleife vorzeitig beenden
+                if bFarms and bMines: break
+            # Schleife vorzeitig beenden
+            if bFarms and bMines: break
+
+
+
+        iSlaves = 0
+        # Feldsklaven checken
+        if iCitySlavesFood > 0 and not bFarms:
+            iSlaves += iCitySlavesFood
+            pCity.setFreeSpecialistCount(17,0)
+
+        # Bergwerkssklaven checken
+        if iCitySlavesProd > 0 and not bMines:
+            iSlaves += iCitySlavesProd
+            pCity.setFreeSpecialistCount(18,0)
+
+        # Spezialisten von der Stadt auf 0 setzen. Fluechtende Sklaven rund um den verheerenden Plot verteilen
+        if iSlaves > 0:
+            lFluchtPlots = []
+            iX = pPlot.getX()
+            iY = pPlot.getY()
+            for x in range(3):
+                for y in range(3):
+                    loopPlot = plotXY(iX, iY, x - 1, y - 1)
+                    if loopPlot != None and not loopPlot.isNone():
+                        if not loopPlot.isWater() and not loopPlot.isPeak() :
+                            if loopPlot.getNumUnits() == 0: lFluchtPlots.append(loopPlot)
+            if len(lFluchtPlots) == 0: lFluchtPlots.append(pCity)
+
+            for i in range(iSlaves):
+                iRand = myRandom(len(lFluchtPlots))
+                # gc.getBARBARIAN_PLAYER() statt pCity.getOwner()
+                gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlave, lFluchtPlots[iRand].getX(), lFluchtPlots[iRand].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+
+            # Meldung
+            if pUnit.getOwner() == gc.getGame().getActivePlayer() or pCity.getOwner() == gc.getGame().getActivePlayer():
+                szButton = ",Art/Interface/Buttons/Actions/Pillage.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,8,2"
+                CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_PILLAGE_SLAVES",(pCity.getName(),)), None, 2, szButton, ColorTypes(10), pPlot.getX(), pPlot.getY(), True, True)
+
+  
