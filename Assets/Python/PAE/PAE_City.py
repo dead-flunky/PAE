@@ -175,7 +175,7 @@ def doCheckGlobalTraitBuildings (iPlayer):
       lTraits.append(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL"))
       iRangeTraitBuildings = len(lTraitBuildings)
 
-      lCities = PyPlayer(iPlayer).getCityList()
+      lCities = gc.getPlayer(iPlayer).getCityList()
       iRangeCities = len(lCities)
 
       for i in range(iRangeTraitBuildings):
@@ -440,7 +440,7 @@ def doDesertification(pCity, pUnit):
             iFeatSavanna = gc.getInfoTypeForString("FEATURE_SAVANNA")
             iFeatJungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
             iFeatDichterWald = gc.getInfoTypeForString("FEATURE_DICHTERWALD")
-            [iFeatForest, iFeatSavanna, iFeatJungle, iFeatDichterWald]
+            lFeatures = [iFeatForest, iFeatSavanna, iFeatJungle, iFeatDichterWald]
             # nicht bei Zedernholz
             iBonusZedern = gc.getInfoTypeForString("BONUS_ZEDERNHOLZ")
 
@@ -451,7 +451,7 @@ def doDesertification(pCity, pUnit):
             # 3. Leerer Dschungel
             # 4. Bewirtschaftetes Feld mit Wald aber ohne Holzlager
             # 5. Dichter Wald
-            # 6. Wald im feindlichen Terrain (-1 Beziehung zum Nachbarn), aber nur wenn kein Holzlager drauf is
+            # 6. Wald im feindlichen Terrain (-1 Beziehung zum Nachbarn), aber nur wenn kein Holzlager drauf is            
             PlotArray1 = []
             PlotArray2 = []
             PlotArray3 = []

@@ -215,7 +215,7 @@ def doStrandgut():
            iRange = 1
            for i in range(-iRange, iRange+1):
              for j in range(-iRange, iRange+1):
-               loopPlot = gc.getMap().plot(iX, iY, i, j)
+               loopPlot = plotXY(iX, iY, i, j)
                if loopPlot == None or loopPlot.isNone(): continue
                if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
                lPlots.append(loopPlot)

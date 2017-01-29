@@ -7251,7 +7251,7 @@ class CvEventManager:
 
       # Feldsklaven und Minensklaven checken
       if iImprovement != gc.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"):
-        self.doCheckSlavesAfterPillage(pUnit,pPlot)
+        PAE_Sklaven.doCheckSlavesAfterPillage(pUnit,pPlot)
 
       # Handelsposten: Plot-ScriptData leeren
       if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"):

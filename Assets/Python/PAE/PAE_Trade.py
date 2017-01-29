@@ -756,7 +756,7 @@ def doCityCheckFreeBonuses(pCity):
   for eBonus in bonusDict:
     iTurn = bonusDict[eBonus]
     if iTurn <= gc.getGame().getGameTurn():
-      pCity.changeFreeBonus(eBonus, -1) # Time over: remove bonus from city
+      pCity.changeFreeBonus(int(eBonus), -1) # Time over: remove bonus from city
       bonusDict.pop(eBonus, None)
       CvUtil.addScriptData(pCity, "b", bonusDict)
 

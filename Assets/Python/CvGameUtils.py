@@ -14,6 +14,7 @@ import time # Seed! MP-OOS
 import random # Seed! MP-OOS
 import CvRiverUtil
 import PAE_Trade
+import PAE_City
 
 # globals
 gc = CyGlobalContext()
