@@ -5409,7 +5409,6 @@ BeginPlot
     BuildingType=BUILDING_ACADEMY_2
     BuildingType=BUILDING_ACADEMY_3
     BuildingType=BUILDING_ACADEMY_4
-    BuildingType=BUILDING_PYTHAGORAS
     BuildingType=BUILDING_ORACLE2
     BuildingType=BUILDING_PEARL_OF_HELLAS
     BuildingType=BUILDING_DAMM_MARIB
@@ -6359,7 +6358,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -6368,7 +6367,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -17010,7 +17009,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -17019,7 +17018,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -17977,7 +17976,7 @@ BeginPlot
   TerrainType=TERRAIN_GRASS
   PlotType=2
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -18820,7 +18819,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -18829,7 +18828,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -46053,7 +46052,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1
@@ -46062,7 +46061,7 @@ BeginPlot
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
   BeginUnit
-    UnitType=UNIT_GALLEY, UnitOwner=0
+    UnitType=UNIT_KONTERE, UnitOwner=0
     Level=1, Experience=1
     PromotionType=PROMOTION_FLANKING1
     PromotionType=PROMOTION_NAVIGATION1

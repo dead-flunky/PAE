@@ -7,6 +7,8 @@ import CvEventInterface
 import CvUtil
 import random
 
+import PAE_Sklaven
+
 ### Defines
 gc = CyGlobalContext()
 
@@ -140,43 +142,74 @@ def getBonusCultivationChance(iPlayer, pPlot, eBonus):
     global lCultivatable
 
     # Variety of invalid situations
-    if eBonus not in lCultivatable: return 0
-    if pPlot == None or pPlot.isNone(): return 0
-    if pPlot.getOwner() != iPlayer: return 0
-    if pPlot.isCity(): return 0
-    if pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_DARK_ICE") or pPlot.isPeak() or pPlot.isWater(): return 0
+    if eBonus not in lCultivatable: 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(eBonus)+" invalid", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+    if pPlot == None or pPlot.isNone(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "plot invalid", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+    if pPlot.getOwner() != iPlayer:     
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(pPlot.getX()) + " "+ str(pPlot.getY())+ " foreign land", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+    if pPlot.isCity(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "city plot", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+    if pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_DARK_ICE") or pPlot.isPeak() or pPlot.isWater(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "peak/water/black ice", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
 
     # Non-cultivatable bonuses cannot be replaced. If there is an invisible (tech reveal) bonus on pPlot, player receives NO information.
     # In particular, the normal cultivation chance will be displayed, but doCultivateBonus() prevents invisible bonus from removal.
     ePlotBonus = pPlot.getBonusType(pPlot.getTeam())
-    if ePlotBonus != -1 and ePlotBonus not in lCultivatable: return 0
-
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(eBonus), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    if ePlotBonus != -1 and ePlotBonus not in lCultivatable: 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "uncultivatable bonus present", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
 
     # Fertility conditions
-    if not pPlot.canHaveBonus(eBonus, True): return 0
-    if eBonus in lCorn and not pPlot.isFreshWater(): return 0
+    if not pPlot.canHaveBonus(eBonus, True): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "plot cannot have "+str(eBonus), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+    if eBonus in lCorn and not pPlot.isFreshWater(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(eBonus)+" corn needs water", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
     elif eBonus in lPlantation:
-      if eBonus == gc.getInfoTypeForString("BONUS_DATTELN") and not pPlot.isFreshWater(): return 0
-      elif eBonus == gc.getInfoTypeForString("BONUS_OLIVES") and not pPlot.isCoastalLand(): return 0
-      elif eBonus == gc.getInfoTypeForString("BONUS_GRAPES") and not pPlot.isFreshWater(): return 0
+      if eBonus == gc.getInfoTypeForString("BONUS_DATTELN") and not pPlot.isFreshWater(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(eBonus)+" DATTELN need water", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+      elif eBonus == gc.getInfoTypeForString("BONUS_OLIVES") and not pPlot.isCoastalLand(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(eBonus)+" OLIVES need coast", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
+      elif eBonus == gc.getInfoTypeForString("BONUS_GRAPES") and not pPlot.isFreshWater(): 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, str(eBonus)+" GRAPES need water", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
 
+      
     # Regel: Resourcen pro Stadt und dessen Status (Flunky)
     lCities = getCitiesInRange(pPlot)
-    if len(lCities) == 0: return 0
+    if len(lCities) == 0: 
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "no city in range", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
 
     bFood = eBonus in (lCorn + lLivestock)
+    bCapacity = False
     for pCity in lCities:
-      if not isCityCultivationPossible(pCity, bFood): return 0
-
-    return 80 # everything ok => chance of 80%
+      if isCityCultivationPossible(pCity, bFood): 
+        bCapacity = True
+        break
+    if bCapacity:
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "everything is fine", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 80 # everything ok => chance of 80%
+    else:
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "no city in range has capacity", None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return 0
 
 def getCitiesInRange(pPlot):
   iX = pPlot.getX()
   iY = pPlot.getY()
   lCities = []
-  for x in xrange(-2, 2):
-    for y in xrange(-2, 2):
+  iRange = 2
+  for x in range(-iRange, iRange+1):
+    for y in range(-iRange, iRange+1):
       # Ecken weglassen
       if (x == -2 or x == 2) and (y == -2 or y == 2): continue
       pLoopPlot = plotXY(iX, iY, x, y)
@@ -186,27 +219,30 @@ def getCitiesInRange(pPlot):
   return lCities
 
 def isCityCultivationPossible(pCity, bFood):
-  iBonusAnzahl = 0
-  iFoodMax = 2
-
-  iMax = 1
-  if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")): iMax += 1
-  if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_PROVINZ")): iMax += 1
-  #if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_METROPOLE")): iMax += 1
-  if bFood:
-    iMax = min(iMax, iFoodMax)
-
-  for iI in range(gc.getNUM_CITY_PLOTS()):
-    pLoopPlot = pCity.getCityIndexPlot(iI)
-    if pLoopPlot != None and not pLoopPlot.isNone():
-      # Bonusgut checken
-      #if pLoopPlot.getOwner() == iPlayer and pLoopPlot.getBonusType(-1) in lCultivatable: iBonusAnzahl += 1
-      if pLoopPlot.getBonusType(-1) in lCultivatable: iBonusAnzahl += 1
-      if iBonusAnzahl >= iMax: return False
-  return True
+    iBonusAnzahl = 0
+    iFoodMax = 2
+    
+    iMax = 1
+    if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")): iMax += 1
+    if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_PROVINZ")): iMax += 1
+    #if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_METROPOLE")): iMax += 1
+    if bFood:
+        iMax = min(iMax, iFoodMax)
+    iRange = gc.getNUM_CITY_PLOTS()
+    for iI in range(iRange):
+        pLoopPlot = pCity.getCityIndexPlot(iI)
+        if pLoopPlot != None and not pLoopPlot.isNone():
+            # Bonusgut checken
+            #if pLoopPlot.getOwner() == iPlayer and pLoopPlot.getBonusType(-1) in lCultivatable: iBonusAnzahl += 1
+            if pLoopPlot.getBonusType(-1) in lCultivatable: iBonusAnzahl += 1
+            if iBonusAnzahl >= iMax: return False
+    return True
 
 # Cultivates eBonus on current plot (80% chance). Unit does not need to stand on pPlot (cultivation from city)
 def doCultivateBonus(pPlot, pUnit, eBonus):
+  if pPlot == None or pUnit == None or eBonus == -1:
+    return False
+    
   iPlayer = pUnit.getOwner()
   pPlayer = gc.getPlayer(iPlayer)
   iChance = getBonusCultivationChance(iPlayer, pPlot, eBonus)
@@ -228,6 +264,8 @@ def doCultivateBonus(pPlot, pUnit, eBonus):
       if pPlot.isCity(): pCity = pPlot.getPlotCity()
       else: pCity = pPlot.getWorkingCity()
       CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_INFO_BONUSVERBREITUNG_NEG",(gc.getBonusInfo(eBonus).getDescription(),pCity.getName())), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+    pUnit.finishMoves()
+    CvEventInterface.getEventManager().doGoToNextUnit(pPlayer, pUnit)
   return True
 
 # Cultivates eBonus on random plot within radius of iRange around pUnit (chance of success: 80%).
@@ -241,6 +279,9 @@ def getCityCultivationPlot(pCity, eBonus):
       ePlotBonus = pLoopPlot.getBonusType(-1)
       if ePlotBonus == -1 and getBonusCultivationChance(iPlayer, pLoopPlot, eBonus) > 0:
         lPlotList.append(pLoopPlot)
+
+  if len(lPlotList) == 0: return None
+
   iRand = myRandom(len(lPlotList))
   return lPlotList[iRand]
 
@@ -299,6 +340,33 @@ def getAvailableCultivatableBonuses(pCity):
       if pCity.hasBonus(eBonus): lBonuses.append(eBonus)
   return lBonuses
 
+  
+# returns best plot within city radius
+def AI_bestCultivation(pCity, iSkipN = -1, eBonus = -1):    
+    iPlayer = pCity.getOwner()    
+    if eBonus != -1:
+        for iPass in range(2):
+            for iI in range(gc.getNUM_CITY_PLOTS()):
+                pLoopPlot = pCity.getCityIndexPlot(iI)
+                if pLoopPlot != None and not pLoopPlot.isNone():
+                    ePlotBonus = pLoopPlot.getBonusType(pLoopPlot.getTeam())
+                    # first pass: only empty plots
+                    if ePlotBonus == -1 or iPass > 0:
+                        # first and second pass: no improved plots
+                        eImprovement = pLoopPlot.getImprovementType()
+                        if eImprovement == -1 or iPass > 1:
+                            # third pass: also matching improved plots
+                            if eImprovement == -1 or gc.getImprovementInfo(eImprovement).isImprovementBonusTrade(eBonus):
+                                if getBonusCultivationChance(iPlayer, pLoopPlot, eBonus) > 0:
+                                    if iSkipN > 0: 
+                                        iSkipN -= 1
+                                        continue
+                                    if iSkipN <= 0: 
+                                        return pLoopPlot
+    else:
+        return None
+        # TODO: find overall best plot, i.e. prefer food and rare resources
+
 # Lets pUnit cultivate bonus at nearest city
 def doCultivation_AI(pUnit):
   global lCorn
@@ -355,7 +423,8 @@ def doCultivation_AI(pUnit):
       # kann man das hier brauchen?
       if eUnitBonus in lBonuses:
         if pLocalCity and pLoopCity.getID() == pLocalCity.getID():
-          CyMessageControl().sendModNetMessage(738, iPlayer, iUnit, iIsCity)
+          # es kann sicher ein Plot gefunden werden, schliesslich laesst sich die Ressi hier verbreiten
+          CyMessageControl().sendModNetMessage(738, iPlayer, pUnit.getID(), -1, -1)
           return True
           #~ pPlot = PAE_Trade.getCityCultivationPlot(pLocalCity, eBonus)
           #~ if doCultivateBonus(pPlot, pUnit, eBonus):
@@ -612,10 +681,11 @@ def doSellBonus(pUnit, pCity):
                     iAnz = 0
                     iMax = 3
                     if pOriginCity.isCoastal(4): iMax = 2
-                    for x in range(-1, 1):
-                      for y in range(-1, 1):
+                    iRange = 1
+                    for x in range(-iRange, iRange+1):
+                      for y in range(-iRange, iRange+1):
                         if x == 0 and y == 0: continue
-                        pLoopPlot = gc.getMap().plot(iOriginX + x, iOriginY + y)
+                        pLoopPlot = plotXY(iOriginX, iOriginY, x, y)
                         if pLoopPlot != None and not pLoopPlot.isNone():
                           if pLoopPlot.getRouteType() == iRouteType: iAnz += 1
                           if iAnz >= iMax: break
@@ -668,7 +738,7 @@ def doCityProvideBonus(pCity, eBonus, iTurn):
     bonusDict = dict([ map(int, pair) for pair in tmp])
 
   # Addiere alten und neuen Rundenwert
-  iCurrentTurn = gc.getGameTurn()
+  iCurrentTurn = gc.getGame().getGameTurn()
   bonusDict[eBonus] = iTurn + bonusDict.setdefault(eBonus, iCurrentTurn)
   CvUtil.addScriptData(pCity, "b", bonusDict)
 
@@ -687,7 +757,7 @@ def doCityCheckFreeBonuses(pCity):
 
   for eBonus in bonusDict:
     iTurn = bonusDict[eBonus]
-    if iTurn <= gc.getGameTurn():
+    if iTurn <= gc.getGame().getGameTurn():
       pCity.changeFreeBonus(eBonus, -1) # Time over: remove bonus from city
       bonusDict.pop(eBonus, None)
       CvUtil.addScriptData(pCity, "b", bonusDict)
@@ -854,47 +924,6 @@ def doPopupAutomatedTradeRoute(pUnit, iType, iData1, iData2):
 # --- End of automated trade routes for HI ---
 
 # --- Helper functions ---
-
-"""
-# Initialises ScriptData for new merchants
-def initMerchant(pUnit):
-    CvUtil.addScriptData(pUnit, "x", -1) # coordinates will be saved when bonus is stored
-    CvUtil.addScriptData(pUnit, "y", -1)
-    CvUtil.addScriptData(pUnit, "bonus", -1)
-
-# Initialises ScriptData for new cultivation Units
-def initCultivationUnit(pUnit, pCity):
-    #~ global lCultivatable
-    #~ iX = pCity.getX()
-    #~ iY = pCity.getY()
-    #~ iCityOwnerTeam = pCity.getTeam()
-    lStored = []
-    #~ for x in xrange(5): # check plots
-        #~ for y in xrange(5):
-            #~ pLoopPlot = gc.getMap().plot(iX + x - 2, iY + y - 2)
-            #~ if pLoopPlot != None and not pLoopPlot.isNone():
-                #~ if pLoopPlot.getTeam() != iCityOwnerTeam: continue
-                #~ # plot needs to have suitable improvement and city needs to have access to bonus (=> connection via trade route (street))
-                #~ eBonus = pLoopPlot.getBonusType(iCityOwnerTeam)
-                #~ eImprovement = pLoopPlot.getImprovementType()
-                #~ if eImprovement != -1 and eBonus != -1 and eBonus not in lStored and eBonus in lCultivatable:
-                  #~ if gc.getImprovementInfo(eImprovement).isImprovementBonusMakesValid(eBonus) and hasBonusIgnoreFreeBonuses(pCity, eBonus):
-                    #~ lStored.append(eBonus)
-
-    #~ if gc.getPlayer(pUnit.getOwner()).isHuman():
-       #~ if len(lStored) > 0:
-         #~ CyInterface().addMessage(pUnit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_GOODS",(gc.getBonusInfo(eBonus).getDescription(),)), "AS2D_BUILD_GRANARY", 2, None, ColorTypes(4), 0, 0, False, False)
-       #~ else:
-         #~ CyInterface().addMessage(pUnit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_NO_GOODS",("",)), "AS2D_ERROR", 2, None, ColorTypes(4), 0, 0, False, False)
-
-    sScriptDataString = convertIntListToString(lStored)
-##    sScriptDataString = "" # String which will be stored in pUnit, represents bonuses stored in unit
-##    for eBonus in lStored:
-##        sScriptDataString += ","
-##        sScriptDataString += str(eBonus)
-##    sScriptDataString = sScriptDataString[1:] # Remove comma at the beginning
-    CvUtil.addScriptData(pUnit, "cultivationBonuses", sScriptDataString) # string looks like e.g. "23,45,12,34"
-"""
 
 def initAutomatedTradeRoute(pUnit, iX1, iY1, iX2, iY2, eBonus1, eBonus2):
     CvUtil.addScriptData(pUnit, "automX1", iX1)

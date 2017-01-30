@@ -146,79 +146,95 @@ class CvGameUtils:
 
   def updateColoredPlots(self):
     pHeadSelectedUnit = CyInterface().getHeadSelectedUnit()
-    if pHeadSelectedUnit:
-      iX = pHeadSelectedUnit.getX()
-      iY = pHeadSelectedUnit.getY()
-      iUnitType = pHeadSelectedUnit.getUnitType()
+    if pHeadSelectedUnit != None and not pHeadSelectedUnit.isNone():
+      if pHeadSelectedUnit.plot().getOwner() == pHeadSelectedUnit.getOwner():
+        iX = pHeadSelectedUnit.getX()
+        iY = pHeadSelectedUnit.getY()
+        iUnitType = pHeadSelectedUnit.getUnitType()
 
-      # Cultivation
-      if iUnitType in PAE_Trade.lCultivationUnits:
-        eBonus = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
-        if eBonus != -1 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
-          iRange = 4
-          for iDX in range(-iRange, iRange+1):
-            for iDY in range(-iRange, iRange+1):
-              pLoopPlot = plotXY(iX, iY, iDX, iDY)
-              if pLoopPlot != None and not pLoopPlot.isNone():
-                #CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
-                if PAE_Trade.getBonusCultivationChance(gc.getActivePlayer(), pLoopPlot, eBonus) > 0:
-                  CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+        # Cultivation
+        if iUnitType in PAE_Trade.lCultivationUnits:
+            eBonus = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
+            if eBonus != -1 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
+                pCity = pHeadSelectedUnit.plot().getWorkingCity()
+                if pCity != None:
+                    pBestPlot = PAE_Trade.AI_bestCultivation(pCity, 0, eBonus)
+                    if pBestPlot:
+                        CyEngine().addColoredPlotAlt(pBestPlot.getX(), pBestPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_HIGHLIGHT_TEXT", 1.0)
+                        pSecondBestPlot = PAE_Trade.AI_bestCultivation(pCity, 1, eBonus)
+                        if pSecondBestPlot:
+                            CyEngine().addColoredPlotAlt(pSecondBestPlot.getX(), pSecondBestPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_HIGHLIGHT_TEXT", 1.0)
+                            
+                # iRange = 2
+                # for iDX in range(-iRange, iRange+1):
+                    # for iDY in range(-iRange, iRange+1):
+                        # pLoopPlot = plotXY(iX, iY, iDX, iDY)
+                        # if pLoopPlot != None and not pLoopPlot.isNone():
+                            # # CyEngine().addColoredPlotAlt(pLoopPlot.getX(), pLoopPlot.getY(), PlotStyles.PLOT_STYLE_BOX_FILL, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_BASE, "COLOR_BLUE", 0.2)
+                            # iChance = PAE_Trade.getBonusCultivationChance(pHeadSelectedUnit.getOwner(), pLoopPlot, eBonus)
+                            # if iChance > 0:
 
-      # Elefant
-      elif iUnitType == gc.getInfoTypeForString("UNIT_ELEFANT"):
-        pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
-        terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
-        terr_plains = gc.getInfoTypeForString("TERRAIN_PLAINS")
-        feat_jungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
+        # Elefant
+        elif iUnitType == gc.getInfoTypeForString("UNIT_ELEFANT"):
+            pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
+            terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
+            terr_plains = gc.getInfoTypeForString("TERRAIN_PLAINS")
+            feat_jungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
 
-        (pCity, iter) = pPlayer.firstCity(False)
-        while pCity:
-          if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
-            # Check plots (Klima / climate)
-            bOK1 = False
-            bOK2 = False
-            bOK = False
-            for i in range(-1,1):
-              for j in range(-1,1):
-                loopPlot = gc.getMap().plot(pCity.getX() + i, pCity.getY() + j)
-                if loopPlot != None and not loopPlot.isNone():
-                  if loopPlot.getTerrainType() == terr_desert or loopPlot.getFeatureType() == feat_jungle:
-                    bOK1 = True
-                  if loopPlot.getTerrainType() == terr_plains and loopPlot.getBonusType(loopPlot.getOwner()) == -1:
-                    bOK2 = True
-                  if bOK1 and bOK2:
-                     bOK = True
-                     break
-              if bOK: break
+            (pCity, iter) = pPlayer.firstCity(False)
+            while pCity:
+                if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
+                    # Check plots (Klima / climate)
+                    bOK1 = False
+                    bOK2 = False
+                    bOK = False
+                    iX = pCity.getX()
+                    iY = pCity.getY()
+                    iRange = 1
+                    for i in range(-iRange, iRange+1):
+                        for j in range(-iRange, iRange+1):
+                            pLoopPlot = plotXY(iX, iY, i, j)
+                            if pLoopPlot != None and not pLoopPlot.isNone():
+                                if pLoopPlot.getTerrainType() == terr_desert or pLoopPlot.getFeatureType() == feat_jungle:
+                                    bOK1 = True
+                                if pLoopPlot.getTerrainType() == terr_plains and pLoopPlot.getBonusType(pLoopPlot.getOwner()) == -1:
+                                    bOK2 = True
+                                if bOK1 and bOK2:
+                                    bOK = True
+                                    break
+                        if bOK: break
 
-            if bOK:
-               CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+                    if bOK:
+                        CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
-          (pCity,iter) = pPlayer.nextCity(iter, False)
+                (pCity,iter) = pPlayer.nextCity(iter, False)
 
-      # Kamel
-      elif iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
-        pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
-        terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
+        # Kamel
+        elif iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
+            pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
+            terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
 
-        (pCity, iter) = pPlayer.firstCity(False)
-        while pCity:
-          if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
-            # Check plots (Klima / climate)
-            bOK = False
-            for i in range(-1,1):
-              for j in range(-1,1):
-                loopPlot = gc.getMap().plot(pCity.getX() + i, pCity.getY() + j)
-                if loopPlot != None and not loopPlot.isNone():
-                  if loopPlot.getTerrainType() == terr_desert and loopPlot.getBonusType(loopPlot.getOwner()) == -1:
-                    bOK = True
-                    break
-              if bOK: break
+            (pCity, iter) = pPlayer.firstCity(False)
+            while pCity:
+                if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
+                    # Check plots (Klima / climate)
+                    bOK = False
+                    iX = pCity.getX()
+                    iY = pCity.getY()
+                    iRange = 1
+                    for i in range(-iRange, iRange+1):
+                        for j in range(-iRange, iRange+1):
+                            pLoopPlot = plotXY(iX, iY, i, j)
+                            if pLoopPlot != None and not pLoopPlot.isNone():
+                                if pLoopPlot.getTerrainType() == terr_desert and pLoopPlot.getBonusType(pLoopPlot.getOwner()) == -1:
+                                    bOK = True
+                                    break
+                        if bOK: break
 
-            if bOK:
-               CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
+                    if bOK:
+                        CyEngine().addColoredPlotAlt(pCity.getX(), pCity.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
-          (pCity,iter) = pPlayer.nextCity(iter, False)
+                (pCity,iter) = pPlayer.nextCity(iter, False)
 
     return False
 
@@ -2061,7 +2077,7 @@ class CvGameUtils:
     iCaptureGold += self.myRandom(gc.getDefineINT("CAPTURE_GOLD_RAND2"), None)
 
     if (gc.getDefineINT("CAPTURE_GOLD_MAX_TURNS") > 0):
-      iCaptureGold *= cyIntRange((CyGame().getGameTurn() - pOldCity.getGameTurnAcquired()), 0, gc.getDefineINT("CAPTURE_GOLD_MAX_TURNS"))
+      iCaptureGold *= cyIntRange((gc.getGame().getGameTurn() - pOldCity.getGameTurnAcquired()), 0, gc.getDefineINT("CAPTURE_GOLD_MAX_TURNS"))
       iCaptureGold /= gc.getDefineINT("CAPTURE_GOLD_MAX_TURNS")
 
     return iCaptureGold
@@ -2861,7 +2877,7 @@ class CvGameUtils:
 
     # CAN AI use inquisitor
     if iStateReligion >= 0 and pUnit.getGroup().getMissionType(0) != 0:
-      #iTurn = PyGame().getGameTurn()
+      #iTurn = gc.getGame().getGameTurn()
       #iOwnCulture = pOwner.getCultureHistory(iTurn)
       #lPlayers = PyGame().getCivPlayerList()
       lCities = PyPlayer(iOwner).getCityList()
@@ -2887,7 +2903,7 @@ class CvGameUtils:
       #    if pCity.isHasReligion(iBestReligion) and pCity.isHasReligion(iStateReligion):
       #      #Makes the unit move to the City and purge it
       #      iPlayer = pOwner.getID()
-      #      CvEventInterface.getEventManager().doInquisitorPersecution2(iPlayer, pCity.getID(), -1, iReligion, pUnit.getID())
+      #      PAE_City.doInquisitorPersecution2(iPlayer, pCity.getID(), -1, iReligion, pUnit.getID())
       #      #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
       #      pUnit.kill(1,pUnit.getOwner())
       #      return
@@ -2904,7 +2920,7 @@ class CvGameUtils:
       #        if iReligion != iStateReligion and pCity.isHasReligion( iReligion ) and pCity.isHolyCityByType( iReligion ) == 0:
       #          #Makes the unit purge it
       #          iPlayer = pOwner.getID()
-      #          CvEventInterface.getEventManager().doInquisitorPersecution2(iPlayer, pCity.getID(), -1, iReligion, pUnit.getID())
+      #          PAE_City.doInquisitorPersecution2(iPlayer, pCity.getID(), -1, iReligion, pUnit.getID())
       #          #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
       #          pUnit.kill(1,pUnit.getOwner())
       #          return 1
@@ -2919,7 +2935,7 @@ class CvGameUtils:
       #    iRand = self.myRandom(len(lReligionsWithoutHolyOrState),None)
       #    iReligion = lReligionsWithoutHolyOrState(iRand)
       #    iPlayer = pOwner.getID( )       #
-      #    CvEventInterface.getEventManager().doInquisitorPersecution2(iPlayer,pCity.getID(), -1, iReligion, pUnit.getID())
+      #    PAE_City.doInquisitorPersecution2(iPlayer,pCity.getID(), -1, iReligion, pUnit.getID())
       #    #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
       #    pUnit.kill(1,pUnit.getOwner())
       #    return 1
@@ -2935,7 +2951,7 @@ class CvGameUtils:
               if iReligion != iStateReligion:
                 if pCity.isHolyCityByType( iReligion ) == 0:
                   #Makes the unit purge it
-                  CvEventInterface.getEventManager().doInquisitorPersecution2(iOwner, pCity.getID(), -1, iReligion, pUnit.getID())
+                  PAE_City.doInquisitorPersecution2(iOwner, pCity.getID(), -1, iReligion, pUnit.getID())
                   #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   pUnit.kill(1,pUnit.getOwner())
                   return True
@@ -2948,7 +2964,7 @@ class CvGameUtils:
   #    pUnit.getGroup().clearMissionQueue()
   #    pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
   #  else:
-  #    CvEventInterface.getEventManager().doInquisitorPersecution( pCity, pUnit )
+  #    PAE_City.doInquisitorPersecution( pCity, pUnit )
 
   def getExperienceNeeded(self, argsList):
     # use this function to set how much experience a unit needs

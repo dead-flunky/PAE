@@ -4219,7 +4219,7 @@ class CvMainInterface:
 
     ePlayer = gc.getGame().getActivePlayer()
 
-    g_szTimeText = localText.getText("TXT_KEY_TIME_TURN", (CyGame().getGameTurn(), )) + u" - " + unicode(CyGameTextMgr().getInterfaceTimeStr(ePlayer))
+    g_szTimeText = localText.getText("TXT_KEY_TIME_TURN", (gc.getGame().getGameTurn(), )) + u" - " + unicode(CyGameTextMgr().getInterfaceTimeStr(ePlayer))
     if (CyUserProfile().isClockOn()):
       g_szTimeText = getClockText() + u" - " + g_szTimeText
 
@@ -6033,62 +6033,62 @@ class CvMainInterface:
   # Will update the scores
   def updateScoreStrings( self ):
 
-                # Platy Scoreboard adapted and changed by Pie and debugged by Ramk
-                screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
-                screen.hide("ScoreBackground")
-                screen.hide("ScoreBackground2")
-                screen.hide("ScoreRowPlus")
-                screen.hide("ScoreRowMinus")
-                screen.hide("ScoreWidthPlus")
-                screen.hide("ScoreWidthMinus")
-                screen.hide("ScoreHidePoints") #PAE
-                if CyEngine().isGlobeviewUp(): return
-                if CyInterface().isCityScreenUp(): return
-                if CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_HIDE_ALL: return
-                if CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_MINIMAP_ONLY: return
-                if not CyInterface().isScoresVisible(): return
+    # Platy Scoreboard adapted and changed by Pie and debugged by Ramk
+    screen = CyGInterfaceScreen( "MainInterface", CvScreenEnums.MAIN_INTERFACE )
+    screen.hide("ScoreBackground")
+    screen.hide("ScoreBackground2")
+    screen.hide("ScoreRowPlus")
+    screen.hide("ScoreRowMinus")
+    screen.hide("ScoreWidthPlus")
+    screen.hide("ScoreWidthMinus")
+    screen.hide("ScoreHidePoints") #PAE
+    if CyEngine().isGlobeviewUp(): return
+    if CyInterface().isCityScreenUp(): return
+    if CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_HIDE_ALL: return
+    if CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_MINIMAP_ONLY: return
+    if not CyInterface().isScoresVisible(): return
 
-                xResolution = screen.getXResolution()
-                yResolution = screen.getYResolution()
+    xResolution = screen.getXResolution()
+    yResolution = screen.getYResolution()
 
-                lMasters = []
-                lVassals = []
-                lPlayers = []
-                iRange = gc.getMAX_CIV_PLAYERS()
-                for iPlayerX in xrange(iRange):
-                        if CyInterface().isScoresMinimized():
-                                if iPlayerX == CyGame().getActivePlayer():
-                                        lPlayers.append(iPlayerX)
-                                        break
-                        else:
-                                pPlayerX = gc.getPlayer(iPlayerX)
-                                if pPlayerX.isAlive():
-                                        iTeamX = pPlayerX.getTeam()
-                                        pTeamX = gc.getTeam(iTeamX)
-                                        if pTeamX.isHasMet(CyGame().getActiveTeam()) or CyGame().isDebugMode():
-                                                        if pTeamX.isAVassal():
-                                                                for iTeamY in xrange(gc.getMAX_CIV_TEAMS()):
-                                                                        if pTeamX.isVassal(iTeamY):
-                                                                                lVassals.append([CyGame().getTeamRank(iTeamY), CyGame().getTeamRank(iTeamX), CyGame().getPlayerRank(iPlayerX), iPlayerX])
-                                                                                break
-                                                        else:
-                                                                lMasters.append([CyGame().getTeamRank(iTeamX), CyGame().getPlayerRank(iPlayerX), iPlayerX])
-                lMasters.sort()
-                lVassals.sort()
-                iOldRank = -1
-                for i in lMasters:
-                        if iOldRank != i[0]:
-                                for j in lVassals:
-                                        if j[0] == iOldRank:
-                                                lPlayers.append(j[3])
-                                        elif j[0] > iOldRank:
-                                                break
-                                iOldRank = i[0]
-                        lPlayers.append(i[2])
+    lMasters = []
+    lVassals = []
+    lPlayers = []
+    iRange = gc.getMAX_CIV_PLAYERS()
+    for iPlayerX in xrange(iRange):
+        if CyInterface().isScoresMinimized():
+            if iPlayerX == CyGame().getActivePlayer():
+                lPlayers.append(iPlayerX)
+                break
+        else:
+            pPlayerX = gc.getPlayer(iPlayerX)
+            if pPlayerX.isAlive():
+                iTeamX = pPlayerX.getTeam()
+                pTeamX = gc.getTeam(iTeamX)
+                if pTeamX.isHasMet(CyGame().getActiveTeam()) or CyGame().isDebugMode():
+                    if pTeamX.isAVassal():
+                        for iTeamY in xrange(gc.getMAX_CIV_TEAMS()):
+                            if pTeamX.isVassal(iTeamY):
+                                lVassals.append([CyGame().getTeamRank(iTeamY), CyGame().getTeamRank(iTeamX), CyGame().getPlayerRank(iPlayerX), iPlayerX])
+                                break
+                    else:
+                        lMasters.append([CyGame().getTeamRank(iTeamX), CyGame().getPlayerRank(iPlayerX), iPlayerX])
+    lMasters.sort()
+    lVassals.sort()
+    iOldRank = -1
+    for i in lMasters:
+        if iOldRank != i[0]:
+            for j in lVassals:
+                if j[0] == iOldRank:
+                    lPlayers.append(j[3])
+                elif j[0] > iOldRank:
+                    break
+            iOldRank = i[0]
+        lPlayers.append(i[2])
 
-                nRows = len(lPlayers)
-                self.iScoreRows = max(0, min(self.iScoreRows, nRows - 1))
-                iHeight = min(yResolution - 300, max(1, (nRows - self.iScoreRows)) * 24 + 2)
+    nRows = len(lPlayers)
+    self.iScoreRows = max(0, min(self.iScoreRows, nRows - 1))
+    iHeight = min(yResolution - 300, max(1, (nRows - self.iScoreRows)) * 24 + 2)
 #                screen.addTableControlGFC("ScoreBackground", 6, xResolution - self.iScoreWidth - 230, yResolution - iHeight - 180, self.iScoreWidth + 230, iHeight, False, False, 24, 24, TableStyles.TABLE_STYLE_EMPTY)
 #                screen.enableSelect("ScoreBackground", False)
 #                screen.setTableColumnHeader("ScoreBackground", 0, "", self.iScoreWidth)
@@ -6097,104 +6097,104 @@ class CvMainInterface:
 #                screen.setTableColumnHeader("ScoreBackground", 3, "", 23)
 #                screen.setTableColumnHeader("ScoreBackground", 4, "", 90)
 #                screen.setTableColumnHeader("ScoreBackground", 5, "", 73)
-                screen.addTableControlGFC("ScoreBackground2", 6, xResolution - self.iScoreWidth - 230, yResolution - iHeight - 180, self.iScoreWidth + 230, iHeight, False, False, 24, 24, TableStyles.TABLE_STYLE_EMPTY)
-                screen.enableSelect("ScoreBackground2", False)
-                screen.setTableColumnHeader("ScoreBackground2", 0, "", self.iScoreWidth)
-                screen.setTableColumnHeader("ScoreBackground2", 1, "", 23)
-                screen.setTableColumnHeader("ScoreBackground2", 2, "", 23)
-                screen.setTableColumnHeader("ScoreBackground2", 3, "", 23)
-                screen.setTableColumnHeader("ScoreBackground2", 4, "", 90)
-                screen.setTableColumnHeader("ScoreBackground2", 5, "", 73)
-                if self.iScoreWidth > 0:
-                  screen.setButtonGFC("ScoreWidthMinus", "", "", xResolution - 48, yResolution - 179, 17, 17, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_ARROW_RIGHT)
-                screen.setButtonGFC("ScoreRowMinus", "", "", xResolution - 70, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_CITY_MINUS )
-                screen.setButtonGFC("ScoreHidePoints", "", "", xResolution - 90, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
-                screen.setButtonGFC("ScoreRowPlus", "", "", xResolution - 110, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_CITY_PLUS )
-                if self.iScoreWidth < 200:
-                  screen.setButtonGFC("ScoreWidthPlus", "", "", xResolution - 129, yResolution - 179, 17, 17, WidgetTypes.WIDGET_GENERAL, 1, -1, ButtonStyles.BUTTON_STYLE_ARROW_LEFT)
-                for iPlayer in lPlayers:
-#                        iRow = screen.appendTableRow("ScoreBackground")
-                        iRow = screen.appendTableRow("ScoreBackground2")
-                        pPlayer = gc.getPlayer(iPlayer)
-                        iTeam = pPlayer.getTeam()
-                        pTeam = gc.getTeam(iTeam)
+    screen.addTableControlGFC("ScoreBackground2", 6, xResolution - self.iScoreWidth - 230, yResolution - iHeight - 180, self.iScoreWidth + 230, iHeight, False, False, 24, 24, TableStyles.TABLE_STYLE_EMPTY)
+    screen.enableSelect("ScoreBackground2", False)
+    screen.setTableColumnHeader("ScoreBackground2", 0, "", self.iScoreWidth)
+    screen.setTableColumnHeader("ScoreBackground2", 1, "", 23)
+    screen.setTableColumnHeader("ScoreBackground2", 2, "", 23)
+    screen.setTableColumnHeader("ScoreBackground2", 3, "", 23)
+    screen.setTableColumnHeader("ScoreBackground2", 4, "", 90)
+    screen.setTableColumnHeader("ScoreBackground2", 5, "", 73)
+    if self.iScoreWidth > 0:
+        screen.setButtonGFC("ScoreWidthMinus", "", "", xResolution - 48, yResolution - 179, 17, 17, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_ARROW_RIGHT)
+    screen.setButtonGFC("ScoreRowMinus", "", "", xResolution - 70, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_CITY_MINUS )
+    screen.setButtonGFC("ScoreHidePoints", "", "", xResolution - 90, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
+    screen.setButtonGFC("ScoreRowPlus", "", "", xResolution - 110, yResolution - 180, 20, 20, WidgetTypes.WIDGET_GENERAL, -1, -1, ButtonStyles.BUTTON_STYLE_CITY_PLUS )
+    if self.iScoreWidth < 200:
+        screen.setButtonGFC("ScoreWidthPlus", "", "", xResolution - 129, yResolution - 179, 17, 17, WidgetTypes.WIDGET_GENERAL, 1, -1, ButtonStyles.BUTTON_STYLE_ARROW_LEFT)
+    for iPlayer in lPlayers:
+#       iRow = screen.appendTableRow("ScoreBackground")
+        iRow = screen.appendTableRow("ScoreBackground2")
+        pPlayer = gc.getPlayer(iPlayer)
+        iTeam = pPlayer.getTeam()
+        pTeam = gc.getTeam(iTeam)
 
-                        sText1 = u"<font=2>"
+        sText1 = u"<font=2>"
 
-                        if CyGame().isGameMultiPlayer():
-                          if not pPlayer.isTurnActive():
-                                sText1 += "*"
-                        if CyGame().isNetworkMultiPlayer():
-                                sText1 += CyGameTextMgr().getNetStats(iPlayer)
-                        if pPlayer.isHuman() and CyInterface().isOOSVisible():
-                                sText1 += u" <color=255,0,0>* %s *</color>" %(CyGameTextMgr().getOOSSeeds(iPlayer))
-                        if not pTeam.isHasMet(CyGame().getActiveTeam()):
-                                sText1 += "? "
+        if CyGame().isGameMultiPlayer():
+          if not pPlayer.isTurnActive():
+            sText1 += "*"
+        if CyGame().isNetworkMultiPlayer():
+            sText1 += CyGameTextMgr().getNetStats(iPlayer)
+        if pPlayer.isHuman() and CyInterface().isOOSVisible():
+            sText1 += u" <color=255,0,0>* %s *</color>" %(CyGameTextMgr().getOOSSeeds(iPlayer))
+        if not pTeam.isHasMet(CyGame().getActiveTeam()):
+            sText1 += "? "
 
-                        #sButton = "INTERFACE_ATTITUDE_BOY"
-                        #if not pPlayer.isHuman():
-                        #        lVincent = ["INTERFACE_ATTITUDE_0", "INTERFACE_ATTITUDE_1", "INTERFACE_ATTITUDE_2", "INTERFACE_ATTITUDE_3", "INTERFACE_ATTITUDE_4"]
-                        #        sButton = lVincent[pPlayer.AI_getAttitude(CyGame().getActivePlayer())]
+        #sButton = "INTERFACE_ATTITUDE_BOY"
+        #if not pPlayer.isHuman():
+        #        lVincent = ["INTERFACE_ATTITUDE_0", "INTERFACE_ATTITUDE_1", "INTERFACE_ATTITUDE_2", "INTERFACE_ATTITUDE_3", "INTERFACE_ATTITUDE_4"]
+        #        sButton = lVincent[pPlayer.AI_getAttitude(CyGame().getActivePlayer())]
 
-                        # PAE
-                        sButton = ""
-                        if not pPlayer.isHuman():
-                          iAtt = pPlayer.AI_getAttitude(gc.getGame().getActivePlayer())
-                          sButton = u"%c" %(CyGame().getSymbolID(FontSymbols.POWER_CHAR) + 4 + iAtt)
-                        # None was: ArtFileMgr.getInterfaceArtInfo(sButton).getPath()
-                        screen.setTableText("ScoreBackground2", 1, iRow, sButton, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
-                        #szTempBuffer = u"<color=%d,%d,%d,%d>%s</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getName())
-                        #screen.setTableText("ScoreBackground2", 2, iRow, szTempBuffer, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
-                        screen.setTableText("ScoreBackground2", 2, iRow, "", gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getButton(), WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
-                        screen.setTableText("ScoreBackground2", 3, iRow, "", gc.getCivilizationInfo(pPlayer.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
-                        szTempBuffer = u"<color=%d,%d,%d,%d>%s</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getCivilizationShortDescription(0))
-                        screen.setTableText("ScoreBackground2", 4, iRow, szTempBuffer, None, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
+        # PAE
+        sButton = ""
+        if not pPlayer.isHuman():
+            iAtt = pPlayer.AI_getAttitude(gc.getGame().getActivePlayer())
+            sButton = u"%c" %(CyGame().getSymbolID(FontSymbols.POWER_CHAR) + 4 + iAtt)
+        # None was: ArtFileMgr.getInterfaceArtInfo(sButton).getPath()
+        screen.setTableText("ScoreBackground2", 1, iRow, sButton, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
+        #szTempBuffer = u"<color=%d,%d,%d,%d>%s</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getName())
+        #screen.setTableText("ScoreBackground2", 2, iRow, szTempBuffer, None, WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
+        screen.setTableText("ScoreBackground2", 2, iRow, "", gc.getLeaderHeadInfo(pPlayer.getLeaderType()).getButton(), WidgetTypes.WIDGET_CONTACT_CIV, iPlayer, -1, CvUtil.FONT_LEFT_JUSTIFY)
+        screen.setTableText("ScoreBackground2", 3, iRow, "", gc.getCivilizationInfo(pPlayer.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
+        szTempBuffer = u"<color=%d,%d,%d,%d>%s</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getCivilizationShortDescription(0))
+        screen.setTableText("ScoreBackground2", 4, iRow, szTempBuffer, None, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, pPlayer.getCivilizationType(), 1, CvUtil.FONT_LEFT_JUSTIFY)
 
-                        if pTeam.isAVassal():
-                                sText1 += CyTranslator().getText("[ICON_SILVER_STAR]", ())
+        if pTeam.isAVassal():
+            sText1 += CyTranslator().getText("[ICON_SILVER_STAR]", ())
 
-                        #if iPlayer == CyGame().getActivePlayer():
-                        #        sText1 += CyTranslator().getText("[ICON_POWER]", ())
-                        #else:
-                        if iPlayer != CyGame().getActivePlayer():
-                                        if pTeam.getPower(1) >= gc.getTeam(gc.getGame().getActiveTeam()).getPower(1):
-                                                sText1 += CyTranslator().getText("[ICON_STRENGTH]", ())
-                                        if pTeam.isDefensivePact(CyGame().getActiveTeam()):
-                                                sText1 += CyTranslator().getText("[ICON_DEFENSIVEPACT]", ())
-                                        if pTeam.getEspionagePointsAgainstTeam(CyGame().getActiveTeam()) < gc.getTeam(CyGame().getActiveTeam()).getEspionagePointsAgainstTeam(iTeam):
-                                                sText1 += CyTranslator().getText("[ICON_ESPIONAGE]", ())
-                                        if pTeam.isAtWar(CyGame().getActiveTeam()):
-                                                #sText1 += CyTranslator().getText("[ICON_OCCUPATION]", ())
-                                                sText1 += "("  + localText.getColorText("TXT_KEY_CONCEPT_WAR", (), gc.getInfoTypeForString("COLOR_RED")).upper() + ")"
-                                        if pTeam.isOpenBorders(CyGame().getActiveTeam()):
-                                                sText1 += CyTranslator().getText("[ICON_OPENBORDERS]", ())
-                                        if pPlayer.canTradeNetworkWith(CyGame().getActivePlayer()):
-                                                sText1 += CyTranslator().getText("[ICON_TRADE]", ())
+        #if iPlayer == CyGame().getActivePlayer():
+        #        sText1 += CyTranslator().getText("[ICON_POWER]", ())
+        #else:
+        if iPlayer != CyGame().getActivePlayer():
+            if pTeam.getPower(1) >= gc.getTeam(gc.getGame().getActiveTeam()).getPower(1):
+                sText1 += CyTranslator().getText("[ICON_STRENGTH]", ())
+            if pTeam.isDefensivePact(CyGame().getActiveTeam()):
+                sText1 += CyTranslator().getText("[ICON_DEFENSIVEPACT]", ())
+            if pTeam.getEspionagePointsAgainstTeam(CyGame().getActiveTeam()) < gc.getTeam(CyGame().getActiveTeam()).getEspionagePointsAgainstTeam(iTeam):
+                sText1 += CyTranslator().getText("[ICON_ESPIONAGE]", ())
+            if pTeam.isAtWar(CyGame().getActiveTeam()):
+                #sText1 += CyTranslator().getText("[ICON_OCCUPATION]", ())
+                sText1 += "("  + localText.getColorText("TXT_KEY_CONCEPT_WAR", (), gc.getInfoTypeForString("COLOR_RED")).upper() + ")"
+            if pTeam.isOpenBorders(CyGame().getActiveTeam()):
+                sText1 += CyTranslator().getText("[ICON_OPENBORDERS]", ())
+            if pPlayer.canTradeNetworkWith(CyGame().getActivePlayer()):
+                sText1 += CyTranslator().getText("[ICON_TRADE]", ())
 
-                        iReligion = pPlayer.getStateReligion()
-                        if iReligion > -1:
-                                if pPlayer.hasHolyCity(iReligion):
-                                        sText1 += u"%c" %(gc.getReligionInfo(iReligion).getHolyCityChar())
-                                else:
-                                        sText1 += u"%c" %(gc.getReligionInfo(iReligion).getChar())
+        iReligion = pPlayer.getStateReligion()
+        if iReligion > -1:
+            if pPlayer.hasHolyCity(iReligion):
+                sText1 += u"%c" %(gc.getReligionInfo(iReligion).getHolyCityChar())
+            else:
+                sText1 += u"%c" %(gc.getReligionInfo(iReligion).getChar())
 
-                        if not self.iScoreHidePoints:
-                           sText1 += u"<color=%d,%d,%d,%d>%d</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), CyGame().getPlayerScore(iPlayer))
+        if not self.iScoreHidePoints:
+           sText1 += u"<color=%d,%d,%d,%d>%d</color>" %(pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), CyGame().getPlayerScore(iPlayer))
 
-                        screen.setTableText("ScoreBackground2", 0, iRow, sText1, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
+        screen.setTableText("ScoreBackground2", 0, iRow, sText1, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
 
-                        bEspionageCanSeeResearch = False
-                        for iMissionLoop in xrange(gc.getNumEspionageMissionInfos()):
-                                if (gc.getEspionageMissionInfo(iMissionLoop).isSeeResearch()):
-                                        bEspionageCanSeeResearch = gc.getPlayer(CyGame().getActivePlayer()).canDoEspionageMission(iMissionLoop, iPlayer, None, -1)
-                                        break
+        bEspionageCanSeeResearch = False
+        for iMissionLoop in xrange(gc.getNumEspionageMissionInfos()):
+            if (gc.getEspionageMissionInfo(iMissionLoop).isSeeResearch()):
+                bEspionageCanSeeResearch = gc.getPlayer(CyGame().getActivePlayer()).canDoEspionageMission(iMissionLoop, iPlayer, None, -1)
+                break
 
-                        if iTeam == CyGame().getActiveTeam() or pTeam.isVassal(CyGame().getActiveTeam()) or CyGame().isDebugMode() or bEspionageCanSeeResearch:
-                                iTech = pPlayer.getCurrentResearch()
-                                if iTech > -1:
-                                        sTech = u"<color=%d,%d,%d,%d>%d</color>" %( pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getResearchTurnsLeft(pPlayer.getCurrentResearch(), True))
-                                        screen.setTableText("ScoreBackground2", 5, iRow, sTech, gc.getTechInfo(iTech).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_TECH, iTech, 1, CvUtil.FONT_LEFT_JUSTIFY)
-        # Platy Scoreboard - End
+        if iTeam == CyGame().getActiveTeam() or pTeam.isVassal(CyGame().getActiveTeam()) or CyGame().isDebugMode() or bEspionageCanSeeResearch:
+            iTech = pPlayer.getCurrentResearch()
+            if iTech > -1:
+                sTech = u"<color=%d,%d,%d,%d>%d</color>" %( pPlayer.getPlayerTextColorR(), pPlayer.getPlayerTextColorG(), pPlayer.getPlayerTextColorB(), pPlayer.getPlayerTextColorA(), pPlayer.getResearchTurnsLeft(pPlayer.getCurrentResearch(), True))
+                screen.setTableText("ScoreBackground2", 5, iRow, sTech, gc.getTechInfo(iTech).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_TECH, iTech, 1, CvUtil.FONT_LEFT_JUSTIFY)
+# Platy Scoreboard - End
 
   # Will update the scores - TEAMS Ansicht
   def updateScoreStrings_PAEIV( self ):
