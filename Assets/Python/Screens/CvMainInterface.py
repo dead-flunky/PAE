@@ -2587,8 +2587,6 @@ class CvMainInterface:
                 iBuilding2 = gc.getInfoTypeForString("BUILDING_SOELDNERPOSTEN")
                 if pCity.isHasBuilding(iBuilding1) or  pCity.isHasBuilding(iBuilding2):
 
-                  #lStatthalterTribut = CvEventInterface.getEventManager().PAEStatthalterTribut()
-
                   # Ist mind. 1 Einheit immobile oder beschaeftigt, so geht kein Tribut (damit man nicht mehr pro Runde durchfuehren kann)
                   bTribut = True
                   iOwner = pUnit.getOwner()

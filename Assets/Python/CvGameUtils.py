@@ -14,7 +14,8 @@ import time # Seed! MP-OOS
 import random # Seed! MP-OOS
 import CvRiverUtil
 import PAE_Trade
-
+import PAE_City
+import PAE_Unit
 # globals
 gc = CyGlobalContext()
 PyPlayer = PyHelpers.PyPlayer
@@ -164,7 +165,7 @@ class CvGameUtils:
                         pSecondBestPlot = PAE_Trade.AI_bestCultivation(pCity, 1, eBonus)
                         if pSecondBestPlot:
                             CyEngine().addColoredPlotAlt(pSecondBestPlot.getX(), pSecondBestPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_HIGHLIGHT_TEXT", 1.0)
-                            
+
                 # iRange = 2
                 # for iDX in range(-iRange, iRange+1):
                     # for iDY in range(-iRange, iRange+1):
@@ -1150,7 +1151,7 @@ class CvGameUtils:
       # Ab Kampferfahren Status (nur Streitwagen)
       if iUnitType == gc.getInfoTypeForString("UNIT_CHARIOT"):
         if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3")):
-          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_WAR_CHARIOT"), True)
+          PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_WAR_CHARIOT"), True)
           return True
 
 
@@ -1160,29 +1161,29 @@ class CvGameUtils:
           if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
                 # Elite Cohors Equitata -> Equites Singulares Augusti
                 if iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"), True)
                      return True
           else:
                 # Elite Limitanei -> Imperial Guard
                 if iUnitType == gc.getInfoTypeForString("UNIT_ROME_LIMITANEI"):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_LIMITANEI_GARDE"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ROME_LIMITANEI_GARDE"), True)
                      return True
                 # Elite Comitatenses -> Palatini
                 elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2"):
                    if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ROME_PALATINI")) < 3:
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_PALATINI"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ROME_PALATINI"), True)
                      return True
                 # Elite Praetorians or Cohorte praetoriae -> Praetorian Garde
                 elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") or iUnitType == gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"):
                    if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_PRAETORIAN3")) < 3:
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN3"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN3"), True)
                      return True
 
           # Elite Palatini or Clibanari or Cataphracti -> Scholae
           if iUnitType == gc.getInfoTypeForString("UNIT_ROME_PALATINI") \
           or iUnitType == gc.getInfoTypeForString("UNIT_CLIBANARII_ROME") or iUnitType == gc.getInfoTypeForString("UNIT_CATAPHRACT_ROME"):
                    if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ROME_SCHOLAE")) < 3:
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_SCHOLAE"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ROME_SCHOLAE"), True)
                      return True
 
 
@@ -1198,12 +1199,12 @@ class CvGameUtils:
                 # Sagittarii (Reflex) -> Arquites
                 if iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_ROME") :
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_LEGION"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_LEGION"), True)
                      return True
                 # Arquites -> Equites Sagittarii (Horse Archer)
                 elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_LEGION") :
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"), True)
                      return True
 
           # sollte ueber XML funktionieren
@@ -1216,14 +1217,14 @@ class CvGameUtils:
           #     # fix Cohors Urbana machen, wenn Anz = 0
           #     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PRINCIPAT")):
           #       if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_PRAETORIAN2")) < 3:
-          #          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN2"), True)
+          #          PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN2"), True)
           #          return True
           #     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LORICA_SEGMENTATA")):
           #       if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_HORSEMAN_EQUITES2")) < 5:
-          #          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"), True)
+          #          PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"), True)
           #          return True
           #     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_FEUERWEHR")):
-          #          self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"), True)
+          #          PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ROME_COHORTES_URBANAE"), True)
           #          return True
 
           else:
@@ -1235,24 +1236,24 @@ class CvGameUtils:
                     # Rang: Immunes
                     if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_RANG_ROM_3")):
                       if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) < 3:
-                        self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"), True)
+                        PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"), True)
                         return True
                  # Triari -> Praetorians
                 elif iUnitType == gc.getInfoTypeForString("UNIT_TRIARII2") and pTeam.isHasTech(gc.getInfoTypeForString("TECH_BERUFSSOLDATEN")):
                   # obsolete with Marching/Border Army
                   if not pTeam.isHasTech(gc.getInfoTypeForString("TECH_GRENZHEER")):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_PRAETORIAN"), True)
                      return True
                  # Principes or Hastati -> Triarii
                 elif iUnitType == gc.getInfoTypeForString("UNIT_PRINCIPES2") \
                 or iUnitType == gc.getInfoTypeForString("UNIT_HASTATI2") :
                   if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_TRIARII2"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_TRIARII2"), True)
                      return True
                 # Hasta Warrior -> Celeres
                 elif iUnitType == gc.getInfoTypeForString("UNIT_HASTATI1") :
                      #if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-                     self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_CELERES"), True)
+                     PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_CELERES"), True)
                      return True
 
 
@@ -1263,37 +1264,37 @@ class CvGameUtils:
         or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
           # Hoplit -> Elite Hoplit
           if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"), True)
+            PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"), True)
             return True
           # Archer -> Reflex
           elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"), True)
+            PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"), True)
             return True
 
         # SPARTA
         if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
           # Sparta Hoplit -> Elite Hoplit
           if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_SPARTA") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SPARTAN"), True)
+            PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_SPARTAN"), True)
             return True
 
         # CARTHAGE
         elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"):
           # Punic Hoplite -> Sacred Band
           if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_CARTHAGE") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"), True)
+            PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"), True)
             return True
 
         # PERSIA
         elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
                 # Unsterblich -> Garde
                 if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH") :
-                   self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"), True)
+                   PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"), True)
                    return True
                 # Unsterblichen Garde || Pezoi -> Apfeltraeger
                 if iUnitType == gc.getInfoTypeForString("UNIT_UNSTERBLICH_2") or iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT_PERSIA") :
                   if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) < 3:
-                   self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_APFELTRAEGER"), True)
+                   PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_APFELTRAEGER"), True)
                    return True
 
         # MACEDONIA
@@ -1303,16 +1304,16 @@ class CvGameUtils:
           or iUnitType == gc.getInfoTypeForString("UNIT_SARISSA_MACEDON") :
             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
              if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE2")) < 3:
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"), True)
               return True
           #  Argyraspidai -> Argyraspidai 2 (Silberschild)
           elif iUnitType == gc.getInfoTypeForString("UNIT_ARGYRASPIDAI") :
            if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARGYRASPIDAI2")) < 3:
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"), True)
+            PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"), True)
             return True
           # Archer -> Reflex
           elif iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK") :
-            self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"), True)
+            PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"), True)
             return True
 
         # EGYPT
@@ -1320,18 +1321,18 @@ class CvGameUtils:
           # Gaufuerst -> Pharaonengarde
           if iUnitType == gc.getInfoTypeForString("UNIT_GAUFUERST") :
             if gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ELITE1")) < 3:
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_PHARAONENGARDE"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_PHARAONENGARDE"), True)
               return True
 
         # Schildtraeger
         if iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER") :
 
           if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_GAUFUERST"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_GAUFUERST"), True)
               return True
 
           elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_NUBIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_NUBIAFUERST"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_NUBIAFUERST"), True)
               return True
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
@@ -1339,14 +1340,14 @@ class CvGameUtils:
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GALLIEN") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BRITEN") :
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_STAMMESFUERST"), True)
+                PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_STAMMESFUERST"), True)
                 return True
             elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_DAKER") :
-                self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_FUERST_DAKER"), True)
+                PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_FUERST_DAKER"), True)
                 return True
             elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_MACCABEE"), True)
-              return True
+                PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_MACCABEE"), True)
+                return True
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON") \
@@ -1354,15 +1355,15 @@ class CvGameUtils:
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SUMERIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_SYRIAN_GARDE"), True)
-              return True
+                PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_SYRIAN_GARDE"), True)
+                return True
 
         # Axeman
         elif iUnitType == gc.getInfoTypeForString("UNIT_AXEMAN2") :
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"), True)
               return True
 
         # Spearman
@@ -1370,31 +1371,31 @@ class CvGameUtils:
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_ARMOR")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_RADSCHA"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_RADSCHA"), True)
               return True
             # GREEKS
             elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") \
             or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HOPLIT"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_HOPLIT"), True)
               return True
 
           if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
             if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_GERMAN_HARIER"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_GERMAN_HARIER"), True)
               return True
 
         # Swordsman
         elif iUnitType == gc.getInfoTypeForString("UNIT_SWORDSMAN") :
 
           if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_INDIA") :
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"), True)
               return True
 
         # Steppenreiter -> Geissel Gottes
         elif iUnitType == gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"):
-              self.doUpgradeVeteran_AI(pUnit, gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN_HUN"), True)
+              PAE_Unit.doUpgradeVeteran(pUnit, gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN_HUN"), True)
               return True
 
 
@@ -1409,7 +1410,7 @@ class CvGameUtils:
       # Unit Rang Promo -------
       # KI: immer und kostenlos
       if CvUtil.getScriptData(pUnit, ["P","t"]) == "RangPromoUp":
-        CvEventInterface.getEventManager().doUpgradeRang(pUnit.getOwner(),pUnit.getID())
+        PAE_Unit.doUpgradeRang(pUnit.getOwner(),pUnit.getID())
         return True
 
 
@@ -3070,13 +3071,6 @@ class CvGameUtils:
       return
 
 
-  # Upgrade Veteran Unit to Elite Unit
-  # Veteran -> Eliteunit
-  def doUpgradeVeteran_AI( self, pUnit, iNewUnit, bChangeCombatPromo):
-    CvEventInterface.getEventManager().doUpgradeVeteran(pUnit, iNewUnit, bChangeCombatPromo)
-    return
-
-
   # Promotion Trainer Building (Forest 1, Hills 1, ...) -------------------
   def doAISettleTrainer( self, pUnit ):
     iPlayer = pUnit.getOwner()
@@ -3120,256 +3114,5 @@ class CvGameUtils:
                 pUnit.kill(1,pUnit.getOwner())
                 #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                 return True
-
-    return
-
-  # Bonusverbreitung -------------------
-  # Schritt 1: Bonus verbreiten
-  # Schritt 2: Stadt mit Getreide fuellen
-  def doBonusverbreitung_AI ( self, pUnit ):
-    pUnitGroup = pUnit.getGroup()
-
-    if pUnitGroup.getMissionType(0) != 0:
-      # Inits
-      iOwner = pUnit.getOwner( )
-      pOwner = gc.getPlayer(iOwner)
-      lCities = PyPlayer(iOwner).getCityList()
-      iCities = len(lCities)
-      pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
-      PAE_Event_Manager = CvEventInterface.getEventManager()
-
-      # Wenn mehr als 2 Karren unterwegs sind: killen
-      #if pOwner.getUnitClassCount(gc.getInfoTypeForString("UNITCLASS_SUPPLY_FOOD")) > 2:
-      #   pUnit.kill(1,pUnit.getOwner())
-      #   return True
-
-      # Boni
-      lBonuses = []
-      # Gruppe 1
-      a1 = gc.getInfoTypeForString("BONUS_WHEAT")
-      a2 = gc.getInfoTypeForString("BONUS_GERSTE")
-      a3 = gc.getInfoTypeForString("BONUS_HAFER")
-      a4 = gc.getInfoTypeForString("BONUS_ROGGEN")
-      a5 = gc.getInfoTypeForString("BONUS_HIRSE")
-      a6 = gc.getInfoTypeForString("BONUS_RICE")
-      a1sum = pOwner.getNumAvailableBonuses(a1)
-      a2sum = pOwner.getNumAvailableBonuses(a2)
-      a3sum = pOwner.getNumAvailableBonuses(a3)
-      a4sum = pOwner.getNumAvailableBonuses(a4)
-      a5sum = pOwner.getNumAvailableBonuses(a5)
-      a6sum = pOwner.getNumAvailableBonuses(a6)
-      lBonuses.append(a1)
-      lBonuses.append(a2)
-      lBonuses.append(a3)
-      lBonuses.append(a4)
-      lBonuses.append(a5)
-      lBonuses.append(a6)
-      # Gruppe 2
-      b1 = gc.getInfoTypeForString("BONUS_COW")
-      b2 = gc.getInfoTypeForString("BONUS_PIG")
-      b3 = gc.getInfoTypeForString("BONUS_SHEEP")
-      b1sum = pOwner.getNumAvailableBonuses(b1)
-      b2sum = pOwner.getNumAvailableBonuses(b2)
-      b3sum = pOwner.getNumAvailableBonuses(b3)
-      lBonuses.append(b1)
-      lBonuses.append(b2)
-      lBonuses.append(b3)
-      # Gruppe 3
-      c1 = gc.getInfoTypeForString("BONUS_OLIVES")
-      c2 = gc.getInfoTypeForString("BONUS_DATTELN")
-      c1sum = pOwner.getNumAvailableBonuses(c1)
-      c2sum = pOwner.getNumAvailableBonuses(c2)
-      lBonuses.append(c1)
-      lBonuses.append(c2)
-      # Gruppe 4
-      d1 = gc.getInfoTypeForString("BONUS_CAMEL")
-      d1sum = pOwner.getNumAvailableBonuses(d1)
-      lBonuses.append(d1)
-
-      # Hat die KI Boni zum Verbreiten?
-      # Eigene Liste der Boni fuer die KI fuer schneller Abfragen
-      lAIBonuses = []
-      iRange = len(lBonuses)
-      for i in range (iRange):
-        if pOwner.getNumAvailableBonuses(lBonuses[i]) > 0:
-          lAIBonuses.append(lBonuses[i])
-
-      if len(lAIBonuses): bAIHasBonus = True
-      else: bAIHasBonus = False
-
-      # -------
-
-      # --- Zuerst diese Stadt checken
-      pThisPlotCity = None
-      if bAIHasBonus and pPlot.isCity():
-        # Inits
-        pThisPlotCity = pPlot.getPlotCity()
-        lNewBonus = []
-
-        # Moegliche Boni
-        iRange = len(lAIBonuses)
-        i=0
-        for i in range (iRange):
-          seekPlot, iChance = PAE_Event_Manager.doBonusCityGetPlot(pThisPlotCity, lAIBonuses[i])
-          if seekPlot != None and not seekPlot.isNone():
-
-            iBonusHier = seekPlot.getBonusType(iOwner)
-            # Unerforschte Resource?
-            if iBonusHier == -1: iBonusHier = seekPlot.getBonusType(-1)
-
-            # kein gleiches Bonusgut
-            if iBonusHier != lAIBonuses[i]:
-              # kein Bonusgut => fix dabei
-              if iBonusHier == -1: lNewBonus.append(lAIBonuses[i])
-              else:
-                # Boni der selben Gruppe herausfinden und vergleichen
-                if lAIBonuses[i] == a1:
-                  if a1sum+1 < a2sum and a2sum > 1 or a1sum+1 < a3sum and a3sum > 1 or a1sum+1 < a4sum and a4sum > 1 or a1sum+1 < a5sum and a5sum > 1 or a1sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a2:
-                  if a2sum+1 < a1sum and a1sum > 1 or a2sum+1 < a3sum and a3sum > 1 or a2sum+1 < a4sum and a4sum > 1 or a2sum+1 < a5sum and a5sum > 1 or a2sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a3:
-                  if a3sum+1 < a1sum and a1sum > 1 or a3sum+1 < a2sum and a2sum > 1 or a3sum+1 < a4sum and a4sum > 1 or a3sum+1 < a5sum and a5sum > 1 or a3sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a4:
-                  if a4sum+1 < a1sum and a1sum > 1 or a4sum+1 < a2sum and a2sum > 1 or a4sum+1 < a3sum and a3sum > 1 or a4sum+1 < a5sum and a5sum > 1 or a4sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a5:
-                  if a5sum+1 < a1sum and a1sum > 1 or a5sum+1 < a2sum and a2sum > 1 or a5sum+1 < a3sum and a3sum > 1 or a5sum+1 < a4sum and a4sum > 1 or a5sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a6:
-                  if a6sum+1 < a1sum and a1sum > 1 or a6sum+1 < a2sum and a2sum > 1 or a6sum+1 < a3sum and a3sum > 1 or a6sum+1 < a4sum and a4sum > 1 or a6sum+1 < a5sum and a5sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == b1:
-                  if b1sum+1 < b2sum and b2sum > 1 or b1sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == b2:
-                  if b2sum+1 < b1sum and b1sum > 1 or b2sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == b3:
-                  if b3sum+1 < b1sum and b1sum > 1 or b3sum+1 < b2sum and b2sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == c1:
-                  if c1sum+1 < c2sum and c2sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == c2:
-                  if c2sum+1 < c1sum and c1sum > 1: lNewBonus.append(lAIBonuses[i])
-
-
-        # Wenn leer, dann gehts unten weiter (Stadt suchen)
-        if len(lNewBonus):
-          iRand = self.myRandom(len(lNewBonus), None)
-          iBonus = lNewBonus[iRand]
-
-          # Bonus verbreiten (aber nicht, wenn dieses bereits auf dem Plot ist)
-          if iBonus > -1:
-              loopPlot, iChance = PAE_Event_Manager.doBonusCityGetPlot(pThisPlotCity, iBonus)
-              if loopPlot != None and not loopPlot.isNone() and loopPlot.getBonusType(iOwner) != iBonus:
-
-                ### TEST ###
-                #CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iY",loopPlot.getY())), None, 2, None, ColorTypes(12), 0, 0, False, False)
-                #CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iX",loopPlot.getX())), None, 2, None, ColorTypes(12), 0, 0, False, False)
-
-                # KI 10% mehr Chance
-                if self.myRandom(100, None) < iChance + 10:
-                  loopPlot.setBonusType(iBonus)
-                pUnit.kill(1,pUnit.getOwner())
-                return True
-
-      # --- Stadt gecheckt
-
-
-      # Alle moeglichen Staedte durchsuchen
-      pSeekCity = None
-      pSeekCityList = []
-      pSeekCity2 = None
-      iSeek2 = 0
-      iAIBoni = len(lAIBonuses)
-
-      # Check 1: Anzahl der bereits zugewiesenen Boni pro Stadt
-      # Check 2: Foodstorage
-      for iCity in range(iCities):
-        pCity = pOwner.getCity( lCities[ iCity ].getID( ) )
-        bCheck = True
-
-        if pThisPlotCity != None and not pThisPlotCity.isNone():
-          if pCity.getID() == pThisPlotCity.getID():
-              bCheck = False
-
-        # 1: BONUS
-        # anfangs leere Liste StadtBoni (falls eine stadt 2 gleiche boni hat)
-        if bAIHasBonus and bCheck:
-          lNewBonus = []
-          i=0
-          for i in range (iAIBoni):
-            seekPlot, iChance = PAE_Event_Manager.doBonusCityGetPlot(pCity, lAIBonuses[i])
-            if seekPlot != None:
-
-             iBonusHier = seekPlot.getBonusType(iOwner)
-             # Unerforschte Resource?
-             if iBonusHier == -1: iBonusHier = seekPlot.getBonusType(-1)
-
-             # kein gleiches Bonusgut
-             if iBonusHier != lAIBonuses[i]:
-              # kein Bonusgut => fix dabei
-              if iBonusHier == -1: lNewBonus.append(lAIBonuses[i])
-              else:
-                # Boni der selben Gruppe herausfinden und vergleichen
-                if lAIBonuses[i] == a1:
-                  if a1sum+1 < a2sum and a2sum > 1 or a1sum+1 < a3sum and a3sum > 1 or a1sum+1 < a4sum and a4sum > 1 or a1sum+1 < a5sum and a5sum > 1 or a1sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a2:
-                  if a2sum+1 < a1sum and a1sum > 1 or a2sum+1 < a3sum and a3sum > 1 or a2sum+1 < a4sum and a4sum > 1 or a2sum+1 < a5sum and a5sum > 1 or a2sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a3:
-                  if a3sum+1 < a1sum and a1sum > 1 or a3sum+1 < a2sum and a2sum > 1 or a3sum+1 < a4sum and a4sum > 1 or a3sum+1 < a5sum and a5sum > 1 or a3sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a4:
-                  if a4sum+1 < a1sum and a1sum > 1 or a4sum+1 < a2sum and a2sum > 1 or a4sum+1 < a3sum and a3sum > 1 or a4sum+1 < a5sum and a5sum > 1 or a4sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a5:
-                  if a5sum+1 < a1sum and a1sum > 1 or a5sum+1 < a2sum and a2sum > 1 or a5sum+1 < a3sum and a3sum > 1 or a5sum+1 < a4sum and a4sum > 1 or a5sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == a6:
-                  if a6sum+1 < a1sum and a1sum > 1 or a6sum+1 < a2sum and a2sum > 1 or a6sum+1 < a3sum and a3sum > 1 or a6sum+1 < a4sum and a4sum > 1 or a6sum+1 < a5sum and a5sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == b1:
-                  if b1sum+1 < b2sum and b2sum > 1 or b1sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == b2:
-                  if b2sum+1 < b1sum and b1sum > 1 or b2sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == b3:
-                  if b3sum+1 < b1sum and b1sum > 1 or b3sum+1 < b2sum and b2sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == c1:
-                  if c1sum+1 < c2sum and c2sum > 1: lNewBonus.append(lAIBonuses[i])
-                elif lAIBonuses[i] == c2:
-                  if c2sum+1 < c1sum and c1sum > 1: lNewBonus.append(lAIBonuses[i])
-
-          if len(lNewBonus):
-            pSeekCityList.append(pCity)
-
-
-        # 2: FOOD Storage
-        iFood = pCity.getFood()
-        if iSeek2 > iFood or iSeek2 == 0:
-          pSeekCity2 = pCity
-          iSeek2 = iFood
-
-
-      # Stadt fuer die Verbreitung auswaehlen
-      if len(pSeekCityList) > 0:
-        iRand = self.myRandom(len(pSeekCityList), None)
-        pSeekCity = pSeekCityList[iRand]
-
-
-      # Schritt 1: Bonus verbreiten
-      # Es gibt maximal 4 Plots zu bewirtschaften
-      if pSeekCity != None and not pSeekCity.isNone():
-        pCity = pSeekCity
-
-        # Stadt aufsuchen
-        if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
-          pUnitGroup.clearMissionQueue()
-          pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
-          return True
-
-      # Schritt 2: Stadt mit Getreide fuellen
-      if pSeekCity2 != None and not pSeekCity2.isNone():
-        pCity = pSeekCity2
-
-        # Stadt aufsuchen
-        if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
-          pUnitGroup.clearMissionQueue()
-          pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
-
-        # Stadt mit Getreide auffuellen
-        else:
-          pCity.changeFood(50)
-          pUnit.kill(1,pUnit.getOwner())
-          return True
 
     return

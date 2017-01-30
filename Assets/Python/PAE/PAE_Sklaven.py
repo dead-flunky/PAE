@@ -7,6 +7,8 @@ import CvEventInterface
 import CvUtil
 import random
 
+import PAE_Unit
+
 ### Defines
 gc = CyGlobalContext()
 ### Globals
@@ -369,8 +371,8 @@ def doSell(iPlayer, iUnit):
   # New kill / neuer Kill befehl
   pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
   #pUnit.kill(1,pUnit.getOwner())
-  
-  
+
+
   ##############
 # AI: Release slaves when necessary (eg city shrinks)
 def doAIReleaseSlaves (pCity):
@@ -383,13 +385,13 @@ def doAIReleaseSlaves (pCity):
     iCitySlaves = iCitySlavesHaus + iCitySlavesFood + iCitySlavesProd + iCityGlads
 
     if iCityPop >= iCitySlaves: return
-    
+
     iUnitSlave = gc.getInfoTypeForString("UNIT_SLAVE")
     iX = pCity.getX()
     iY = pCity.getY()
-    
+
     pPlayer = gc.getPlayer(pCity.getOwner())
-    
+
     while iCitySlaves > 0 and iCityPop < iCitySlaves:
         # First prio: glads
         if iCityGlads > 0:
@@ -407,20 +409,20 @@ def doAIReleaseSlaves (pCity):
         else: #iCitySlavesFood > 0:
             iSpezi = 17
             iCitySlavesFood -= 1
-         
+
         NewUnit = pPlayer.initUnit(iUnitSlave, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-        NewUnit.finishMoves()         
+        NewUnit.finishMoves()
         pCity.changeFreeSpecialistCount(iSpezi, -1)
         iCitySlaves -= 1
-            
-        
+
+
 
 # Feldsklaven und Minensklaven checken
 def doCheckSlavesAfterPillage(pUnit,pPlot):
     pCity = pPlot.getWorkingCity()
 
     if pCity != None:
-        # PAE V ab Patch 3: Einheiten mobilisieren 
+        # PAE V ab Patch 3: Einheiten mobilisieren
         # Flunky: was hat das hier zu suchen?
         if pCity.isCapital():
             PAE_Unit.doMobiliseFortifiedArmy(pCity.getOwner())
@@ -499,4 +501,3 @@ def doCheckSlavesAfterPillage(pUnit,pPlot):
                 szButton = ",Art/Interface/Buttons/Actions/Pillage.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,8,2"
                 CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_PILLAGE_SLAVES",(pCity.getName(),)), None, 2, szButton, ColorTypes(10), pPlot.getX(), pPlot.getY(), True, True)
 
-  

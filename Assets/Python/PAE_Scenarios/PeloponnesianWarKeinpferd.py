@@ -7,6 +7,7 @@ import CvUtil
 import random
 import PyHelpers
 
+import PAE_City
 ### Defines
 gc = CyGlobalContext()
 
@@ -54,7 +55,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
         if pPoteidaia.getOwner() == iAthen:
           # Event 2.1: Reaktion Athens
           # Poteidaia wechselt zu Korinth (Team 2)
-          CvEventInterface.getEventManager().doRenegadeCity(pPoteidaia, 2, -1, -1, -1)
+          PAE_City.doRenegadeCity(pPoteidaia, 2, -1, -1, -1)
           pKorinth = gc.getPlayer(iKorinth)
           ePantodapoi = gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
           iRange = myRandom(3)

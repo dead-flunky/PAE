@@ -108,17 +108,6 @@ class CvEventManager:
     # PAE - Show message which player is on turn
     self.bPAE_ShowMessagePlayerTurn = False
 
-    # PAE - InstanceChanceModifier for units in getting Fighting-Promotions (per turn)
-    # [PlayerID, UnitID]
-    self.PAEInstanceFightingModifier = []
-
-    # PAE - InstanceCostModifier for players when hiring mercenaries (per turn)
-    # [PlayerID, Amount of HiredMercenaries]
-    self.PAEInstanceHiringModifier = []
-
-    # PAE Statthalter Tribut
-    self.PAEStatthalterTribut = []
-
     # PAE - River tiles
     """ The plot tiles require some initialisation at
     game startup, but the setup fails if it will be
@@ -461,27 +450,27 @@ class CvEventManager:
       pPlot = CyMap().plot(iData2, iData3)
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
-      self.doHorseDown(pPlot, pUnit)
+      PAE_Unit.doHorseDown(pPlot, pUnit)
     # Horse up
     elif iData1 == 667:
       pPlot = CyMap().plot(iData2, iData3)
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
-      self.doHorseUp(pPlot, pUnit)
+      PAE_Unit.doHorseUp(pPlot, pUnit)
     # Emigrant
     elif iData1 == 672:
       pPlot = CyMap().plot(iData2, iData3)
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
-      self.doEmigrant(pCity, pUnit)
+      PAE_City.doEmigrant(pCity, pUnit)
     # Disband city
     elif iData1 == 673:
       pPlot = CyMap().plot(iData2, iData3)
       pCity = pPlot.getPlotCity()
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
-      self.doDisbandCity(pCity, pUnit, pPlayer)
+      PAE_City.doDisbandCity(pCity, pUnit, pPlayer)
     # Hunnen
     elif iData1 == 674:
       # iData2 = iPlayer , iData3 = unitID
@@ -701,6 +690,7 @@ class CvEventManager:
 
 
     # Trojanisches Pferd
+    # TODO: select which city in range should be affected
     elif iData1 == 697:
       pPlayer = gc.getPlayer(iData4)
       pUnit = pPlayer.getUnit(iData5)
@@ -717,7 +707,7 @@ class CvEventManager:
                 if gc.getTeam(pPlayer.getTeam()).isAtWar(gc.getPlayer(pCity.getOwner()).getTeam()):
                   iDamage = pCity.getDefenseModifier(0)
                   if iDamage > 0:
-                    self.doTrojanHorse(pCity, pUnit)
+                    PAE_Unit.doTrojanHorse(pCity, pUnit)
 
     # Unit bekommt Edle Ruestung
     elif iData1 == 699:
@@ -731,7 +721,7 @@ class CvEventManager:
       iPromo = gc.getInfoTypeForString("PROMOTION_EDLE_RUESTUNG")
       pUnit.setHasPromotion(iPromo, True)
       pUnit.finishMoves()
-      self.doGoToNextUnit(pPlayer, pUnit)
+      PAE_Unit.doGoToNextUnit(pUnit)
 
     # Pillage Road
     elif iData1 == 700:
@@ -741,7 +731,7 @@ class CvEventManager:
       pUnit = pPlayer.getUnit(iData5)
       pUnit.getGroup().setActivityType(-1) # to reload the map!
       pUnit.finishMoves()
-      self.doGoToNextUnit(pPlayer, pUnit)
+      PAE_Unit.doGoToNextUnit(pUnit)
 
     # Unit bekommt Wellen-Oil
     elif iData1 == 701:
@@ -755,7 +745,7 @@ class CvEventManager:
       iPromo = gc.getInfoTypeForString("PROMOTION_OIL_ON_WATER")
       pUnit.setHasPromotion(iPromo, True)
       pUnit.finishMoves()
-      self.doGoToNextUnit(pPlayer, pUnit)
+      PAE_Unit.doGoToNextUnit(pUnit)
 
 # Vasallen Technologie +++++++++++++++++++++++++
 
@@ -782,7 +772,7 @@ class CvEventManager:
     # Veteran -> Eliteunit, Bsp: Principes + Hastati Combat4 -> Triarii mit Combat3 - Belobigung
     elif iData1 == 705:
       # iData1,... 705, 0, iNewUnit, iPlayer, iUnitID
-      self.doUpgradeVeteran(gc.getPlayer(iData4).getUnit(iData5), iData3, True)
+      PAE_Unit.doUpgradeVeteran(gc.getPlayer(iData4).getUnit(iData5), iData3, True)
 
     # Renegade City (Keep or raze) TASK_RAZE / TASK_DISBAND
     elif iData1 == 706:
@@ -823,7 +813,7 @@ class CvEventManager:
     # Unit FORMATIONS ----------------------
     elif iData1 == 718:
        # iData1,... 705, 0, iFormation, iPlayer, iUnitID
-       self.doUnitFormation(gc.getPlayer(iData4).getUnit(iData5), iData3)
+       PAE_Unit.doUnitFormation(gc.getPlayer(iData4).getUnit(iData5), iData3)
 
     # Promotion Trainer Building (Forest 1, Hills1, ...)
     elif iData1 == 719:
@@ -866,7 +856,7 @@ class CvEventManager:
        pPlayer = gc.getPlayer(iData4)
        pUnit = pPlayer.getUnit(iData5)
 
-       iX = pUnit.getX() 
+       iX = pUnit.getX()
        iY = pUnit.getY()
        bSwitch = True
        iVisible = pUnit.visibilityRange()
@@ -1546,7 +1536,7 @@ class CvEventManager:
           CyInterface().addMessage(iData4, True, 8, CyTranslator().getText("TXT_KEY_ACTION_SALAE_NEG",("",)),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Actions/button_action_salae.dds",ColorTypes(7),pUnit.getX(),pUnit.getY(),True,True)
 
         pUnit.finishMoves()
-        self.doGoToNextUnit(pPlayer, pUnit)
+        PAE_Unit.doGoToNextUnit(pUnit)
 
 
       # Dezimierung
@@ -1592,7 +1582,7 @@ class CvEventManager:
 
             if len(rebelPlotArray) == 0:
                 rebelPlotArray = reservePlotArray
-                            
+
 
             if len(rebelPlotArray) > 0:
                 iPlot = self.myRandom(len(rebelPlotArray), None)
@@ -1625,7 +1615,7 @@ class CvEventManager:
           # Unit verletzen
           pUnit.changeDamage(10,False)
 
-          
+
           lBadPromo = [
           gc.getInfoTypeForString("PROMOTION_MERCENARY"),
           gc.getInfoTypeForString("PROMOTION_MORAL_NEG5"),
@@ -1634,20 +1624,20 @@ class CvEventManager:
           gc.getInfoTypeForString("PROMOTION_MORAL_NEG2"),
           gc.getInfoTypeForString("PROMOTION_MORAL_NEG1")
           ]
-          
+
           lGoodPromo = [
           gc.getInfoTypeForString("PROMOTION_COMBAT6"),
           gc.getInfoTypeForString("PROMOTION_COMBAT5"),
           gc.getInfoTypeForString("PROMOTION_COMBAT4"),
           gc.getInfoTypeForString("PROMOTION_COMBAT3")
           ]
-          
+
           # Promo herausfinden
           for iPromo in lBadPromo:
             if pUnit.isHasPromotion(iPromo):
                 pUnit.setHasPromotion(iPromo, False)
                 break
-                
+
           # Rang verlieren
           for iPromo in lGoodPromo:
             if pUnit.isHasPromotion(iPromo):
@@ -1656,13 +1646,13 @@ class CvEventManager:
 
           CyInterface().addMessage(iData4, True, 8, CyTranslator().getText("TXT_KEY_ACTION_DECIMATIO_POS",(gc.getPromotionInfo(iPromo).getDescription(),)),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Actions/button_action_dezimierung.dds",ColorTypes(8),pUnit.getX(),pUnit.getY(),True,True)
           pUnit.finishMoves()
-          self.doGoToNextUnit(pPlayer, pUnit)
+          PAE_Unit.doGoToNextUnit(pUnit)
 
         # Keine Auswirkung
         else:
           CyInterface().addMessage(iData4, True, 8, CyTranslator().getText("TXT_KEY_ACTION_DECIMATIO_NEG",("",)),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Actions/button_action_dezimierung.dds",ColorTypes(7),pUnit.getX(),pUnit.getY(),True,True)
           pUnit.finishMoves()
-          self.doGoToNextUnit(pPlayer, pUnit)
+          PAE_Unit.doGoToNextUnit(pUnit)
 
     # Handelsposten errichten
     elif iData1 == 736:
@@ -1875,7 +1865,7 @@ class CvEventManager:
             # Collect
             elif iData3 == 0: PAE_Trade.doCollectBonus(pUnit)
         elif PAE_Trade.doCollectBonus4Cultivation(pUnit, iData2):
-            self.doGoToNextUnit(pPlayer, pUnit)
+            PAE_Unit.doGoToNextUnit(pUnit)
 
     # Create popup for buying bonus (in city)
     elif iData1 == 740:
@@ -1883,7 +1873,6 @@ class CvEventManager:
         pUnit = pPlayer.getUnit(iData5)
         pCity = CyMap().plot(iData2,iData3).getPlotCity()
         PAE_Trade.doPopupChooseBonus(pUnit, pCity)
-        #self.doGoToNextUnit(pPlayer, pUnit)
 
     # Sell bonus (in city)
     elif iData1 == 741:
@@ -1891,7 +1880,7 @@ class CvEventManager:
         pUnit = pPlayer.getUnit(iData5)
         pCity = CyMap().plot(iData2,iData3).getPlotCity()
         PAE_Trade.doSellBonus(pUnit, pCity)
-        self.doGoToNextUnit(pPlayer, pUnit)
+        PAE_Unit.doGoToNextUnit(pUnit)
 
     # Buy bonus (in city). Called by CvScreensInterface.
     elif iData1 == 742:
@@ -1950,7 +1939,7 @@ class CvEventManager:
     elif iData1 == 748:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         CvUtil.addScriptData(pUnit, "automActive", 0)
-        self.doGoToNextUnit(gc.getPlayer(iData4), pUnit)
+        PAE_Unit.doGoToNextUnit(pUnit)
 
     # --------------------------------
     # 749: Allgemeine Infos zu Buttons
@@ -1961,13 +1950,13 @@ class CvEventManager:
     elif iData1 == 751:
        # iData1, iData2, ... , iData5
        # 751, -1, -1, iPlayer, iUnitID
-       self.doUpgradeRang(iData4,iData5)
+       PAE_Unit.doUpgradeRang(iData4,iData5)
 
     # 752: bless units
     elif iData1 == 752:
        # iData1, iData2, ... , iData5
        # 752, iX, iY, iPlayer, iUnitID
-       self.doBlessUnits(iData2,iData3,iData4,iData5)
+       PAE_Unit.doBlessUnits(iData2,iData3,iData4,iData5)
 
     # Slave -> Latifundium
     elif iData1 == 753:
@@ -2342,8 +2331,8 @@ class CvEventManager:
     pTeam = gc.getTeam(pPlayer.getTeam())
 
     # Reset InstanceModifier (Fighting Promotions, Hiring costs for mercenaries)
-    self.PAEInstanceFightingModifier = []
-    self.PAEInstanceHiringModifier = []
+    PAE_Unit.PAEInstanceFightingModifier = []
+    PAE_Mercenaries.PAEInstanceHiringModifier = []
 
     # --- Automated trade routes for HI (Boggy)
     if pPlayer.isHuman():
@@ -2384,8 +2373,6 @@ class CvEventManager:
           #if gc.getPlayer(iPlayer+1).isAlive(): nextPlayer = gc.getPlayer(iPlayer+2).getCivilizationShortDescription(0)
 
 # -- TESTMESSAGE
-#    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-#    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test1",gc.getGame().getActivePlayer())), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 #    if CyInterface().isOOSVisible():
 #      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("OOS-Fehler - Player",iPlayer)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -2416,280 +2403,9 @@ class CvEventManager:
 # +++++ AI Cities defend with bombardment of located units (Stadtverteidigung/Stadtbelagerung)
 # +++++ AI Hires Units (mercenaries)
     if not pPlayer.isHuman():
-      iNumCities = pPlayer.getNumCities()
-      for iCity in range (iNumCities):
-       pCity = pPlayer.getCity(iCity)
-       if not pCity.isNone():
-        pPlot = pCity.plot()
-
-
-        # Auf welchen Plots befinden sich gegnerische Einheiten
-        if pPlot != None and not pPlot.isNone():
-         PlotArray = []
-         iEnemyUnits = 0
-         iRange = 1
-         iX = pPlot.getX()
-         iY = pPlot.getY()
-         for x in range(-iRange, iRange+1):
-          for y in range(-iRange, iRange+1):
-              loopPlot = plotXY(iX, iY, x, y)
-              if loopPlot != None and not loopPlot.isNone():
-                iNumUnits = loopPlot.getNumUnits()
-                if iNumUnits >= 4:
-                  for i in range (iNumUnits):
-                    iOwner = loopPlot.getUnit(i).getOwner()
-                    if pTeam.isAtWar(gc.getPlayer(iOwner).getTeam()):
-                      if not loopPlot.getUnit(i).isInvisible(pPlayer.getTeam(),0):
-                        PlotArray.append(loopPlot)
-                        iEnemyUnits += loopPlot.getNumUnits()
-                        break
-
-
-         # Stadteinheiten durchgehen
-         if len(PlotArray) > 0:
-           # Schleife fuer Stadteinheiten
-           # Bombardement
-           iNumUnits = pPlot.getNumUnits()
-           for i in range (iNumUnits):
-             pUnit = pPlot.getUnit(i)
-             if pUnit.isRanged():
-              if pUnit.getOwner() == iPlayer:
-               if not pUnit.isMadeAttack() and pUnit.getImmobileTimer() <= 0:
-
-                 # getbestdefender -> getDamage
-                 BestDefender = []
-                 for plot in PlotArray:
-                   pBestDefender = plot.getBestDefender(-1,-1,pUnit,1,0,0)
-                   BestDefender.append((pBestDefender.getDamage(),plot))
-
-                 # bestdefenderplot angreifen ->  pCityUnit.rangeStrike(x,y)
-                 BestDefender.sort()
-                 # Ab ca 50% Schaden aufhoeren
-                 if BestDefender[0][0] < 55:
-                   plot = BestDefender[0][1]
-                   pUnit.rangeStrike(plot.getX(),plot.getY())
-                   #self.doRangedStrike(pCity,pUnit,plot,True)
-                 else:
-                   break
-
-
-           # AI - Extern Unit support
-           # 1) Reservists
-           # 2) Hire Mercenaries
-           # Muessen Mercenaries angeheuert werden? AI Hire
-           # 70% Archer
-           # 30% Other
-           # BETTER AI: half price
-           iCityUnits = pPlot.getNumUnits()
-           iMaintainUnits = pCity.getYieldRate(0) - iCityUnits
-
-           # 1) Reservisten
-           if iMaintainUnits > 0 and iCityUnits * 2 <= iEnemyUnits:
-             iReservists = pCity.getFreeSpecialistCount(19) # SPECIALIST_RESERVIST
-
-             if iReservists > 0:
-
-               # Einheiten definieren
-               lResUnits = []
-               # Schildtraeger fuer AI immer verfuegbar
-               lResUnits.append(gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"))
-               # Auxiliars
-               iUnit = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_AUXILIAR"))
-               if pTeam.isHasTech(gc.getUnitInfo(iUnit).getPrereqAndTech()): lResUnits.append(iUnit)
-               iUnit = gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE")
-               if pTeam.isHasTech(gc.getUnitInfo(iUnit).getPrereqAndTech()) and pCity.hasBonus(gc.getInfoTypeForString("BONUS_HORSE")): lResUnits.append(iUnit)
-               # Archer
-               iUnit = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER"))
-               if pCity.canTrain(iUnit,0,0): lResUnits.append(iUnit)
-               else: lResUnits.append(gc.getInfoTypeForString("UNIT_ARCHER"))
-
-               while iReservists > 0 and iMaintainUnits > 0:
-                 # choose unit
-                 iRand = self.myRandom(len(lResUnits), None)
-                 iUnit = lResUnits[iRand]
-
-                 NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                 NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT1"), True)
-                 NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT2"), True)
-                 NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3"), True)
-                 NewUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4"), True)
-
-                 pCity.changeFreeSpecialistCount(19, -1)
-                 iReservists -= 1
-                 iMaintainUnits -= 1
-                 iCityUnits += 1
-
-
-           # 2) Mercenaries
-           # PAE Better AI: AI has no cost malus when hiring units
-           # Units amount 1:3
-           iMultiplikator = 3
-           if iMaintainUnits > 0 and iCityUnits * iMultiplikator <= iEnemyUnits and pPlayer.getGold() > 100:
-            if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_SOELDNERPOSTEN")):
-
-             # Check neighbours
-             Neighbors = []
-             # Eigene CIV inkludieren
-             if pCity.isConnectedToCapital(iPlayer): Neighbors.append(pPlayer)
-             # Nachbarn inkludieren
-             iRange = gc.getMAX_PLAYERS()
-             for iAllPlayer in range (iRange):
-               if pCity.isConnectedToCapital(iAllPlayer):
-                  Neighbors.append(gc.getPlayer(iAllPlayer))
-               # alt:
-               #ThisPlayer = gc.getPlayer(iAllPlayer)
-               #if ThisPlayer.isAlive():
-               #  if gc.getTeam(ThisPlayer.getTeam()).isHasMet(pPlayer.getTeam()):
-               #    Neighbors.append(ThisPlayer)
-             # ------------------
-
-             if len(Neighbors) > 0:
-              # check units
-              bUnit1 = False
-              bUnit2 = False
-              bUnit3 = False
-              bUnit4 = False
-              bUnit5 = False
-              bUnit6 = False
-              bUnit7 = False
-              bUnit8 = False
-              bUnit9 = False
-              bUnit10 = False
-              bUnit11 = False
-              bUnit12 = False
-              bUnit13 = False
-              bUnit14 = False
-              bUnit15 = False
-              bUnit16 = False
-              bUnit17 = False
-
-              # Archers werden fix angeheuert
-              iUnitArcher1 = gc.getInfoTypeForString("UNIT_ARCHER")
-              iUnitArcher2 = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-              iCostArcher1 = PyInfo.UnitInfo(iUnitArcher1).getProductionCost() / 2
-              iCostArcher2 = PyInfo.UnitInfo(iUnitArcher2).getProductionCost() / 2
-
-              iBonus1 = gc.getInfoTypeForString("BONUS_BRONZE")
-              iBonus2 = gc.getInfoTypeForString("BONUS_IRON")
-              iBonus3 = gc.getInfoTypeForString("BONUS_HORSE")
-              iBonus4 = gc.getInfoTypeForString("BONUS_IVORY")
-
-              OtherUnits = []
-              OtherUnits.append(gc.getInfoTypeForString("UNIT_PELTIST"))
-              for Neighbor in Neighbors:
-               if not bUnit1 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")): bUnit1 = True
-               if not bUnit2 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): bUnit2 = True
-               if not bUnit3 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")): bUnit3 = True
-
-               if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                 if not bUnit4 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG2")): bUnit4 = True
-                 if not bUnit5 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit5 = True
-                 if not bUnit6 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG3")): bUnit6 = True
-                 if not bUnit7 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")): bUnit7 = True
-               if Neighbor.hasBonus(iBonus2):
-                 if not bUnit8 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG5")): bUnit8 = True
-                 if not bUnit9 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_WURFAXT")): bUnit9 = True
-                 if not bUnit17 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BUERGERSOLDATEN")): bUnit17 = True
-
-               if pPlayer.getCurrentEra() <= 2:
-                 if not bUnit10 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL")): bUnit10 = True
-                 if Neighbor.hasBonus(iBonus3):
-                   if not bUnit11 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PFERDEZUCHT")) and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")):
-                     bUnit11 = True
-                   if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                     if not bUnit12 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_THE_WHEEL3")):
-                       bUnit11 = True
-                       bUnit12 = True
-               else:
-                 if Neighbor.hasBonus(iBonus3):
-                   if not bUnit13 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")): bUnit13 = True
-                   if not bUnit14 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSE_ARCHER")): bUnit14 = True
-                   if not bUnit15 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_3")):
-                     if Neighbor.hasBonus(iBonus1) or Neighbor.hasBonus(iBonus2):
-                       bUnit14 = True
-                       bUnit15 = True
-
-               if Neighbor.hasBonus(iBonus4):
-                 if not bUnit16 and gc.getTeam(Neighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ELEFANTENZUCHT")): bUnit16 = True
-
-
-              # Fill OtherUnits
-              if bUnit1: iUnitArcher1 = gc.getInfoTypeForString("UNIT_ARCHER")
-              if bUnit2: iUnitArcher2 = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-              if bUnit3: OtherUnits.append(gc.getInfoTypeForString("UNIT_SKIRMISHER"))
-
-              if bUnit17: OtherUnits.append(gc.getInfoTypeForString("UNIT_AXEMAN2"))
-              elif bUnit4: OtherUnits.append(gc.getInfoTypeForString("UNIT_AXEMAN"))
-              else: OtherUnits.append(gc.getInfoTypeForString("UNIT_AXEWARRIOR"))
-              if bUnit5: OtherUnits.append(gc.getInfoTypeForString("UNIT_SPEARMAN"))
-              else: OtherUnits.append(gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN"))
-
-              if bUnit7: OtherUnits.append(gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"))
-              elif bUnit6: OtherUnits.append(gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_KURZSCHWERT")))
-
-              if bUnit8: OtherUnits.append(gc.getInfoTypeForString("UNIT_SWORDSMAN"))
-              if bUnit9: OtherUnits.append(gc.getInfoTypeForString("UNIT_WURFAXT"))
-
-              if bUnit11: OtherUnits.append(gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER"))
-              if bUnit12: OtherUnits.append(gc.getInfoTypeForString("UNIT_CHARIOT"))
-              elif bUnit10: OtherUnits.append(gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT"))
-
-              if bUnit13: OtherUnits.append(gc.getInfoTypeForString("UNIT_HORSEMAN"))
-              if bUnit14: OtherUnits.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
-              if bUnit15: OtherUnits.append(gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"))
-
-              if bUnit16: OtherUnits.append(gc.getInfoTypeForString("UNIT_WAR_ELEPHANT"))
-
-              # choose units
-              iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-              # AI hires max 2 - 4 units per city and turn
-              iHiredUnits = 0
-              iHiredUnitsMax = 2 + self.myRandom(3, None)
-              while iMaintainUnits > 0 and pPlayer.getGold() > 100 and iHiredUnits < iHiredUnitsMax and iCityUnits * iMultiplikator < iEnemyUnits:
-                iUnit = -1
-                iGold = pPlayer.getGold()
-
-                iRand = self.myRandom(10, None)
-                if iRand < 7:
-                 if bUnit2 and iGold > iCostArcher2 and self.myRandom(5, None) == 1: iUnit = iUnitArcher2
-                 elif iGold > iCostArcher1: iUnit = iUnitArcher1
-                else:
-                 iTry = 0
-                 while iTry < 3:
-                   iOtherUnit = self.myRandom(len(OtherUnits), None)
-                   iUnit = OtherUnits[iOtherUnit]
-                   iCost = PyInfo.UnitInfo(iUnit).getProductionCost() / 2
-                   if iCost <= 0: iCost = 50
-                   if pPlayer.getGold() <= iCost:
-                     iTry += 1
-                   else:
-                     break
-
-                if iUnit != -1:
-                 iCost = PyInfo.UnitInfo(iUnit).getProductionCost() / 2
-                 if iCost <= 0: iCost = 50
-                 if pPlayer.getGold() > iCost:
-
-                   pPlayer.changeGold(-iCost)
-                   gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iCost)
-                   NewUnit = pPlayer.initUnit(iUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                   NewUnit.setHasPromotion(iPromo, True)
-                   #NewUnit.finishMoves()
-                   NewUnit.setImmobileTimer(1)
-
-                   iMaintainUnits -= 1
-                   iCityUnits += 1
-                   iHiredUnits += 1
-
-                # quit while
-                if iGold <= iCostArcher1: break
-
-
-
+      PAE_City.AI_defendAndHire(pPlayer)
 
 # +++++ STACKs ---------------------------------------------------------
-
-# Belagerungsstacks der KI herausfinden fuer Fernangriff auf die gegnerische Stadt
 
 # PAE IV Healer aufladen
 # PAE V: Staedte sind extra
@@ -2717,15 +2433,11 @@ class CvEventManager:
      iPromoFort = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
      iPromoFort2 = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
 
-
-     #iNumUnits = pPlayer.getNumUnits()
-     #for i in range(iNumUnits):
-     # sUnit = pPlayer.getUnit(i)
      (sUnit, iter) = pPlayer.firstUnit(False)
      while sUnit:
        # tmpA: OBJECTS (tmpPlot) KANN MAN NICHT mit NOT IN in einer Liste pruefen!
        tmpA = [sUnit.getX(),sUnit.getY()]
-       tmpPlot = gc.getMap().plot(sUnit.getX(),sUnit.getY())
+       tmpPlot = sUnit.plot()
        if not tmpPlot.isWater():
          if sUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
            if tmpA not in lHealerPlots:
@@ -2736,7 +2448,6 @@ class CvEventManager:
              # 1. Instanz - Versorgung auf Land
              tmpAnz = tmpPlot.getNumDefenders(iPlayer)
              if tmpAnz >= 6:
-
               # AI Stack ausserhalb einer Stadt, in feindlichem Terrain
               if not pPlayer.isHuman():
                 if tmpPlot.getOwner() > -1:
@@ -2754,19 +2465,6 @@ class CvEventManager:
                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stack (Zeile 3377)",tmpPlot.getNumDefenders(iPlayer))), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
        # PAE V - Formations ++++
-       # DEBUG: Formation entfernen
-       #if sUnit != None: self.doUnitFormation (sUnit, -1)
-
-       # Flucht
-       #iFormation = gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT")
-       #if sUnit.isHasPromotion(iFormation):
-       #   if sUnit.getDamage() < 70: sUnit.setHasPromotion(iFormation, False)
-
-       # Kapitulation
-       #iFormation = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
-       #if sUnit.isHasPromotion(iFormation):
-       #    if sUnit.getDamage() < 80 or sUnit.hasCargo(): sUnit.setHasPromotion(iFormation, False)
-       #elif sUnit.getDamage() >= 80 and not sUnit.hasCargo(): sUnit.setHasPromotion(iFormation, True)
 
         # AI Formations
        if not pPlayer.isHuman():
@@ -2775,14 +2473,14 @@ class CvEventManager:
              lFormationPlots.append(tmpA)
          else:
           # more than 50% damage -> go defensive
-           if sUnit.getDamage() > 50: self.doAIUnitFormations (sUnit, False, False, False)
+           if sUnit.getDamage() > 50: PAE_Unit.doAIUnitFormations (sUnit, False, False, False)
 
          # Missing fort on a plot
          if sUnit.isHasPromotion(iPromoFort) or sUnit.isHasPromotion(iPromoFort2):
             iImp = tmpPlot.getImprovementType()
             if iImp > -1:
-               if gc.getImprovementInfo(iImp).getDefenseModifier() < 10 or tmpPlot.getOwner() != sUnit.getOwner(): self.doUnitFormation (sUnit, -1)
-            else: self.doUnitFormation (sUnit, -1)
+               if gc.getImprovementInfo(iImp).getDefenseModifier() < 10 or tmpPlot.getOwner() != sUnit.getOwner(): PAE_Unit.doUnitFormation (sUnit, -1)
+            else: PAE_Unit.doUnitFormation (sUnit, -1)
 
        (sUnit, iter) = pPlayer.nextUnit(iter, False)
      # while end
@@ -2790,14 +2488,13 @@ class CvEventManager:
      if len(lFormationPlots) > 0:
        for h in lFormationPlots:
          loopPlot = gc.getMap().plot(h[0],h[1])
-         if not loopPlot.isCity(): self.doAIPlotFormations (loopPlot, iPlayer)
+         if not loopPlot.isCity(): PAE_Unit.doAIPlotFormations (loopPlot, iPlayer)
 
      # End Formations ++++++
 
      # AI Stacks vor einer gegnerischen Stadt ---------------------------------------
      if len(PlotArrayStackAI) > 0:
        for h in PlotArrayStackAI:
-
          pPlotEnemyCity = None
          for x in range(3):
            for y in range(3):
@@ -2825,7 +2522,6 @@ class CvEventManager:
                  # Ab ca 50% Schaden aufhoeren
                  if pBestDefender.getDamage() < 55:
                    pUnit.rangeStrike(pPlotEnemyCity.getX(), pPlotEnemyCity.getY())
-                   #self.doRangedStrike(pPlotEnemyCity.getPlotCity(),pUnit,pPlotEnemyCity,False)
                  else:
                    break
 
@@ -4181,119 +3877,15 @@ class CvEventManager:
     if not gc.getPlayer(pLoser.getOwner()).isHuman():
       pPlot = pLoser.plot()
       if pPlot.getNumUnits() > 4:
-        self.doAIPlotFormations (pPlot, pLoser.getOwner())
+        PAE_Unit.doAIPlotFormations (pPlot, pLoser.getOwner())
 
 # --------- Feature - Automated Unit Ranking via Promotions: Trained, Experienced, Seasoned, Veteran, Elite, Legendary
 # ---- Trainiert, Kampferfahren, Routiniert, Veteran, Elite, Legende
     # Each promotion gives +x% Strength
     # Animal Attack brings only 1st Ranking
+
     if not bUnitDone and (pWinner.isMilitaryHappiness() or pWinner.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
-      if pLoser.isMilitaryHappiness() or pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE \
-      or pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-       iCombat1 = gc.getInfoTypeForString('PROMOTION_COMBAT1')
-       iCombat2 = gc.getInfoTypeForString('PROMOTION_COMBAT2')
-       iCombat3 = gc.getInfoTypeForString('PROMOTION_COMBAT3')
-       iCombat4 = gc.getInfoTypeForString('PROMOTION_COMBAT4')
-       iCombat5 = gc.getInfoTypeForString('PROMOTION_COMBAT5')
-       iCombat6 = gc.getInfoTypeForString('PROMOTION_COMBAT6')
-
-       iNeg1 = gc.getInfoTypeForString('PROMOTION_MORAL_NEG1')
-       iNeg2 = gc.getInfoTypeForString('PROMOTION_MORAL_NEG2')
-       iNeg3 = gc.getInfoTypeForString('PROMOTION_MORAL_NEG3')
-       iNeg4 = gc.getInfoTypeForString('PROMOTION_MORAL_NEG4')
-       iNeg5 = gc.getInfoTypeForString('PROMOTION_MORAL_NEG5')
-
-       if not (pWinner.isHasPromotion(iCombat3) and pLoser.getOwner() == gc.getBARBARIAN_PLAYER()):
-
-        if pWinner.isHasPromotion(iCombat5):
-          iChance = 2
-          iNewRank = iCombat6
-        elif pWinner.isHasPromotion(iCombat4):
-          iChance = 2
-          iNewRank = iCombat5
-        elif pWinner.isHasPromotion(iCombat3):
-          iChance = 2
-          iNewRank = iCombat4
-        elif pWinner.isHasPromotion(iCombat2):
-          iChance = 3
-          iNewRank = iCombat3
-        elif pWinner.isHasPromotion(iCombat1):
-          iChance = 4
-          iNewRank = iCombat2
-        else:
-          iChance = 5
-          iNewRank = iCombat1
-
-        # PAE for better AI: always gets it by 50%
-        if not gc.getPlayer(pWinner.getOwner()).isHuman(): iChance = 5
-
-        if iNewRank == iCombat1 or iNewRank == iCombat2 or pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
-          if iChance > self.myRandom(10, None) and not pWinner.isHasPromotion(iCombat6):
-            if (pWinner.getOwner(),pWinner.getID()) not in self.PAEInstanceFightingModifier:
-                self.PAEInstanceFightingModifier.append((pWinner.getOwner(),pWinner.getID()))
-                pWinner.setHasPromotion(iNewRank, True)
-                if gc.getPlayer(pWinner.getOwner()).isHuman():                                                                # unitX.getDescription()
-                  CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANKING",(pWinner.getName(),gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
-
-          # War weariness parallel ab Elite
-          elif pWinner.isHasPromotion(iCombat5) and not pWinner.isHasPromotion(iNeg5):
-            if (pWinner.getOwner(),pWinner.getID()) not in self.PAEInstanceFightingModifier:
-              iChance = 0
-              if pWinner.isHasPromotion(iNeg4):
-                iChance = 2
-                iNewRank = iNeg5
-              elif pWinner.isHasPromotion(iNeg3):
-                iChance = 2
-                iNewRank = iNeg4
-              elif pWinner.isHasPromotion(iNeg2):
-                iChance = 2
-                iNewRank = iNeg3
-              elif pWinner.isHasPromotion(iNeg1):
-                iChance = 1
-                iNewRank = iNeg2
-              else:
-                iChance = 1
-                iNewRank = iNeg1
-
-              if iChance > self.myRandom(10, None):
-                self.PAEInstanceFightingModifier.append((pWinner.getOwner(),pWinner.getID()))
-                pWinner.setHasPromotion(iNewRank, True)
-                if gc.getPlayer(pWinner.getOwner()).isHuman():
-                  CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_WAR_WEARINESS",(pWinner.getName(),gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_REBELLION", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(12), pWinner.getX(), pWinner.getY(), True, True)
-
-
-
-       # PAE V: Gewinner kann Mercenary-Promo ab Veteran verlieren
-       # Better AI: 100%
-       if pWinner.isHasPromotion(iCombat4):
-         iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-         if pWinner.isHasPromotion(iPromoMercenary):
-
-           bDoIt = False
-           if gc.getPlayer(pWinner.getOwner()).isHuman():
-             iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
-             iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
-             iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
-
-             if pWinner.isHasPromotion(iPromoLoyal) or pWinner.isHasPromotion(iPromoLeader) or pWinner.isHasPromotion(iPromoLeadership): iChance = 2 #50%
-             else: iChance = 4 #25%
-
-             if self.myRandom(iChance, None) == 1:
-               bDoIt = True
-           else: bDoIt = True
-
-           if bDoIt:
-             pWinner.setHasPromotion(iPromoMercenary, False)
-
-       # PAE V: Old veterans needs more time to get fit again (elite needs longer)
-       # Better AI: HI only
-       if gc.getPlayer(pWinner.getOwner()).isHuman():
-         if pWinner.isHasPromotion(iCombat6):
-           if pWinner.getDamage() < 50: pWinner.setDamage(50, -1)
-         elif pWinner.isHasPromotion(iCombat5):
-           if pWinner.getDamage() < 70: pWinner.setDamage(30, -1)
-         #elif pWinner.isHasPromotion(iCombat4):
-         #  if pWinner.getDamage() < 20: pWinner.setDamage(20, -1)
+      PAE_Unit.doAutomatedRanking(pWinner, pLoser)
 
 
 # --------- Feature - Seuche auf dem Schlachtfeld ----------------------
@@ -4326,37 +3918,40 @@ class CvEventManager:
     iCost = unitY.getProductionCost()
 
     # Ausnahmen
-    UnitArray = []
-    UnitArray.append(gc.getInfoTypeForString("UNIT_WORKBOAT"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_TREIBGUT"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_GAULOS"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_BURNING_PIGS"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_CAMEL"))
-    UnitArray.append(gc.getInfoTypeForString("UNIT_ELEFANT"))
+    UnitArray = [
+    gc.getInfoTypeForString("UNIT_WORKBOAT"),
+    gc.getInfoTypeForString("UNIT_TREIBGUT"),
+    gc.getInfoTypeForString("UNIT_GAULOS"),
+    gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
+    gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
+    gc.getInfoTypeForString("UNIT_KAMPFHUND"),
+    gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
+    gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
+    gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
+    gc.getInfoTypeForString("UNIT_BURNING_PIGS"),
+    gc.getInfoTypeForString("UNIT_HORSE"),
+    gc.getInfoTypeForString("UNIT_CAMEL"),
+    gc.getInfoTypeForString("UNIT_ELEFANT")
+    ]
 
-    AnimalArray = []
-    AnimalArray.append(gc.getInfoTypeForString("UNIT_WILD_HORSE"))
-    AnimalArray.append(gc.getInfoTypeForString("UNIT_WILD_CAMEL"))
-    AnimalArray.append(gc.getInfoTypeForString("UNIT_ELEFANT"))
+    AnimalArray = [
+    gc.getInfoTypeForString("UNIT_WILD_HORSE"),
+    gc.getInfoTypeForString("UNIT_WILD_CAMEL"),
+    gc.getInfoTypeForString("UNIT_ELEFANT")
+    ]
 
-    WildAnimals = []
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_LION"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_BEAR"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_PANTHER"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_WOLF"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_BOAR"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_TIGER"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_LEOPARD"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_DEER"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_UR"))
-    WildAnimals.append(gc.getInfoTypeForString("UNIT_BERGZIEGE"))
+    WildAnimals = [
+    gc.getInfoTypeForString("UNIT_LION"),
+    gc.getInfoTypeForString("UNIT_BEAR"),
+    gc.getInfoTypeForString("UNIT_PANTHER"),
+    gc.getInfoTypeForString("UNIT_WOLF"),
+    gc.getInfoTypeForString("UNIT_BOAR"),
+    gc.getInfoTypeForString("UNIT_TIGER"),
+    gc.getInfoTypeForString("UNIT_LEOPARD"),
+    gc.getInfoTypeForString("UNIT_DEER"),
+    gc.getInfoTypeForString("UNIT_UR"),
+    gc.getInfoTypeForString("UNIT_BERGZIEGE")
+    ]
 
     if pLoser.getUnitType() not in UnitArray and pLoser.getUnitType() not in AnimalArray:
 
@@ -4598,7 +4193,7 @@ class CvEventManager:
           if not NewUnit.isHasPromotion(iPromoMercenary): NewUnit.setHasPromotion(iPromoMercenary, True)
 
           # Remove formations
-          self.doUnitFormation (NewUnit, -1)
+          PAE_Unit.doUnitFormation (NewUnit, -1)
 
           # PAE V: Trait-Promotions
           # 1. Agg und Protect Promos weg
@@ -5230,9 +4825,8 @@ class CvEventManager:
 
       # PROMOTION_LEADER
       if pLoser.getLeaderUnitType() > -1:
-
         # Auswirkungen nach dem Tod eines Generals
-        self.doDyingGeneral(pLoser)
+        PAE_Unit.doDyingGeneral(pLoser)
 
         # War Weariness
         iTeam = pLoser.getTeam()
@@ -5423,7 +5017,7 @@ class CvEventManager:
             CyInterface().addMessage(iLoser, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GOLD_2",("",iGold)), None, 2, None, ColorTypes(7), 0, 0, False, False)
 
         # City renegades
-        self.doRenegadeCity(pCity, iWinner, pLoser.getID(), pWinner.getX(), pWinner.getY())
+        PAE_City.doRenegadeCity(pCity, iWinner, pLoser.getID(), pWinner.getX(), pWinner.getY())
 
         pAcquiredCity = pPlot.getPlotCity()
 
@@ -5463,13 +5057,13 @@ class CvEventManager:
     if pLoser.getUnitCombatType() != -1 and not bAnimal:
       if pWinner.isMadeAttack() and gc.getPlayer(pWinner.getOwner()).isTurnActive():
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("pLoser.plot",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        self.doUnitGetsPromo(pWinner,pLoser,pLoser.plot(),True)
+        PAE_Unit.doUnitGetsPromo(pWinner,pLoser,pLoser.plot(),True)
       else:
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("pWinner.plot",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        self.doUnitGetsPromo(pWinner,pLoser,pWinner.plot(),False)
+        PAE_Unit.doUnitGetsPromo(pWinner,pLoser,pWinner.plot(),False)
 
     if not bCityRenegade and bUnitFlucht:
-      self.doUnitGetsPromo(pLoser,pWinner,pLoser.plot(),False)
+      PAE_Unit.doUnitGetsPromo(pLoser,pWinner,pLoser.plot(),False)
 
 
 # +++++++++++++++++++++++++++++++++++++
@@ -6856,7 +6450,7 @@ class CvEventManager:
             pCity.changeOccupationTimer(-1)
 
       # Keine Formationen in der Stadt (rausgegeben ab PAE V Patch 2, Formationen sind auf Stadtangriff/verteidigung angepasst)
-      #self.doUnitFormation (pUnit, -1)
+      #PAE_Unit.doUnitFormation (pUnit, -1)
 
     # nicht eine Stadt
     else:
@@ -6870,7 +6464,7 @@ class CvEventManager:
           iImp == gc.getInfoTypeForString("IMPROVEMENT_FORT2"):
 
             # Alle Formationen entfernen
-            #self.doUnitFormation (pUnit, -1)
+            #PAE_Unit.doUnitFormation (pUnit, -1)
 
             # Plot soll der AI (Unit) oder niemandem zugewiesen sein
             if pPlot.getOwner() == pUnit.getOwner() or pPlot.getOwner() == -1:
@@ -6887,13 +6481,13 @@ class CvEventManager:
                   if pPlot.getUnit(k).isHasPromotion(iPromo): iNum += 1
                   if iNum > iAnzahlFortifiedUnits: break
                 if iNum < iAnzahlFortifiedUnits:
-                  self.doUnitFormation (pUnit, iPromo)
+                  PAE_Unit.doUnitFormation (pUnit, iPromo)
 
       # Keine Formation in bestimmte Features
       #iFeat = pPlot.getFeatureType()
       #if iFeat > -1:
       #  if iFeat == gc.getInfoTypeForString("FEATURE_FOREST") or iFeat == gc.getInfoTypeForString("FEATURE_DICHTERWALD") or iFeat == gc.getInfoTypeForString("FEATURE_JUNGLE"):
-      #    self.doUnitFormation (pUnit, -1)
+      #    PAE_Unit.doUnitFormation (pUnit, -1)
 
 ########################################################
 # --------- Bombard - Feature ----------------------
@@ -6989,7 +6583,7 @@ class CvEventManager:
 
       # Set offensive Formations
       else:
-        self.doAIUnitFormations (unit, True, False, False)
+        PAE_Unit.doAIUnitFormations (unit, True, False, False)
 
       # Handicap: 0 (Settler) - 8 (Deity) ; 5 = King
       iHandicap = gc.getGame().getHandicapType()
@@ -7251,7 +6845,7 @@ class CvEventManager:
 
       # Feldsklaven und Minensklaven checken
       if iImprovement != gc.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"):
-        self.doCheckSlavesAfterPillage(pUnit,pPlot)
+        PAE_Sklaven.doCheckSlavesAfterPillage(pUnit,pPlot)
 
       # Handelsposten: Plot-ScriptData leeren
       if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"):
@@ -7849,16 +7443,6 @@ class CvEventManager:
     PAE_City.doCheckTraitBuildings(city, city.getOwner())
     PAE_City.doCheckGlobalTraitBuildings(city.getOwner())
     # ----------------------------
-
-#    # Trait Maritim (The_J) -------- (durch neue Trait-Gebaeude ersetzt)
-#    pPlayer = gc.getPlayer(city.getOwner())
-#    if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")):
-#      pPlot = CyMap().plot(city.getX(),city.getY())
-#      if pPlot.isCoastalLand ():
-#         # Class
-#         #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_MARITIME"))
-#         iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL")
-#         city.setNumRealBuilding(iBuilding,1)
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Neue Kolonie (Zeile 3041)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -9282,7 +8866,7 @@ class CvEventManager:
 
       # spread plague 10%
       iRand = self.myRandom(10, None)
-      if iRand == 1: PAE_Disasters.doSpreadPlague(pCity)
+      if iRand == 1: PAE_City.doSpreadPlague(pCity)
     # lepra end and plague end
 
 ########################################################################################
@@ -9689,7 +9273,7 @@ class CvEventManager:
 #              CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GOLD_2",("",iGold)), None, 2, None, ColorTypes(7), 0, 0, False, False)
 #
 #
-#          self.doRenegadeCity(pCity, iNewOwner, -1, -1, -1)
+#          PAE_City.doRenegadeCity(pCity, iNewOwner, -1, -1, -1)
 #
 #          # Rebellen oder Freiheitskaempfer entstehen lassen
 #          pCity = pPlot.getPlotCity()
@@ -10201,15 +9785,6 @@ class CvEventManager:
 
     # Christentum und Haeresie (Heresy) end ----------------------------
 
-    # Die Stadt wird ueberprueft, ob es ansaessige Sklaven gibt (Sklavenmarkt)
-    # deactivated (PAE V Beta 2 Patch 7) = Sklavenmarkt ist nun baubar
-    #iCitySlaves = pCity.getFreeSpecialistCount(16) + pCity.getFreeSpecialistCount(17) + pCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE = 16,17,18
-    #iBuildingSklavenmarkt = gc.getInfoTypeForString("BUILDING_SKLAVENMARKT")
-    #if iCitySlaves < 1:
-    # if pCity.isHasBuilding(iBuildingSklavenmarkt): pCity.setNumRealBuilding(iBuildingSklavenmarkt,0)
-    #else:
-    # if not pCity.isHasBuilding(iBuildingSklavenmarkt): pCity.setNumRealBuilding(iBuildingSklavenmarkt,1)
-
     # PAE Provinzcheck
     if bCheckCityState:
       PAE_City.doCheckCityState(pCity)
@@ -10528,451 +10103,6 @@ class CvEventManager:
   # BTS END OF FILE -----------------------------------------------------------------------
   # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  # Provinz Rebellion / Statthalter
-  def doProvinceRebellion(self, pCity):
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Provinzrebellion (Zeile 4578)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-    iPlayer = pCity.getOwner()
-    pPlayer = gc.getPlayer(iPlayer)
-    iBuilding = gc.getInfoTypeForString('BUILDING_PROVINZPALAST')
-    #if self.myRandom(3, "Choose Province Rebells") == 0:
-    #  iDeriCiv = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getDerivativeCiv()
-    #  if iDeriCiv != -1:
-    #    DeriCiv = gc.getCivilizationInfo(iDeriCiv)
-    #    NumLeaders = CurCiv.getNumLeaders ()
-    #    Checken, ob es diese Civ schon gibt
-    #    for i in range(gc.getMAX_PLAYERS()):
-    #      player = gc.getPlayer(i)
-    #      if player.isAlive() and player.getName() == gc.getCivilizationInfo(iDeriCiv.getDescription()):
-    #        iNewOwner = gc.getBARBARIAN_PLAYER()
-    #        break
-    #else:
-    iNewOwner = gc.getBARBARIAN_PLAYER()
-
-    # iNewOwner herausfinden
-    # 1. Moeglichkeit: gab es einen Vorbesitzer
-    if iNewOwner == gc.getBARBARIAN_PLAYER() and pCity.getOriginalOwner() != iPlayer:
-      #if gc.getPlayer(pCity.getOriginalOwner()).isAlive():
-      #if gc.getTeam(iPlayer).isAtWar(gc.getPlayer(pCity.getOriginalOwner()).getTeam()): iNewOwner = pCity.getOriginalOwner()
-      if gc.getGame().countCivPlayersAlive() < 18 or gc.getPlayer(pCity.getOriginalOwner()).isAlive(): iNewOwner = pCity.getOriginalOwner()
-    # 2. Moeglichkeit: Spieler mit hoechster Kultur heraussuchen
-    if iNewOwner == gc.getBARBARIAN_PLAYER():
-      iPlayerHC = pCity.findHighestCulture()
-      if iPlayerHC != iPlayer and iPlayerHC != -1:
-        if gc.getPlayer(iPlayerHC).isAlive(): iNewOwner = iPlayerHC
-    # 3. Moeglichkeit: weitere Spieler mit Fremdkultur
-    if iNewOwner == gc.getBARBARIAN_PLAYER():
-      PlayerArray = []
-      iRange = gc.getMAX_PLAYERS()
-      for i in range(iRange):
-        if gc.getPlayer(i).isAlive():
-         if i != iPlayer and pCity.getCulture(i) > 0:
-           PlayerArray.append(i)
-      if len(PlayerArray) > 0:
-       iRand = self.myRandom(len(PlayerArray), None)
-       iNewOwner = PlayerArray[iRand]
-    # ----------------
-
-    # Radius 5x5 Plots und dessen Staedte checken
-    for i in range (11):
-      for j in range (11):
-        loopPlot = gc.getMap().plot(pCity.getX() - 5 + i, pCity.getY() - 5 + j)
-        if loopPlot != None and not loopPlot.isNone():
-          if loopPlot.isCity():
-            loopCity = loopPlot.getPlotCity()
-
-            if pCity.getID() != loopCity.getID() and not loopCity.isHasBuilding(iBuilding) and not pCity.isCapital() and loopCity.getOwner() == iPlayer:
-              iChance = 100
-              for i2 in range (11):
-                if iChance == 0: break
-                for j2 in range (11):
-                  loopPlot2 = gc.getMap().plot(loopCity.getX() - 5 + i2, loopCity.getY() - 5 + j2)
-                  if loopPlot2 != None and not loopPlot2.isNone():
-                    if loopPlot2.isCity():
-                      loopCity2 = loopPlot2.getPlotCity()
-                      if pCity.getID() != loopCity2.getID():
-                        if loopCity2.isCapital():
-                          iChance = 0
-                          break
-                        elif loopCity2.isHasBuilding(iBuilding): iChance = 50
-
-              if iChance > 0:
-                if self.myRandom(100, None) < iChance: self.doRenegadeCity(loopCity, iNewOwner, -1, -1, -1)
-
-    # Provinzhauptstadt
-    if not pCity.isCapital(): self.doRenegadeCity(pCity, iNewOwner, -1, -1, -1)
-
-
-  # ueberlaufende Stadt / City renegade
-  # When Unit gets attacked: LoserUnitID (must not get killed automatically) , no unit = -1
-  def doRenegadeCity(self, pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
-
-        # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Renegade City (Zeile 4637)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-        iUnitType1 = gc.getInfoTypeForString("UNIT_REBELL")
-        iUnitType2 = gc.getInfoTypeForString("UNIT_FREEDOM_FIGHTER")
-
-        if iNewOwner == -1: iNewOwner = gc.getBARBARIAN_PLAYER()
-
-        iX = pCity.getX()
-        iY = pCity.getY()
-        pPlot = gc.getMap().plot( iX, iY )
-        iOldOwner = pCity.getOwner()
-
-        # TEST
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 1 - iNewOwner",iNewOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        # TEST
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 2 - iOldOwner",iOldOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-        # Kultur auslesen
-        iCulture = pCity.getCulture(iOldOwner)
-
-        # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iOldCulture",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-        # Trait-Gebaeude sicherheitshalber entfernen...
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"),0)
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL"),0)
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL"),0)
-        pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"),0)
-
-        # Einheiten auslesen bevor die Stadt ueberlaeuft
-
-        UnitArray = []
-        j = 0
-        iRange = pPlot.getNumUnits()
-        iRangePromos = gc.getNumPromotionInfos()
-        for iUnit in range (iRange):
-
-          # Nicht die Einheit, die gerade gekillt wird killen, sonst Error
-          if LoserUnitID != pPlot.getUnit(iUnit).getID():
-            # Freiheitskaempfer, Rebellen oder Unsichtbare rauswerfen
-            if pPlot.getUnit(iUnit).getUnitType() == iUnitType1 or pPlot.getUnit(iUnit).getUnitType() == iUnitType2 or pPlot.getUnit(iUnit).getInvisibleType() > -1:
-               pPlot.getUnit(iUnit).jumpToNearestValidPlot()
-            elif pPlot.getUnit(iUnit).getOwner() == iOldOwner:
-              # Einige Einheiten bleiben loyal und fliehen
-              # Promotion Loyality = Nr 0
-              # Check its promotions
-              bLoyal = False
-              if pPlot.getUnit(iUnit).isHasPromotion(0): bLoyal = True
-              if bLoyal: iChance = 4
-              else: iChance = 8
-
-              iRand = self.myRandom(10, None)
-              if iRand < iChance:
-
-                UnitArray.append(range(7))
-                UnitArray[j][0] = pPlot.getUnit(iUnit).getUnitType()
-                UnitArray[j][1] = pPlot.getUnit(iUnit).getUnitAIType()
-                UnitArray[j][2] = pPlot.getUnit(iUnit).getName()
-                UnitArray[j][3] = pPlot.getUnit(iUnit).getUnitCombatType()
-                if UnitArray[j][3] != -1:
-                  UnitArray[j][4] = pPlot.getUnit(iUnit).getExperience()
-                  UnitArray[j][5] = pPlot.getUnit(iUnit).getLevel()
-                  # Bei eroberbaren Einheiten keinen Schaden verursachen, sonst werden sie nicht erzeugt
-                  if pPlot.getUnit(iUnit).getCaptureUnitType(gc.getPlayer(iOldOwner).getCivilizationType()) > -1: UnitArray[j][6] = 0
-                  else: UnitArray[j][6] = pPlot.getUnit(iUnit).getDamage()
-                  # Check its promotions
-
-                  for i in range(iRangePromos):
-                    if pPlot.getUnit(iUnit).isHasPromotion(i):
-                      UnitArray[j].append(i)
-
-                # Nicht die Einheit, die gerade gekillt wird killen, sonst Error
-                if LoserUnitID != pPlot.getUnit(iUnit).getID():
-                  #pPlot.getUnit(iUnit).doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                  pPlot.getUnit(iUnit).kill(1,pPlot.getUnit(iUnit).getOwner())
-                else:
-                  # Wenn eroberte Einheit eine Capture Unit ist, dann kann man die neuen Einheiten nicht auf diesen Plot erzeugen
-                  if pPlot.getUnit(iUnit).getCaptureUnitType(gc.getPlayer(iOldOwner).getCivilizationType()) > -1:
-                    iX = iWinnerX
-                    iY = iWinnerY
-
-                j += 1
-              # else: Einheit kann sich noch aus dem Staub machen
-              else:
-                pPlot.getUnit(iUnit).jumpToNearestValidPlot()
-            else:
-              pPlot.getUnit(iUnit).jumpToNearestValidPlot()
-
-        # Eine nochmale Sicherheitsschleife 3.5.12
-        while pPlot.getNumUnits() > 1:
-          for iUnit in range (pPlot.getNumUnits()):
-            # Nicht die Einheit, die gerade gekillt wird killen, sonst Error
-            if LoserUnitID != pPlot.getUnit(iUnit).getID():
-              pPlot.getUnit(iUnit).jumpToNearestValidPlot()
-        # --- Einheiten ---
-
-        # Stadt laeuft automatisch ueber (CyCity pCity, BOOL bConquest, BOOL bTrade)
-        gc.getPlayer(iNewOwner).acquireCity(pCity,0,1)
-        pAcquiredCity = pPlot.getPlotCity()
-
-
-        # Einheiten generieren
-        iRange = len(UnitArray)
-        for iUnit in range (iRange):
-          iUnitOwner = iNewOwner
-
-          # TEST
-          #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 3 - iUnitOwner",iUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-          # UnitAIType -1 (NO_UNITAI) -> UNITAI_UNKNOWN = 0 , ATTACK = 4, City Defense = 10
-          # happened: Emigrant = 4 !
-          if UnitArray[iUnit][1] == -1 or UnitArray[iUnit][1] == 0 or UnitArray[iUnit][1] == 4:
-            if   UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_SLAVE'): UnitArray[iUnit][1] = 0
-            elif UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_FREED_SLAVE'): UnitArray[iUnit][1] = 12
-            elif UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_EMIGRANT'): UnitArray[iUnit][1] = 2
-            elif UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_TRADE_MERCHANT'): UnitArray[iUnit][1] = 19
-            elif UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_TRADE_MERCHANTMAN'): UnitArray[iUnit][1] = 19
-            else: UnitArray[iUnit][1] = 0
-
-          # Slaves will be freed, nur wenn dessen Besitzer neu ist
-          if UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_SLAVE'): UnitArray[iUnit][0] = gc.getInfoTypeForString('UNIT_FREED_SLAVE')
-
-          # Create a new unit
-          #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(PyInfo.UnitInfo(UnitArray[iUnit][0]).getDescription(),UnitArray[iUnit][0])), None, 2, None, ColorTypes(10), 0, 0, False, False)
-          #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",UnitArray[iUnit][1])), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-          if UnitArray[iUnit][0] > -1:
-            NewUnit = gc.getPlayer(iNewOwner).initUnit(UnitArray[iUnit][0], iX, iY, UnitAITypes(UnitArray[iUnit][1]), DirectionTypes.DIRECTION_SOUTH)
-
-            # Emigrant und dessen Kultur
-            if UnitArray[iUnit][0] == gc.getInfoTypeForString('UNIT_EMIGRANT'):
-              CvUtil.addScriptData(NewUnit, "p", iOldOwner)
-
-            #NewUnit.setName(UnitArray[iUnit][2])
-            if UnitArray[iUnit][2] != gc.getUnitInfo(UnitArray[iUnit][0]).getText():
-              UnitName = UnitArray[iUnit][2]
-              UnitName = re.sub(" \(.*?\)","",UnitName)
-              NewUnit.setName(UnitName)
-
-            if UnitArray[iUnit][3] != -1:
-             NewUnit.setExperience(UnitArray[iUnit][4], -1)
-             NewUnit.setLevel(UnitArray[iUnit][5])
-             if UnitArray[iUnit][6]: NewUnit.setDamage(UnitArray[iUnit][6], -1)
-
-             # Check its promotions
-             iRange2 = len(UnitArray[iUnit])
-             if iRange2 > 7:
-              for i in range (iRange2):
-                if i > 6:
-                  NewUnit.setHasPromotion(UnitArray[iUnit][i], True)
-
-             # PAE V: Trait-Promotions
-             # 1. Agg und Protect Promos weg
-             # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten
-             if not gc.getPlayer(iNewOwner).hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
-                    iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")
-                    if NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, False)
-             #if not gc.getPlayer(iNewOwner).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")):
-             #       iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_PROTECTIVE")
-             #       if NewUnit.isHasPromotion(iPromo): NewUnit.setHasPromotion(iPromo, False)
-
-        # --- Einheiten ---
-
-
-        if iNewOwner == gc.getBARBARIAN_PLAYER():
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
-           gc.getPlayer(iNewOwner).initUnit(iUnitType2,  iX, iY, UnitAITypes(4), DirectionTypes.DIRECTION_SOUTH)
-
-        # Kultur regenerieren - funkt net
-        if iCulture > 0: pAcquiredCity.changeCulture(gc.getPlayer(iNewOwner).getID(),iCulture,1)
-
-        # Stadtgroesse kontrollieren
-        iPop = pAcquiredCity.getPopulation()
-        if iPop < 1:
-          pAcquiredCity.setPopulation(1)
-
-        # Kolonie/Provinz checken
-        PAE_City.doCheckCityState(pAcquiredCity)
-
-
-  # Horse down
-  def doHorseDown(self, pPlot, pUnit):
-    iUnitType = pUnit.getUnitType()
-    iOwner = pUnit.getOwner()
-    iX = pUnit.getX()
-    iY = pUnit.getY()
-    iNewUnitType = -1
-
-    if iUnitType == gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"):
-
-      if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME") or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-         iNewUnitType = gc.getInfoTypeForString("UNIT_AUXILIAR_ROME")
-      elif pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"):
-         iNewUnitType = gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
-      else:
-         iNewUnitType = gc.getInfoTypeForString("UNIT_AUXILIAR")
-
-    elif iUnitType == gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"): iNewUnitType = gc.getInfoTypeForString("UNIT_FOEDERATI")
-    #elif iUnitType == gc.getInfoTypeForString('UNIT_PRAETORIAN_RIDER'): iNewUnitType = gc.getInfoTypeForString('UNIT_PRAETORIAN')
-    elif iUnitType == gc.getInfoTypeForString('UNIT_MOUNTED_SACRED_BAND_CARTHAGE'): iNewUnitType = gc.getInfoTypeForString('UNIT_SACRED_BAND_CARTHAGE')
-    elif iUnitType == gc.getInfoTypeForString('UNIT_MOUNTED_SCOUT'):
-      if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE"):
-         iNewUnitType = gc.getInfoTypeForString("UNIT_SCOUT_GREEK")
-      else:
-         iNewUnitType = gc.getInfoTypeForString("UNIT_SCOUT")
-
-    if iNewUnitType != -1:
-     # Create horse unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_HORSE"), iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
-     #NewUnit.changeMoves(90)
-     NewUnit.finishMoves()
-     # Create a new unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
-     NewUnit.setExperience(pUnit.getExperience(), -1)
-     NewUnit.setLevel(pUnit.getLevel())
-     NewUnit.setDamage(pUnit.getDamage(), -1)
-     if pUnit.getName() != gc.getUnitInfo(iUnitType).getText():
-       UnitName = pUnit.getName()
-       UnitName = re.sub(" \(.*?\)","",UnitName)
-       NewUnit.setName(UnitName)
-     # Check its promotions
-     iRange = gc.getNumPromotionInfos()
-     for iPromotion in range(iRange):
-      # init all promotions the unit had
-      if (pUnit.isHasPromotion(iPromotion)):
-       NewUnit.setHasPromotion(iPromotion, True)
-     pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-     #pUnit.kill(1,pUnit.getOwner())
-
-     NewUnit.finishMoves()
-
-     # ***TEST***
-     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Horse Down (Zeile 5014)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # end Horse down
-
-  # Horse up
-  def doHorseUp(self, pPlot, pUnit):
-    iUnitType = pUnit.getUnitType()
-    iOwner = pUnit.getOwner()
-    iX = pUnit.getX()
-    iY = pUnit.getY()
-    iNewUnitType = -1
-
-    # Pferd suchen und killen
-    UnitHorse = gc.getInfoTypeForString('UNIT_HORSE')
-    iRange = pPlot.getNumUnits()
-    for iUnit in range (iRange):
-     if pPlot.getUnit(iUnit).getUnitType() == UnitHorse:
-      pPlot.getUnit(iUnit).doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pPlot.getUnit(iUnit).kill(1,pPlot.getUnit(iUnit).getOwner())
-      break
-
-    lUnitAuxiliar = []
-    lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR"))
-    lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"))
-    lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"))
-
-    if iUnitType in lUnitAuxiliar: iNewUnitType = gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE")
-    elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"): iNewUnitType = gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN")
-    #elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN"): iNewUnitType = gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER")
-    elif iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"): iNewUnitType = gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE")
-    elif iUnitType == gc.getInfoTypeForString("UNIT_SCOUT") or iUnitType == gc.getInfoTypeForString("UNIT_SCOUT_GREEK"):
-       iNewUnitType = gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT")
-
-    if iNewUnitType != -1:
-     # Create a new unit
-     NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnitType, iX, iY, UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
-     NewUnit.setExperience(pUnit.getExperience(), -1)
-     NewUnit.setLevel(pUnit.getLevel())
-     NewUnit.changeMoves(-60)
-     NewUnit.setDamage(pUnit.getDamage(), -1)
-     if pUnit.getName() != gc.getUnitInfo(iUnitType).getText():
-       UnitName = pUnit.getName()
-       UnitName = re.sub("( \(.*?\))","",UnitName)
-       NewUnit.setName(UnitName)
-     # Check its promotions
-     iRange = gc.getNumPromotionInfos()
-     for iPromotion in range(iRange):
-      # init all promotions the unit had
-      if (pUnit.isHasPromotion(iPromotion)):
-       NewUnit.setHasPromotion(iPromotion, True)
-     pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-     #pUnit.kill(1,pUnit.getOwner())
-
-     # ***TEST***
-     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Horse Up (Zeile 5057)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-  # end Horse up
-
-  # Trojanisches Pferd
-  def doTrojanHorse(self, pCity, pUnit):
-    pPlayerCity = gc.getPlayer(pCity.getOwner())
-    pPlayerUnit = gc.getPlayer(pUnit.getOwner())
-
-    iDamage = pCity.getDefenseModifier(0)
-    pCity.changeDefenseDamage(iDamage)
-
-    if pPlayerCity != None and pPlayerUnit != None:
-      if pPlayerCity.isHuman():
-        CyInterface().addMessage(pCity.getOwner(),False,25,CyTranslator().getText("TXT_KEY_MESSAGE_TROJAN_HORSE_CITY",(pCity.getName(),pPlayerUnit.getCivilizationAdjective(2))),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,pUnit.getButton(),ColorTypes(11),pCity.getX(),pCity.getY(),True,True)
-        popupInfo = CyPopupInfo()
-        popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-        popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_TROJAN_HORSE_CITY",(pCity.getName(),pPlayerUnit.getCivilizationAdjective(1) )))
-        popupInfo.addPopup(pCity.getOwner())
-      if pPlayerUnit.isHuman():
-        CyInterface().addMessage(pUnit.getOwner(),False,25,CyTranslator().getText("TXT_KEY_MESSAGE_TROJAN_HORSE_UNIT",(pCity.getName(),pPlayerCity.getCivilizationAdjective(2))),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,pUnit.getButton(),ColorTypes(11),pCity.getX(),pCity.getY(),True,True)
-        popupInfo = CyPopupInfo()
-        popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-        popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_TROJAN_HORSE_UNIT",(pCity.getName(),pPlayerCity.getCivilizationAdjective(1) )))
-        popupInfo.addPopup(pUnit.getOwner())
-
-      if pCity.getOwner() == gc.getGame().getActivePlayer() or pUnit.getOwner() == gc.getGame().getActivePlayer(): CyAudioGame().Play2DSound("AS2D_THEIRDECLAREWAR")
-
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Trojanisches Pferd (Zeile 9497)",0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-  # Emigrant -----------------
-  def doEmigrant(self, pCity, pUnit):
-    pPlot = CyMap().plot(pCity.getX(), pCity.getY())
-    # Kultur auslesen
-    txt = CvUtil.getScriptData(pUnit, ["p", "t"])
-    if txt != "": iPlayerCulture = int(txt)
-    else: iPlayerCulture = pUnit.getOwner()
-    # Kultur = 100*Pop, max. 1000
-    iCulture = pCity.getPopulation() * 100
-    if iCulture > 1000: iCulture = 1000
-    # Stadt Kultur geben
-    pPlot.changeCulture(iPlayerCulture,iCulture,1)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-    #pUnit.kill(1,pUnit.getOwner())
-
-    pCity.changePopulation(1)
-    # PAE Provinzcheck
-    PAE_City.doCheckCityState(pCity)
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Emigrant 2 City (Zeile 6458)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-  # disband city
-  def doDisbandCity(self, pCity, pUnit, pPlayer):
-    iRand = self.myRandom(10, None)
-    if iRand < 5:
-      CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_OK",(pCity.getName(),)), "AS2D_PILLAGE", 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), False, False)
-      pPlayer.disband(pCity)
-      #iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-      #pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
-    else:
-      CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_NOT_OK",(pCity.getName(),)), "AS2D_CITY_REVOLT", 2, None, ColorTypes(7), pCity.getX(), pCity.getY(), False, False)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #pUnit.kill(1,pUnit.getOwner())
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Emigrant disbands/shrinks City (Zeile 6474)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-
-
 # New Seewind-Feature together with Elwood (ideas) and the TAC-Team (diagonal arrows)
   def doSeewind (self):
 
@@ -11103,68 +10233,6 @@ class CvEventManager:
               iY -= 1
 
 
-
-
-# ++++++++++++++++++++++++++++++++ Ranged Strike ++++++++++++++++++++++++++++++++++++++++++++++++++++
-  def doRangedStrike(self, pCity, pCityUnit, pPlot, bCityDefense):
-    pPlayer = gc.getPlayer(pCityUnit.getOwner())
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Player",pCityUnit.getOwner())), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("X",pPlot.getX())), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Y",pPlot.getY())), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-    # BTS: funkt nicht, wohl nur bei AIR Units (in dll)?!
-    # ich probiers noch einmal und geb dem ne weitere Chance
-    pSelectionGroup = pCityUnit.getGroup() # MISSION_BOMBARD
-    pSelectionGroup.pushMission (MissionTypes.MISSION_RANGE_ATTACK,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pPlot,pCityUnit)
-
-    """
-    CyEngine().triggerEffect( gc.getInfoTypeForString("EFFECT_CANNON_HIT_SMALL01"), pPlot.getPoint() )
-
-    maxCollateralUnits = pCityUnit.airCombatLimit()
-    UnitsStriked = 0
-    iRange = pPlot.getNumUnits()
-    for i in range (iRange):
-      iOwner = pPlot.getUnit(i).getOwner()
-      if gc.getTeam(pPlayer.getTeam()).isAtWar(gc.getPlayer(iOwner).getTeam()):
-
-        # Normaler Schaden (betrifft erste Einheit)
-        # 1+ weil sein kann, dass airCombatLimit = 0 ist
-        if UnitsStriked < 1+maxCollateralUnits:
-            # Berechnung Air Strike Damage
-
-            # Erste Einheit
-            if i == 0:
-              if gc.getPlayer(iOwner).isHuman():
-                if bCityDefense:
-                  CyInterface().addMessage(iOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANGED_STRIKE",(pCity.getName(),0)), None, 2, pCityUnit.getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-                else:
-                  CyInterface().addMessage(iOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANGED_STRIKE_2",(pCity.getName(),0)), None, 2, pCityUnit.getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-
-              if pPlot.getUnit(i) != None and pCityUnit != None:
-                iDamagePercent = pCityUnit.airCombatDamage(pPlot.getUnit(i)) + self.myRandom(5, None)
-
-            # Collateral
-            else:
-              if pPlot.getUnit(i) != None:
-                iDamagePercent = pCityUnit.airCombatDamage(pPlot.getUnit(i)) / 2
-
-            iCollateralProtectionPercent = pPlot.getUnit(i).getCollateralDamageProtection()
-            iDamagePercent = iDamagePercent * (100 - iCollateralProtectionPercent)/100
-            iUnitDamage = 100 - pPlot.getUnit(i).getDamage()
-            iUnitDamage = iUnitDamage * (100 - iDamagePercent)/100
-            iUnitDamage = max(iUnitDamage, pCityUnit.airCombatLimit())
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iDamage",iUnitDamage)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-            pPlot.getUnit(i).setDamage(100-iUnitDamage, pPlot.getUnit(i).getOwner())
-            UnitsStriked += 1
-        else:
-            break
-
-    pCityUnit.changeMoves(-60)
-    pCityUnit.finishMoves()
-    """
-
 # ++++++++++++++++++ Historische Texte ++++++++++++++++++++++++++++++++++++++++++++++
 
   def doHistory(self, iGameTurn):
@@ -11231,1124 +10299,3 @@ class CvEventManager:
 
        text = CyTranslator().getText("TXT_KEY_HISTORY",("",)) + " " + CyTranslator().getText(text,("",))
        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
-
-# Next Unit after NetMessage
-  def doGoToNextUnit(self, pPlayer, pUnit):
-    # go to and select next Unit
-
-    #pUnit.getGroup().setActivityType(ActivityTypes.ACTIVITY_HOLD)
-
-    #(unit, iter) = pPlayer.firstUnit(False)
-    #(unit, iter) = pPlayer.nextUnit(iter, False)
-
-    pPlot = gc.getMap().plot(pUnit.getX(),pUnit.getY())
-    pUnit.getGroup().pushMission (MissionTypes.MISSION_SKIP,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pPlot,pUnit)
-
-
-  # Upgrade Veteran Unit to Elite Unit - Belobigung
-      # CommandUpgrade geht nur, wenn
-      # - die Einheit auch wirklich zu dieser Einheit laut XML upgegradet werden kann
-      # - alle Vorraussetzungen fuer die neuen Einheit erfuellt sind
-      # - im eigenen Territorium
-      #pUnit.doCommand (CommandTypes.COMMAND_UPGRADE, gc.getInfoTypeForString("UNIT_TRIARII2"), 0)
-  def doUpgradeVeteran( self, pUnit, iNewUnit, bChangeCombatPromo):
-    if pUnit != None:
-      pUnitOwner = gc.getPlayer(pUnit.getOwner())
-
-      iPromoCombat3 = gc.getInfoTypeForString("PROMOTION_COMBAT3")
-      iPromoCombat4 = gc.getInfoTypeForString("PROMOTION_COMBAT4")
-      iPromoCombat5 = gc.getInfoTypeForString("PROMOTION_COMBAT5")
-      iPromoCombat6 = gc.getInfoTypeForString("PROMOTION_COMBAT6")
-
-      NewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
-      forbiddenPromos = []
-      if pUnit.getUnitCombatType() != gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_SKIRMISH1"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_SKIRMISH2"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_SKIRMISH3"))
-      else:
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5"))
-
-      if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4"))
-        forbiddenPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5"))
-
-      iRange = gc.getNumPromotionInfos()
-      for j in range(iRange):
-        if j not in forbiddenPromos:
-          if pUnit.isHasPromotion(j):
-            NewUnit.setHasPromotion(j, True)
-
-      # Einheit: Rang -2
-      if bChangeCombatPromo:
-        if NewUnit.isHasPromotion(iPromoCombat6):
-          NewUnit.setHasPromotion(iPromoCombat6, False)
-          NewUnit.setHasPromotion(iPromoCombat5, False)
-        elif NewUnit.isHasPromotion(iPromoCombat5):
-          NewUnit.setHasPromotion(iPromoCombat5, False)
-          NewUnit.setHasPromotion(iPromoCombat4, False)
-        elif NewUnit.isHasPromotion(iPromoCombat4):
-          NewUnit.setHasPromotion(iPromoCombat4, False)
-          NewUnit.setHasPromotion(iPromoCombat3, False)
-
-      NewUnit.setExperience(pUnit.getExperience(), -1)
-      NewUnit.setLevel(pUnit.getLevel())
-
-      UnitName = pUnit.getName()
-      #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
-      if UnitName != gc.getUnitInfo(pUnit.getUnitType()).getText():
-        UnitName = re.sub(" \(.*?\)","",UnitName)
-        NewUnit.setName(UnitName)
-
-      # if unit was a general  (PROMOTION_LEADER)
-      if pUnit.getLeaderUnitType() > -1:
-        NewUnit.setLeaderUnitType(pUnit.getLeaderUnitType())
-        pUnit.setLeaderUnitType(-1) # avoids ingame message "GG died in combat"
-
-
-      NewUnit.setDamage(pUnit.getDamage(), -1)
-      #NewUnit.changeMoves(100)
-      NewUnit.setImmobileTimer(1)
-
-      #pUnit.kill(1,pUnit.getOwner())
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-
-  # Unit Rang Promos (PAE, ModMessage:751)
-  def doUpgradeRang(self,iPlayer,iUnit):
-        pPlayer = gc.getPlayer(iPlayer)
-        pUnit = pPlayer.getUnit(iUnit)
-        iUnitType = pUnit.getUnitType()
-        iNewUnit = -1
-
-        # Rome
-        if iUnitType == gc.getInfoTypeForString("UNIT_LEGION"):    iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_OPTIO")
-        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION2"): iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_OPTIO2")
-        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_OPTIO"):  iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_CENTURIO")
-        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"): iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2")
-        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"):
-          iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_TRIBUN")
-          self.setLegionName(pUnit)
-        elif iUnitType == gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"):
-          iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_TRIBUN")
-          self.setLegionName(pUnit)
-        elif iUnitType == gc.getInfoTypeForString("UNIT_EQUITES") or iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"):
-          iNewUnit = gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO")
-        elif iUnitType == gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO"):
-          iNewUnit = gc.getInfoTypeForString("UNIT_LEGION_TRIBUN")
-          self.setLegionName(pUnit)
-        elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES"): iNewUnit = gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2")
-        elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_COMITATENSES2"): iNewUnit = gc.getInfoTypeForString("UNIT_ROME_COMITATENSES3")
-
-        if iNewUnit == -1:
-          # Kelten, Germanen, Gallier, etc.
-          lGermanen = []
-          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_GERMANEN"))
-          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_CELT"))
-          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_GALLIEN"))
-          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_DAKER"))
-          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_BRITEN"))
-          lGermanen.append(gc.getInfoTypeForString("CIVILIZATION_VANDALS"))
-          if pPlayer.getCivilizationType() in lGermanen:
-             iNewUnit = gc.getInfoTypeForString("UNIT_STAMMESFUERST")
-
-        # ScriptData leeren
-        CvUtil.removeScriptData(pUnit, "P")
-        # Neue Einheit
-        self.doUpgradeVeteran(pUnit, iNewUnit, False)
-        if pPlayer.isHuman(): pPlayer.changeGold(-100)
-
-
-
-
-  # PAE UNIT FORMATIONS ------------------------------
-  def canDoFormation (self, pUnit, iFormation):
-      if not pUnit.canMove(): return False
-      if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return False
-
-      lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
-      lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
-
-      iUnitType = pUnit.getUnitType()
-      iUnitCombatType = pUnit.getUnitCombatType()
-      pPlayer = gc.getPlayer(pUnit.getOwner())
-      pTeam = gc.getTeam(pPlayer.getTeam())
-
-      # Naval
-      if iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL") or iFormation == gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"):
-          if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LOGIK")):
-                      UnitArray = []
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_WORKBOAT"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_KILIKIEN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_BIREME"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"))
-                      if iUnitType not in UnitArray: return True
-
-
-      # Mounted mit Fernangriff
-      elif iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-
-        # Fourage
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"):
-          if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BRANDSCHATZEN")):
-                    UnitArray = []
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"))
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"))
-                    UnitArray.append(gc.getInfoTypeForString("UNIT_BURNING_PIGS"))
-                    if iUnitType not in UnitArray: return True
-
-        # Partherschuss oder Kantabrischer Kreis
-        elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_PARTHER") or iFormation == gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"):
-                UnitArray = []
-                #UnitArray.append(gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
-                if iUnitType in UnitArray:
-                  # Partherschuss
-                  if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"):
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PARTHERSCHUSS")):
-                      CivArray = []
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_HETHIT"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_PHON"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_ISRAEL"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_PERSIA"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_BABYLON"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_SUMERIA"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_ASSYRIA"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_PARTHER"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_HUNNEN"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_INDIA"))
-                      CivArray.append(gc.getInfoTypeForString("CIVILIZATION_BARBARIAN"))
-                      if pUnit.getCivilizationType() in CivArray:
-                        return True
-                  # Kantabrischer Kreis
-                  elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"):
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KANTAKREIS")):
-                      return True
-
-        # Keil (fuer schwere Kavallerie)
-        elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_KEIL"):
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
-                      UnitArray = []
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_EQUITES"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_TRIBUN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT_PERSIA"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII_ROME"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIBERIAN_CAVALRY"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"))
-                      if iUnitType in UnitArray:
-                        return True
-
-
-      # Melee and Spear
-      elif iUnitCombatType in lMelee:
-
-        # Fortress
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS") and pUnit.baseMoves() == 1: return True
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2") and pUnit.baseMoves() > 1: return True
-
-        # Schildwall
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"):
-          if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")):
-                      UnitArray = []
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_WARRIOR"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_KURZSCHWERT"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_FALCATA_IBERIA"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_AXEWARRIOR"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_AXEMAN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"))
-                      if iUnitType not in UnitArray:
-                        return True
-
-
-        # Drill: Manipel, Phalanx, ...
-        if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
-          # Roman Legion (Kohorte)
-          if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"):
-                        UnitArray = []
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
-                        if pUnit.getUnitType() in UnitArray:
-                          return True
-          # Treffen-Taktik
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TREFFEN")):
-              return True
-          # Manipel
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MANIPEL")):
-              return True
-          # Phalanx-Arten (nur Speer)
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"):
-            if iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-              if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PHALANX2")):
-                return True
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"):
-            if iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-              if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PHALANX2")):
-                return True
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"):
-            if iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-              if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PHALANX")):
-                return True
-          # Geschlossene Formation (alle Melee)
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_CLOSED_FORM")):
-              return True
-          # Testudo
-          elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TESTUDO")):
-                        UnitArray = []
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
-                        UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
-                        if pUnit.getUnitType() in UnitArray:
-                          return True
-        # -- Drill end
-
-        # Keil
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_KEIL"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
-              return True
-        # Zangenangriff
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MILIT_STRAT")):
-              return True
-        # Flankenschutz (nur Speer)
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"):
-          if iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TREFFEN")):
-              return True
-        # Elefantengasse (auch weiter unten fuer Bogen)
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_GASSE"):
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_GEOMETRIE2")):
-              return True
-
-
-      # Archers
-      elif iUnitCombatType in lArcher:
-
-        # Elefantengasse (auch weiter unten fuer Bogen)
-        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_GASSE"):
-          if pTeam.isHasTech(gc.getInfoTypeForString("TECH_GEOMETRIE2")):
-            return True
-
-
-      # Flucht
-      if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"):
-        if pUnit.getDamage() >= 70:
-                  UnitCombatArray = []
-                  UnitCombatArray.append(gc.getInfoTypeForString("UNITCOMBAT_MELEE"))
-                  UnitCombatArray.append(gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"))
-                  UnitCombatArray.append(gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"))
-                  UnitCombatArray.append(gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"))
-                  UnitCombatArray.append(gc.getInfoTypeForString("UNITCOMBAT_ARCHER"))
-                  UnitCombatArray.append(gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"))
-                  if iUnitCombatType in UnitCombatArray:
-                    if pUnit.baseMoves() == 1:
-                      return True
-
-      return False
-  # can do Formationen / Formations End ------
-
-  # PAE UNIT FORMATIONS ------------------------------
-  def doUnitFormation (self, pUnit, iNewFormation):
-    pPlayer = gc.getPlayer(pUnit.getOwner())
-
-    FormationArray = []
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"))
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"))    # TECH_CLOSED_FORM
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"))        # TECH_PHALANX
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"))       # TECH_PHALANX2
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"))         # TECH_PHALANX2
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"))        # TECH_MANIPEL
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"))        # TECH_TREFFEN
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"))        # TECH_MARIAN_REFORM
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KEIL"))           # TECH_HUFEISEN
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"))  # TECH_HORSEBACK_RIDING_2
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"))  # TECH_TREFFEN
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_GASSE"))          # TECH_GEOMETRIE2
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))        # TECH_MARIAN_REFORM
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"))
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"))
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"))        # TECH_BRANDSCHATZEN
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL"))     # TECH_LOGIK
-    FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"))    # TECH_LOGIK
-
-    # Human
-    if pPlayer.isHuman():
-      # stehende Fortress-Einheiten sollen fuer die KI stehend bleiben
-      FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"))
-      FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"))
-
-      # Fuer alle Einheiten dieser Gruppe
-      pPlot = pUnit.plot()
-
-      iNumUnits = pPlot.getNumUnits()
-      for i in range (iNumUnits):
-        loopUnit = pPlot.getUnit(i)
-        if loopUnit.IsSelected():
-          # Formation geben
-          if iNewFormation != -1:
-            if self.canDoFormation (loopUnit, iNewFormation):
-              # Formationen auf NULL setzen
-              for j in FormationArray:
-                #if loopUnit.isHasPromotion(j):
-                loopUnit.setHasPromotion(j, False)
-              # Formation geben
-              loopUnit.setHasPromotion(iNewFormation, True)
-          # Formationen entfernen
-          else:
-            # Formationen auf NULL setzen
-            for j in FormationArray:
-              #if loopUnit.isHasPromotion(j):
-              loopUnit.setHasPromotion(j, False)
-    # AI
-    else:
-              # Formationen auf NULL setzen
-              for j in FormationArray:
-                #if loopUnit.isHasPromotion(j):
-                pUnit.setHasPromotion(j, False)
-              # Formation geben
-              if iNewFormation != -1:
-                pUnit.setHasPromotion(iNewFormation, True)
-
-    # Unit den Fortify Modus erzwingen - hat keinen effekt?!
-    #if iNewFormation == gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"):
-    #  pPlot = gc.getMap().plot( pUnit.getX(), pUnit.getY() )
-    #  #pUnit.getGroup().setActivityType (ActivityTypes.ACTIVITY_SLEEP)
-    #  pUnit.getGroup().pushMission (MissionTypes.MISSION_FORTIFY,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pPlot,pUnit)
-
-
-  def doAIPlotFormations (self, pPlot, iPlayer):
-    bContinue = False
-    bSupplyUnit = False
-    bCity = False
-    bElefant = False
-    lPlayerUnits = []
-    lMountedUnits = []
-    iCountDamage = 0
-    iStackStatus = 0
-    # 0: > 75% stength: 80% offensive
-    # 1: > 50% strength: 50% offensive
-    # 2: > 25% strength: 10% offensive
-    # 3: < 25% strength: flight
-
-    # Naval or Land
-    if pPlot.isWater():
-      if gc.getTeam(gc.getPlayer(iPlayer).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_LOGIK")):
-        bContinue = True
-    else:
-      if gc.getTeam(gc.getPlayer(iPlayer).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BRANDSCHATZEN")):
-        bContinue = True
-
-    if bContinue:
-
-      # City
-      for x in range(3):
-        for y in range(3):
-          loopPlot = gc.getMap().plot(pPlot.getX() + x - 1, pPlot.getY() + y - 1)
-          if loopPlot != None and not loopPlot.isNone():
-            if loopPlot.isCity():
-              pCity = loopPlot.getPlotCity()
-              if pCity.getOwner() != iPlayer:
-                if gc.getTeam(gc.getPlayer(iPlayer).getTeam()).isAtWar(gc.getPlayer(pCity.getOwner()).getTeam()):
-                  bCity = True
-
-      lUnitTypes = []
-      #lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_MELEE"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_ARCHER"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"))
-      lUnitTypes.append(gc.getInfoTypeForString("UNITCOMBAT_NAVAL"))
-
-      # Init Units
-      iRange = pPlot.getNumUnits()
-      for i in range (iRange):
-        if pPlot.getUnit(i).getOwner() == iPlayer:
-          if pPlot.getUnit(i).getUnitCombatType() in lUnitTypes:
-            lPlayerUnits.append(pPlot.getUnit(i))
-            # Supply
-            if not bSupplyUnit:
-              if pPlot.getUnit(i).isHasPromotion(gc.getInfoTypeForString("PROMOTION_MEDIC2")):
-                bSupplyUnit = True
-            iCountDamage += pPlot.getUnit(i).getDamage()
-
-      # StackStatus
-      iCountUnits = len(lPlayerUnits)
-      iLimit = 0
-      if iCountUnits > 0:
-        if iCountUnits * 100 - iCountDamage > iCountUnits * 75:
-          iStackStatus = 0
-          iLimit = iCountUnits / 10 * 8
-        elif iCountUnits * 100 - iCountDamage > iCountUnits * 50:
-          iStackStatus = 1
-          iLimit = iCountUnits / 2
-        elif iCountUnits * 100 - iCountDamage > iCountUnits * 25:
-          iStackStatus = 2
-          iLimit = iCountUnits / 10
-        else: iStackStatus = 3
-
-        if iStackStatus == 3:
-          # deactivated
-          i = 0
-          for unit in lPlayerUnits:
-            if unit.getUnitCombatType() != gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-              self.doUnitFormation(unit, gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"))
-        else:
-          i = 0
-          for unit in lPlayerUnits:
-            if not bSupplyUnit:
-              if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-                UnitArray = []
-                UnitArray.append(gc.getInfoTypeForString("UNIT_BEGLEITHUND"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"))
-                UnitArray.append(gc.getInfoTypeForString("UNIT_BURNING_PIGS"))
-                if unit.getUnitType() not in UnitArray:
-                  lMountedUnits.append(unit)
-            if i <= iLimit: self.doAIUnitFormations (unit, True, bCity, bElefant)
-            else: self.doAIUnitFormations (unit, False, bCity, bElefant)
-            i += 1
-
-          # Fourage - Supply
-          if not bSupplyUnit:
-           if len(lMountedUnits):
-            iLevel = 10
-            if gc.getTeam(gc.getPlayer(iPlayer).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_BRANDSCHATZEN")):
-              pUnit = lMountedUnits[0]
-              for unit in lMountedUnits:
-                if unit.getLevel() < iLevel:
-                  pUnit = unit
-                  iLevel = unit.getLevel()
-              self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"))
-
-
-  def doAIUnitFormations (self, pUnit, bOffensive, bCity, bElefant):
-    if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")): return
-    if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")): return
-    if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")): return
-    if pUnit.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pUnit.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE: return
-
-    iUnitType = pUnit.getUnitType()
-    pUnitOwner = gc.getPlayer(pUnit.getOwner())
-    pTeam = gc.getTeam(pUnitOwner.getTeam())
-
-    lMelee  = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
-    lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
-
-    # Naval
-    if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-      if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LOGIK")):
-        UnitArray = []
-        UnitArray.append(gc.getInfoTypeForString("UNIT_KILIKIEN"))
-        UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"))
-        UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_BIREME"))
-        UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"))
-        UnitArray.append(gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"))
-        if pUnit.getUnitType() not in UnitArray:
-          # Keil oder Zange
-          if bOffensive:
-            self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL"))
-          else:
-            self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"))
-
-
-    # Wald, Schild, Zange, Phalanx, Keil
-    #pPlot = CyMap().plot(pUnit.getX(), pUnit.getY())
-
-    # Formation im Wald
-    #iFeatType1 = gc.getInfoTypeForString("FEATURE_FOREST")
-    #iFeatType2 = gc.getInfoTypeForString("FEATURE_JUNGLE")
-    #iFeatType3 = gc.getInfoTypeForString("FEATURE_DICHTERWALD")
-    #if pPlot.getFeatureType() == iFeatType1 or pPlot.getFeatureType() == iFeatType2 or pPlot.getFeatureType() == iFeatType3:
-
-    # Mounted
-    elif pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-                  UnitArray = []
-                  #UnitArray.append(gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"))
-                  if iUnitType in UnitArray:
-                    CivArray = []
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_HETHIT"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_PHON"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_ISRAEL"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_PERSIA"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_BABYLON"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_SUMERIA"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_ASSYRIA"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_PARTHER"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_HUNNEN"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_INDIA"))
-                    CivArray.append(gc.getInfoTypeForString("CIVILIZATION_BARBARIAN"))
-                    if pUnit.getCivilizationType() in CivArray and pTeam.isHasTech(gc.getInfoTypeForString("TECH_PARTHERSCHUSS")):
-                      self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"))
-                      return
-                    elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_KANTAKREIS")):
-                      self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"))
-                      return
-
-                  if bOffensive:
-                    # Keil (auch weiter unten fuer Melee)
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
-                      UnitArray = []
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_EQUITES"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_TRIBUN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CATAPHRACT_PERSIA"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CLIBANARII_ROME"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIBERIAN_CAVALRY"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"))
-                      UnitArray.append(gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT"))
-                      if pUnit.getUnitType() in UnitArray:
-                        self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_KEIL"))
-                        return
-
-    # Melee and Spear
-    elif pUnit.getUnitCombatType() in lMelee:
-
-            if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
-
-              # Legionaries
-              UnitArray = []
-              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION2"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
-              UnitArray.append(gc.getInfoTypeForString("UNIT_PRAETORIAN3"))
-
-              # Testudo
-              if bCity:
-                if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TESTUDO")):
-                  if pUnit.getUnitType() in UnitArray and self.myRandom(2, None) == 0:
-                    self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))
-                    return
-
-              # Kohorte / Legion (ersetzt alles)
-              if pUnit.getUnitType() in UnitArray:
-                self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"))
-                return
-
-
-            # Elefantengasse
-            if bElefant:
-                if self.myRandom(4, None) == 0:
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_GEOMETRIE2")):
-                    self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_GASSE"))
-                    return
-
-
-            # Offensive
-            if bOffensive:
-
-                  if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
-
-                    # Treffen-Taktik ersetzt Manipel
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TREFFEN")):
-                        self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"))
-                        return
-
-                    # Manipel ersetzt Phalanx, Manipular-Phalanx und Schiefe Phalanx
-                    elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_MANIPEL")):
-                        self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"))
-                        return
-
-                    # Phalanx-Arten und Geschlossene Formation
-                    else:
-
-                      # Phalanx nur Speer
-                      if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-
-                        # Manipular-Phalanx und Schiefe Phalanx ersetzt Phalanx
-                        if pTeam.isHasTech(gc.getInfoTypeForString("TECH_PHALANX2")):
-
-                          # Schiefe Schlachtordnung
-                          if self.myRandom(2, None) == 0:
-                            self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"))
-                            return
-                          # Manipular-Phalanx
-                          else:
-                            self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"))
-                            return
-
-                        # Phalanx
-                        elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_PHALANX")):
-                            self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"))
-                            return
-
-                    # Geschlossene Formation (alle Melee mit Drill)
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_CLOSED_FORM")):
-                      self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"))
-                      return
-
-            # Defensive
-            else:
-                  # Flankenschutz (nur Speer)
-                  if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TREFFEN")):
-                      self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"))
-                      return
-                  # Zangenangriff (dem Keil vorziehen)
-                  if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MILIT_STRAT")):
-                    self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"))
-                    return
-
-            # Restlichen Units, falls oben nix draus wurde
-            # Schildwall
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")):
-                  UnitArray = []
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_WARRIOR"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_KURZSCHWERT"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_FALCATA_IBERIA"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_AXEWARRIOR"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_AXEMAN"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"))
-                  UnitArray.append(gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"))
-
-                  if pUnit.getUnitType() not in UnitArray:
-                    self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"))
-                    return
-
-    # Archer, vor allem Skirmisher
-    elif bElefant and pUnit.getUnitCombatType() in lArcher:
-
-            # Elefantengasse
-            if pTeam.isHasTech(gc.getInfoTypeForString("TECH_GEOMETRIE2")):
-              #if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
-              self.doUnitFormation(pUnit, gc.getInfoTypeForString("PROMOTION_FORM_GASSE"))
-
-  # PAE UNIT FORMATIONS END ------------------------------
-
-
-  # PAE UNIT BATTLE PROMOTION
-  def doUnitGetsPromo (self, pUnitTarget, pUnitSource, pPlot, bMadeAttack):
-    # Unit promos --------------------
-    # UNITCOMBAT_ARCHER: PROMOTION_COVER1
-    # UNITCOMBAT_SKIRMISHER: PROMOTION_PARADE_SKIRM1
-    # UNITCOMBAT_AXEMAN: PROMOTION_PARADE_AXE1
-    # UNITCOMBAT_SWORDSMAN: PROMOTION_PARADE_SWORD1
-    # UNITCOMBAT_SPEARMAN: PROMOTION_PARADE_SPEAR1
-
-    # UNITCOMBAT_CHARIOT: PROMOTION_FORMATION1
-    # UNITCOMBAT_MOUNTED: PROMOTION_FORMATION2
-    # UNITCOMBAT_ELEPHANT: PROMOTION_FORMATION3
-    # UNITCOMBAT_SIEGE: PROMOTION_CHARGE
-    # Terrain promos -----------------
-    # isHills: PROMOTION_GUERILLA1 - 5
-    # FEATURE_FOREST, FEATURE_DICHTERWALD: PROMOTION_WOODSMAN1 - 5
-    # FEATURE_JUNGLE: PROMOTION_JUNGLE1 - 5
-    # TERRAIN_SWAMP: PROMOTION_SUMPF1 - 5
-    # TERRAIN_DESERT: PROMOTION_DESERT1 - 5
-    # Extra promos -------------------
-    # City Attack: PROMOTION_CITY_RAIDER1 - 5
-    # City Defense: PROMOTION_CITY_GARRISON1 - 5
-    # isRiverSide(): PROMOTION_AMPHIBIOUS
-
-    # pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT")
-    # pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_FOREST")
-    # pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MELEE")
-
-    iNewPromo = -1
-
-    if pPlot.isCity(): bCity = True
-    else: bCity = False
-
-    lFirstPromos = []
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_WOODSMAN1"))
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_GUERILLA1"))
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_DESERT1"))
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_JUNGLE1"))
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_SUMPF1"))
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"))
-    lFirstPromos.append(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"))
-
-    iFirstPromos = 0
-    for i in lFirstPromos:
-      if pUnitTarget.isHasPromotion(i): iFirstPromos += 1
-
-    iDivisor = 1
-    # PAEInstanceFightingModifier for wins in the same turn
-    if (pUnitTarget.getOwner(),pUnitTarget.getID()) in self.PAEInstanceFightingModifier: iDivisor = 5
-
-    # Chances
-    iChanceCityAttack = 20 / iDivisor
-    iChanceCityDefense = 20 / iDivisor
-    # Trait Conqueror / Eroberer: iChanceCityAttack*2
-    if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")): iChanceCityAttack *= 2
-    iChanceUnitType = 10 / iDivisor
-    iChanceTerrain = 30 / (iFirstPromos*2 + 1) / iDivisor
-    # Static chance of Promo 2-5 of a terrain
-    iChanceTerrain2 = 5 / iDivisor
-
-
-    # 1. chance: Either City or Open Field
-    # City
-    if bCity:
-      iRand = self.myRandom(100, None)
-      if bMadeAttack:
-        # Attacker
-        if iChanceCityAttack > iRand:
-          if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5")):
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1")
-            iChanceUnitType = iChanceUnitType / 2
-            # Trait Conquereror / Eroberer: Automatische Heilung bei Stadtangriffs-Promo / auto-healing when receiving city raider promo
-            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")): pUnitTarget.setDamage(0, -1)
-        # Defender
-      else:
-        if iChanceCityDefense > iRand:
-          if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5")):
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1")
-            iChanceUnitType = iChanceUnitType / 2
-            # Trait Protective: Automatische Heilung bei Stadtverteidigungs-Promo / auto-healing when receiving city garrison promo
-            if gc.getPlayer(pUnitTarget.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")): pUnitTarget.setDamage(0, -1)
-
-    # on open field
-    else:
-      iRandTerrain = self.myRandom(100, None)
-      if iChanceTerrain > iRandTerrain:
-        # either hill, terrain or feature, river
-
-        # init unit promos and terrains
-        lTerrain = []
-        if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA5")) and pPlot.isHills():
-          lTerrain.append("Hills")
-
-        # thx to Dertuek:
-        if bMadeAttack and pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3")):
-          if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_AMPHIBIOUS")):
-            pPlotAtt=pUnitTarget.plot()
-            pPlotDef=pUnitSource.plot()
-            if pPlotAtt.isWater() and not pPlotDef.isWater():
-              lTerrain.append("River")
-            elif pPlotAtt.isRiverSide():
-              iDiffX=pPlotDef.getX()-pPlotAtt.getX()
-              iDiffY=pPlotDef.getY()-pPlotAtt.getY()
-
-              iDir = -1
-              if iDiffX == 0 and iDiffY == 1:
-                iDir=DirectionTypes.DIRECTION_NORTH
-              elif iDiffX == 1 and iDiffY == 1:
-                iDir=DirectionTypes.DIRECTION_NORTHEAST
-              elif iDiffX == 1 and iDiffY == 0:
-                iDir=DirectionTypes.DIRECTION_EAST
-              elif iDiffX == 1 and iDiffY == -1:
-                iDir=DirectionTypes.DIRECTION_SOUTHEAST
-              elif iDiffX == 0 and iDiffY == -1:
-                iDir=DirectionTypes.DIRECTION_SOUTH
-              elif iDiffX == -1 and iDiffY == -1:
-                iDir=DirectionTypes.DIRECTION_SOUTHWEST
-              elif iDiffX == -1 and iDiffY == 0:
-                iDir=DirectionTypes.DIRECTION_WEST
-              elif iDiffX == -1 and iDiffY == 1:
-                iDir=DirectionTypes.DIRECTION_NORTHWEST
-
-              if iDir > -1:
-                if pPlotAtt.isRiverCrossing(iDir):
-                  lTerrain.append("River")
-
-        # old source code
-        #if pPlot.isRiverSide() and bMadeAttack:
-        #  if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_AMPHIBIOUS")):
-        #    if pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT3")):
-        #      lTerrain.append("River")
-
-        if pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"):
-          if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DESERT5")):
-            lTerrain.append("Desert")
-
-        # Forest, Jungle and Swamp nicht fuer Mounted
-        if not pUnitTarget.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_CHARIOT") and \
-           not pUnitTarget.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED") and \
-           not pUnitTarget.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT") and \
-           not pUnitTarget.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SIEGE") :
-          if pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_FOREST") or pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_DICHTERWALD"):
-            if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN5")):
-              lTerrain.append("Forest")
-          elif pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_JUNGLE"):
-            if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE5")):
-              lTerrain.append("Jungle")
-          elif pPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_SWAMP"):
-            if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF5")):
-              lTerrain.append("Swamp")
-
-        if len(lTerrain) > 0:
-          iChanceUnitType = iChanceUnitType / 2
-          iRand = self.myRandom(len(lTerrain), None)
-          if lTerrain[iRand] == "River":
-            iNewPromo = gc.getInfoTypeForString("PROMOTION_AMPHIBIOUS")
-          elif lTerrain[iRand] == "Hills":
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_GUERILLA5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_GUERILLA4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_GUERILLA3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_GUERILLA2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_GUERILLA1")
-          elif lTerrain[iRand] == "Forest":
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_WOODSMAN5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_WOODSMAN4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_WOODSMAN3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_WOODSMAN2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_WOODSMAN1")
-          elif lTerrain[iRand] == "Jungle":
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_JUNGLE5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_JUNGLE4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_JUNGLE3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_JUNGLE2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_JUNGLE1")
-          elif lTerrain[iRand] == "Swamp":
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_SUMPF5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_SUMPF4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_SUMPF3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_SUMPF2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_SUMPF1")
-          elif lTerrain[iRand] == "Desert":
-            if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DESERT4")): iNewPromo = gc.getInfoTypeForString("PROMOTION_DESERT5")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DESERT3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_DESERT4")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DESERT2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_DESERT3")
-            elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DESERT1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_DESERT2")
-            else: iNewPromo = gc.getInfoTypeForString("PROMOTION_DESERT1")
-
-          # Chances of Promos 2-5
-          if iNewPromo not in lFirstPromos and iRandTerrain >= iChanceTerrain2: iNewPromo = -1
-
-
-    if iNewPromo > -1:
-
-      # naechste Chance verringern
-      iChanceUnitType = iChanceUnitType / 2
-
-      pUnitTarget.setHasPromotion(iNewPromo, True)
-      self.PAEInstanceFightingModifier.append((pUnitTarget.getOwner(),pUnitTarget.getID()))
-      if gc.getPlayer(pUnitTarget.getOwner()).isHuman():
-        CyInterface().addMessage(pUnitTarget.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_PROMOTION",(pUnitTarget.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pUnitTarget.getX(), pUnitTarget.getY(), True, True)
-
-    # 2. chance: enemy combat type
-    iNewPromo = -1
-    iRand = self.myRandom(100, None)
-    if iChanceUnitType > iRand:
-
-      if pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
-         if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COVER2")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_COVER3")
-         elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COVER1")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_COVER2")
-         elif not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COVER1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_COVER1")
-
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"):
-         if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SKIRM2")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SKIRM3")
-         elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SKIRM1")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SKIRM2")
-         elif not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SKIRM1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SKIRM1")
-
-      #elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MELEE"):
-      #  if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SHOCK2")):  iNewPromo = gc.getInfoTypeForString("PROMOTION_SHOCK2")
-      #  elif not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SHOCK")): iNewPromo = gc.getInfoTypeForString("PROMOTION_SHOCK")
-
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"):
-         if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_AXE2")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_AXE3")
-         elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_AXE1")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_AXE2")
-         elif not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_AXE1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_AXE1")
-
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"):
-         if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SWORD2")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SWORD3")
-         elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SWORD1")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SWORD2")
-         elif not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SWORD1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SWORD1")
-
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):
-         if   pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SPEAR2")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SPEAR3")
-         elif pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SPEAR1")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SPEAR2")
-         elif not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PARADE_SPEAR1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_PARADE_SPEAR1")
-
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_CHARIOT"):
-        if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORMATION1")): iNewPromo = gc.getInfoTypeForString("PROMOTION_FORMATION1")
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-        if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORMATION2")): iNewPromo = gc.getInfoTypeForString("PROMOTION_FORMATION2")
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT"):
-        if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORMATION3")): iNewPromo = gc.getInfoTypeForString("PROMOTION_FORMATION3")
-      elif pUnitSource.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SIEGE"):
-        if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CHARGE")):     iNewPromo = gc.getInfoTypeForString("PROMOTION_CHARGE")
-
-      if iNewPromo > -1:
-        pUnitTarget.setHasPromotion(iNewPromo, True)
-        self.PAEInstanceFightingModifier.append((pUnitTarget.getOwner(),pUnitTarget.getID()))
-        if gc.getPlayer(pUnitTarget.getOwner()).isHuman():
-          CyInterface().addMessage(pUnitTarget.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_PROMOTION",(pUnitTarget.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pUnitTarget.getX(), pUnitTarget.getY(), True, True)
-
-
- 
-
-
-
-  # PAE Feature: Auswirkungen, wenn ein General stirbt
-  def doDyingGeneral (self, pUnit):
-        # Inits
-        iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-        iPlayer = pUnit.getOwner()
-        pPlayer = gc.getPlayer(iPlayer)
-        pPlot = gc.getMap().plot(pUnit.getX(), pUnit.getY())
-        iNumLeadersOnPlot = 1
-
-        # Anzahl der Generaele des Spielers
-        iLeader = 0
-        (loopUnit, iter) = pPlayer.firstUnit(False)
-        while loopUnit:
-          if loopUnit.getLeaderUnitType() > -1:
-            if loopUnit.getID() != pUnit.getID():
-              iLeader += 1
-          (loopUnit, iter) = pPlayer.nextUnit(iter, False)
-
-        # Units: bekommen Mercenary-Promo
-        iNumUnits = pPlot.getNumUnits()
-        # 1. Check Generals im Stack
-        i=0
-        for i in range(iNumUnits):
-          if pPlot.getUnit(i).getOwner() == iPlayer:
-            if pPlot.getUnit(i).getLeaderUnitType() > -1:
-              if pPlot.getUnit(i).getID() != pUnit.getID():
-                iNumLeadersOnPlot += 1
-        # 2. Vergabe der Promo
-        i=0
-        for i in range(iNumUnits):
-          if pPlot.getUnit(i).getOwner() == iPlayer:
-            if i % iNumLeadersOnPlot == 0:
-              pPlot.getUnit(i).setHasPromotion(iPromoMercenary, True)
-
-        # Cities: Stadtaufruhr
-        iTeam = pPlayer.getTeam()
-        pTeam = gc.getTeam(iTeam)
-        lCities = PyPlayer(iPlayer).getCityList()
-
-        iRange = len(lCities)
-        i=0
-        for i in range(iRange):
-
-          if 0 == self.myRandom(iLeader, None):
-            loopCity = pPlayer.getCity(lCities[i].getID())
-            iRand = 2 + self.myRandom(2, None)
-            loopCity.changeHurryAngerTimer (iRand)
-            # 2 bis 4 Runden Aufstand!
-            #iRand = 2 + self.myRandom(3, None)
-            # Stadt ohne Kulturgrenzen
-            #loopCity.setOccupationTimer (iRand)
-            if pPlayer.isHuman():
-               CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MAIN_CITY_RIOT",(loopCity.getName(),)), "AS2D_REVOLTSTART", 2, ",Art/Interface/Buttons/Promotions/Combat5.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,10", ColorTypes(7), loopCity.getX(), loopCity.getY(), True, True)
-
-        # PopUp
-        if pPlayer.isHuman():
-          popupInfo = CyPopupInfo()
-          popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT) # Text PopUp only!
-          popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_GENERALSTOD",(pUnit.getName(),)) )
-          popupInfo.addPopup(iPlayer)
-
-  # --------------------------------
-
-
-
-
-  # PAE Statthalter Tribut
-  def getPAEStatthalterTribut(self):
-    return self.PAEStatthalterTribut
-
-
-  # ++++++++ Names for Legions +++++++++++++++++
-  # Reusing names of fallen Legions
-  def setLegionName(self, pUnit):
-    pPlayer = gc.getPlayer(pUnit.getOwner())
-
-    LegioUsedNames = []
-    (loopUnit, iter) = pPlayer.firstUnit(False)
-    while loopUnit:
-      sName = loopUnit.getName()
-      if "Legio" in sName:
-        LegioUsedNames.append(re.sub(" \(.*?\)","",sName))
-      (loopUnit, iter) = pPlayer.nextUnit(iter, False)
-
-    LegioNames = ["Legio I Adiutrix","Legio I Germanica","Legio I Italica","Legio I Macriana Liberatrix","Legio I Minervia","Legio I Parthica","Legio II Adiutrix","Legio II Augusta","Legio II Italica","Legio II Parthica","Legio II Traiana Fortis","Legio III Augusta","Legio III Cyrenaica","Legio III Gallica","Legio III Italica","Legio III Parthica","Legio III Macedonica","Legio IV Flavia Felix","Legio IV Scythica","Legio V Alaudae","Legio V Macedonica","Legio VI Ferrata","Legio VI Victrix","Legio VII Claudia","Legio VII Gemina","Legio VIII Augusta","Legio IX Hispana","Legio X Fretensis","Legio X Equestris","Legio XI Claudia","Legio XII Fulminata","Legio XIII Gemina","Legio XIV Gemina","Legio XV Apollinaris","Legio XV Primigenia","Legio XVI Gallica","Legio XVI Flavia Firma","Legio XVII","Legio XVIII","Legio XIX","Legio XX Valeria Victrix","Legio XXI Rapax","Legio XXII Deiotariana","Legio XXII Primigenia","Legio XXX Ulpia Victrix","Legio I Iulia Alpina","Legio I Armeniaca","Legio I Flavia Constantia","Legio I Flavia Gallicana","Legio I Flavia Martis","Legio I Flavia Pacis","Legio I Illyricorum","Legio I Iovia","Legio I Isaura Sagitaria","Legio I Martia","Legio I Maximiana","Legio I Noricorum","Legio I Pontica","Legio II Iulia Alpina","Legio II Armeniaca","Legio II Brittannica","Legio II Flavia Virtutis","Legio II Herculia","Legio II Isaura","Legio III Iulia Alpina","Legio III Diocletiana","Legio III Flavia Salutis","Legio III Herculia","Legio III Isaura","Legio IV Italica","Legio IV Martia","Legio IV Parthica","Legio V Iovia","Legio V Parthica","Legio VI Gallicana","Legio VI Herculia","Legio VI Hispana","Legio VI Parthica","Legio XII Victrix","Legio Thebaica"]
-    iRange = len(LegioNames)
-    for i in range(iRange):
-      if LegioNames[i] not in LegioUsedNames:
-        pUnit.setName(LegioNames[i])
-        break
-  # --- end Legion Names
-
-
-  def doBlessUnits(self,iX,iY,iOwner,iUnitID):
-    pPlot = gc.getMap().plot(iX, iY)
-    pPlayer = gc.getPlayer(iOwner)
-    iPromo = gc.getInfoTypeForString("PROMOTION_BLESSED")
-    iCost = 100
-
-    iNumUnits = pPlot.getNumUnits()
-    for i in range (iNumUnits):
-      if pPlayer.getGold() < iCost: break
-      loopUnit = pPlot.getUnit(i)
-      if loopUnit.IsSelected():
-        if not loopUnit.isHasPromotion(iPromo):
-          # Gold abziehen
-          pPlayer.changeGold(-iCost)
-          # Formation geben
-          loopUnit.setHasPromotion(iPromo, True)
-          loopUnit.finishMoves()
-  # -----------------
