@@ -808,7 +808,7 @@ class CvEventManager:
 
     # Hire or Commission Mercenary Menu
     elif (iData1 >= 707 and iData1 <= 717):
-      PAE_Mercenaries.onModNetMessage(iData1, iData2, iData3, iData4, idata5)
+      PAE_Mercenaries.onModNetMessage(argsList)
 
     # Unit FORMATIONS ----------------------
     elif iData1 == 718:
@@ -2332,7 +2332,7 @@ class CvEventManager:
 
     # Reset InstanceModifier (Fighting Promotions, Hiring costs for mercenaries)
     PAE_Unit.PAEInstanceFightingModifier = []
-    PAE_Mercenaries.PAEInstanceHiringModifier = []
+    PAE_Mercenaries.PAEInstanceHiringModifier = {}
 
     # --- Automated trade routes for HI (Boggy)
     if pPlayer.isHuman():
@@ -2388,22 +2388,17 @@ class CvEventManager:
         techs = []
         iRange = gc.getNumTechInfos()
         for iTech in range(iRange):
-                if pPlayer.canResearch(iTech, False):
-                    iCost = pTeam.getResearchLeft(iTech)
-                    if iCost > 0:
-                        techs.append((-iCost, iTech))
+            if pPlayer.canResearch(iTech, False):
+                iCost = pTeam.getResearchLeft(iTech)
+                if iCost > 0:
+                    techs.append((-iCost, iTech))
         if techs:
-                techs.sort()
-                iTech = techs[0][1]
-                pTeam.changeResearchProgress(iTech, 1, iPlayer)
-                pPlayer.clearResearchQueue()
-                #pPlayer.pushResearch (iTech, 1)
+            techs.sort()
+            iTech = techs[0][1]
+            pTeam.changeResearchProgress(iTech, 1, iPlayer)
+            pPlayer.clearResearchQueue()
+            #pPlayer.pushResearch (iTech, 1)
 
-
-# +++++ AI Cities defend with bombardment of located units (Stadtverteidigung/Stadtbelagerung)
-# +++++ AI Hires Units (mercenaries)
-    if not pPlayer.isHuman():
-      PAE_City.AI_defendAndHire(pPlayer)
 
 # +++++ STACKs ---------------------------------------------------------
 
@@ -8326,22 +8321,19 @@ class CvEventManager:
     if pCity.getFood() < 0: pCity.setFood(0)
 
     # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stadt wird Kolonie/Provinz (Zeile 3575)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    #
 
 
   def onCityDoTurn(self, argsList):
     'City Production'
     pCity = argsList[0]
     iPlayer = argsList[1]
-    # Fehlerhafter iPlayer Wert in args?
-    iPlayer = pCity.getOwner()
+
     pPlayer = gc.getPlayer(iPlayer)
     iTeam = pPlayer.getTeam()
     pTeam = gc.getTeam(iTeam)
     pCityPlot = pCity.plot()
     popCity = pCity.getPopulation()
-    iCityFoodDifference = pCity.foodDifference(True)
-    iCityUnits = pCityPlot.getNumDefenders(iPlayer)
 
     CvAdvisorUtils.cityAdvise(pCity, iPlayer)
 
@@ -8354,128 +8346,18 @@ class CvEventManager:
     # PAE Provinzcheck
     bCheckCityState = False
 
+    # +++++ AI Cities defend with bombardment of located units (Stadtverteidigung/Stadtbelagerung)
+    # +++++ AI Hires Units (mercenaries)
+    if not pPlayer.isHuman():
+        PAE_City.AI_defendAndHire(pCity, iPlayer)
+
     # MESSAGES: city growing
     if not gc.getGame().isHotSeat():
-     if pPlayer.isHuman():
-        PAE_City.doMessageCityGrowing(pCity)
+       if pPlayer.isHuman():
+            PAE_City.doMessageCityGrowing(pCity)
 
     # PAE V: Stadtversorgung / City supply: Troubles/Starvation because of unit maintenance in city (food)
-
-    # NEW: Unit supply: Foodproduction * 2 (capital: *3)
-    #if pCity.isCapital(): iFactor = 3
-    #else: iFactor = 2
-    iFactor = 1
-    iMaintainUnits = iCityUnits - pCity.getYieldRate(0) * iFactor
-
-    # ***TEST***
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("YieldRate " + pCity.getName(),pCity.getYieldRate(0))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iCityUnits",iCityUnits)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iMaintainUnits",iMaintainUnits)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-    # OLD: 1 Pop serves 2 Units
-    # More units than pop: 2 units consume 1 food
-    # Units - 2*Pop soll > sein als 2x FoodDiff
-    #iFoodConsumption = (popCity * 2 - iCityUnits) / 2
-    #iMaintainUnits = popCity * 2 + iCityFoodDifference * 2 - iCityUnits
-    # Food consumption / city supply
-    #if popCity > 1 and iFoodConsumption < 0: pCity.changeFood(iFoodConsumption)
-    if iMaintainUnits > 0:
-
-     # ab PAE Patch 3: nur HI
-     # Handicap: 0 (Settler) - 8 (Deity) ; 5 = King
-     if gc.getGame().getHandicapType() < 5 or pPlayer.isHuman():
-
-      # choose units
-      # calculate food supply from SUPPLY_WAGON
-      iExtraSupply = 0
-      lUnitsAll = []
-      iRange = pCityPlot.getNumUnits()
-      for i in range (iRange):
-          if pCityPlot.getUnit(i).getUnitCombatType() != -1:
-            if pCityPlot.getUnit(i).getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-               sSup =  CvUtil.getScriptData(pCityPlot.getUnit(i), ["s","t"])
-               if sSup != "":
-                 iExtraSupply = int(sSup)
-                 if iExtraSupply < iMaintainUnits:
-                   iMaintainUnits -= iExtraSupply
-                   iExtraSupply = 0
-                 else:
-                   iExtraSupply -= iMaintainUnits
-                   iMaintainUnits = 0
-                 # set new supply tickets
-                 CvUtil.addScriptData(pCityPlot.getUnit(i), "s", iExtraSupply)
-            else:
-              lUnitsAll.append(pCityPlot.getUnit(i))
-
-          if iMaintainUnits == 0: break
-
-      if iMaintainUnits > 0 and len(lUnitsAll) > 0:
-        lUnits = []
-        while iMaintainUnits > 0 and len(lUnitsAll) > 0:
-          iRand = self.myRandom(len(lUnitsAll), None)
-          lUnits.append(lUnitsAll[iRand])
-          lUnitsAll.remove(lUnitsAll[iRand])
-          iMaintainUnits -= 1
-
-
-        # harm units
-        if len(lUnits) > 0:
-
-          # Betrifft Stadt
-          # 20%: -1 Pop
-          # 10%: FEATURE_SEUCHE
-          iRand = self.myRandom(10, None)
-          # - 1 Pop
-          if iRand < 2 and popCity > 1:
-            pCity.changePopulation(-1)
-            bCheckCityState = True
-            if pPlayer.isHuman():
-              CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_UNITS_STARVATION_2",(pCity.getName(),(pCity.getYieldRate(0) * iFactor - iCityUnits)*(-1))), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-          # Seuche
-          elif iRand == 2:
-            pCityPlot.setFeatureType(gc.getInfoTypeForString("FEATURE_SEUCHE"),1)
-            if pPlayer.isHuman():
-              CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_UNITS_STARVATION_3",(pCity.getName(),(pCity.getYieldRate(0) * iFactor - iCityUnits)*(-1))), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-          # less food
-          else:
-            # Warnung und -20% Food Storage
-            iFoodStoreChange = pCity.getFood() / 100 * 20
-            if pCity.getFood() > 10: pCity.changeFood(-iFoodStoreChange)
-            if pPlayer.isHuman():
-              CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_UNITS_STARVATION_1",(pCity.getName(),(pCity.getYieldRate(0) * iFactor - iCityUnits)*(-1))), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-          # ------
-
-          # Betrifft Einheiten
-          iJumpedOut = 0
-          for unit in lUnits:
-             # Unit nicht mehr killen (Weihnachtsbonus :D ab 7.12.2012)
-             iDamage = unit.getDamage()
-             if iDamage < 70:
-               unit.changeDamage(30,False)
-               if gc.getPlayer(unit.getOwner()).isHuman():
-                   CyInterface().addMessage(unit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_NOSUPPLY_CITY",(pCity.getName(),unit.getName(),30)), None, 2, None, ColorTypes(12), unit.getX(), unit.getY(), True, True)
-             else:
-               iJumpedOut += 1
-               if unit.getDamage() < 85: unit.setDamage(85,unit.getOwner())
-               unit.jumpToNearestValidPlot()
-               if gc.getPlayer(unit.getOwner()).isHuman():
-                 CyInterface().addMessage(unit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_UNITS_STARVATION_4",(pCity.getName(),unit.getName())), None, 2, unit.getButton(), ColorTypes(12), unit.getX(), unit.getY(), True, True)
-
-          # Wenn die Stadt durch Buildings stark heilt
-          if iJumpedOut == 0:
-               # Chance rauszuwerfen 33%
-               if 1 == self.myRandom(3, None):
-                 Einheiten = 1 + self.myRandom(len(lUnits), None)
-                 while unit in lUnits and Einheiten > 0:
-                   Einheiten -= 1
-                   iRandUnit = self.myRandom(len(lUnits), None)
-
-                   lUnits[iRandUnit].jumpToNearestValidPlot()
-                   if pPlayer.isHuman():
-                     CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_UNITS_STARVATION_4",(pCity.getName(),lUnits[iRandUnit].getName())), "AS2D_STRIKE", 2, lUnits[iRandUnit].getButton(), ColorTypes(7), lUnits[iRandUnit].getX(), lUnits[iRandUnit].getY(), True, True)
-                    # Einheit aus dem Array werfen
-                   lUnits.remove(lUnits[iRandUnit])
-
+    PAE_City.doUnitSupply(pCity, iPlayer)
 
     # ++++++++++++++++++++++++++++++++++++++++
     # Buildings with prereq bonus gets checked : remove chance 10%
@@ -9150,143 +9032,6 @@ class CvEventManager:
 
     # City Rebellion
     bRebellion = False
-#    iNumCities = gc.getPlayer(iPlayer).getNumCities()
-#    iDistance = plotDistance(gc.getPlayer(iPlayer).getCapitalCity().getX(), gc.getPlayer(iPlayer).getCapitalCity().getY(), pCity.getX(), pCity.getY())
-#
-#    # Ab Klassik, wo es eine Hauptstadt geben sollte!
-#    if pCity.getPopulation() > 4 and gc.getGame().getGameTurn() % 4 == 0 and ( gc.getPlayer(iPlayer).getCurrentEra() >= 3 and iDistance > 10 or (pCity.getOriginalOwner() != iPlayer and pCity.getGameTurnAcquired() + 100 > gc.getGame().getGameTurn() ) ):
-#     iBuilding1 = gc.getInfoTypeForString('BUILDING_PROVINZPALAST')
-#     if not (pCity.isHasBuilding(iBuilding1) or pCity.isCapital()):
-#
-#      pPlot = gc.getMap().plot(pCity.getX(), pCity.getY())
-##      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pCity.getName(),iDistance)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-#
-#      iChanceOfRebellion = pPlayer.getNumCities() * 2
-#
-#      iChanceOfRebellion += iDistance * 2
-#
-#      if pCity.isHasBuilding(gc.getInfoTypeForString('BUILDING_COURTHOUSE')): iChanceOfRebellion -= 10
-#
-#      iChanceOfRebellion -= pCity.getNumNationalWonders() * 10
-#
-#      iChanceOfRebellion -= pCity.getNumWorldWonders() * 10
-#
-#      iChanceOfRebellion += ( pCity.unhappyLevel(0) - pCity.happyLevel() ) * 10
-#
-#      iChanceOfRebellion += pPlayer.getAnarchyTurns() * 10
-#
-#      iChanceOfRebellion += pCity.foodDifference(1) * 10
-#
-#      iChanceOfRebellion -= pPlot.getNumUnits() * 10
-#
-#      if not pCity.isConnectedToCapital(iPlayer): iChanceOfRebellion += 30
-#
-#      if pCity.getOccupationTimer() > 0: iChanceOfRebellion += pCity.getOccupationTimer() * 10
-#
-#      if gc.getPlayer(iPlayer).getCapitalCity().getOccupationTimer() > 0: iChanceOfRebellion += pCity.getOccupationTimer() * 20
-#
-#      if not pCity.isHasReligion(pPlayer.getStateReligion()): iChanceOfRebellion += 20
-#
-      # Erbrecht 1, Militaerstaat 2, Staatseigen 18: +1
-      # Dezentralisierung 16: +2
-      # Repraes 3, Wahlrecht 4: -2
-      # Erbrecht + Senat 9 : +1
-      # Wahlrecht + Koenigl. Hof 8: +1
-      # Organ. Reli 24 + Senat: +1
-      # Freie Buerger 14 + Staatseigentum 18: +1
-      # Freie Buerger + (Erbrecht or Militaerstaat): +1
-      # Freie Buerger + (Fr. Markt 17 or Handelszentren 19): -1
-#      if pPlayer.isCivic(1)  or   pPlayer.isCivic(2): iChanceOfRebellion += 10
-#      if pPlayer.isCivic(16): iChanceOfRebellion += 20
-#      if pPlayer.isCivic(18): iChanceOfRebellion += 10
-#      if pPlayer.isCivic(3)  or   pPlayer.isCivic(4) : iChanceOfRebellion -= 20
-#      if pPlayer.isCivic(1)  and  pPlayer.isCivic(9) : iChanceOfRebellion += 10
-#      if pPlayer.isCivic(4)  and  pPlayer.isCivic(8) : iChanceOfRebellion += 10
-#      if pPlayer.isCivic(24) and  pPlayer.isCivic(9) : iChanceOfRebellion += 10
-#      if pPlayer.isCivic(14) and  pPlayer.isCivic(18): iChanceOfRebellion += 10
-#      if pPlayer.isCivic(14) and (pPlayer.isCivic(1)  or pPlayer.isCivic(2)) : iChanceOfRebellion += 10
-#      if pPlayer.isCivic(14) and (pPlayer.isCivic(17) or pPlayer.isCivic(19)): iChanceOfRebellion -= 20
-#
-#      if pPlayer.getCommercePercent(0) > 50: iChanceOfRebellion += pPlayer.getCommercePercent(0) - 50
-#
-#      # da nur jede 4te runde geprueft wird, etwas verstaerken
-#      iChanceOfRebellion = iChanceOfRebellion * 3
-#
-#      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Chance of Rebellion",iChanceOfRebellion)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-#
-#      iRand = self.myRandom(1000, "City rebellion")
-#
-##      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Rebellion",iRand)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-#
-#
-#      if iRand < iChanceOfRebellion:
-#        bRebellion = True
-#
-#        # 2te ueberpruefung treue, loyale Einheiten gegenueber unzufriedene Bevoelkerung
-#        iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
-#        iLoyalUnits = 0
-#        for iUnit in range (pPlot.getNumUnits()):
-#          # Promotion Loyality = Nr 0
-#          if pPlot.getUnit(iUnit).isHasPromotion(iPromoLoyal): iLoyalUnits += 1
-#
-#        if iLoyalUnits * 2 > pCity.unhappyLevel(0):
-#
-#          pCity.setOccupationTimer(int(pCity.unhappyLevel(0)/2))
-#          pCity.changePopulation(-1)
-#          if gc.getPlayer(iPlayer).isHuman():
-#            CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_REBELLION_3",(pCity.getName(),pCity.getName())), "AS2D_REVOLTSTART", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-#
-#        else:
-######### Stadt laeuft ueber
-#          if pCity.getOriginalOwner() != iPlayer:
-#            if gc.getTeam(iPlayer).isAtWar(gc.getPlayer(pCity.getOriginalOwner()).getTeam()):
-#              iNewOwner = pCity.getOriginalOwner()
-#            elif gc.getGame().countCivPlayersAlive() < 18 or gc.getPlayer(pCity.getOriginalOwner()).isAlive():
-#              iNewOwner = pCity.getOriginalOwner()
-#            else:
-#              iNewOwner = gc.getBARBARIAN_PLAYER()
-#          else:
-#            iNewOwner = gc.getBARBARIAN_PLAYER()
-#
-#          if gc.getPlayer(iPlayer).isHuman():
-#            if iNewOwner == gc.getBARBARIAN_PLAYER():
-#              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_REBELLION",(pCity.getName(),pCity.getName())), "AS2D_THEIRDECLAREWAR", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-#              popupInfo = CyPopupInfo()
-#              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-#              popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_REBELLION",(pCity.getName(),pCity.getName())))
-#              popupInfo.addPopup(iPlayer)
-#            elif iNewOwner == pCity.getOriginalOwner():
-#              CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_REBELLION_2",(pCity.getName(),gc.getPlayer(iNewOwner).getCivilizationAdjective(1))), "AS2D_THEIRDECLAREWAR", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-#              popupInfo = CyPopupInfo()
-#              popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
-#              popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_CITY_REBELLION_2",(pCity.getName(),gc.getPlayer(iNewOwner).getCivilizationAdjective(1))))
-#              popupInfo.addPopup(iPlayer)
-#
-#          # Goldvergabe
-#          if gc.getPlayer(iPlayer).getNumCities() > 0:
-#            iGold = int(gc.getPlayer(iPlayer).getGold() / gc.getPlayer(iPlayer).getNumCities())
-#            gc.getPlayer(iPlayer).changeGold(-iGold)
-#            gc.getPlayer(iNewOwner).changeGold(iGold)
-#            if gc.getPlayer(iNewOwner).isHuman():
-#              CyInterface().addMessage(iNewOwner, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GOLD_1",("",iGold)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-#            elif gc.getPlayer(iPlayer).isHuman():
-#              CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GOLD_2",("",iGold)), None, 2, None, ColorTypes(7), 0, 0, False, False)
-#
-#
-#          PAE_City.doRenegadeCity(pCity, iNewOwner, -1, -1, -1)
-#
-#          # Rebellen oder Freiheitskaempfer entstehen lassen
-#          pCity = pPlot.getPlotCity()
-#          if gc.getGame().getCurrentEra() >= 3: iUnitType = gc.getInfoTypeForString('UNIT_FREEDOM_FIGHTER')
-#          else: iUnitType = gc.getInfoTypeForString('UNIT_REBELL')
-#
-#          for i in range(pCity.getPopulation()*2):
-#            gc.getPlayer(iNewOwner).initUnit(iUnitType, pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
-#          iNewPop = int(pCity.getPopulation() / 2)
-#          if iNewPop < 1: iNewPop = 1
-#          pCity.setPopulation(iNewPop)
-# --- Ende city rebellion
-
 ##### City Revolts / Stadt Revolten
 
     if pCity.getOccupationTimer() > 0: bCityIsInRevolt = True

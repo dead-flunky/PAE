@@ -1271,67 +1271,29 @@ def doAutomatedRanking(pWinner, pLoser):
             for iPromo, iChance in lPromo:
                 if not pWinner.isHasPromotion(iPromo):
                     iNewRank = iPromo
-
-            #~ if pWinner.isHasPromotion(iCombat5):
-                #~ iChance = 2
-                #~ iNewRank = iCombat6
-            #~ elif pWinner.isHasPromotion(iCombat4):
-                #~ iChance = 2
-                #~ iNewRank = iCombat5
-            #~ elif pWinner.isHasPromotion(iCombat3):
-                #~ iChance = 2
-                #~ iNewRank = iCombat4
-            #~ elif pWinner.isHasPromotion(iCombat2):
-                #~ iChance = 3
-                #~ iNewRank = iCombat3
-            #~ elif pWinner.isHasPromotion(iCombat1):
-                #~ iChance = 4
-                #~ iNewRank = iCombat2
-            #~ else:
-                #~ iChance = 5
-                #~ iNewRank = iCombat1
+                    break
 
             # PAE for better AI: always gets it by 50%
             if not gc.getPlayer(pWinner.getOwner()).isHuman(): iChance = 50
 
             if iNewRank == iCombat1 or iNewRank == iCombat2 or pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
-              if iChance > myRandom(100) and not pWinner.isHasPromotion(iCombat6):
-                if (iPlayer,pWinner.getID()) not in PAEInstanceFightingModifier:
-                    PAEInstanceFightingModifier.append((iPlayer,pWinner.getID()))
-                    pWinner.setHasPromotion(iNewRank, True)
-                    if gc.getPlayer(iPlayer).isHuman():                                                                # unitX.getDescription()
-                        CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANKING",(pWinner.getName(),gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
+                if iChance > myRandom(100) and not pWinner.isHasPromotion(iCombat6):
+                    if (iPlayer,pWinner.getID()) not in PAEInstanceFightingModifier:
+                        PAEInstanceFightingModifier.append((iPlayer,pWinner.getID()))
+                        pWinner.setHasPromotion(iNewRank, True)
+                        if gc.getPlayer(iPlayer).isHuman():                                                                # unitX.getDescription()
+                            CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANKING",(pWinner.getName(),gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
 
-              # War weariness parallel ab Elite
-              elif pWinner.isHasPromotion(iCombat5) and not pWinner.isHasPromotion(iNeg5):
-                if (iPlayer,pWinner.getID()) not in PAEInstanceFightingModifier:
-                    iNewRank = -1
-                    for iPromo, iChance in lNeg:
-                        if not pWinner.isHasPromotion(iPromo):
-                            iNewRank = iPromo
-                  #~ iChance = 0
-                  #~ if pWinner.isHasPromotion(iNeg4):
-                    #~ iChance = 2
-                    #~ iNewRank = iNeg5
-                  #~ elif pWinner.isHasPromotion(iNeg3):
-                    #~ iChance = 2
-                    #~ iNewRank = iNeg4
-                  #~ elif pWinner.isHasPromotion(iNeg2):
-                    #~ iChance = 2
-                    #~ iNewRank = iNeg3
-                  #~ elif pWinner.isHasPromotion(iNeg1):
-                    #~ iChance = 1
-                    #~ iNewRank = iNeg2
-                  #~ else:
-                    #~ iChance = 1
-                    #~ iNewRank = iNeg1
-
-                    if iNewRank != -1:
-                        if iChance > myRandom(100):
-                            PAEInstanceFightingModifier.append((iPlayer,pWinner.getID()))
-                            pWinner.setHasPromotion(iNewRank, True)
-                            if gc.getPlayer(iPlayer).isHuman():
-                                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_WAR_WEARINESS",(pWinner.getName(),gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_REBELLION", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(12), pWinner.getX(), pWinner.getY(), True, True)
+                # War weariness parallel ab Elite
+                elif pWinner.isHasPromotion(iCombat5) and not pWinner.isHasPromotion(iNeg5):
+                    if (iPlayer,pWinner.getID()) not in PAEInstanceFightingModifier:
+                        for iPromo, iChance in lNeg:
+                            if not pWinner.isHasPromotion(iPromo):
+                                if iChance > myRandom(100):
+                                    PAEInstanceFightingModifier.append((iPlayer,pWinner.getID()))
+                                    pWinner.setHasPromotion(iPromo, True)
+                                    if gc.getPlayer(iPlayer).isHuman():
+                                        CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_WAR_WEARINESS",(pWinner.getName(),gc.getPromotionInfo(iPromo).getDescription())), "AS2D_REBELLION", 2, gc.getPromotionInfo(iPromo).getButton(), ColorTypes(12), pWinner.getX(), pWinner.getY(), True, True)
 
 
 

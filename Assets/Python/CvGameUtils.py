@@ -2606,7 +2606,7 @@ class CvGameUtils:
       # ID 706 PopUp Renegade City (keep or raze)
 
       # PopUp Hire/Assign Mercenaries (City Button)
-      if (iData1 == 707):
+      if iData1 == 707:
         return CyTranslator().getText("TXT_KEY_HELP_MERCENARIES_CITYBUTTON",())
 
       # ID 708-715 Hire/Assign Mercenaries

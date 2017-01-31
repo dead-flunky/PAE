@@ -1277,48 +1277,48 @@ def popupRenegadeCity(argsList):
 def popupMercenariesMain(argsList):
         # iData1 (cityID), iData2 (iPlayer)
         iButtonId = argsList[0]
-        iData1 = argsList[1]
-        iData2 = argsList[2]
-        iData3 = argsList[3]
-        iData4 = argsList[4]
+        iCity = argsList[1]
+        iPlayer = argsList[2]
+        #~ iData3 = argsList[3]
+        iButtonCancel = argsList[4]
 
         # Hire (0) or Assign (1) mercenaries
-        if iButtonId != iData4:
-          if iButtonId == 0: CyMessageControl().sendModNetMessage( 708, iData1, -1, -1, iData2 )
-          elif iButtonId == 1: CyMessageControl().sendModNetMessage( 709, -1, -1, -1, iData2 )
+        if iButtonId != iButtonCancel:
+          if iButtonId == 0: CyMessageControl().sendModNetMessage( 708, iCity, -1, -1, iPlayer )
+          elif iButtonId == 1: CyMessageControl().sendModNetMessage( 709, -1, -1, -1, iPlayer )
 
 def popupMercenariesHire(argsList):
         # iData1 (cityID), iData2 = iUnitClassTyp, iData3 = iPlayer
         # iButtonID = iUnitClassTyp
         iButtonId = argsList[0]
-        iData1 = argsList[1]
+        iCity = argsList[1]
         iData2 = argsList[2]
-        iData3 = argsList[3]
-        iData4 = argsList[4]
+        iPlayer = argsList[3]
+        iButtonCancel = argsList[4]
 
-        # back button
-        if iButtonId == iData4-1 and iData2 != -1: iButtonId = -1
+        # no back button between hire and assign
+        # if iButtonId == iButtonCancel-1 and iData2 != -1: iButtonId = -1
 
         # Archers (0), Spearmen (1), Melee (2), Eles (3), Ships (4)
-        if iButtonId != iData4:
-          CyMessageControl().sendModNetMessage( 708, iData1, iButtonId, -1, iData3 )
+        if iButtonId != iButtonCancel:
+          CyMessageControl().sendModNetMessage( 708, iCity, iButtonId, -1, iPlayer )
 
 def popupMercenariesHireUnits(argsList):
         # iData1 (cityID), iData2 = iUnitClassTyp, iData3 = iPlayer
         # iButtonID = Unit
         iButtonId = argsList[0]
-        iData1 = argsList[1]
-        iData2 = argsList[2]
-        iData3 = argsList[3]
-        iData4 = argsList[4]
+        iCity = argsList[1]
+        iTypeButton = argsList[2]
+        iPlayer = argsList[3]
+        iButtonCancel = argsList[4]
 
         # back button
-        if iButtonId == iData4-1: iData2 = -1
+        if iButtonId == iButtonCancel-1: iTypeButton = -1
 
-        # iData2 = Archers (0), Spearmen (1), Melee (2), Eles (3), Ships (4)
+        # iData2 = Archers (0), Melee (1), Mounted (2), Eles (3), Ships (4)
         # iButtonID = Unit
-        if iButtonId != iData4:
-          CyMessageControl().sendModNetMessage( 708, iData1, iData2, iButtonId, iData3 )
+        if iButtonId != iButtonCancel:
+          CyMessageControl().sendModNetMessage( 708, iCity, iTypeButton, iButtonId, iPlayer )
 
 # Assign mercenaries ------
 
