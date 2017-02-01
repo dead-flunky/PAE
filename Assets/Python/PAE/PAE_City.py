@@ -1018,7 +1018,7 @@ def doUnitSupply(pCity, iPlayer):
           if iMaintainUnits == 0: break
 
       if iMaintainUnits > 0 and len(lUnitsAll) > 0:
-          lUnits = sample(lUnitsAll, iMaintainUnits)
+          lUnits = random.sample(lUnitsAll, iMaintainUnits)
           # harm units
           if len(lUnits) > 0:
               # Betrifft Stadt
@@ -1066,7 +1066,7 @@ def doUnitSupply(pCity, iPlayer):
                   # Chance rauszuwerfen 33%
                   if 1 == myRandom(3):
                       Einheiten = 1 + myRandom(len(lUnits))
-                      lUnits2 = sample(lUnits, Einheiten)
+                      lUnits2 = random.sample(lUnits, Einheiten)
                       for pUnit in lUnits2:
                           pUnit.jumpToNearestValidPlot()
                           if pPlayer.isHuman():
