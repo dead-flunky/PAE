@@ -564,8 +564,8 @@ def do684(iWinner, iLoser, iGold):
         if pWinnerTeam.isAtWar(iTeam) and not gc.getTeam(iTeam).isVassal(pLoserTeam.getID()): gc.getPlayer(i).AI_changeAttitudeExtra(iLoser,1)
 
   else:
-    if pLoserTeam.isAVassal(): PAE_Vassal.VassalUnsetHegemon(iData3) # Vasall verliert seinen Hegemon
-    PAE_Vassal.VassalHegemonGetsVassal(iLoser) # Hegemon verliert seine Vasallen
+    if pLoserTeam.isAVassal(): VassalUnsetHegemon(iData3) # Vasall verliert seinen Hegemon
+    VassalHegemonGetsVassal(iLoser) # Hegemon verliert seine Vasallen
     pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
     pLoser.changeGold(iGold)
     pWinner.changeGold(iGold * (-1))
@@ -613,8 +613,8 @@ def do685(iWinner, iLoser, iGold):
 
   # Vasall werden
   else:
-    if pLoserTeam.isAVassal(): PAE_Vassal.VassalUnsetHegemon(iLoser) # Vasall verliert seinen Hegemon
-    PAE_Vassal.VassalHegemonGetsVassal(iLoser) # Hegemon verliert seine Vasallen
+    if pLoserTeam.isAVassal(): VassalUnsetHegemon(iLoser) # Vasall verliert seinen Hegemon
+    VassalHegemonGetsVassal(iLoser) # Hegemon verliert seine Vasallen
     pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
     pWinner.changeGold(iGold)
     pLoser.changeGold(iGold * (-1))

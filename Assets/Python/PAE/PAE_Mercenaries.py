@@ -1240,75 +1240,70 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Plots",len(CivPlots))), None, 2, None, ColorTypes(10), 0, 0, False, False)
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Plots",int(sFaktor[1]))), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
+# 2) Mercenaries
+# PAE Better AI: AI has no cost malus when hiring units
 def AI_doHireMercenaries(iPlayer, pCity, iMaintainUnits, iCityUnits, iEnemyUnits):
-
     pPlayer = gc.getPlayer(iPlayer)
-
-    # 2) Mercenaries
-    # PAE Better AI: AI has no cost malus when hiring units
     # Units amount 1:3
     iMultiplikator = 3
     if iMaintainUnits > 0 and iCityUnits * iMultiplikator <= iEnemyUnits and pPlayer.getGold() > 100:
         if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_SOELDNERPOSTEN")):
-          # Check neighbours
-          lNeighbors = []
-          iRange = gc.getMAX_PLAYERS()
-          for iLoopPlayer in range (iRange):
-            if pCity.isConnectedToCapital(iLoopPlayer):
-              lNeighbors.append(gc.getPlayer(iLoopPlayer))
+            # Check neighbours
+            lNeighbors = []
+            iRange = gc.getMAX_PLAYERS()
+            for iLoopPlayer in range (iRange):
+                if pCity.isConnectedToCapital(iLoopPlayer):
+                    lNeighbors.append(gc.getPlayer(iLoopPlayer))
+            if len(lNeighbors) > 0:
+                lUnits = doHireMercenariesINIT(pPlayer, lNeighbors)
+ 
+                # KI zahlt die Haelfte und kein HiringModifierPerTurn
+                iExtraMultiplier = 0.5
+                bCivicSoeldner = pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_SOELDNERTUM"))
 
-          if len(lNeighbors) > 0:
-              lUnits = doHireMercenariesINIT(pPlayer, lNeighbors)
+                lArchers = lUnits[0]
+                lList = []
+                iMinCost = -1
+                for eUnit in lArchers:
+                    iCost = getCost(eUnit, 0, bCivicSoeldner, iExtraMultiplier)
+                    if iCost < iMinCost or iMinCost == -1:
+                        iMinCost = iCost
+                    lList.append([eUnit, iCost])
+                lArchers = lList
 
-              # KI zahlt die Haelfte und kein HiringModifierPerTurn
-              iExtraMultiplier = 0.5
+                lOtherUnits = lUnits[1]+lUnits[2]+lUnits[3]
+                lList = []
+                for eUnit in lOtherUnits:
+                    iCost = getCost(eUnit, 0, bCivicSoeldner, iExtraMultiplier)
+                    if iCost < iMinCost or iMinCost == -1:
+                        iMinCost = iCost
+                    lList.append([eUnit, iCost])
+                lOtherUnits = lList
 
-              bCivicSoeldner = pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_SOELDNERTUM"))
+                # choose units
+                iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
+                # AI hires max 2 - 4 units per city and turn
+                iHiredUnits = 0
+                iHiredUnitsMax = 2 + myRandom(3)
+                while iMaintainUnits > 0 and pPlayer.getGold() > 50 and pPlayer.getGold() > iMinCost and iHiredUnits < iHiredUnitsMax and iCityUnits * iMultiplikator < iEnemyUnits:
+                    eUnit = -1
+                    iGold = pPlayer.getGold()
 
-              lArchers = lUnits[0]
-              lList = []
-              iMinCost = -1
-              for eUnit in lArchers:
-                  iCost = getCost(eUnit, 0, bCivicSoeldner, iExtraMultiplier)
-                  if iCost < iMinCost or iMinCost == -1:
-                    iMinCost = iCost
-                  lList.append([eUnit, iCost])
-              lArchers = lList
-
-              lOtherUnits = lUnits[1]+lUnits[2]+lUnits[3]
-              lList = []
-              for eUnit in lOtherUnits:
-                  iCost = getCost(eUnit, 0, bCivicSoeldner, iExtraMultiplier)
-                  if iCost < iMinCost or iMinCost == -1:
-                    iMinCost = iCost
-                  lList.append([eUnit, iCost])
-              lOtherUnits = lList
-
-
-              # choose units
-              iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-              # AI hires max 2 - 4 units per city and turn
-              iHiredUnits = 0
-              iHiredUnitsMax = 2 + myRandom(3)
-              while iMaintainUnits > 0 and pPlayer.getGold() > 50 and pPlayer.getGold() > iMinCost and iHiredUnits < iHiredUnitsMax and iCityUnits * iMultiplikator < iEnemyUnits:
-                  eUnit = -1
-                  iGold = pPlayer.getGold()
-
-                  iTry = 0
-                  while iTry < 3:
-                    if myRandom(10) < 7:
-                        eUnit, iCost = lArchers[myRandom(len(lArchers))]
-                    else:
-                        eUnit, iCost = lOtherUnits[myRandom(len(OtherUnits))]
-                    if iCost <= 0: iCost = 50
-                    if iCost <= iGold:
-                        if doHireMercenary(iPlayer, eUnit, 0, bCivicSoeldner, pCity, 1, iExtraMultiplier):
-                            iMaintainUnits -= 1
-                            iCityUnits += 1
-                            iHiredUnits += 1
-                        break
-                    else:
-                        iTry += 1
+                    iTry = 0
+                    while iTry < 3:
+                        if myRandom(10) < 7:
+                            eUnit, iCost = lArchers[myRandom(len(lArchers))]
+                        else:
+                            eUnit, iCost = lOtherUnits[myRandom(len(OtherUnits))]
+                        if iCost <= 0: iCost = 50
+                        if iCost <= iGold:
+                            if doHireMercenary(iPlayer, eUnit, 0, bCivicSoeldner, pCity, 1, iExtraMultiplier):
+                                iMaintainUnits -= 1
+                                iCityUnits += 1
+                                iHiredUnits += 1
+                            break
+                        else:
+                            iTry += 1
 
 
 
@@ -1439,14 +1434,14 @@ def doHireMercenariesINIT(pPlayer, lNeighbors):
       lMounted = lEarlyMounted
 
     # Archers: Peltist (Steinschleuderer?) geht immer
-    lUnits = lArchers[:1]+getAvailableUnits(lNeighbors, lArchers[1:])
+    lTemp = lArchers[:1]+getAvailableUnits(lNeighbors, lArchers[1:])
     ## ab Plaenkler duerfen alle Kompositbogis
-    if not lArchers[3] in lUnits:
+    if not lArchers[3] in lTemp:
       for pNeighbor in lNeighbors:
         if gc.getTeam(pNeighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")):
-          lUnits.append(lArchers[3])
+          lTemp.append(lArchers[3])
           break
-    lArchers = lUnits
+    lArchers = lTemp
     # Melee: Speer und Axt bzw. Schildtraeger und Speerkaempfer gehen immer
     lInfantry = lInfantry[:2]+getAvailableUnits(lNeighbors, lInfantry[2:])
     lMounted = getAvailableUnits(lNeighbors, lMounted)
@@ -1456,3 +1451,5 @@ def doHireMercenariesINIT(pPlayer, lNeighbors):
     lUnits = [
       lArchers, lInfantry, lMounted, lElephants, lShips
     ]
+    
+    return lUnits

@@ -2,6 +2,7 @@
 from CvPythonExtensions import *
 import random
 
+import CvUtil
 ### Defines
 gc = CyGlobalContext()
 
@@ -1268,16 +1269,18 @@ def doAutomatedRanking(pWinner, pLoser):
         lNeg = [(iNeg1, 10),(iNeg2, 10),(iNeg3, 20),(iNeg4, 20),(iNeg5, 20)]
 
         if not (pWinner.isHasPromotion(iCombat3) and pLoser.getOwner() == gc.getBARBARIAN_PLAYER()):
-            for iPromo, iChance in lPromo:
-                if not pWinner.isHasPromotion(iPromo):
-                    iNewRank = iPromo
-                    break
-
+            iNewRank = -1
+            if not pWinner.isHasPromotion(iCombat6):
+                for iPromo, iChance in lPromo:
+                    if not pWinner.isHasPromotion(iPromo):
+                        iNewRank = iPromo
+                        break
+            
             # PAE for better AI: always gets it by 50%
             if not gc.getPlayer(pWinner.getOwner()).isHuman(): iChance = 50
 
             if iNewRank == iCombat1 or iNewRank == iCombat2 or pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
-                if iChance > myRandom(100) and not pWinner.isHasPromotion(iCombat6):
+                if iNewRank != -1 and iChance > myRandom(100):
                     if (iPlayer,pWinner.getID()) not in PAEInstanceFightingModifier:
                         PAEInstanceFightingModifier.append((iPlayer,pWinner.getID()))
                         pWinner.setHasPromotion(iNewRank, True)

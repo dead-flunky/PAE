@@ -89,7 +89,7 @@ def onModNetMessage(iData1, iData2, iData3, iData4, iData5):
     pPlayer = gc.getPlayer(iData4)
     pUnit = pPlayer.getUnit(iData5)
     pCity = pUnit.plot().getPlotCity()
-    PAE_Sklaven.doSlave2Feuerwehr(pCity, pUnit)
+    doSlave2Feuerwehr(pCity, pUnit)
 
 # Slave -> Bordell
 def doSlave2Bordell(pCity, pUnit):

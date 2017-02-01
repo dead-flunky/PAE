@@ -4,6 +4,8 @@ import random
 import PyHelpers
 
 import PAE_Sklaven
+import PAE_Mercenaries
+import CvUtil
 
 ### Defines
 gc = CyGlobalContext()
@@ -982,6 +984,7 @@ def doUnitSupply(pCity, iPlayer):
     pCityPlot = pCity.plot()
     popCity = pCity.getPopulation()
 
+    iFactor = 1
     iCityUnits = pCityPlot.getNumDefenders(iPlayer)
     iMaintainUnits = iCityUnits - pCity.getYieldRate(0)
     if iMaintainUnits <= 0: return

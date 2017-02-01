@@ -426,7 +426,7 @@ def doCultivation_AI(pUnit):
           # es kann sicher ein Plot gefunden werden, schliesslich laesst sich die Ressi hier verbreiten
           CyMessageControl().sendModNetMessage(738, iPlayer, pUnit.getID(), -1, -1)
           return True
-          #~ pPlot = PAE_Trade.getCityCultivationPlot(pLocalCity, eBonus)
+          #~ pPlot = getCityCultivationPlot(pLocalCity, eBonus)
           #~ if doCultivateBonus(pPlot, pUnit, eBonus):
             #~ return True
         else:
