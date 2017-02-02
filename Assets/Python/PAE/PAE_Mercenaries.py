@@ -442,7 +442,7 @@ def getCost(eUnit, iMultiplier, bCivicSoeldner, iExtraMultiplier = 1):
     iCost = gc.getUnitInfo(eUnit).getProductionCost() * iExtraMultiplier
     iCost += (iCost / 10) * 2 * iMultiplier
     if bCivicSoeldner: iCost -= iCost/4
-    return iCost
+    return int(iCost)
 
 # Einheiten einen Zufallsrang vergeben (max. Elite)
 def doMercenaryRanking (pUnit, iMinRang, iMaxRang):
@@ -1256,7 +1256,7 @@ def AI_doHireMercenaries(iPlayer, pCity, iMaintainUnits, iCityUnits, iEnemyUnits
                     lNeighbors.append(gc.getPlayer(iLoopPlayer))
             if len(lNeighbors) > 0:
                 lUnits = doHireMercenariesINIT(pPlayer, lNeighbors)
- 
+
                 # KI zahlt die Haelfte und kein HiringModifierPerTurn
                 iExtraMultiplier = 0.5
                 bCivicSoeldner = pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_SOELDNERTUM"))
@@ -1294,7 +1294,7 @@ def AI_doHireMercenaries(iPlayer, pCity, iMaintainUnits, iCityUnits, iEnemyUnits
                         if myRandom(10) < 7:
                             eUnit, iCost = lArchers[myRandom(len(lArchers))]
                         else:
-                            eUnit, iCost = lOtherUnits[myRandom(len(OtherUnits))]
+                            eUnit, iCost = lOtherUnits[myRandom(len(lOtherUnits))]
                         if iCost <= 0: iCost = 50
                         if iCost <= iGold:
                             if doHireMercenary(iPlayer, eUnit, 0, bCivicSoeldner, pCity, 1, iExtraMultiplier):
@@ -1451,5 +1451,5 @@ def doHireMercenariesINIT(pPlayer, lNeighbors):
     lUnits = [
       lArchers, lInfantry, lMounted, lElephants, lShips
     ]
-    
+
     return lUnits
