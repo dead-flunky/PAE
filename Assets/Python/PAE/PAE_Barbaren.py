@@ -66,7 +66,7 @@ def doPlotFeatures():
                             # Forts
                             elif loopPlot.getNumUnits() > 0:
                                 # Besitzer ist der mit den meisten Einheiten drauf
-                                OwnerArray = {}
+                                OwnerArray = []
                                 iNumUnits = loopPlot.getNumUnits()
                                 for i in range (iNumUnits):
                                     if loopPlot.getUnit(i).isMilitaryHappiness():
@@ -76,7 +76,14 @@ def doPlotFeatures():
                                         else:
                                             OwnerArray[iOwner] = 1
                                             
-                                iOwner = max(OwnerArray, key=OwnerArray.get)
+                                
+                                try:
+                                    # At least give it a chance, in case a modern version of Python is running,
+                                    # it would be faster
+                                    iOwner = max(OwnerArray, key=OwnerArray.get)
+                                except:
+                                    my_decorated = [(OwnerArray.get(x), x) for x in OwnerArray]
+                                    iOwner = max(my_decorated)[1]
                                 if OwnerArray[iOwner] == 0:
                                     iOwner = -1
 

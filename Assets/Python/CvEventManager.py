@@ -6578,7 +6578,7 @@ class CvEventManager:
 
     # ++++ Versorger / Supply Unit
     if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-        PAE_Unit.initSupply(Unit)
+        PAE_Unit.initSupply(unit)
 
     # ++++ Getreidekarren
     # if unit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
