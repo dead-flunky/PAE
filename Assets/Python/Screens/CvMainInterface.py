@@ -10,6 +10,7 @@ import time
 import PyHelpers
 
 import PAE_Trade
+import PAE_Unit
 
 # globals
 gc = CyGlobalContext()
@@ -2564,7 +2565,7 @@ class CvMainInterface:
                     iCount = iCount + 1
             # Cancel automated trade route
             if iUnitType in PAE_Trade.lTradeUnits:
-              bTradeRouteActive = int(CvUtil.getScriptData(pUnit, ["automActive"], 0))
+              bTradeRouteActive = int(CvUtil.getScriptData(pUnit, ["autA"], 0))
               if bTradeRouteActive:
                 screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_AUTO_STOP").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 748, 748, False )
                 screen.show( "BottomButtonContainer" )
@@ -5586,18 +5587,10 @@ class CvMainInterface:
                         if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
 
                           UnitBarType = "HEALER"
-                          # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-                          sSup = CvUtil.getScriptData(pUnit, ["s", "t"])
-                          if sSup != "": iValue1 += int(sSup)
-
-                          if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_WAGON"): iValue3 = 200
-                          else: iValue3 = 100
-
-                          if gc.getPlayer(pUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
-                            iValue3 *= 3
-                            iValue3 /= 2
-
-                          iValue2 += iValue3
+                          (iSup, iMax) = PAE_Unit.getSupply(pUnit)
+                          # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply "+str(iSup)+" max Supply "+str(iMax),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                          iValue1 += iSup    
+                          iValue2 += iMax
 
                         elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
                           UnitBarType = "EMIGRANT"
@@ -5854,15 +5847,10 @@ class CvMainInterface:
           # PAE HEALER and EMIGRANT + Unit Info Bar
           if pHeadSelectedUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
             UnitBarType = "HEALER"
-            # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-            sSup = CvUtil.getScriptData(pHeadSelectedUnit, ["s", "t"])
-            if sSup != "": iValue1 += int(sSup)
-            if pHeadSelectedUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_WAGON"):
-              if gc.getPlayer(pHeadSelectedUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): iValue2 += 300
-              else: iValue2 += 200
-            else:
-              if gc.getPlayer(pHeadSelectedUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")): iValue2 += 150
-              else: iValue2 += 100
+            (iSup, iMax) = PAE_Unit.getSupply(pHeadSelectedUnit)
+            iValue1 += iSup
+            iValue2 += iMax
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply "+str(iValue1)+" max Supply "+str(iValue2),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
             szLeftBuffer = localText.getText("TXT_UNIT_INFO_BAR_6", ())
             szRightBuffer = u"(%d/%d)" %(iValue1, iValue2)

@@ -1896,7 +1896,7 @@ class CvEventManager:
         # Falls Erstellung der Route zwischendurch abgebrochen wird, kann eine halbfertige Route im
         # ScriptData gespeichert sein - daher wird die Route zunaechst auf inaktiv gesetzt und erst
         # am Ende des Vorgangs aktiviert
-        CvUtil.addScriptData(pUnit, "automActive", 0)
+        CvUtil.addScriptData(pUnit, "autA", 0)
         # Next step: choose civ
         PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 1, -1, -1)
 
@@ -1904,8 +1904,8 @@ class CvEventManager:
     elif iData1 == 745:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         pCity = gc.getPlayer(iData2).getCity(iData3)
-        CvUtil.addScriptData(pUnit, "automX1", pCity.getX())
-        CvUtil.addScriptData(pUnit, "automY1", pCity.getY())
+        CvUtil.addScriptData(pUnit, "autX1", pCity.getX())
+        CvUtil.addScriptData(pUnit, "autY1", pCity.getY())
         # Next step: Choose bonus 1 => civ 2 => city 2 => bonus 2
         PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 3, iData2, iData3)
 
@@ -1913,8 +1913,8 @@ class CvEventManager:
     elif iData1 == 746:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
         pCity = gc.getPlayer(iData2).getCity(iData3)
-        CvUtil.addScriptData(pUnit, "automX2", pCity.getX())
-        CvUtil.addScriptData(pUnit, "automY2", pCity.getY())
+        CvUtil.addScriptData(pUnit, "autX2", pCity.getX())
+        CvUtil.addScriptData(pUnit, "autY2", pCity.getY())
         # Next step: Choose bonus 2
         PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 6, iData2, iData3)
 
@@ -1924,13 +1924,13 @@ class CvEventManager:
         eBonus = iData2
         bFirst = iData3
         if bFirst:
-            CvUtil.addScriptData(pUnit, "automBonus1", eBonus)
+            CvUtil.addScriptData(pUnit, "autB1", eBonus)
             # Next step: choose civ 2 => city 2 => bonus 2
             PAE_Trade.doPopupAutomatedTradeRoute(pUnit, 4, -1, -1)
         else:
-            CvUtil.addScriptData(pUnit, "automBonus2", eBonus)
+            CvUtil.addScriptData(pUnit, "autB2", eBonus)
             # Start trade route
-            CvUtil.addScriptData(pUnit, "automActive", 1)
+            CvUtil.addScriptData(pUnit, "autA", 1)
             PAE_Trade.doAutomateMerchant(pUnit, False)
             # Falls Haendler in Stadt zieht und noch Fortbewegung hat, soll direkt ge-/verkauft werden
             #if pUnit.canMove():
@@ -1938,7 +1938,7 @@ class CvEventManager:
 
     elif iData1 == 748:
         pUnit = gc.getPlayer(iData4).getUnit(iData5)
-        CvUtil.addScriptData(pUnit, "automActive", 0)
+        CvUtil.addScriptData(pUnit, "autA", 0)
         PAE_Unit.doGoToNextUnit(pUnit)
 
     # --------------------------------
@@ -2117,41 +2117,45 @@ class CvEventManager:
     # +++++ Special dawn of man texts for Szenario Maps in PAE in CvDawnOfMan.py ++++++++++++++++++++++++++++++++
     #if (gc.getGame().getGameTurnYear() == gc.getDefineINT("START_YEAR") and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ADVANCED_START)):
     iEra = gc.getGame().getStartEra()
-    lTechs = []
-    lTechs.append(gc.getInfoTypeForString("TECH_NONE"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_1"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_2"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_4"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_5"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_6"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_7"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_8"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_9"))
-    lTechs.append(gc.getInfoTypeForString("TECH_TECH_INFO_10"))
-    lTechsReli = []
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_NORDIC"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_CELTIC"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_HINDU"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_EGYPT"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_SUMER"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_GREEK"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_PHOEN"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_RELIGION_ROME"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_DUALISMUS"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_MONOTHEISM"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_ASKESE"))
-    lTechsReli.append(gc.getInfoTypeForString("TECH_MEDITATION"))
+    lTechs = [
+        gc.getInfoTypeForString("TECH_NONE"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_1"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_2"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_4"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_5"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_6"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_7"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_8"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_9"),
+        gc.getInfoTypeForString("TECH_TECH_INFO_10"),
+    ]
+    lTechsReli = [
+        gc.getInfoTypeForString("TECH_RELIGION_NORDIC"),
+        gc.getInfoTypeForString("TECH_RELIGION_CELTIC"),
+        gc.getInfoTypeForString("TECH_RELIGION_HINDU"),
+        gc.getInfoTypeForString("TECH_RELIGION_EGYPT"),
+        gc.getInfoTypeForString("TECH_RELIGION_SUMER"),
+        gc.getInfoTypeForString("TECH_RELIGION_GREEK"),
+        gc.getInfoTypeForString("TECH_RELIGION_PHOEN"),
+        gc.getInfoTypeForString("TECH_RELIGION_ROME"),
+        gc.getInfoTypeForString("TECH_DUALISMUS"),
+        gc.getInfoTypeForString("TECH_MONOTHEISM"),
+        gc.getInfoTypeForString("TECH_ASKESE"),
+        gc.getInfoTypeForString("TECH_MEDITATION"),
+    ]
     iTechRome = gc.getInfoTypeForString("TECH_ROMAN")
     iTechGreek = gc.getInfoTypeForString("TECH_GREEK")
-    lCivsRome = []
-    lCivsRome.append(gc.getInfoTypeForString("CIVILIZATION_ROME"))
-    lCivsRome.append(gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"))
-    lCivsGreek = []
-    lCivsGreek.append(gc.getInfoTypeForString("CIVILIZATION_GREECE"))
-    lCivsGreek.append(gc.getInfoTypeForString("CIVILIZATION_ATHENS"))
-    lCivsGreek.append(gc.getInfoTypeForString("CIVILIZATION_SPARTA"))
-    lCivsGreek.append(gc.getInfoTypeForString("CIVILIZATION_THEBAI"))
-    lCivsGreek.append(gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"))
+    lCivsRome = [
+        gc.getInfoTypeForString("CIVILIZATION_ROME"),
+        gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"),
+    ]
+    lCivsGreek = [
+        gc.getInfoTypeForString("CIVILIZATION_GREECE"),
+        gc.getInfoTypeForString("CIVILIZATION_ATHENS"),
+        gc.getInfoTypeForString("CIVILIZATION_SPARTA"),
+        gc.getInfoTypeForString("CIVILIZATION_THEBAI"),
+        gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"),
+    ]
 
     # +++++ Corrections in scenarios ++++++++++++++++++++++++++++++++
     iRange = gc.getMAX_PLAYERS()
@@ -2190,7 +2194,7 @@ class CvEventManager:
         (city, iter) = player.firstCity(False)
         while city:
           PAE_City.doCheckCityState(city)
-          PAE_City.doCheckTraitBuildings(city, iPlayer)
+          PAE_City.doCheckTraitBuildings(city)
           (city,iter) = player.nextCity(iter, False)
         ##/Flunky
 
@@ -2283,7 +2287,28 @@ class CvEventManager:
     if sScenarioName == "PeloponnesianWarKeinpferd":
       PeloponnesianWarKeinpferd.onEndGameTurn(iGameTurn)
 
+    ## Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ##
+    # PAE V: Treibgut erstellen
+    # PAE V: Barbarenfort erstellen
+    # PAE Trade Cities Special Bonus
+    if gc.getGame().getGameTurnYear() > -2400:
+        if iGameTurn % 20 == 0:
+            PAE_Barbaren.setGoodyHuts()
+            PAE_Trade.addCityWithSpecialBonus(iGameTurn)
 
+        PAE_Trade.doUpdateCitiesWithSpecialBonus(iGameTurn)
+
+    # -- PAE V: Treibgut -> Strandgut
+    PAE_Barbaren.doStrandgut()
+
+    # -- PAE Disasters / Katastrophen
+    # Permanent Alliances entspricht = Naturkatastrophen (PAE)
+    if not (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES) or gc.getGame().isGameMultiPlayer()): 
+        PAE_Disasters.doGenerateDisaster(iGameTurn)
+
+    # -- Seewind / Fair wind ----
+    if iGameTurn % 15 == 0: self.doSeewind()
+    
     # PAE Debug Mark
     #"""
 # Seevoelker erschaffen: Langboot + Axtkrieger oder Axtkaempfer | -1500 bis -800
@@ -2340,7 +2365,7 @@ class CvEventManager:
         while pLoopUnit:
             iUnitType = pLoopUnit.getUnitType()
             if iUnitType in PAE_Trade.lTradeUnits:
-                bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["automActive","t"], 0))
+                bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["autA","t"], 0))
                 if bTradeRouteActive and pLoopUnit.getGroup().getLengthMissionQueue() == 0:
                     PAE_Trade.doAutomateMerchant(pLoopUnit, False)
                     #pLoopUnit.finishMoves()
@@ -2632,143 +2657,114 @@ class CvEventManager:
 
            # ++++ Supply Units update ------------
            # 1. Aufladen
+           eDruide = gc.getInfoTypeForString("UNIT_DRUIDE")
+           eBrahmane = gc.getInfoTypeForString("UNIT_BRAHMANE")
            for loopUnit in lHealer:
-
-             if iSupplyChange <= 0: break
-
-             # Maximalwert herausfinden
-             if loopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_DRUIDE") or loopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_BRAHMANE"): iMaxHealing = 100
-             else: iMaxHealing = 200
-             # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-             if gc.getPlayer(loopUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
-                 iMaxHealing *= 3
-                 iMaxHealing /= 2
-
-             txt = CvUtil.getScriptData(loopUnit, ["s","t"])
-             if txt == "": txt = str(iMaxHealing) # 0 = leer/verbraucht, aber "" ist fabriksneu ;)
-             iSupplyValue = int(txt)
-
-             if iSupplyValue + iSupplyChange > iMaxHealing:
-               iSupplyChange -= iMaxHealing - iSupplyValue
-               iSupplyValue = iMaxHealing
-             else:
-               iSupplyValue += iSupplyChange
-               iSupplyChange = 0
-             CvUtil.addScriptData(loopUnit, "s", iSupplyValue)
+                if iSupplyChange <= 0: break
+                iSupplyChange = PAE_Unit.fillSupply(loopUnit, iSupplyChange)
 
 
      # +++++ Versorgung der Armee - supply wagon ---------------------------------------
      if len(PlotArraySupply) > 0:
 
-       # gc.getInfoTypeForString("UNIT_SUPPLY_WAGON") # Tickets: 200
-       # gc.getInfoTypeForString("UNIT_DRUIDE") # Tickets: 100
-       # gc.getInfoTypeForString("UNIT_BRAHMANE") # Tickets: 100
-       # => UNITCOMBAT_HEALER
-
-       lMounted = [gc.getInfoTypeForString("UNITCOMBAT_CHARIOT"),gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"),gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT")]
-       lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"),gc.getInfoTypeForString("UNITCOMBAT_ARCHER")]
-
-       for h in PlotArraySupply:
-         loopPlot = gc.getMap().plot(h[0],h[1])
-
-         # Init
-         iMounted = 0
-         iMelee = 0
-         lHealer = []
-         iSupplyChange = 0
-         iNumUnits = loopPlot.getNumUnits()
-         # PAE V: Stack Limit mit iStackLimit1 einbeziehen
-         iHungryUnits = iNumUnits - iStackLimit1
-
-         # Units calc
-         for i in range(iNumUnits):
-           if loopPlot.getUnit(i).getOwner() == iPlayer:
-             iUnitType = loopPlot.getUnit(i).getUnitCombatType()
-             if iUnitType == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-               lHealer.append(loopPlot.getUnit(i))
-             elif iHungryUnits > 0:
-               if iUnitType in lMounted:
-                 iMounted += 1
-                 iHungryUnits -= 1
-               elif iUnitType in lMelee:
-                 iMelee += 1
-                 iHungryUnits -= 1
-
-         # ***TEST***
-         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_MOUNTED",iMounted)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_MELEE",iMelee)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_HEALER",len(lHealer))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-         # Plot properties
-         if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"): bDesert = True
-         else: bDesert = False
-
-
-         # Inits for Supply Units (nur notwendig, wenns Versorger gibt)
-         if len(lHealer) > 0:
-
-           # 2. Versorgen
-           for loopUnit in lHealer:
-             if iMounted <= 0 and iMelee <= 0: break
-             sSup = CvUtil.getScriptData(loopUnit, ["s","t"])
-             if sSup == "" or sSup == "0":
-               iSupplyValue = 0
-             else:
-               iSupplyValue = int(sSup)
-
-             # ***TEST***
-             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit init "+str(loopUnit.getID()),iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-             if iSupplyValue > 0:
-               # Mounted Units
-               if bDesert:
-                 if iSupplyValue > iMounted * 2:
-                   iSupplyValue -= iMounted * 2
-                   iMounted = 0
-                 else:
-                   iCalc = iSupplyValue / 2
-                   iSupplyValue -= iCalc * 2
-                   iMounted -= iCalc
-               else:
-                 iSupplyValue -= iMounted
-                 if iSupplyValue < 0:
-                   iMounted = -iSupplyValue
-                   iSupplyValue = 0
-                 else: iMounted = 0
-
-               # Melee Units
-               iSupplyValue -= iMelee
-               if iSupplyValue < 0:
-                 iMelee = -iSupplyValue
-                 iSupplyValue = 0
-               else: iMelee = 0
-               CvUtil.addScriptData(loopUnit, "s", iSupplyValue)
+        # gc.getInfoTypeForString("UNIT_SUPPLY_WAGON") # Tickets: 200
+        # gc.getInfoTypeForString("UNIT_DRUIDE") # Tickets: 100
+        # gc.getInfoTypeForString("UNIT_BRAHMANE") # Tickets: 100
+        # => UNITCOMBAT_HEALER
+    
+        lMounted = [gc.getInfoTypeForString("UNITCOMBAT_CHARIOT"),gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"),gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT")]
+        lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"),gc.getInfoTypeForString("UNITCOMBAT_ARCHER")]
+    
+        for h in PlotArraySupply:
+            loopPlot = gc.getMap().plot(h[0],h[1])
+    
+            # Init
+            iMounted = 0
+            iMelee = 0
+            lHealer = []
+            iSupplyChange = 0
+            iNumUnits = loopPlot.getNumUnits()
+            # PAE V: Stack Limit mit iStackLimit1 einbeziehen
+            iHungryUnits = iNumUnits - iStackLimit1
+    
+            # Units calc
+            for i in range(iNumUnits):
+                if loopPlot.getUnit(i).getOwner() == iPlayer:
+                    iUnitType = loopPlot.getUnit(i).getUnitCombatType()
+                    if iUnitType == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
+                        lHealer.append(loopPlot.getUnit(i))
+                    elif iHungryUnits > 0:
+                        if iUnitType in lMounted:
+                            iMounted += 1
+                            iHungryUnits -= 1
+                        elif iUnitType in lMelee:
+                            iMelee += 1
+                            iHungryUnits -= 1
+    
+            # ***TEST***
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_MELEE",iMelee)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_HEALER",len(lHealer))), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    
+            # Plot properties
+            bDesert = loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT")
+    
+            # 1. Versorgen
+            for loopUnit in lHealer:
+                if iMounted <= 0 and iMelee <= 0: break
+                iSupplyValue = PAE_Unit.getSupply(loopUnit)
+    
+                # ***TEST***
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit init "+str(loopUnit.getID()),iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    
+                if iSupplyValue > 0:
+                    # Mounted Units
+                    if bDesert:
+                        if iSupplyValue > iMounted * 2:
+                            iSupplyValue -= iMounted * 2
+                            iMounted = 0
+                        else:
+                            iCalc = iSupplyValue / 2
+                            iSupplyValue -= iCalc * 2
+                            iMounted -= iCalc
+                    else:
+                        iSupplyValue -= iMounted
+                        if iSupplyValue < 0:
+                            iMounted = -iSupplyValue
+                            iSupplyValue = 0
+                        else: iMounted = 0
+        
+                    # Melee Units
+                    iSupplyValue -= iMelee
+                    if iSupplyValue < 0:
+                        iMelee = -iSupplyValue
+                        iSupplyValue = 0
+                    else: iMelee = 0
+                    PAE_Unit.setSupply(loopUnit,iSupplyValue)
 
                # ***TEST***
                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit changed",iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-         # 3. Units verletzen
-         iSum = iMounted + iMelee
-         if iSum > 0:
-
-           iRange = loopPlot.getNumUnits()
-           for iUnit in range(iRange):
-             if iSum <= 0: break
-             xUnit = loopPlot.getUnit(iUnit)
-             if xUnit.getUnitCombatType() in lMounted:
-               xDamage = xUnit.getDamage()
-               if xDamage + 25 < 100:
-                 xUnit.changeDamage(15,False)
-                 if gc.getPlayer(xUnit.getOwner()).isHuman():
-                   CyInterface().addMessage(xUnit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_NOSUPPLY_PLOT",(xUnit.getName(),15)), None, 2, None, ColorTypes(12), loopPlot.getX(), loopPlot.getY(), True, True)
-                 iSum -= 1
-             elif xUnit.getUnitCombatType() in lMelee:
-               xDamage = xUnit.getDamage()
-               if xDamage + 30 < 100:
-                 xUnit.changeDamage(20,False)
-                 if gc.getPlayer(xUnit.getOwner()).isHuman():
-                   CyInterface().addMessage(xUnit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_NOSUPPLY_PLOT",(xUnit.getName(),20)), None, 2, None, ColorTypes(12), loopPlot.getX(), loopPlot.getY(), True, True)
-                 iSum -= 1
+            # 2. Units verletzen
+            iSum = iMounted + iMelee
+            if iSum > 0:
+                iRange = loopPlot.getNumUnits()
+                for iUnit in range(iRange):
+                    if iSum <= 0: break
+                    xUnit = loopPlot.getUnit(iUnit)
+                    if xUnit.getUnitCombatType() in lMounted:
+                        xDamage = xUnit.getDamage()
+                        if xDamage + 25 < 100:
+                            xUnit.changeDamage(15,False)
+                            if gc.getPlayer(xUnit.getOwner()).isHuman():
+                                CyInterface().addMessage(xUnit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_NOSUPPLY_PLOT",(xUnit.getName(),15)), None, 2, None, ColorTypes(12), loopPlot.getX(), loopPlot.getY(), True, True)
+                            iSum -= 1
+                    elif xUnit.getUnitCombatType() in lMelee:
+                        xDamage = xUnit.getDamage()
+                        if xDamage + 30 < 100:
+                            xUnit.changeDamage(20,False)
+                            if gc.getPlayer(xUnit.getOwner()).isHuman():
+                                CyInterface().addMessage(xUnit.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_NOSUPPLY_PLOT",(xUnit.getName(),20)), None, 2, None, ColorTypes(12), loopPlot.getX(), loopPlot.getY(), True, True)
+                            iSum -= 1
 
 
      # +++++ Rebellious STACKs ---------------
@@ -3747,36 +3743,6 @@ class CvEventManager:
                     if bShowPeaksAndRivers:
                       if pPlot.isRiverSide() or pPlot.isPeak(): continue
                     pPlot.setRevealed (iTeam,0,0,-1)
-
-    # Globale Ereignisse pro x-Runden
-    if iPlayer == gc.getBARBARIAN_PLAYER():
-
-     ## Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ##
-     # PAE V: Treibgut erstellen
-     # PAE V: Barbarenfort erstellen
-     # PAE Trade Cities Special Bonus
-     if gc.getGame().getGameTurnYear() > -2400:
-       if iGameTurn % 20 == 0:
-         PAE_Barbaren.setGoodyHuts()
-         PAE_Trade.addCityWithSpecialBonus()
-
-       # --- PAE Trade:
-       PAE_Trade.doUpdateCitiesWithSpecialBonus()
-
-     # -- PAE V: Treibgut -> Strandgut
-     PAE_Barbaren.doStrandgut()
-
-     # -- PAE Disasters / Katastrophen
-     # Permanent Alliances entspricht = Naturkatastrophen (PAE)
-     self.disastersEnabled = not (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES) or gc.getGame().isGameMultiPlayer())
-     if self.disastersEnabled: PAE_Disasters.doGenerateDisaster(iGameTurn)
-
-     # ---------------------
-     # Ende if iPlayer == 18
-     # --------------------
-
-# -- Seewind / Fair wind ----
-     if iGameTurn % 15 == 0: self.doSeewind()
 
 
 # -- AI Commissions Mercenaries (AI Mercenaries)
@@ -5920,7 +5886,7 @@ class CvEventManager:
     # Handel (nur Meldung mit der gewonnenen Geldsumme)
     if eMission == MissionTypes.MISSION_TRADE:
       pUnit = gc.getPlayer(eOwner).getUnit(listUnitIds[0])
-      pPlot = CyMap().plot(pUnit.getX(), pUnit.getY())
+      pPlot = pUnit.plot()
       pCity = pPlot.getPlotCity()
       if pUnit.canMove():
         if gc.getPlayer(eOwner).isHuman():
@@ -5934,7 +5900,7 @@ class CvEventManager:
           if scriptCityId != "": pSource = gc.getPlayer(eOwner).getCity(int(scriptCityId)).plot()
           else: pSource = gc.getPlayer(eOwner).getCapitalCity().plot()
           pSourceCity = pSource.getPlotCity()
-          pPlotTradeRoad = PAE_Trade.getPlotTradingRoad(pSource, CyMap().plot(pUnit.getX(), pUnit.getY()), 0)
+          pPlotTradeRoad = PAE_Trade.getPlotTradingRoad(pSource, pUnit.plot(), 0)
           if pPlotTradeRoad != None:
             pPlotTradeRoad.setRouteType(gc.getInfoTypeForString("ROUTE_TRADE_ROAD"))
             if gc.getPlayer(eOwner).isHuman():
@@ -6612,27 +6578,15 @@ class CvEventManager:
 
     # ++++ Versorger / Supply Unit
     if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-      # gc.getInfoTypeForString("UNIT_SUPPLY_WAGON") # Tickets: 200
-      city.setFood(city.getFood()/2)
-      # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-      if unit.getUnitType() == gc.getInfoTypeForString("UNIT_DRUIDE") or unit.getUnitType() == gc.getInfoTypeForString("UNIT_BRAHMANE"):
-        if gc.getPlayer(unit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
-          CvUtil.addScriptData(unit, "s", 150)
-        else:
-          CvUtil.addScriptData(unit, "s", 100)
-      else:
-          if gc.getPlayer(unit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
-            CvUtil.addScriptData(unit, "s", 300)
-          else:
-            CvUtil.addScriptData(unit, "s", 200)
+        PAE_Unit.initSupply(Unit)
 
     # ++++ Getreidekarren
-    if unit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
-      city.setFood(city.getFood()/2)
+    # if unit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
+      # city.setFood(city.getFood()/2)
 
     # ++++ Auswanderer (Emigrants), die die Stadtbevoelkerung senken
     if unit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):
-      pPlot = CyMap().plot(city.getX(), city.getY())
+      pPlot = city.plot()
       iPop = city.getPopulation()
       # Einheit die richtige Kultur geben
       #iPlayerCulture = city.findHighestCulture() Klappt nicht, da Kultur des Stadtplots benoetigt wird
@@ -6796,33 +6750,25 @@ class CvEventManager:
 
       if len(lHealer) > 0:
         iSupplyChange = 0
-        if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_FARM"): iSupplyChange += 50
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_PASTURE"): iSupplyChange += 50
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_PLANTATION"): iSupplyChange += 30
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_BRUNNEN"): iSupplyChange += 20
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_COTTAGE"): iSupplyChange += 10
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HAMLET"): iSupplyChange += 15
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_VILLAGE"): iSupplyChange += 20
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_TOWN"): iSupplyChange += 25
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"): iSupplyChange += 25
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_FORT"): iSupplyChange += 30
-        elif iImprovement == gc.getInfoTypeForString("IMPROVEMENT_FORT2"): iSupplyChange += 40
-
+        lSupplyBonus = {
+            gc.getInfoTypeForString("IMPROVEMENT_FARM"): 50,
+            gc.getInfoTypeForString("IMPROVEMENT_PASTURE"): 50,
+            gc.getInfoTypeForString("IMPROVEMENT_PLANTATION"): 30,
+            gc.getInfoTypeForString("IMPROVEMENT_BRUNNEN"): 20,
+            gc.getInfoTypeForString("IMPROVEMENT_COTTAGE"): 10,
+            gc.getInfoTypeForString("IMPROVEMENT_HAMLET"): 15,
+            gc.getInfoTypeForString("IMPROVEMENT_VILLAGE"): 20,
+            gc.getInfoTypeForString("IMPROVEMENT_TOWN"): 25,
+            gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"): 25,
+            gc.getInfoTypeForString("IMPROVEMENT_FORT"): 30,
+            gc.getInfoTypeForString("IMPROVEMENT_FORT2"): 40
+        } 
+        
+        iSupplyChange = lSupplyBonus.get(iImprovement, 0)
         for loopUnit in lHealer:
-             # Maximalwert herausfinden
-             if loopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_DRUIDE") or loopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_BRAHMANE"): iMaxHealing = 100
-             else: iMaxHealing = 200
-             # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
-             if gc.getPlayer(loopUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
-                 iMaxHealing *= 3
-                 iMaxHealing /= 2
+            if iSupplyChange <= 0: break
+            iSupplyChange = PAE_Unit.fillSupply(pUnit, iSupplyChange)
 
-             txt = CvUtil.getScriptData(loopUnit, ["s","t"])
-             if txt == "": txt = str(iMaxHealing) # 0 = leer/verbraucht, aber "" ist fabriksneu ;)
-             iSupplyValue = int(txt)
-             iSupplyValue += iSupplyChange
-             if iSupplyValue > iMaxHealing: iSupplyValue = iMaxHealing
-             CvUtil.addScriptData(loopUnit, "s", iSupplyValue)
       # -----------------
 
       # Free promotion when pillaging: 20%
@@ -6839,11 +6785,11 @@ class CvEventManager:
             CyInterface().addMessage(pUnit.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_PROMOTION",(pUnit.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pUnit.getX(), pUnit.getY(), True, True)
 
       # Feldsklaven und Minensklaven checken
-      if iImprovement != gc.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"):
+      if iImprovement != gc.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"): 
         PAE_Sklaven.doCheckSlavesAfterPillage(pUnit,pPlot)
 
       # Handelsposten: Plot-ScriptData leeren
-      if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"):
+      if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"): 
         CvUtil.removeScriptData(pPlot, "p")
 
       # Unit soll sich nachher nicht mehr fortbewegen koennen
@@ -6851,8 +6797,7 @@ class CvEventManager:
     # PAE Debug Mark
     #"""
 
-    if (not self.__LOG_UNITPILLAGE):
-      return
+    if (not self.__LOG_UNITPILLAGE): return
 #    CvUtil.pyPrint("Player %d's %s pillaged improvement %d and route %d at plot at (%d, %d)"
 #      %(iOwner, pUnit.getName(), iImprovement, iRoute, iPlotX, iPlotY))
 
@@ -7435,7 +7380,7 @@ class CvEventManager:
     # Kolonie / Provinz ----------
     # Stadt bekommt automatisch das Koloniegebaeude und Trait-Gebaeude
     PAE_City.doCheckCityState(city)
-    PAE_City.doCheckTraitBuildings(city, city.getOwner())
+    PAE_City.doCheckTraitBuildings(city)
     PAE_City.doCheckGlobalTraitBuildings(city.getOwner())
     # ----------------------------
 
@@ -7566,23 +7511,23 @@ class CvEventManager:
     iPreviousOwner,iNewOwner,pCity,bConquest,bTrade = argsList
     CvUtil.pyPrint('City Acquired Event: %s' %(pCity.getName()))
     pPlayer = gc.getPlayer(iNewOwner)
-    pPlot = CyMap().plot(pCity.getX(),pCity.getY())
+    pPlot = pCity.plot()
 
     # PAE Debug Mark
     #"""
 
     # Trait-Gebaeude anpassen
-    PAE_City.doCheckTraitBuildings(pCity, iNewOwner)
-    PAE_City.doCheckGlobalTraitBuildings(iPreviousOwner)
-    PAE_City.doCheckGlobalTraitBuildings(iNewOwner)
-    # Szenarien
-    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    PAE_City.doCheckTraitBuildings(pCity)
+    PAE_City.doCheckGlobalTraitBuildings(iNewOwner, pCity, iPreviousOwner)
+    
     # Assimilation Tech (PAE V Patch 4)
     if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ASSIMILATION")): bAssimilation = True
     else: bAssimilation = False
 
+    # Szenarien
+    sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
     if sScenarioName == "FirstPunicWar":
-      FirstPunicWar.onCityAcquired(pCity, iNewOwner)
+        FirstPunicWar.onCityAcquired(pCity, iNewOwner)
 
 
 # PAE triumph movies when city is reconquered
@@ -7635,17 +7580,6 @@ class CvEventManager:
          pCity.setName(gc.getPlayer(iNewOwner).getNewCityName(),0)
 # ---------------
 
-## Trait Maritim (The_J) -------- (durch neue Trait-Gebaeude ersetzt)
-#    pPlayer = gc.getPlayer(iNewOwner)
-#    pPlot = CyMap().plot(pCity.getX(),pCity.getY())
-#    if pPlot.isCoastalLand():
-#      # Class
-##      iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(gc.getInfoTypeForString("BUILDINGCLASS_MARITIME"))
-#      iBuilding = gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL")
-#      if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_MARITIME")): pCity.setNumRealBuilding(iBuilding,1)
-#      else: pCity.setNumRealBuilding(iBuilding,0)
-
-
 # Provinzpalast und Praefectur muss raus, Bischofssitz kann bleiben
     iBuilding = gc.getInfoTypeForString("BUILDING_PROVINZPALAST")
     if pCity.isHasBuilding(iBuilding): pCity.setNumRealBuilding(iBuilding,0)
@@ -7690,13 +7624,16 @@ class CvEventManager:
         rebelPlotArray = []
         PartisanPlot1 = []
         PartisanPlot2 = []
-        for i in range(3):
-          for j in range(3):
-            loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
-            if None != loopPlot and not loopPlot.isNone() and not loopPlot.isUnit():
-              if not loopPlot.isWater() and not loopPlot.isImpassable() and not loopPlot.isCity():
-                if loopPlot.isHills(): PartisanPlot1.append(loopPlot)
-                else: PartisanPlot2.append(loopPlot)
+        iRange = 1
+        iX = pCity.getX()
+        iY = pCity.getY()
+        for i in range(-iRange, iRange+1):
+            for j in range(-iRange, iRange+1):
+                loopPlot = plotXY(iX, iY, i, j)
+                if None != loopPlot and not loopPlot.isNone() and not loopPlot.isUnit():
+                    if not loopPlot.isWater() and not loopPlot.isImpassable() and not loopPlot.isCity():
+                        if loopPlot.isHills(): PartisanPlot1.append(loopPlot)
+                        else: PartisanPlot2.append(loopPlot)
         if len(PartisanPlot1) > 0: rebelPlotArray = PartisanPlot1
         else: rebelPlotArray = PartisanPlot2
 

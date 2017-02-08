@@ -1542,3 +1542,43 @@ def doDyingGeneral (pUnit):
 def doGoToNextUnit(pUnit):
     # go to and select next Unit
     pUnit.getGroup().pushMission (MissionTypes.MISSION_SKIP,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit)
+        
+def initSupply(pUnit):
+    (_, iMaxSupply) = getSupply(pUnit)
+    setSupply(pUnit,iMaxSupply)
+        
+def fillSupply(pUnit, iChange):
+    (iCurrentSupply, iMaxSupply) = getSupply(pUnit)
+    if iCurrentSupply != iMaxSupply: 
+        if iCurrentSupply + iChange > iMaxSupply:
+            iChange -= (iMaxSupply - iCurrentSupply)
+            iCurrentSupply = iMaxSupply
+        else:
+            iCurrentSupply += iChange
+            iChange = 0
+        
+    setSupply(pUnit,iCurrentSupply)
+    return iChange
+    
+def setSupply(pUnit,iValue):
+    CvUtil.addScriptData(pUnit,"s",iValue)
+    
+def getSupply(pUnit):
+    eDruide = gc.getInfoTypeForString("UNIT_DRUIDE")
+    eBrahmane = gc.getInfoTypeForString("UNIT_BRAHMANE")
+    # Maximalwert herausfinden
+    if pUnit.getUnitType() == eDruide or pUnit.getUnitType() == eBrahmane: 
+        iMaxSupply = 100
+    else: 
+        iMaxSupply = 200
+    # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
+    if gc.getPlayer(pUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
+        iMaxSupply += int(iMaxSupply/2)
+    
+    # kein Eintrag == Fabrikneu
+    iCurrentSupply = CvUtil.getScriptData(pUnit, ["s"], iMaxSupply) 
+    if iCurrentSupply > iMaxSupply:
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply is bogus",iCurrentSupply)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        setSupply(pUnit, iMaxSupply)
+        iCurrentSupply = iMaxSupply
+    return (iCurrentSupply, iMaxSupply)

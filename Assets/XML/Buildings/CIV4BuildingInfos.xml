@@ -41971,8 +41971,8 @@
       <iHotKeyPriority>0</iHotKeyPriority>
     </BuildingInfo>
     <BuildingInfo>
-      <BuildingClass>BUILDINGCLASS_TRAIT_MARITIME_LOCAL</BuildingClass>
-      <Type>BUILDING_TRAIT_MARITIME_LOCAL</Type>
+      <BuildingClass>BUILDINGCLASS_TRAIT_MARITIME_GLOBAL</BuildingClass>
+      <Type>BUILDING_TRAIT_MARITIME_GLOBAL</Type>
       <SpecialBuildingType/>
       <Description/>
       <Civilopedia/>
@@ -42112,18 +42112,8 @@
       <BonusHappinessChanges/>
       <BonusProductionModifiers/>
       <UnitCombatFreeExperiences/>
-      <DomainFreeExperiences>
-        <DomainFreeExperience>
-          <DomainType>DOMAIN_SEA</DomainType>
-          <iExperience>4</iExperience>
-        </DomainFreeExperience>
-      </DomainFreeExperiences>
-      <DomainProductionModifiers>
-        <DomainProductionModifier>
-          <DomainType>DOMAIN_SEA</DomainType>
-          <iProductionModifier>20</iProductionModifier>
-        </DomainProductionModifier>
-      </DomainProductionModifiers>
+      <DomainFreeExperiences/>
+      <DomainProductionModifiers/>
       <BuildingHappinessChanges/>
       <PrereqBuildingClasses/>
       <BuildingClassNeededs/>

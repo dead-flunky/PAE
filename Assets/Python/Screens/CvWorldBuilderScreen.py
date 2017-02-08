@@ -852,7 +852,7 @@ class CvWorldBuilderScreen:
           pCity = pPlayer.initCity(iX, iY)
           # Trait-Gebaeude und Stadtstatus platzieren
           PAE_City.doCheckCityState(pCity)
-          PAE_City.doCheckTraitBuildings(pCity, self.m_iCurrentPlayer)
+          PAE_City.doCheckTraitBuildings(pCity)
           PAE_City.doCheckGlobalTraitBuildings(self.m_iCurrentPlayer)
     elif ((self.m_bNormalMap) and (self.m_normalMapTabCtrl.getActiveTab() == self.m_iImprovementTabID)):
       iImprovementType = self.m_iNormalMapCurrentIndexes[self.m_normalMapTabCtrl.getActiveTab()]

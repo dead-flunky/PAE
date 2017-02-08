@@ -2388,15 +2388,15 @@
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-      <Type>BUILDINGCLASS_TRAIT_MARITIME_LOCAL</Type>
+      <Type>BUILDINGCLASS_TRAIT_MARITIME_GLOBAL</Type>
       <Description>NONE</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iMaxPlayerInstances>1</iMaxPlayerInstances>
       <iExtraPlayerInstances>0</iExtraPlayerInstances>
       <bNoLimit>0</bNoLimit>
       <bMonument>0</bMonument>
-      <DefaultBuilding>BUILDING_TRAIT_MARITIME_LOCAL</DefaultBuilding>
+      <DefaultBuilding>BUILDING_TRAIT_MARITIME_GLOBAL</DefaultBuilding>
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>

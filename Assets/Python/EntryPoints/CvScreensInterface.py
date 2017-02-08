@@ -51,6 +51,7 @@ from CvScreenEnums import *
 from CvPythonExtensions import *
 
 import PAE_Trade
+import PAE_Unit
 
 gc = CyGlobalContext()
 
@@ -1537,11 +1538,11 @@ def popupTradeRouteChooseBonus(argsList):
     bFirst = argsList[3]
     pUnit = gc.getPlayer(iUnitOwner).getUnit(iUnitId)
     if bFirst:
-        iX = int(CvUtil.getScriptData(pUnit, ["automX1"], -1))
-        iY = int(CvUtil.getScriptData(pUnit, ["automY1"], -1))
+        iX = int(CvUtil.getScriptData(pUnit, ["autX1"], -1))
+        iY = int(CvUtil.getScriptData(pUnit, ["autY1"], -1))
     else:
-        iX = int(CvUtil.getScriptData(pUnit, ["automX2"], -1))
-        iY = int(CvUtil.getScriptData(pUnit, ["automY2"], -1))
+        iX = int(CvUtil.getScriptData(pUnit, ["autX2"], -1))
+        iY = int(CvUtil.getScriptData(pUnit, ["autY2"], -1))
 
 
     pCity = CyMap().plot(iX, iY).getPlotCity()
@@ -1695,7 +1696,7 @@ def peloponnesianWarKeinpferd_Poteidaia2(argsList):
                 elif i == 1: pUnit.setName("Archestartos")
             pAthen.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             pSupply = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            CvUtil.addScriptData(pSupply,"s","200")
+            PAE_Unit.setSupply(pUnit,200)
             pAthen.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             # 500 Gold pro Hoplit+Trireme, 2 Triremen erhaelt man immer -> iPay beginnt bei 1000 und man benoetigt mind. 1500, um mehr zu erhalten
             # Maximal 10 Triremen
@@ -1755,7 +1756,7 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           eSupply = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
           pKorinth.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-          CvUtil.addScriptData(pSupply,"s","200")
+          PAE_Unit.setSupply(pUnit,200)
           pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pKorinth.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           # 250 Gold pro Hoplit+Skirmisher, jeweils 1 erhaelt man immer -> iPay beginnt bei 250 und man benoetigt mind. 500, um mehr zu erhalten
@@ -1799,7 +1800,7 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           pKorinth.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pKorinth.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-          CvUtil.addScriptData(pSupply, "s","200")
+          PAE_Unit.setSupply(pUnit,200)
           pGeneral = pKorinth.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pGeneral.setName("Iolaos")
           if bIsHuman:
@@ -2080,7 +2081,7 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
             for i in range(4): pTheben.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(2): pTheben.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             pUnit = pTheben.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            CvUtil.addScriptData(pUnit,"s","200")
+            PAE_Unit.setSupply(pUnit,200)
             if bIsHuman:
                 popupInfo = CyPopupInfo()
                 popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -2211,7 +2212,7 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
             for i in range(12): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(4):
                 pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                CvUtil.addScriptData(pUnit, "s","200")
+                PAE_Unit.setSupply(pUnit,200)
             for i in range(2):
                 pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eFlank1, True)
@@ -2252,7 +2253,7 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
             for i in range(6): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(2):
                 pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                CvUtil.addScriptData(pUnit,"s","200")
+                PAE_Unit.setSupply(pUnit,200)
             for i in range(2):
                 pUnit = pAthen.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                 pUnit.setHasPromotion(eFlank1, True)
@@ -2273,7 +2274,7 @@ def peloponnesianWarKeinpferd_Syra1(argsList):
             for i in range(2): pAthen.initUnit(eRam, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             for i in range(1):
                 pUnit = pAthen.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                CvUtil.addScriptData(pUnit,"s","200")
+                PAE_Unit.setSupply(pUnit,200)
             if bIsHuman:
               popupInfo = CyPopupInfo()
               popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)

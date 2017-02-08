@@ -1599,30 +1599,21 @@ def doComet():
 
   # iChance = Wahrscheinlichkeit, dass ein Gebaeude zerstoert wird
 def doDestroyCityBuildings(pCity, iChance):
-  iOwner = pCity.getOwner()
-  lIgnoreBuildings = []
-  lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_SIEDLUNG"))
-  lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_KOLONIE"))
-  lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_STADT"))
-  lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_PROVINZ"))
-  lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_METROPOLE"))
-  lIgnoreBuildings.append(gc.getInfoTypeForString("BUILDING_TRAIT_MARITIME_LOCAL"))
-  # PAE IV Update: Palast darf zerstoert werden... hehe ;)
-  #iBuildingPalace = gc.getInfoTypeForString('BUILDING_PALACE')
-
-  if pCity.getNumBuildings() > 0:
+    iOwner = pCity.getOwner()
     iRange = gc.getNumBuildingInfos()
     for iBuilding in range(iRange):
-      pBuilding = gc.getBuildingInfo(iBuilding)
-      if pCity.getNumBuilding(iBuilding):
-        if iBuilding not in lIgnoreBuildings and not isWorldWonderClass(gc.getBuildingInfo(iBuilding).getBuildingClassType()):
-          iRand = myRandom(100)
-          if iRand < iChance:
-            pCity.setNumRealBuilding(iBuilding,0)
-            if iOwner != -1:
-              if gc.getPlayer(iOwner).isHuman():
-                CyInterface().addMessage(gc.getPlayer(iOwner).getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
-
+        if pCity.getNumRealBuilding(iBuilding):
+            pBuilding = gc.getBuildingInfo(iBuilding)
+            if not isWorldWonderClass(pBuilding.getBuildingClassType()):
+                if myRandom(100) < iChance:
+                    pCity.setNumRealBuilding(iBuilding,0)
+                    pOwner = gc.getPlayer(iOwner)
+                    if pOwner.isHuman():
+                        CyInterface().addMessage(pOwner.getID(), True, 8, CyTranslator().getText("TXT_KEY_DISASTER_DESTROYED_BUILDING",(pCity.getName(),pBuilding.getDescription())),None,2,pBuilding.getButton(),ColorTypes(7),pCity.getX(),pCity.getY(),True,True)
+    PAE_City.doCheckCityState(pCity)
+    PAE_City.doCheckTraitBuildings(pCity)
+    PAE_City.doCheckGlobalTraitBuildings(iOwner)
+    
 
   # iChance = Wahrscheinlichkeit, dass ein Wunder zerstoert wird
   # iFeatureType = Art der Katastrophe

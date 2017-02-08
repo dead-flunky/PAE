@@ -106,9 +106,9 @@ class CvTradeRouteAdvisor:
     for i in range(iNumUnits):
       sUnit = pPlayer.getUnit(i)
       if sUnit.getUnitType() in lTradeUnitsLand:
-        if int(CvUtil.getScriptData(sUnit, ["automActive"], 0)): list1.append(sUnit)
+        if int(CvUtil.getScriptData(sUnit, ["autA"], 0)): list1.append(sUnit)
       elif sUnit.getUnitType() in lTradeUnitsSea:
-        if int(CvUtil.getScriptData(sUnit, ["automActive"], 0)): list2.append(sUnit)
+        if int(CvUtil.getScriptData(sUnit, ["autA"], 0)): list2.append(sUnit)
 
     # Zeige zuerst Landeinheiten, danach Schiffe
     lHandelseinheiten = list1 + list2
@@ -147,8 +147,8 @@ class CvTradeRouteAdvisor:
       screen.setLabel("L3_"+str(i), "Background", u"<font=3>" + szText + u"</font>", CvUtil.FONT_LEFT_JUSTIFY, 100, iY+24, 0.0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 
       # City 1
-      iCityX = int(CvUtil.getScriptData(pUnit, ["automX1"], -1))
-      iCityY = int(CvUtil.getScriptData(pUnit, ["automY1"], -1))
+      iCityX = int(CvUtil.getScriptData(pUnit, ["autX1"], -1))
+      iCityY = int(CvUtil.getScriptData(pUnit, ["autY1"], -1))
       tmpPlot = CyMap().plot(iCityX, iCityY)
       if tmpPlot and not tmpPlot.isNone() and tmpPlot.isCity():
         szText = tmpPlot.getPlotCity().getName()
@@ -160,7 +160,7 @@ class CvTradeRouteAdvisor:
         screen.setLabel("L6_"+str(i), "Background", u"<font=2>" + szText + u"</font>", CvUtil.FONT_RIGHT_JUSTIFY, 470, iY+28, 0.0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_PEDIA_JUMP_TO_CIV, iCiv, -1 )
 
       # Button Bonus 1
-      iBonus = CvUtil.getScriptData(pUnit, ["automBonus1"], -1)
+      iBonus = CvUtil.getScriptData(pUnit, ["autB1"], -1)
       if iBonus != -1:
         screen.setImageButton("L7_"+str(i), gc.getBonusInfo(iBonus).getButton(), 510, iY, BUTTON_SIZE, BUTTON_SIZE, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1)
 
@@ -169,13 +169,13 @@ class CvTradeRouteAdvisor:
       screen.setImageButton("L9_"+str(i), "Art/Interface/Buttons/arrow_right.tga", 640, iY+9, 32, 32, WidgetTypes.WIDGET_GENERAL, -1, -1)
 
       # Button Bonus 2
-      iBonus = CvUtil.getScriptData(pUnit, ["automBonus2"], -1)
+      iBonus = CvUtil.getScriptData(pUnit, ["autB2"], -1)
       if iBonus != -1:
         screen.setImageButton("L10_"+str(i), gc.getBonusInfo(iBonus).getButton(), 700, iY, BUTTON_SIZE, BUTTON_SIZE, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BONUS, iBonus, -1)
 
       # City 2
-      iCityX = int(CvUtil.getScriptData(pUnit, ["automX2"], -1))
-      iCityY = int(CvUtil.getScriptData(pUnit, ["automY2"], -1))
+      iCityX = int(CvUtil.getScriptData(pUnit, ["autX2"], -1))
+      iCityY = int(CvUtil.getScriptData(pUnit, ["autY2"], -1))
       tmpPlot = CyMap().plot(iCityX,iCityY)
       if tmpPlot and not tmpPlot.isNone() and tmpPlot.isCity():
         szText = tmpPlot.getPlotCity().getName()
