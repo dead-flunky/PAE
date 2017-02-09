@@ -498,15 +498,15 @@ def getScriptData(pOwner, keylist = None, default=""):
                     dDict = decode_script_data(s)
                     removeScriptData(pOwner, "t")
                     for k2 in dDict:
-                        if k2 == "t": 
+                        if k2 == "t":
                             for k3 in keylist:
-                                if k3 != "t": 
+                                if k3 != "t":
                                     k2 = k3
-                        if k2 == "t": 
+                        if k2 == "t":
                             CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("please check call "+str(k)+" "+str(s),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
                         addScriptData(pOwner, k2, dDict[k2])
                         CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("reassigned value "+str(k2)+" "+str(dDict[k2]),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("result "+str(k)+" "+str(s),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("result "+str(k)+" "+str(s),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
             return s
         except:
             pass

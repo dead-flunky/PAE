@@ -2393,7 +2393,9 @@
       <OrPreReqs>
         <PrereqTech>TECH_ASTRONOMIE</PrereqTech>
       </OrPreReqs>
-      <AndPreReqs/>
+      <AndPreReqs>
+        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
+      </AndPreReqs>
       <Quote>TXT_KEY_PAE_QUOTE_100</Quote>
       <Sound>AS2D_TECH_PAE_QUOTE_100</Sound>
       <SoundMP>AS2D_TECH_PAE_QUOTE_100</SoundMP>
