@@ -2303,12 +2303,12 @@ class CvEventManager:
 
     # -- PAE Disasters / Katastrophen
     # Permanent Alliances entspricht = Naturkatastrophen (PAE)
-    if not (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES) or gc.getGame().isGameMultiPlayer()): 
+    if not (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES) or gc.getGame().isGameMultiPlayer()):
         PAE_Disasters.doGenerateDisaster(iGameTurn)
 
     # -- Seewind / Fair wind ----
     if iGameTurn % 15 == 0: self.doSeewind()
-    
+
     # PAE Debug Mark
     #"""
 # Seevoelker erschaffen: Langboot + Axtkrieger oder Axtkaempfer | -1500 bis -800
@@ -2671,13 +2671,13 @@ class CvEventManager:
         # gc.getInfoTypeForString("UNIT_DRUIDE") # Tickets: 100
         # gc.getInfoTypeForString("UNIT_BRAHMANE") # Tickets: 100
         # => UNITCOMBAT_HEALER
-    
+
         lMounted = [gc.getInfoTypeForString("UNITCOMBAT_CHARIOT"),gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"),gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT")]
         lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"),gc.getInfoTypeForString("UNITCOMBAT_ARCHER")]
-    
+
         for h in PlotArraySupply:
             loopPlot = gc.getMap().plot(h[0],h[1])
-    
+
             # Init
             iMounted = 0
             iMelee = 0
@@ -2686,7 +2686,7 @@ class CvEventManager:
             iNumUnits = loopPlot.getNumUnits()
             # PAE V: Stack Limit mit iStackLimit1 einbeziehen
             iHungryUnits = iNumUnits - iStackLimit1
-    
+
             # Units calc
             for i in range(iNumUnits):
                 if loopPlot.getUnit(i).getOwner() == iPlayer:
@@ -2700,22 +2700,22 @@ class CvEventManager:
                         elif iUnitType in lMelee:
                             iMelee += 1
                             iHungryUnits -= 1
-    
+
             # ***TEST***
             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_MELEE",iMelee)), None, 2, None, ColorTypes(10), 0, 0, False, False)
             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("UNITCOMBAT_HEALER",len(lHealer))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    
+
             # Plot properties
             bDesert = loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT")
-    
+
             # 1. Versorgen
             for loopUnit in lHealer:
                 if iMounted <= 0 and iMelee <= 0: break
-                iSupplyValue = PAE_Unit.getSupply(loopUnit)
-    
+                (iSupplyValue, _) = PAE_Unit.getSupply(loopUnit)
+
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit init "+str(loopUnit.getID()),iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    
+
                 if iSupplyValue > 0:
                     # Mounted Units
                     if bDesert:
@@ -2732,7 +2732,7 @@ class CvEventManager:
                             iMounted = -iSupplyValue
                             iSupplyValue = 0
                         else: iMounted = 0
-        
+
                     # Melee Units
                     iSupplyValue -= iMelee
                     if iSupplyValue < 0:
@@ -6762,8 +6762,8 @@ class CvEventManager:
             gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"): 25,
             gc.getInfoTypeForString("IMPROVEMENT_FORT"): 30,
             gc.getInfoTypeForString("IMPROVEMENT_FORT2"): 40
-        } 
-        
+        }
+
         iSupplyChange = lSupplyBonus.get(iImprovement, 0)
         for loopUnit in lHealer:
             if iSupplyChange <= 0: break
@@ -6785,11 +6785,11 @@ class CvEventManager:
             CyInterface().addMessage(pUnit.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_PROMOTION",(pUnit.getName(),gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pUnit.getX(), pUnit.getY(), True, True)
 
       # Feldsklaven und Minensklaven checken
-      if iImprovement != gc.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"): 
+      if iImprovement != gc.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"):
         PAE_Sklaven.doCheckSlavesAfterPillage(pUnit,pPlot)
 
       # Handelsposten: Plot-ScriptData leeren
-      if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"): 
+      if iImprovement == gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"):
         CvUtil.removeScriptData(pPlot, "p")
 
       # Unit soll sich nachher nicht mehr fortbewegen koennen
@@ -7519,7 +7519,7 @@ class CvEventManager:
     # Trait-Gebaeude anpassen
     PAE_City.doCheckTraitBuildings(pCity)
     PAE_City.doCheckGlobalTraitBuildings(iNewOwner, pCity, iPreviousOwner)
-    
+
     # Assimilation Tech (PAE V Patch 4)
     if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ASSIMILATION")): bAssimilation = True
     else: bAssimilation = False

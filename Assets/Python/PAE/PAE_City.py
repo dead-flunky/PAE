@@ -4,6 +4,7 @@ import random
 import PyHelpers
 
 import PAE_Sklaven
+import PAE_Unit
 import PAE_Mercenaries
 import CvUtil
 
@@ -145,26 +146,26 @@ def doCheckCityState(pCity):
        PAE_Sklaven.doAIReleaseSlaves(pCity)
 
 
-    
+
 # --------------------------------
 # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
 def doCheckTraitBuildings (pCity):
     pOwner = gc.getPlayer(pCity.getOwner())
-    
+
     # lokale Trait-Gebaeude
     iCreativeLocal = gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL")
     eTraitCreative = gc.getInfoTypeForString("TRAIT_CREATIVE")
     # Tech, ab der Creative_Local gesetzt wird
     iTechCreativeLocal = gc.getInfoTypeForString("TECH_ALPHABET")
-    
+
     # Alle nicht passenden Gebaeude entfernen
     # Nur lokale hinzufuegen, globale nicht
     if pOwner.hasTrait(eTraitCreative) and gc.getTeam(pOwner.getTeam()).isHasTech(iTechCreativeLocal):
         pCity.setNumRealBuilding(iCreativeLocal, 1)
-    else: 
+    else:
         pCity.setNumRealBuilding(iCreativeLocal, 0)
-        
-# 
+
+#
 def doCheckGlobalTraitBuildings(iPlayer, pCity = None, iOriginalOwner = -1):
     pOwner = gc.getPlayer(iPlayer)
     lGlobal = [
@@ -172,19 +173,19 @@ def doCheckGlobalTraitBuildings(iPlayer, pCity = None, iOriginalOwner = -1):
         (gc.getInfoTypeForString("TRAIT_CREATIVE"),gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_GLOBAL")),
         (gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL"), gc.getInfoTypeForString("BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL"))
     ]
-    
+
     for (iTrait, iBuilding) in lGlobal:
         # es wurde ein Traitbuilding erobert
-        if pCity != None and pCity.getNumRealBuilding(iBuilding) > 0: 
+        if pCity != None and pCity.getNumRealBuilding(iBuilding) > 0:
             pCity.setNumRealBuilding(iBuilding, 0)
             if iOriginalOwner != -1:
                 doCheckGlobalBuilding (iOriginalOwner, iBuilding)
-        
+
         if pOwner.hasTrait(iTrait):
             doCheckGlobalBuilding (iPlayer, iBuilding)
-        
 
-                    
+
+
 # Methode fuer lokalen Gebrauch
 def doCheckGlobalBuilding (iPlayer, iBuilding):
     lCities = PyPlayer(iPlayer).getCityList()
@@ -735,10 +736,10 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
     iRebel = gc.getInfoTypeForString("UNIT_REBELL")
     iPartisan = gc.getInfoTypeForString("UNIT_FREEDOM_FIGHTER")
     lRebels = [iRebel, iPartisan]
-    
+
     lTraitPromos = [gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")]
     iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
-    
+
     if iNewOwner == -1: iNewOwner = gc.getBARBARIAN_PLAYER()
 
     pNewOwner = gc.getPlayer(iNewOwner)
@@ -762,7 +763,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
             if pLoopUnit.getUnitType() in lRebels or pLoopUnit.getInvisibleType() > -1:
                 JumpArray.append(pLoopUnit)
             elif pLoopUnit.getOwner() == iOldOwner:
-                # Einige Einheiten bleiben loyal und fliehen                
+                # Einige Einheiten bleiben loyal und fliehen
                 if pLoopUnit.isHasPromotion(iPromoLoyal): iChance = 4
                 else: iChance = 8
                 iRand = myRandom(10)
@@ -771,7 +772,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
                 # else: Einheit kann sich noch aus dem Staub machen
                 else: JumpArray.append(pLoopUnit)
             else: JumpArray.append(pLoopUnit)
-    
+
     for pUnit in JumpArray:
         pUnit.jumpToNearestValidPlot()
 
@@ -782,12 +783,12 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
     # Einheiten generieren
     for pLoopUnit in UnitArray:
         iUnitOwner = iNewOwner
-        
+
         iUnitType = pLoopUnit.getUnitType()
         iUnitAIType = pLoopUnit.getUnitAIType()
         sUnitName = pLoopUnit.getName()
         iUnitCombatType = pLoopUnit.getUnitCombatType()
-        
+
         # TEST
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 3 - iUnitOwner",iUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
@@ -815,15 +816,15 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
             # Emigrant und dessen Kultur
             if iUnitType == gc.getInfoTypeForString('UNIT_EMIGRANT'):
                 CvUtil.addScriptData(NewUnit, "p", iOldOwner)
-            
+
             PAE_Unit.copyName(NewUnit, iUnitType, sUnitName)
-            
+
             if sUnitName != gc.getUnitInfo(iUnitType).getText():
                 sUnitName = re.sub(" \(.*?\)","",sUnitName)
                 NewUnit.setName(sUnitName)
 
             if iUnitCombatType != -1:
-            
+
                 NewUnit.setExperience(pLoopUnit.getExperience(), -1)
                 NewUnit.setLevel(pLoopUnit.getLevel())
                 if pLoopUnit.getCaptureUnitType(gc.getPlayer(iOldOwner).getCivilizationType()) == -1:
@@ -979,7 +980,7 @@ def doUnitSupply(pCity, iPlayer):
             pLoopUnit = pCityPlot.getUnit(i)
             if pLoopUnit.getUnitCombatType() != -1:
                 if pLoopUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-                    iExtraSupply = PAE_Unit.getSupply(pUnit)
+                    (iExtraSupply, _) = PAE_Unit.getSupply(pUnit)
                     if iExtraSupply <= iMaintainUnits:
                         iMaintainUnits -= iExtraSupply
                         iExtraSupply = 0
@@ -990,7 +991,7 @@ def doUnitSupply(pCity, iPlayer):
                     PAE_Unit.setSupply(pLoopUnit,iExtraSupply)
                 else:
                     lUnitsAll.append(pLoopUnit)
-    
+
             if iMaintainUnits == 0: break
 
       if iMaintainUnits > 0 and len(lUnitsAll) > 0:

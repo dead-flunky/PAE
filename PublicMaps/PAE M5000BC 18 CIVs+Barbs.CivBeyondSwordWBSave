@@ -901,7 +901,7 @@ EndMap
 
 ### Plot Info ###
 BeginPlot
-	ScriptData=MITTELMEER4000BC
+  ScriptData=MITTELMEER4000BC
   x=0,y=0
   TerrainType=TERRAIN_PLAINS
   PlotType=0
@@ -11990,7 +11990,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_C30
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
   EndCity
   TeamReveal=12,40,
   Player12Culture=2
@@ -14937,7 +14937,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_ATHENS
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
     BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
   EndCity
   TeamReveal=3,
@@ -20412,7 +20412,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_BYBLOS
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
   EndCity
   TeamReveal=11,40,
   Player11Culture=2

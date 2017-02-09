@@ -20754,7 +20754,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+                BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_3
                 CorporationType=CORPORATION_5
@@ -21786,7 +21786,7 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+                BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
                 ReligionType=RELIGION_GREEK
                 FreeSpecialistType=SPECIALIST_SLAVE_FOOD
                 Player16Culture=50
@@ -22300,7 +22300,6 @@ BeginPlot
                 BuildingType=BUILDING_PFERDEZUCHT
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_3
                 Player6Culture=50
@@ -22442,7 +22441,6 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_2
                 FreeSpecialistType=SPECIALIST_GREAT_MERCHANT
@@ -23053,7 +23051,6 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
                 BuildingType=BUILDING_THEATER
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_5
@@ -24466,7 +24463,6 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
                 ReligionType=RELIGION_GREEK
                 FreeSpecialistType=SPECIALIST_GREAT_GENERAL
                 FreeSpecialistType=SPECIALIST_SLAVE_FOOD
@@ -26395,7 +26391,6 @@ BeginPlot
                 BuildingType=BUILDING_STATUE_OF_ZEUS
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
                 ReligionType=RELIGION_GREEK
                 CorporationType=CORPORATION_2
                 CorporationType=CORPORATION_5
@@ -27046,7 +27041,6 @@ BeginPlot
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE
                 BuildingType=BUILDING_STADT
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
                 BuildingType=BUILDING_PROMO_HILLS
                 BuildingType=BUILDING_PROMO_FOREST
                 ReligionType=RELIGION_GREEK

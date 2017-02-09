@@ -3954,7 +3954,7 @@ BeginPlot
     BuildingType=BUILDING_ORACLE2
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
     ReligionType=RELIGION_CELTIC
     Player7Culture=112
   EndCity
@@ -5262,7 +5262,6 @@ BeginPlot
     BuildingType=BUILDING_CELTIC_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_CELTIC
     CorporationType=CORPORATION_2
     Player7Culture=61
@@ -7352,7 +7351,6 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_CELTIC
     CorporationType=CORPORATION_2
     FreeSpecialistType=SPECIALIST_SLAVE
@@ -11096,7 +11094,6 @@ BeginPlot
     BuildingType=BUILDING_CELTIC_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_CELTIC
     CorporationType=CORPORATION_2
     Player7Culture=41
@@ -13073,7 +13070,6 @@ BeginPlot
     BuildingType=BUILDING_CELTIC_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_CELTIC
     CorporationType=CORPORATION_2
     Player7Culture=64
@@ -15562,7 +15558,6 @@ BeginPlot
     BuildingType=BUILDING_CELTIC_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_CELTIC
     CorporationType=CORPORATION_2
     Player7Culture=68
@@ -16121,7 +16116,6 @@ BeginPlot
     BuildingType=BUILDING_CELTIC_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_CELTIC
     CorporationType=CORPORATION_2
     Player7Culture=64
@@ -40907,7 +40901,7 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
     BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
     ReligionType=RELIGION_ROME
     ReligionType=RELIGION_GREEK
@@ -42259,7 +42253,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -44592,7 +44585,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_6
@@ -49199,7 +49191,7 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
     ReligionType=RELIGION_PHOEN
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -49429,7 +49421,6 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -49523,7 +49514,6 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_5
@@ -51076,7 +51066,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_5
@@ -51329,7 +51318,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_2
     CorporationType=CORPORATION_8
@@ -51726,7 +51714,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_5
@@ -52966,7 +52953,6 @@ BeginPlot
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_5
@@ -54642,7 +54628,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
@@ -55209,7 +55194,7 @@ BeginPlot
     Level=3, Experience=0
     PromotionType=PROMOTION_LOYALITAT
     PromotionType=PROMOTION_NAVIGATION1
-    PromotionType=PROMOTION_NAVIGATION2    
+    PromotionType=PROMOTION_NAVIGATION2
     FacingDirection=5
     UnitAIType=UNITAI_ASSAULT_SEA
   EndUnit
@@ -55847,7 +55832,6 @@ BeginPlot
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_5
@@ -56275,7 +56259,6 @@ BeginPlot
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
     BuildingType=BUILDING_PROVINZ
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     BuildingType=BUILDING_CORP3
     ReligionType=RELIGION_GREEK
     HolyCityReligionType=RELIGION_GREEK
@@ -56693,7 +56676,6 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
     ReligionType=RELIGION_GREEK
     CorporationType=CORPORATION_3
     CorporationType=CORPORATION_5

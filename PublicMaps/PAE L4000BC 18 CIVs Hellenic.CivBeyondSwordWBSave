@@ -907,7 +907,7 @@ EndMap
 
 ### Plot Info ###
 BeginPlot
-	ScriptData=MITTELMEER4000BC
+  ScriptData=MITTELMEER4000BC
   x=0,y=0
   TerrainType=TERRAIN_OCEAN
   PlotType=3
@@ -15256,7 +15256,7 @@ BeginPlot
     CityName=Skodra
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
   EndCity
   TeamReveal=8,
   Player8Culture=2
@@ -20708,7 +20708,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_THEBES
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
     Player11Culture=1
   EndCity
   TeamReveal=4,11,40,
@@ -22697,7 +22697,7 @@ BeginPlot
     CityName=TXT_KEY_CIV_ATHENS_SHORT_DESC
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
     BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
   EndCity
   TeamReveal=4,12,40,
@@ -31054,7 +31054,7 @@ BeginPlot
     CityName=TXT_KEY_CITY_NAME_BYBLOS
     CityPopulation=1
     BuildingType=BUILDING_SIEDLUNG
-    BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+    BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
   EndCity
   TeamReveal=14,
   Player14Culture=2

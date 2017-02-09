@@ -22948,7 +22948,7 @@ BeginPlot
                 CityName=TXT_KEY_CITY_NAME_ILLYRIA_01
                 CityPopulation=1
                 BuildingType=BUILDING_SIEDLUNG
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+                BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
         EndCity
         TeamReveal=18,
         Player18Culture=2
@@ -25817,7 +25817,7 @@ BeginPlot
                 CityName=TXT_KEY_CITY_NAME_THEBES
                 CityPopulation=1
                 BuildingType=BUILDING_SIEDLUNG
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+                BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
         EndCity
         TeamReveal=14,
         Player14Culture=2
@@ -27391,7 +27391,7 @@ BeginPlot
                 CityName=TXT_KEY_CITY_NAME_C33
                 CityPopulation=1
                 BuildingType=BUILDING_SIEDLUNG
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+                BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
                 BuildingType=BUILDING_TRAIT_PHILOSOPHICAL_GLOBAL
         EndCity
         TeamReveal=15,
@@ -38516,7 +38516,7 @@ BeginPlot
                 CityName=TXT_KEY_CITY_NAME_BYBLOS
                 CityPopulation=1
                 BuildingType=BUILDING_SIEDLUNG
-                BuildingType=BUILDING_TRAIT_MARITIME_LOCAL
+                BuildingType=BUILDING_TRAIT_MARITIME_GLOBAL
         EndCity
         TeamReveal=7,
         Player7Culture=2

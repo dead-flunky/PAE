@@ -5150,10 +5150,13 @@ class CvMainInterface:
 
         iTech  = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_ENSLAVEMENT')
         iTech2 = CvUtil.findInfoTypeNum(gc.getTechInfo,gc.getNumTechInfos(),'TECH_GLADIATOR')
-        iSlaveIcon = gc.getInfoTypeForString("BONUS_SLAVES")
+        # TODO: Slave-Char ohne extra Bonus
+        iSlaveIcon = gc.getInfoTypeForString("BONUS_THRAKIEN")
+
         iGladsIcon = gc.getInfoTypeForString("BONUS_BRONZE")
 
         szBuffer = u"%d %c " %(iCitySlaves,gc.getBonusInfo(iSlaveIcon).getChar())
+
         if not pTeam.isHasTech(iTech): szBuffer += localText.getText("TXT_KEY_MAIN_CITY_SLAVES_AB",("",))
         else:
           #szBuffer += localText.getText("TXT_KEY_MAIN_CITY_SLAVES_N_GLADS_CALC",(iCitySlaves,iCityPop))
@@ -5589,7 +5592,7 @@ class CvMainInterface:
                           UnitBarType = "HEALER"
                           (iSup, iMax) = PAE_Unit.getSupply(pUnit)
                           # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply "+str(iSup)+" max Supply "+str(iMax),)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-                          iValue1 += iSup    
+                          iValue1 += iSup
                           iValue2 += iMax
 
                         elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_EMIGRANT"):

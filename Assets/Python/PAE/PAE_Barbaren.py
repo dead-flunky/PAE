@@ -66,7 +66,7 @@ def doPlotFeatures():
                             # Forts
                             elif loopPlot.getNumUnits() > 0:
                                 # Besitzer ist der mit den meisten Einheiten drauf
-                                OwnerArray = []
+                                OwnerArray = {}
                                 iNumUnits = loopPlot.getNumUnits()
                                 for i in range (iNumUnits):
                                     if loopPlot.getUnit(i).isMilitaryHappiness():
@@ -75,15 +75,15 @@ def doPlotFeatures():
                                             OwnerArray[iOwner] += 1
                                         else:
                                             OwnerArray[iOwner] = 1
-                                            
-                                
-                                try:
-                                    # At least give it a chance, in case a modern version of Python is running,
-                                    # it would be faster
-                                    iOwner = max(OwnerArray, key=OwnerArray.get)
-                                except:
-                                    my_decorated = [(OwnerArray.get(x), x) for x in OwnerArray]
-                                    iOwner = max(my_decorated)[1]
+
+
+                                #~ try:
+                                    #~ # At least give it a chance, in case a modern version of Python is running,
+                                    #~ # it would be faster
+                                    #~ iOwner = max(OwnerArray, key=OwnerArray.get)
+                                #~ except:
+                                my_decorated = [(OwnerArray.get(x), x) for x in OwnerArray]
+                                iOwner = max(my_decorated)[1]
                                 if OwnerArray[iOwner] == 0:
                                     iOwner = -1
 
@@ -94,7 +94,7 @@ def doPlotFeatures():
                                     loopPlot.setCulture(iPlayerID,1,True)
                                     loopPlot.setOwner(iPlayerID)
                                 else:
-                                    # TODO: das macht hidden culture in ehemals besiedeltem Gebiet kaputt. 
+                                    # TODO: das macht hidden culture in ehemals besiedeltem Gebiet kaputt.
                                     loopPlot.setCulture(iPlayerID,0,True)
 
                         # Lion - 2% Appearance
@@ -116,11 +116,11 @@ def doPlotFeatures():
                                 # Einheiten) setzen
                                 createBarbUnit(loopPlot)
                 # end if --- nur ausserhalb von Staedten
-                  
+
                 # Bei jedem Plot:
                 if loopPlot.getBonusType(iPlotOwner) != -1:
                     # Horse - 1.5% Appearance
-                    if loopPlot.getBonusType(iPlotOwner) == bonus_horse: 
+                    if loopPlot.getBonusType(iPlotOwner) == bonus_horse:
                         iUnitType = gc.getInfoTypeForString("UNIT_WILD_HORSE")
                         iUnitTypeDom = gc.getInfoTypeForString("UNIT_HORSE")
                         iTechDom = gc.getInfoTypeForString("TECH_PFERDEZUCHT")
@@ -638,7 +638,7 @@ def doHuns():
             LeaderHuns = gc.getInfoTypeForString("LEADER_ATTILA")
             gc.getGame().addPlayer(iHunsID,LeaderHuns,CivHuns)
             pPlayer = gc.getPlayer(iHunsID)
-            
+
             iUnitSettler = gc.getInfoTypeForString("UNIT_SETTLER")
             iUnitSpearman = gc.getInfoTypeForString("UNIT_SPEARMAN")
             iUnitWorker = gc.getInfoTypeForString("UNIT_WORKER")
