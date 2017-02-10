@@ -431,7 +431,7 @@ class CvEventManager:
     'Called whenever CyMessageControl().sendModNetMessage() is called - this is all for you modders!'
 
     iData1, iData2, iData3, iData4, iData5 = argsList
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("onModNetMessage: ",iData1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("onModNetMessage: ",iData1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
     print("Modder's net message!")
     CvUtil.pyPrint( 'onModNetMessage' )
 
@@ -811,7 +811,7 @@ class CvEventManager:
 
     # Unit FORMATIONS ----------------------
     elif iData1 == 718:
-       CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("718 erreicht",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+       # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("718 erreicht",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
        # iData1,... 705, 0, iFormation, iPlayer, iUnitID
        PAE_Unit.doUnitFormation(gc.getPlayer(iData4).getUnit(iData5), iData3)
 
@@ -6797,7 +6797,8 @@ class CvEventManager:
     # PAE Debug Mark
     #"""
 
-    if (not self.__LOG_UNITPILLAGE): return
+    if (not self.__LOG_UNITPILLAGE):
+      return
 #    CvUtil.pyPrint("Player %d's %s pillaged improvement %d and route %d at plot at (%d, %d)"
 #      %(iOwner, pUnit.getName(), iImprovement, iRoute, iPlotX, iPlotY))
 
@@ -7521,8 +7522,7 @@ class CvEventManager:
     PAE_City.doCheckGlobalTraitBuildings(iNewOwner, pCity, iPreviousOwner)
 
     # Assimilation Tech (PAE V Patch 4)
-    if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ASSIMILATION")): bAssimilation = True
-    else: bAssimilation = False
+    bAssimilation = gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ASSIMILATION"))
 
     # Szenarien
     sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])

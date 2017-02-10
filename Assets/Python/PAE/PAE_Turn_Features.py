@@ -309,7 +309,7 @@ def doSeewind():
     terr_ocean = gc.getInfoTypeForString("TERRAIN_OCEAN")
     feat_ice = gc.getInfoTypeForString("FEATURE_ICE")
 
-	iNumDirection = 8
+    iNumDirection = 8
     lFeatWind = [
         gc.getInfoTypeForString("FEATURE_WIND_N"),
         gc.getInfoTypeForString("FEATURE_WIND_NE"),
