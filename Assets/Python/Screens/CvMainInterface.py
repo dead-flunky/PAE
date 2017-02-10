@@ -6961,8 +6961,10 @@ class CvMainInterface:
     if inputClass.getButtonType() == WidgetTypes.WIDGET_HELP_PROMOTION:
       # ID 718 Unit Formations
       if (inputClass.getNotifyCode() == 11 and inputClass.getData2() == 718 and inputClass.getOption()):
-        CyAudioGame().Play2DSound('AS2D_BUILD_BARRACKS')
+        CyAudioGame().Play2DSound('AS2D_BUILD_BARRACKS')      
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Formation zu senden: ", 718)), None, 2, None, ColorTypes(10), 0, 0, False, False)
         CyMessageControl().sendModNetMessage( 718, 0, inputClass.getData1(), iOwner, iUnitID )
+
 
 # Platy ScoreBoard - Start
     if inputClass.getFunctionName() == "ScoreRowPlus":

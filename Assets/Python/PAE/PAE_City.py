@@ -145,13 +145,11 @@ def doCheckCityState(pCity):
     if not gc.getPlayer(pCity.getOwner()).isHuman():
        PAE_Sklaven.doAIReleaseSlaves(pCity)
 
-
-
+    
 # --------------------------------
 # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
 def doCheckTraitBuildings (pCity):
     pOwner = gc.getPlayer(pCity.getOwner())
-
     # lokale Trait-Gebaeude
     iCreativeLocal = gc.getInfoTypeForString("BUILDING_TRAIT_CREATIVE_LOCAL")
     eTraitCreative = gc.getInfoTypeForString("TRAIT_CREATIVE")
@@ -818,10 +816,6 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
                 CvUtil.addScriptData(NewUnit, "p", iOldOwner)
 
             PAE_Unit.copyName(NewUnit, iUnitType, sUnitName)
-
-            if sUnitName != gc.getUnitInfo(iUnitType).getText():
-                sUnitName = re.sub(" \(.*?\)","",sUnitName)
-                NewUnit.setName(sUnitName)
 
             if iUnitCombatType != -1:
 

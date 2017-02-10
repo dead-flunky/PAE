@@ -2615,6 +2615,7 @@ class CvGameUtils:
 
       # Unit Formations
       if (iData2 == 718):
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("718 GameUtils erreicht",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
         if iData1 == -1: return u"<color=155,255,255,0>" + CyTranslator().getText("TXT_KEY_PROMOTION_FORM_NONE",()) + u"</color>"
         else: return u"<color=155,255,255,0>%s</color>" % gc.getPromotionInfo(iData1).getDescription()
 
@@ -2884,64 +2885,6 @@ class CvGameUtils:
       lCities = PyPlayer(iOwner).getCityList()
       iNumReligions = gc.getNumReligionInfos()
 
-
-      ##--------Gegen Relisieg
-      #iStateReligionPercent = CyGame().calculateReligionPercent(iStateReligion)
-      #Checks religion percents
-      #bestReligionPercent = 0
-      #iBestReligion = -1
-      #for iReligionLoop in range(iNumReligions):
-      #  if (iReligionLoop != iStateReligion):
-      #    religionPercent = CyGame().calculateReligionPercent(iReligionLoop)
-      #    if (religionPercent > bestReligionPercent):
-      #      bestReligionPercent = religionPercent
-      #      iBestReligion = iReligionLoop
-
-      #Prevent religious victory
-      #if bestReligionPercent >= 90 or bestReligionPercent > iStateReligionPercent:
-      #  for iCity in range(len(lCities)):
-      #    pCity = pOwner.getCity( lCities[ iCity ].getID( ) )
-      #    if pCity.isHasReligion(iBestReligion) and pCity.isHasReligion(iStateReligion):
-      #      #Makes the unit move to the City and purge it
-      #      iPlayer = pOwner.getID()
-      #      PAE_City.doInquisitorPersecution2(iPlayer, pCity.getID(), -1, iReligion, pUnit.getID())
-      #      #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #      pUnit.kill(1,pUnit.getOwner())
-      #      return
-      ##--------Ende Relisieg
-
-      # First Version
-      #Looks to see if the AI controls a City with unhappiness and non-state religions
-      #iRange = len(lCities)
-      #for iCity in range(iRange):
-      #    pCity = pOwner.getCity( lCities[ iCity ].getID( ) )
-      #    # has this city probably unhappiness of religion cause
-      #    if pCity.happyLevel() < pCity.unhappyLevel(0):
-      #      for iReligion in range(iNumReligions):
-      #        if iReligion != iStateReligion and pCity.isHasReligion( iReligion ) and pCity.isHolyCityByType( iReligion ) == 0:
-      #          #Makes the unit purge it
-      #          iPlayer = pOwner.getID()
-      #          PAE_City.doInquisitorPersecution2(iPlayer, pCity.getID(), -1, iReligion, pUnit.getID())
-      #          #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #          pUnit.kill(1,pUnit.getOwner())
-      #          return 1
-
-      # lReligions.difference = Fehler: list object: GIBTS NICHT
-      #for pCity in lCities:
-      #  # has this city probably unhappiness of religion cause
-      #  if pCity.getAngryPopulation() > 0:
-      #    lReligions = pCity.getReligions()
-      #    lHoly = pCity.getHolyCity()
-      #    lReligionsWithoutHolyOrState = lReligions.difference(lHoly,iStateReligion)
-      #    iRand = self.myRandom(len(lReligionsWithoutHolyOrState),None)
-      #    iReligion = lReligionsWithoutHolyOrState(iRand)
-      #    iPlayer = pOwner.getID( )       #
-      #    PAE_City.doInquisitorPersecution2(iPlayer,pCity.getID(), -1, iReligion, pUnit.getID())
-      #    #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-      #    pUnit.kill(1,pUnit.getOwner())
-      #    return 1
-
-
       for pyCity in lCities:
         # has this city probably unhappiness of religion cause
         if pyCity.getAngryPopulation() > 0:
@@ -2958,14 +2901,6 @@ class CvGameUtils:
                   return True
 
     return
-
-  #def doHolyCitySeekAndDestroy( self, pUnit, pCity ):
-  #
-  #  if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
-  #    pUnit.getGroup().clearMissionQueue()
-  #    pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
-  #  else:
-  #    PAE_City.doInquisitorPersecution( pCity, pUnit )
 
   def getExperienceNeeded(self, argsList):
     # use this function to set how much experience a unit needs

@@ -65,23 +65,22 @@ import CvRiverUtil
 import PAE_Trade
 # Christian Events
 import PAE_Christen
-# Barbaren und rundenbezogene Features
+# Barbaren
 import PAE_Barbaren
-
 import PAE_Mercenaries
-
 import PAE_City
-
 import PAE_Unit
+import PAE_Sklaven
+import PAE_Vassal
+import PAE_Disasters
+# rundenbezogene Features
+import PAE_Turn_Features
 
 # Flunky: Scenario files
 import PeloponnesianWar
 import PeloponnesianWarKeinPferd
 import Schmelz
 import FirstPunicWar
-import PAE_Sklaven
-import PAE_Vassal
-import PAE_Disasters
 
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -432,7 +431,7 @@ class CvEventManager:
     'Called whenever CyMessageControl().sendModNetMessage() is called - this is all for you modders!'
 
     iData1, iData2, iData3, iData4, iData5 = argsList
-
+    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("onModNetMessage: ",iData1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
     print("Modder's net message!")
     CvUtil.pyPrint( 'onModNetMessage' )
 
@@ -812,6 +811,7 @@ class CvEventManager:
 
     # Unit FORMATIONS ----------------------
     elif iData1 == 718:
+       CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("718 erreicht",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
        # iData1,... 705, 0, iFormation, iPlayer, iUnitID
        PAE_Unit.doUnitFormation(gc.getPlayer(iData4).getUnit(iData5), iData3)
 
@@ -2267,7 +2267,7 @@ class CvEventManager:
 
 
     ###### Historische Texte ---------
-    self.doHistory(iGameTurn)
+    PAE_Turn_Features.doHistory()
 
   # global
   def onEndGameTurn(self, argsList):
@@ -2276,16 +2276,16 @@ class CvEventManager:
 
     # Special Scripts for PAE Scenarios
     sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
+    if sScenarioName != "":
+        if sScenarioName == "PeloponnesianWar":
+            PeloponnesianWar.onEndGameTurn(iGameTurn)
 
-    if sScenarioName == "PeloponnesianWar":
-      PeloponnesianWar.onEndGameTurn(iGameTurn)
+      # ---------------- Schmelzen 3/4 (BoggyB) --------
+        if sScenarioName == "SchmelzEuro" or sScenarioName == "SchmelzWelt":
+            Schmelz.onEndGameTurn(iGameTurn, sScenarioName)
 
-  # ---------------- Schmelzen 3/4 (BoggyB) --------
-    if sScenarioName == "SchmelzEuro" or sScenarioName == "SchmelzWelt":
-      Schmelz.onEndGameTurn(iGameTurn, sScenarioName)
-
-    if sScenarioName == "PeloponnesianWarKeinpferd":
-      PeloponnesianWarKeinpferd.onEndGameTurn(iGameTurn)
+        if sScenarioName == "PeloponnesianWarKeinpferd":
+            PeloponnesianWarKeinpferd.onEndGameTurn(iGameTurn)
 
     ## Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ##
     # PAE V: Treibgut erstellen
@@ -2293,13 +2293,13 @@ class CvEventManager:
     # PAE Trade Cities Special Bonus
     if gc.getGame().getGameTurnYear() > -2400:
         if iGameTurn % 20 == 0:
-            PAE_Barbaren.setGoodyHuts()
+            PAE_Turn_Features.setGoodyHuts()
             PAE_Trade.addCityWithSpecialBonus(iGameTurn)
 
         PAE_Trade.doUpdateCitiesWithSpecialBonus(iGameTurn)
 
     # -- PAE V: Treibgut -> Strandgut
-    PAE_Barbaren.doStrandgut()
+    PAE_Turn_Features.doStrandgut()
 
     # -- PAE Disasters / Katastrophen
     # Permanent Alliances entspricht = Naturkatastrophen (PAE)
@@ -2307,7 +2307,7 @@ class CvEventManager:
         PAE_Disasters.doGenerateDisaster(iGameTurn)
 
     # -- Seewind / Fair wind ----
-    if iGameTurn % 15 == 0: self.doSeewind()
+    if iGameTurn % 15 == 0: PAE_Turn_Features.doSeewind()
 
     # PAE Debug Mark
     #"""
@@ -2338,13 +2338,13 @@ class CvEventManager:
 # ------ Berberloewen erzeugen
 # ------ Wildpferde, Wildelefanten, Wildkamele ab PAE V
 # ------ Barbarenfort beleben (PAE V Patch 4)
-    PAE_Barbaren.doPlotFeatures()
+    PAE_Turn_Features.doPlotFeatures()
 
     # Christentum gruenden
     if gc.getGame().getGameTurnYear() >= 0:
-      if not PAE_Christen.bChristentum: PAE_Christen.setHolyCity()
+      if not PAE_Christen.bChristentum: 
+        PAE_Christen.setHolyCity()
 
-# --------------------
     # PAE Debug Mark
     #"""
 
@@ -2376,7 +2376,7 @@ class CvEventManager:
     # ------- Scenario PeloponnesianWarKeinpferd Events Poteidaia, Megara, Plataiai, Syrakus
     sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S","t"])
     if sScenarioName == "PeloponnesianWarKeinpferd":
-      PeloponnesianWarKeinPferd.onBeginPlayerTurn(iGameTurn, pPlayer)
+        PeloponnesianWarKeinPferd.onBeginPlayerTurn(iGameTurn, pPlayer)
 
 # ----- CHECK CIV on Turn - change Team ID (0 = eg Romans) in gc.getPlayer(0).
     if self.bPAE_ShowMessagePlayerTurn:
@@ -9784,200 +9784,3 @@ class CvEventManager:
   # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   # BTS END OF FILE -----------------------------------------------------------------------
   # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-# New Seewind-Feature together with Elwood (ideas) and the TAC-Team (diagonal arrows)
-  def doSeewind (self):
-
-    terr_ocean = gc.getInfoTypeForString("TERRAIN_OCEAN")
-    feat_ice = gc.getInfoTypeForString("FEATURE_ICE")
-    feat_wind_n = gc.getInfoTypeForString("FEATURE_WIND_N")
-    feat_wind_e = gc.getInfoTypeForString("FEATURE_WIND_E")
-    feat_wind_s = gc.getInfoTypeForString("FEATURE_WIND_S")
-    feat_wind_w = gc.getInfoTypeForString("FEATURE_WIND_W")
-    feat_wind_ne = gc.getInfoTypeForString("FEATURE_WIND_NE")
-    feat_wind_nw = gc.getInfoTypeForString("FEATURE_WIND_NW")
-    feat_wind_se = gc.getInfoTypeForString("FEATURE_WIND_SE")
-    feat_wind_sw = gc.getInfoTypeForString("FEATURE_WIND_SW")
-    iWindplots = 6 # amount of wind arrows (plots) per wind
-    OceanPlots = []
-    lDirection = []
-
-    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-    iMapW = gc.getMap().getGridWidth()
-    iMapH = gc.getMap().getGridHeight()
-    # get all ocean plots
-    for i in range (iMapW):
-      for j in range (iMapH):
-        loopPlot = gc.getMap().plot(i, j)
-        if loopPlot != None and not loopPlot.isNone():
-          if loopPlot.getFeatureType() == iDarkIce: continue
-          if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean: OceanPlots.append(loopPlot)
-
-    if len(OceanPlots) > 0:
-#  0 = WORLDSIZE_DUEL
-#  1 = WORLDSIZE_TINY
-#  2 = WORLDSIZE_SMALL
-#  3 = WORLDSIZE_STANDARD
-#  4 = WORLDSIZE_LARGE
-#  5 = WORLDSIZE_HUGE
-
-##entweder groessenabhaengig, oder genau 1
-     iMaxEffects = (gc.getMap().getWorldSize() + 1) * 2
-
-     #iMaxEffects = 1
-
-     for i in range (iMaxEffects):
-
-      # get first ocean plot
-      iRand = self.myRandom(len(OceanPlots), None)
-      iX = OceanPlots[iRand].getX()
-      iY = OceanPlots[iRand].getY()
-
-      # First direction
-      iDirection = self.myRandom(8, None)
-      bFirst = True
-
-      # Start Windplots
-      for j in range (iWindplots):
-
-        loopPlot = gc.getMap().plot(iX, iY)
-        if loopPlot != None and not loopPlot.isNone():
-         if loopPlot.getFeatureType() == iDarkIce: continue
-         if iX > 0 and iX < iMapW and iY > 0 and iY < iMapH:
-          if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-
-            if bFirst:
-              if iDirection == 0:   loopPlot.setFeatureType(feat_wind_n,0)
-              elif iDirection == 1: loopPlot.setFeatureType(feat_wind_ne,0)
-              elif iDirection == 2: loopPlot.setFeatureType(feat_wind_e,0)
-              elif iDirection == 3: loopPlot.setFeatureType(feat_wind_se,0)
-              elif iDirection == 4: loopPlot.setFeatureType(feat_wind_s,0)
-              elif iDirection == 5: loopPlot.setFeatureType(feat_wind_sw,0)
-              elif iDirection == 6: loopPlot.setFeatureType(feat_wind_w,0)
-              elif iDirection == 7: loopPlot.setFeatureType(feat_wind_nw,0)
-              bFirst = False
-            else:
-              iRand = self.myRandom(3, None)
-              if lDirection[iRand] == feat_wind_n:
-                loopPlot.setFeatureType(feat_wind_n,0)
-                iDirection = 0
-              elif lDirection[iRand] == feat_wind_ne:
-                loopPlot.setFeatureType(feat_wind_ne,0)
-                iDirection = 1
-              elif lDirection[iRand] == feat_wind_e:
-                loopPlot.setFeatureType(feat_wind_e,0)
-                iDirection = 2
-              elif lDirection[iRand] == feat_wind_se:
-                loopPlot.setFeatureType(feat_wind_se,0)
-                iDirection = 3
-              elif lDirection[iRand] == feat_wind_s:
-                loopPlot.setFeatureType(feat_wind_s,0)
-                iDirection = 4
-              elif lDirection[iRand] == feat_wind_sw:
-                loopPlot.setFeatureType(feat_wind_sw,0)
-                iDirection = 5
-              elif lDirection[iRand] == feat_wind_w:
-                loopPlot.setFeatureType(feat_wind_w,0)
-                iDirection = 6
-              elif lDirection[iRand] == feat_wind_nw:
-                loopPlot.setFeatureType(feat_wind_nw,0)
-                iDirection = 7
-
-            # set next possible directions
-            if iDirection == 0:
-              lDirection = [feat_wind_nw,feat_wind_n,feat_wind_ne]
-              iY -= 1
-            elif iDirection == 1:
-              lDirection = [feat_wind_n,feat_wind_ne,feat_wind_e]
-              iX -= 1
-              iY -= 1
-            elif iDirection == 2:
-              lDirection = [feat_wind_ne,feat_wind_e,feat_wind_se]
-              iX -= 1
-            elif iDirection == 3:
-              lDirection = [feat_wind_e,feat_wind_se,feat_wind_s]
-              iX -= 1
-              iY += 1
-            elif iDirection == 4:
-              lDirection = [feat_wind_sw,feat_wind_s,feat_wind_se]
-              iY += 1
-            elif iDirection == 5:
-              lDirection = [feat_wind_w,feat_wind_sw,feat_wind_s]
-              iX += 1
-              iY += 1
-            elif iDirection == 6:
-              lDirection = [feat_wind_nw,feat_wind_w,feat_wind_sw]
-              iX += 1
-            elif iDirection == 7:
-              lDirection = [feat_wind_w,feat_wind_nw,feat_wind_n]
-              iX += 1
-              iY -= 1
-
-
-# ++++++++++++++++++ Historische Texte ++++++++++++++++++++++++++++++++++++++++++++++
-
-  def doHistory(self, iGameTurn):
-    # iGameTurn brauchma im Moment nicht
-    iGameYear = gc.getGame().getGameTurnYear()
-    txts = 0
-
-    if iGameYear == -3480: txts = 4
-    elif iGameYear == -3000: txts = 5
-    elif iGameYear == -2680: txts = 4
-    elif iGameYear == -2000: txts = 6
-    elif iGameYear == -1680: txts = 5
-    elif iGameYear == -1480: txts = 7
-    elif iGameYear == -1280: txts = 5
-    elif iGameYear == -1200: txts = 6
-    elif iGameYear == -1000: txts = 5
-    elif iGameYear == -800: txts = 6
-    elif iGameYear == -750: txts = 3
-    elif iGameYear == -700: txts = 6
-    elif iGameYear == -615: txts = 5
-    elif iGameYear == -580: txts = 5
-    elif iGameYear == -540: txts = 4
-    elif iGameYear == -510: txts = 5
-    elif iGameYear == -490: txts = 5
-    elif iGameYear == -450: txts = 4
-    elif iGameYear == -400: txts = 5
-    elif iGameYear == -350: txts = 7
-    elif iGameYear == -330: txts = 4
-    elif iGameYear == -260: txts = 3
-    elif iGameYear == -230: txts = 5
-    elif iGameYear == -215: txts = 4
-    elif iGameYear == -200: txts = 4
-    elif iGameYear == -150: txts = 5
-    elif iGameYear == -120: txts = 2
-    elif iGameYear == -100: txts = 2
-    elif iGameYear == -70: txts = 3
-    elif iGameYear == -50: txts = 2
-    elif iGameYear == -30: txts = 2
-    elif iGameYear == -20: txts = 2
-    elif iGameYear == -10: txts = 3
-    elif iGameYear == 10: txts = 3
-    elif iGameYear == 60: txts = 4
-    elif iGameYear == 90: txts = 3
-    elif iGameYear == 130: txts = 3
-    elif iGameYear == 210: txts = 3
-    elif iGameYear == 250: txts = 2
-    elif iGameYear == 280: txts = 2
-    elif iGameYear == 370: txts = 2
-    elif iGameYear == 400: txts = 2
-    elif iGameYear == 440: txts = 3
-
-    if txts > 0:
-     iRand = self.myRandom(txts, None)
-
-     # iRand 0 bedeutet keinen Text anzeigen. Bei mehr als 2 Texte immer einen einblenden
-     if txts > 2: iRand += 1
-
-     if iRand > 0:
-       text = "TXT_KEY_HISTORY_"
-       if iGameYear < 0:
-         text = text + str(iGameYear * (-1)) + "BC_" + str(iRand)
-       else:
-         text = text + str(iGameYear) + "AD_" + str(iRand)
-
-       text = CyTranslator().getText("TXT_KEY_HISTORY",("",)) + " " + CyTranslator().getText(text,("",))
-       CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, text, None, 2, None, ColorTypes(14), 0, 0, False, False)

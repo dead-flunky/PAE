@@ -12,7 +12,6 @@
 import CvUtil
 from CvPythonExtensions import *
 import CvEventInterface
-import PAE_City
 
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -3536,16 +3535,6 @@ def applyBeduinen1(argsList):
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
   for i in range(iNumUnits):
     barbPlayer.initUnit(iUnitType, plot.getX(), plot.getY(), UnitAITypes.UNITAI_ATTACK_CITY_LEMMING, DirectionTypes.DIRECTION_SOUTH)
-
-# Check City colony or province after events
-def doCheckCityStatus(argsList):
-  iEvent = argsList[0]
-  kTriggeredData = argsList[1]
-
-  player = gc.getPlayer(kTriggeredData.ePlayer)
-  pCity = player.getCity(kTriggeredData.iCityId)
-
-  PAE_City.doCheckCityState( pCity )
 
 ######## BIER ###########
 

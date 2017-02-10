@@ -7,8 +7,6 @@ import ScreenInput
 import CvScreenEnums
 import CvCameraControls
 
-import PAE_Trade
-
 #tmp
 import time
 import random # Seed! fixed MP-OOS

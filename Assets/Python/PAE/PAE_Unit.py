@@ -1543,6 +1543,11 @@ def doGoToNextUnit(pUnit):
     # go to and select next Unit
     pUnit.getGroup().pushMission (MissionTypes.MISSION_SKIP,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit)
         
+def copyName(NewUnit, iUnitType, sUnitName):
+    if sUnitName != gc.getUnitInfo(iUnitType).getText():
+        sUnitName = re.sub(" \(.*?\)","",sUnitName)
+        NewUnit.setName(sUnitName)
+                
 def initSupply(pUnit):
     (_, iMaxSupply) = getSupply(pUnit)
     setSupply(pUnit,iMaxSupply)

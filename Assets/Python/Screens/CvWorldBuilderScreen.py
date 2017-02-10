@@ -10,6 +10,8 @@ import time
 import PyHelpers
 import Popup as PyPopup
 
+import PAE_City
+
 gc = CyGlobalContext()
 ArtFileMgr = CyArtFileMgr()
 localText = CyTranslator()
