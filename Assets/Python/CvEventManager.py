@@ -3876,14 +3876,15 @@ class CvEventManager:
 ########################################################
 # ---- SEA: Schiffe sollen Treibgut erzeugen
 # ---- LAND: Player can earn gold by winning a battle
-    iCost = unitY.getProductionCost()
 
     # Ausnahmen
-    UnitArray = [
+    lExceptNaval = [
     gc.getInfoTypeForString("UNIT_WORKBOAT"),
     gc.getInfoTypeForString("UNIT_TREIBGUT"),
-    gc.getInfoTypeForString("UNIT_GAULOS"),
-    gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
+    #gc.getInfoTypeForString("UNIT_GAULOS"),
+    #gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
+    ]
+    lExceptLand = [
     gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
     gc.getInfoTypeForString("UNIT_KAMPFHUND"),
     gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
@@ -3895,13 +3896,13 @@ class CvEventManager:
     gc.getInfoTypeForString("UNIT_ELEFANT")
     ]
 
-    AnimalArray = [
+    lAnimals = [
     gc.getInfoTypeForString("UNIT_WILD_HORSE"),
     gc.getInfoTypeForString("UNIT_WILD_CAMEL"),
     gc.getInfoTypeForString("UNIT_ELEFANT")
     ]
 
-    WildAnimals = [
+    lWildAnimals = [
     gc.getInfoTypeForString("UNIT_LION"),
     gc.getInfoTypeForString("UNIT_BEAR"),
     gc.getInfoTypeForString("UNIT_PANTHER"),
@@ -3914,174 +3915,53 @@ class CvEventManager:
     gc.getInfoTypeForString("UNIT_BERGZIEGE")
     ]
 
-    if pLoser.getUnitType() not in UnitArray and pLoser.getUnitType() not in AnimalArray:
-
+    if pLoser.getUnitType() not in lExceptLand+lExceptNaval+lAnimals+lWildAnimals:
       # Seeeinheiten (Treibgut erzeugen)
       if bNavalUnit:
-        # Treibgut Chance 50%
-        if self.myRandom(2, None) == 0:
-
-          terrain1 = gc.getInfoTypeForString("TERRAIN_OCEAN")
-          terrain2 = gc.getInfoTypeForString("TERRAIN_COAST")
-          iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-
-          # Freie Plots finden
-          SeaPlots = []
-          iX = pLoser.getX()
-          iY = pLoser.getY()
-          for i in range(3):
-            for j in range(3):
-              loopPlot = gc.getMap().plot(iX + i - 1, iY + j - 1)
-              if loopPlot != None and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
-                if not loopPlot.isPeak() and not loopPlot.isCity() and not loopPlot.isHills():
-                  if loopPlot.getTerrainType() == terrain1 or loopPlot.getTerrainType() == terrain2:
-                    if loopPlot.getNumUnits() == 0: SeaPlots.append(loopPlot)
-
-          if len(SeaPlots) > 0:
-            if iCost > 180: iMaxTreibgut = 2
-            else: iMaxTreibgut = 1
-            iUnit = gc.getInfoTypeForString("UNIT_TREIBGUT")
-            barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-
-            for i in range(iMaxTreibgut):
-              if len(SeaPlots) == 0: break
-              iRand = self.myRandom(len(SeaPlots), None)
-              loopPlot = SeaPlots[iRand]
-              # Unit erzeugen
-              NewUnit = barbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-              NewUnit.setImmobileTimer(2)
-              if gc.getPlayer(pWinner.getOwner()).isHuman():
-                CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_UNIT_ERSTELLT",(PyInfo.UnitInfo(iUnit).getDescription(),)), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
-              # Plot aus der Liste entfernen
-              SeaPlots.remove(loopPlot)
+        PAE_Unit.doTreibgut(pWinner, pLoser)
 
       # Landeinheiten
       else:
-
-        if iCost > 0:
-          iGold = int(iCost / 10)
-          if iGold > 1:
-            iGold = self.myRandom(iGold, None)
-            gc.getPlayer(pWinner.getOwner()).changeGold(iGold)
-            if pWinner.getOwner() > -1 and iGold > 0:
-              if gc.getPlayer(pWinner.getOwner()).isHuman():
-                CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MONEY_UNIT_KILLED",("",iGold)), None, 2, None, ColorTypes(8), 0, 0, False, False)
-
+        PAE_Unit.doMoneyUnitKilled(pWinner, pLoser)
             # ***TEST***
             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gold durch Einheitensieg (Zeile 1711)",iGold)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 ########################################################
 # --- Treibgut gibt Sklaven oder Gold, wenn iCargo nicht voll is
-    if bNavalUnit:
-      if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_TREIBGUT"):
+    if pLoser.getUnitType() == gc.getInfoTypeForString("UNIT_TREIBGUT"):
+        PAE_Unit.doCollectTreibgut(pWinner, pLoser)
         bUnitDone = True
-        bMove2NextPlot = False
-        # Ist ein freier Platz am Schiff?
-        #if pWinner.getCargo() < unitX.getCargoSpace():
-        if pWinner.getCargo() < pWinner.cargoSpace():
-          # Treibgut einfangen
-          iRand = self.myRandom(3, None)
-          if iRand < 2:
-            iRand = self.myRandom(2, None)
-            if iRand == 0:
-              iUnit = gc.getInfoTypeForString("UNIT_SLAVE")
-              if gc.getPlayer(pWinner.getOwner()).isHuman():
-                CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_UNIT_TREIBGUT_SLAVE",("",)), None, 2, gc.getUnitInfo(iUnit).getButton(), ColorTypes(8), pLoser.getX(), pLoser.getY(), True, True)
-              # Create unit
-              #loopPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
-              #if loopPlot.getNumUnits() <= 1:
-              #  iX = pLoser.getX()
-              #  iY = pLoser.getY()
-              #else:
-              iX = pWinner.getX()
-              iY = pWinner.getY()
-              NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(iUnit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-              NewUnit.setTransportUnit(pWinner)
-              NewUnit.finishMoves()
-            else:
-              iRand = 11 + self.myRandom(20, None)
-              gc.getPlayer(pWinner.getOwner()).changeGold(iRand)
-              if gc.getPlayer(pWinner.getOwner()).isHuman():
-                CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MONEY_UNIT_KILLED",("",iRand)), None, 2, gc.getUnitInfo(gc.getInfoTypeForString("UNIT_TREIBGUT")).getButton(), ColorTypes(8), pLoser.getX(), pLoser.getY(), True, True)
 
-
-          # Treibgut nicht eingefangen
-          else:
-            # Einheit Treibgut neu erzeugen
-            bMove2NextPlot = True
-            if gc.getPlayer(pWinner.getOwner()).isHuman():
-              iRand = 1 + self.myRandom(9, None)
-              szText = CyTranslator().getText("TXT_KEY_UNIT_TREIBGUT_CATCHME"+str(iRand),())
-              CyInterface().addMessage(pWinner.getOwner(), True, 10, szText, None, 2, gc.getUnitInfo(gc.getInfoTypeForString("UNIT_TREIBGUT")).getButton(), ColorTypes(11), pLoser.getX(), pLoser.getY(), True, True)
-
-        # Cargo voll
-        else:
-          # Einheit Treibgut neu erzeugen
-          bMove2NextPlot = True
-          if gc.getPlayer(pWinner.getOwner()).isHuman():
-            CyInterface().addMessage(pWinner.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_UNIT_TREIBGUT_NOSPACE",("",)), None, 2, gc.getUnitInfo(gc.getInfoTypeForString("UNIT_TREIBGUT")).getButton(), ColorTypes(11), pLoser.getX(), pLoser.getY(), True, True)
-
-
-        # Treibgut soll nicht ausserhalb der Kulturgrenze wiederauftauchen (jumpToNearestValidPlot), sondern gleich 1 Plot daneben (sofern frei)
-        if bMove2NextPlot:
-            lNewPlot = []
-            iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
-            for x in range(3):
-              for y in range(3):
-                loopPlot = gc.getMap().plot(pLoser.getX()-1+x,pLoser.getY()-1+y)
-                if loopPlot != None and not loopPlot.isNone():
-                  if loopPlot.getFeatureType() == iDarkIce: continue
-                  if loopPlot.getNumUnits() == 0:
-                    if loopPlot.isWater():
-                      lNewPlot.append(loopPlot)
-
-            if len(lNewPlot) >= 1:
-              iRand = self.myRandom(len(lNewPlot), None)
-              iX = lNewPlot[iRand].getX()
-              iY = lNewPlot[iRand].getY()
-            else:
-              pLoser.jumpToNearestValidPlot()
-              iX = pLoser.getX()
-              iY = pLoser.getY()
-
-            # Create unit
-            gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_TREIBGUT"), iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
-
+   
 
 ########################################################
 # --------- if unit will renegade ----------------------
     bUnitRenegades = True
 
-# PROMOTION-IDs: LOYALITAT: 0 , LEADER: 45, LEADERSHIP: 46 (ehemals)
     iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
     iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
     iPromoLeadership = gc.getInfoTypeForString("PROMOTION_LEADERSHIP")
     iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
     iPromoBrander = gc.getInfoTypeForString("PROMOTION_BRANDER")
     iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-    #iPromoSurrender = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
 
     # Ausnahmen - using UnitArray from above
-    if pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
-    elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL: bUnitRenegades = False
-    elif pWinner.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE: bUnitRenegades = False
-    elif pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE: bUnitRenegades = False
-    elif pLoser.getUnitType() in UnitArray: bUnitRenegades = False
-    elif pLoser.getUnitType() in AnimalArray: bUnitRenegades = False
-    elif pWinner.getUnitType() in WildAnimals: bUnitRenegades = False
-    elif pLoser.getUnitType() in WildAnimals: bUnitRenegades = False
-    # PAE V: Piraten sollen nur kentern: UnitInfos.xml: bNoCapture=1
-    elif pWinner.isNoCapture(): bUnitRenegades = False
-    #elif pLoser.isHasPromotion(iPromoSurrender): bUnitRenegades = True
-    elif pLoser.isHasPromotion(iPromoLoyal) and not pLoser.isHasPromotion(iPromoMercenary): bUnitRenegades = False
-    elif pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoBrander) or pWinner.isNoCapture(): bUnitRenegades = False
-    elif pLoser.hasCargo() and pLoser.canAttack(): bUnitRenegades = False
+    if (   pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL
+        or pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL 
+        or pWinner.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE
+        or pLoser.getUnitAIType() == UnitAITypes.UNITAI_EXPLORE
+        # PAE V: Piraten sollen nur kentern: UnitInfos.xml: bNoCapture=1
+        or pWinner.isNoCapture()
+        or (pLoser.isHasPromotion(iPromoLoyal) and not pLoser.isHasPromotion(iPromoMercenary))
+        or pLoser.isHasPromotion(iPromoLeader) 
+        or pLoser.isHasPromotion(iPromoBrander)
+        or pLoser.getUnitType() in lExceptNaval+lExceptLand+lAnimals+lWildAnimals
+        or pWinner.getUnitType() in lWildAnimals
+        or (pLoser.hasCargo() and pLoser.canAttack()) ): bUnitRenegades = False
 
 
-    if bUnitRenegades:
-     pLoserPlot = gc.getMap().plot(pLoser.getX(), pLoser.getY())
+    else:
+     pLoserPlot = pLoser.plot()
      if pLoserPlot.getNumUnits() == 1 and pLoser.getCaptureUnitType(pLoser.getCivilizationType()) > -1: bUnitRenegades = False
 
      # Attacking from Coast

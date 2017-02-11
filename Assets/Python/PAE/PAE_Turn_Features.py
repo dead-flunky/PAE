@@ -183,13 +183,18 @@ def doStrandgut():
                 lPlots = []
                 iX = pPlot.getX()
                 iY = pPlot.getY()
-                iRange = 1
-                for i in range(-iRange, iRange+1):
-                    for j in range(-iRange, iRange+1):
-                        loopPlot = plotXY(iX, iY, i, j)
-                        if loopPlot == None or loopPlot.isNone(): continue
-                        if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
-                        lPlots.append(loopPlot)
+                for i in range(8):
+                    loopPlot = plotDirection(iX, iY, DirectionTypes(iDirection))
+                    if loopPlot == None or loopPlot.isNone(): continue
+                    if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
+                    lPlots.append(loopPlot)
+                # iRange = 1
+                # for i in range(-iRange, iRange+1):
+                    # for j in range(-iRange, iRange+1):
+                        # loopPlot = plotXY(iX, iY, i, j)
+                        # if loopPlot == None or loopPlot.isNone(): continue
+                        # if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
+                        # lPlots.append(loopPlot)
 
                 if len(lPlots) > 0:
                     iPlot = myRandom(len(lPlots))
