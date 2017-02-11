@@ -270,7 +270,7 @@ def doHandelskarren():
                         if loopPlot.area().getNumTiles() >= gc.getMIN_WATER_SIZE_FOR_OCEAN():
                             pBarbPlayer.initUnit(iUnitTypeMerchant2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     elif not loopPlot.isWater() and not loopPlot.isPeak(): 
-                        if loopPlot.area().getNumTiles() >= 5():
+                        if loopPlot.area().getNumTiles() >= 5:
                             pBarbPlayer.initUnit(iUnitTypeMerchant1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 def doHuns():

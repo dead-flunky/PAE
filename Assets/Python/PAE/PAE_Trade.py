@@ -1327,6 +1327,9 @@ def addCityWithSpecialBonus(iGameTurn):
     global lCitiesSpecialBonus
     global lLuxury
     global lRarity
+    
+    lTurns = [20,25,30,35,40]
+        
     # Test
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("lCitiesSpecialBonus",len(lCitiesSpecialBonus))), None, 2, None, ColorTypes(10), 0, 0, False, False)
     
@@ -1344,27 +1347,30 @@ def addCityWithSpecialBonus(iGameTurn):
                 if pLoopCity not in lCitiesSpecialBonus: lNewCities.append(pLoopCity)
                 (pLoopCity,iter) = loopPlayer.nextCity(iter, False)
 
-    if len(lNewCities) == 0: return 
-    
-    # Stadt auswaehlen
-    iRand = myRandom(len(lNewCities))
-    pCity = lNewCities[iRand]
-    # Globale Variable setzen
-    lCitiesSpecialBonus.append(pCity)
-    # Runden setzen
-    lTurns = [20,25,30,35,40]
-    iRand = myRandom(len(lTurns))
-    CvUtil.addScriptData(pCity, "tst", iGameTurn+lTurns[iRand])
-    # Bonusgut herausfinden
-    lNewBonus = []
-    for iBonus in lLuxury + lRarity:
-      if not pCity.hasBonus(iBonus): lNewBonus.append(iBonus)
-    # Bonus setzen
-    iRand = myRandom(len(lNewBonus))
-    eBonus = lNewBonus[iRand]
-    CvUtil.addScriptData(pCity, "tsb", eBonus)
-    # Message TODO: an alle?
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_2",(pCity.getName(),gc.getBonusInfo(eBonus).getDescription())), None, 2, None, ColorTypes(13), 0, 0, False, False)
+    iTry = 0
+    while lNewCities and iTry<3 : 
+        # Stadt auswaehlen
+        pCity = lNewCities[myRandom(len(lNewCities))]
+        # Dauer auswaehlen
+        iTurns = lTurns[myRandom(len(lTurns))]
+        # Bonusgut herausfinden
+        lNewBonus = [iBonus for iBonus in lLuxury + lRarity if not pCity.hasBonus(iBonus)]
+        # for iBonus in lLuxury + lRarity:
+          # if not pCity.hasBonus(iBonus): lNewBonus.append(iBonus)
+          
+        # Bonus setzen wenn die Stadt nicht eh schon alles hat. 
+        if lNewBonus:
+            # Globale Variable setzen
+            lCitiesSpecialBonus.append(pCity)
+            CvUtil.addScriptData(pCity, "tst", iGameTurn+iTurns)
+            eBonus = lNewBonus[myRandom(len(lNewBonus))]
+            CvUtil.addScriptData(pCity, "tsb", eBonus)
+            # Message TODO: an alle?
+            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_2",(pCity.getName(),gc.getBonusInfo(eBonus).getDescription())), None, 2, None, ColorTypes(13), 0, 0, False, False)
+            break
+        else:
+            iTry += 1
+            lNewCities.remove(pCity)
 
 # In doSellBonus
 def doCheckCitySpecialBonus(pUnit,pCity,eBonus):

@@ -359,7 +359,7 @@ def doSeewind():
           if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
             loopPlot.setFeatureType(lFeatWind[iDirection],0)
             iDirection = (iDirection+myRandom(3)-1)%iNumDirection
-            loopPlot = gc.plotDirection(loopPlot.getX(), loopPlot.getY(), iDirection)
+            loopPlot = plotDirection(loopPlot.getX(), loopPlot.getY(), DirectionTypes(iDirection))
 
 
 # ++++++++++++++++++ Historische Texte ++++++++++++++++++++++++++++++++++++++++++++++

@@ -2615,7 +2615,7 @@ class CvGameUtils:
 
       # Unit Formations
       if (iData2 == 718):
-        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("718 GameUtils erreicht",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("718 GameUtils erreicht",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
         if iData1 == -1: return u"<color=155,255,255,0>" + CyTranslator().getText("TXT_KEY_PROMOTION_FORM_NONE",()) + u"</color>"
         else: return u"<color=155,255,255,0>%s</color>" % gc.getPromotionInfo(iData1).getDescription()
 

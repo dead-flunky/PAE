@@ -2556,7 +2556,6 @@ BeginPlot
     UnitType=UNIT_WARRIOR, UnitOwner=1
     Damage=0
     Level=1, Experience=0
-    PromotionType=PROMOTION_TRAIT_PROTECTIVE
     FacingDirection=4
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit
@@ -2564,7 +2563,6 @@ BeginPlot
     UnitType=UNIT_WARRIOR, UnitOwner=1
     Damage=0
     Level=1, Experience=0
-    PromotionType=PROMOTION_TRAIT_PROTECTIVE
     FacingDirection=4
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit
@@ -6799,7 +6797,6 @@ BeginPlot
     UnitType=UNIT_WARRIOR, UnitOwner=7
     Damage=0
     Level=1, Experience=0
-    PromotionType=PROMOTION_TRAIT_PROTECTIVE
     FacingDirection=4
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit
@@ -6807,7 +6804,6 @@ BeginPlot
     UnitType=UNIT_WARRIOR, UnitOwner=7
     Damage=0
     Level=1, Experience=0
-    PromotionType=PROMOTION_TRAIT_PROTECTIVE
     FacingDirection=4
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit
@@ -7128,7 +7124,6 @@ BeginPlot
     UnitType=UNIT_WARRIOR, UnitOwner=15
     Damage=0
     Level=1, Experience=0
-    PromotionType=PROMOTION_TRAIT_PROTECTIVE
     FacingDirection=4
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit
@@ -7136,7 +7131,6 @@ BeginPlot
     UnitType=UNIT_WARRIOR, UnitOwner=15
     Damage=0
     Level=1, Experience=0
-    PromotionType=PROMOTION_TRAIT_PROTECTIVE
     FacingDirection=4
     UnitAIType=UNITAI_CITY_DEFENSE
   EndUnit

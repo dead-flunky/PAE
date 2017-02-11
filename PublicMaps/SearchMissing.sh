@@ -8,6 +8,7 @@ function help ()
   echo "Usage: $0 [all|Unit|Feature|...]"
   echo "Available:
   Unit
+  Tech
   Promotion
   Terrian
   Feature
@@ -45,6 +46,10 @@ function search ()
 
 if [ "$1" = "all" -o "$1" = "Unit" ] ; then
   search "<Type>UNIT_" "../Assets/XML/Units/CIV4UnitInfos.xml" "UNIT_" "UnitType" 1
+fi
+
+if [ "$1" = "all" -o "$1" = "Tech" ] ; then
+  search "<Type>TECH_" "../Assets/XML/Technologies/CIV4TechInfos.xml" "TECH_" "Tech" 1
 fi
 
 if [ "$1" = "all" -o "$1" = "Promotion" ] ; then
