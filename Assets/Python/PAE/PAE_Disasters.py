@@ -1668,8 +1668,6 @@ def doKillUnits(pPlot, iChance):
             # Message: Eure Einheit %s hat diese schreckliche Naturgewalt nicht ueberlebt!
             CyInterface().addMessage( pUnit.getOwner(), True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_UNIT_KILLED",(pPlot.getUnit(iUnit).getName(),0)), "AS2D_PLAGUE", 2, pPlot.getUnit(iUnit).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
 
-        # VOID kill (BOOL bDelay, INT PlayerType ePlayer)
-        #pPlot.getUnit(iUnit).kill(1,pPlot.getUnit(iUnit).getOwner())
         pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
       else:

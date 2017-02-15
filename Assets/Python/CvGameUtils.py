@@ -242,6 +242,9 @@ class CvGameUtils:
   def isActionRecommended(self,argsList):
     pUnit = argsList[0]
     iAction = argsList[1]
+    # TEST ungueltige Action abgefragt, wo kommt das her.
+    if iAction == -1:
+        CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pUnit.getName,iAction)), None, 2, None, ColorTypes(12), 0, 0, False, False)
     return False
 
   def unitCannotMoveInto(self,argsList):
@@ -1459,12 +1462,12 @@ class CvGameUtils:
             bUpgrade = False
             UnitHorse = gc.getInfoTypeForString('UNIT_HORSE')
             iRange = pPlot.getNumUnits()
-            for iUnit in range (iRange):
-              if pPlot.getUnit(iUnit).getUnitType() == UnitHorse and pPlot.getUnit(iUnit).getOwner() == pUnit.getOwner():
-                bUpgrade = True
-                #pPlot.getUnit(iUnit).doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                pPlot.getUnit(iUnit).kill(1,pPlot.getUnit(iUnit).getOwner())
-                break
+            for i in range (iRange):
+                pLoopUnit = pPlot.getUnit(i)
+                if pLoopUnit.getUnitType() == UnitHorse and pLoopUnit.getOwner() == pUnit.getOwner():
+                    bUpgrade = True
+                    pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+                    break
 
             if bUpgrade:
               iX = pUnit.getX()
@@ -1485,8 +1488,7 @@ class CvGameUtils:
                 # init all promotions the unit had
                 if (pUnit.isHasPromotion(iPromotion)):
                   NewUnit.setHasPromotion(iPromotion, True)
-              #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-              pUnit.kill(1,pUnit.getOwner())
+              pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
               return True
 # END Unit -> Horse UPGRADE
 
@@ -1511,7 +1513,7 @@ class CvGameUtils:
               if not pCity.isHasBuilding(iBuilding1):
                 if pCity.isHasBuilding(iBuilding2):
                   pCity.setNumRealBuilding(iBuilding1,1)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
               else: bSlaveMarket = True
 
@@ -1561,14 +1563,14 @@ class CvGameUtils:
                   elif iCitySlavesFood < iCitySlavesProd or iCitySlavesFood < iCitySlaves: pCity.changeFreeSpecialistCount(17, 1)
                   elif iCitySlavesProd < iCitySlavesFood or iCitySlavesProd < iCitySlaves: pCity.changeFreeSpecialistCount(18, 1)
                   else: pCity.changeFreeSpecialistCount(16, 1)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
                 # settle as gladiators
                 if bHasGladTech:
                   if iCitySlavesAll + iCityGlads <= iCityPop:
                     pCity.changeFreeSpecialistCount(15, 1) # Gladiator = 15
-                    pUnit.kill(1,pUnit.getOwner())
+                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                     return True
 
               # Priority 1 - Schule
@@ -1582,7 +1584,7 @@ class CvGameUtils:
                 if iCulture < 5:
                   iNewCulture = iCulture + 1
                   pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iNewCulture)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # assign to library
@@ -1594,7 +1596,7 @@ class CvGameUtils:
                 if iCulture < 5:
                   iNewCulture = iCulture + 1
                   pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iNewCulture)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 2 - Theater
@@ -1607,7 +1609,7 @@ class CvGameUtils:
                 if iCulture < 3:
                   iNewCulture = iCulture + 1
                   pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iNewCulture)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 3 - Manufaktur
@@ -1621,12 +1623,12 @@ class CvGameUtils:
                 if iProd <= iFood and iProd < 5:
                   iProd += 1
                   pCity.setBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 1, iProd)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
                 elif iFood < 5:
                   iFood += 1
                   pCity.setBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0, iFood)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 4 - Bordell
@@ -1639,7 +1641,7 @@ class CvGameUtils:
                 if iCulture < 5:
                   iNewCulture = iCulture + 1
                   pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iNewCulture)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 5 - Palace
@@ -1651,7 +1653,7 @@ class CvGameUtils:
                   iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_CULTURE, iBuilding1)
                   iNewCulture = iCulture + 1
                   pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iNewCulture)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 6 - Temples
@@ -1681,7 +1683,7 @@ class CvGameUtils:
                   iCulture = pCity.getBuildingCommerceByBuilding(2, TempleArray[iBuilding])
                   iCulture += 1
                   pCity.setBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 7 - Feuerwehr
@@ -1694,7 +1696,7 @@ class CvGameUtils:
                 if iHappyiness < 3:
                   iHappyiness += 1
                   pCity.setBuildingHappyChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), iHappyiness)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
               # Priority 8 - Sell slave 25%
@@ -1735,7 +1737,7 @@ class CvGameUtils:
                   if iImp in lLatifundien:
                     if pPlot.getUpgradeTimeLeft(iImp, iOwner) > 1:
                       pPlot.changeUpgradeProgress(10)
-                      pUnit.kill(1,iOwner)
+                      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                       bLatifundien = False
                       break
 
@@ -1756,7 +1758,7 @@ class CvGameUtils:
             if not pCity.isHasBuilding(iBuilding1):
               if pCity.isHasBuilding(iBuilding2):
                 pCity.setNumRealBuilding(iBuilding1,1)
-                pUnit.kill(1,pUnit.getOwner())
+                pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                 return True
 
             # PAE AI City Horse Instance
@@ -1798,7 +1800,7 @@ class CvGameUtils:
               pUnit.getGroup().pushMission(MissionTypes.MISSION_MOVE_TO, lCityX.getX(), lCityX.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
             else:
               lCityX.changePopulation(1)
-              pUnit.kill(1,pUnit.getOwner())
+              pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
             return True
 
 # Beutegold / Treasure / Goldkarren -> zur Hauptstadt
@@ -1813,9 +1815,7 @@ class CvGameUtils:
           if pCapital.getID() == pCityX.getID():
             iGold = 80 + self.myRandom(71, None)
             pOwner.changeGold(iGold)
-            pUnit.kill(1,pUnit.getOwner())
-            #iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_PALACE')
-            #pCityX.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, 1)
+            pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
           else:
             pUnit.finishMoves()
           return True
@@ -1838,7 +1838,7 @@ class CvGameUtils:
                     iDamage = pCity.getDefenseModifier(0)
                     if iDamage > 100:
                       pCity.changeDefenseDamage(iDamage)
-                      pUnit.kill(1,pUnit.getOwner())
+                      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                       return True
       # -----------------
 
@@ -2490,13 +2490,18 @@ class CvGameUtils:
 ## Platy WorldBuilder End ##
 ## ---------------------- ##
 
-    if (eWidgetType == WidgetTypes.WIDGET_ACTION):
+    # if (eWidgetType == WidgetTypes.WIDGET_ACTION):
+      # #PAE TradeRoute Advisor
+      # if iData1 == -1:
+        # if iData2 == 1: return CyTranslator().getText("TXT_KEY_TRADE_ROUTE_ADVISOR_SCREEN",())
+        # if iData2 == 2: return CyTranslator().getText("TXT_KEY_TRADE_ROUTE2_ADVISOR_SCREEN",())
+
+    if (eWidgetType == WidgetTypes.WIDGET_GENERAL):
       #PAE TradeRoute Advisor
-      if iData1 == -1:
+      if iData1 == 10000:
         if iData2 == 1: return CyTranslator().getText("TXT_KEY_TRADE_ROUTE_ADVISOR_SCREEN",())
         if iData2 == 2: return CyTranslator().getText("TXT_KEY_TRADE_ROUTE2_ADVISOR_SCREEN",())
 
-    elif (eWidgetType == WidgetTypes.WIDGET_GENERAL):
       #Inquisitor
       if iData1 == 665:
         return CyTranslator().getText("TXT_KEY_GODS_INQUISTOR_CLEANSE_MOUSE_OVER",())
@@ -2824,8 +2829,7 @@ class CvGameUtils:
                 pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
               else:
                 pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"),1)
-                #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                pUnit.kill(1,pUnit.getOwner())
+                pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                 return True
 
   # Kamellager
@@ -2867,8 +2871,7 @@ class CvGameUtils:
                  pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
                else:
                  pCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE"),1)
-                 #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                 pUnit.kill(1,pUnit.getOwner())
+                 pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                  return True
 
   # Inquisitor -------------------
@@ -2896,8 +2899,7 @@ class CvGameUtils:
                 if pCity.isHolyCityByType( iReligion ) == 0:
                   #Makes the unit purge it
                   PAE_City.doInquisitorPersecution2(iOwner, pCity.getID(), -1, iReligion, pUnit.getID())
-                  #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                  pUnit.kill(1,pUnit.getOwner())
+                  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                   return True
 
     return
@@ -2951,8 +2953,7 @@ class CvGameUtils:
         #  pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pSeekCity.getX(), pSeekCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
         #else:
         pSeekCity.changeFreeSpecialistCount(0,1) # Spezialist Citizen
-        #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-        pUnit.kill(1,pUnit.getOwner())
+        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
         return True
 
     return
@@ -2999,8 +3000,7 @@ class CvGameUtils:
                 pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pSeekCity.getX(), pSeekCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
               else:
                 pSeekCity.changeFreeSpecialistCount(19,1) # SPECIALIST_RESERVIST
-                #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-                pUnit.kill(1,pUnit.getOwner())
+                pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                 return True
 
       return
@@ -3046,8 +3046,7 @@ class CvGameUtils:
             if not pCity.isHasBuilding(iBuilding):
               if iPromo != gc.getInfoTypeForString("PROMOTION_NAVIGATION4") or pCity.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
                 pCity.setNumRealBuilding(iBuilding,1)
-                pUnit.kill(1,pUnit.getOwner())
-                #pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+                pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
                 return True
 
     return

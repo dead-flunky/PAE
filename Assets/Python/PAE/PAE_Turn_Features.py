@@ -6,6 +6,7 @@ import CvEventInterface
 import CvUtil
 import random
 import itertools
+import PAE_Barbaren
 ### Defines
 gc = CyGlobalContext()
 
@@ -183,25 +184,20 @@ def doStrandgut():
                 lPlots = []
                 iX = pPlot.getX()
                 iY = pPlot.getY()
-                for i in range(8):
-                    loopPlot = plotDirection(iX, iY, DirectionTypes(iDirection))
-                    if loopPlot == None or loopPlot.isNone(): continue
-                    if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
-                    lPlots.append(loopPlot)
-                # iRange = 1
-                # for i in range(-iRange, iRange+1):
-                    # for j in range(-iRange, iRange+1):
-                        # loopPlot = plotXY(iX, iY, i, j)
-                        # if loopPlot == None or loopPlot.isNone(): continue
-                        # if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
-                        # lPlots.append(loopPlot)
+                iRange = 1
+                for i in range(-iRange, iRange+1):
+                    for j in range(-iRange, iRange+1):
+                        loopPlot = plotXY(iX, iY, i, j)
+                        if loopPlot == None or loopPlot.isNone(): continue
+                        if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
+                        lPlots.append(loopPlot)
 
                 if len(lPlots) > 0:
                     iPlot = myRandom(len(lPlots))
                     # Create Strandgut
                     pBarbPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     # Disband Treibgut
-                    loopUnit.kill(1,iBarbPlayer)
+                    loopUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
         (loopUnit, iter) = pBarbPlayer.nextUnit(iter, false)
      # --------- Strandgut -----------
 
@@ -292,7 +288,7 @@ def setGoodyHuts():
                               #loopPlot.isActiveVisible(0)
 
                               # Einheit in die Festung setzen
-                              if imp == impBarbFort: setFortDefence(loopPlot)
+                              if imp == impBarbFort: PAE_Barbaren.setFortDefence(loopPlot)
 
                               # ***TEST***
                               #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)

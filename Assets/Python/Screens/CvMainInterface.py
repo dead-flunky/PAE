@@ -384,11 +384,13 @@ class CvMainInterface:
 
     # PAE TradeRouteAdvisor
     iBtnX += iBtnAdvance + 5
-    screen.setImageButton( "TradeRouteAdvisorButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, -1, 1 )
+    screen.setImageButton( "TradeRouteAdvisorButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_GENERAL, 10000, 1 )
+    # screen.setImageButton( "TradeRouteAdvisorButton", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, -1, 1 )
     screen.setStyle( "TradeRouteAdvisorButton", "Button_HUDAdvisorTradeRoute_Style" )
     screen.hide( "TradeRouteAdvisorButton" )
     iBtnX += iBtnAdvance + 5
-    screen.setImageButton( "TradeRouteAdvisorButton2", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, -1, 2 )
+    screen.setImageButton( "TradeRouteAdvisorButton2", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_GENERAL, 10000, 2 )
+    # screen.setImageButton( "TradeRouteAdvisorButton2", "", iBtnX, iBtnY, iBtnWidth, iBtnWidth, WidgetTypes.WIDGET_ACTION, -1, 2 )
     screen.setStyle( "TradeRouteAdvisorButton2", "Button_HUDAdvisorTradeRoute2_Style" )
     screen.hide( "TradeRouteAdvisorButton2" )
 
@@ -6630,15 +6632,25 @@ class CvMainInterface:
        self.setFieldofView_Text(screen)
 # -------------
 
+    # # PAE TradeRouteAdvisor Screen
+    # if inputClass.getButtonType() == WidgetTypes.WIDGET_ACTION and inputClass.getData1() == -1 and inputClass.getData2() == 1:
+       # import CvTradeRouteAdvisor
+       # CvTradeRouteAdvisor.CvTradeRouteAdvisor().interfaceScreen()
+       # return 1
+    # if inputClass.getButtonType() == WidgetTypes.WIDGET_ACTION and inputClass.getData1() == -1 and inputClass.getData2() == 2:
+       # import CvTradeRouteAdvisor2
+       # CvTradeRouteAdvisor2.CvTradeRouteAdvisor().interfaceScreen()
+       # return 1
+       
     # PAE TradeRouteAdvisor Screen
-    if inputClass.getButtonType() == WidgetTypes.WIDGET_ACTION and inputClass.getData1() == -1 and inputClass.getData2() == 1:
-       import CvTradeRouteAdvisor
-       CvTradeRouteAdvisor.CvTradeRouteAdvisor().interfaceScreen()
-       return 1
-    if inputClass.getButtonType() == WidgetTypes.WIDGET_ACTION and inputClass.getData1() == -1 and inputClass.getData2() == 2:
-       import CvTradeRouteAdvisor2
-       CvTradeRouteAdvisor2.CvTradeRouteAdvisor().interfaceScreen()
-       return 1
+    if inputClass.getButtonType() == WidgetTypes.WIDGET_GENERAL and inputClass.getData1() == 10000 and inputClass.getData2() == 1:
+        import CvTradeRouteAdvisor
+        CvTradeRouteAdvisor.CvTradeRouteAdvisor().interfaceScreen()
+        return 1
+    if inputClass.getButtonType() == WidgetTypes.WIDGET_GENERAL and inputClass.getData1() == 10000 and inputClass.getData2() == 2:
+        import CvTradeRouteAdvisor2
+        CvTradeRouteAdvisor2.CvTradeRouteAdvisor().interfaceScreen()
+        return 1
 
     # Initialisierung
     if g_pSelectedUnit:

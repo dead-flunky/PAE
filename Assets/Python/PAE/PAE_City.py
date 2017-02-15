@@ -1,7 +1,6 @@
 ### Imports
 from CvPythonExtensions import *
 import random
-import PyHelpers
 
 import PAE_Sklaven
 import PAE_Unit
@@ -10,10 +9,6 @@ import CvUtil
 
 ### Defines
 gc = CyGlobalContext()
-PyPlayer = PyHelpers.PyPlayer
-PyInfo = PyHelpers.PyInfo
-PyCity = PyHelpers.PyCity
-PyGame = PyHelpers.PyGame
 
 # PAE Stadtstatus
 iPopDorf = 3
@@ -186,15 +181,15 @@ def doCheckGlobalTraitBuildings(iPlayer, pCity = None, iOriginalOwner = -1):
 
 # Methode fuer lokalen Gebrauch
 def doCheckGlobalBuilding (iPlayer, iBuilding):
-    lCities = PyPlayer(iPlayer).getCityList()
+    pPlayer = gc.getPlayer(iPlayer)
+    (city,iter) = pPlayer.firstCity(False)
+    city.setNumRealBuilding(iBuilding, 1)
     iCount = 0
-    for pCity in lCities:
-        if pCity.getNumBuilding(iBuilding) > 0:
-            iCount += 1
-            if iCount > 1: pCity.setNumRealBuildingIdx(iBuilding, 0)
-    if iCount == 0 and lCities:
-        lCities[0].setNumRealBuildingIdx(iBuilding, 1)
-
+    while city:
+      if city.getNumBuilding(iBuilding) > 0:
+        iCount += 1
+        if iCount > 1: city.setNumRealBuilding(iBuilding, 0)
+      (city,iter) = pPlayer.nextCity(iter, False)
 
 # Begin Inquisition -------------------------------
 
@@ -554,7 +549,6 @@ def doEmigrant(pCity, pUnit):
     # Stadt Kultur geben
     pPlot.changeCulture(iPlayerCulture,iCulture,1)
     pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-    #pUnit.kill(1,pUnit.getOwner())
 
     pCity.changePopulation(1)
     # PAE Provinzcheck
@@ -805,7 +799,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
             iUnitType = gc.getInfoTypeForString('UNIT_FREED_SLAVE')
 
         # Create a new unit
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(PyInfo.UnitInfo(UnitArray[iUnit][0]).getDescription(),UnitArray[iUnit][0])), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(gc.getUnitInfo(UnitArray[iUnit][0]).getDescription(),UnitArray[iUnit][0])), None, 2, None, ColorTypes(10), 0, 0, False, False)
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",UnitArray[iUnit][1])), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         if iUnitType != -1:
@@ -833,7 +827,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
                         # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten
                         if not iLoopPromo in lTraitPromos: # or pNewOwner.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
                             NewUnit.setHasPromotion(iLoopPromo, True)
-        pLoopUnit.kill(1,pLoopUnit.getOwner())
+        pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
 
     if iNewOwner == gc.getBARBARIAN_PLAYER():
         pNewOwner.initUnit(iPartisan,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
@@ -974,7 +968,7 @@ def doUnitSupply(pCity, iPlayer):
             pLoopUnit = pCityPlot.getUnit(i)
             if pLoopUnit.getUnitCombatType() != -1:
                 if pLoopUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-                    (iExtraSupply, _) = PAE_Unit.getSupply(pUnit)
+                    (iExtraSupply, _) = PAE_Unit.getSupply(pLoopUnit)
                     if iExtraSupply <= iMaintainUnits:
                         iMaintainUnits -= iExtraSupply
                         iExtraSupply = 0
