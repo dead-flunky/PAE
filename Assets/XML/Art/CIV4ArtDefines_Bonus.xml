@@ -535,6 +535,15 @@
       <FontButtonIndex>62</FontButtonIndex>
     </BonusArtInfo>
     <BonusArtInfo>
+      <Type>ART_DEF_BONUS_SLAVES</Type>
+      <fScale>1.0</fScale>
+      <fInterfaceScale>1.0</fInterfaceScale>
+      <NIF>Art/Terrain/Resources/Wheat/Wheat.nif</NIF>
+      <KFM/>
+      <Button>,Art/Interface/MainScreen/CityScreen/Great_Engineer.dds,Art/Interface/Buttons/Warlords_Atlas_2.dds,6,6</Button>
+      <FontButtonIndex>63</FontButtonIndex>
+    </BonusArtInfo>
+    <BonusArtInfo>
       <Type>ART_DEF_BONUS_GLAS</Type>
       <fScale>1.0</fScale>
       <fInterfaceScale>1.0</fInterfaceScale>
