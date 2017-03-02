@@ -11,6 +11,7 @@ import PAE_Unit
 
 ### Defines
 gc = CyGlobalContext()
+localText = CyTranslator()
 ### Globals
 bInitialised = False # Whether global variables are already initialised
 
@@ -98,7 +99,7 @@ def doSlave2Bordell(pCity, pUnit):
     iCulture = pCity.getBuildingCommerceByBuilding(2, iBuilding1)
     iCulture += 1
     pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+    pUnit.kill(1,pUnit.getOwner())
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Bordell (Zeile 5070)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
@@ -109,7 +110,7 @@ def doSlave2Schule(pCity, pUnit):
       iCulture = pCity.getBuildingCommerceByBuilding(1, iBuilding1)
       iCulture += 1
       pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 School (Zeile 5083)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -121,12 +122,12 @@ def doSlave2Library(pCity, pUnit):
       iCulture = pCity.getBuildingCommerceByBuilding(1, iBuilding1)
       iCulture += 1
       pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
 # Slave -> Gladiator
 def doSlave2Gladiator(pCity, pUnit):
     pCity.changeFreeSpecialistCount(15, 1) # Gladiator Specialist ID = 15
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+    pUnit.kill(1,pUnit.getOwner())
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Gladiator (Zeile 5092)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -138,7 +139,7 @@ def doSlave2Theatre(pCity, pUnit):
       iCulture = pCity.getBuildingCommerceByBuilding(2, iBuilding1)
       iCulture -= 1
       pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Theater (Zeile 5178)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -155,7 +156,7 @@ def doSlave2Manufaktur(pCity, pUnit, iDo):
         iProd = pCity.getBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0)
         iProd += 1
         pCity.setBuildingYieldChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0, iProd)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Manufaktur (Zeile 5196)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -167,7 +168,7 @@ def doSlave2Palace(pCity, pUnit):
       iCulture = pCity.getBuildingCommerceByBuilding(2, iBuilding1)
       #iCulture += 1
       pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Palace (Zeile 6252)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -199,7 +200,7 @@ def doSlave2Temple(pCity, pUnit):
       if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")): iCulture += 2
       #iCulture += 1
       pCity.setBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
       # ***TEST***
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Temple (Zeile 6282)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -211,7 +212,7 @@ def doSlave2Feuerwehr(pCity, pUnit):
       iHappyiness = pCity.getBuildingHappyChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType())
       iHappyiness += 1
       pCity.setBuildingHappyChange (gc.getBuildingInfo(iBuilding1).getBuildingClassType(), iHappyiness)
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
 def doReleaseSlaves(pPlayer, pCity, iData5):
 
@@ -359,7 +360,7 @@ def doSell(iPlayer, iUnit):
   gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iGold)
   if pPlayer.isHuman():
     CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_BUTTON_SELL_SLAVE_SOLD",(iGold,)),None,InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Units/button_slave.dds",ColorTypes(8),pUnit.getX(),pUnit.getY(),True,True)
-  pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+  pUnit.kill(1,pUnit.getOwner())
 
 
   ##############

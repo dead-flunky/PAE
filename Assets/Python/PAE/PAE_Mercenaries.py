@@ -10,6 +10,7 @@ import PyHelpers
 
 ### Defines
 gc = CyGlobalContext()
+localText = CyTranslator()
 
 ### Globals
 PAEInstanceHiringModifier = {}

@@ -1613,7 +1613,7 @@ def doDestroyCityBuildings(pCity, iChance):
     PAE_City.doCheckCityState(pCity)
     PAE_City.doCheckTraitBuildings(pCity)
     PAE_City.doCheckGlobalTraitBuildings(iOwner)
-    
+
 
   # iChance = Wahrscheinlichkeit, dass ein Wunder zerstoert wird
   # iFeatureType = Art der Katastrophe
@@ -1668,7 +1668,7 @@ def doKillUnits(pPlot, iChance):
             # Message: Eure Einheit %s hat diese schreckliche Naturgewalt nicht ueberlebt!
             CyInterface().addMessage( pUnit.getOwner(), True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_UNIT_KILLED",(pPlot.getUnit(iUnit).getName(),0)), "AS2D_PLAGUE", 2, pPlot.getUnit(iUnit).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
 
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+        pUnit.kill(1,pUnit.getOwner())
 
       else:
         pPlot.getUnit(iUnit).setDamage(60, -1)

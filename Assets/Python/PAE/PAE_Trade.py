@@ -22,7 +22,7 @@ lLuxury = [] # List of bonuses which may create trade routes
 lRarity = [] # List of bonuses which may create trade routes
 lTradeUnits = [] # List of merchant units
 lCultivationUnits = [] # List of cultivation units
-bInitialised = False # Whether global variables are already initialised
+bInitialized = False # Whether global variables are already initialised
 lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
 
 # Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["b"], -1), CvUtil.addScriptData(pUnit, "b", eBonus) (add uses string, get list of strings)
@@ -46,7 +46,7 @@ lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
 # e.g. {43:4, 23:8, 12:10} key: bonus index (int), value: num turns (int)
 
 def init():
-    global bInitialised
+    global bInitialized
     global lUntradeable
     global lCorn
     global lLivestock
@@ -59,7 +59,7 @@ def init():
     global lCultivationUnits
     global lCitiesSpecialBonus
 
-    if not bInitialised:
+    if not bInitialized:
         # BonusClass indices
         eGrain = gc.getInfoTypeForString("BONUSCLASS_GRAIN")
         # WHEAT, GERSTE, HAFER, ROGGEN, HIRSE, RICE
@@ -124,17 +124,16 @@ def init():
 
           if len(lCitiesSpecialBonus) == iMaxCitiesSpecialBonus: break
 
-        bInitialised = True
-
-# --- Bonus cultivation ---
+        bInitialized = True
 
 def myRandom (num):
     if num <= 1: return 0
     else: return random.randint(0, num-1)
 
 # Returns chance to cultivate eBonus on pPlot. Currently: either 0 (impossible) or 80 (possible)
-def getBonusCultivationChance(iPlayer, pPlot, eBonus):
-    global lUntradeable
+# bVisibleOnly: Non-cultivatable bonuses cannot be replaced. If there is an invisible (tech reveal) bonus on pPlot, player receives NO information.
+# In particular, the normal cultivation chance will be displayed, but bVisibleOnly=False prevents invisible bonus from removal.
+def getBonusCultivationChance(iPlayer, pPlot, eBonus, bVisibleOnly = True):
     global lCorn
     global lLivestock
     global lPlantation
@@ -157,9 +156,9 @@ def getBonusCultivationChance(iPlayer, pPlot, eBonus):
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "peak/water/black ice", None, 2, None, ColorTypes(10), 0, 0, False, False)
         return 0
 
-    # Non-cultivatable bonuses cannot be replaced. If there is an invisible (tech reveal) bonus on pPlot, player receives NO information.
-    # In particular, the normal cultivation chance will be displayed, but doCultivateBonus() prevents invisible bonus from removal.
-    ePlotBonus = pPlot.getBonusType(pPlot.getTeam())
+    eTeam = -1
+    if bVisibleOnly: eTeam = pPlot.getTeam()
+    ePlotBonus = pPlot.getBonusType(eTeam)
     if ePlotBonus != -1 and ePlotBonus not in lCultivatable:
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "uncultivatable bonus present", None, 2, None, ColorTypes(10), 0, 0, False, False)
         return 0
@@ -184,25 +183,20 @@ def getBonusCultivationChance(iPlayer, pPlot, eBonus):
 
 
     # Regel: Resourcen pro Stadt und dessen Status (Flunky)
-    lCities = getCitiesInRange(pPlot)
+    lCities = getCitiesInRange(pPlot, iPlayer)
     if len(lCities) == 0:
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "no city in range", None, 2, None, ColorTypes(10), 0, 0, False, False)
         return 0
 
     bFood = eBonus in (lCorn + lLivestock)
-    bCapacity = False
     for pCity in lCities:
       if isCityCultivationPossible(pCity, bFood):
-        bCapacity = True
-        break
-    if bCapacity:
-        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "everything is fine", None, 2, None, ColorTypes(10), 0, 0, False, False)
-        return 80 # everything ok => chance of 80%
-    else:
-        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "no city in range has capacity", None, 2, None, ColorTypes(10), 0, 0, False, False)
-        return 0
+        return 80
 
-def getCitiesInRange(pPlot):
+    # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "no city in range has capacity", None, 2, None, ColorTypes(10), 0, 0, False, False)
+    return 0
+
+def getCitiesInRange(pPlot, iPlayer):
   iX = pPlot.getX()
   iY = pPlot.getY()
   lCities = []
@@ -213,131 +207,113 @@ def getCitiesInRange(pPlot):
       if (x == -2 or x == 2) and (y == -2 or y == 2): continue
       pLoopPlot = plotXY(iX, iY, x, y)
       if pLoopPlot != None and not pLoopPlot.isNone():
-        #if pLoopPlot.getOwner() == iPlayer and pLoopPlot.isCity(): lCities.append(pLoopPlot.getPlotCity())
-        if pLoopPlot.isCity(): lCities.append(pLoopPlot.getPlotCity())
+        #if (iPlayer == -1 or pLoopPlot.getOwner() == iPlayer) and pLoopPlot.isCity():
+        if pLoopPlot.getOwner() == iPlayer and pLoopPlot.isCity():
+            lCities.append(pLoopPlot.getPlotCity())
   return lCities
 
 def isCityCultivationPossible(pCity, bFood):
+    global lCorn
+    global lLivestock
+    global lCultivatable
+    lFood = lLivestock+lCorn
     iBonusAnzahl = 0
+    iBonusFood = 0
     iFoodMax = 2
 
     iMax = 1
     if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")): iMax += 1
     if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_PROVINZ")): iMax += 1
     #if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_METROPOLE")): iMax += 1
-    if bFood:
-        iMax = min(iMax, iFoodMax)
-    iRange = gc.getNUM_CITY_PLOTS()
-    for iI in range(iRange):
+
+    for iI in range(gc.getNUM_CITY_PLOTS()):
         pLoopPlot = pCity.getCityIndexPlot(iI)
         if pLoopPlot != None and not pLoopPlot.isNone():
+            #if pLoopPlot.getOwner() == iPlayer
             # Bonusgut checken
-            #if pLoopPlot.getOwner() == iPlayer and pLoopPlot.getBonusType(-1) in lCultivatable: iBonusAnzahl += 1
-            if pLoopPlot.getBonusType(-1) in lCultivatable: iBonusAnzahl += 1
-            if iBonusAnzahl >= iMax: return False
+            iLoopBonus = pLoopPlot.getBonusType(-1)
+            if iLoopBonus in lCultivatable:
+                iBonusAnzahl += 1
+                if iBonusAnzahl >= iMax: return False
+                if bFood and iLoopBonus in lFood:
+                    iBonusFood += 1
+                    if iBonusFood >= iFoodMax: return False
+
     return True
 
 # Cultivates eBonus on current plot (80% chance). Unit does not need to stand on pPlot (cultivation from city)
 def doCultivateBonus(pPlot, pUnit, eBonus):
-  if pPlot == None or pUnit == None or eBonus == -1:
-    return False
+    if pPlot == None or pUnit == None or eBonus == -1:
+        return False
 
-  iPlayer = pUnit.getOwner()
-  pPlayer = gc.getPlayer(iPlayer)
-  iChance = getBonusCultivationChance(iPlayer, pPlot, eBonus)
+    iPlayer = pUnit.getOwner()
+    pPlayer = gc.getPlayer(iPlayer)
+    bOnlyVisible = False
+    iChance = getBonusCultivationChance(iPlayer, pPlot, eBonus, bOnlyVisible)
 
-  # If there is an invisible (tech reveal), uncultivatable bonus on pPlot, doCultivateBonus can be called, but the chance is nullified.
-  # Player receives NO unique message, just the normal one ("cultivation failed").
-  ePlotBonus = pPlot.getBonusType(-1)
-  if ePlotBonus != -1 and ePlotBonus not in lCultivatable: iChance = 0
-
-  #CyInterface().addMessage(iPlayer, True, 10, str(eBonus), None, 2, None, ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-  if iChance > myRandom(100):
-    pPlot.setBonusType(eBonus)
-    if pPlayer.isHuman():
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_DONE",(gc.getBonusInfo(eBonus).getDescription(),)), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
-  else:
-    CvUtil.removeScriptData(pUnit, "b")
-    if pPlayer.isHuman():
-      if pPlot.isCity(): pCity = pPlot.getPlotCity()
-      else: pCity = pPlot.getWorkingCity()
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_INFO_BONUSVERBREITUNG_NEG",(gc.getBonusInfo(eBonus).getDescription(),pCity.getName())), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-    pUnit.finishMoves()
-    PAE_Unit.doGoToNextUnit(pUnit)
-  return True
+    #CyInterface().addMessage(iPlayer, True, 10, str(eBonus), None, 2, None, ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+    if iChance > myRandom(100):
+        pPlot.setBonusType(eBonus)
+        if pPlayer.isHuman():
+            CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_DONE",(gc.getBonusInfo(eBonus).getDescription(),)), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
+        pUnit.kill(1,pUnit.getOwner())
+    else:
+        CvUtil.removeScriptData(pUnit, "b")
+        if pPlayer.isHuman():
+            if pPlot.isCity(): pCity = pPlot.getPlotCity()
+            else: pCity = pPlot.getWorkingCity()
+            CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_INFO_BONUSVERBREITUNG_NEG",(gc.getBonusInfo(eBonus).getDescription(),pCity.getName())), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+        pUnit.finishMoves()
+        PAE_Unit.doGoToNextUnit(pUnit)
+    return True
 
 # Cultivates eBonus on random plot within radius of iRange around pUnit (chance of success: 80%).
 # Never replaces existing bonus.
 def getCityCultivationPlot(pCity, eBonus):
-  iPlayer = pCity.getOwner()
-  lPlotList = []
-  for iI in range(gc.getNUM_CITY_PLOTS()):
-    pLoopPlot = pCity.getCityIndexPlot(iI)
-    if pLoopPlot != None and not pLoopPlot.isNone():
-      ePlotBonus = pLoopPlot.getBonusType(-1)
-      if ePlotBonus == -1 and getBonusCultivationChance(iPlayer, pLoopPlot, eBonus) > 0:
-        lPlotList.append(pLoopPlot)
+    iPlayer = pCity.getOwner()
+    lPlotList = []
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        pLoopPlot = pCity.getCityIndexPlot(iI)
+        if pLoopPlot != None and not pLoopPlot.isNone():
+            ePlotBonus = pLoopPlot.getBonusType(-1)
+            if ePlotBonus == -1 and getBonusCultivationChance(iPlayer, pLoopPlot, eBonus, False) > 0:
+                lPlotList.append(pLoopPlot)
 
-  if len(lPlotList) == 0: return None
-
-  iRand = myRandom(len(lPlotList))
-  return lPlotList[iRand]
+    if lPlotList:
+        return lPlotList[myRandom(len(lPlotList))]
+    return None
 
 # Returns list of bonuses which can be cultivated by this particular cultivation unit
 # Checks fertility conditions AND unit store
 # if iIsCity == 1, 5x5 square is checked. Otherwise: Only current plot.
 def isBonusCultivatable(pUnit):
-  global lCultivationUnits
-  if not pUnit.getUnitType() in lCultivationUnits:
-    return False
+    global lCultivationUnits
+    if not pUnit.getUnitType() in lCultivationUnits:
+        return False
 
-  eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
-  if eBonus == -1:
-    return False
+    eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
+    if eBonus == -1:
+        return False
 
-  if pUnit.plot().isCity():
-    # Cultivation from city (comfort function), no replacement of existing bonuses
-    return bonusIsCultivatableFromCity(pUnit.getOwner(), pUnit.plot().getPlotCity(), eBonus)
-  else:
-    # Cultivation on current plot, bonus can be replaced (player knows what he's doing)
-    return bonusIsCultivatable(pUnit.getOwner(), pUnit.plot(), eBonus)
-
-# Returns True if eBonus can be (principally) cultivated by iPlayer in a radius of iRange around pPlot
-# Independent from cultivation unit, only checks fertility conditions
-# if bRemove == False, only plots without bonus are considered
-def bonusIsCultivatable(iPlayer, pPlot, eBonus):
-  return getBonusCultivationChance(iPlayer, pPlot, eBonus) > 0
+    pPlot = pUnit.plot()
+    if pPlot.isCity():
+        # Cultivation from city (comfort function), no replacement of existing bonuses
+        return bonusIsCultivatableFromCity(pUnit.getOwner(), pPlot.getPlotCity(), eBonus)
+    else:
+        # Cultivation on current plot, bonus can be replaced (player knows what he's doing)
+        return getBonusCultivationChance(pUnit.getOwner(), pPlot, eBonus) > 0
 
 # Returns True if eBonus can be (principally) cultivated by iPlayer from pCity
 # Independent from cultivation unit, only checks fertility conditions
-def bonusIsCultivatableFromCity(iPlayer, pCity, eBonus):
-  for iI in range(gc.getNUM_CITY_PLOTS()):
-    pLoopPlot = pCity.getCityIndexPlot(iI)
-    if pLoopPlot != None and not pLoopPlot.isNone():
-      ePlotBonus = pLoopPlot.getBonusType(-1)
-      if ePlotBonus == -1 and getBonusCultivationChance(iPlayer, pLoopPlot, eBonus) > 0:
-        if bonusIsCultivatable(iPlayer, pLoopPlot, eBonus):
-          return True
-  return False
-
-# Returns list of bonuses which can (principally) be cultivated by iPlayer in a radius of iRange around pPlot
-# Independent from cultivation unit, only checks fertility conditions
-# if bRemove == False, only plots without bonus are considered
-def getCultivatableBonusesFromCity(pCity, lCityBonuses):
-  lBonuses = [] # List which will be returned
-  for eBonus in lCityBonuses:
-    if bonusIsCultivatableFromCity(pCity.getOwner(), pCity, eBonus):
-      lBonuses.append(eBonus)
-  return lBonuses
-
-# Returns list of the cultivatable bonuses which pCity has access to / Liste kultivierbarer Ressis im Handelsnetz von pCity
-def getAvailableCultivatableBonuses(pCity):
-  global lCultivatable
-  lBonuses = []
-  for eBonus in lCultivatable:
-      if pCity.hasBonus(eBonus): lBonuses.append(eBonus)
-  return lBonuses
+# ignores invisible bonuses
+def bonusIsCultivatableFromCity(iPlayer, pCity, eBonus, bVisibleOnly = True):
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        pLoopPlot = pCity.getCityIndexPlot(iI)
+        if pLoopPlot != None and not pLoopPlot.isNone():
+            ePlotBonus = pLoopPlot.getBonusType(-1)
+            if ePlotBonus == -1 and getBonusCultivationChance(iPlayer, pLoopPlot, eBonus, bVisibleOnly) > 0:
+                return True
+    return False
 
 
 # returns best plot within city radius
@@ -408,7 +384,11 @@ def doCultivation_AI(pUnit):
   for tTuple in lCities:
     pLoopCity = tTuple[1]
     lCityBonuses = getAvailableCultivatableBonuses(pLoopCity) # bonuses that city has access to
-    lBonuses = getCultivatableBonusesFromCity(pLoopCity, lCityBonuses+lLocalCityBonuses) # bonuses for which fertility conditions are met
+    # bonuses for which fertility conditions are met
+    lBonuses = []
+    for eBonus in lCityBonuses+lLocalCityBonuses:
+        if bonusIsCultivatableFromCity(iPlayer, pLoopCity, eBonus, False):
+            lBonuses.append(eBonus)
     # has this city capacity to cultivate?
     # prefer food if possible
     bFood = False
@@ -425,9 +405,6 @@ def doCultivation_AI(pUnit):
           # es kann sicher ein Plot gefunden werden, schliesslich laesst sich die Ressi hier verbreiten
           CyMessageControl().sendModNetMessage(738, iPlayer, pUnit.getID(), -1, -1)
           return True
-          #~ pPlot = getCityCultivationPlot(pLocalCity, eBonus)
-          #~ if doCultivateBonus(pPlot, pUnit, eBonus):
-            #~ return True
         else:
           # move to destination
           pUnit.getGroup().pushMoveToMission(pLoopCity.getX(), pLoopCity.getY())
@@ -458,11 +435,258 @@ def doCultivation_AI(pUnit):
     CvUtil.removeScriptData(pUnit, "b")
   # no cities reachable
   if pPlayer.getNumCities() == 1:
-    # TODO doGiveFood
-    return False
+        pCity.changeFood(50)
+        pUnit.kill(1,pUnit.getOwner())
+        return True
   else:
     # TODO get a ship
     return False
+
+  #~ # Bonusverbreitung -------------------
+  #~ # Schritt 1: Bonus verbreiten
+  #~ # Schritt 2: Stadt mit Getreide fuellen
+  #~ def doBonusverbreitung_AI (  pUnit ):
+    #~ pUnitGroup = pUnit.getGroup()
+
+    #~ if pUnitGroup.getMissionType(0) != 0:
+      #~ # Inits
+      #~ iOwner = pUnit.getOwner( )
+      #~ pOwner = gc.getPlayer(iOwner)
+      #~ lCities = PyPlayer(iOwner).getCityList()
+      #~ iCities = len(lCities)
+      #~ pPlot = pUnit.plot()
+
+      #~ # Boni
+      #~ lBonuses = []
+      #~ # Gruppe 1
+      #~ a1 = gc.getInfoTypeForString("BONUS_WHEAT")
+      #~ a2 = gc.getInfoTypeForString("BONUS_GERSTE")
+      #~ a3 = gc.getInfoTypeForString("BONUS_HAFER")
+      #~ a4 = gc.getInfoTypeForString("BONUS_ROGGEN")
+      #~ a5 = gc.getInfoTypeForString("BONUS_HIRSE")
+      #~ a6 = gc.getInfoTypeForString("BONUS_RICE")
+      #~ a1sum = pOwner.getNumAvailableBonuses(a1)
+      #~ a2sum = pOwner.getNumAvailableBonuses(a2)
+      #~ a3sum = pOwner.getNumAvailableBonuses(a3)
+      #~ a4sum = pOwner.getNumAvailableBonuses(a4)
+      #~ a5sum = pOwner.getNumAvailableBonuses(a5)
+      #~ a6sum = pOwner.getNumAvailableBonuses(a6)
+      #~ lBonuses.append(a1)
+      #~ lBonuses.append(a2)
+      #~ lBonuses.append(a3)
+      #~ lBonuses.append(a4)
+      #~ lBonuses.append(a5)
+      #~ lBonuses.append(a6)
+      #~ # Gruppe 2
+      #~ b1 = gc.getInfoTypeForString("BONUS_COW")
+      #~ b2 = gc.getInfoTypeForString("BONUS_PIG")
+      #~ b3 = gc.getInfoTypeForString("BONUS_SHEEP")
+      #~ b1sum = pOwner.getNumAvailableBonuses(b1)
+      #~ b2sum = pOwner.getNumAvailableBonuses(b2)
+      #~ b3sum = pOwner.getNumAvailableBonuses(b3)
+      #~ lBonuses.append(b1)
+      #~ lBonuses.append(b2)
+      #~ lBonuses.append(b3)
+      #~ # Gruppe 3
+      #~ c1 = gc.getInfoTypeForString("BONUS_OLIVES")
+      #~ c2 = gc.getInfoTypeForString("BONUS_DATTELN")
+      #~ c1sum = pOwner.getNumAvailableBonuses(c1)
+      #~ c2sum = pOwner.getNumAvailableBonuses(c2)
+      #~ lBonuses.append(c1)
+      #~ lBonuses.append(c2)
+      #~ # Gruppe 4
+      #~ d1 = gc.getInfoTypeForString("BONUS_CAMEL")
+      #~ d1sum = pOwner.getNumAvailableBonuses(d1)
+      #~ lBonuses.append(d1)
+
+      #~ # Hat die KI Boni zum Verbreiten?
+      #~ # Eigene Liste der Boni fuer die KI fuer schneller Abfragen
+      #~ lAIBonuses = []
+      #~ iRange = len(lBonuses)
+      #~ for i in range (iRange):
+        #~ if pOwner.getNumAvailableBonuses(lBonuses[i]) > 0:
+          #~ lAIBonuses.append(lBonuses[i])
+
+      #~ if len(lAIBonuses): bAIHasBonus = True
+      #~ else: bAIHasBonus = False
+
+      #~ # -------
+
+      #~ # --- Zuerst diese Stadt checken
+      #~ pThisPlotCity = None
+      #~ if bAIHasBonus and pPlot.isCity():
+        #~ # Inits
+        #~ pThisPlotCity = pPlot.getPlotCity()
+        #~ lNewBonus = []
+
+        #~ # Moegliche Boni
+        #~ iRange = len(lAIBonuses)
+        #~ i=0
+        #~ for i in range (iRange):
+          #~ seekPlot, iChance = PAE_Event_Manager.doBonusCityGetPlot(pThisPlotCity, lAIBonuses[i])
+          #~ if seekPlot != None and not seekPlot.isNone():
+
+            #~ iBonusHier = seekPlot.getBonusType(iOwner)
+            #~ # Unerforschte Resource?
+            #~ if iBonusHier == -1: iBonusHier = seekPlot.getBonusType(-1)
+
+            #~ # kein gleiches Bonusgut
+            #~ if iBonusHier != lAIBonuses[i]:
+              #~ # kein Bonusgut => fix dabei
+              #~ if iBonusHier == -1: lNewBonus.append(lAIBonuses[i])
+              #~ else:
+                #~ # Boni der selben Gruppe herausfinden und vergleichen
+                #~ if lAIBonuses[i] == a1:
+                  #~ if a1sum+1 < a2sum and a2sum > 1 or a1sum+1 < a3sum and a3sum > 1 or a1sum+1 < a4sum and a4sum > 1 or a1sum+1 < a5sum and a5sum > 1 or a1sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a2:
+                  #~ if a2sum+1 < a1sum and a1sum > 1 or a2sum+1 < a3sum and a3sum > 1 or a2sum+1 < a4sum and a4sum > 1 or a2sum+1 < a5sum and a5sum > 1 or a2sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a3:
+                  #~ if a3sum+1 < a1sum and a1sum > 1 or a3sum+1 < a2sum and a2sum > 1 or a3sum+1 < a4sum and a4sum > 1 or a3sum+1 < a5sum and a5sum > 1 or a3sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a4:
+                  #~ if a4sum+1 < a1sum and a1sum > 1 or a4sum+1 < a2sum and a2sum > 1 or a4sum+1 < a3sum and a3sum > 1 or a4sum+1 < a5sum and a5sum > 1 or a4sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a5:
+                  #~ if a5sum+1 < a1sum and a1sum > 1 or a5sum+1 < a2sum and a2sum > 1 or a5sum+1 < a3sum and a3sum > 1 or a5sum+1 < a4sum and a4sum > 1 or a5sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a6:
+                  #~ if a6sum+1 < a1sum and a1sum > 1 or a6sum+1 < a2sum and a2sum > 1 or a6sum+1 < a3sum and a3sum > 1 or a6sum+1 < a4sum and a4sum > 1 or a6sum+1 < a5sum and a5sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == b1:
+                  #~ if b1sum+1 < b2sum and b2sum > 1 or b1sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == b2:
+                  #~ if b2sum+1 < b1sum and b1sum > 1 or b2sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == b3:
+                  #~ if b3sum+1 < b1sum and b1sum > 1 or b3sum+1 < b2sum and b2sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == c1:
+                  #~ if c1sum+1 < c2sum and c2sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == c2:
+                  #~ if c2sum+1 < c1sum and c1sum > 1: lNewBonus.append(lAIBonuses[i])
+
+
+        #~ # Wenn leer, dann gehts unten weiter (Stadt suchen)
+        #~ if len(lNewBonus):
+          #~ iRand = myRandom(len(lNewBonus))
+          #~ iBonus = lNewBonus[iRand]
+
+          #~ # Bonus verbreiten (aber nicht, wenn dieses bereits auf dem Plot ist)
+          #~ if iBonus > -1:
+              #~ loopPlot, iChance = PAE_Event_Manager.doBonusCityGetPlot(pThisPlotCity, iBonus)
+              #~ if loopPlot != None and not loopPlot.isNone() and loopPlot.getBonusType(iOwner) != iBonus:
+
+                #~ ### TEST ###
+                #~ #CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iY",loopPlot.getY())), None, 2, None, ColorTypes(12), 0, 0, False, False)
+                #~ #CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("iX",loopPlot.getX())), None, 2, None, ColorTypes(12), 0, 0, False, False)
+
+                #~ # KI 10% mehr Chance
+                #~ if myRandom(100) < iChance + 10:
+                  #~ loopPlot.setBonusType(iBonus)
+                #~ pUnit.kill(1,pUnit.getOwner())
+                #~ return True
+
+      #~ # --- Stadt gecheckt
+
+
+      #~ # Alle moeglichen Staedte durchsuchen
+      #~ pSeekCity = None
+      #~ pSeekCityList = []
+      #~ pSeekCity2 = None
+      #~ iSeek2 = 0
+      #~ iAIBoni = len(lAIBonuses)
+
+      #~ # Check 1: Anzahl der bereits zugewiesenen Boni pro Stadt
+      #~ # Check 2: Foodstorage
+      #~ for iCity in range(iCities):
+        #~ pCity = pOwner.getCity( lCities[ iCity ].getID( ) )
+        #~ bCheck = True
+
+        #~ if pThisPlotCity != None and not pThisPlotCity.isNone():
+          #~ if pCity.getID() == pThisPlotCity.getID():
+              #~ bCheck = False
+
+        #~ # 1: BONUS
+        #~ # anfangs leere Liste StadtBoni (falls eine stadt 2 gleiche boni hat)
+        #~ if bAIHasBonus and bCheck:
+          #~ lNewBonus = []
+          #~ i=0
+          #~ for i in range (iAIBoni):
+            #~ seekPlot, iChance = PAE_Event_Manager.doBonusCityGetPlot(pCity, lAIBonuses[i])
+            #~ if seekPlot != None:
+
+             #~ iBonusHier = seekPlot.getBonusType(iOwner)
+             #~ # Unerforschte Resource?
+             #~ if iBonusHier == -1: iBonusHier = seekPlot.getBonusType(-1)
+
+             #~ # kein gleiches Bonusgut
+             #~ if iBonusHier != lAIBonuses[i]:
+              #~ # kein Bonusgut => fix dabei
+              #~ if iBonusHier == -1: lNewBonus.append(lAIBonuses[i])
+              #~ else:
+                #~ # Boni der selben Gruppe herausfinden und vergleichen
+                #~ if lAIBonuses[i] == a1:
+                  #~ if a1sum+1 < a2sum and a2sum > 1 or a1sum+1 < a3sum and a3sum > 1 or a1sum+1 < a4sum and a4sum > 1 or a1sum+1 < a5sum and a5sum > 1 or a1sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a2:
+                  #~ if a2sum+1 < a1sum and a1sum > 1 or a2sum+1 < a3sum and a3sum > 1 or a2sum+1 < a4sum and a4sum > 1 or a2sum+1 < a5sum and a5sum > 1 or a2sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a3:
+                  #~ if a3sum+1 < a1sum and a1sum > 1 or a3sum+1 < a2sum and a2sum > 1 or a3sum+1 < a4sum and a4sum > 1 or a3sum+1 < a5sum and a5sum > 1 or a3sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a4:
+                  #~ if a4sum+1 < a1sum and a1sum > 1 or a4sum+1 < a2sum and a2sum > 1 or a4sum+1 < a3sum and a3sum > 1 or a4sum+1 < a5sum and a5sum > 1 or a4sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a5:
+                  #~ if a5sum+1 < a1sum and a1sum > 1 or a5sum+1 < a2sum and a2sum > 1 or a5sum+1 < a3sum and a3sum > 1 or a5sum+1 < a4sum and a4sum > 1 or a5sum+1 < a6sum and a6sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == a6:
+                  #~ if a6sum+1 < a1sum and a1sum > 1 or a6sum+1 < a2sum and a2sum > 1 or a6sum+1 < a3sum and a3sum > 1 or a6sum+1 < a4sum and a4sum > 1 or a6sum+1 < a5sum and a5sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == b1:
+                  #~ if b1sum+1 < b2sum and b2sum > 1 or b1sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == b2:
+                  #~ if b2sum+1 < b1sum and b1sum > 1 or b2sum+1 < b3sum and b3sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == b3:
+                  #~ if b3sum+1 < b1sum and b1sum > 1 or b3sum+1 < b2sum and b2sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == c1:
+                  #~ if c1sum+1 < c2sum and c2sum > 1: lNewBonus.append(lAIBonuses[i])
+                #~ elif lAIBonuses[i] == c2:
+                  #~ if c2sum+1 < c1sum and c1sum > 1: lNewBonus.append(lAIBonuses[i])
+
+          #~ if len(lNewBonus):
+            #~ pSeekCityList.append(pCity)
+
+
+        #~ # 2: FOOD Storage
+        #~ iFood = pCity.getFood()
+        #~ if iSeek2 > iFood or iSeek2 == 0:
+          #~ pSeekCity2 = pCity
+          #~ iSeek2 = iFood
+
+
+      #~ # Stadt fuer die Verbreitung auswaehlen
+      #~ if len(pSeekCityList) > 0:
+        #~ iRand = myRandom(len(pSeekCityList))
+        #~ pSeekCity = pSeekCityList[iRand]
+
+
+      #~ # Schritt 1: Bonus verbreiten
+      #~ # Es gibt maximal 4 Plots zu bewirtschaften
+      #~ if pSeekCity != None and not pSeekCity.isNone():
+        #~ pCity = pSeekCity
+
+        #~ # Stadt aufsuchen
+        #~ if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
+          #~ pUnitGroup.clearMissionQueue()
+          #~ pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+          #~ return True
+
+      #~ # Schritt 2: Stadt mit Getreide fuellen
+      #~ if pSeekCity2 != None and not pSeekCity2.isNone():
+        #~ pCity = pSeekCity2
+
+        #~ # Stadt aufsuchen
+        #~ if pUnit.getX() != pCity.getX() or pUnit.getY() != pCity.getY():
+          #~ pUnitGroup.clearMissionQueue()
+          #~ pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, pCity.getX(), pCity.getY(), 0, False, True, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+
+        #~ # Stadt mit Getreide auffuellen
+        #~ else:
+          #~ pCity.changeFood(50)
+          #~ pUnit.kill(1,pUnit.getOwner())
+          #~ return True
+
+    #~ return
+
 
 # Collect bonus on current plot ('stored' in cultivation unit)
 def doCollectBonus(pUnit):
@@ -507,7 +731,6 @@ def doCollectBonus4Cultivation(pUnit,eBonus):
 
 # Creates popup with all possible cultivation bonuses of the plot or city
 def doPopupChooseBonus4Collection(pUnit):
-    global lCultivatable
     pPlot = pUnit.plot()
     iPlayer = pUnit.getOwner()
 
@@ -535,16 +758,21 @@ def doPopupChooseBonus4Collection(pUnit):
 def getCollectableGoods4Cultivation(pUnit):
     global lCultivatable
     pPlot = pUnit.plot()
-    lGoods = []
-
     if pPlot.isCity():
-      pCity = pPlot.getPlotCity()
-      for eBonus in lCultivatable:
-        if pCity.hasBonus(eBonus): lGoods.append(eBonus)
+        pCity = pPlot.getPlotCity()
+        lGoods = getAvailableCultivatableBonuses(pCity)
     else:
-      ePlotBonus = pPlot.getBonusType(pPlot.getTeam())
-      if ePlotBonus != -1: lGoods.append(ePlotBonus)
+        ePlotBonus = pPlot.getBonusType(pPlot.getTeam())
+        if ePlotBonus != -1 and ePlotBonus in lCultivatable: lGoods = [ePlotBonus]
 
+    return lGoods
+
+    # Returns list of the cultivatable bonuses which pCity has access to / Liste kultivierbarer Ressis im Handelsnetz von pCity
+def getAvailableCultivatableBonuses(pCity):
+    global lCultivatable
+    lGoods = []
+    for eBonus in lCultivatable:
+        if pCity.hasBonus(eBonus): lGoods.append(eBonus)
     return lGoods
 
 # Price of cultivation goods
@@ -552,7 +780,6 @@ def getCollectableGoods4Cultivation(pUnit):
 # national: *2
 # international: *3
 def calculateBonusBuyingPrice4Cultivation(iPlayer,pPlot,eBonus):
-
   iPrice = getBonusValue(eBonus)
 
   # Bonus on plot: regional price
@@ -574,10 +801,9 @@ def calculateBonusBuyingPrice4Cultivation(iPlayer,pPlot,eBonus):
 
     # Bonus international
   return iPrice * 3
-# --- End of bonus cultivation ----
-
 
 # --- Trade in cities ---
+
 
 # Unit stores bonus, owner pays, if UnitOwner != CityOwner: city owner gets money
 def doBuyBonus(pUnit, eBonus, iCityOwner):
@@ -606,6 +832,8 @@ def doBuyBonus(pUnit, eBonus, iCityOwner):
 
 # Unit's store is emptied, unit owner gets money, city gets bonus, research push
 def doSellBonus(pUnit, pCity):
+  global lLuxury
+  global lRarity
   eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
   if eBonus != -1:
     iPrice = calculateBonusSellingPrice(pUnit, pCity)
@@ -711,12 +939,14 @@ def doCityProvideBonus(pCity, eBonus, iTurn):
     tmp = [paar.split(",") for paar in bonusDict.split(";")]
     bonusDict = dict([ map(int, pair) for pair in tmp])
 
+  if not eBonus in bonusDict:
+    pCity.changeFreeBonus(eBonus, 1)
+  
   # Addiere alten und neuen Rundenwert
   iCurrentTurn = gc.getGame().getGameTurn()
   bonusDict[eBonus] = iTurn + bonusDict.setdefault(eBonus, iCurrentTurn)
   CvUtil.addScriptData(pCity, "b", bonusDict)
-
-  pCity.changeFreeBonus(eBonus, 1)
+  
 
 # Called each turn (onCityDoTurn, EventManager), makes sure free bonus disappears after x turns
 def doCityCheckFreeBonuses(pCity):
@@ -733,7 +963,7 @@ def doCityCheckFreeBonuses(pCity):
     for eBonus in bonusDict:
         iTurn = bonusDict[eBonus]
         if iTurn <= gc.getGame().getGameTurn():
-            pCity.changeFreeBonus(int(eBonus), -1) # Time over: remove bonus from city
+            pCity.changeFreeBonus(eBonus, -1) # Time over: remove bonus from city
             lRemove.append(eBonus)
             bUpdate = True
 
@@ -775,7 +1005,13 @@ def doPopupChooseBonus(pUnit, pCity):
 # Basis value for each bonus
 # auch in TXT_KEY_TRADE_ADVISOR_WERT_PANEL
 def getBonusValue(eBonus):
+    global lUntradeable
+    global lCultivatable
+    global lLuxury
+    global lRarity
+
     if eBonus == -1 or eBonus in lUntradeable: return -1
+    # TODO: da sind Pferde drin
     if eBonus in lCultivatable: return 20
     elif eBonus in lLuxury: return 40
     elif eBonus in lRarity: return 50
@@ -921,6 +1157,7 @@ def hasBonusIgnoreFreeBonuses(pCity, eBonus):
 # Returns a list of the tradeable bonuses within pCity's range (radius of 2) + bonuses from buildings (bronze etc.). Only goods within the team's culture are considered.
 # if iBuyer != -1: Bonuses the buying player cannot afford (not enough money) are excluded
 def getCitySaleableGoods(pCity, iBuyer):
+    global lUntradeable
     if pCity == None or pCity.isNone(): return []
     iCityOwnerTeam = pCity.getTeam()
     iCityOwner = pCity.getOwner()
@@ -1094,7 +1331,7 @@ def doAutomateMerchant(pUnit, bAI):
     iUnitX = pUnitPlot.getX()
     iUnitY = pUnitPlot.getY()
     # set to False if automated route is deactivated
-    bActive = int(CvUtil.getScriptData(pUnit, ["autA"], 0)) 
+    bActive = int(CvUtil.getScriptData(pUnit, ["autA"], 0))
     if not bActive: return False
     iTurn = gc.getGame().getGameTurn()
     # Verhindern, dass mehrmals pro Runden geprueft wird, um Rundenzeit zu sparen
@@ -1319,16 +1556,16 @@ def addCityWithSpecialBonus(iGameTurn):
     global lCitiesSpecialBonus
     global lLuxury
     global lRarity
-    
+
     lTurns = [20,25,30,35,40]
-        
+
     # Test
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("lCitiesSpecialBonus",len(lCitiesSpecialBonus))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    
+
     # # Max 3 cities
     # # Neue Stadt mit Sonderauftrag hinzufuegen
     # if len(lCitiesSpecialBonus) >= 3: return
-    
+
     # lNewCities = []
     # iRange = gc.getMAX_PLAYERS()
     # for i in range(iRange):
@@ -1340,7 +1577,7 @@ def addCityWithSpecialBonus(iGameTurn):
                 # (pLoopCity,iter) = loopPlayer.nextCity(iter, False)
 
     # iTry = 0
-    # while lNewCities and iTry<3 : 
+    # while lNewCities and iTry<3 :
         # # Stadt auswaehlen
         # pCity = lNewCities[myRandom(len(lNewCities))]
         # # Dauer auswaehlen
@@ -1349,8 +1586,8 @@ def addCityWithSpecialBonus(iGameTurn):
         # lNewBonus = [iBonus for iBonus in lLuxury + lRarity if not pCity.hasBonus(iBonus)]
         # # for iBonus in lLuxury + lRarity:
           # # if not pCity.hasBonus(iBonus): lNewBonus.append(iBonus)
-          
-        # # Bonus setzen wenn die Stadt nicht eh schon alles hat. 
+
+        # # Bonus setzen wenn die Stadt nicht eh schon alles hat.
         # if lNewBonus:
             # # Globale Variable setzen
             # lCitiesSpecialBonus.append(pCity)
@@ -1369,11 +1606,11 @@ def doCheckCitySpecialBonus(pUnit,pCity,eBonus):
     global lCitiesSpecialBonus
 
     if not pCity in lCitiesSpecialBonus: return
-    
+
     # eCityBonus =  int(CvUtil.getScriptData(pCity, ["tsb"],-1))
     # if eCityBonus != -1 and eCityBonus == eBonus:
         # lCitiesSpecialBonus.remove(pCity)
-        
+
         # iPlayer = pUnit.getOwner()
         # pPlayer = gc.getPlayer(iPlayer)
         # if iPlayer != gc.getGame().getActivePlayer():

@@ -3247,7 +3247,7 @@ def applyMeuterei(argsList):
 
   player = gc.getPlayer(kTriggeredData.ePlayer)
 
-  iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_GALLEY')
+  iUnitType = CvUtil.findInfoTypeNum(gc.getUnitInfo, gc.getNumUnitInfos(), 'UNIT_KONTERE')
   plot = gc.getMap().plot(kTriggeredData.iPlotX, kTriggeredData.iPlotY)
 
   barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())

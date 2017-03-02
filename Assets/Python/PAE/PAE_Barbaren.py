@@ -25,7 +25,8 @@ def myRandom (num):
 # leere Festung mit barbarischen Einheiten belegen
 def setFortDefence(pPlot):
     # inits
-    pTeam = gc.getTeam(pBarbPlayer.getTeam())
+    iBarbPlayer = gc.getBARBARIAN_PLAYER()
+    pBarbPlayer = gc.getPlayer(iBarbPlayer)
 
     iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS") # Moves -1
     iPromo2 = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2") # Moves -2
@@ -34,10 +35,6 @@ def setFortDefence(pPlot):
     if bRageBarbs: iAnz += 2
 
     # Einheit herausfinden
-    #iUnit = gc.getInfoTypeForString("UNIT_LIGHT_ARCHER")
-    #if pTeam.isHasTech(gc.getInfoTypeForString("TECH_REFLEXBOGEN")): iUnit = gc.getInfoTypeForString("UNIT_REFLEX_ARCHER")
-    #elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_ARCHERY3")): iUnit = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-    #elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_ARCHERY2")): iUnit = gc.getInfoTypeForString("UNIT_ARCHER")
     if pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_REFLEX_ARCHER"),0,0): iUnit = gc.getInfoTypeForString("UNIT_REFLEX_ARCHER")
     elif pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER"),0,0): iUnit = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
     elif pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_ARCHER"),0,0): iUnit = gc.getInfoTypeForString("UNIT_ARCHER")
@@ -53,8 +50,9 @@ def setFortDefence(pPlot):
 # Barbarische Einheit erzeugen
 def createBarbUnit(pPlot):
     if not bBarbForts: return
-    
-    pBarbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER)
+
+    iBarbPlayer = gc.getBARBARIAN_PLAYER()
+    pBarbPlayer = gc.getPlayer(iBarbPlayer)
 
     iAnz = 1
     if bRageBarbs: iAnz += 1
@@ -112,7 +110,6 @@ def createBarbUnit(pPlot):
 # ------ Camp/Kriegslager Einheit setzen (PAE V Patch 4)
 def createCampUnit(iPlayer):
     pPlayer = gc.getPlayer(iPlayer)
-    #pTeam = gc.getTeam(pPlayer.getTeam())
 
     if pPlayer.isAlive():
        if pPlayer.getUnitClassCount(gc.getInfoTypeForString("UNITCLASS_SPECIAL1")) > 0:
@@ -194,8 +191,9 @@ def createCampUnit(iPlayer):
     return
 
 def doSeevoelker():
-    pBarbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-    
+    iBarbPlayer = gc.getBARBARIAN_PLAYER()
+    pBarbPlayer = gc.getPlayer(iBarbPlayer)
+
     iUnitTypeShip = gc.getInfoTypeForString("UNIT_SEEVOLK")
     iUnitTypeWarrior1 = gc.getInfoTypeForString("UNIT_SEEVOLK_2")
     iUnitTypeWarrior2 = gc.getInfoTypeForString("UNIT_SEEVOLK_3")
@@ -230,30 +228,32 @@ def doSeevoelker():
             pBarbPlayer.initUnit(iUnitTypeWarrior2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 def doVikings():
-  pBarbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
-  iUnitTypeShip = gc.getInfoTypeForString("UNIT_VIKING_1")
-  iUnitTypeUnit = gc.getInfoTypeForString("UNIT_VIKING_2")
-  iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
+    iBarbPlayer = gc.getBARBARIAN_PLAYER()
+    pBarbPlayer = gc.getPlayer(iBarbPlayer)
+    iUnitTypeShip = gc.getInfoTypeForString("UNIT_VIKING_1")
+    iUnitTypeUnit = gc.getInfoTypeForString("UNIT_VIKING_2")
+    iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
 
-  iMapW = gc.getMap().getGridWidth()
-  iMapH = gc.getMap().getGridHeight()
+    iMapW = gc.getMap().getGridWidth()
+    iMapH = gc.getMap().getGridHeight()
 
-  for i in range (4):
-    iRandX = iMapH - myRandom(5)
-    iRandY = myRandom(iMapW)
-    loopPlot = gc.getMap().plot(iRandX, iRandY)
-    # Es soll auch ein 2tes Feld Wasser sein
-    loopPlot2 = gc.getMap().plot(iRandX+1, iRandY)
-    if None != loopPlot and not loopPlot.isNone() and None != loopPlot2 and not loopPlot2.isNone():
-      if loopPlot.getFeatureType() == iDarkIce or loopPlot2.getFeatureType() == iDarkIce: continue
-      if not loopPlot.isUnit() and loopPlot.isWater() and loopPlot2.isWater() and not loopPlot.isOwned():
-        # Wikinger erstellen
-        pBarbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH)
-        for j in range (4):
-          pBarbPlayer.initUnit(iUnitTypeUnit, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+    for i in range (4):
+        iRandX = iMapH - myRandom(5)
+        iRandY = myRandom(iMapW)
+        loopPlot = gc.getMap().plot(iRandX, iRandY)
+        # Es soll auch ein 2tes Feld Wasser sein
+        loopPlot2 = gc.getMap().plot(iRandX+1, iRandY)
+        if None != loopPlot and not loopPlot.isNone() and None != loopPlot2 and not loopPlot2.isNone():
+          if loopPlot.getFeatureType() == iDarkIce or loopPlot2.getFeatureType() == iDarkIce: continue
+          if not loopPlot.isUnit() and loopPlot.isWater() and loopPlot2.isWater() and not loopPlot.isOwned():
+            # Wikinger erstellen
+            pBarbPlayer.initUnit(iUnitTypeShip, iRandX, iRandY, UnitAITypes.UNITAI_ASSAULT_SEA, DirectionTypes.DIRECTION_SOUTH)
+            for j in range (4):
+              pBarbPlayer.initUnit(iUnitTypeUnit, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
 def doHandelskarren():
-    pBarbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
+    iBarbPlayer = gc.getBARBARIAN_PLAYER()
+    pBarbPlayer = gc.getPlayer(iBarbPlayer)
     iUnitTypeMerchant1 = gc.getInfoTypeForString("UNIT_TRADE_MERCHANT")
     iUnitTypeMerchant2 = gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN")
     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
@@ -269,7 +269,7 @@ def doHandelskarren():
                     if loopPlot.isWater()  and gc.getGame().getGameTurnYear() > -600:
                         if loopPlot.area().getNumTiles() >= gc.getMIN_WATER_SIZE_FOR_OCEAN():
                             pBarbPlayer.initUnit(iUnitTypeMerchant2, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                    elif not loopPlot.isWater() and not loopPlot.isPeak(): 
+                    elif not loopPlot.isWater() and not loopPlot.isPeak():
                         if loopPlot.area().getNumTiles() >= 5:
                             pBarbPlayer.initUnit(iUnitTypeMerchant1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 

@@ -197,7 +197,7 @@ def doStrandgut():
                     # Create Strandgut
                     pBarbPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     # Disband Treibgut
-                    loopUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+                    loopUnit.kill(1,loopUnit.getOwner())
         (loopUnit, iter) = pBarbPlayer.nextUnit(iter, false)
      # --------- Strandgut -----------
 
@@ -304,7 +304,7 @@ def setGoodyHuts():
                                     iNumSetFlotsam += 1
      # -------------------------------
 
-     
+
 # New Seewind-Feature together with Elwood (ideas) and the TAC-Team (diagonal arrows)
 def doSeewind():
     terr_ocean = gc.getInfoTypeForString("TERRAIN_OCEAN")
@@ -321,7 +321,7 @@ def doSeewind():
         gc.getInfoTypeForString("FEATURE_WIND_W"),
         gc.getInfoTypeForString("FEATURE_WIND_NW"),
     ]
-    
+
     iWindplots = 6 # amount of wind arrows (plots) per wind
     OceanPlots = []
     lDirection = []
@@ -335,7 +335,7 @@ def doSeewind():
         loopPlot = gc.getMap().plot(i, j)
         if loopPlot != None and not loopPlot.isNone():
           if loopPlot.getFeatureType() == iDarkIce: continue
-          if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean: 
+          if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
             OceanPlots.append(loopPlot)
 
     if len(OceanPlots) > 0:

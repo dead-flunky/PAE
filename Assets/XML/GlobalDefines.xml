@@ -15,7 +15,7 @@
   </Define>
   <Define>
     <DefineName>SAVE_VERSION</DefineName>
-    <iDefineIntVal>301</iDefineIntVal>
+    <iDefineIntVal>302</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>MAX_NUM_LANGUAGES</DefineName>

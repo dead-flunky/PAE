@@ -140,7 +140,7 @@ def doCheckCityState(pCity):
     if not gc.getPlayer(pCity.getOwner()).isHuman():
        PAE_Sklaven.doAIReleaseSlaves(pCity)
 
-    
+
 # --------------------------------
 # Methode auch in CvWorldBuilderScreen.py - immer beide aendern
 def doCheckTraitBuildings (pCity):
@@ -183,13 +183,14 @@ def doCheckGlobalTraitBuildings(iPlayer, pCity = None, iOriginalOwner = -1):
 def doCheckGlobalBuilding (iPlayer, iBuilding):
     pPlayer = gc.getPlayer(iPlayer)
     (city,iter) = pPlayer.firstCity(False)
-    city.setNumRealBuilding(iBuilding, 1)
-    iCount = 0
-    while city:
-      if city.getNumBuilding(iBuilding) > 0:
-        iCount += 1
-        if iCount > 1: city.setNumRealBuilding(iBuilding, 0)
-      (city,iter) = pPlayer.nextCity(iter, False)
+    if city != None and not city.isNone():
+        city.setNumRealBuilding(iBuilding, 1)
+        iCount = 0
+        while city:
+          if city.getNumBuilding(iBuilding) > 0:
+            iCount += 1
+            if iCount > 1: city.setNumRealBuilding(iBuilding, 0)
+          (city,iter) = pPlayer.nextCity(iter, False)
 
 # Begin Inquisition -------------------------------
 
@@ -225,7 +226,7 @@ def doInquisitorPersecution(pCity, pUnit):
           #iRand = myRandom(len(ReligionArray))
           #doInquisitorPersecution2(iPlayer, pCity.getID(), -1, ReligionArray[iRand], pUnit.getID())
 
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+    pUnit.kill(1,pUnit.getOwner())
   # -------------
 
 def doInquisitorPersecution2(iPlayer, iCity, iButton, iReligion, iUnit):
@@ -548,7 +549,7 @@ def doEmigrant(pCity, pUnit):
     if iCulture > 1000: iCulture = 1000
     # Stadt Kultur geben
     pPlot.changeCulture(iPlayerCulture,iCulture,1)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+    pUnit.kill(1,pUnit.getOwner())
 
     pCity.changePopulation(1)
     # PAE Provinzcheck
@@ -568,7 +569,7 @@ def doDisbandCity(pCity, pUnit, pPlayer):
         #pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
     else:
         CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_NOT_OK",(pCity.getName(),)), "AS2D_CITY_REVOLT", 2, None, ColorTypes(7), pCity.getX(), pCity.getY(), False, False)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+        pUnit.kill(1,pUnit.getOwner())
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Emigrant disbands/shrinks City (Zeile 6474)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -770,7 +771,8 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
 
     # Stadt laeuft automatisch ueber (CyCity pCity, BOOL bConquest, BOOL bTrade)
     pNewOwner.acquireCity(pCity,0,1)
-    pAcquiredCity = pPlot.getPlotCity()
+    #Pointer anpassen
+    pCity = pPlot.getPlotCity()
 
     # Einheiten generieren
     for pLoopUnit in UnitArray:
@@ -827,7 +829,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
                         # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten
                         if not iLoopPromo in lTraitPromos: # or pNewOwner.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
                             NewUnit.setHasPromotion(iLoopPromo, True)
-        pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+        pLoopUnit.kill(1,pLoopUnit.getOwner())
 
     if iNewOwner == gc.getBARBARIAN_PLAYER():
         pNewOwner.initUnit(iPartisan,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
@@ -838,15 +840,15 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
     iCulture = pCity.getCulture(iOldOwner)
     # Kultur regenerieren - funkt net
     if iCulture > 0:
-        pAcquiredCity.changeCulture(iNewOwner,iCulture,True)
+        pCity.changeCulture(iNewOwner,iCulture,True)
 
     # Stadtgroesse kontrollieren
-    iPop = pAcquiredCity.getPopulation()
+    iPop = pCity.getPopulation()
     if iPop < 1:
-        pAcquiredCity.setPopulation(1)
+        pCity.setPopulation(1)
 
     # Kolonie/Provinz checken
-    doCheckCityState(pAcquiredCity)
+    doCheckCityState(pCity)
 
 def AI_defendAndHire(pCity, iPlayer):
     pPlayer = gc.getPlayer(iPlayer)

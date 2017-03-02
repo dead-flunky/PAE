@@ -13,13 +13,13 @@ BarbCityList = []
 UsedValidCivList = []
 
 ###generic file reading function
-def ReadMyFile(MyFile,Debuging,AddPositionsToMap,bPlaceCivs,bPlaceBarbCities):
+def ReadMyFile(MyFile,Debugging,AddPositionsToMap,bPlaceCivs,bPlaceBarbCities):
         del SpawnCivList[:]
         del UsedValidCivList[:]
         del BarbCityList[:]
         CurCiv = None
         BarbCity = None
-        if Debuging:print "preparing to read"
+        if Debugging:print "preparing to read"
         for CurString in MyFile.readlines():
                 if "CIVILIZATION_" in CurString:
                         if CurCiv != None: SpawnCivList.append(CurCiv)
@@ -44,13 +44,13 @@ def ReadMyFile(MyFile,Debuging,AddPositionsToMap,bPlaceCivs,bPlaceBarbCities):
                         BarbCityList.append(BarbCity)
         #add last Civ to SpawnCivList
         if CurCiv != None: SpawnCivList.append(CurCiv)
-        if Debuging: print "all civs have been read"
-        if bPlaceCivs: ResortCivs(Debuging)
-        if bPlaceBarbCities: PlaceBarbarianCities(Debuging)
+        if Debugging: print "all civs have been read"
+        if bPlaceCivs: ResortCivs(Debugging)
+        if bPlaceBarbCities: PlaceBarbarianCities(Debugging)
         if AddPositionsToMap:AddCoordinateSignsToMap()
 
 ###core function for resorting civs on the map
-def ResortCivs(Debuging):
+def ResortCivs(Debugging):
     iMaxPlayer = gc.getMAX_CIV_PLAYERS ()
     iMaxLoadedPlayer = len(SpawnCivList)
     lHumanPlayers = []
@@ -60,12 +60,12 @@ def ResortCivs(Debuging):
             CurPlayer = gc.getPlayer(ip)
             if CurPlayer.isHuman():
                     lHumanPlayers.append(ip)
-
-    if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Beginning to resort civs",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-    if Debuging:print "Beginning to resort civs"
+    iHumanPlayer = lHumanPlayers[0]
+    if Debugging:CyInterface().addMessage(iHumanPlayer,False,15,"Beginning to resort civs",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+    if Debugging:print "Beginning to resort civs"
     if not HumanPlayerIsValidCiv(lHumanPlayers,iMaxLoadedPlayer):
-            CyInterface().addMessage(lHumanPlayers[0],False,15,"Invalid Civ for map has been chosen!!!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-            CyInterface().addMessage(lHumanPlayers[0],False,15,"Civs will not start at correct positions!!!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+            CyInterface().addMessage(iHumanPlayer,False,15,"Invalid Civ for map has been chosen!!!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+            CyInterface().addMessage(iHumanPlayer,False,15,"Civs will not start at correct positions!!!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
             return
 
 ###following loop moves all the units off the map
@@ -89,19 +89,19 @@ def ResortCivs(Debuging):
     for i in xrange(iMaxPlayer):
       if i != gc.getBARBARIAN_PLAYER():
         pLoopCiv = gc.getPlayer(i)
-        if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Got a civ!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-        if Debuging:print "Got a civ!"
+        if Debugging:CyInterface().addMessage(iHumanPlayer,False,15,"Got a civ!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+        if Debugging:print "Got a civ!"
         if not pLoopCiv.isAlive():continue
         iLoopCivName = pLoopCiv.getCivilizationType ()
         for j in xrange(iMaxLoadedPlayer):
-                if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Cycling loaded coordinates!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-                if Debuging:print "Cycling loaded coordinates!"
+                if Debugging:CyInterface().addMessage(iHumanPlayer,False,15,"Cycling loaded coordinates!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+                if Debugging:print "Cycling loaded coordinates!"
                 if iLoopCivName == gc.getInfoTypeForString(SpawnCivList[j].CivString):
-                        if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Preparing for re-placing current units!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
-                        if Debuging:print "Preparing for re-placing current units!"
+                        if Debugging:CyInterface().addMessage(iHumanPlayer,False,15,"Preparing for re-placing current units!",'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+                        if Debugging:print "Preparing for re-placing current units!"
                         if SpawnCivList[j].SpawnX[0] ==-1 or SpawnCivList[j].SpawnY[0]==-1:
                                 CounterInvalid += 1
-                                if Debuging:CyInterface().addMessage(iHumanPlayer,False,15,"Counter invalid civs "+str(CounterInvalid),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
+                                if Debugging:CyInterface().addMessage(iHumanPlayer,False,15,"Counter invalid civs "+str(CounterInvalid),'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True,True)
                                 (loopUnit, iter) = pLoopCiv.firstUnit(false)
                                 while(loopUnit):
                                         unitOwner = loopUnit.getOwner()
@@ -124,18 +124,18 @@ def ResortCivs(Debuging):
                                 if ( not loopUnit.isNone() and loopUnit.getOwner() == pLoopCiv.getID() ): #only valid units
 
                                         loopUnit.setXY(iX, iY, False,False,False)
-                                        if Debuging:
+                                        if Debugging:
                                                 idstring = pLoopCiv.getCivilizationAdjective(0)+"unit moved to X="+str(iX)+"and Y="+str(iY)
                                                 print idstring
                                                 CyInterface().addMessage(iHumanPlayer,False,15,idstring,'',0,'Art/Interface/Buttons/General/warning_popup.dds',ColorTypes(gc.getInfoTypeForString("COLOR_RED")), iY, iY, True,True)
                                 (loopUnit, iter) = pLoopCiv.nextUnit(iter, false)
     # PAE change: check if CounterInvalid > 0
     # PAE: do not replace missing civ
-    if CounterInvalid > 0: AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debuging)
+    if CounterInvalid > 0: AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debugging)
     FlushVisibleArea()
 
 ### place barbarian cities
-def PlaceBarbarianCities(Debuging):
+def PlaceBarbarianCities(Debugging):
     pBarb = gc.getPlayer(gc.getBARBARIAN_PLAYER())
     for BarbCity in BarbCityList:
         iX = BarbCity.CityX
@@ -194,7 +194,7 @@ def AddCoordinateSignsToMap():
                         CyEngine().addSign(pPlot,iHumanPlayer,PrintString)
 
 ###next 2 functions add new civs for the invalid chosen ones to the map
-def AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debuging):
+def AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debugging):
         iAllCivs = gc.getNumPlayableCivilizationInfos ()
         CounterCycles = 0
         iMaxValid = 0
@@ -203,20 +203,20 @@ def AddMissingCivs(CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,Debuging):
                         continue
                 else:
                         iMaxValid = iMaxValid+1
-        if Debuging:
+        if Debugging:
                 print "valid civs for this map: "+str( iMaxValid)
                 print "max civs: "+str(iMaxPlayer)
         while True:
-                if Debuging: print "trying to add a civ"
+                if Debugging: print "trying to add a civ"
                 CounterCycles = CounterCycles+1
                 if CounterCycles >=100:break
-                if AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Debuging):
+                if AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Debugging):
                         CounterInvalid = CounterInvalid-1
-                        if Debuging: print "added 1 civ"
+                        if Debugging: print "added 1 civ"
                 if CounterInvalid<=0:
                         return
 
-def AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Debuging):
+def AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Debugging):
         iCivID = -1
         iMaxUsed = len(UsedValidCivList)
         for i in xrange(iMaxPlayer):
@@ -236,7 +236,7 @@ def AddThisCiv(iAllCivs,CounterInvalid,iMaxLoadedPlayer,iMaxPlayer,iMaxValid,Deb
                 if IsInList:
                         continue
                 if not IsInList:
-                        if Debuging:
+                        if Debugging:
                                 print "adding new civ"
                         for j in xrange(iMaxLoadedPlayer):
                                 if gc.getInfoTypeForString(SpawnCivList[j].CivString)==iCivs:

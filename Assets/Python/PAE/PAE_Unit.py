@@ -88,7 +88,7 @@ def doUpgradeVeteran(pUnit, iNewUnit, bChangeCombatPromo):
       NewUnit.setDamage(pUnit.getDamage(), -1)
       NewUnit.setImmobileTimer(1)
 
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
 # Unit Rang Promos (PAE, ModMessage:751)
 def doUpgradeRang(iPlayer,iUnit):
@@ -1069,7 +1069,7 @@ def doBuildHandelsposten(pUnit):
     pPlot.setCulture(iPlayer,1,True)
     pPlot.setOwner(iPlayer)
     pPlayer.changeGold(-iPrice)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+    pUnit.kill(1,pUnit.getOwner())
 
 
 
@@ -1274,7 +1274,7 @@ def doAutomatedRanking(pWinner, pLoser):
                     if not pWinner.isHasPromotion(iPromo):
                         iNewRank = iPromo
                         break
-            
+
             # PAE for better AI: always gets it by 50%
             if not gc.getPlayer(pWinner.getOwner()).isHuman(): iChance = 50
 
@@ -1377,7 +1377,7 @@ def doHorseDown(pPlot, pUnit):
             # init all promotions the unit had
             if pUnit.isHasPromotion(iPromotion):
                 NewUnit.setHasPromotion(iPromotion, True)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+        pUnit.kill(1,pUnit.getOwner())
         NewUnit.finishMoves()
 
         # ***TEST***
@@ -1397,8 +1397,9 @@ def doHorseUp(pPlot, pUnit):
     UnitHorse = gc.getInfoTypeForString("UNIT_HORSE")
     iRange = pPlot.getNumUnits()
     for iUnit in range (iRange):
-        if pPlot.getUnit(iUnit).getUnitType() == UnitHorse:
-            pPlot.getUnit(iUnit).doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+        pUnit = pPlot.getUnit(iUnit)
+        if pUnit.getUnitType() == UnitHorse:
+            pUnit.kill(1,pUnit.getOwner())
             break
 
     lUnitAuxiliar = [
@@ -1435,7 +1436,7 @@ def doHorseUp(pPlot, pUnit):
             # init all promotions the unit had
             if pUnit.isHasPromotion(iPromotion):
                 NewUnit.setHasPromotion(iPromotion, True)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+        pUnit.kill(1,pUnit.getOwner())
 
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Horse Up (Zeile 5057)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -1469,7 +1470,7 @@ def doTrojanHorse(pCity, pUnit):
       if iCityPlayer == gc.getGame().getActivePlayer() or iUnitPlayer == gc.getGame().getActivePlayer():
           CyAudioGame().Play2DSound("AS2D_THEIRDECLAREWAR")
 
-      pUnit.doCommand(CommandTypes.COMMAND_DELETE, 1, 1)
+      pUnit.kill(1,pUnit.getOwner())
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Trojanisches Pferd (Zeile 9497)",0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -1538,46 +1539,46 @@ def doDyingGeneral (pUnit):
 def doGoToNextUnit(pUnit):
     # go to and select next Unit
     pUnit.getGroup().pushMission (MissionTypes.MISSION_SKIP,0,0,0,False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit)
-        
+
 def copyName(NewUnit, iUnitType, sUnitName):
     if sUnitName != gc.getUnitInfo(iUnitType).getText():
         sUnitName = re.sub(" \(.*?\)","",sUnitName)
         NewUnit.setName(sUnitName)
-                
+
 def initSupply(pUnit):
     (_, iMaxSupply) = getSupply(pUnit)
     setSupply(pUnit,iMaxSupply)
-        
+
 def fillSupply(pUnit, iChange):
     (iCurrentSupply, iMaxSupply) = getSupply(pUnit)
-    if iCurrentSupply != iMaxSupply: 
+    if iCurrentSupply != iMaxSupply:
         if iCurrentSupply + iChange > iMaxSupply:
             iChange -= (iMaxSupply - iCurrentSupply)
             iCurrentSupply = iMaxSupply
         else:
             iCurrentSupply += iChange
             iChange = 0
-        
+
     setSupply(pUnit,iCurrentSupply)
     return iChange
-    
+
 def setSupply(pUnit,iValue):
     CvUtil.addScriptData(pUnit,"s",iValue)
-    
+
 def getSupply(pUnit):
     eDruide = gc.getInfoTypeForString("UNIT_DRUIDE")
     eBrahmane = gc.getInfoTypeForString("UNIT_BRAHMANE")
     # Maximalwert herausfinden
-    if pUnit.getUnitType() == eDruide or pUnit.getUnitType() == eBrahmane: 
+    if pUnit.getUnitType() == eDruide or pUnit.getUnitType() == eBrahmane:
         iMaxSupply = 100
-    else: 
+    else:
         iMaxSupply = 200
     # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
     if gc.getPlayer(pUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
         iMaxSupply += int(iMaxSupply/2)
-    
+
     # kein Eintrag == Fabrikneu
-    iCurrentSupply = CvUtil.getScriptData(pUnit, ["s"], iMaxSupply) 
+    iCurrentSupply = CvUtil.getScriptData(pUnit, ["s"], iMaxSupply)
     if iCurrentSupply > iMaxSupply:
         CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply is bogus",iCurrentSupply)), None, 2, None, ColorTypes(10), 0, 0, False, False)
         setSupply(pUnit, iMaxSupply)
