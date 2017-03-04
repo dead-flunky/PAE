@@ -941,12 +941,12 @@ def doCityProvideBonus(pCity, eBonus, iTurn):
 
   if not eBonus in bonusDict:
     pCity.changeFreeBonus(eBonus, 1)
-  
+
   # Addiere alten und neuen Rundenwert
   iCurrentTurn = gc.getGame().getGameTurn()
   bonusDict[eBonus] = iTurn + bonusDict.setdefault(eBonus, iCurrentTurn)
   CvUtil.addScriptData(pCity, "b", bonusDict)
-  
+
 
 # Called each turn (onCityDoTurn, EventManager), makes sure free bonus disappears after x turns
 def doCityCheckFreeBonuses(pCity):
@@ -960,12 +960,24 @@ def doCityCheckFreeBonuses(pCity):
         bUpdate = True
 
     lRemove = []
+    lAdd = {}
     for eBonus in bonusDict:
         iTurn = bonusDict[eBonus]
+
+        # alte Saves korrigieren str->int
+        if type(eBonus) == str:
+            lRemove.append(eBonus)
+            eBonus = int(eBonus)
+            lAdd[eBonus] = iTurn
+
         if iTurn <= gc.getGame().getGameTurn():
             pCity.changeFreeBonus(eBonus, -1) # Time over: remove bonus from city
             lRemove.append(eBonus)
             bUpdate = True
+
+
+    # alte Saves korrigieren str->int
+    bonusDict.update(lAdd)
 
     for eBonus in lRemove:
         bonusDict.pop(eBonus, None)

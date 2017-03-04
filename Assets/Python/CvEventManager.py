@@ -5855,9 +5855,9 @@ class CvEventManager:
       iCities = len(Cities)
       while iCities > 0 and a > 0:
         iRand = self.myRandom(iCities, None)
-        Cities[iRand].setHasReligion(iReligion,1,1,0)
-        Cities.pop(iRand)
-        CyInterface().addMessage(Cities[iRand].getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_BIBEL",(Cities[iRand].getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+        pLoopCity = Cities.pop(iRand)
+        pLoopCity.setHasReligion(iReligion,1,1,0)
+        CyInterface().addMessage(pLoopCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_BIBEL",(pLoopCity.getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
         a -= 1
         iCities -= 1
 
