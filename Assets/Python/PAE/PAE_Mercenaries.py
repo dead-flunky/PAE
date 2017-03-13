@@ -143,7 +143,7 @@ def onModNetMessage(argsList):
         popupInfo.setData1(iData1) # iTargetPlayer
         popupInfo.setData3(iPlayer) # iPlayer
 
-        popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_1",("", )), gc.getCivilizationInfo(gc.getPlayer(iData2).getCivilizationType()).getButton())
+        popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_1",("", )), gc.getCivilizationInfo(gc.getPlayer(iData1).getCivilizationType()).getButton())
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_2",("", )), gc.getCivilizationInfo(pPlayer.getCivilizationType()).getButton())
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_3",("", )), "Art/Interface/Buttons/Actions/button_action_merc_international.dds")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN2_4",("", )), "Art/Interface/Buttons/Actions/button_action_merc_elite.dds")

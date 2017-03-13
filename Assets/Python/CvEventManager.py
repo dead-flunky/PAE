@@ -582,7 +582,7 @@ class CvEventManager:
         popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
         popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_PROVINZHAUPTSTADT_REACTION_NEG",(pCity.getName(), )))
         popupInfo.addPopup(iData2)
-        self.doProvinceRebellion(pCity)
+        PAE_City.doProvinceRebellion(pCity)
       elif bPaid:
         CyInterface().addMessage(iData2, True, 10, CyTranslator().getText("TXT_KEY_POPUP_PROVINZHAUPTSTADT_REACTION_POS",(pCity.getName(),)), "AS2D_BUILD_BANK", 2, None, ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
         szBuffer = CyTranslator().getText("TXT_KEY_POPUP_PROVINZHAUPTSTADT_THX_MAIN",(pCity.getName(), ))
@@ -2329,7 +2329,7 @@ class CvEventManager:
       #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Barb. Handelskarren erschaffen",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # -- Huns | Hunnen erschaffen: Hunnischer Reiter | ab 250 AD  ---------
-    PAE_Barbaren.doHuns()
+    PAE_Barbaren.doHuns(iGameTurn)
 
 # ------ Handelsposten erzeugen Kultur (PAE V Patch 3: und wieder Forts/Festungen)
 # ------ Berberloewen erzeugen
@@ -9290,7 +9290,7 @@ class CvEventManager:
               if iChance > iRandRebellion: bDoRebellion = True
 
 
-            if bDoRebellion == True: self.doProvinceRebellion(pCity)
+            if bDoRebellion == True: PAE_City.doProvinceRebellion(pCity)
             elif bPaid:
               # 1 Unit as gift:
               lGift = []

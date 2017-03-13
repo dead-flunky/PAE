@@ -273,7 +273,7 @@ def doHandelskarren():
                         if loopPlot.area().getNumTiles() >= 5:
                             pBarbPlayer.initUnit(iUnitTypeMerchant1, iRandX, iRandY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
-def doHuns():
+def doHuns(iGameTurn):
   iHuns = 0
   if gc.getGame().getGameTurnYear() == 250: iHuns = 20
   elif gc.getGame().getGameTurnYear() == 255: iHuns = 24

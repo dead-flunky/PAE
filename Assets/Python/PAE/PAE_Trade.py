@@ -435,9 +435,10 @@ def doCultivation_AI(pUnit):
     CvUtil.removeScriptData(pUnit, "b")
   # no cities reachable
   if pPlayer.getNumCities() == 1:
-        pCity.changeFood(50)
-        pUnit.kill(1,pUnit.getOwner())
-        return True
+    (pLoopCity, iter) = pPlayer.firstCity(False)
+    pLoopCity.changeFood(50)
+    pUnit.kill(1,pUnit.getOwner())
+    return True
   else:
     # TODO get a ship
     return False

@@ -762,17 +762,14 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
                 iRand = myRandom(10)
                 if iRand < iChance:
                     UnitArray.append(pLoopUnit)
+                    if pLoopUnit.isCargo():
+                        pLoopUnit.getTransportUnit().unloadAll()
                 # else: Einheit kann sich noch aus dem Staub machen
                 else: JumpArray.append(pLoopUnit)
             else: JumpArray.append(pLoopUnit)
 
     for pUnit in JumpArray:
         pUnit.jumpToNearestValidPlot()
-
-    # Stadt laeuft automatisch ueber (CyCity pCity, BOOL bConquest, BOOL bTrade)
-    pNewOwner.acquireCity(pCity,0,1)
-    #Pointer anpassen
-    pCity = pPlot.getPlotCity()
 
     # Einheiten generieren
     for pLoopUnit in UnitArray:
@@ -836,6 +833,11 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
         pNewOwner.initUnit(iPartisan,  iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
         pNewOwner.initUnit(iPartisan,  iX, iY, UnitAITypes(4), DirectionTypes.DIRECTION_SOUTH)
 
+    # Stadt laeuft automatisch ueber (CyCity pCity, BOOL bConquest, BOOL bTrade)
+    pNewOwner.acquireCity(pCity,0,1)
+    #Pointer anpassen
+    pCity = pPlot.getPlotCity()
+    
     # Kultur auslesen
     iCulture = pCity.getCulture(iOldOwner)
     # Kultur regenerieren - funkt net
