@@ -137,27 +137,27 @@
                         <SpeedThresholds>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_LIMESGERMANICUS</GameSpeedType>
-                                        <iThreshold>2000</iThreshold>
+                                        <iThreshold>3000</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_PELOPONNESIAN</GameSpeedType>
-                                        <iThreshold>2000</iThreshold>
+                                        <iThreshold>3000</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_MARATHON</GameSpeedType>
-                                        <iThreshold>1500</iThreshold>
+                                        <iThreshold>3000</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_EPIC</GameSpeedType>
-                                        <iThreshold>1250</iThreshold>
+                                        <iThreshold>2500</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_NORMAL</GameSpeedType>
-                                        <iThreshold>1000</iThreshold>
+                                        <iThreshold>2000</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
-                                        <iThreshold>750</iThreshold>
+                                        <iThreshold>1500</iThreshold>
                                 </SpeedThreshold>
                         </SpeedThresholds>
                 </CultureLevelInfo>
@@ -176,19 +176,19 @@
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_MARATHON</GameSpeedType>
-                                        <iThreshold>20000</iThreshold>
+                                        <iThreshold>12000</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_EPIC</GameSpeedType>
-                                        <iThreshold>15000</iThreshold>
-                                </SpeedThreshold>
-                                <SpeedThreshold>
-                                        <GameSpeedType>GAMESPEED_NORMAL</GameSpeedType>
                                         <iThreshold>10000</iThreshold>
                                 </SpeedThreshold>
                                 <SpeedThreshold>
+                                        <GameSpeedType>GAMESPEED_NORMAL</GameSpeedType>
+                                        <iThreshold>8000</iThreshold>
+                                </SpeedThreshold>
+                                <SpeedThreshold>
                                         <GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
-                                        <iThreshold>7500</iThreshold>
+                                        <iThreshold>6000</iThreshold>
                                 </SpeedThreshold>
                         </SpeedThresholds>
                 </CultureLevelInfo>

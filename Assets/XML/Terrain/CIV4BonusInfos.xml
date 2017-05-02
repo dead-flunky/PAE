@@ -712,7 +712,7 @@
       <Type>BONUS_MESSING</Type>
       <Description>TXT_KEY_BONUS_MESSING</Description>
       <Civilopedia>TXT_KEY_BONUS_MESSING_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_GENERAL</BonusClassType>
+      <BonusClassType>BONUSCLASS_LUXURY</BonusClassType>
       <ArtDefineTag>ART_DEF_BONUS_MESSING</ArtDefineTag>
       <TechReveal>TECH_BRONZE_WORKING</TechReveal>
       <TechCityTrade>NONE</TechCityTrade>

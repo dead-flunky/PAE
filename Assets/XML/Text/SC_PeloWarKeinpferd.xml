@@ -293,10 +293,10 @@
    </TEXT>
    <TEXT>
      <Tag>TXT_KEY_EVENT_POTEIDAIA_KRIEG_KORINTH_OPTION_3_OUTCOME</Tag>
-     <English>The prudent Iolaus has arrived unnoticed by the Athenian ships! Our newly excavated fleet is anchoring in Potidaea now.</English>
-     <French>The prudent Iolaus has arrived unnoticed by the Athenian ships! Our newly excavated fleet is anchoring in Potidaea now.</French>
+     <English>The prudent Iolaus has arrived unnoticed by the Athenian ships! Our newly excavated fleet is anchoring in Potidaea now. [NEWLINE]</English>
+     <French>The prudent Iolaus has arrived unnoticed by the Athenian ships! Our newly excavated fleet is anchoring in Potidaea now. [NEWLINE]</French>
      <German>Der umsichtige Iolaos ist unbemerkt von der athenischen Flotte mit unserer neu ausgehobenen Flotte in Poteidaia angekommen!</German>
-     <Italian>The prudent Iolaus has arrived unnoticed by the Athenian ships! Our newly excavated fleet is anchoring in Potidaea now.</Italian>
+     <Italian>The prudent Iolaus has arrived unnoticed by the Athenian ships! Our newly excavated fleet is anchoring in Potidaea now. [NEWLINE]</Italian>
      <Spanish>&#161;El prudente Iolaus ha llegado sin ser detectado por la flota ateniense! Nuestra flota est&#225; anclada en ahora en Potidea.</Spanish>
    </TEXT>
    <TEXT>
@@ -416,11 +416,7 @@
      <English>Free Greece</English>
      <French><Text>Gr&#232;ce libre</Text><Gender>Male</Gender><Plural>1</Plural></French>
      <German><Text>Freies Griechenland</Text><Gender>Female</Gender><Plural>1</Plural></German>
-     <Italian>
-          <Text>La Grecia libera:la Grecia libera:della Grecia libera:di Grecia libera</Text>
-          <Gender>Female</Gender>
-          <Plural>0</Plural>
-     </Italian>
+     <Italian><Text>La Grecia libera:la Grecia libera:della Grecia libera:di Grecia libera</Text> [NEWLINE] <Gender>Female</Gender> [NEWLINE] <Plural>0</Plural></Italian>
      <Spanish><Text>Grecia</Text><Gender>Male</Gender><Plural>0</Plural></Spanish>
    </TEXT>
    <TEXT>
@@ -738,7 +734,7 @@
    <TEXT>
      <Tag>TXT_KEY_EVENT_PLATAIAI_OPTION_1_OUTCOME_MEDIUM_ATHEN</Tag>
      <English>In the border town of Plataea traitors opened the gates at night to the Thebans. The small Theban detachment met strenuous opposition. Under volleys of roof tiles and cooking pots they had to take refuge in a gatehouse that had no exit to the outside through the city wall. Ha, and torrential rain tore away a bridge across the Asopos, so that their main force could not come to help to those trapped. Thanks to a tip of a Plataean we were able to install a garrison there still at night.</English>
-     <French>In the border town of Plataea traitors opened the gates at night to the Thebans. The small Theban detachment met strenuous opposition. Under volleys of roof tiles and cooking pots they had to take refuge in a gatehouse that had no exit to the outside through the city wall. Ha, and torrential rain tore away a bridge across the Asopos, so that their main force could not come to help to those trapped. Thanks to a tip of a Plataean we were able to install a garrison there still at night.</French>
+     <French> [NEWLINE] [NEWLINE]</French>
      <German>In der Grenzstadt Plataiai haben Verr&#228;ter nachts den Thebanern die Tore ge&#246;ffnet. Das kleine thebanische Kontingent stie&#223; aber auf heftige Gegenwehr. Unterm Hagel von Dachpfannen und Kocht&#246;pfen mu&#223;ten sie sich in ein Torhaus fl&#252;chten, das keinen Ausgang nach drau&#223;en durch die Stadtmauer hatte. Ha, und sintflutartiger Dauerregen ri&#223; eine Br&#252;cke &#252;ber den Asopos weg, so da&#223; ihre Hauptstreitmacht den Eingeschlossenen nicht zur Hilfe kommen konnte. Dank eines Tips eines Plataiers konnten wir noch nachts eine Garnison dorthin schicken.</German>
      <Italian>In the border town of Plataea traitors opened the gates at night to the Thebans. The small Theban detachment met strenuous opposition. Under volleys of roof tiles and cooking pots they had to take refuge in a gatehouse that had no exit to the outside through the city wall. Ha, and torrential rain tore away a bridge across the Asopos, so that their main force could not come to help to those trapped. Thanks to a tip of a Plataean we were able to install a garrison there still at night.</Italian>
      <Spanish>Traidores de la ciudad fronteriza de Platea abrieron las puertas esta noche a los tebanos. El peque&#241;o destacamento tuvo una fuerte oposici&#243;n. Bajo la lluvia de tejas y ollas de cocina, tuvieron que guarnecerse en una entrada que no ten&#237;a salida al exterior a trav&#233;s de los muros de la ciudad. Ah, y la lluvia torrencial destruy&#243; el puente que cruzaba Asopos, as&#237; que nuestra fuerza principal no pudo ir en su ayuda. En cualquier caso, pudimos establecer una guarnici&#243;n por la noche.</Spanish>

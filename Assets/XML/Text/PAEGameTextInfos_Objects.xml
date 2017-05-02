@@ -1046,14 +1046,6 @@
     <Spanish>Mar</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_TRAIT_MARITIME_HELP</Tag>
-    <English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Sea plots generate +1 [ICON_COMMERCE]</English>
-    <French>[NEWLINE][SPACE][SPACE][ICON_BULLET]+1 [ICON_COMMERCE] sur les cases de mer</French>
-    <German>[NEWLINE][SPACE][SPACE][ICON_BULLET]Meeresfelder erwirtschaften +1 [ICON_COMMERCE]</German>
-    <Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]Giacimenti del Mare generano +1 [ICON_COMMERCE]</Italian>
-    <Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]Casillas de mar generan +1 [ICON_COMMERCE]</Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_TRAIT_INDUSTRIOUS</Tag>
     <English>Builder</English>
     <French>B&#226;tisseur</French>
@@ -3308,12 +3300,12 @@
     <Spanish>C&#243;digo de Hammurabi</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUILDING_GEIERSTELE</Tag>
-    <English>Stele of the Vultures</English>
-    <French>St&#232;le des vautours</French>
-    <German>Geierstele</German>
-    <Italian>Stele degli Avvoltoi</Italian>
-    <Spanish>Estela de los Buitres</Spanish>
+    <Tag>TXT_KEY_BUILDING_SIEGESSTELE</Tag>
+    <English>Stele of Victory</English>
+    <French>St&#232;le de victoire</French>
+    <German>Siegesstele</German>
+    <Italian>Stele della vittoria</Italian>
+    <Spanish>Estela de la victoria</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_GRABHUEGEL</Tag>
@@ -3796,23 +3788,23 @@
     <Spanish>Monumento al Elefante</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUILDING_SAEULE</Tag>
-    <English>Victory Memorial</English>
-    <French>M&#233;morial de la Victoire</French>
-    <German>Siegesdenkmal</German>
-    <Italian>Memoriale della Vittoria</Italian>
-    <Spanish>Monumento de la Victoria</Spanish>
+    <Tag>TXT_KEY_BUILDING_SIEGESTEMPEL</Tag>
+    <English>Temple of Victory</English>
+    <French>Temple de la Victoire</French>
+    <German>Siegestempel</German>
+    <Italian>Tempio della Vittoria</Italian>
+    <Spanish>Templo de la victoria</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUILDING_SAEULE2</Tag>
-    <English>Victory Column</English>
-    <French>Colonne de la Victoire</French>
-    <German>Siegess&#228;ule</German>
-    <Italian>Colonna della Vittoria</Italian>
-    <Spanish><Text>Columna de la Victoria</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
+    <Tag>TXT_KEY_BUILDING_SIEGESSTATUE</Tag>
+    <English>Statue of Victory</English>
+    <French>Statue de la Victoire</French>
+    <German>Siegesstatue</German>
+    <Italian>Statua della Vittoria</Italian>
+    <Spanish>Estatua de la Victoria</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUILDING_SAEULE3</Tag>
+    <Tag>TXT_KEY_BUILDING_TEHEN</Tag>
     <English>Egyptian Stele</English>
     <French>St&#232;le &#233;gytienne</French>
     <German>Tehen-Pfeiler</German>
@@ -4247,21 +4239,9 @@
     <Tag>TXT_KEY_BUILDING_CHRISTIAN_MONASTERY</Tag>
     <English>Christian Monastery</English>
     <French>Monast&#232;re chr&#233;tien</French>
-    <German>
-        <Text>Christliches Kloster</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
-    <Italian>
-        <Text>Monastero Cristiano:Monasteri Cristiani</Text>
-        <Gender>Male</Gender>
-        <Plural>0:1</Plural>
-    </Italian>
-    <Spanish>
-        <Text>Monasterio Cristiano:Monasterios Cristianos</Text>
-        <Gender>Male</Gender>
-        <Plural>0:1</Plural>
-    </Spanish>
+    <German><Text>Christliches Kloster</Text><Gender>Male</Gender><Plural>0</Plural></German>
+    <Italian><Text>Monastero Cristiano:Monasteri Cristiani</Text><Gender>Male</Gender><Plural>0:1</Plural></Italian>
+    <Spanish><Text>Monasterio Cristiano:Monasterios Cristianos</Text><Gender>Male</Gender><Plural>0:1</Plural></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_CHRISTIAN_SHRINE</Tag>
@@ -5756,16 +5736,8 @@
     <English>Supply Wagon</English>
     <French>Convoi d'approvisionnement</French>
     <German>Versorgungswagen</German>
-    <Italian>
-        <Text>Carovana di Supporto:Carovane di Supporto</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Italian>
-    <Spanish>
-        <Text>Caravana de Suministros:Caravanas de Suministros</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Spanish>
+    <Italian><Text>Carovana di Supporto:Carovane di Supporto</Text><Gender>Female</Gender><Plural>0:1</Plural></Italian>
+    <Spanish><Text>Caravana de Suministros:Caravanas de Suministros</Text><Gender>Female</Gender><Plural>0:1</Plural></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_SPECIAL</Tag>
@@ -5835,11 +5807,7 @@
     <Tag>TXT_KEY_UNIT_NORDIC_MISSIONARY</Tag>
     <English>Nordic Missionary</English>
     <French>Missionnaire nordique</French>
-    <German>
-        <Text>Nordischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German><Text>Nordischer Missionar</Text><Gender>Male</Gender><Plural>0</Plural></German>
     <Italian>Missionario Nordico</Italian>
     <Spanish>Misionero N&#243;rdico:Misioneros N&#243;rdicos</Spanish>
   </TEXT>
@@ -5847,11 +5815,7 @@
     <Tag>TXT_KEY_UNIT_PHOEN_MISSIONARY</Tag>
     <English>Phoenician Missionary</English>
     <French>Missionnaire ph&#233;nicien</French>
-    <German>
-        <Text>Ph&#246;nizischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German><Text>Ph&#246;nizischer Missionar</Text><Gender>Male</Gender><Plural>0</Plural></German>
     <Italian>Missionario Fenicio</Italian>
     <Spanish>Misionero Fenicio:Misioneros Fenicios</Spanish>
   </TEXT>
@@ -5859,11 +5823,7 @@
     <Tag>TXT_KEY_UNIT_GREEK_MISSIONARY</Tag>
     <English>Greek Missionary</English>
     <French>Missionnaire grec</French>
-    <German>
-        <Text>Griechischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German><Text>Griechischer Missionar</Text><Gender>Male</Gender><Plural>0</Plural></German>
     <Italian>Missionario Greco</Italian>
     <Spanish>Misionero Griego:Misioneros Griegos</Spanish>
   </TEXT>
@@ -5871,11 +5831,7 @@
     <Tag>TXT_KEY_UNIT_CELTIC_MISSIONARY</Tag>
     <English>Celtic Missionary</English>
     <French>Missionnaire celtique</French>
-    <German>
-        <Text>Keltischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German><Text>Keltischer Missionar</Text><Gender>Male</Gender><Plural>0</Plural></German>
     <Italian>Missionario Celtico</Italian>
     <Spanish>Misionero Celta:Misioneros Celtas</Spanish>
   </TEXT>
@@ -5883,11 +5839,7 @@
     <Tag>TXT_KEY_UNIT_EGYPT_MISSIONARY</Tag>
     <English>Egyptian Missionary</English>
     <French>Missionnaire h&#233;liopolitain</French>
-    <German>
-        <Text>&#196;gyptischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German><Text>&#196;gyptischer Missionar</Text><Gender>Male</Gender><Plural>0</Plural></German>
     <Italian>Missionario Egizio</Italian>
     <Spanish>Misionero Egipcio:Misioneros Egipcios</Spanish>
   </TEXT>
@@ -5895,11 +5847,7 @@
     <Tag>TXT_KEY_UNIT_ROME_MISSIONARY</Tag>
     <English>Roman Missionary</English>
     <French>Missionnaire romain</French>
-    <German>
-        <Text>R&#246;mischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German>R&#246;mischer Missionar:R&#246;mische Missionare</German>
     <Italian>Missionario Romano</Italian>
     <Spanish>Misionero Romano:Misioneros Romanos</Spanish>
   </TEXT>
@@ -5907,11 +5855,7 @@
     <Tag>TXT_KEY_UNIT_SUMER_MISSIONARY</Tag>
     <English>Sumerian Missionary</English>
     <French>Missionnaire sum&#233;rien</French>
-    <German>
-        <Text>Sumerischer Missionar</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
+    <German>Sumerischer Missionar</German>
     <Italian>Missionario Sumero</Italian>
     <Spanish>Misionero Sumerio:Misioneros Sumerios</Spanish>
   </TEXT>
@@ -6057,27 +6001,15 @@
     <French>Route royale</French>
     <German>K&#246;nigsstra&#223;e</German>
     <Italian>Strada Reale</Italian>
-    <Spanish>
-        <Text>Camino real:Caminos reales</Text>
-        <Gender>Male</Gender>
-        <Plural>0:1</Plural>
-    </Spanish>
+    <Spanish>Camino real</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_ROUTE_ROMAN_ROAD</Tag>
-    <English>Roman Roads</English>
+    <English>Roman Road</English>
     <French>Voie romaine</French>
-    <German>R&#246;mische Stra&#223;en</German>
-    <Italian>
-        <Text>Strade romane</Text>
-        <Gender>Female</Gender>
-        <Plural>1</Plural>
-    </Italian>
-    <Spanish>
-        <Text>V&#237;a romana:V&#237;as romanas</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Spanish>
+    <German>R&#246;mische Stra&#223;e</German>
+    <Italian>Strade romane</Italian>
+    <Spanish>V&#237;a romana</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_CIVICOPTION_SOVEREIGN</Tag>
@@ -7124,7 +7056,7 @@
     <English>Megillus of Sparta</English>
     <French>Megillus de Sparte</French>
     <German>Megillos von Sparta</German>
-    <Italian>Megillo di Sparta[NEWLINE]</Italian>
+    <Italian>Megillo di Sparta</Italian>
     <Spanish>Megilos de Esparta</Spanish>
   </TEXT>
   <TEXT>
@@ -7196,7 +7128,7 @@
     <English>Polycratidas of Sparta</English>
     <French>Polycratidas de Sparte</French>
     <German>Polykratidas von Sparta</German>
-    <Italian>Polykratidas di Sparta[NEWLINE]</Italian>
+    <Italian>Polykratidas di Sparta</Italian>
     <Spanish>Policr&#225;tidas de Esparta</Spanish>
   </TEXT>
   <TEXT>
@@ -7372,7 +7304,7 @@
     <English>Andronicus of Cyrrhus</English>
     <French>Andronicus Cyrrhest&#232;s</French>
     <German>Andronikos von Kyrrhos</German>
-    <Italian>Andronico di Kyrrhos[NEWLINE]</Italian>
+    <Italian>Andronico di Kyrrhos</Italian>
     <Spanish>Andr&#243;nico de Cirro</Spanish>
   </TEXT>
   <TEXT>
@@ -7380,7 +7312,7 @@
     <English>Archias of Corinth</English>
     <French>Archias de Corinthe</French>
     <German>Archias von Korinth</German>
-    <Italian>Archia di Corinto[NEWLINE]</Italian>
+    <Italian>Archia di Corinto</Italian>
     <Spanish>Arqu&#237;as de Corinto</Spanish>
   </TEXT>
   <TEXT>
@@ -7420,7 +7352,7 @@
     <English>Eupolemus of Argos</English>
     <French>Eupolemus d'Argos</French>
     <German>Eupolemos von Argos</German>
-    <Italian>Eupolemos di Argos[NEWLINE]</Italian>
+    <Italian>Eupolemos di Argos</Italian>
     <Spanish>Eupolemos de Argos</Spanish>
   </TEXT>
   <TEXT>
@@ -7444,7 +7376,7 @@
     <English>Cleisthenes of Eretria</English>
     <French>Clisth&#232;ne d'&#201;r&#233;trie</French>
     <German>Kleisthenes von Eretria</German>
-    <Italian>Clistene di Eretria[NEWLINE]</Italian>
+    <Italian>Clistene di Eretria</Italian>
     <Spanish>Cl&#237;stenes de Eretria</Spanish>
   </TEXT>
   <TEXT>
@@ -7667,21 +7599,9 @@
     <Tag>TXT_KEY_UNITCOMBAT_HEALER</Tag>
     <English>Supply Units</English>
     <French>Unit&#233;s d'assistance</French>
-    <German>
-        <Text>Versorgungseinheit:Versorgungseinheiten</Text>
-        <Gender>Male</Gender>
-        <Plural>0:1</Plural>
-    </German>
-    <Italian>
-        <Text>Unit&#224; di Alimentazione:Unit&#224; di Alimentazione</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Italian>
-    <Spanish>
-        <Text>Unidad de Aprovisionamiento:Unidades de Aprovisionamiento</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Spanish>
+    <German><Text>Versorgungseinheit:Versorgungseinheiten</Text><Gender>Male</Gender><Plural>0:1</Plural></German>
+    <Italian><Text>Unit&#224; di Alimentazione:Unit&#224; di Alimentazione</Text><Gender>Female</Gender><Plural>0:1</Plural></Italian>
+    <Spanish><Text>Unidad de Aprovisionamiento:Unidades de Aprovisionamiento</Text><Gender>Female</Gender><Plural>0:1</Plural></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNITCOMBAT_SPEARMAN</Tag>
@@ -7720,7 +7640,7 @@
     <English>Spartans</English>
     <French>Spartiates</French>
     <German>Spartaner</German>
-    <Italian>spartano[NEWLINE]</Italian>
+    <Italian>spartano</Italian>
     <Spanish><Text>Espartanos</Text><Gender>Male</Gender><Plural>1</Plural></Spanish>
   </TEXT>
   <TEXT>
@@ -7984,7 +7904,7 @@
     <English>Forest Ranger</English>
     <French>Pisteur (For&#234;t)</French>
     <German>Waldl&#228;ufer</German>
-    <Italian>guardia forestale[NEWLINE]</Italian>
+    <Italian>Guardia forestale</Italian>
     <Spanish>Guardabosques</Spanish>
   </TEXT>
   <TEXT>
@@ -7992,7 +7912,7 @@
     <English>Jungle Ranger</English>
     <French>Pisteur (Jungle)</French>
     <German>Dschungelj&#228;ger</German>
-    <Italian>Jungle Hunter[NEWLINE]</Italian>
+    <Italian>Jungle Hunter</Italian>
     <Spanish>Cazador de la selva</Spanish>
   </TEXT>
   <TEXT>

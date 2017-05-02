@@ -108,6 +108,14 @@ def doPlotFeatures():
                                 elif pBarbPlayer.getCurrentEra() > 0 and gc.getGame().getGameTurn() % 5 == 0:
                                     # Einheiten) setzen
                                     createBarbUnit(loopPlot)
+                        # Handelsposten entfernen, wenn der Plot in einem fremden Kulturkreis liegt
+                        elif loopPlot.getImprovementType() == eHandelsposten:
+                          iOwner = int(CvUtil.getScriptData(loopPlot,["p","t"], loopPlot.getOwner()))
+                          if iOwner != iPlotOwner:
+                            loopPlot.setImprovementType(-1)
+                            if gc.getPlayer(iOwner).isHuman():
+                              szText = CyTranslator().getText("TXT_KEY_INFO_CLOSED_TRADEPOST",("",));
+                              CyInterface().addMessage(iOwner, True, 15, szText, "AS2D_UNIT_BUILD_UNIT", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
                     # end if --- nur ausserhalb von Staedten
 
                     # Bei jedem Plot:
@@ -189,6 +197,7 @@ def doStrandgut():
                     for j in range(-iRange, iRange+1):
                         loopPlot = plotXY(iX, iY, i, j)
                         if loopPlot == None or loopPlot.isNone(): continue
+                        if loopPlot.isWater(): continue
                         if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
                         lPlots.append(loopPlot)
 

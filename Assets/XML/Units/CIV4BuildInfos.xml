@@ -18,15 +18,13 @@
       <RouteType>ROUTE_ROAD</RouteType>
       <EntityEvent>ENTITY_EVENT_SHOVEL</EntityEvent>
       <FeatureStructs>
-				<!--
         <FeatureStruct>
           <FeatureType>FEATURE_RIVER_FORD</FeatureType>
           <PrereqTech>TECH_NONE</PrereqTech>
           <iTime>4700</iTime>
           <iProduction>0</iProduction>
           <bRemove>0</bRemove>
-				</FeatureStruct>
-				-->
+        </FeatureStruct>
       </FeatureStructs>
       <HotKey>KB_R</HotKey>
       <bAltDown>0</bAltDown>
@@ -47,7 +45,6 @@
       <RouteType>ROUTE_RAILROAD</RouteType>
       <EntityEvent>ENTITY_EVENT_RAILROAD</EntityEvent>
       <FeatureStructs>
-				<!--
         <FeatureStruct>
           <FeatureType>FEATURE_RIVER_FORD</FeatureType>
           <PrereqTech>TECH_NONE</PrereqTech>
@@ -55,7 +52,6 @@
           <iProduction>0</iProduction>
           <bRemove>0</bRemove>
         </FeatureStruct>
-				-->
       </FeatureStructs>
       <HotKey>KB_R</HotKey>
       <bAltDown>0</bAltDown>
@@ -76,7 +72,6 @@
       <RouteType>ROUTE_PERSIAN_ROAD</RouteType>
       <EntityEvent>ENTITY_EVENT_RAILROAD</EntityEvent>
       <FeatureStructs>
-				<!--
         <FeatureStruct>
           <FeatureType>FEATURE_RIVER_FORD</FeatureType>
           <PrereqTech>TECH_NONE</PrereqTech>
@@ -84,7 +79,6 @@
           <iProduction>0</iProduction>
           <bRemove>0</bRemove>
         </FeatureStruct>
-				-->
       </FeatureStructs>
       <HotKey>KB_R</HotKey>
       <bAltDown>0</bAltDown>
@@ -125,6 +119,27 @@
       <EntityEvent>ENTITY_EVENT_IRRIGATE</EntityEvent>
       <FeatureStructs>
         <FeatureStruct>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>300</iTime>
+          <iProduction>25</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>450</iTime>
+          <iProduction>30</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>200</iTime>
+          <iProduction>10</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
           <FeatureType>FEATURE_JUNGLE</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>600</iTime>
@@ -132,31 +147,10 @@
           <bRemove>1</bRemove>
         </FeatureStruct>
         <FeatureStruct>
-          <FeatureType>FEATURE_FOREST</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>450</iTime>
-          <iProduction>30</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>200</iTime>
-          <iProduction>10</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
           <FeatureType>FEATURE_DICHTERWALD</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>900</iTime>
           <iProduction>40</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
-          <iTime>300</iTime>
-          <iProduction>25</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
       </FeatureStructs>
@@ -237,6 +231,27 @@
       <EntityEvent>ENTITY_EVENT_BUILD</EntityEvent>
       <FeatureStructs>
         <FeatureStruct>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>300</iTime>
+          <iProduction>25</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>450</iTime>
+          <iProduction>30</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>200</iTime>
+          <iProduction>10</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
           <FeatureType>FEATURE_JUNGLE</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>600</iTime>
@@ -244,31 +259,10 @@
           <bRemove>1</bRemove>
         </FeatureStruct>
         <FeatureStruct>
-          <FeatureType>FEATURE_FOREST</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>450</iTime>
-          <iProduction>30</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>200</iTime>
-          <iProduction>10</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
           <FeatureType>FEATURE_DICHTERWALD</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>900</iTime>
           <iProduction>40</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
-          <iTime>300</iTime>
-          <iProduction>25</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
       </FeatureStructs>
@@ -292,6 +286,27 @@
       <EntityEvent>ENTITY_EVENT_BUILD</EntityEvent>
       <FeatureStructs>
         <FeatureStruct>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>300</iTime>
+          <iProduction>25</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>450</iTime>
+          <iProduction>30</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>200</iTime>
+          <iProduction>10</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
           <FeatureType>FEATURE_JUNGLE</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>600</iTime>
@@ -299,31 +314,10 @@
           <bRemove>1</bRemove>
         </FeatureStruct>
         <FeatureStruct>
-          <FeatureType>FEATURE_FOREST</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>450</iTime>
-          <iProduction>30</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>200</iTime>
-          <iProduction>10</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
           <FeatureType>FEATURE_DICHTERWALD</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>900</iTime>
           <iProduction>40</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
-          <iTime>300</iTime>
-          <iProduction>25</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
       </FeatureStructs>
@@ -347,24 +341,24 @@
       <EntityEvent>ENTITY_EVENT_BUILD</EntityEvent>
       <FeatureStructs>
         <FeatureStruct>
-          <FeatureType>FEATURE_JUNGLE</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>600</iTime>
-          <iProduction>20</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
           <FeatureType>FEATURE_FOREST</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
           <iTime>450</iTime>
           <iProduction>30</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
         <FeatureStruct>
           <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
           <iTime>200</iTime>
           <iProduction>10</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
+          <iTime>600</iTime>
+          <iProduction>20</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
         <FeatureStruct>
@@ -433,6 +427,27 @@
       <EntityEvent>ENTITY_EVENT_BUILD</EntityEvent>
       <FeatureStructs>
         <FeatureStruct>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>300</iTime>
+          <iProduction>25</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>450</iTime>
+          <iProduction>30</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
+          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>200</iTime>
+          <iProduction>10</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
           <FeatureType>FEATURE_JUNGLE</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>600</iTime>
@@ -440,31 +455,10 @@
           <bRemove>1</bRemove>
         </FeatureStruct>
         <FeatureStruct>
-          <FeatureType>FEATURE_FOREST</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>450</iTime>
-          <iProduction>30</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
-          <iTime>200</iTime>
-          <iProduction>10</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
           <FeatureType>FEATURE_DICHTERWALD</FeatureType>
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>900</iTime>
           <iProduction>40</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
-          <iTime>300</iTime>
-          <iProduction>25</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
       </FeatureStructs>
@@ -667,8 +661,15 @@
       <EntityEvent>ENTITY_EVENT_CHOP</EntityEvent>
       <FeatureStructs>
         <FeatureStruct>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
+          <iTime>300</iTime>
+          <iProduction>25</iProduction>
+          <bRemove>1</bRemove>
+        </FeatureStruct>
+        <FeatureStruct>
           <FeatureType>FEATURE_FOREST</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
           <iTime>450</iTime>
           <iProduction>30</iProduction>
           <bRemove>1</bRemove>
@@ -678,13 +679,6 @@
           <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
           <iTime>900</iTime>
           <iProduction>40</iProduction>
-          <bRemove>1</bRemove>
-        </FeatureStruct>
-        <FeatureStruct>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
-          <iTime>300</iTime>
-          <iProduction>25</iProduction>
           <bRemove>1</bRemove>
         </FeatureStruct>
       </FeatureStructs>
@@ -709,7 +703,7 @@
       <FeatureStructs>
         <FeatureStruct>
           <FeatureType>FEATURE_FOREST_BURNT</FeatureType>
-          <PrereqTech>TECH_BEWAFFNUNG2</PrereqTech>
+          <PrereqTech>TECH_BEWAFFNUNG</PrereqTech>
           <iTime>200</iTime>
           <iProduction>10</iProduction>
           <bRemove>1</bRemove>

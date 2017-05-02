@@ -2206,7 +2206,7 @@
     </UnitArtInfo>
     <UnitArtInfo>
         <Type>ART_DEF_UNIT_PRINCIPES1</Type>
-        <Button>Art/Interface/Buttons/Units/button_principes1.dds</Button>
+        <Button>Art/Interface/Buttons/Units/button_schildtraeger.dds</Button>
         <fScale>0.44</fScale>
         <fInterfaceScale>1.0</fInterfaceScale>
         <bActAsLand>0</bActAsLand>

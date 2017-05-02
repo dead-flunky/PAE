@@ -745,10 +745,8 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
     # Einheiten auslesen bevor die Stadt ueberlaeuft
     UnitArray = []
     JumpArray = []
-    j = 0
-    iRange = pPlot.getNumUnits()
-    iRangePromos = gc.getNumPromotionInfos()
-    for iUnit in range (iRange):
+    
+    for iUnit in range (pPlot.getNumUnits()):
         # Nicht die Einheit, die gerade gekillt wird killen, sonst Error
         pLoopUnit = pPlot.getUnit(iUnit)
         if LoserUnitID != pLoopUnit.getID():
@@ -763,7 +761,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
                 if iRand < iChance:
                     UnitArray.append(pLoopUnit)
                     if pLoopUnit.isCargo():
-                        pLoopUnit.getTransportUnit().unloadAll()
+                        pLoopUnit.setTransportUnit(None)
                 # else: Einheit kann sich noch aus dem Staub machen
                 else: JumpArray.append(pLoopUnit)
             else: JumpArray.append(pLoopUnit)
@@ -773,6 +771,10 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
 
     # Einheiten generieren
     for pLoopUnit in UnitArray:
+        if pLoopUnit == None or pLoopUnit.isNone(): 
+            # TEST
+            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 1 - Unit none",iOldOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            continue
         iUnitOwner = iNewOwner
 
         iUnitType = pLoopUnit.getUnitType()
@@ -781,7 +783,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
         iUnitCombatType = pLoopUnit.getUnitCombatType()
 
         # TEST
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 3 - iUnitOwner",iUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 2 - iUnitOwner",iUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         # UnitAIType -1 (NO_UNITAI) -> UNITAI_UNKNOWN = 0 , ATTACK = 4, City Defense = 10
         # happened: Emigrant = 4 !
@@ -798,8 +800,8 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
             iUnitType = gc.getInfoTypeForString('UNIT_FREED_SLAVE')
 
         # Create a new unit
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(gc.getUnitInfo(UnitArray[iUnit][0]).getDescription(),UnitArray[iUnit][0])), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",UnitArray[iUnit][1])), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(gc.getUnitInfo(iUnitType).getDescription(),iUnitType)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",iUnitType)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         if iUnitType != -1:
             NewUnit = pNewOwner.initUnit(iUnitType, iX, iY, UnitAITypes(iUnitAIType), DirectionTypes.DIRECTION_SOUTH)
@@ -811,15 +813,13 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
             PAE_Unit.copyName(NewUnit, iUnitType, sUnitName)
 
             if iUnitCombatType != -1:
-
                 NewUnit.setExperience(pLoopUnit.getExperience(), -1)
                 NewUnit.setLevel(pLoopUnit.getLevel())
                 if pLoopUnit.getCaptureUnitType(gc.getPlayer(iOldOwner).getCivilizationType()) == -1:
                     NewUnit.setDamage(pLoopUnit.getDamage(), -1)
 
                 # Check its promotions
-                # Check its promotions
-                for iLoopPromo in range(iRangePromos):
+                for iLoopPromo in range(gc.getNumPromotionInfos()):
                     if pLoopUnit.isHasPromotion(iLoopPromo):
                         # PAE V: Trait-Promotions
                         # 1. Agg Promo weg
@@ -836,21 +836,22 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnitID, iWinnerX, iWinnerY):
     # Stadt laeuft automatisch ueber (CyCity pCity, BOOL bConquest, BOOL bTrade)
     pNewOwner.acquireCity(pCity,0,1)
     #Pointer anpassen
-    pCity = pPlot.getPlotCity()
-    
-    # Kultur auslesen
-    iCulture = pCity.getCulture(iOldOwner)
-    # Kultur regenerieren - funkt net
-    if iCulture > 0:
-        pCity.changeCulture(iNewOwner,iCulture,True)
+    if pPlot.isCity():
+        pCity = pPlot.getPlotCity()
+        if pCity != None and not pCity.isNone():
+            # Kultur auslesen
+            iCulture = pCity.getCulture(iOldOwner)
+            # Kultur regenerieren - funkt net
+            if iCulture > 0:
+                pCity.changeCulture(iNewOwner,iCulture,True)
 
-    # Stadtgroesse kontrollieren
-    iPop = pCity.getPopulation()
-    if iPop < 1:
-        pCity.setPopulation(1)
+            # Stadtgroesse kontrollieren
+            iPop = pCity.getPopulation()
+            if iPop < 1:
+                pCity.setPopulation(1)
 
-    # Kolonie/Provinz checken
-    doCheckCityState(pCity)
+            # Kolonie/Provinz checken
+            doCheckCityState(pCity)
 
 def AI_defendAndHire(pCity, iPlayer):
     pPlayer = gc.getPlayer(iPlayer)

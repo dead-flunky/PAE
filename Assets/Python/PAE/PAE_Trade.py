@@ -325,13 +325,13 @@ def AI_bestCultivation(pCity, iSkipN = -1, eBonus = -1):
                 pLoopPlot = pCity.getCityIndexPlot(iI)
                 if pLoopPlot != None and not pLoopPlot.isNone():
                     ePlotBonus = pLoopPlot.getBonusType(pLoopPlot.getTeam())
-                    # first pass: only empty plots
-                    if ePlotBonus == -1 or iPass > 0:
-                        # first and second pass: no improved plots
-                        eImprovement = pLoopPlot.getImprovementType()
-                        if eImprovement == -1 or iPass > 1:
-                            # third pass: also matching improved plots
-                            if eImprovement == -1 or gc.getImprovementInfo(eImprovement).isImprovementBonusTrade(eBonus):
+                    eImprovement = pLoopPlot.getImprovementType()
+                    bAlreadyImproved = False
+                    if eImprovement != -1 and gc.getImprovementInfo(eImprovement).isImprovementBonusTrade(eBonus): bAlreadyImproved = True
+                    # first pass: only plots without bonus or its improvement
+                    if ePlotBonus == -1 or bAlreadyImproved or iPass > 0:
+                        # second pass: no improved plots or matching improved plots
+                        if eImprovement == -1 or bAlreadyImproved or iPass > 0:
                                 if getBonusCultivationChance(iPlayer, pLoopPlot, eBonus) > 0:
                                     if iSkipN > 0:
                                         iSkipN -= 1
@@ -417,12 +417,12 @@ def doCultivation_AI(pUnit):
     # kauf was, das es hier gibt und dort gebraucht wird und los geht's
     for eBonus in lBonuses:
       iLocalPrice = -1
-      iPrice = calculateBonusBuyingPrice4Cultivation(iPlayer,pLoopCity.plot(),eBonus)
+      iPrice = calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pLoopCity.plot())
       if eBonus in lLocalCityBonuses:
-        iLocalPrice = calculateBonusBuyingPrice4Cultivation(iPlayer,pLocalCity.plot(),eBonus)
+        iLocalPrice = calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pLocalCity.plot())
       if iLocalPrice != -1 and iLocalPrice <= iPrice:
         #buy here. wait if not enough money
-        doCollectBonus4Cultivation(pUnit,eBonus)
+        doBuyBonus4Cultivation(pUnit,eBonus)
         pUnit.finishMoves()
         return True
       else:
@@ -690,48 +690,37 @@ def doCultivation_AI(pUnit):
 
 
 # Collect bonus on current plot ('stored' in cultivation unit)
-def doCollectBonus(pUnit):
-  iTeam = pUnit.getTeam()
-  pPlot = pUnit.plot()
-  eBonus = pPlot.getBonusType(iTeam) # If there is an invisible bonus on pPlot, it will not be removed
-  if eBonus == -1:
-    return False
+def doCollectBonus4Cultivation(pUnit):
+    global lCultivatable
+    iTeam = pUnit.getTeam()
+    pPlot = pUnit.plot()
+    eBonus = pPlot.getBonusType(iTeam) # If there is an invisible bonus on pPlot, it will not be removed
+    if eBonus == -1:
+        return False
 
-  eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
-  if eUnitBonus != -1:
-    # TODO: Popup Ressource geladen, ueberschreiben?
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    if eBonus not in lCultivatable:
+        return False
 
-  CvUtil.addScriptData(pUnit, "b", eBonus)
-  pPlot.setBonusType(-1) # remove bonus
-  pUnit.finishMoves()
-  return True
-
-
-# Buy bonus on current plot ('stored' in cultivation unit)
-def doCollectBonus4Cultivation(pUnit,eBonus):
-  iPlayer = pUnit.getOwner()
-  if eBonus != -1:
     eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
-    if eBonus == eUnitBonus:
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-      return False
-    if -1 != eUnitBonus:
-      # TODO: Popup Ressource geladen, ueberschreiben?
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    iPrice = calculateBonusBuyingPrice4Cultivation(iPlayer,pUnit.plot(),eBonus)
-    pPlayer = gc.getPlayer(iPlayer)
-    if pPlayer.getGold() < iPrice:
-      CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_NO_GOODS",("",)), None, 2, "Art/Interface/PlotPicker/Warning.dds", ColorTypes(7), pUnit.getX(), pUnit.getY(), True, True)
-      return False
-    pPlayer.changeGold(-iPrice)
-    CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_GOODS",(gc.getBonusInfo(eBonus).getDescription(),)), "AS2D_COINS", 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(13), pUnit.getX(), pUnit.getY(), True, True)
+    if eUnitBonus != -1:
+        # TODO: Popup Ressource geladen, ueberschreiben?
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hatte bereits eine Ressource geladen. Die ist jetzt futsch.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        return False
+
     CvUtil.addScriptData(pUnit, "b", eBonus)
+    pPlot.setBonusType(-1) # remove bonus
+
+    # Handelsposten auch entfernen
+    lImprovements = []
+    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"))
+    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_PASTURE"))
+    if pPlot.getImprovementType() in lImprovements: pPlot.setImprovementType(-1)
+
     pUnit.finishMoves()
     return True
 
 # Creates popup with all possible cultivation bonuses of the plot or city
-def doPopupChooseBonus4Collection(pUnit):
+def doPopupChooseBonus4Cultivation(pUnit):
     pPlot = pUnit.plot()
     iPlayer = pUnit.getOwner()
 
@@ -746,7 +735,7 @@ def doPopupChooseBonus4Collection(pUnit):
 
     for eBonus in lGoods:
       sBonusDesc = gc.getBonusInfo(eBonus).getDescription()
-      iPrice = calculateBonusBuyingPrice4Cultivation(iPlayer,pPlot,eBonus)
+      iPrice = calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pPlot)
       sText = CyTranslator().getText("TXT_KEY_BUY_BONUS", (sBonusDesc, iPrice))
       sBonusButton = gc.getBonusInfo(eBonus).getButton()
       popupInfo.addPythonButton(sText, sBonusButton)
@@ -776,15 +765,16 @@ def getAvailableCultivatableBonuses(pCity):
         if pCity.hasBonus(eBonus): lGoods.append(eBonus)
     return lGoods
 
+
 # Price of cultivation goods
 # regional (on plot): *1
 # national: *2
 # international: *3
-def calculateBonusBuyingPrice4Cultivation(iPlayer,pPlot,eBonus):
+def calculateBonusBuyingPrice4Cultivation(eBonus, iBuyer,pPlot):
   iPrice = getBonusValue(eBonus)
 
-  # Bonus on plot: regional price
-  if pPlot.getBonusType(pPlot.getTeam()) == eBonus: return iPrice
+  # # Bonus on plot: regional price
+  # if pPlot.getBonusType(pPlot.getTeam()) == eBonus: return iPrice
 
   # Bonus in city radius: regional price
   pCity = pPlot.getPlotCity()
@@ -797,39 +787,88 @@ def calculateBonusBuyingPrice4Cultivation(iPlayer,pPlot,eBonus):
   iRange = CyMap().numPlots()
   for iI in range(iRange):
     pLoopPlot = CyMap().plotByIndex(iI)
-    if pLoopPlot.getOwner() == iPlayer:
+    if pLoopPlot.getOwner() == iBuyer:
       if pLoopPlot.getBonusType(pLoopPlot.getTeam()) == eBonus: return iPrice * 2
 
     # Bonus international
   return iPrice * 3
+
+def doBuyBonus4Cultivation(pUnit, eBonus):
+    global lCultivationUnits
+
+    if not pUnit.getUnitType() in lCultivationUnits:
+        return
+
+    if eBonus != -1:
+        iBuyer = pUnit.getOwner()
+        pBuyer = gc.getPlayer(iBuyer)
+
+        eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
+        if eBonus == eUnitBonus:
+            CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            return
+        if eUnitBonus != -1:
+            # TODO: Popup Ressource geladen, ueberschreiben?
+            CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hat bereits eine Ressource geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            return
+        iPrice = calculateBonusBuyingPrice4Cultivation(eBonus, iBuyer, pUnit.plot())
+        if pBuyer.getGold() < iPrice:
+            CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_NO_GOODS",("",)), None, 2, "Art/Interface/PlotPicker/Warning.dds", ColorTypes(7), pUnit.getX(), pUnit.getY(), True, True)
+            return
+        pBuyer.changeGold(-iPrice)
+        CvUtil.addScriptData(pUnit, "b", eBonus)
+
+        if pBuyer.isHuman():
+            CyInterface().addMessage(iBuyer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_GOODS",(gc.getBonusInfo(eBonus).getDescription(),)), "AS2D_COINS", 2, None, ColorTypes(13), 0, 0, False, False)
+
+        pUnit.finishMoves()
+        PAE_Unit.doGoToNextUnit(pUnit)
 
 # --- Trade in cities ---
 
 
 # Unit stores bonus, owner pays, if UnitOwner != CityOwner: city owner gets money
 def doBuyBonus(pUnit, eBonus, iCityOwner):
-  global lTradeUnits
-  if not pUnit.getUnitType() in lTradeUnits: return
+    global lTradeUnits
 
-  iBuyer = pUnit.getOwner()
-  pBuyer = gc.getPlayer(iBuyer)
-  pSeller = gc.getPlayer(iCityOwner)
-  iPrice = calculateBonusBuyingPrice(eBonus, pUnit.getOwner(), iCityOwner)
-  pBuyer.changeGold(-iPrice)
-  if iBuyer != iCityOwner:
-      pSeller.changeGold(iPrice)
-  CvUtil.addScriptData(pUnit, "b", eBonus)
-  CvUtil.addScriptData(pUnit, "originCiv", iCityOwner)
-  CvUtil.addScriptData(pUnit, "x", pUnit.getX())
-  CvUtil.addScriptData(pUnit, "y", pUnit.getY())
-  if pSeller.isHuman() and iBuyer != iCityOwner:
-      sBonusName = gc.getBonusInfo(eBonus).getDescription()
-      CyInterface().addMessage(iCityOwner, True, 10, CyTranslator().getText("TXT_KEY_BONUS_BOUGHT",(sBonusName, pBuyer.getName(), iPrice)), "AS2D_COINS", 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
-  if pBuyer.isHuman():
-      CyInterface().addMessage(iBuyer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_GOODS",(gc.getBonusInfo(eBonus).getDescription(),)), "AS2D_COINS", 2, None, ColorTypes(13), 0, 0, False, False)
+    if not pUnit.getUnitType() in lTradeUnits:
+        return
 
-  pUnit.finishMoves()
-  PAE_Unit.doGoToNextUnit(pUnit)
+    if eBonus != -1:
+        iBuyer = pUnit.getOwner()
+        pBuyer = gc.getPlayer(iBuyer)
+
+        eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
+        if eBonus == eUnitBonus:
+            CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Das haben wir bereits geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            return
+        if eUnitBonus != -1:
+            # TODO: Popup Ressource geladen, ueberschreiben?
+            CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Die Einheit hat bereits eine Ressource geladen.",)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            return
+        iPrice = calculateBonusBuyingPrice(eBonus, iBuyer, iCityOwner)
+        if pBuyer.getGold() < iPrice:
+            CyInterface().addMessage(iBuyer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_NO_GOODS",("",)), None, 2, "Art/Interface/PlotPicker/Warning.dds", ColorTypes(7), pUnit.getX(), pUnit.getY(), True, True)
+            return
+        pBuyer.changeGold(-iPrice)
+
+        pSeller = gc.getPlayer(iCityOwner)
+        if iBuyer != iCityOwner:
+            pSeller.changeGold(iPrice)
+
+        CvUtil.addScriptData(pUnit, "b", eBonus)
+        CvUtil.addScriptData(pUnit, "originCiv", iCityOwner)
+        CvUtil.addScriptData(pUnit, "x", pUnit.getX())
+        CvUtil.addScriptData(pUnit, "y", pUnit.getY())
+        if pSeller.isHuman() and iBuyer != iCityOwner:
+            sBonusName = gc.getBonusInfo(eBonus).getDescription()
+            CyInterface().addMessage(iCityOwner, True, 10, CyTranslator().getText("TXT_KEY_BONUS_BOUGHT",(sBonusName, pBuyer.getName(), iPrice)), "AS2D_COINS", 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
+
+        if pBuyer.isHuman():
+            CyInterface().addMessage(iBuyer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_COLLECT_GOODS",(gc.getBonusInfo(eBonus).getDescription(),)), "AS2D_COINS", 2, None, ColorTypes(13), 0, 0, False, False)
+
+        pUnit.finishMoves()
+        PAE_Unit.doGoToNextUnit(pUnit)
 
 # Unit's store is emptied, unit owner gets money, city gets bonus, research push
 def doSellBonus(pUnit, pCity):
@@ -1041,6 +1080,7 @@ def calculateBonusBuyingPrice(eBonus, iBuyer, iSeller):
         # Furious = 0, Annoyed = 1, Cautious = 2, Pleased = 3, Friendly = 4
         iAttitudeModifier = 125 - 5*pSeller.AI_getAttitude(iBuyer)
     return (iValue * iAttitudeModifier) / 100
+
 
 # Money player gets for selling bonus
 def calculateBonusSellingPrice(pUnit, pCity):
@@ -1698,5 +1738,3 @@ def doCheckCitySpecialBonus(pUnit,pCity,eBonus):
 
         # CvUtil.removeScriptData(pCity, "tsb")
         # CvUtil.removeScriptData(pCity, "tst")
-
-

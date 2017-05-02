@@ -1,7 +1,7 @@
 <Civ4CivilizationInfos>
         <CivilizationInfos>
                 <CivilizationInfo>
-                        <Type>CIVILIZATION_CELT</Type>
+                        <Type>CIVILIZATION_CELT</Type> 
                         <StartX>39</StartX>
                         <StartY>62</StartY>
                         <StartX>34</StartX>

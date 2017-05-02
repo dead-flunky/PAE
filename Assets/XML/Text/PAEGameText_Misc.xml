@@ -434,21 +434,9 @@
     <Tag>TXT_KEY_UNIT_CAVALRY</Tag>
     <English>Cavalry</English>
     <French>Cavalier lourd</French>
-    <German>
-        <Text>Kavallerie</Text>
-        <Gender>Male</Gender>
-        <Plural>0</Plural>
-    </German>
-    <Italian>
-        <Text>Cavalleria</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Italian>
-    <Spanish>
-        <Text>Caballer&#237;a:Caballer&#237;as</Text>
-        <Gender>Female</Gender>
-        <Plural>0:1</Plural>
-    </Spanish>
+    <German><Text>Kavallerie</Text>[NEWLINE]<Gender>Male</Gender>[NEWLINE]<Plural>0</Plural></German>
+    <Italian><Text>Cavalleria</Text>[NEWLINE]<Gender>Female</Gender>[NEWLINE]<Plural>0:1</Plural></Italian>
+    <Spanish><Text>Caballer&#237;a:Caballer&#237;as</Text>[NEWLINE]<Gender>Female</Gender>[NEWLINE]<Plural>0:1</Plural></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_EVENT_UNIT_DISBAND</Tag>

@@ -1,284 +1,275 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by lcollins (Firaxis Games) -->
-<!-- Sid Meier's Civilization 4 -->
-<!-- Copyright Firaxis Games 2005 -->
-<!-- edited by pierre@voak.at (pie), Austria -->
-<!-- oe = &#246; Oe = &#214; -->
-<!-- ue = &#252; Ue = &#220; -->
-<!-- ae = &#228; Ae = &#196; -->
-<!-- sz = &#223; &= &#38;  -->
-<!-- Game Text Strategy -->
 <Civ4GameText xmlns="http://www.firaxis.com">
   <TEXT>
-     <Tag>TXT_KEY_HINT_45</Tag>
-     <English>If you are having trouble spreading a Cult, make sure the city you are spreading it to has the appropriate resources and that your treasury has enough gold to fund the expansion. Keep in mind it costs significantly more to spread a Cult to a foreign city than to your own.</English>
-     <French>Si vous n'arrivez pas &#224; d&#233;velopper une culte, assurez-vous que la ville dans laquelle vous voulez l'implanter dispose des ressources n&#233;cessaires et que vous avez assez d'or dans votre tr&#233;sor pour financer son d&#233;veloppement. N'oubliez pas que cela co&#251;te bien plus cher d'implanter une culte dans une ville &#233;trang&#232;re que de l'implanter dans l'une des v&#244;tres.</French>
-     <German>Wenn Sie einen Kult expandieren wollen, stellen Sie sicher, dass die Stadt, in der sie angesiedelt werden soll, die passenden Ressourcen besitzt und hinreichend Gold f&#252;r die Finanzierung der Expansion in Ihrer Schatzkammer bereitsteht. Beachten Sie, dass die Etablierung eines Kultes in einer fremden Stadt deutlich teurer ist als die Ansiedelung in einer eigenen Stadt.</German>
-     <Italian>Se hai problemi a espandere le culto, assicurati che la citt&#224; verso la quale vuoi diffonderla sia dotata delle risorse appropriate e che tu possegga abbastanza oro per finanziare l'operazione. Tieni presente che diffondere le culto in una citt&#224; straniera, costa molto di pi&#249; che farlo in una citt&#224; propria.</Italian>
-     <Spanish>Si tienes problemas para expandir un culto, aseg&#250;rate de que la ciudad a la que intentas expandirte tiene los recursos apropiados y que tu tesoro dispone de oro suficiente para financiar la expansi&#243;n. Ten presente que cuesta bastante m&#225;s extender un culto a una ciudad extranjera que a una de las tuyas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_66</Tag>
-     <English>To build a Cult centre building, you need a specific type of Great Person. Check the Civilopedia for the type required by each Cult so you can assign your specialists accordingly.</English>
-     <French>Pour construire le b&#226;timent abritant le si&#232;ge de votre culte, vous devez disposer d'un type de personnage illustre bien pr&#233;cis. Consultez la Civilop&#233;die pour conna&#238;tre le type de personnage associ&#233; &#224; votre culte.</French>
-     <German>Um ein Kultzentrum zu errichten, ben&#246;tigen Sie eine spezielle Gro&#223;e Pers&#246;nlichkeit. Schlagen Sie in der Zivilop&#228;die nach, welche Art Sie f&#252;r den jeweiligen Kult ben&#246;tigen, damit Sie Ihre Spezialisten entsprechend zuweisen k&#246;nnen.</German>
-     <Italian>Per costruire un quartier generale del culto avrai bisogno di un Grande personaggio specifico. Controlla sulla Civilopedia il tipo richiesto da ogni culto, in modo da poter assegnare gli specialisti nel migliore dei modi.</Italian>
-     <Spanish>Para construir la sede de un culto necesitas un tipo especfico de gran personaje. Consulta en la Civilopedia el tipo que se necesita con cada culto para que puedas asignar tus especialistas en consecuencia.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_67</Tag>
-     <English>If you choose to found a Cult, remember that even though the cult centre will enjoy extra income, each city hosting the cult will suffer increased maintenance costs. Build Courthouses in all of your Cult cities and markets in your cult centres, otherwise the Cult may actually run at a net loss.</English>
-     <French>Si vous choisissez de fonder une culte, sachez que m&#234;me si le si&#232;ge social b&#233;n&#233;ficiera de revenus suppl&#233;mentaires, chaque ville abritant cette soci&#233;t&#233; subira une hausse de ses co&#251;ts d'entretien. Construisez des tribunaux dans toutes ces villes et des banques pr&#232;s de vos si&#232;ges sociaux, sous peine de subir une banqueroute.</French>
-     <German>Wenn Sie einen Kult gr&#252;nden wollen, achten Sie darauf, dass das Kultzentrum zwar zus&#228;tzliche Einnahmen bringt, die Unterhaltskosten f&#252;r St&#228;dte mit Kulte jedoch h&#246;her sind. Errichten Sie Gerichtsgeb&#228;ude in allen Ihren St&#228;dten mit Kulte und M&#228;rkte in Ihren Kultzentren, sonst k&#246;nnte es sein, dass die Kulte insgesamt Verluste einf&#228;hrt.</German>
-     <Italian>Se decidi di fondare un culto, ricorda che sebbene i quartieri generali beneficeranno di rendite extra, ogni citt che ospita un culto vedr aumentare i suoi costi di mantenimento. Costruisci Palazzi di giustizia nelle citt con le culto e Banche nei quartieri generali, altrimenti le culto potrebbe andare in passivo.</Italian>
-     <Spanish>Si eliges fundar un culto, recuerda que -aunque sus sedes gocen de beneficios extra- toda ciudad que albergue un culto tendr&#225; mayores costes de mantenimiento. Construye delegaciones en todas tus ciudades con cultos y bancos en tus sedes; de otro modo, el culto no har&#225; m&#225;s que generar p&#233;rdidas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_72</Tag>
-     <English>Only Great People can found new Cults. Cults also require specific resources for their product lines to thrive. If you aim to create a specific Cult to aid your nation's interests, try to plan ahead, choosing a Cult for which you can supply the needed resources and produce the needed Great Person.</English>
-     <French>Seuls les personnages illustres peuvent fonder de nouveaux cultes. Ces derniers requi&#232;rent &#233;galement des ressources sp&#233;cifiques pour pouvoir tourner &#224; plein r&#233;gime. Si vous souhaitez cr&#233;er un culte bien particuli&#232;re dans votre ville pour favoriser les int&#233;r&#234;ts de votre nation, essayez de planifier les choses en choisissant un culte requ&#233;rant des ressources pr&#233;sentes sur votre territoire et un personnage illustre que vous produirez en temps voulu.</French>
-     <German>Nur Gro&#223;e Pers&#246;nlichkeiten k&#246;nnen neue Kulte gr&#252;nden. Kulte ben&#246;tigen auch spezielle Ressourcen, um ihre Produktionsketten voranzutreiben. Wenn Sie einen speziellen Kult errichten m&#246;chten, der den Interessen Ihrer Nation dienen soll, versuchen Sie vorausschauend zu planen, indem Sie einen Kult w&#228;hlen, &#252;ber deren erforderliche Ressourcen Sie verf&#252;gen, und erstellen Sie die ben&#246;tigte Gro&#223;e Pers&#246;nlichkeit.</German>
-     <Italian>Solo i Grandi personaggi possono fondare nuove cultos. Queste ultime richiedono anche risorse specifiche per accrescere le proprie linee produttive. Se ambisci a creare un culto che possa fare gli interessi della tua nazione, cerca di pianificare in anticipo, scegliendo un culto a cui potrai fornire le risorse di cui avr bisogno, e producendo il Grande personaggio richiesto.</Italian>
-     <Spanish>Solo los grandes personajes pueden fundar nuevos cultos. Los cultos tambi&#233;n requieren recursos espec&#237;ficos para que sus l&#237;neas de productos prosperen. Si tu objetivo es crear un culto concreto para ayudar a los intereses de tu naci&#243;n, trata de planificar a largo plazo, y elige un culto que pueda suministrar los recursos necesarios y producir el gran personaje necesario.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_101</Tag>
-     <English>If you get a skull over your cities, it means they have the plague! The population and units in the city and in the surrounding region will probably decrease dramatically. To reduce the effects and the duration of plague, keep your cities healthy.</English>
-     <French>Si un cr&#226;ne appara&#238;t au-dessus d'une de vos villes, cela signifie qu'elle est frapp&#233;e par une peste ! Attendez-vous alors &#224; voir la population et les unit&#233;s dans la ville et la r&#233;gion environnante diminuer consid&#233;rablement. Pour r&#233;duire la dur&#233;e et les effets de l'&#233;pid&#233;mie, gardez vos villes en bonne sant&#233;.</French>
-     <German>Wenn ein einzelner Totenkopf &#252;ber Ihren St&#228;dten eingeblendet wird, bedeutet dies, dass dort eine Pest (todbringende Seuche/Epidemie) ausgebrochen ist! Die Anzahl der Bev&#246;lkerung und Einheiten in der betreffenden Stadt und ihrer n&#228;heren Umgebung werden aller Voraussicht nach dramatisch sinken. Um die Auswirkungen und Dauer der Pest zu reduzieren, sollten Sie den Gesundheitswert Ihrer St&#228;dte m&#246;glichst hoch halten.</German>
-     <Italian>Se un singolo teschio appare sopra le vostre citt&#224;, questo significa che vi &#232; una pestilenza scoppi&#242; (malattia mortale / epidemica)! Il numero di popolazione e di unit&#224; in quella citt&#224; e nei dintorni sono tenuti a scendere drasticamente. Al fine di ridurre l'impatto e la durata della peste, si dovrebbe tenere il valore della salute delle vostre citt&#224; pi&#249; in alto possibile.</Italian>
-     <Spanish>Si aparece una calavera sobre tus ciudades... &#161;es por que tienen la peste! La poblaci&#243;n y las unidades de la ciudad y su regi&#243;n circundante probablemente comiencen a decrecer dram&#225;ticamente. Para reducir los efectos y la duraci&#243;n de la peste, mant&#233;n elevada la salud de tus ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_102</Tag>
-     <English>Plague can spread in many ways: through trade routes, along roads and between neighbouring cities.</English>
-     <French>Une &#233;pid&#233;mie peut se propager de nombreuses fa&#231;ons. Elle peut &#234;tre apport&#233;e par les routes commerciales, les routes et les villes voisines.</French>
-     <German>Eine Pest kann sich auf viele Arten ausbreiten: &#252;ber Handelswege, Stra&#223;en und zwischen benachbarten St&#228;dten.</German>
-     <Italian>La peste si pu&#242; diffondere in molti modi: attraverso rotte commerciali, lungo le strade e tra citt&#224; confinanti.</Italian>
-     <Spanish>La peste se puede propagar de muchas maneras, a trav&#233;s de las rutas comerciales, por los caminos o entre ciudades vecinas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_103</Tag>
-     <English>Be sure to check the "PAE Mod Concepts" page in the Civilopedia to read up on all the changes that have been made in this modification.</English>
-     <French>Pensez &#224; lire la page "Concepts de PAE" dans la Civilop&#233;die pour conna&#238;tre toutes les modifications apport&#233;es par ce MOD.</French>
-     <German>Lesen Sie die "PAE-Mod Konzepte" in der Zivilop&#228;die, um sich mit allen &#196;nderungen in dieser Modifikation vertraut zu machen.</German>
-     <Italian>Consulta la pagina "Nozioni di PAE" nella Civilopedia per leggere tutte le modifiche effettuate in questa modification.</Italian>
-     <Spanish>Aseg&#250;rate de consultar la p&#225;gina "Conceptos de PAE" en la Civilopedia para conocer todos los cambios que incorpora esta modificaci&#243;n.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_104</Tag>
-     <English>As in the ancient world so too in PAE wine only spreads over the course of time. Only in Asia can the grapes resource be found, with which the winery building can be built. This produces the wine bonus and establishes a vineyard on the periphery of the city for harvesting further grapes. So if you dont have grapes, you have to trade them in order to produce it.</English>
-     <French>Comme durant l'antiquit&#233;, la culture de la vignes se propage avec le temps dans PAE. Seule l'Asie en poss&#232;de en d&#233;but de partie. Il vous faudra n&#233;gocier avec cette nation pour en obtenir et construire un vigneron qui permettra l'implantation de vignes aux alentours de vos villes.</French>
-     <German>Wie in der Antike wird auch in PAE der Wein erst im Laufe der Zeit verbreitet. Nur in Asien findet man die Ressource Trauben, mit der das Geb&#228;ude Winzer errichtet werden kann. Dieser erzeugt das Bonusgut Wein und errichtet im Umkreis jeder Stadt ein Weingut zum Ernten weiterer Trauben. Solltest du also nicht im Besitz von Trauben sein, musst du diese erhandeln, um Wein selbst zu produzieren.</German>
-     <Italian>Come nel mondo antico cos&#236; anche nel vino PAE estende solo nel corso del tempo. Solo in Asia si trova la risorsa uve, con la quale l'edificio cantina pu&#242; essere costruito. Questo produce il bonus vino e stabilisce un vigneto alla periferia della citt&#224; per la raccolta ulteriori uva. Quindi, se non avete l'uva, dovete scambiarli per produrlo.</Italian>
-     <Spanish>Al igual que en el mundo antiguo, en PAE el vino solo se propaga en el transcurso del tiempo. Las uvas solo pueden ser encontradas en Asia, con las que se puede construir la bodega. Esto produce el recurso vino y establece un vi&#241;edo en la periferia de la ciudad para cosechar mejores uvas. As&#237; que si no tienes uvas, tienes que comerciarlas para producirlas.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_105</Tag>
-     <English>In the ancient world wood was needed to forge iron in order to build ships. This has been implemented in PAE: Starting in the Bronze Age, if a city produces a naval unit there is a possibility that a nearby forest will be cleared.</English>
-     <French>Dans le monde antique, le bois &#233;tait n&#233;cessaire pour forger les armes des soldats. Dans PAE, d&#232;s l'&#226;ge du bronze, quand une ville contruit une unit&#233;, il y a une chance qu'une for&#234;t environnante soit automatiquement d&#233;frich&#233;e.</French>
-     <German>In der Antike ben&#246;tigte man Holz, um Eisen zu schmieden und Schiffe zu bauen. Bei PAE wird dies umgesetzt: Ab der Bronzezeit besteht die M&#246;glichkeit, dass bei der Produktion einer Einheit ein Wald im Umkreis der produzierenden Stadt gerodet wird.</German>
-     <Italian>Nei tempi antichi, il legno era necessario per forgiare il ferro e costruire navi. In PAE questo viene implementato: Da dell'et&#224; del bronzo, vi &#232; la possibilit&#224; che la produzione di una unit&#224;, una foresta viene cancellata all'interno della citt&#224; di fabbricazione.</Italian>
-     <Spanish>En el mundo antiguo la madera era necesaria para forjar hierro y la construcci&#243;n de barcos. Esto ha sido implementado en PAE: Empezando en la Edad de Bronce, si una ciudad produce una unidad naval hay una posibilidad de que un bosque cercano sea talado.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_106</Tag>
-     <English>Victory in combat not only increases your soldiers experience but there is also a possibility of earning gold, enslaving the enemy unit or even causing the enemy unit to defect to your side!</English>
-     <French>Un combat victorieux ne rapporte pas seulement de l'exp&#233;rience &#224; vos soldats. Il peut aussi vous faire gagner de l'or et r&#233;duire en esclavage ou convertir &#224; votre cause le vaincu.</French>
-     <German>Der Sieg &#252;ber eine feindliche Einheit bringt nicht nur Erfahrung, sondern es besteht die M&#246;glichkeit, dass man einen Goldbetrag erobert, der Feind versklavt wird oder sogar die feindliche Einheit &#252;berl&#228;uft.</German>
-     <Italian>La vittoria su una unit&#224; nemica non solo esperienza, ma c'&#232; la possibilit&#224; che hai catturato una quantit&#224; d'oro, il nemico &#232; schiavo o addirittura overflow l'unit&#224; nemica.</Italian>
-     <Spanish>La victoria en combate no solo aumenta la experiencia de tus soldados sino que tambi&#233;n hay una posibilidad de adquirir oro, esclavizar la unidad enemiga o &#161;incluso hacer que la unidad enemiga se pase a tu bando!</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_107</Tag>
-     <English>The mercenary post building provides a mercenary resource bonus appropriate to your culture. This increases the happiness in your cities and can be traded with other civilizations. Trading for a foreign mercenary resource allows for the training of the corresponding mercenary unit.</English>
-     <French>Le poste de recrutement mercenaire vous fournit une ressource mercenaire correspondant &#224; votre culture. Elle augmente le bonheur dans vos villes et peut &#234;tre &#233;changer avec vos adversaires. L'acquisition d'une ressource mercenaire &#233;trang&#232;re vous permet de construire l'unit&#233; mercenaire associ&#233;e.</French>
-     <German>Das Geb&#228;ude S&#246;ldnerposten erzeugt ein Bonusgut der entsprechenden S&#246;ldnerressource. Diese steigert die Zufriedenheit in den eigenen St&#228;dten und kann mit andern Zivilisationen gehandelt werden. Eine fremde S&#246;ldnerressource erm&#246;glicht den Bau der entsprechenden S&#246;ldnereinheit.</German>
-     <Italian>L'edificio posto mercenario offre un bonus risorsa mercenario appropriato per la vostra cultura. Questo aumenta la felicit&#224; nelle vostre citt&#224; e possono essere scambiati con altre civilt&#224;. Trading di una risorsa mercenario straniero consente la formazione della corrispondente unit&#224; mercenario.</Italian>
-     <Spanish>El edificio puesto mercenario proporciona el recurso mercenario apropiado a tu cultura. Esto aumenta la felicidad en tus ciudades y puede ser comerciado con otras civilizaciones. Comerciar por un recurso mercenario extranjero permite el entrenamiento de la correspondiente unidad mercenaria.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_108</Tag>
-     <English>Many wonders of the world are only conceivable in the context of their historical development. Without the Greek culture there would be no Parthenon, without the Egyptian culture there would be no Pyramids along the Nile. Therefore, many wonders need their specific religion in PAE.</English>
-     <French>De nombreuses merveilles ne sont concevables que dans leur contexte historique. Sans culture grecque, Parth&#233;non aurait-il exist&#233; ? Sans culture &#233;gyptienne, les Pyramides existeraient-elles le long du Nil ? Dans PAE, certaines merveilles n&#233;cessitent une religion sp&#233;cifique.</French>
-     <German>Viele Weltwunder sind nur im Kontext ihrer historischen Entwicklung denkbar. Ohne die griechische Kultur g&#228;be es keinen Parthenon, ohne die &#228;gyptische keine Pyramiden am Nil. Deswegen brauchen viele Wunder in PAE ihre spezifische Religion.</German>
-     <Italian>Molte meraviglie del mondo sono possibili solo nel contesto del loro sviluppo storico. Senza la cultura greca non c'erano Partenone, senza le piramidi egizie sul Nilo no. Perch&#233; molti miracoli nel PAE loro religione specifica.</Italian>
-     <Spanish>Algunas maravillas del mundo son solo posibles en el conexto de su desarrollo hist&#243;rico. Sin la cultura griega no estar&#225; el Parten&#243;n, sin la cultura egipcia no estar&#225;n las Pir&#225;mides a lo largo del Nilo. Por lo tanto, algunas maravillas necesita su religi&#243;n espec&#237;fica en PAE.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_109</Tag>
-     <English>Slaves can be exploited in many different ways: For rapid development of the country, to improve your account balance, to accelerate production, or as a resident urban population.</English>
-     <French>Les esclaves peuvent &#234;tre utilis&#233;s de diff&#233;rentes fa&#231;ons : construction rapide des am&#233;nagements, am&#233;lioration de vos finances, acc&#233;l&#233;ration de la production ou affectation dans les villes.</French>
-     <German>Sklaven k&#246;nnen auf viele verschiedene Arten eingesetzt werden: Zum schnelleren Ausbau des Landes, zur Verbesserung des Kontostandes, zur Beschleunigung der Produktion oder als ans&#228;ssige Stadtbev&#246;lkerung.</German>
-     <Italian>Slave possono essere utilizzati in molti modi diversi: a rapida espansione del paese, per migliorare il saldo del conto, per accelerare la produzione o la popolazione urbana residente.</Italian>
-     <Spanish>Los esclavos pueden ser explotados de diferentes maneras: Para el r&#225;pido desarrollo del pa&#237;s, para mejorar el balance las cuentas, para acelerar la producci&#243;n, o como poblaci&#243;n urbana residente.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_110</Tag>
-     <English>You can settle slaves in different ways: A mine slave boosts production and helps great merchants to success, a field slave supports engineers and acquires food and a house slave supports scientists.</English>
-     <French>Vous pouvez affecter les esclaves de diff&#233;rentes fa&#231;ons : un [COLOR_HIGHLIGHT_TEXT]mineur[COLOR_REVERT] am&#233;liore la production et favorise l'apparition d'un Ing&#233;nieur illustre, un [COLOR_HIGHLIGHT_TEXT]paysan[COLOR_REVERT] r&#233;colte de la nourriture et favorise l'apparition d'un Marchand illustre, enfin un [COLOR_HIGHLIGHT_TEXT]domestique[COLOR_REVERT] am&#233;liore la culture/science et favorise l'apparition d'un Savant illustre.</French>
-     <German>Ein in einer Stadt angesiedelter Sklave kann als Bergwerksklave die Produktion st&#228;rken und einem Gro&#223;en H&#228;ndler zum Erfolg verhelfen, als Feldsklave Ingenieure bei ihrer Arbeit zur Hand gehen und mehr Nahrung heranschaffen, oder als Haussklave Wissenschaftler bei ihrer Arbeit unterst&#252;tzen.</German>
-     <Italian>A comunemente si trova in una citt&#224; pu&#242; essere utilizzato come il mio schiavo schiavo rafforzare la produzione e aiutare un Grande Mercante di successo, andando come un campo ingegneri schiavi nel loro lavoro a portata di mano e portare pi&#249; cibo, o di supporto come gli scienziati casa degli schiavi nel loro lavoro.</Italian>
-     <Spanish>Puedes asentar esclavos de diferentes maneras: Un esclavo de la mina aumenta la producci&#243;n y ayuda a que aparezca un gran mercader, un esclavo del campo ayuda a ingenieros y adquiere comida y un esclavo dom&#233;stico ayuda a cient&#237;ficos.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_111</Tag>
-     <English>Caution! If a slave is settled in a city, a slave market will be constructed automatically in that city. This building creates some unhappiness, but also supplies the slave resource which is needed for many units and buildings.</English>
-     <French>Attention ! Si le march&#233; aux esclaves vous fournit une pr&#233;cieuse ressource d'esclaves, il est aussi la cause de fr&#233;quents troubles et r&#233;voltes dans sa ville d'accueil.</French>
-     <German>Achtung! Ist ein Sklave in einer Stadt angesiedelt, gibt es dort automatisch einen Sklavenmarkt. Dieser senkt die Zufriedenheit der Stadt, liefert aber auch die Ressource Sklave, die zum Bau gro&#223;er Schiffe und Geb&#228;ude ben&#246;tigt wird.</German>
-     <Italian>Attenzione! &#200; uno schiavo che si trova in una citt&#224;, vi &#232; automaticamente un mercato di schiavi. Questo abbassa la soddisfazione della citt&#224;, ma fornisce anche slave risorsa, che &#232; necessario per la costruzione di grandi navi ed edifici.</Italian>
-     <Spanish>&#161;Precauci&#243;n! Si un esclavo es asentado en una ciudad, autom&#225;ticamente ser&#225; creado un mercado de esclavos en esa ciudad. Este edificio crea algo de infelicidad, pero tambi&#233;n aporta el recurso esclavo que es necesrio para algunas unidades y edificios.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_112</Tag>
-     <English>Caution! The number of settled slaves should never be too high in a city, otherwise there is a danger of a slave revolt. Pay attention to the display in the cityscreen.</English>
-     <French>Attention ! Un grand nombre d'esclaves affect&#233;s dans une ville augmente significativement le risque de r&#233;voltes. Surveillez l'indicateur associ&#233; dans l'&#233;cran de ville.</French>
-     <German>Achtung! Die Anzahl der angesiedelten Sklaven sollte in einer Stadt nie zu hoch sein, sonst besteht die Gefahr eines Sklavenaufstands. Achte dabei auf die Anzeige im Stadtbildschirm.</German>
-     <Italian>Attenzione! Il numero degli schiavi regolate dovrebbe essere troppo alta in una citt&#224; mai altrimenti c'&#232; il pericolo di una rivolta di schiavi. Prestare attenzione alla visualizzazione a schermo citt&#224;.</Italian>
-     <Spanish>&#161;Precauci&#243;n! El n&#250;mero de esclavos asentados nunca debe ser demasiado alto en una ciudad, de lo contrario hay peligro de una revuelta de esclavos. Presta atenci&#243;n a la pantalla de ciudad.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_113</Tag>
-     <English>Did you ever wonder why improvements are given away for free in CIV? This has been changed in PAE: The development of the countryside costs gold.</English>
-     <French>Vous &#234;tes vous d&#233;j&#224; demand&#233; pourquoi les am&#233;nagements &#233;taient offerts gratuitement dans CIV ? Non ? Et bien, dans PAE, vous devrez mettre la main &#224; la poche.</French>
-     <German>Hast du dich auch immer gewundert, warum in CIV Modernisierungen verschenkt werden? Das ist jetzt anders: Der Ausbau des Landes kostet Geld.</German>
-     <Italian>Vi siete mai chiesti perch&#233; la modernizzazione &#232; presentato in CIV? Che ora &#232; cambiato: L'espansione del paese costa denaro.</Italian>
-     <Spanish>&#191;Alguna vez te has preguntado por qu&#233; las mejoras son gratis en CIV? Esto ha sido cambiado en PAE: El desarrollo del campo cuesta oro.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_115</Tag>
-     <English>Already sent a hunter to hunt? Many new animals are waiting for you, which can be stored as food in a nearby town. But be careful, animals know no cultural borders.</English>
-     <French>Avez-vous d&#233;j&#224; essay&#233; de chasser avec un chasseur ? De nombreux nouveaux animaux vous attendent. Leur viande pourra &#234;tre ajout&#233;e aux villes proches. Mais soyez prudent, les animaux peuvent faire des incursions &#224; la fronti&#232;re.</French>
-     <German>Schon einen J&#228;ger zum Jagen geschickt? Viele neue Tiere erwarten dich, die als Nahrung in einer nahe gelegenen Stadt eingelagert werden k&#246;nnen. Aber Achtung, Tiere kennen keine kulturellen Grenzen.</German>
-     <Italian>Anche un cacciatore inviato a cacciare? Molti nuovi animali ti aspettano, che possono essere memorizzati come cibo in una citt&#224; vicina. Ma attenzione, gli animali non conoscono confini culturali.</Italian>
-     <Spanish>&#191;Ya enviaste un cazador a cazar? Nuevos animales est&#225;n esper&#225;ndote, que pueden ser almacenados como comida en una ciudad cercana. Pero ten cuidado, los animales no conocen fronteras. </Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_116</Tag>
-     <English>City conquests promise rich bounty. But beware, too many units in one spot may cause your units to rebel and the loss can trigger unrest in your civilization.</English>
-     <French>La conqu&#234;te de cit&#233;s est all&#233;chante mais faites attention, une arm&#233;e trop importante r&#233;unie en seul endroit peut causer la r&#233;bellion d'une partie des unit&#233;s dont la perte peut d&#233;clencher des troubles dans votre civilisation.</French>
-     <German>Stadteroberungen versprechen fette Beute. Aber Achtung, zu viele Einheiten auf einem Fleck k&#246;nnen sich gegen dich stellen und rebellieren. Und der Verlust eines Generals kann Unruhen in der eigenen Zivilisation ausl&#246;sen.</German>
-     <Italian>Conquiste Citt&#224; promettono bottino grasso. Ma attenzione, troppe unit&#224; in uno spot pu&#242; stare e si ribellano contro di voi. E la perdita di un generale pu&#242; innescare disordini nella propria civilt&#224;.</Italian>
-     <Spanish>La conquista de ciudades promete ricos botines. Pero cuidado, demasiadas unidades en una sola casilla puede causar que tus unidades se rebelen y la p&#233;rdida puede provocar malestar en tu civilizaci&#243;n.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_114</Tag>
-     <English>Some regions of the ancient world harbored cultures which were known far and wide for their unique military prowess. Found in PAE at select locations are special mercenary resources which enables the training of these powerful warriors.</English>
-     <French>Certaines r&#233;gions du monde antique &#233;taient r&#233;put&#233;es pour un talent militaire particulier. Dans PAE, ces capacit&#233;s se traduisent par des ressources mercenaires diss&#233;min&#233;es &#224; travers la carte qui permettent de construire de puissantes unit&#233;s.</French>
-     <German>Einige Regionen der antiken Welt waren bekannt f&#252;r ihre einzigartigen milit&#228;rischen F&#228;higkeiten. Auch in PAE finden sich an ausgew&#228;hlten Orten spezielle S&#246;ldnerboni, die, mit einer Modernisierung versehen, den Bau von historischen Spezialeinheiten erlauben.</German>
-     <Italian>Alcune regioni del mondo antico erano noti per le loro capacit&#224; militari uniche. Anche in PAE in luoghi selezionati bonus mercenari speciali, dotati di una modernizzazione che permettono la costruzione di forze speciali storiche.</Italian>
-     <Spanish>Algunas regiones del mundo antiguo eran conocidas a lo largo y ancho por su capacidad militar &#250;nica. Encontrados en PAE en lugares seleccionados son recursos mercenarios especiales que permiten el entrenamiento de estos poderosos guerreros.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_117</Tag>
-     <English>Pay attention to your research rate! If you invest less than half your income in the development of your civilization, it can cause unrest in your cities.</English>
-     <French>Faites attention &#224; votre taux de recherche ! L'investissement de moins de la moiti&#233; de votre revenu dans le d&#233;veloppement de votre civilisation peut d&#233;clencher des &#233;meutes dans vos villes.</French>
-     <German>Achte auf deine Forschungsrate! Investierst du weniger als die H&#228;lfte deines Einkommens in die Entwicklung deiner Zivilisation, kann das zu Unruhen in deinen St&#228;dten f&#252;hren.</German>
-     <Italian>Prestare attenzione alla frequenza di ricerca! Si investe meno della met&#224; del suo reddito nello sviluppo della vostra civilt&#224; che pu&#242; portare a disordini nelle vostre citt&#224;.</Italian>
-     <Spanish>&#161;Presta atenci&#243;n a tu tasa de investigaci&#243;n! Si inviertes menos de la mitad de tus ingresos al desarrollo de tu civiizaci&#243;n, puede causar malestar en tus ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_118</Tag>
-     <English>Pillaging improvements earns your units experience as well as gold. The new Marauder promotions increase the amount of gold you amass from pillaging.</English>
-     <French>Le pillage des am&#233;nagements rapporte de l'or mais aussi de l'exp&#233;rience &#224; vos unit&#233;s. La nouvelle promotion Maraudeur permet d'am&#233;liorer le gain des pillages.</French>
-     <German>Pl&#252;ndert eine Einheit eine Modernisierung, gewinnt sie an Erfahrung, und mit den neuen Pl&#252;nderungsbef&#246;rderungen kann ein gro&#223;er Feldzug finanziert werden.</German>
-     <Italian>Saccheggiando i miglioramenti guadagna la vostra esperienza di unit&#224; cos&#236; come l'oro. Le nuove promozioni Marauder aumentano la quantit&#224; di oro si accumulano dal saccheggio.</Italian>
-     <Spanish>Saquear mejoras da a tus unidades experiencia adem&#225;s de oro. Los nuevos ascensos Merodeador aumentan la cantidad de oro que amasas del saqueo.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_119</Tag>
-     <English>Have you ever played with the Iberians or Dacians? Not only do the great ancient civilizations have their historical strengths, but also the smaller nations have their own buildings and units.</English>
-     <French>D&#233;j&#224; jou&#233; avec les Ib&#232;res ou Daces ? M&#234;me les civilisations plus modestes ont leurs propres b&#226;timents et unit&#233;s.</French>
-     <German>Schon mit den Iberern oder Dakern gespielt? Nicht nur die gro&#223;en antiken Zivilisationen besitzen ihre historischen St&#228;rken, sondern auch die kleineren V&#246;lker haben ihre eigenen Geb&#228;ude und Einheiten.</German>
-     <Italian>Gi&#224; giocato con gli iberici o Daci? Non solo le grandi civilt&#224; antiche hanno i loro punti di forza storici, ma anche le nazioni pi&#249; piccole hanno i loro edifici e unit&#224;.</Italian>
-     <Spanish>&#191;Has jugado alguna vez con los &#205;beros o los Dacios? No solo las grandes civilizaciones tienen sus hist&#243;ricas fuerzas, tambi&#233;n las peque&#241;as naciones tienen sus propios edificios y unidades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_120</Tag>
-     <English>The prehistoric period was tough. The emerging cultures endured many hardships and there was no possibility of expansion. Therefore settlers cannot be built until the technology Internal Colonization is researched.</English>
-     <French>Les cultures &#233;mergentes ont d&#251; affonter de nombreuses difficult&#233;s avant d'&#234;tre capables de s'&#233;tendre. La construction de colons n'est possible qu'&#224; partir de la d&#233;couverte de la Colonisation locale.</French>
-     <German>Die pr&#228;historische Zeit war hart. Die neu entstehenden Kulturen hatten genug Probleme, da war an Expansion nicht zu denken. Deswegen k&#246;nnen Siedler erst ab der Technologie Binnenkolonisierung gebaut werden.</German>
-     <Italian>Il periodo preistorico &#232; stata dura. Le culture emergenti sopportato molte difficolt&#224; e non c'era alcuna possibilit&#224; di [NEWLINE]espansione. Pertanto, i coloni non possono essere costruite fino alla tecnologia di colonizzazione interna &#232; ricercato.</Italian>
-     <Spanish>El periodo prehist&#243;rico fue duro. Las culturas emergentes soportaron muchas dificultades y no hab&#237;a posibilidad de expansi&#243;n. Por lo tanto los colonos no pueden ser constru&#237;dos hasta que se descubra la tecnolog&#237;a Colonizaci&#243;n Interna.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_121</Tag>
-     <English>Running out of gold? Dont panic! Earn revenue by conducting trade missions with merchants, caravans or merchantman ships. Also, priest and merchant specialists generate gold as well.</English>
-     <French>Plus d'argent dans les caisses ? Pas de panique ! Vous pouvez utiliser des marchands, caravanes ou navires marchands pour effectuer des missions commerciales. Les sp&#233;cialistes pr&#234;tres et marchands g&#233;n&#232;rent aussi de l'or.</French>
-     <German>Kein Geld? Keine Panik! Jeder hat das Problem. Versuche ein paar Handelskarren oder Handelsschiffe zu bauen und f&#252;lle so deine Schatzruhe, oder du l&#228;sst ein paar H&#228;ndler und Priester in deinen St&#228;dten arbeiten.</German>
-     <Italian>Niente soldi? Niente panico! Ognuno ha il problema. I tentativi di costruire un paio di carrelli commerciali o navi mercantili e cos&#236; riempire la vostra pace tesoro, o si lascia un paio di mercanti e sacerdoti che lavorano nelle vostre citt&#224;.</Italian>
-     <Spanish>&#191;Sin oro? &#161;Tranquilo! Gana ingresos conduciendo misiones comerciales con mercaderes, caravanas o barcos mercantes. Tambi&#233;n, los especialistas sacerdote y mercader, generan oro.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_122</Tag>
-     <English>The end of the Bronze Age saw an increase in trade. Nationwide trade networks developed which brought unknown goods into the emerging cities. In PAE once a civilization has completed the Silk Road Project, Trading Posts can be constructed that facilitate the first trade routes between cities.</English>
-     <French>Il a fallu attendre la fin de l'&#226;ge du bronze pour voir un accroissement des &#233;changes commerciaux. Dans PAE, d&#232;s qu'une civilisation termine la Route de la Soie, le Comptoir devient disponible pour toutes les civilisations afin de d&#233;velopper les premi&#232;res routes commerciales.</French>
-     <German>Erst der am Ende der Bronzezeit einsetzende Warenhandel f&#252;hrte zu einem &#252;berregionalen Handelsnetz, der auch unbekannte Waren in die entstehenden St&#228;dte brachte. In PAE erm&#246;glicht deswegen das Projekt Seidenstra&#223;e den Bau von Handelsposten, die f&#252;r erste Handelsverbindungen in andere St&#228;dte sorgen.</German>
-     <Italian>Non &#232; stato fino a quando l'inizio della fine del commercio del Bronzo di merci che hanno portato a una rete commerciale nazionale che ha portato le merci sconosciuti nelle citt&#224; emergenti. In PAE consente quindi la Via della Seta progetto per costruire stazioni commerciali, che forniscono primi collegamenti commerciali verso altre citt&#224;.</Italian>
-     <Spanish>El fin de la Edad de Bronce vio un aumento del comercio. El desarrollo de las redes comerciales a nivel nacional trajo mercanc&#237;as desconocidas en ciudades emergentes. En PAE una vez que una civilizaci&#243;n ha completado el proyecto la Ruta de la Seda, los Puestos Comerciales pueden ser constru&#237;dos para facilitar la primera ruta comercial entre ciudades.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_123</Tag>
-     <English>Did you already send out a scout to a foreign city?</English>
-     <French>Avez-vous d&#233;j&#224; envoy&#233; un &#233;claireur dans une ville &#233;trang&#232;re ?</French>
-     <German>Schon einen Kundschafter in eine fremde Stadt geschickt?</German>
-     <Italian>Gi&#224; un esploratore inviato a una citt&#224; straniera?</Italian>
-     <Spanish>&#191;Ya has env&#237;ado un batidor a una ciudad extranjera?</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_124</Tag>
-     <English>In ancient times, new settlement areas were developed with the establishment of colonies. In PAE a new founded city is a settlement, then a village (from Pop 3), afterwards a city (from Pop 6), then a province (from Pop 10) and last but not least a metropolis (from 18 Pop). Settlements and villages have very low maintenance costs, but better buildings can be created only with higher city levels. All forms have their own advantages and disadvantages and can even be enhanced by certain forms of government.</English>
-     <French>Dans PAE, une ville passe par plusieurs statuts selon l'&#233;volution de sa population. Les premiers ont un co&#251;t de maintenance r&#233;duit mais les statuts plus &#233;volu&#233;s donnent acc&#232;s &#224; des b&#226;timents plus int&#233;ressants.</French>
-     <German>In der Antike wurden neue Siedlungsgebiete mit der Gr&#252;ndung von Kolonien erschlossen. In PAE ist jede neugegr&#252;ndete Stadt zuerst eine Siedlung, dann ein Dorf (ab Pop 3), danach eine Stadt (ab Pop 6), daraufhin eine Provinz (ab Pop 10) und zu guter letzt eine Metropole (ab Pop 18). Siedlungen und D&#246;rfer haben sehr geringe Unterhaltskosten, daf&#252;r k&#246;nnen bessere Geb&#228;ude erst mit h&#246;heren Stadtstufen erstellt werden. Alle Formen haben ihre eigenen Vor- und Nachteile und k&#246;nnen durch bestimmte Staatsformen auch noch verbessert werden.</German>
-     <Italian>Nei tempi antichi, sono state sviluppate nuove aree di insediamento, con la creazione di colonie. In PAE ogni citt&#224; appena fondata per la prima volta un insediamento, quindi un villaggio (dal Pop 3), poi una citt&#224; (da Pop 6), poi una provincia (da Pop 10) e, ultimo ma non meno importante una metropoli (da Pop 18). Insediamenti e villaggi hanno costi di manutenzione molto bassi, per gli edifici migliori possono essere creati solo con i livelli pi&#249; alti della citt&#224;. Tutte le forme hanno i loro vantaggi e svantaggi e pu&#242; essere migliorato da certe forme di governo.</Italian>
-     <Spanish>En la antig&#252;edad, las nuevas zonas de asentamiento fueron desarrolladas con la fundaci&#243;n de colonias. En PAE cada nueva ciudad fundada es un asentamiento, despu&#233;s una municipio (desde pob 3), m&#225;s tarde una ciudad (desde pob 6), luego una provincia (desde pob 10) y por &#250;ltimo una metr&#243;polis (desde pob 18). Los asentamientos y aldeas tienen unos costes muy bajos de mantenimiento, pero los mejores edificios s&#243;lo pueden ser creados en los niveles de ciudad m&#225;s altos. Todas las formas tienen sus propias ventajas y desventajas y pueden incluso ser aumentadas por ciertas formas de gobierno.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_125</Tag>
-     <English>After researching the mapping technology it is possible to make the first map of rivers and coasts. Until then, already explored areas darken again, unless there was an outstanding buildings erected.</English>
-     <French>Avec la d&#233;couverte de la Cartographie, il devient possible de cartographier les rivi&#232;res et les c&#244;tes. Avant cela, toute zone explor&#233;e redevient imm&#233;diatement "noire" d&#232;s qu'elle n'est plus dans la ligne de vue de vos unit&#233;s.</French>
-     <German>Ab der Technologie Kartographie ist es m&#246;glich erste Karten von Fl&#252;ssen und K&#252;sten anzufertigen. Bis dahin werden sich bereits erkundete Gebiete wieder verdunkeln, au&#223;er es wurde dort ein herausragendes Geb&#228;ude errichtet.</German>
-     <Italian>Dalla mappatura tecnologia &#232; possibile fare le prime mappe di fiumi e coste. Fino ad allora, le regioni di esplorazione si scurisce di nuovo gi&#224;, a meno che non un eccezionale edificio fu eretto.</Italian>
-     <Spanish>Despu&#233;s del descubrimiento de la tecnolog&#237;a de mapas es posible hacer el primer mapa de r&#237;os y costas. Hasta entonces, todas las zonas ya exploradas se vuelven oscuras otra vez, a menos que hubiera erigido edificios destacados.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_126</Tag>
-     <English>Household slaves provide research and culture points, inasmuch as the citizens could occupy themselves with science and philosophy, while the slaves relieved them of heavy and unpleasant physical work.</English>
-     <French>Les domestiques donnent un bonus de recherche et culture car ils permettent aux citoyens de s'adonner &#224; la science et la philosophie pendant qu'eux-m&#234;mes s'occupent des t&#226;ches p&#233;nibles.</French>
-     <German>Haussklaven bringen Forschungs- und Kulturpunkte, da sich die B&#252;rger mit Wissenschaft und Philosophie besch&#228;ftigen konnten, w&#228;hrend durch die Sklaven ihnen die schwere und unangenehme k&#246;rperliche Arbeit abgenommen wurde.</German>
-     <Italian>Schiavi casa portano culturali e di ricerca punti, dal momento che i cittadini con la scienza e la filosofia potevano affrontare mentre sono stati rimossi dagli schiavi del lavoro fisico pesante e sgradevole.</Italian>
-     <Spanish>Los esclavos del campo proporcionan puntos de investigaci&#243;n y cultura, ya que los ciudadanos pueden ocuparse de la ciencia y la filosof&#237;a, mientras los esclavos realizan por ellos el pesado y desagradable trabajo f&#237;sico.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_127</Tag>
-     <English>If a unit in a stack with a General unit wins a battle, the General unit can get an experience point as well.</English>
-     <French>Quand une unit&#233; victorieuse fait partie d'une pile contenant un G&#233;n&#233;ral, ce dernier gagne aussi de l'exp&#233;rience.</French>
-     <German>Gewinnt eine Einheit aus einem Stack mit Generalseinheit einen Kampf, kann die Generalseinheit ebenfalls einen Erfahrungspunkt bekommen.</German>
-     <Italian>Vinci una unit&#224; da una pila con l'unit&#224; generale una lotta, l'unit&#224; generale pu&#242; anche ottenere un punto esperienza.</Italian>
-     <Spanish>Si una unidad en una pila con una unidad de General gana una batalla, la unidad de General puede ganar un punto de experiencia tambi&#233;n.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_128</Tag>
-     <English>Bonus resources on neutral territory can be claimed with a fortress (clay or stone) and a stationary unit. If the fortress is empty and not in the cultural area of a city, the plot again becomes neutral.</English>
-     <French>Vous pouvez prendre le contr&#244;le de ressources en territoire neutre en construisant dessus une forteresse (argile ou pierre) et en y laissant une unit&#233; militaire.</French>
-     <German>Bonusressourcen auf neutralem Terrain k&#246;nnen mit einer Festung (Lehm oder Stein) und einer stationierten Einheit bewirtschaftet werden. Steht die Festung leer und nicht im kulturellen Einzugsgebiet einer Stadt, wird das Feld wieder neutral.</German>
-     <Italian>Risorse bonus sul territorio neutrale possono essere gestiti con una fortezza (argilla o pietra) e un'unit&#224; distribuito. Se la fortezza vuota e non nel bacino idrografico culturale di una citt&#224;, il campo &#232; ancora neutrale.</Italian>
-     <Spanish>Los recursos en un territorio neutral pueden estar bajo control con una fortaleza (arcilla o piedra) y una unidad estacionada. Si la fortaleza est&#225; vac&#237;a y no est&#225; en el &#225;rea cultural de una ciudad, la casilla se vuelve neutral otra vez.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_129</Tag>
-     <English>Press [CTRL + P] to activate or deactivate the message, when a player's on turn.</English>
-     <French>Appuyez sur [CTRL + P] pour activer ou d&#233;sactiver les messages lors du tour d'un autre joueur.</French>
-     <German>Dr&#252;cken Sie [STRG + P], um die Kurzmeldung ein- und auszuschalten, welcher Spieler gerade am Zug ist.</German>
-     <Italian>Premere [Ctrl + P] per il breve messaggio e si spegne quale giocatore &#232; attualmente sul treno.</Italian>
-     <Spanish>Presiona [CTRL + P] para activar o desactivar el mensaje, cuando un jugador est&#225; en su turno.</Spanish>
-   </TEXT>
-   <TEXT>
-     <Tag>TXT_KEY_HINT_130</Tag>
-     <English>If you play with the player name "Apocalypto", you can look forward to greatly increased natural disasters.</English>
-     <French>Si vous jouez une partie avec le nom "Apocalypto", vous pouvez vous attendre &#224; affronter un grand nombre de catastrophes naturelles.</French>
-     <German>Spielt man mit dem Spielernamen "Apocalypto", darf man sich auf stark vermehrte Naturkatastrophen freuen.</German>
-     <Italian>Se si gioca con il nome del giocatore "Apocalypto", si pu&#242; guardare avanti per notevolmente aumentato calamit&#224; naturali.</Italian>
-     <Spanish>Si juegas con el nombre de jugador "Apocalypto", puedes esperar incrementados mayores desastres naturales.</Spanish>
-   </TEXT>
+    <Tag>TXT_KEY_HINT_45</Tag>
+    <English>If you are having trouble spreading a Cult, make sure the city you are spreading it to has the appropriate resources and that your treasury has enough gold to fund the expansion. Keep in mind it costs significantly more to spread a Cult to a foreign city than to your own.</English>
+    <French>Si vous n'arrivez pas &#224; d&#233;velopper une culte, assurez-vous que la ville dans laquelle vous voulez l'implanter dispose des ressources n&#233;cessaires et que vous avez assez d'or dans votre tr&#233;sor pour financer son d&#233;veloppement. N'oubliez pas que cela co&#251;te bien plus cher d'implanter une culte dans une ville &#233;trang&#232;re que de l'implanter dans l'une des v&#244;tres.</French>
+    <German>Wenn Sie einen Kult expandieren wollen, stellen Sie sicher, dass die Stadt, in der sie angesiedelt werden soll, die passenden Ressourcen besitzt und hinreichend Gold f&#252;r die Finanzierung der Expansion in Ihrer Schatzkammer bereitsteht. Beachten Sie, dass die Etablierung eines Kultes in einer fremden Stadt deutlich teurer ist als die Ansiedelung in einer eigenen Stadt.</German>
+    <Italian>Se hai problemi a espandere le culto, assicurati che la citt&#224; verso la quale vuoi diffonderla sia dotata delle risorse appropriate e che tu possegga abbastanza oro per finanziare l'operazione. Tieni presente che diffondere le culto in una citt&#224; straniera, costa molto di pi&#249; che farlo in una citt&#224; propria.</Italian>
+    <Spanish>Si tienes problemas para expandir un culto, aseg&#250;rate de que la ciudad a la que intentas expandirte tiene los recursos apropiados y que tu tesoro dispone de oro suficiente para financiar la expansi&#243;n. Ten presente que cuesta bastante m&#225;s extender un culto a una ciudad extranjera que a una de las tuyas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_66</Tag>
+    <English>To build a Cult centre building, you need a specific type of Great Person. Check the Civilopedia for the type required by each Cult so you can assign your specialists accordingly.</English>
+    <French>Pour construire le b&#226;timent abritant le si&#232;ge de votre culte, vous devez disposer d'un type de personnage illustre bien pr&#233;cis. Consultez la Civilop&#233;die pour conna&#238;tre le type de personnage associ&#233; &#224; votre culte.</French>
+    <German>Um ein Kultzentrum zu errichten, ben&#246;tigen Sie eine spezielle Gro&#223;e Pers&#246;nlichkeit. Schlagen Sie in der Zivilop&#228;die nach, welche Art Sie f&#252;r den jeweiligen Kult ben&#246;tigen, damit Sie Ihre Spezialisten entsprechend zuweisen k&#246;nnen.</German>
+    <Italian>Per costruire un quartier generale del culto avrai bisogno di un Grande personaggio specifico. Controlla sulla Civilopedia il tipo richiesto da ogni culto, in modo da poter assegnare gli specialisti nel migliore dei modi.</Italian>
+    <Spanish>Para construir la sede de un culto necesitas un tipo especfico de gran personaje. Consulta en la Civilopedia el tipo que se necesita con cada culto para que puedas asignar tus especialistas en consecuencia.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_67</Tag>
+    <English>If you choose to found a Cult, remember that even though the cult centre will enjoy extra income, each city hosting the cult will suffer increased maintenance costs. Build Courthouses in all of your Cult cities and markets in your cult centres, otherwise the Cult may actually run at a net loss.</English>
+    <French>Si vous choisissez de fonder une culte, sachez que m&#234;me si le si&#232;ge social b&#233;n&#233;ficiera de revenus suppl&#233;mentaires, chaque ville abritant cette soci&#233;t&#233; subira une hausse de ses co&#251;ts d'entretien. Construisez des tribunaux dans toutes ces villes et des banques pr&#232;s de vos si&#232;ges sociaux, sous peine de subir une banqueroute.</French>
+    <German>Wenn Sie einen Kult gr&#252;nden wollen, achten Sie darauf, dass das Kultzentrum zwar zus&#228;tzliche Einnahmen bringt, die Unterhaltskosten f&#252;r St&#228;dte mit Kulte jedoch h&#246;her sind. Errichten Sie Gerichtsgeb&#228;ude in allen Ihren St&#228;dten mit Kulte und M&#228;rkte in Ihren Kultzentren, sonst k&#246;nnte es sein, dass die Kulte insgesamt Verluste einf&#228;hrt.</German>
+    <Italian>Se decidi di fondare un culto, ricorda che sebbene i quartieri generali beneficeranno di rendite extra, ogni citt che ospita un culto vedr aumentare i suoi costi di mantenimento. Costruisci Palazzi di giustizia nelle citt con le culto e Banche nei quartieri generali, altrimenti le culto potrebbe andare in passivo.</Italian>
+    <Spanish>Si eliges fundar un culto, recuerda que -aunque sus sedes gocen de beneficios extra- toda ciudad que albergue un culto tendr&#225; mayores costes de mantenimiento. Construye delegaciones en todas tus ciudades con cultos y bancos en tus sedes; de otro modo, el culto no har&#225; m&#225;s que generar p&#233;rdidas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_72</Tag>
+    <English>Only Great People can found new Cults. Cults also require specific resources for their product lines to thrive. If you aim to create a specific Cult to aid your nation's interests, try to plan ahead, choosing a Cult for which you can supply the needed resources and produce the needed Great Person.</English>
+    <French>Seuls les personnages illustres peuvent fonder de nouveaux cultes. Ces derniers requi&#232;rent &#233;galement des ressources sp&#233;cifiques pour pouvoir tourner &#224; plein r&#233;gime. Si vous souhaitez cr&#233;er un culte bien particuli&#232;re dans votre ville pour favoriser les int&#233;r&#234;ts de votre nation, essayez de planifier les choses en choisissant un culte requ&#233;rant des ressources pr&#233;sentes sur votre territoire et un personnage illustre que vous produirez en temps voulu.</French>
+    <German>Nur Gro&#223;e Pers&#246;nlichkeiten k&#246;nnen neue Kulte gr&#252;nden. Kulte ben&#246;tigen auch spezielle Ressourcen, um ihre Produktionsketten voranzutreiben. Wenn Sie einen speziellen Kult errichten m&#246;chten, der den Interessen Ihrer Nation dienen soll, versuchen Sie vorausschauend zu planen, indem Sie einen Kult w&#228;hlen, &#252;ber deren erforderliche Ressourcen Sie verf&#252;gen, und erstellen Sie die ben&#246;tigte Gro&#223;e Pers&#246;nlichkeit.</German>
+    <Italian>Solo i Grandi personaggi possono fondare nuove cultos. Queste ultime richiedono anche risorse specifiche per accrescere le proprie linee produttive. Se ambisci a creare un culto che possa fare gli interessi della tua nazione, cerca di pianificare in anticipo, scegliendo un culto a cui potrai fornire le risorse di cui avr bisogno, e producendo il Grande personaggio richiesto.</Italian>
+    <Spanish>Solo los grandes personajes pueden fundar nuevos cultos. Los cultos tambi&#233;n requieren recursos espec&#237;ficos para que sus l&#237;neas de productos prosperen. Si tu objetivo es crear un culto concreto para ayudar a los intereses de tu naci&#243;n, trata de planificar a largo plazo, y elige un culto que pueda suministrar los recursos necesarios y producir el gran personaje necesario.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_101</Tag>
+    <English>If you get a skull over your cities, it means they have the plague! The population and units in the city and in the surrounding region will probably decrease dramatically. To reduce the effects and the duration of plague, keep your cities healthy.</English>
+    <French>Si un cr&#226;ne appara&#238;t au-dessus d'une de vos villes, cela signifie qu'elle est frapp&#233;e par une peste ! Attendez-vous alors &#224; voir la population et les unit&#233;s dans la ville et la r&#233;gion environnante diminuer consid&#233;rablement. Pour r&#233;duire la dur&#233;e et les effets de l'&#233;pid&#233;mie, gardez vos villes en bonne sant&#233;.</French>
+    <German>Wenn ein einzelner Totenkopf &#252;ber Ihren St&#228;dten eingeblendet wird, bedeutet dies, dass dort eine Pest (todbringende Seuche/Epidemie) ausgebrochen ist! Die Anzahl der Bev&#246;lkerung und Einheiten in der betreffenden Stadt und ihrer n&#228;heren Umgebung werden aller Voraussicht nach dramatisch sinken. Um die Auswirkungen und Dauer der Pest zu reduzieren, sollten Sie den Gesundheitswert Ihrer St&#228;dte m&#246;glichst hoch halten.</German>
+    <Italian>Se un singolo teschio appare sopra le vostre citt&#224;, questo significa che vi &#232; una pestilenza scoppi&#242; (malattia mortale / epidemica)! Il numero di popolazione e di unit&#224; in quella citt&#224; e nei dintorni sono tenuti a scendere drasticamente. Al fine di ridurre l'impatto e la durata della peste, si dovrebbe tenere il valore della salute delle vostre citt&#224; pi&#249; in alto possibile.</Italian>
+    <Spanish>Si aparece una calavera sobre tus ciudades... &#161;es por que tienen la peste! La poblaci&#243;n y las unidades de la ciudad y su regi&#243;n circundante probablemente comiencen a decrecer dram&#225;ticamente. Para reducir los efectos y la duraci&#243;n de la peste, mant&#233;n elevada la salud de tus ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_102</Tag>
+    <English>Plague can spread in many ways: through trade routes, along roads and between neighbouring cities.</English>
+    <French>Une &#233;pid&#233;mie peut se propager de nombreuses fa&#231;ons. Elle peut &#234;tre apport&#233;e par les routes commerciales, les routes et les villes voisines.</French>
+    <German>Eine Pest kann sich auf viele Arten ausbreiten: &#252;ber Handelswege, Stra&#223;en und zwischen benachbarten St&#228;dten.</German>
+    <Italian>La peste si pu&#242; diffondere in molti modi: attraverso rotte commerciali, lungo le strade e tra citt&#224; confinanti.</Italian>
+    <Spanish>La peste se puede propagar de muchas maneras, a trav&#233;s de las rutas comerciales, por los caminos o entre ciudades vecinas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_103</Tag>
+    <English>Be sure to check the "PAE Mod Concepts" page in the Civilopedia to read up on all the changes that have been made in this modification.</English>
+    <French>Pensez &#224; lire la page "Concepts de PAE" dans la Civilop&#233;die pour conna&#238;tre toutes les modifications apport&#233;es par ce MOD.</French>
+    <German>Lesen Sie die "PAE-Mod Konzepte" in der Zivilop&#228;die, um sich mit allen &#196;nderungen in dieser Modifikation vertraut zu machen.</German>
+    <Italian>Consulta la pagina "Nozioni di PAE" nella Civilopedia per leggere tutte le modifiche effettuate in questa modification.</Italian>
+    <Spanish>Aseg&#250;rate de consultar la p&#225;gina "Conceptos de PAE" en la Civilopedia para conocer todos los cambios que incorpora esta modificaci&#243;n.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_104</Tag>
+    <English>As in the ancient world so too in PAE wine only spreads over the course of time. Only in Asia can the grapes resource be found, with which the winery building can be built. This produces the wine bonus and establishes a vineyard on the periphery of the city for harvesting further grapes. So if you dont have grapes, you have to trade them in order to produce it.</English>
+    <French>Comme durant l'antiquit&#233;, la culture de la vignes se propage avec le temps dans PAE. Seule l'Asie en poss&#232;de en d&#233;but de partie. Il vous faudra n&#233;gocier avec cette nation pour en obtenir et construire un vigneron qui permettra l'implantation de vignes aux alentours de vos villes.</French>
+    <German>Wie in der Antike wird auch in PAE der Wein erst im Laufe der Zeit verbreitet. Nur in Asien findet man die Ressource Trauben, mit der das Geb&#228;ude Winzer errichtet werden kann. Dieser erzeugt das Bonusgut Wein und errichtet im Umkreis jeder Stadt ein Weingut zum Ernten weiterer Trauben. Solltest du also nicht im Besitz von Trauben sein, musst du diese erhandeln, um Wein selbst zu produzieren.</German>
+    <Italian>Come nel mondo antico cos&#236; anche nel vino PAE estende solo nel corso del tempo. Solo in Asia si trova la risorsa uve, con la quale l'edificio cantina pu&#242; essere costruito. Questo produce il bonus vino e stabilisce un vigneto alla periferia della citt&#224; per la raccolta ulteriori uva. Quindi, se non avete l'uva, dovete scambiarli per produrlo.</Italian>
+    <Spanish>Al igual que en el mundo antiguo, en PAE el vino solo se propaga en el transcurso del tiempo. Las uvas solo pueden ser encontradas en Asia, con las que se puede construir la bodega. Esto produce el recurso vino y establece un vi&#241;edo en la periferia de la ciudad para cosechar mejores uvas. As&#237; que si no tienes uvas, tienes que comerciarlas para producirlas.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_105</Tag>
+    <English>In the ancient world wood was needed to forge iron in order to build ships. This has been implemented in PAE: Starting in the Bronze Age, if a city produces a naval unit there is a possibility that a nearby forest will be cleared.</English>
+    <French>Dans le monde antique, le bois &#233;tait n&#233;cessaire pour forger les armes des soldats. Dans PAE, d&#232;s l'&#226;ge du bronze, quand une ville contruit une unit&#233;, il y a une chance qu'une for&#234;t environnante soit automatiquement d&#233;frich&#233;e.</French>
+    <German>In der Antike ben&#246;tigte man Holz, um Eisen zu schmieden und Schiffe zu bauen. Bei PAE wird dies umgesetzt: Ab der Bronzezeit besteht die M&#246;glichkeit, dass bei der Produktion einer Einheit ein Wald im Umkreis der produzierenden Stadt gerodet wird.</German>
+    <Italian>Nei tempi antichi, il legno era necessario per forgiare il ferro e costruire navi. In PAE questo viene implementato: Da dell'et&#224; del bronzo, vi &#232; la possibilit&#224; che la produzione di una unit&#224;, una foresta viene cancellata all'interno della citt&#224; di fabbricazione.</Italian>
+    <Spanish>En el mundo antiguo la madera era necesaria para forjar hierro y la construcci&#243;n de barcos. Esto ha sido implementado en PAE: Empezando en la Edad de Bronce, si una ciudad produce una unidad naval hay una posibilidad de que un bosque cercano sea talado.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_106</Tag>
+    <English>Victory in combat not only increases your soldiers experience but there is also a possibility of earning gold, enslaving the enemy unit or even causing the enemy unit to defect to your side!</English>
+    <French>Un combat victorieux ne rapporte pas seulement de l'exp&#233;rience &#224; vos soldats. Il peut aussi vous faire gagner de l'or et r&#233;duire en esclavage ou convertir &#224; votre cause le vaincu.</French>
+    <German>Der Sieg &#252;ber eine feindliche Einheit bringt nicht nur Erfahrung, sondern es besteht die M&#246;glichkeit, dass man einen Goldbetrag erobert, der Feind versklavt wird oder sogar die feindliche Einheit &#252;berl&#228;uft.</German>
+    <Italian>La vittoria su una unit&#224; nemica non solo esperienza, ma c'&#232; la possibilit&#224; che hai catturato una quantit&#224; d'oro, il nemico &#232; schiavo o addirittura overflow l'unit&#224; nemica.</Italian>
+    <Spanish>La victoria en combate no solo aumenta la experiencia de tus soldados sino que tambi&#233;n hay una posibilidad de adquirir oro, esclavizar la unidad enemiga o &#161;incluso hacer que la unidad enemiga se pase a tu bando!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_107</Tag>
+    <English>The mercenary post building provides a mercenary resource bonus appropriate to your culture. This increases the happiness in your cities and can be traded with other civilizations. Trading for a foreign mercenary resource allows for the training of the corresponding mercenary unit.</English>
+    <French>Le poste de recrutement mercenaire vous fournit une ressource mercenaire correspondant &#224; votre culture. Elle augmente le bonheur dans vos villes et peut &#234;tre &#233;changer avec vos adversaires. L'acquisition d'une ressource mercenaire &#233;trang&#232;re vous permet de construire l'unit&#233; mercenaire associ&#233;e.</French>
+    <German>Das Geb&#228;ude S&#246;ldnerposten erzeugt ein Bonusgut der entsprechenden S&#246;ldnerressource. Diese steigert die Zufriedenheit in den eigenen St&#228;dten und kann mit andern Zivilisationen gehandelt werden. Eine fremde S&#246;ldnerressource erm&#246;glicht den Bau der entsprechenden S&#246;ldnereinheit.</German>
+    <Italian>L'edificio posto mercenario offre un bonus risorsa mercenario appropriato per la vostra cultura. Questo aumenta la felicit&#224; nelle vostre citt&#224; e possono essere scambiati con altre civilt&#224;. Trading di una risorsa mercenario straniero consente la formazione della corrispondente unit&#224; mercenario.</Italian>
+    <Spanish>El edificio puesto mercenario proporciona el recurso mercenario apropiado a tu cultura. Esto aumenta la felicidad en tus ciudades y puede ser comerciado con otras civilizaciones. Comerciar por un recurso mercenario extranjero permite el entrenamiento de la correspondiente unidad mercenaria.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_108</Tag>
+    <English>Many wonders of the world are only conceivable in the context of their historical development. Without the Greek culture there would be no Parthenon, without the Egyptian culture there would be no Pyramids along the Nile. Therefore, many wonders need their specific religion in PAE.</English>
+    <French>De nombreuses merveilles ne sont concevables que dans leur contexte historique. Sans culture grecque, Parth&#233;non aurait-il exist&#233; ? Sans culture &#233;gyptienne, les Pyramides existeraient-elles le long du Nil ? Dans PAE, certaines merveilles n&#233;cessitent une religion sp&#233;cifique.</French>
+    <German>Viele Weltwunder sind nur im Kontext ihrer historischen Entwicklung denkbar. Ohne die griechische Kultur g&#228;be es keinen Parthenon, ohne die &#228;gyptische keine Pyramiden am Nil. Deswegen brauchen viele Wunder in PAE ihre spezifische Religion.</German>
+    <Italian>Molte meraviglie del mondo sono possibili solo nel contesto del loro sviluppo storico. Senza la cultura greca non c'erano Partenone, senza le piramidi egizie sul Nilo no. Perch&#233; molti miracoli nel PAE loro religione specifica.</Italian>
+    <Spanish>Algunas maravillas del mundo son solo posibles en el conexto de su desarrollo hist&#243;rico. Sin la cultura griega no estar&#225; el Parten&#243;n, sin la cultura egipcia no estar&#225;n las Pir&#225;mides a lo largo del Nilo. Por lo tanto, algunas maravillas necesita su religi&#243;n espec&#237;fica en PAE.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_109</Tag>
+    <English>Slaves can be exploited in many different ways: For rapid development of the country, to improve your account balance, to accelerate production, or as a resident urban population.</English>
+    <French>Les esclaves peuvent &#234;tre utilis&#233;s de diff&#233;rentes fa&#231;ons : construction rapide des am&#233;nagements, am&#233;lioration de vos finances, acc&#233;l&#233;ration de la production ou affectation dans les villes.</French>
+    <German>Sklaven k&#246;nnen auf viele verschiedene Arten eingesetzt werden: Zum schnelleren Ausbau des Landes, zur Verbesserung des Kontostandes, zur Beschleunigung der Produktion oder als ans&#228;ssige Stadtbev&#246;lkerung.</German>
+    <Italian>Slave possono essere utilizzati in molti modi diversi: a rapida espansione del paese, per migliorare il saldo del conto, per accelerare la produzione o la popolazione urbana residente.</Italian>
+    <Spanish>Los esclavos pueden ser explotados de diferentes maneras: Para el r&#225;pido desarrollo del pa&#237;s, para mejorar el balance las cuentas, para acelerar la producci&#243;n, o como poblaci&#243;n urbana residente.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_110</Tag>
+    <English>You can settle slaves in different ways: A mine slave boosts production and helps great merchants to success, a field slave supports engineers and acquires food and a house slave supports scientists.</English>
+    <French>Vous pouvez affecter les esclaves de diff&#233;rentes fa&#231;ons : un [COLOR_HIGHLIGHT_TEXT]mineur[COLOR_REVERT] am&#233;liore la production et favorise l'apparition d'un Ing&#233;nieur illustre, un [COLOR_HIGHLIGHT_TEXT]paysan[COLOR_REVERT] r&#233;colte de la nourriture et favorise l'apparition d'un Marchand illustre, enfin un [COLOR_HIGHLIGHT_TEXT]domestique[COLOR_REVERT] am&#233;liore la culture/science et favorise l'apparition d'un Savant illustre.</French>
+    <German>Ein in einer Stadt angesiedelter Sklave kann als Bergwerksklave die Produktion st&#228;rken und einem Gro&#223;en H&#228;ndler zum Erfolg verhelfen, als Feldsklave Ingenieure bei ihrer Arbeit zur Hand gehen und mehr Nahrung heranschaffen, oder als Haussklave Wissenschaftler bei ihrer Arbeit unterst&#252;tzen.</German>
+    <Italian>A comunemente si trova in una citt&#224; pu&#242; essere utilizzato come il mio schiavo schiavo rafforzare la produzione e aiutare un Grande Mercante di successo, andando come un campo ingegneri schiavi nel loro lavoro a portata di mano e portare pi&#249; cibo, o di supporto come gli scienziati casa degli schiavi nel loro lavoro.</Italian>
+    <Spanish>Puedes asentar esclavos de diferentes maneras: Un esclavo de la mina aumenta la producci&#243;n y ayuda a que aparezca un gran mercader, un esclavo del campo ayuda a ingenieros y adquiere comida y un esclavo dom&#233;stico ayuda a cient&#237;ficos.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_111</Tag>
+    <English>Caution! If a slave is settled in a city, a slave market will be constructed automatically in that city. This building creates some unhappiness, but also supplies the slave resource which is needed for many units and buildings.</English>
+    <French>Attention ! Si le march&#233; aux esclaves vous fournit une pr&#233;cieuse ressource d'esclaves, il est aussi la cause de fr&#233;quents troubles et r&#233;voltes dans sa ville d'accueil.</French>
+    <German>Achtung! Ist ein Sklave in einer Stadt angesiedelt, gibt es dort automatisch einen Sklavenmarkt. Dieser senkt die Zufriedenheit der Stadt, liefert aber auch die Ressource Sklave, die zum Bau gro&#223;er Schiffe und Geb&#228;ude ben&#246;tigt wird.</German>
+    <Italian>Attenzione! &#200; uno schiavo che si trova in una citt&#224;, vi &#232; automaticamente un mercato di schiavi. Questo abbassa la soddisfazione della citt&#224;, ma fornisce anche slave risorsa, che &#232; necessario per la costruzione di grandi navi ed edifici.</Italian>
+    <Spanish>&#161;Precauci&#243;n! Si un esclavo es asentado en una ciudad, autom&#225;ticamente ser&#225; creado un mercado de esclavos en esa ciudad. Este edificio crea algo de infelicidad, pero tambi&#233;n aporta el recurso esclavo que es necesrio para algunas unidades y edificios.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_112</Tag>
+    <English>Caution! The number of settled slaves should never be too high in a city, otherwise there is a danger of a slave revolt. Pay attention to the display in the cityscreen.</English>
+    <French>Attention ! Un grand nombre d'esclaves affect&#233;s dans une ville augmente significativement le risque de r&#233;voltes. Surveillez l'indicateur associ&#233; dans l'&#233;cran de ville.</French>
+    <German>Achtung! Die Anzahl der angesiedelten Sklaven sollte in einer Stadt nie zu hoch sein, sonst besteht die Gefahr eines Sklavenaufstands. Achte dabei auf die Anzeige im Stadtbildschirm.</German>
+    <Italian>Attenzione! Il numero degli schiavi regolate dovrebbe essere troppo alta in una citt&#224; mai altrimenti c'&#232; il pericolo di una rivolta di schiavi. Prestare attenzione alla visualizzazione a schermo citt&#224;.</Italian>
+    <Spanish>&#161;Precauci&#243;n! El n&#250;mero de esclavos asentados nunca debe ser demasiado alto en una ciudad, de lo contrario hay peligro de una revuelta de esclavos. Presta atenci&#243;n a la pantalla de ciudad.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_113</Tag>
+    <English>Did you ever wonder why improvements are given away for free in CIV? This has been changed in PAE: The development of the countryside costs gold.</English>
+    <French>Vous &#234;tes vous d&#233;j&#224; demand&#233; pourquoi les am&#233;nagements &#233;taient offerts gratuitement dans CIV ? Non ? Et bien, dans PAE, vous devrez mettre la main &#224; la poche.</French>
+    <German>Hast du dich auch immer gewundert, warum in CIV Modernisierungen verschenkt werden? Das ist jetzt anders: Der Ausbau des Landes kostet Geld.</German>
+    <Italian>Vi siete mai chiesti perch&#233; la modernizzazione &#232; presentato in CIV? Che ora &#232; cambiato: L'espansione del paese costa denaro.</Italian>
+    <Spanish>&#191;Alguna vez te has preguntado por qu&#233; las mejoras son gratis en CIV? Esto ha sido cambiado en PAE: El desarrollo del campo cuesta oro.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_115</Tag>
+    <English>Already sent a hunter to hunt? Many new animals are waiting for you, which can be stored as food in a nearby town. But be careful, animals know no cultural borders.</English>
+    <French>Avez-vous d&#233;j&#224; essay&#233; de chasser avec un chasseur ? De nombreux nouveaux animaux vous attendent. Leur viande pourra &#234;tre ajout&#233;e aux villes proches. Mais soyez prudent, les animaux peuvent faire des incursions &#224; la fronti&#232;re.</French>
+    <German>Schon einen J&#228;ger zum Jagen geschickt? Viele neue Tiere erwarten dich, die als Nahrung in einer nahe gelegenen Stadt eingelagert werden k&#246;nnen. Aber Achtung, Tiere kennen keine kulturellen Grenzen.</German>
+    <Italian>Anche un cacciatore inviato a cacciare? Molti nuovi animali ti aspettano, che possono essere memorizzati come cibo in una citt&#224; vicina. Ma attenzione, gli animali non conoscono confini culturali.</Italian>
+    <Spanish>&#191;Ya enviaste un cazador a cazar? Nuevos animales est&#225;n esper&#225;ndote, que pueden ser almacenados como comida en una ciudad cercana. Pero ten cuidado, los animales no conocen fronteras. </Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_116</Tag>
+    <English>City conquests promise rich bounty. But beware, too many units in one spot may cause your units to rebel and the loss can trigger unrest in your civilization.</English>
+    <French>La conqu&#234;te de cit&#233;s est all&#233;chante mais faites attention, une arm&#233;e trop importante r&#233;unie en seul endroit peut causer la r&#233;bellion d'une partie des unit&#233;s dont la perte peut d&#233;clencher des troubles dans votre civilisation.</French>
+    <German>Stadteroberungen versprechen fette Beute. Aber Achtung, zu viele Einheiten auf einem Fleck k&#246;nnen sich gegen dich stellen und rebellieren. Und der Verlust eines Generals kann Unruhen in der eigenen Zivilisation ausl&#246;sen.</German>
+    <Italian>Conquiste Citt&#224; promettono bottino grasso. Ma attenzione, troppe unit&#224; in uno spot pu&#242; stare e si ribellano contro di voi. E la perdita di un generale pu&#242; innescare disordini nella propria civilt&#224;.</Italian>
+    <Spanish>La conquista de ciudades promete ricos botines. Pero cuidado, demasiadas unidades en una sola casilla puede causar que tus unidades se rebelen y la p&#233;rdida puede provocar malestar en tu civilizaci&#243;n.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_114</Tag>
+    <English>Some regions of the ancient world harbored cultures which were known far and wide for their unique military prowess. Found in PAE at select locations are special mercenary resources which enables the training of these powerful warriors.</English>
+    <French>Certaines r&#233;gions du monde antique &#233;taient r&#233;put&#233;es pour un talent militaire particulier. Dans PAE, ces capacit&#233;s se traduisent par des ressources mercenaires diss&#233;min&#233;es &#224; travers la carte qui permettent de construire de puissantes unit&#233;s.</French>
+    <German>Einige Regionen der antiken Welt waren bekannt f&#252;r ihre einzigartigen milit&#228;rischen F&#228;higkeiten. Auch in PAE finden sich an ausgew&#228;hlten Orten spezielle S&#246;ldnerboni, die, mit einer Modernisierung versehen, den Bau von historischen Spezialeinheiten erlauben.</German>
+    <Italian>Alcune regioni del mondo antico erano noti per le loro capacit&#224; militari uniche. Anche in PAE in luoghi selezionati bonus mercenari speciali, dotati di una modernizzazione che permettono la costruzione di forze speciali storiche.</Italian>
+    <Spanish>Algunas regiones del mundo antiguo eran conocidas a lo largo y ancho por su capacidad militar &#250;nica. Encontrados en PAE en lugares seleccionados son recursos mercenarios especiales que permiten el entrenamiento de estos poderosos guerreros.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_117</Tag>
+    <English>Pay attention to your research rate! If you invest less than half your income in the development of your civilization, it can cause unrest in your cities.</English>
+    <French>Faites attention &#224; votre taux de recherche ! L'investissement de moins de la moiti&#233; de votre revenu dans le d&#233;veloppement de votre civilisation peut d&#233;clencher des &#233;meutes dans vos villes.</French>
+    <German>Achte auf deine Forschungsrate! Investierst du weniger als die H&#228;lfte deines Einkommens in die Entwicklung deiner Zivilisation, kann das zu Unruhen in deinen St&#228;dten f&#252;hren.</German>
+    <Italian>Prestare attenzione alla frequenza di ricerca! Si investe meno della met&#224; del suo reddito nello sviluppo della vostra civilt&#224; che pu&#242; portare a disordini nelle vostre citt&#224;.</Italian>
+    <Spanish>&#161;Presta atenci&#243;n a tu tasa de investigaci&#243;n! Si inviertes menos de la mitad de tus ingresos al desarrollo de tu civiizaci&#243;n, puede causar malestar en tus ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_118</Tag>
+    <English>Pillaging improvements earns your units experience as well as gold. The new Marauder promotions increase the amount of gold you amass from pillaging.</English>
+    <French>Le pillage des am&#233;nagements rapporte de l'or mais aussi de l'exp&#233;rience &#224; vos unit&#233;s. La nouvelle promotion Maraudeur permet d'am&#233;liorer le gain des pillages.</French>
+    <German>Pl&#252;ndert eine Einheit eine Modernisierung, gewinnt sie an Erfahrung, und mit den neuen Pl&#252;nderungsbef&#246;rderungen kann ein gro&#223;er Feldzug finanziert werden.</German>
+    <Italian>Saccheggiando i miglioramenti guadagna la vostra esperienza di unit&#224; cos&#236; come l'oro. Le nuove promozioni Marauder aumentano la quantit&#224; di oro si accumulano dal saccheggio.</Italian>
+    <Spanish>Saquear mejoras da a tus unidades experiencia adem&#225;s de oro. Los nuevos ascensos Merodeador aumentan la cantidad de oro que amasas del saqueo.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_119</Tag>
+    <English>Have you ever played with the Iberians or Dacians? Not only do the great ancient civilizations have their historical strengths, but also the smaller nations have their own buildings and units.</English>
+    <French>D&#233;j&#224; jou&#233; avec les Ib&#232;res ou Daces ? M&#234;me les civilisations plus modestes ont leurs propres b&#226;timents et unit&#233;s.</French>
+    <German>Schon mit den Iberern oder Dakern gespielt? Nicht nur die gro&#223;en antiken Zivilisationen besitzen ihre historischen St&#228;rken, sondern auch die kleineren V&#246;lker haben ihre eigenen Geb&#228;ude und Einheiten.</German>
+    <Italian>Gi&#224; giocato con gli iberici o Daci? Non solo le grandi civilt&#224; antiche hanno i loro punti di forza storici, ma anche le nazioni pi&#249; piccole hanno i loro edifici e unit&#224;.</Italian>
+    <Spanish>&#191;Has jugado alguna vez con los &#205;beros o los Dacios? No solo las grandes civilizaciones tienen sus hist&#243;ricas fuerzas, tambi&#233;n las peque&#241;as naciones tienen sus propios edificios y unidades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_120</Tag>
+    <English>The prehistoric period was tough. The emerging cultures endured many hardships and there was no possibility of expansion. Therefore settlers cannot be built until the technology Internal Colonization is researched.</English>
+    <French>Les cultures &#233;mergentes ont d&#251; affonter de nombreuses difficult&#233;s avant d'&#234;tre capables de s'&#233;tendre. La construction de colons n'est possible qu'&#224; partir de la d&#233;couverte de la Colonisation locale.</French>
+    <German>Die pr&#228;historische Zeit war hart. Die neu entstehenden Kulturen hatten genug Probleme, da war an Expansion nicht zu denken. Deswegen k&#246;nnen Siedler erst ab der Technologie Binnenkolonisierung gebaut werden.</German>
+    <Italian>Il periodo preistorico &#232; stata dura. Le culture emergenti sopportato molte difficolt&#224; e non c'era alcuna possibilit&#224; di[NEWLINE]espansione. Pertanto, i coloni non possono essere costruite fino alla tecnologia di colonizzazione interna &#232; ricercato.</Italian>
+    <Spanish>El periodo prehist&#243;rico fue duro. Las culturas emergentes soportaron muchas dificultades y no hab&#237;a posibilidad de expansi&#243;n. Por lo tanto los colonos no pueden ser constru&#237;dos hasta que se descubra la tecnolog&#237;a Colonizaci&#243;n Interna.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_121</Tag>
+    <English>Running out of gold? Dont panic! Earn revenue by conducting trade missions with merchants, caravans or merchantman ships. Also, priest and merchant specialists generate gold as well.</English>
+    <French>Plus d'argent dans les caisses ? Pas de panique ! Vous pouvez utiliser des marchands, caravanes ou navires marchands pour effectuer des missions commerciales. Les sp&#233;cialistes pr&#234;tres et marchands g&#233;n&#232;rent aussi de l'or.</French>
+    <German>Kein Geld? Keine Panik! Jeder hat das Problem. Versuche ein paar Handelskarren oder Handelsschiffe zu bauen und f&#252;lle so deine Schatzruhe, oder du l&#228;sst ein paar H&#228;ndler und Priester in deinen St&#228;dten arbeiten.</German>
+    <Italian>Niente soldi? Niente panico! Ognuno ha il problema. I tentativi di costruire un paio di carrelli commerciali o navi mercantili e cos&#236; riempire la vostra pace tesoro, o si lascia un paio di mercanti e sacerdoti che lavorano nelle vostre citt&#224;.</Italian>
+    <Spanish>&#191;Sin oro? &#161;Tranquilo! Gana ingresos conduciendo misiones comerciales con mercaderes, caravanas o barcos mercantes. Tambi&#233;n, los especialistas sacerdote y mercader, generan oro.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_122</Tag>
+    <English>The end of the Bronze Age saw an increase in trade. Nationwide trade networks developed which brought unknown goods into the emerging cities. In PAE once a civilization has completed the Silk Road Project, Trading Posts can be constructed that facilitate the first trade routes between cities.</English>
+    <French>Il a fallu attendre la fin de l'&#226;ge du bronze pour voir un accroissement des &#233;changes commerciaux. Dans PAE, d&#232;s qu'une civilisation termine la Route de la Soie, le Comptoir devient disponible pour toutes les civilisations afin de d&#233;velopper les premi&#232;res routes commerciales.</French>
+    <German>Erst der am Ende der Bronzezeit einsetzende Warenhandel f&#252;hrte zu einem &#252;berregionalen Handelsnetz, der auch unbekannte Waren in die entstehenden St&#228;dte brachte. In PAE erm&#246;glicht deswegen das Projekt Seidenstra&#223;e den Bau von Handelsposten, die f&#252;r erste Handelsverbindungen in andere St&#228;dte sorgen.</German>
+    <Italian>Non &#232; stato fino a quando l'inizio della fine del commercio del Bronzo di merci che hanno portato a una rete commerciale nazionale che ha portato le merci sconosciuti nelle citt&#224; emergenti. In PAE consente quindi la Via della Seta progetto per costruire stazioni commerciali, che forniscono primi collegamenti commerciali verso altre citt&#224;.</Italian>
+    <Spanish>El fin de la Edad de Bronce vio un aumento del comercio. El desarrollo de las redes comerciales a nivel nacional trajo mercanc&#237;as desconocidas en ciudades emergentes. En PAE una vez que una civilizaci&#243;n ha completado el proyecto la Ruta de la Seda, los Puestos Comerciales pueden ser constru&#237;dos para facilitar la primera ruta comercial entre ciudades.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_123</Tag>
+    <English>Did you already send out a scout to a foreign city?</English>
+    <French>Avez-vous d&#233;j&#224; envoy&#233; un &#233;claireur dans une ville &#233;trang&#232;re ?</French>
+    <German>Schon einen Kundschafter in eine fremde Stadt geschickt?</German>
+    <Italian>Gi&#224; un esploratore inviato a una citt&#224; straniera?</Italian>
+    <Spanish>&#191;Ya has env&#237;ado un batidor a una ciudad extranjera?</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_124</Tag>
+    <English>In ancient times, new settlement areas were developed with the establishment of colonies. In PAE a new founded city is a settlement, then a village (from Pop 3), afterwards a city (from Pop 6), then a province (from Pop 12) and last but not least a metropolis (from 20 Pop). Settlements and villages have very low maintenance costs, but better buildings can be created only with higher city levels. All forms have their own advantages and disadvantages and can even be enhanced by certain forms of government.</English>
+    <French>Dans PAE, une ville passe par plusieurs statuts selon l'&#233;volution de sa population. Les premiers ont un co&#251;t de maintenance r&#233;duit mais les statuts plus &#233;volu&#233;s donnent acc&#232;s &#224; des b&#226;timents plus int&#233;ressants.</French>
+    <German>In der Antike wurden neue Siedlungsgebiete mit der Gr&#252;ndung von Kolonien erschlossen. In PAE ist jede neugegr&#252;ndete Stadt zuerst eine Siedlung, dann ein Dorf (ab Pop 3), danach eine Stadt (ab Pop 6), daraufhin eine Provinz (ab Pop 12) und zu guter letzt eine Metropole (ab Pop 20). Siedlungen und D&#246;rfer haben sehr geringe Unterhaltskosten, daf&#252;r k&#246;nnen bessere Geb&#228;ude erst mit h&#246;heren Stadtstufen erstellt werden. Alle Formen haben ihre eigenen Vor- und Nachteile und k&#246;nnen durch bestimmte Staatsformen auch noch verbessert werden.</German>
+    <Italian>Nei tempi antichi, sono state sviluppate nuove aree di insediamento, con la creazione di colonie. In PAE ogni citt&#224; appena fondata per la prima volta un insediamento, quindi un villaggio (dal Pop 3), poi una citt&#224; (da Pop 6), poi una provincia (da Pop 12) e, ultimo ma non meno importante una metropoli (da Pop 20). Insediamenti e villaggi hanno costi di manutenzione molto bassi, per gli edifici migliori possono essere creati solo con i livelli pi&#249; alti della citt&#224;. Tutte le forme hanno i loro vantaggi e svantaggi e pu&#242; essere migliorato da certe forme di governo.</Italian>
+    <Spanish>En la antig&#252;edad, las nuevas zonas de asentamiento fueron desarrolladas con la fundaci&#243;n de colonias. En PAE cada nueva ciudad fundada es un asentamiento, despu&#233;s una municipio (desde pob 3), m&#225;s tarde una ciudad (desde pob 6), luego una provincia (desde pob 12) y por &#250;ltimo una metr&#243;polis (desde pob 20). Los asentamientos y aldeas tienen unos costes muy bajos de mantenimiento, pero los mejores edificios s&#243;lo pueden ser creados en los niveles de ciudad m&#225;s altos. Todas las formas tienen sus propias ventajas y desventajas y pueden incluso ser aumentadas por ciertas formas de gobierno.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_125</Tag>
+    <English>After researching the mapping technology it is possible to make the first map of rivers and coasts. Until then, already explored areas darken again, unless there was an outstanding buildings erected.</English>
+    <French>Avec la d&#233;couverte de la Cartographie, il devient possible de cartographier les rivi&#232;res et les c&#244;tes. Avant cela, toute zone explor&#233;e redevient imm&#233;diatement "noire" d&#232;s qu'elle n'est plus dans la ligne de vue de vos unit&#233;s.</French>
+    <German>Ab der Technologie Kartographie ist es m&#246;glich erste Karten von Fl&#252;ssen und K&#252;sten anzufertigen. Bis dahin werden sich bereits erkundete Gebiete wieder verdunkeln, au&#223;er es wurde dort ein herausragendes Geb&#228;ude errichtet.</German>
+    <Italian>Dalla mappatura tecnologia &#232; possibile fare le prime mappe di fiumi e coste. Fino ad allora, le regioni di esplorazione si scurisce di nuovo gi&#224;, a meno che non un eccezionale edificio fu eretto.</Italian>
+    <Spanish>Despu&#233;s del descubrimiento de la tecnolog&#237;a de mapas es posible hacer el primer mapa de r&#237;os y costas. Hasta entonces, todas las zonas ya exploradas se vuelven oscuras otra vez, a menos que hubiera erigido edificios destacados.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_126</Tag>
+    <English>Household slaves provide research and culture points, inasmuch as the citizens could occupy themselves with science and philosophy, while the slaves relieved them of heavy and unpleasant physical work.</English>
+    <French>Les domestiques donnent un bonus de recherche et culture car ils permettent aux citoyens de s'adonner &#224; la science et la philosophie pendant qu'eux-m&#234;mes s'occupent des t&#226;ches p&#233;nibles.</French>
+    <German>Haussklaven bringen Forschungs- und Kulturpunkte, da sich die B&#252;rger mit Wissenschaft und Philosophie besch&#228;ftigen konnten, w&#228;hrend durch die Sklaven ihnen die schwere und unangenehme k&#246;rperliche Arbeit abgenommen wurde.</German>
+    <Italian>Schiavi casa portano culturali e di ricerca punti, dal momento che i cittadini con la scienza e la filosofia potevano affrontare mentre sono stati rimossi dagli schiavi del lavoro fisico pesante e sgradevole.</Italian>
+    <Spanish>Los esclavos del campo proporcionan puntos de investigaci&#243;n y cultura, ya que los ciudadanos pueden ocuparse de la ciencia y la filosof&#237;a, mientras los esclavos realizan por ellos el pesado y desagradable trabajo f&#237;sico.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_127</Tag>
+    <English>If a unit in a stack with a General unit wins a battle, the General unit can get an experience point as well.</English>
+    <French>Quand une unit&#233; victorieuse fait partie d'une pile contenant un G&#233;n&#233;ral, ce dernier gagne aussi de l'exp&#233;rience.</French>
+    <German>Gewinnt eine Einheit aus einem Stack mit Generalseinheit einen Kampf, kann die Generalseinheit ebenfalls einen Erfahrungspunkt bekommen.</German>
+    <Italian>Vinci una unit&#224; da una pila con l'unit&#224; generale una lotta, l'unit&#224; generale pu&#242; anche ottenere un punto esperienza.</Italian>
+    <Spanish>Si una unidad en una pila con una unidad de General gana una batalla, la unidad de General puede ganar un punto de experiencia tambi&#233;n.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_128</Tag>
+    <English>Bonus resources on neutral territory can be claimed with a fortress (clay or stone) and a stationary unit. If the fortress is empty and not in the cultural area of a city, the plot again becomes neutral.</English>
+    <French>Vous pouvez prendre le contr&#244;le de ressources en territoire neutre en construisant dessus une forteresse (argile ou pierre) et en y laissant une unit&#233; militaire.</French>
+    <German>Bonusressourcen auf neutralem Terrain k&#246;nnen mit einer Festung (Lehm oder Stein) und einer stationierten Einheit bewirtschaftet werden. Steht die Festung leer und nicht im kulturellen Einzugsgebiet einer Stadt, wird das Feld wieder neutral.</German>
+    <Italian>Risorse bonus sul territorio neutrale possono essere gestiti con una fortezza (argilla o pietra) e un'unit&#224; distribuito. Se la fortezza vuota e non nel bacino idrografico culturale di una citt&#224;, il campo &#232; ancora neutrale.</Italian>
+    <Spanish>Los recursos en un territorio neutral pueden estar bajo control con una fortaleza (arcilla o piedra) y una unidad estacionada. Si la fortaleza est&#225; vac&#237;a y no est&#225; en el &#225;rea cultural de una ciudad, la casilla se vuelve neutral otra vez.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_129</Tag>
+    <English>Press [CTRL + P] to activate or deactivate the message, when a player's on turn.</English>
+    <French>Appuyez sur [CTRL + P] pour activer ou d&#233;sactiver les messages lors du tour d'un autre joueur.</French>
+    <German>Dr&#252;cken Sie [STRG + P], um die Kurzmeldung ein- und auszuschalten, welcher Spieler gerade am Zug ist.</German>
+    <Italian>Premere [Ctrl + P] per il breve messaggio e si spegne quale giocatore &#232; attualmente sul treno.</Italian>
+    <Spanish>Presiona [CTRL + P] para activar o desactivar el mensaje, cuando un jugador est&#225; en su turno.</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_HINT_130</Tag>
+    <English>If you play with the player name "Apocalypto", you can look forward to greatly increased natural disasters.</English>
+    <French>Si vous jouez une partie avec le nom "Apocalypto", vous pouvez vous attendre &#224; affronter un grand nombre de catastrophes naturelles.</French>
+    <German>Spielt man mit dem Spielernamen "Apocalypto", darf man sich auf stark vermehrte Naturkatastrophen freuen.</German>
+    <Italian>Se si gioca con il nome del giocatore "Apocalypto", si pu&#242; guardare avanti per notevolmente aumentato calamit&#224; naturali.</Italian>
+    <Spanish>Si juegas con el nombre de jugador "Apocalypto", puedes esperar incrementados mayores desastres naturales.</Spanish>
+  </TEXT>
 </Civ4GameText>

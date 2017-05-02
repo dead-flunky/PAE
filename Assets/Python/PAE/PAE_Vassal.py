@@ -12,7 +12,7 @@ def myRandom (num):
     if num <= 1: return 0
     else: return random.randint(0, num-1)
 
-def onCityAcquired(iNewOwner, iPreviousOwner):
+def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
   pWinner = gc.getPlayer(iNewOwner)
   iWinnerTeam = pWinner.getTeam()
   pWinnerTeam = gc.getTeam(iWinnerTeam)

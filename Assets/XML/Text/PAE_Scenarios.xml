@@ -704,8 +704,8 @@
     <English>Avestes the Menapian</English>
     <French>Avestes le M&#233;napien</French>
     <German>Avestes der Menapier</German>
-    <Italian>Avestes Menapi</Italian>
-    <Spanish>Avestes los menapios</Spanish>
+    <Italian>Avestes Menapi[NEWLINE]</Italian>
+    <Spanish>Avestes los menapios[NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_LIMES_PERSON8</Tag>
@@ -792,7 +792,7 @@
     <English>Gotwin the Lombard</English>
     <French>Gotwin le Lombard</French>
     <German>Gotwin der Langobarde</German>
-    <Italian>Gotwin lombardo</Italian>
+    <Italian>Gotwin lombardo[NEWLINE]</Italian>
     <Spanish>Gotwin el Lombardo</Spanish>
   </TEXT>
   <TEXT>
@@ -800,7 +800,7 @@
     <English>Son of Gotwin</English>
     <French>Fils de Gotwin le Lombard</French>
     <German>Sohn des Gotwin</German>
-    <Italian>Figlio di Gotwin</Italian>
+    <Italian>Figlio di Gotwin[NEWLINE]</Italian>
     <Spanish>Hijo de Gotwin</Spanish>
   </TEXT>
   <TEXT>
@@ -808,7 +808,7 @@
     <English>Wigand the Semnonian</English>
     <French>Wigand le Semnonien</French>
     <German>Wigand der Semnone</German>
-    <Italian>Wigand di Semnone</Italian>
+    <Italian>Wigand di Semnone[NEWLINE]</Italian>
     <Spanish>Wigand de Semnone</Spanish>
   </TEXT>
   <TEXT>

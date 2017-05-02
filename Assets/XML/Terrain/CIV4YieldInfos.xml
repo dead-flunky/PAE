@@ -38,7 +38,7 @@
       <iCityChange>1</iCityChange>
       <iPopulationChangeOffset>0</iPopulationChangeOffset>
       <iPopulationChangeDivisor>0</iPopulationChangeDivisor>
-      <iMinCity>1</iMinCity>
+      <iMinCity>2</iMinCity>
       <iTradeModifier>0</iTradeModifier>
       <iGoldenAgeYield>1</iGoldenAgeYield>
       <iGoldenAgeYieldThreshold>1</iGoldenAgeYieldThreshold>
@@ -61,7 +61,7 @@
       <iCityChange>1</iCityChange>
       <iPopulationChangeOffset>0</iPopulationChangeOffset>
       <iPopulationChangeDivisor>0</iPopulationChangeDivisor>
-      <iMinCity>1</iMinCity>
+      <iMinCity>2</iMinCity>
       <iTradeModifier>100</iTradeModifier>
       <iGoldenAgeYield>1</iGoldenAgeYield>
       <iGoldenAgeYieldThreshold>1</iGoldenAgeYieldThreshold>

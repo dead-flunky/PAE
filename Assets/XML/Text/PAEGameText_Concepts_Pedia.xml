@@ -1000,7 +1000,7 @@ Consecuencias :
   <TEXT>
     <Tag>TXT_KEY_CONCEPT_FOG_OF_WAR_PEDIA</Tag>
     <English>
- [H1]Fog of War[\H1]
+[H1]Fog of War[\H1]
  Until the Renaissance no accurate maps were drawn. In this mod, all plots become black and unexplored again, unless they are visible for proper cities (city influence) and units. Until the late ancient technology of "Road Maps", the fog of war will persist on the map. (Confusing, I have reworded it and hope this is the intended meaning. this is the part I suspect should be removed: "keeps the map with the well known fog of war of CIV.")
 
  [H1]Cartograms[\H1]
@@ -1131,13 +1131,13 @@ Consecuencias :
     </Italian>
     <Spanish>
 [H1]Niebla de Guerra[\H1]
- Hasta el Renacimiento no se elaboraron mapas precisos. En este mod, todas la casillas se vuelven negras y se tornan inexploradas de nuevo, si estas no son visibles por ciudades (la cultura de la ciudad) y unidades. Until the late ancient technology of "Road Maps" keeps the map with the well known fog of war of CIV.
+ Hasta el Renacimiento no se elaboraron mapas precisos. En este mod, todas la casillas se vuelven negras y se tornan inexploradas de nuevo, si estas no son visibles por ciudades (la cultura de la ciudad) y unidades. A partir de la tecnolog&#237;a "mapas de caminos", habr&#225; la bien conocida niebla de guerra de CIV.
 
- [H1]Cartogramia[\H1]
- At that time only significant points described a map. The maps were very, very inaccurate, but they showed important cities and coastal areas. Therefore, capitals and the coasts remain visible from this technology with the normal fog of war.
+ [H1]Cartograma[\H1]
+ En este tiempo solo algunos puntos son descritos en mapas. Los mapas eran muy, muy imprecisos, pero mostraban las areas costeras y ciudades mas importantes. Por lo tanto, las capitales y la costa se mantendr&#225;n visibles desde esta tecnolog&#237;a con la niebla de guerra normal.
 
  [H1]Cartograf&#237;a[\H1]
- From now on maps had been tentatively made. Therefore, you will see rivers and peaks in the fog of war and ser&#225;s capaz de encargar mapas personalizados pulsando en una unidad de reconocimiento, la cual ser&#225; eliminada cuando se use.
+ A partir ahora se hac&#237;an intentos de mapas. Desde este momento, se ver&#225;n r&#237;os y monta&#241;as en la niebla de guerra y ser&#225;s capaz de encargar mapas personalizados pulsando en una unidad de reconocimiento, la cual ser&#225; eliminada cuando se use.
  Los resultados de la mayor&#237;a de los siguientes encargos desaparecer&#225;n otra vez despu&#233;s de un tiempo (niebla de guerra)
  [ICON_BULLET] Monta&#241;as: todas las monta&#241;as ser&#225;n mostradas
  [ICON_BULLET] Ciudades con maravillas: todas las ciudades con maravillas mundiales ser&#225;n mostradas y mantendr&#225;n visibles las ciudades afectadas.
@@ -6172,7 +6172,7 @@ Los primeros auxiliares de cualquier tipo (a pie o a caballo) se construyen muy 
 There are a number of requirements that must be fulfilled before a player can found a Cult. First they must have researched a certain technology. Once players have researched the proper tech, they must then move a Great Person into a city that has one or more of the resources required by the Cult they wish to create. By expending the proper type of Great Person, they may found the Cult Centre in their city.
 Requirements:
 [ICON_BULLET]Cult of Isis: Founded by the player who first discovers [LINK=TECH_WRITING2]Hieroglyphics[\LINK]
-[ICON_BULLET]Cult of Cybele: Technology [LINK=TECH_AGRICULTURE2]Water storage[\LINK] + Religion Greek gods + Great Merchant
+[ICON_BULLET]Cult of Cybele: Technology [LINK=TECH_AGRICULTURE2]Water storage[\LINK] + Great Merchant
 [ICON_BULLET]Cult of Heroes: Founded by the player who first discovers [LINK=TECH_GLADIATOR]Exhibitional fight[\LINK]; every player who discovers this tech gets a cultist
 [ICON_BULLET]Cosmogony: Technology [LINK=TECH_HELLENISMUS]Hellenism[\LINK] + Great Philosopher
 [ICON_BULLET]Hellenism: Technology [LINK=TECH_HELLENISMUS]Hellenism[\LINK] + Religion Greek gods + Great Builder
@@ -6201,7 +6201,7 @@ Some cults or cultures unlock certain buildings:
 [H2]Fondation d'un culte ou d'une culture[\H2]
 Les conditions requises pour fonder un culte d&#233;pendent de ce dernier. Il faut au minimum la connaissance d'une technologie particuli&#232;re et parfois un personnage illustre et/ou une religion sp&#233;cifique.
 [ICON_BULLET]Culte d'Isis : Fond&#233; d&#232;s la d&#233;couverte de la technologie [LINK=TECH_WRITING2]Hi&#233;roglyphes[\LINK]
-[ICON_BULLET]Culte de Cyb&#232;le : Technologie [LINK=TECH_AGRICULTURE2]Stockage de l'eau[\LINK] + Panth&#233;on olympien + Marchand illustre
+[ICON_BULLET]Culte de Cyb&#232;le : Technologie [LINK=TECH_AGRICULTURE2]Stockage de l'eau[\LINK] + Marchand illustre
 [ICON_BULLET]Culte des H&#233;ros : Fond&#233; d&#232;s la d&#233;couverte de la technologie [LINK=TECH_GLADIATOR]Jeux du cirque[\LINK]. Tout joueur qui d&#233;couvre cette technologie gagne un cultiste.
 [ICON_BULLET]Cosmogonie : Technologie [LINK=TECH_HELLENISMUS]Hell&#233;nisme[\LINK] + Philosophe illustre
 [ICON_BULLET]Hell&#233;nisme : Technologie [LINK=TECH_HELLENISMUS]Hell&#233;nisme[\LINK] + Panth&#233;on olympien + Constructeur illustre
@@ -6231,7 +6231,7 @@ Les cultes et cultures peuvent donner acc&#232;s &#224; des b&#226;timents sp&#2
 Bevor man einen Kult gr&#252;nden kann, m&#252;ssen zun&#228;chst entsprechende Voraussetzungen erf&#252;llt werden. Als Erstes muss eine bestimmte Technologie erforscht werden. Ist das erledigt, gilt es als N&#228;chstes, eine Gro&#223;e Pers&#246;nlichkeit in einer Stadt zu postieren, die eine oder mehrere der f&#252;r den betreffenden Kult erforderlichen Ressourcen besitzt. Durch die Entsendung der geeigneten Gro&#223;en Pers&#246;nlichkeit kann dann das Kultzentrum in dieser Stadt errichtet werden.
 Voraussetzungen:
 [ICON_BULLET]Isis-Kult: wird von dem Spieler gegr&#252;ndet, der als erstes [LINK=TECH_WRITING2]Hieroglyphen[\LINK] erforscht
-[ICON_BULLET]Cybele-Kult: Technologie [LINK=TECH_AGRICULTURE2]Wasserspeicherung[\LINK] + Religion Griechische G&#246;tter + Gro&#223;er H&#228;ndler
+[ICON_BULLET]Cybele-Kult: Technologie [LINK=TECH_AGRICULTURE2]Wasserspeicherung[\LINK] + Gro&#223;er H&#228;ndler
 [ICON_BULLET]Heroenkult: wird von dem Spieler gegr&#252;ndet, der als erstes [LINK=TECH_GLADIATOR]Schaukampf[\LINK] erforscht; jeder Spieler, der diese Tech erforscht bekommt einen Kultist
 [ICON_BULLET]Kosmogonie: Technologie [LINK=TECH_HELLENISMUS]Hellenismus[\LINK] + Gro&#223;er Philosoph[ICON_BULLET]Hellenismus: Technologie [LINK=TECH_HELLENISMUS]Hellenismus[\LINK] + Religion Griechische G&#246;tter + Gro&#223;er Baumeister
 [ICON_BULLET]Dionysos-Kult: Technologie [LINK=TECH_DIONYSOS]Dithyramben[\LINK] + Religion Griechische G&#246;tter + Gro&#223;er K&#252;nstler
@@ -6262,7 +6262,7 @@ Manche Kulte schalten bestimmte Geb&#228;ude frei:
 Prima di poter impostare un culto , per esempio , condizioni adeguate devono essere soddisfatte . In primo luogo , una particolare tecnologia deve essere esplorata . Una volta fatto, &#232; accanto a pubblicare una grande persona in una citt&#224; che ha una o pi&#249; delle risorse necessarie per il culto in questione . Con l'invio appropriato Grande personalit&#224; , il centro di culto pu&#242; essere costruito in questa citt&#224; .
 requisiti:
 [ICON_BULLET] culto di Iside : fondata dal giocatore che per primo esplor&#242; [LINK = TECH_WRITING2] Geroglifici [\ LINK]
-[ICON_BULLET] Cibele cult : Tecnologia [LINK = TECH_AGRICULTURE2] stoccaggio dell'acqua [\ LINK] + religione greca d&#232;i + grande trader
+[ICON_BULLET] Cibele cult : Tecnologia [LINK = TECH_AGRICULTURE2] stoccaggio dell'acqua [\ LINK] + grande trader
 [ICON_BULLET] Eroe Cult : fondata dal giocatore che per primo esplor&#242; [LINK = TECH_GLADIATOR] Battle [\ LINK] , e ogni giocatore che viene esplorato questa tecnologia un Cultist
 [ICON_BULLET] cosmogonia : Tecnologia [LINK = TECH_HELLENISMUS] ellenismo [\ LINK] + Grande Filosofo
 [ICON_BULLET] Ellenismo : Tecnologia [LINK = TECH_HELLENISMUS] ellenismo [\ LINK] + religione greca d&#232;i + Grande Costruttore
@@ -6294,7 +6294,7 @@ Alcuni culti girare alcuni edifici libero :
 Hay un n&#250;mero de requisitos que deben ser completados antes de que un jugador pueda fundar un culto. Primero debe haber descubierto una cierta tecnolog&#237;a. Una vez que los jugadores han descubierto la tecnolog&#237;a apropiada, deben mover un Gran Personaje a una ciudad que tenga uno o m&#225;s recursos requeridos por el culto que desean crear. Usando el Gran Personaje apropiado, pueden fundar el Centro de Culto en su ciudad.
 Requisitos:
 [ICON_BULLET]Culto de Isis: Fundado por el jugador que primero descubra [LINK=TECH_WRITING2]jerogl&#237;ficos[\LINK]
-[ICON_BULLET]Culto de Cibeles: Tecnolog&#237;a [LINK=TECH_AGRICULTURE2]almacenaje de agua[\LINK] + Religi&#243;n culto griego + Gran Mercader
+[ICON_BULLET]Culto de Cibeles: Tecnolog&#237;a [LINK=TECH_AGRICULTURE2]almacenaje de agua[\LINK] + Gran Mercader
 [ICON_BULLET]Culto de H&#233;roes: Fundado por el jugador que primero descubra [LINK=TECH_GLADIATOR]lucha de espect&#225;culo[\LINK]; cada jugador que descubra esta tecnolog&#237;a recibir&#225; un seguidor
 [ICON_BULLET]Cosmogon&#237;a: Tecnolog&#237;a [LINK=TECH_HELLENISMUS]helenismo[\LINK] + Gran fil&#243;sofo
 [ICON_BULLET]Helenismo: Tecnolog&#237;a [LINK=TECH_HELLENISMUS]helenismo[\LINK] + Religi&#243;n culto griego + Gran constructor

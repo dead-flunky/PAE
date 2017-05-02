@@ -507,14 +507,6 @@
           <BuildingType>BUILDING_TUMULUS</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_HEROON</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE4</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
           <BuildingType>BUILDING_AMPHITHEATER</BuildingType>
         </Building>
@@ -2403,14 +2395,6 @@
           <BuildingType>BUILDING_NUBIAN_PYRAMID</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_EGYPTIAN_OBELISK</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE3</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_HEROIC_EPIC</BuildingClassType>
           <BuildingType>BUILDING_HEROIC_EPIC_EGYPT</BuildingType>
         </Building>
@@ -2684,10 +2668,6 @@
           <BuildingType>BUILDING_SCHULE</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL4</BuildingClassType>
-          <BuildingType>BUILDING_TRIUMPH</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
           <BuildingType>BUILDING_PANTHEON</BuildingType>
         </Building>
@@ -2702,14 +2682,6 @@
         <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_HEROON</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE2</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
@@ -3802,14 +3774,6 @@
         <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_HEROON</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE4</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
@@ -6548,14 +6512,6 @@
           <BuildingType>BUILDING_NUBIAN_PYRAMID</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_EGYPTIAN_OBELISK</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE3</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_FORT</BuildingClassType>
           <BuildingType>BUILDING_FORT3</BuildingType>
         </Building>
@@ -7888,10 +7844,6 @@
           <BuildingType>BUILDING_SCHULE</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL4</BuildingClassType>
-          <BuildingType>BUILDING_TRIUMPH</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
           <BuildingType>BUILDING_PANTHEON</BuildingType>
         </Building>
@@ -7906,14 +7858,6 @@
         <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_HEROON</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE2</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_BADEHAUS</BuildingClassType>
@@ -8653,14 +8597,6 @@
           <BuildingType>BUILDING_MILITARY_ACADEMY_SPARTA</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_HEROON</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE4</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
           <BuildingType>BUILDING_AMPHITHEATER</BuildingType>
         </Building>
@@ -8947,10 +8883,6 @@
         <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_KOENIGSGRAB</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_GEIERSTELE</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_HEROIC_EPIC</BuildingClassType>
@@ -9302,14 +9234,6 @@
         <Building>
           <BuildingClassType>BUILDINGCLASS_STEINGRAB</BuildingClassType>
           <BuildingType>BUILDING_TUMULUS</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-          <BuildingType>BUILDING_HEROON</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SAEULE</BuildingClassType>
-          <BuildingType>BUILDING_SAEULE4</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>

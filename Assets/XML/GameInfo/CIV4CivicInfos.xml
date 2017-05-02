@@ -1997,7 +1997,7 @@
       <iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
       <iGoldPerUnit>0</iGoldPerUnit>
       <iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
-      <iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
+      <iHappyPerMilitaryUnit>1</iHappyPerMilitaryUnit>
       <bMilitaryFoodProduction>0</bMilitaryFoodProduction>
       <iMaxConscript>0</iMaxConscript>
       <bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
@@ -2011,7 +2011,7 @@
       <bNoCorporations>0</bNoCorporations>
       <bNoForeignCorporations>0</bNoForeignCorporations>
       <iCivicPercentAnger>0</iCivicPercentAnger>
-      <bStateReligion>1</bStateReligion>
+      <bStateReligion>0</bStateReligion>
       <bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
       <iStateReligionHappiness>0</iStateReligionHappiness>
       <iNonStateReligionHappiness>0</iNonStateReligionHappiness>
@@ -2031,16 +2031,7 @@
       <Hurrys/>
       <SpecialBuildingNotRequireds/>
       <SpecialistValids/>
-      <BuildingHappinessChanges>
-        <BuildingHappinessChange>
-          <BuildingType>BUILDINGCLASS_OBELISK</BuildingType>
-          <iHappinessChange>1</iHappinessChange>
-        </BuildingHappinessChange>
-        <BuildingHappinessChange>
-          <BuildingType>BUILDINGCLASS_SAEULE</BuildingType>
-          <iHappinessChange>1</iHappinessChange>
-        </BuildingHappinessChange>
-      </BuildingHappinessChanges>
+      <BuildingHappinessChanges/>
       <BuildingHealthChanges/>
       <FeatureHappinessChanges/>
       <ImprovementYieldChanges/>

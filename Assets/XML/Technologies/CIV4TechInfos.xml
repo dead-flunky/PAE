@@ -128,7 +128,7 @@
       <bIgnoreIrrigation>0</bIgnoreIrrigation>
       <bWaterWork>0</bWaterWork>
       <iGridX>1</iGridX>
-      <iGridY>9</iGridY>
+      <iGridY>10</iGridY>
       <DomainExtraMoves/>
       <CommerceFlexible/>
       <TerrainTrades/>
@@ -161,81 +161,6 @@
       <Sound>AS2D_TECH_HUNTING</Sound>
       <SoundMP>AS2D_TECH_MP_HUNTING</SoundMP>
       <Button>,Art/Interface/Buttons/TechTree/Hunting.dds,Art/Interface/Buttons/TechTree_Atlas.dds,7,4</Button>
-    </TechInfo>
-    <TechInfo>
-      <Type>TECH_AGRICULTURE</Type>
-      <Description>TXT_KEY_TECH_AGRICULTURE</Description>
-      <Civilopedia>TXT_KEY_TECH_AGRICULTURE_PEDIA</Civilopedia>
-      <Help/>
-      <Strategy>TXT_KEY_TECH_AGRICULTURE_STRATEGY</Strategy>
-      <Advisor>ADVISOR_GROWTH</Advisor>
-      <iAIWeight>0</iAIWeight>
-      <iAITradeModifier>0</iAITradeModifier>
-      <iCost>14</iCost>
-      <iAdvancedStartCost>100</iAdvancedStartCost>
-      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <Era>ERA_ANCIENT</Era>
-      <FirstFreeUnitClass>NONE</FirstFreeUnitClass>
-      <iFeatureProductionModifier>0</iFeatureProductionModifier>
-      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-      <iTradeRoutes>0</iTradeRoutes>
-      <iHealth>0</iHealth>
-      <iHappiness>0</iHappiness>
-      <iFirstFreeTechs>0</iFirstFreeTechs>
-      <iAsset>8</iAsset>
-      <iPower>0</iPower>
-      <bRepeat>0</bRepeat>
-      <bTrade>1</bTrade>
-      <bDisable>0</bDisable>
-      <bGoodyTech>1</bGoodyTech>
-      <bExtraWaterSeeFrom>0</bExtraWaterSeeFrom>
-      <bMapCentering>0</bMapCentering>
-      <bMapVisible>0</bMapVisible>
-      <bMapTrading>0</bMapTrading>
-      <bTechTrading>0</bTechTrading>
-      <bGoldTrading>0</bGoldTrading>
-      <bOpenBordersTrading>0</bOpenBordersTrading>
-      <bDefensivePactTrading>0</bDefensivePactTrading>
-      <bPermanentAllianceTrading>0</bPermanentAllianceTrading>
-      <bVassalTrading>0</bVassalTrading>
-      <bBridgeBuilding>0</bBridgeBuilding>
-      <bIrrigation>0</bIrrigation>
-      <bIgnoreIrrigation>0</bIgnoreIrrigation>
-      <bWaterWork>0</bWaterWork>
-      <iGridX>1</iGridX>
-      <iGridY>12</iGridY>
-      <DomainExtraMoves/>
-      <CommerceFlexible/>
-      <TerrainTrades/>
-      <bRiverTrade>0</bRiverTrade>
-      <Flavors>
-        <Flavor>
-          <FlavorType>FLAVOR_MILITARY</FlavorType>
-          <iFlavor>4</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-          <iFlavor>5</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_GOLD</FlavorType>
-          <iFlavor>4</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_SCIENCE</FlavorType>
-          <iFlavor>4</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_GROWTH</FlavorType>
-          <iFlavor>7</iFlavor>
-        </Flavor>
-      </Flavors>
-      <OrPreReqs/>
-      <AndPreReqs/>
-      <Quote>TXT_KEY_TECH_AGRICULTURE_QUOTE</Quote>
-      <Sound>AS2D_TECH_AGRICULTURE</Sound>
-      <SoundMP>AS2D_TECH_MP_AGRICULTURE</SoundMP>
-      <Button>,Art/Interface/Buttons/TechTree/Agriculture.dds,Art/Interface/Buttons/TechTree_Atlas.dds,1,1</Button>
     </TechInfo>
     <TechInfo>
       <Type>TECH_TECH_INFO_9</Type>
@@ -528,7 +453,6 @@
       </Flavors>
       <OrPreReqs>
         <PrereqTech>TECH_HUNTING</PrereqTech>
-        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
       </OrPreReqs>
       <AndPreReqs/>
       <Quote>TXT_KEY_TECH_ANIMAL_HUSBANDRY_QUOTE</Quote>
@@ -537,16 +461,16 @@
       <Button>,Art/Interface/Buttons/TechTree/AnimalHusbandry.dds,Art/Interface/Buttons/TechTree_Atlas.dds,3,1</Button>
     </TechInfo>
     <TechInfo>
-      <Type>TECH_PFLUG</Type>
-      <Description>TXT_KEY_TECH_PFLUG</Description>
-      <Civilopedia>TXT_KEY_TECH_PFLUG_PEDIA</Civilopedia>
+      <Type>TECH_AGRICULTURE</Type>
+      <Description>TXT_KEY_TECH_AGRICULTURE</Description>
+      <Civilopedia>TXT_KEY_TECH_AGRICULTURE_PEDIA</Civilopedia>
       <Help/>
-      <Strategy>TXT_KEY_TECH_PFLUG_STRATEGY</Strategy>
+      <Strategy>TXT_KEY_TECH_AGRICULTURE_STRATEGY</Strategy>
       <Advisor>ADVISOR_GROWTH</Advisor>
       <iAIWeight>0</iAIWeight>
       <iAITradeModifier>0</iAITradeModifier>
       <iCost>18</iCost>
-      <iAdvancedStartCost>12</iAdvancedStartCost>
+      <iAdvancedStartCost>100</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
       <Era>ERA_ANCIENT</Era>
       <FirstFreeUnitClass>NONE</FirstFreeUnitClass>
@@ -589,7 +513,7 @@
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-          <iFlavor>4</iFlavor>
+          <iFlavor>5</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_GOLD</FlavorType>
@@ -601,86 +525,17 @@
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_GROWTH</FlavorType>
-          <iFlavor>4</iFlavor>
+          <iFlavor>7</iFlavor>
         </Flavor>
       </Flavors>
       <OrPreReqs>
-        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
+        <PrereqTech>TECH_HUNTING</PrereqTech>
       </OrPreReqs>
       <AndPreReqs/>
-      <Quote>TXT_KEY_PAE_QUOTE_36</Quote>
-      <Sound>AS2D_TECH_PAE_QUOTE_36</Sound>
-      <SoundMP>AS2D_TECH_PAE_QUOTE_36</SoundMP>
-      <Button>Art/Interface/Buttons/Techs/button_tech_pflug.dds</Button>
-    </TechInfo>
-    <TechInfo>
-      <Type>TECH_WEINBAU</Type>
-      <Description>TXT_KEY_TECH_WEINBAU</Description>
-      <Civilopedia>TXT_KEY_TECH_WEINBAU_PEDIA</Civilopedia>
-      <Help/>
-      <Strategy>TXT_KEY_TECH_WEINBAU_STRATEGY</Strategy>
-      <Advisor>ADVISOR_ECONOMY</Advisor>
-      <iAIWeight>0</iAIWeight>
-      <iAITradeModifier>0</iAITradeModifier>
-      <iCost>18</iCost>
-      <iAdvancedStartCost>100</iAdvancedStartCost>
-      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <Era>ERA_ANCIENT</Era>
-      <FirstFreeUnitClass>NONE</FirstFreeUnitClass>
-      <iFeatureProductionModifier>0</iFeatureProductionModifier>
-      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
-      <iTradeRoutes>0</iTradeRoutes>
-      <iHealth>0</iHealth>
-      <iHappiness>0</iHappiness>
-      <iFirstFreeTechs>0</iFirstFreeTechs>
-      <iAsset>8</iAsset>
-      <iPower>0</iPower>
-      <bRepeat>0</bRepeat>
-      <bTrade>1</bTrade>
-      <bDisable>0</bDisable>
-      <bGoodyTech>1</bGoodyTech>
-      <bExtraWaterSeeFrom>0</bExtraWaterSeeFrom>
-      <bMapCentering>0</bMapCentering>
-      <bMapVisible>0</bMapVisible>
-      <bMapTrading>0</bMapTrading>
-      <bTechTrading>0</bTechTrading>
-      <bGoldTrading>0</bGoldTrading>
-      <bOpenBordersTrading>0</bOpenBordersTrading>
-      <bDefensivePactTrading>0</bDefensivePactTrading>
-      <bPermanentAllianceTrading>0</bPermanentAllianceTrading>
-      <bVassalTrading>0</bVassalTrading>
-      <bBridgeBuilding>0</bBridgeBuilding>
-      <bIrrigation>0</bIrrigation>
-      <bIgnoreIrrigation>0</bIgnoreIrrigation>
-      <bWaterWork>0</bWaterWork>
-      <iGridX>2</iGridX>
-      <iGridY>14</iGridY>
-      <DomainExtraMoves/>
-      <CommerceFlexible/>
-      <TerrainTrades/>
-      <bRiverTrade>0</bRiverTrade>
-      <Flavors>
-        <Flavor>
-          <FlavorType>FLAVOR_GOLD</FlavorType>
-          <iFlavor>6</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_SCIENCE</FlavorType>
-          <iFlavor>6</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_GROWTH</FlavorType>
-          <iFlavor>3</iFlavor>
-        </Flavor>
-      </Flavors>
-      <OrPreReqs>
-        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
-      </OrPreReqs>
-      <AndPreReqs/>
-      <Quote>TXT_KEY_PAE_QUOTE_114</Quote>
-      <Sound>AS2D_TECH_PAE_QUOTE_114</Sound>
-      <SoundMP>AS2D_TECH_PAE_QUOTE_114</SoundMP>
-      <Button>Art/Interface/Buttons/Techs/tech_weinbau.dds</Button>
+      <Quote>TXT_KEY_TECH_AGRICULTURE_QUOTE</Quote>
+      <Sound>AS2D_TECH_AGRICULTURE</Sound>
+      <SoundMP>AS2D_TECH_MP_AGRICULTURE</SoundMP>
+      <Button>,Art/Interface/Buttons/TechTree/Agriculture.dds,Art/Interface/Buttons/TechTree_Atlas.dds,1,1</Button>
     </TechInfo>
 
     <TechInfo>
@@ -1015,16 +870,16 @@
       <Button>,Art/Interface/Buttons/TechTree/Archery.dds,Art/Interface/Buttons/TechTree_Atlas.dds,4,1</Button>
     </TechInfo>
     <TechInfo>
-      <Type>TECH_POTTERY</Type>
-      <Description>TXT_KEY_TECH_POTTERY</Description>
-      <Civilopedia>TXT_KEY_TECH_POTTERY_PEDIA</Civilopedia>
+      <Type>TECH_PFLUG</Type>
+      <Description>TXT_KEY_TECH_PFLUG</Description>
+      <Civilopedia>TXT_KEY_TECH_PFLUG_PEDIA</Civilopedia>
       <Help/>
-      <Strategy>TXT_KEY_TECH_POTTERY_STRATEGY</Strategy>
-      <Advisor>ADVISOR_ECONOMY</Advisor>
+      <Strategy>TXT_KEY_TECH_PFLUG_STRATEGY</Strategy>
+      <Advisor>ADVISOR_GROWTH</Advisor>
       <iAIWeight>0</iAIWeight>
       <iAITradeModifier>0</iAITradeModifier>
       <iCost>22</iCost>
-      <iAdvancedStartCost>100</iAdvancedStartCost>
+      <iAdvancedStartCost>12</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
       <Era>ERA_ANCIENT</Era>
       <FirstFreeUnitClass>NONE</FirstFreeUnitClass>
@@ -1079,25 +934,25 @@
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_GROWTH</FlavorType>
-          <iFlavor>7</iFlavor>
+          <iFlavor>4</iFlavor>
         </Flavor>
       </Flavors>
       <OrPreReqs>
-        <PrereqTech>TECH_PFLUG</PrereqTech>
+        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
       </OrPreReqs>
       <AndPreReqs/>
-      <Quote>TXT_KEY_TECH_POTTERY_QUOTE</Quote>
-      <Sound>AS2D_TECH_POTTERY</Sound>
-      <SoundMP>AS2D_TECH_MP_POTTERY</SoundMP>
-      <Button>,Art/Interface/Buttons/TechTree/Pottery.dds,Art/Interface/Buttons/TechTree_Atlas.dds,8,6</Button>
+      <Quote>TXT_KEY_PAE_QUOTE_36</Quote>
+      <Sound>AS2D_TECH_PAE_QUOTE_36</Sound>
+      <SoundMP>AS2D_TECH_PAE_QUOTE_36</SoundMP>
+      <Button>Art/Interface/Buttons/Techs/button_tech_pflug.dds</Button>
     </TechInfo>
     <TechInfo>
-      <Type>TECH_GAERUNG</Type>
-      <Description>TXT_KEY_TECH_GAERUNG</Description>
-      <Civilopedia>TXT_KEY_BONUS_BIER_PEDIA</Civilopedia>
+      <Type>TECH_WEINBAU</Type>
+      <Description>TXT_KEY_TECH_WEINBAU</Description>
+      <Civilopedia>TXT_KEY_TECH_WEINBAU_PEDIA</Civilopedia>
       <Help/>
-      <Strategy>TXT_KEY_TECH_GAERUNG_STRATEGY</Strategy>
-      <Advisor>ADVISOR_MILITARY</Advisor>
+      <Strategy>TXT_KEY_TECH_WEINBAU_STRATEGY</Strategy>
+      <Advisor>ADVISOR_ECONOMY</Advisor>
       <iAIWeight>0</iAIWeight>
       <iAITradeModifier>0</iAITradeModifier>
       <iCost>22</iCost>
@@ -1139,32 +994,26 @@
       <bRiverTrade>0</bRiverTrade>
       <Flavors>
         <Flavor>
-          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-          <iFlavor>1</iFlavor>
-        </Flavor>
-        <Flavor>
           <FlavorType>FLAVOR_GOLD</FlavorType>
-          <iFlavor>1</iFlavor>
+          <iFlavor>6</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_SCIENCE</FlavorType>
-          <iFlavor>1</iFlavor>
+          <iFlavor>6</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_GROWTH</FlavorType>
-          <iFlavor>5</iFlavor>
+          <iFlavor>3</iFlavor>
         </Flavor>
       </Flavors>
       <OrPreReqs>
-        <PrereqTech>TECH_WEINBAU</PrereqTech>
+        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
       </OrPreReqs>
-      <AndPreReqs>
-        <PrereqTech>TECH_POTTERY</PrereqTech>
-      </AndPreReqs>
-      <Quote>TXT_KEY_PAE_QUOTE_120</Quote>
-      <Sound>AS2D_TECH_PAE_QUOTE_120</Sound>
-      <SoundMP>AS2D_TECH_PAE_QUOTE_120</SoundMP>
-      <Button>Art/Interface/Buttons/Techs/tech_gaerung.dds</Button>
+      <AndPreReqs/>
+      <Quote>TXT_KEY_PAE_QUOTE_114</Quote>
+      <Sound>AS2D_TECH_PAE_QUOTE_114</Sound>
+      <SoundMP>AS2D_TECH_PAE_QUOTE_114</SoundMP>
+      <Button>Art/Interface/Buttons/Techs/tech_weinbau.dds</Button>
     </TechInfo>
 
     <TechInfo>
@@ -1424,11 +1273,11 @@
       <Button>,Art/Interface/Buttons/TechTree/MetalCasting.dds,Art/Interface/Buttons/TechTree_Atlas.dds,6,5</Button>
     </TechInfo>
     <TechInfo>
-      <Type>TECH_THE_WHEEL</Type>
-      <Description>TXT_KEY_TECH_THE_WHEEL</Description>
-      <Civilopedia>TXT_KEY_TECH_THE_WHEEL_PEDIA</Civilopedia>
+      <Type>TECH_POTTERY</Type>
+      <Description>TXT_KEY_TECH_POTTERY</Description>
+      <Civilopedia>TXT_KEY_TECH_POTTERY_PEDIA</Civilopedia>
       <Help/>
-      <Strategy>TXT_KEY_TECH_THE_WHEEL_STRATEGY</Strategy>
+      <Strategy>TXT_KEY_TECH_POTTERY_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <iAIWeight>0</iAIWeight>
       <iAITradeModifier>0</iAITradeModifier>
@@ -1472,41 +1321,108 @@
       <Flavors>
         <Flavor>
           <FlavorType>FLAVOR_MILITARY</FlavorType>
-          <iFlavor>5</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_RELIGION</FlavorType>
-          <iFlavor>2</iFlavor>
+          <iFlavor>4</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-          <iFlavor>6</iFlavor>
+          <iFlavor>4</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_GOLD</FlavorType>
-          <iFlavor>2</iFlavor>
+          <iFlavor>4</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_SCIENCE</FlavorType>
-          <iFlavor>2</iFlavor>
-        </Flavor>
-        <Flavor>
-          <FlavorType>FLAVOR_CULTURE</FlavorType>
-          <iFlavor>2</iFlavor>
+          <iFlavor>4</iFlavor>
         </Flavor>
         <Flavor>
           <FlavorType>FLAVOR_GROWTH</FlavorType>
-          <iFlavor>2</iFlavor>
+          <iFlavor>7</iFlavor>
         </Flavor>
       </Flavors>
       <OrPreReqs>
-        <PrereqTech>TECH_POTTERY</PrereqTech>
+        <PrereqTech>TECH_PFLUG</PrereqTech>
       </OrPreReqs>
       <AndPreReqs/>
-      <Quote>TXT_KEY_TECH_THE_WHEEL_QUOTE</Quote>
-      <Sound>AS2D_TECH_THE_WHEEL</Sound>
-      <SoundMP>AS2D_TECH_MP_THE_WHEEL</SoundMP>
-      <Button>,Art/Interface/Buttons/TechTree/TheWheel.dds,Art/Interface/Buttons/TechTree_Atlas.dds,4,12</Button>
+      <Quote>TXT_KEY_TECH_POTTERY_QUOTE</Quote>
+      <Sound>AS2D_TECH_POTTERY</Sound>
+      <SoundMP>AS2D_TECH_MP_POTTERY</SoundMP>
+      <Button>,Art/Interface/Buttons/TechTree/Pottery.dds,Art/Interface/Buttons/TechTree_Atlas.dds,8,6</Button>
+    </TechInfo>
+    <TechInfo>
+      <Type>TECH_GAERUNG</Type>
+      <Description>TXT_KEY_TECH_GAERUNG</Description>
+      <Civilopedia>TXT_KEY_BONUS_BIER_PEDIA</Civilopedia>
+      <Help/>
+      <Strategy>TXT_KEY_TECH_GAERUNG_STRATEGY</Strategy>
+      <Advisor>ADVISOR_MILITARY</Advisor>
+      <iAIWeight>0</iAIWeight>
+      <iAITradeModifier>0</iAITradeModifier>
+      <iCost>26</iCost>
+      <iAdvancedStartCost>100</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <Era>ERA_ANCIENT</Era>
+      <FirstFreeUnitClass>NONE</FirstFreeUnitClass>
+      <iFeatureProductionModifier>0</iFeatureProductionModifier>
+      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+      <iTradeRoutes>0</iTradeRoutes>
+      <iHealth>0</iHealth>
+      <iHappiness>0</iHappiness>
+      <iFirstFreeTechs>0</iFirstFreeTechs>
+      <iAsset>8</iAsset>
+      <iPower>0</iPower>
+      <bRepeat>0</bRepeat>
+      <bTrade>1</bTrade>
+      <bDisable>0</bDisable>
+      <bGoodyTech>1</bGoodyTech>
+      <bExtraWaterSeeFrom>0</bExtraWaterSeeFrom>
+      <bMapCentering>0</bMapCentering>
+      <bMapVisible>0</bMapVisible>
+      <bMapTrading>0</bMapTrading>
+      <bTechTrading>0</bTechTrading>
+      <bGoldTrading>0</bGoldTrading>
+      <bOpenBordersTrading>0</bOpenBordersTrading>
+      <bDefensivePactTrading>0</bDefensivePactTrading>
+      <bPermanentAllianceTrading>0</bPermanentAllianceTrading>
+      <bVassalTrading>0</bVassalTrading>
+      <bBridgeBuilding>0</bBridgeBuilding>
+      <bIrrigation>0</bIrrigation>
+      <bIgnoreIrrigation>0</bIgnoreIrrigation>
+      <bWaterWork>0</bWaterWork>
+      <iGridX>4</iGridX>
+      <iGridY>14</iGridY>
+      <DomainExtraMoves/>
+      <CommerceFlexible/>
+      <TerrainTrades/>
+      <bRiverTrade>0</bRiverTrade>
+      <Flavors>
+        <Flavor>
+          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+          <iFlavor>1</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_GOLD</FlavorType>
+          <iFlavor>1</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_SCIENCE</FlavorType>
+          <iFlavor>1</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_GROWTH</FlavorType>
+          <iFlavor>5</iFlavor>
+        </Flavor>
+      </Flavors>
+      <OrPreReqs>
+        <PrereqTech>TECH_WEINBAU</PrereqTech>
+      </OrPreReqs>
+      <AndPreReqs>
+        <PrereqTech>TECH_POTTERY</PrereqTech>
+      </AndPreReqs>
+      <Quote>TXT_KEY_PAE_QUOTE_120</Quote>
+      <Sound>AS2D_TECH_PAE_QUOTE_120</Sound>
+      <SoundMP>AS2D_TECH_PAE_QUOTE_120</SoundMP>
+      <Button>Art/Interface/Buttons/Techs/tech_gaerung.dds</Button>
     </TechInfo>
 
     <TechInfo>
@@ -1787,7 +1703,7 @@
       <bIgnoreIrrigation>0</bIgnoreIrrigation>
       <bWaterWork>0</bWaterWork>
       <iGridX>5</iGridX>
-      <iGridY>12</iGridY>
+      <iGridY>11</iGridY>
       <DomainExtraMoves/>
       <CommerceFlexible/>
       <TerrainTrades/>
@@ -1823,7 +1739,7 @@
         </Flavor>
       </Flavors>
       <OrPreReqs>
-        <PrereqTech>TECH_THE_WHEEL</PrereqTech>
+        <PrereqTech>TECH_POTTERY</PrereqTech>
       </OrPreReqs>
       <AndPreReqs>
         <PrereqTech>TECH_METAL_CASTING</PrereqTech>
@@ -1832,6 +1748,91 @@
       <Sound>AS2D_TECH_PAE_QUOTE_51</Sound>
       <SoundMP>AS2D_TECH_PAE_QUOTE_51</SoundMP>
       <Button>Art/Interface/Buttons/Techs/button_masonry.dds</Button>
+    </TechInfo>
+    <TechInfo>
+      <Type>TECH_THE_WHEEL</Type>
+      <Description>TXT_KEY_TECH_THE_WHEEL</Description>
+      <Civilopedia>TXT_KEY_TECH_THE_WHEEL_PEDIA</Civilopedia>
+      <Help/>
+      <Strategy>TXT_KEY_TECH_THE_WHEEL_STRATEGY</Strategy>
+      <Advisor>ADVISOR_ECONOMY</Advisor>
+      <iAIWeight>0</iAIWeight>
+      <iAITradeModifier>0</iAITradeModifier>
+      <iCost>40</iCost>
+      <iAdvancedStartCost>100</iAdvancedStartCost>
+      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
+      <Era>ERA_ANCIENT</Era>
+      <FirstFreeUnitClass>NONE</FirstFreeUnitClass>
+      <iFeatureProductionModifier>0</iFeatureProductionModifier>
+      <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
+      <iTradeRoutes>0</iTradeRoutes>
+      <iHealth>0</iHealth>
+      <iHappiness>0</iHappiness>
+      <iFirstFreeTechs>0</iFirstFreeTechs>
+      <iAsset>8</iAsset>
+      <iPower>0</iPower>
+      <bRepeat>0</bRepeat>
+      <bTrade>1</bTrade>
+      <bDisable>0</bDisable>
+      <bGoodyTech>1</bGoodyTech>
+      <bExtraWaterSeeFrom>0</bExtraWaterSeeFrom>
+      <bMapCentering>0</bMapCentering>
+      <bMapVisible>0</bMapVisible>
+      <bMapTrading>0</bMapTrading>
+      <bTechTrading>0</bTechTrading>
+      <bGoldTrading>0</bGoldTrading>
+      <bOpenBordersTrading>0</bOpenBordersTrading>
+      <bDefensivePactTrading>0</bDefensivePactTrading>
+      <bPermanentAllianceTrading>0</bPermanentAllianceTrading>
+      <bVassalTrading>0</bVassalTrading>
+      <bBridgeBuilding>0</bBridgeBuilding>
+      <bIrrigation>0</bIrrigation>
+      <bIgnoreIrrigation>0</bIgnoreIrrigation>
+      <bWaterWork>0</bWaterWork>
+      <iGridX>5</iGridX>
+      <iGridY>13</iGridY>
+      <DomainExtraMoves/>
+      <CommerceFlexible/>
+      <TerrainTrades/>
+      <bRiverTrade>0</bRiverTrade>
+      <Flavors>
+        <Flavor>
+          <FlavorType>FLAVOR_MILITARY</FlavorType>
+          <iFlavor>5</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_RELIGION</FlavorType>
+          <iFlavor>2</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+          <iFlavor>6</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_GOLD</FlavorType>
+          <iFlavor>2</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_SCIENCE</FlavorType>
+          <iFlavor>2</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_CULTURE</FlavorType>
+          <iFlavor>2</iFlavor>
+        </Flavor>
+        <Flavor>
+          <FlavorType>FLAVOR_GROWTH</FlavorType>
+          <iFlavor>2</iFlavor>
+        </Flavor>
+      </Flavors>
+      <OrPreReqs>
+        <PrereqTech>TECH_POTTERY</PrereqTech>
+      </OrPreReqs>
+      <AndPreReqs/>
+      <Quote>TXT_KEY_TECH_THE_WHEEL_QUOTE</Quote>
+      <Sound>AS2D_TECH_THE_WHEEL</Sound>
+      <SoundMP>AS2D_TECH_MP_THE_WHEEL</SoundMP>
+      <Button>,Art/Interface/Buttons/TechTree/TheWheel.dds,Art/Interface/Buttons/TechTree_Atlas.dds,4,12</Button>
     </TechInfo>
 
     <TechInfo>
@@ -2393,9 +2394,7 @@
       <OrPreReqs>
         <PrereqTech>TECH_ASTRONOMIE</PrereqTech>
       </OrPreReqs>
-      <AndPreReqs>
-        <PrereqTech>TECH_AGRICULTURE</PrereqTech>
-      </AndPreReqs>
+      <AndPreReqs/>
       <Quote>TXT_KEY_PAE_QUOTE_100</Quote>
       <Sound>AS2D_TECH_PAE_QUOTE_100</Sound>
       <SoundMP>AS2D_TECH_PAE_QUOTE_100</SoundMP>

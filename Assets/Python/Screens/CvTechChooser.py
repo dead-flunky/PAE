@@ -651,7 +651,7 @@ class CvTechChooser:
                                         fX += X_INCREMENT
                         j = 0
 
-                        # PAE: Cults
+                        # PAE: Kulte/Cults
                         for j in range( gc.getNumCorporationInfos() ):
                                 if ( gc.getCorporationInfo(j).getTechPrereq() == i ):
                                         szFoundCorporation = "FoundCorporationButton" + str( ( i * 1000 ) + j )
@@ -690,6 +690,9 @@ class CvTechChooser:
                                 fX += X_INCREMENT
                         elif i == gc.getInfoTypeForString("TECH_FRUCHTBARKEIT"):
                                 screen.addDDSGFCAt( "", szTechRecord, "Art/Interface/Buttons/Corporations/button_unit_corp2.dds", iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 676, 676, False )
+                                fX += X_INCREMENT
+                        elif i == gc.getInfoTypeForString("TECH_MANUFAKTUREN"):
+                                screen.addDDSGFCAt( "", szTechRecord, "Art/Interface/Buttons/Corporations/button_unit_corp3.dds", iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 676, 676, False )
                                 fX += X_INCREMENT
                         elif i == gc.getInfoTypeForString("TECH_GLADIATOR"):
                                 screen.addDDSGFCAt( "", szTechRecord, "Art/Interface/Buttons/Corporations/button_unit_corp5.dds", iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_GENERAL, 676, 676, False )

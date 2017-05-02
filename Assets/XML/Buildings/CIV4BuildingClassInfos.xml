@@ -21,8 +21,6 @@
 <!-- BUILDING_SCHULE: Rom, Hethit, Phoen, Perser, Babylon, Sumer, Karthago, Egypt, Berber, Iberer, Nubier, Inder -->
 <!-- BUILDING_GYMNASION: Griechen,  Ath,Theb,Spar, Makedon -->
 <!-- +++++++ BUILDINGCLASS_SPECIAL4 ++++++ -->
-<!-- Garten, Triumph -->
-<!-- BUILDING_TRIUMPH: Etrus, Rom -->
 <!-- BUILDING_GARDEN: Assyrer, Phoen, Perser, Babylon, Sumer, Karthago, Egypt, Israel -->
 <!-- BUILDING_STEINKREIS: Kelten, Gallier, Briten, Daker, Iberer -->
 <!-- +++++++ BUILDINGCLASS_SPECIAL5 ++++++ -->
@@ -52,16 +50,6 @@
 <!-- BUILDING_DOLMEN: Germanen -->
 <!-- BUILDING_GRABHUEGEL: Illyrer -->
 <!-- BUILDING_NUBIAN_PYRAMID: Egypt, Nubia -->
-<!-- ++++++++ BUILDINGCLASS_OBELISK +++++++ -->
-<!-- BUILDING_OBELISK TECH_DENKMAL -->
-<!-- BUILDING_HEROON TECH_DENKMAL -->
-<!-- BUILDING_EGYPTIAN_OBELISK TECH_MASONRY -->
-<!-- BUILDING_GEIERSTELE TECH_MASONRY -->
-<!-- ++++++++ BUILDINGCLASS_SAEULE (TECH_DENKMAL) +++++++ -->
-<!-- BUILDING_SAEULE Siegesdenkmal -->
-<!-- BUILDING_SAEULE2 Siegessaeule -->
-<!-- BUILDING_SAEULE3 Tehen-Pfeiler -->
-<!-- BUILDING_SAEULE4 Schlangensaeule -->
 <Civ4BuildingClassInfos xmlns="x-schema:CIV4BuildingsSchema.xml">
   <BuildingClassInfos>
     <BuildingClassInfo>
@@ -936,15 +924,63 @@
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-      <Type>BUILDINGCLASS_SAEULE</Type>
-      <Description>TXT_KEY_BUILDING_SAEULE</Description>
+      <Type>BUILDINGCLASS_TEHEN</Type>
+      <Description>TXT_KEY_BUILDING_TEHEN</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>
       <iMaxTeamInstances>-1</iMaxTeamInstances>
       <iMaxPlayerInstances>-1</iMaxPlayerInstances>
       <iExtraPlayerInstances>0</iExtraPlayerInstances>
       <bNoLimit>0</bNoLimit>
       <bMonument>1</bMonument>
-      <DefaultBuilding>BUILDING_SAEULE</DefaultBuilding>
+      <DefaultBuilding>BUILDING_TEHEN</DefaultBuilding>
+      <VictoryThresholds/>
+    </BuildingClassInfo>
+    <BuildingClassInfo>
+      <Type>BUILDINGCLASS_SIEGESSTELE</Type>
+      <Description>TXT_KEY_BUILDING_SIEGESSTELE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_SIEGESSTELE</DefaultBuilding>
+      <VictoryThresholds/>
+    </BuildingClassInfo>
+    <BuildingClassInfo>
+      <Type>BUILDINGCLASS_SIEGESTEMPEL</Type>
+      <Description>TXT_KEY_BUILDING_SIEGESTEMPEL</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_SIEGESTEMPEL</DefaultBuilding>
+      <VictoryThresholds/>
+    </BuildingClassInfo>
+    <BuildingClassInfo>
+      <Type>BUILDINGCLASS_SIEGESSTATUE</Type>
+      <Description>TXT_KEY_BUILDING_SIEGESSTATUE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_SIEGESSTATUE</DefaultBuilding>
+      <VictoryThresholds/>
+    </BuildingClassInfo>
+    <BuildingClassInfo>
+      <Type>BUILDINGCLASS_SIEGESSAEULE</Type>
+      <Description>TXT_KEY_BUILDING_SIEGESSAEULE</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_SIEGESSAEULE</DefaultBuilding>
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
@@ -957,6 +993,30 @@
       <bNoLimit>0</bNoLimit>
       <bMonument>1</bMonument>
       <DefaultBuilding>BUILDING_ELEPHANTMONUMENT</DefaultBuilding>
+      <VictoryThresholds/>
+    </BuildingClassInfo>
+    <BuildingClassInfo>
+      <Type>BUILDINGCLASS_MONUMENT</Type>
+      <Description>TXT_KEY_BUILDING_MONUMENT</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_MONUMENT</DefaultBuilding>
+      <VictoryThresholds/>
+    </BuildingClassInfo>
+    <BuildingClassInfo>
+      <Type>BUILDINGCLASS_TRIUMPH</Type>
+      <Description>TXT_KEY_BUILDING_TRIUMPH</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
+      <iExtraPlayerInstances>0</iExtraPlayerInstances>
+      <bNoLimit>0</bNoLimit>
+      <bMonument>1</bMonument>
+      <DefaultBuilding>BUILDING_TRIUMPH</DefaultBuilding>
       <VictoryThresholds/>
     </BuildingClassInfo>
 

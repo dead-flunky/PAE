@@ -2502,16 +2502,19 @@ class CvWorldBuilderScreen:
   def setScriptCB(self, szScript):
     if (self.m_pUnitToScript != -1):
       self.m_pUnitToScript.setScriptData(CvUtil.convertToStr(szScript))
+      # CvUtil.setScriptData(self.m_pUnitToScript, CvUtil.convertToStr(szScript))
       self.m_pUnitToScript = -1
       return
 
     if (self.m_pCityToScript != -1):
       self.m_pCityToScript.setScriptData(CvUtil.convertToStr(szScript))
+      # CvUtil.setScriptData(self.m_pCityToScript, CvUtil.convertToStr(szScript))
       self.m_pCityToScript = -1
       return
 
     if (self.m_pPlotToScript != -1):
       self.m_pPlotToScript.setScriptData(CvUtil.convertToStr(szScript))
+      # CvUtil.setScriptData(self.m_pPlotToScript, CvUtil.convertToStr(szScript))
       self.m_pPlotToScript = -1
       return
     return

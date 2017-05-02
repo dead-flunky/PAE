@@ -644,7 +644,7 @@ class CvPlayerDesc:
     self.iCoastalTradeRoute = 0
     self.iStateReligionUnit = 0
     self.iStateReligionBuilding = 0
-    self.sScriptData = ""
+    self.szScriptData = ""
 
   def write(self, f, idx):
     "write out player data"
@@ -935,7 +935,7 @@ class CvPlayerDesc:
           continue
         v = parser.findTokenValue(toks, "ScriptData")
         if v!=-1:
-          self.sScriptData = v
+          self.szScriptData = v
           continue
 
         if parser.findTokenValue(toks, "EndPlayer") != -1:
@@ -1177,7 +1177,7 @@ class CvUnitDesc:
 
       ## Platy Builder ##
         if self.szScriptData != "":
-          CvUtil.setScriptData(unit, self.szScriptData)
+          unit.setScriptData(self.szScriptData)  # Usage of CvUtil.setScriptData would be wrong!
         unit.setImmobileTimer(self.iImmobile)
         if self.iBaseCombatStr > -1:
           unit.setBaseCombatStr(self.iBaseCombatStr)
@@ -1539,7 +1539,7 @@ class CvCityDesc:
           self.city.pushOrder(OrderTypes.ORDER_MAINTAIN, processTypeNum, -1, False, False, False, True)
 
         if self.szScriptData:
-          CvUtil.setScriptData(self.city, self.szScriptData)
+          self.city.setScriptData(self.szScriptData)  # Usage of CvUtil.setScriptData would be wrong!
       ## Platy Builder ##
         if self.iDamage > 0:
           self.city.changeDefenseDamage(self.iDamage)
@@ -1824,7 +1824,7 @@ class CvPlotDesc:
       CyEngine().addLandmark(CyMap().plot(self.iX, self.iY), "%s" %(self.szLandmark))
 
     if (self.szScriptData != ""):
-      CvUtil.setScriptData(plot, self.szScriptData)
+      plot.setScriptData(self.szScriptData)  # Usage of CvUtil.setScriptData would be wrong!
 
   def applyUnits(self):
     #print "--apply units"
@@ -2293,7 +2293,7 @@ class CvWBDesc:
       pPlayer.changeCoastalTradeRoutes(pWBPlayer.iCoastalTradeRoute)
       #pPlayer.changeStateReligionUnitProductionModifier(pWBPlayer.iStateReligionUnit)
       #pPlayer.changeStateReligionBuildingProductionModifier(pWBPlayer.iStateReligionBuilding)
-      CvUtil.setScriptData(pPlayer, pWBPlayer.sScriptData)
+      pPlayer.setScriptData(pWBPlayer.szScriptData)  # Usage of CvUtil.setScriptData would be wrong!
 
     # cities
     for pDesc in self.plotDesc:

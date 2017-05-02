@@ -2522,21 +2522,20 @@ class CvMainInterface:
                 pPlot = g_pSelectedUnit.plot()
                 if iUnitType in PAE_Trade.lCultivationUnits:
                   if pPlot.getOwner() == pUnit.getOwner():
-                    if pPlot.isCity(): iIsCity = 1
-                    else: iIsCity = 0
+                    iIsCity = pPlot.isCity()
                     eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
                     # Collect bonus from plot or city
                     ePlotBonus = pPlot.getBonusType(pUnit.getOwner()) # Invisible bonuses can NOT be collected
-                    if ePlotBonus in PAE_Trade.lCultivatable or iIsCity:
-                      # remove from plot => iData2 = 0. 1 = charge all goods without removing. Nur bei leerem Karren.
-                      if eBonus == -1 and ePlotBonus != -1:
-                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True )
-                        screen.show( "BottomButtonContainer" )
-                        iCount = iCount + 1
-                      if iIsCity:
-                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_BUY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 1, True )
-                        screen.show( "BottomButtonContainer" )
-                        iCount = iCount + 1
+                    # remove from plot => iData2 = 0. 1 = charge all goods without removing. Nur bei leerem Karren.
+                    if eBonus == -1:
+                        if ePlotBonus != -1 and ePlotBonus in PAE_Trade.lCultivatable:
+                            screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True )
+                            screen.show( "BottomButtonContainer" )
+                            iCount = iCount + 1
+                        if iIsCity:
+                            screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_BUY").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 1, True )
+                            screen.show( "BottomButtonContainer" )
+                            iCount = iCount + 1
                     else:
                       screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT_IMPOSSIBLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 739, False )
                       screen.show( "BottomButtonContainer" )
@@ -3086,7 +3085,8 @@ class CvMainInterface:
                         iCount = iCount + 1
 
               # Handelsposten
-              if pUnit.getUnitClassType() == gc.getInfoTypeForString("UNITCLASS_WORKER") or pUnit.getUnitClassType() == gc.getInfoTypeForString("UNITCLASS_SLAVE"):
+              #if pUnit.getUnitClassType() == gc.getInfoTypeForString("UNITCLASS_WORKER") or pUnit.getUnitClassType() == gc.getInfoTypeForString("UNITCLASS_SLAVE"):
+              if pUnit.getUnitClassType() == gc.getInfoTypeForString("UNITCLASS_TRADE_MERCHANT"):
                 # Update: auch in eigenen Grenzen anzeigen (zB fuer Inseln), aber nur wenn nicht bereits was drauf steht
                 #if pUnit.plot().getOwner() == -1:
                 pPlot = pUnit.plot()
@@ -6641,7 +6641,7 @@ class CvMainInterface:
        # import CvTradeRouteAdvisor2
        # CvTradeRouteAdvisor2.CvTradeRouteAdvisor().interfaceScreen()
        # return 1
-       
+
     # PAE TradeRouteAdvisor Screen
     if inputClass.getButtonType() == WidgetTypes.WIDGET_GENERAL and inputClass.getData1() == 10000 and inputClass.getData2() == 1:
         import CvTradeRouteAdvisor
@@ -6971,7 +6971,7 @@ class CvMainInterface:
     if inputClass.getButtonType() == WidgetTypes.WIDGET_HELP_PROMOTION:
       # ID 718 Unit Formations
       if (inputClass.getNotifyCode() == 11 and inputClass.getData2() == 718 and inputClass.getOption()):
-        CyAudioGame().Play2DSound('AS2D_BUILD_BARRACKS')      
+        CyAudioGame().Play2DSound('AS2D_BUILD_BARRACKS')
         CyMessageControl().sendModNetMessage( 718, 0, inputClass.getData1(), iOwner, iUnitID )
 
 

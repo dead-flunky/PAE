@@ -1458,6 +1458,10 @@ def doComet():
     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
 
     iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
+    lVillages = []
+    lVillages.append(gc.getInfoTypeForString("IMPROVEMENT_HAMLET"))
+    lVillages.append(gc.getInfoTypeForString("IMPROVEMENT_VILLAGE"))
+    lVillages.append(gc.getInfoTypeForString("IMPROVEMENT_TOWN"))
 
     bonus_magnetit = gc.getInfoTypeForString("BONUS_MAGNETIT")
     bonus_oreichalkos = gc.getInfoTypeForString("BONUS_OREICHALKOS")
@@ -1560,6 +1564,10 @@ def doComet():
                     if not loopPlot.isCity():
                       loopPlot.setRouteType(-1)
                       loopPlot.setImprovementType(-1)
+                  # Gemeinden und Doerfer -> Huetten/Cottages
+                  elif loopPlot.getImprovementType() in lVillages: loopPlot.setImprovementType(gc.getInfoTypeForString("IMPROVEMENT_COTTAGE"))
+
+
                   # Entfernung zum Einschlag berechnen
                   iBetrag = (iRandX - loopPlot.getX()) * (iRandX - loopPlot.getX()) + (iRandY - loopPlot.getY()) * (iRandY - loopPlot.getY())
                   if iBetrag == 1:

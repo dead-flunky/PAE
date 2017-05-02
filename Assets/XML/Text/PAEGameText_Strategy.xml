@@ -250,11 +250,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_THERME_STRATEGY</Tag>
-    <English>The [COLOR_BUILDING_TEXT]Therme[COLOR_REVERT] produces a bonus of +1 [ICON_HEALTHY] and unlike the normal[COLOR_BUILDING_TEXT]bath house[COLOR_REVERT] provides an additional bonus of +1 [ICON_HAPPY].</English>
-    <French>Le [COLOR_BUILDING_TEXT]Therme[COLOR_REVERT] produit +1 [ICON_HEALTHY] et contrairement aux[COLOR_BUILDING_TEXT]bains publics[COLOR_REVERT] fournit un bonus additionnel de +1 [ICON_HAPPY].</French>
-    <German>Die [COLOR_BUILDING_TEXT]Therme[COLOR_REVERT] erzeugt einen Bonus von +1 [ICON_HEALTHY] und gegen&#252;ber dem normalen [COLOR_BUILDING_TEXT]Badehaus[COLOR_REVERT] einen weiteren Bonus von +1 [ICON_HAPPY].</German>
-    <Italian>The [COLOR_BUILDING_TEXT]Therme[COLOR_REVERT] produces a bonus of +1 [ICON_HEALTHY] and unlike the normal[COLOR_BUILDING_TEXT]bath house[COLOR_REVERT] provides an additional bonus of +1 [ICON_HAPPY].</Italian>
-    <Spanish>Las [COLOR_BUILDING_TEXT]Termas[COLOR_REVERT] produce un bonus de +1 [ICON_HEALTHY] y a diferencia de la [COLOR_BUILDING_TEXT]Casa de Ba&#241;os[COLOR_REVERT] provee un bonus adicional de +1 [ICON_HAPPY].</Spanish>
+    <English>This building increases health in a city.</English>
+    <French>This building increases health in a city.</French>
+    <German>Dieses Geb&#228;ude erh&#246;ht die Gesundheit einer Stadt.</German>
+    <Italian>This building increases health in a city.</Italian>
+    <Spanish>Este edificio aumenta la salud en una ciudad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_ROME_NUMERI_STRATEGY</Tag>
@@ -354,11 +354,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_CIVIC_HERRSCHERKULT_STRATEGY</Tag>
-    <English>Faster military unit production. [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT], [COLOR_BUILDING_TEXT]Obelisk[COLOR_REVERT] or [COLOR_BUILDING_TEXT]Stele of the Vultures[COLOR_REVERT] produce extra happiness. Slightly increased costs for cults.</English>
-    <French>Entretien &#233;lev&#233;.[NEWLINE]Unit&#233;s militaires construites 25% plus vite. -25% de m&#233;contentement d&#251; &#224; la guerre.</French>
-    <German>Beschleunigte Produktion von Milit&#228;reinheiten. [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT], [COLOR_BUILDING_TEXT]Obelisk[COLOR_REVERT] oder [COLOR_BUILDING_TEXT]Geierstele[COLOR_REVERT] steigern die Zufriedenheit. Leicht verteuerter Unterhalt f&#252;r Kulte.</German>
-    <Italian>Faster military unit production. [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT], [COLOR_BUILDING_TEXT]Obelisk[COLOR_REVERT] or [COLOR_BUILDING_TEXT]Stele of the Vultures[COLOR_REVERT] produce extra happiness. Slightly increased costs for cults.</Italian>
-    <Spanish>Producci&#243;n de unidades militares m&#225;s r&#225;pido. [COLOR_BUILDING_TEXT]Monumento[COLOR_REVERT], [COLOR_BUILDING_TEXT]Obelisco[COLOR_REVERT] o [COLOR_BUILDING_TEXT]Estela de los Buitres[COLOR_REVERT] produce felicidad extra. Aumenta ligeramente los costes por los cultos.</Spanish>
+    <English>Faster military unit production and less war weariness.</English>
+    <French>Unit&#233;s militaires construites 25% plus vite et -25% de m&#233;contentement d&#251; &#224; la guerre.</French>
+    <German>Beschleunigte Produktion von Milit&#228;reinheiten und weniger Kriegsverdruss.</German>
+    <Italian>Faster military unit production and less war weariness.</Italian>
+    <Spanish>Producci&#243;n de unidades militares m&#225;s r&#225;pida y menos hast&#237;o b&#233;lico.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_CIVIC_STAMMESKRIEGER_STRATEGY</Tag>
@@ -458,11 +458,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_ARCHIVE_STRATEGY</Tag>
-    <English>The[COLOR_BUILDING_TEXT]archive[COLOR_REVERT] produces +1 [ICON_CULTURE] and increases [ICON_GOLD] and [ICON_RESEARCH] by 10%.</English>
-    <French>Les [COLOR_BUILDING_TEXT]archives[COLOR_REVERT] g&#233;n&#233;rent +1 [ICON_CULTURE] et augmentent [ICON_GOLD] et [ICON_RESEARCH] pour 10%.</French>
-    <German>Das [COLOR_BUILDING_TEXT]Archiv[COLOR_REVERT] erzeugt +1 [ICON_CULTURE] und erh&#246;ht [ICON_GOLD] und [ICON_RESEARCH] um je 10%.</German>
-    <Italian>The[COLOR_BUILDING_TEXT]archive[COLOR_REVERT] produces +1 [ICON_CULTURE] and increases [ICON_GOLD] and [ICON_RESEARCH] by 10%.</Italian>
-    <Spanish>El [COLOR_BUILDING_TEXT]archivo[COLOR_REVERT] produce +1 [ICON_CULTURE] e incrementa [ICON_GOLD] y [ICON_RESEARCH] en 10%.</Spanish>
+    <English>The[COLOR_BUILDING_TEXT]archive[COLOR_REVERT] increases [ICON_GOLD] and [ICON_RESEARCH] by 20%.</English>
+    <French>Les [COLOR_BUILDING_TEXT]archives[COLOR_REVERT] augmentent [ICON_GOLD] et [ICON_RESEARCH] pour 20%.</French>
+    <German>Das [COLOR_BUILDING_TEXT]Archiv[COLOR_REVERT] erh&#246;ht [ICON_GOLD] und [ICON_RESEARCH] um je 20%.</German>
+    <Italian>The[COLOR_BUILDING_TEXT]archive[COLOR_REVERT] increases [ICON_GOLD] and [ICON_RESEARCH] by 20%.</Italian>
+    <Spanish>El [COLOR_BUILDING_TEXT]archivo[COLOR_REVERT] incrementa [ICON_GOLD] y [ICON_RESEARCH] en 20%.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_ELEPHANT_STABLE_STRATEGY</Tag>
@@ -575,14 +575,6 @@
     <German>Dieses Geb&#228;ude bringt +1[ICON_HEALTHY].</German>
     <Italian>This building brings +1[ICON_HEALTHY].</Italian>
     <Spanish>Este edificio lleva +1[ICON_HEALTHY].</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_BUILDING_EGYPTIAN_OBELISK_STRATEGY</Tag>
-    <English>The [COLOR_BUILDING_TEXT]Egyptian Obelisk[COLOR_REVERT], the Egyptian replacement for the [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT], provides its city with a small amount of culture and also allows the city to have 2 priest specialist.</English>
-    <French>L'[COLOR_BUILDING_TEXT]ob&#233;lisque &#233;gyptien[COLOR_REVERT], c'est-&#224;-dire le [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT] &#233;gyptien, fournit &#224; la ville une petite quantit&#233; de culture et lui permet d'avoir 2 pr&#234;tres.</French>
-    <German>Der [COLOR_BUILDING_TEXT]&#196;gyptische Obelisk[COLOR_REVERT], die &#228;gyptische Variante des [COLOR_BUILDING_TEXT]Monuments[COLOR_REVERT], bewirkt einen leichten Anstieg des kulturellen Werts einer Stadt und erm&#246;glicht die Existenz von 1 Priester-Spezialisten in der jeweiligen Stadt.</German>
-    <Italian>L'[COLOR_BUILDING_TEXT]Obelisco egizio[COLOR_REVERT], l'equivalente egizio del[COLOR_BUILDING_TEXT]monumento[COLOR_REVERT], fornisce alla citt&#224; un piccolo contributo in cultura e permette alla citt&#224; stessa di avere fino a due sacerdoti.</Italian>
-    <Spanish>El [COLOR_BUILDING_TEXT]Obelisco egipcio[COLOR_REVERT], que reemplaza al [COLOR_BUILDING_TEXT]Monumento[COLOR_REVERT], proporciona a su ciudad una peque&#241;a cantidad de cultura y tambi&#233;n le permite tener 2 sacerdotes especialistas.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_FEUERWEHR_STRATEGY</Tag>
@@ -1498,10 +1490,10 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TECH_MEDICINE2_STRATEGY</Tag>
-    <English>This technology gives a health bonus to all cities.</English>
-    <French>This technology gives a health bonus to all cities.</French>
+    <English>This technology gives one health bonus to all cities.</English>
+    <French>This technology gives one health bonus to all cities.</French>
     <German>Alle St&#228;dte erhalten einen Gesundheitsbonus.</German>
-    <Italian>This technology gives a health bonus to all cities.</Italian>
+    <Italian>[NEWLINE]</Italian>
     <Spanish>Todos las ciudades ganan un bonus de salud.</Spanish>
   </TEXT>
   <TEXT>
@@ -2165,7 +2157,7 @@
     <English>The output of mines increases.</English>
     <French>The output of mines increases.</French>
     <German>Der Ertrag der Bergwerke steigt.</German>
-    <Italian>The output of mines increases.</Italian>
+    <Italian>[NEWLINE]</Italian>
     <Spanish>Se aumenta la producci&#243;n de las minas.</Spanish>
   </TEXT>
   <TEXT>
@@ -2379,7 +2371,7 @@
   <TEXT>
     <Tag>TXT_KEY_UNIT_GALEERE_STRATEGY</Tag>
     <English>These powerful ships can transport 5 land units.</English>
-    <French>These powerful ships can transport 5 land units.</French>
+    <French>[NEWLINE].</French>
     <German>Diese m&#228;chtigen Schiffe k&#246;nnen bereits 5 Landeinheiten transportieren.</German>
     <Italian>These powerful ships can transport 5 land units.</Italian>
     <Spanish>Estos poderosos barcos pueden transportar hasta 5 unidades terestres.</Spanish>
@@ -2499,7 +2491,7 @@
   <TEXT>
     <Tag>TXT_KEY_UNIT_HEAVY_HORSEMAN_STRATEGY</Tag>
     <English>This strong mounted unit is suitable for flanking enemy positions.</English>
-    <French>This strong mounted unit is suitable for flanking enemy positions.</French>
+    <French>[NEWLINE]</French>
     <German>Diese starke Reitereinheit eignet sich zum Flankieren gegnerischer Stellungen.</German>
     <Italian>This strong mounted unit is suitable for flanking enemy positions.</Italian>
     <Spanish>Esta unidad montada fuerte es adecuada para flanquear posiciones enemigas.</Spanish>

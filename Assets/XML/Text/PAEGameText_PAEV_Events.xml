@@ -78,7 +78,7 @@
     <French>Un esclave n&#233;gligent a oubli&#233; d'&#233;teindre une lampe &#224; huile d&#233;clenchant un incendie dans la biblioth&#232;que de %s2_city.</French>
     <German>Ein unvorsichtiger Sklave hat in der Stadt %s2_city vergessen, die &#214;llampen zu l&#246;schen und die Schriftrollen haben Feuer gefangen.</German>
     <Italian>Nella citt&#224; di %s2_city uno schiavo negligente ha dimenticato di spegnere le lampade a olio e i papi</Italian>
-    <Spanish>Un esclavo descuidado en %s2_city ha olvidado limpiar las l&#225;mparas de aceite y los pergaminos se han incendiado.</Spanish>
+    <Spanish>Un esclavo descuidado en %s2_city ha olvidado limpiar las l&#225;mparas de aceite y los pergaminos se han incendiado.[NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_EVENT_BIBBRAND_1</Tag>
@@ -533,7 +533,7 @@
     <English>Because of the persistent dryness in the area of the %s1_civ_adjective city of %s2_city, a fire has broken out.</English>
     <French>Une s&#233;cheresse persistante a provoqu&#233; un incendie aux alentours de la ville %s1:2_civ_adjective de %s2_city.</French>
     <German>Wegen der anhaltenden Trockenheit ist in der Gegend der %s1:2_civ_adjective Stadt %s2_city ein Feuer ausgebrochen.</German>
-    <Italian>A causa della siccit&#224; in corso nel settore %s1:2_civ_adjective della citt&#224; di %s2_city, un incendio &#232; scoppiato.</Italian>
+    <Italian>A causa della siccit&#224; in corso nel settore %s1:2_civ_adjective della citt&#224; di %s2_city, un incendio &#232; scoppiato. [NEWLINE][NEWLINE]</Italian>
     <Spanish>A causa de la persistente sequedad en el &#225;rea de la ciudad %s1:2 de %s2_city, se produjo un incendio.</Spanish>
   </TEXT>
   <TEXT>
@@ -757,7 +757,7 @@
     <English>[PARAGRAPH:1]To fulfil this quest, you must be build %d1 [COLOR_BUILDING_TEXT]leprosy colonies[COLOR_REVERT] in your cities.[PARAGRAPH:1]</English>
     <French>[PARAGRAPH:1]Pour accomplir cette qu&#234;te, %d1 [COLOR_BUILDING_TEXT]L&#233;proseries[COLOR_REVERT] doivent &#234;tre construites dans nos villes.</French>
     <German>[PARAGRAPH:1]Um diese Quest zu erf&#252;llen, m&#252;ssen %d1 [COLOR_BUILDING_TEXT]Leprakolonien[COLOR_REVERT] in unseren St&#228;dten gebaut werden.[PARAGRAPH:1]</German>
-    <Italian>[PARAGRAPH:1]Per compiere questa missione, devono essere costruiti %d1 [COLOR_BUILDING_TEXT]colonie di lebbra[COLOR_REVERT] nelle nostre citt&#224;.[PARAGRAPH:1]</Italian>
+    <Italian>[PARAGRAPH:1]Per compiere questa missione, devono essere costruiti %d1 [COLOR_BUILDING_TEXT]colonie di lebbra[COLOR_REVERT] nelle nostre citt&#224;.[PARAGRAPH:1][NEWLINE][NEWLINE]  </Italian>
     <Spanish>[PARAGRAPH:1]Para completar esta misi&#243;n, debes construir %d1 [COLOR_BUILDING_TEXT]leproser&#237;as[COLOR_REVERT] en tus ciudades.[PARAGRAPH:1]</Spanish>
   </TEXT>
   <TEXT>
@@ -813,7 +813,7 @@
     <English>Our scout noticed the fragrant blossoms of a rare herb which has strange qualities.</English>
     <French>Un de nos explorateurs remarque la fragrance des fleurs d'une rare herbe ayant des qualit&#233;s particuli&#232;res.</French>
     <German>Unser Kundschafter ist durch die duftenden Bl&#252;ten auf ein seltenes Kraut aufmerksam geworden, das seltsame Eigenschaften besitzt.</German>
-    <Italian>Il nostro esploratore &#232; venuta a conoscenza di una pianta rara dai fiori profumati, che ha strane propriet&#224;.</Italian>
+    <Italian>Il nostro esploratore &#232; venuta a conoscenza di una pianta rara dai fiori profumati, che ha strane propriet&#224;.[NEWLINE]</Italian>
     <Spanish>Nuestro batidor ha descubierto las fragantes flores de una rara hierba con propiedades extra&#241;as.</Spanish>
   </TEXT>
   <TEXT>
@@ -853,7 +853,7 @@
     <English>Very well! This will lend quite a new shine to the alloys of our weapons.</English>
     <French>Parfait ! Voil&#224; qui devrait donner un nouvel &#233;clat &#224; nos armes.</French>
     <German>Hervorragend! Das wird den Legierungen unserer Waffen einen ganz neuen Glanz verleihen.</German>
-    <Italian>Eccellente! Questo dar&#224; le leghe delle nostre braccia un nuovo splendore.</Italian>
+    <Italian>Eccellente! Questo dar&#224; le leghe delle nostre braccia un nuovo splendore.[NEWLINE]</Italian>
     <Spanish>&#161;Muy bien! Esto dar&#225; bastante brillo a las aleaciones de nuestras armas.</Spanish>
   </TEXT>
   <TEXT>
@@ -901,7 +901,7 @@
     <English>The escaped horses have become like wild horses.</English>
     <French>Les chevaux en fuite sont revenus &#224; l'&#233;tat sauvage.</French>
     <German>Die entflohenen Pferde haben sich zu Wildpferden entwickelt.</German>
-    <Italian>I cavalli in fuga sono diventati cavalli selvaggi.</Italian>
+    <Italian>I cavalli in fuga sono diventati cavalli selvaggi.[NEWLINE]</Italian>
     <Spanish>Los caballos escapados se han vuelto caballos salvajes.</Spanish>
   </TEXT>
   <TEXT>
@@ -1053,7 +1053,7 @@
     <English>Excellent! Sell it in the trading post of the city as soon as possible.</English>
     <French>Excellent ! Mettez-le en vente au comptoir d&#232;s que possible.</French>
     <German>Ausgezeichnet! Verkauft es sobald wie m&#246;glich im Handelsposten der Stadt.</German>
-    <Italian>Eccellente! Venduto il pi&#249; presto possibile nel post trading della citt&#224;.</Italian>
+    <Italian>Eccellente! Venduto il pi&#249; presto possibile nel post trading della citt&#224;.[NEWLINE]</Italian>
     <Spanish>&#161;Excelente! Vendedlo en el puesto comercial de la ciudad tan pronto como sea posible.</Spanish>
   </TEXT>
   <TEXT>
@@ -1117,7 +1117,7 @@
     <English>Well, they will earn a tidy profit.</English>
     <French>Bien, les b&#233;n&#233;fices n'en seront que meilleurs.</French>
     <German>Na, die werden einen satten Gewinn erzielen.</German>
-    <Italian>Beh, intendono raggiungere un bel profitto.</Italian>
+    <Italian>Beh, intendono raggiungere un bel profitto.[NEWLINE]</Italian>
     <Spanish>Bien, conseguir&#225;n un buen beneficio.</Spanish>
   </TEXT>
   <TEXT>
@@ -1157,7 +1157,7 @@
     <English>The large amount of olives will surely earn a tidy profit this year.</English>
     <French>Le grand nombre de fruits nous rapportera s&#251;rement une jolie somme cette ann&#233;e.</French>
     <German>Die gro&#223;e Menge an Oliven wird dieses Jahr sicher einen guten Gewinn erzielen.</German>
-    <Italian>La grande quantit&#224; di olive &#232; sicuro di fare un buon profitto quest'anno.</Italian>
+    <Italian>La grande quantit&#224; di olive &#232; sicuro di fare un buon profitto quest'anno.[NEWLINE]</Italian>
     <Spanish>La gran cantidad de aceitunas seguramente nos reportar&#225; un buen beneficio este a&#241;o.</Spanish>
   </TEXT>
   <TEXT>
@@ -1165,7 +1165,7 @@
     <English>From now on we will irrigate the plantation in this way every year.</English>
     <French>Dor&#233;navant, nous utiliserons cette technique tous les ans.</French>
     <German>Ab jetzt werden wir jedes Jahr die Plantage auf diese Art bew&#228;ssern.</German>
-    <Italian>Da ora in poi irrigare la piantagione in questo modo ogni anno.</Italian>
+    <Italian>Da ora in poi irrigare la piantagione in questo modo ogni anno.[NEWLINE]</Italian>
     <Spanish>Desde ahora irrigaremos la plantaci&#243;n de esta manera cada a&#241;o.</Spanish>
   </TEXT>
   <TEXT>
@@ -1389,7 +1389,7 @@
     <English>In a dream, the God of War told you that your name will be spoken with reverence for thousands of years if you send your army into battle accompanied by a large force of elephants.</English>
     <French>Dans une manifestation onirique, la divinit&#233; de la guerre vous r&#233;v&#232;le que votre nom sera lou&#233; pour les mill&#233;naires &#224; venir si vous rassemblez une &#233;norme arm&#233;e d'&#233;l&#233;phants de guerre.</French>
     <German>In einem Traum hat euch der Gott des Krieges mitgeteilt, dass man euren Namen noch in Tausenden von Jahren mit Ehrfurcht aussprechen wird, wenn ihr eure Armee mit einer gro&#223;en Truppe Elefanten in den Kampf schickt.</German>
-    <Italian>In un sogno che il Dio della Guerra ha annunciato che continuer&#224; a dire il tuo nome in migliaia di anni con stupore quando si invia il tuo esercito con una grande forza di elefanti in battaglia.</Italian>
+    <Italian>In un sogno che il Dio della Guerra ha annunciato che continuer&#224; a dire il tuo nome in migliaia di anni con stupore quando si invia il tuo esercito con una grande forza di elefanti in battaglia.[NEWLINE]</Italian>
     <Spanish>En un sue&#241;o, el Dios de la Guerra te cont&#243; que tu nombre ser&#225; venerado incluso en miles de a&#241;os - si env&#237;as una gran tropa delefantes a la guerra.</Spanish>
   </TEXT>
   <TEXT>
@@ -1501,7 +1501,7 @@
     <English>Our empire shall also be the greatest ever in the field of the fine arts. The governors of the provinces shall therefore spend a part of their incomings in the development of the local culture.</English>
     <French>Notre empire devrait aussi briller dans le domaine des arts. Les gouverneurs provinciaux devront d&#233;sormais utiliser une partie de leurs revenus pour promouvoir le d&#233;veloppement culturel.</French>
     <German>Unser Reich soll auch auf dem Gebiet der sch&#246;nen K&#252;nste das gr&#246;&#223;te Reich aller Zeiten werden. Die Statthalter der Provinzen sollen deswegen einen Teil ihrer Einnahmen in die Entwicklung ihrer &#246;rtlichen Kultur investieren.</German>
-    <Italian>Il nostro regno &#232; quello di essere il pi&#249; grande impero di tutti i tempi nel campo delle belle arti. I governatori delle province dovrebbero quindi investire una parte dei loro ricavi nello sviluppo della loro cultura locale.</Italian>
+    <Italian>Il nostro regno &#232; quello di essere il pi&#249; grande impero di tutti i tempi nel campo delle belle arti. I governatori delle province dovrebbero quindi investire una parte dei loro ricavi nello sviluppo della loro cultura locale.[NEWLINE]</Italian>
     <Spanish>Nuestro imperio tambi&#233;n ser&#225; el m&#225;s grande que nunca en el campo de las bellas artes. Los gobernantes de las provincias por tanto deber&#225;n gastar una parte de sus ingresos en el desarrollo de la cultura local.</Spanish>
   </TEXT>
   <TEXT>
@@ -2333,7 +2333,7 @@
     <English>This new kind of bow making can now be introduced to all your cities.</English>
     <French>Cette nouvelle technique de fabrication des arcs peut maintenant &#234;tre mise en oeuvre dans toutes vos villes.</French>
     <German>Diese neue Art des Bogenbaus kann nun in all euren St&#228;dten eingef&#252;hrt werden.</German>
-    <Italian>Questo nuovo tipo di costruzione degli archi pu&#242; ora essere introdotta in tutte le citt&#224;.</Italian>
+    <Italian>Questo nuovo tipo di costruzione degli archi pu&#242; ora essere introdotta in tutte le citt&#224;.[NEWLINE]</Italian>
     <Spanish>Este nuevo tipo de fabricaci&#243;n de arcos puede ser iniciado ahora en todas tus ciudades.</Spanish>
   </TEXT>
   <TEXT>
@@ -2341,7 +2341,7 @@
     <English>Get a free prophet.</English>
     <French>Obtenir un proph&#232;te gratuitement.</French>
     <German>Eine freie Einheit Prophet erhalten.</German>
-    <Italian>Ottenere una unit&#224; libera profeta.</Italian>
+    <Italian>Ottenere una unit&#224; libera profeta.[NEWLINE]</Italian>
     <Spanish>Obtener un gran profeta gratis</Spanish>
   </TEXT>
   <TEXT>

@@ -277,7 +277,7 @@
       </IrrigatedYieldChange>
       <bActsAsCity>0</bActsAsCity>
       <bHillsMakesValid>0</bHillsMakesValid>
-      <bFreshWaterMakesValid>1</bFreshWaterMakesValid>
+      <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
       <bRiverSideMakesValid>0</bRiverSideMakesValid>
       <bNoFreshWater>0</bNoFreshWater>
       <bRequiresFlatlands>1</bRequiresFlatlands>
@@ -923,7 +923,7 @@
       <ArtDefineTag>ART_DEF_IMPROVEMENT_QUARRY</ArtDefineTag>
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
       <bActsAsCity>0</bActsAsCity>
@@ -983,7 +983,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -994,7 +994,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1005,7 +1005,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1016,7 +1016,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1027,7 +1027,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1038,7 +1038,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1049,7 +1049,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1060,7 +1060,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1071,7 +1071,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1082,7 +1082,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
         <BonusTypeStruct>
@@ -1092,7 +1092,7 @@
           <iDiscoverRand>4000</iDiscoverRand>
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
             <iYieldChange>0</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
@@ -1104,7 +1104,7 @@
           <YieldChanges>
             <iYieldChange>0</iYieldChange>
             <iYieldChange>0</iYieldChange>
-            <iYieldChange>0</iYieldChange>
+            <iYieldChange>1</iYieldChange>
           </YieldChanges>
         </BonusTypeStruct>
       </BonusTypeStructs>
@@ -1532,7 +1532,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>20</iUpgradeTime>
+      <iUpgradeTime>10</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>5</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -1643,7 +1643,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>30</iUpgradeTime>
+      <iUpgradeTime>15</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>10</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -1754,7 +1754,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>40</iUpgradeTime>
+      <iUpgradeTime>0</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>15</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -1841,6 +1841,11 @@
       <Description>TXT_KEY_IMPROVEMENT_COTTAGE</Description>
       <Civilopedia>TXT_KEY_IMPROVEMENT_COTTAGE_PEDIA</Civilopedia>
       <ArtDefineTag>ART_DEF_IMPROVEMENT_COTTAGE</ArtDefineTag>
+      <PrereqNatureYields>
+        <iYield>1</iYield>
+        <iYield>0</iYield>
+        <iYield>0</iYield>
+      </PrereqNatureYields>
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
@@ -1848,7 +1853,7 @@
       </YieldChanges>
       <bActsAsCity>0</bActsAsCity>
       <bHillsMakesValid>0</bHillsMakesValid>
-      <bFreshWaterMakesValid>1</bFreshWaterMakesValid>
+      <bFreshWaterMakesValid>0</bFreshWaterMakesValid>
       <bRiverSideMakesValid>0</bRiverSideMakesValid>
       <bNoFreshWater>0</bNoFreshWater>
       <bRequiresFlatlands>1</bRequiresFlatlands>
@@ -1865,13 +1870,22 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>20</iUpgradeTime>
+      <iUpgradeTime>10</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>5</iDefenseModifier>
       <iHappiness>0</iHappiness>
       <iPillageGold>10</iPillageGold>
       <bOutsideBorders>0</bOutsideBorders>
-      <TerrainMakesValids/>
+      <TerrainMakesValids>
+        <TerrainMakesValid>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bMakesValid>1</bMakesValid>
+        </TerrainMakesValid>
+        <TerrainMakesValid>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bMakesValid>1</bMakesValid>
+        </TerrainMakesValid>
+      </TerrainMakesValids>
       <FeatureMakesValids/>
       <BonusTypeStructs>
         <BonusTypeStruct>
@@ -1987,7 +2001,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>30</iUpgradeTime>
+      <iUpgradeTime>15</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>10</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -2109,7 +2123,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>40</iUpgradeTime>
+      <iUpgradeTime>20</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>15</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -2358,7 +2372,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>30</iUpgradeTime>
+      <iUpgradeTime>20</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>5</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -2566,7 +2580,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>40</iUpgradeTime>
+      <iUpgradeTime>20</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>5</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -2774,7 +2788,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>30</iUpgradeTime>
+      <iUpgradeTime>20</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>5</iDefenseModifier>
       <iHappiness>0</iHappiness>
@@ -2982,7 +2996,7 @@
       <iTilesPerGoody>0</iTilesPerGoody>
       <iGoodyRange>0</iGoodyRange>
       <iFeatureGrowth>0</iFeatureGrowth>
-      <iUpgradeTime>30</iUpgradeTime>
+      <iUpgradeTime>20</iUpgradeTime>
       <iAirBombDefense>5</iAirBombDefense>
       <iDefenseModifier>5</iDefenseModifier>
       <iHappiness>0</iHappiness>

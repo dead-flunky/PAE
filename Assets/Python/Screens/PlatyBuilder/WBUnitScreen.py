@@ -784,12 +784,13 @@ class WBUnitScreen:
     if bUnitType:
       pNewUnit = gc.getPlayer(pUnit.getOwner()).initUnit(iUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)
       pNewUnit.convert(pUnit)
-      pNewUnit.setScriptData("PlatyUnit" + pUnit.getScriptData())
+      pNewUnit.setScriptData(pUnit.getScriptData())
+      CvUtil.addScriptData(pNewUnit, "PlatyUnit", 1)  # Mark unit
       pUnit.kill(False, -1)
-      for i in xrange(pPlot.getNumUnits()):
+      for i in xrange(pPlot.getNumUnits()):   # Search mark (why not simply use pNewUnit object?!)
         pUnitX = pPlot.getUnit(i)
-        if pUnitX.getScriptData().find("PlatyUnit") == 0:
-          pUnitX.setScriptData(pUnitX.getScriptData()[9:])
+        if CvUtil.getScriptData(pUnitX, ["PlatyUnit"], 0) == 1:
+          pUnitX.removeScriptData(pUnitX, "PlatyUnit")
           break
       self.interfaceScreen(pUnitX)
     else:

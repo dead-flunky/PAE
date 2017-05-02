@@ -363,20 +363,20 @@ class CvExoticForeignAdvisor (CvForeignAdvisor.CvForeignAdvisor):
 
     # Loop through the cities
     cityList = iPlayer.getCityList()
-    for pLoopCity in cityList:
-      # For each trade route possible
-      for nTradeRoute in range (gc.getDefineINT("MAX_TRADE_ROUTES")):
-        # Get the next trade city
-        pTradeCity = pLoopCity.getTradeCity(nTradeRoute)
-        # Not quite sure what this does but it's in the MainInterface
-        # and I pretty much C&Ped :p
-        if (pTradeCity and pTradeCity.getOwner() >= 0):
-          for j in range( YieldTypes.NUM_YIELD_TYPES ):
-            nTradeProfit = pLoopCity.calculateTradeYield(j, pLoopCity.calculateTradeProfit(pTradeCity))
-
-            # If the TradeProfit is greater than 0 and it to the total
-            if ( nTradeProfit > 0 and pTradeCity.getOwner() == nTradePartner):
-              nTotalTradeProfit += nTradeProfit
+    for pyLoopCity in cityList:
+        pLoopCity = pyLoopCity.GetCy()
+        # For each trade route possible
+        for nTradeRoute in range (gc.getDefineINT("MAX_TRADE_ROUTES")):
+            # Get the next trade city
+            pTradeCity = pLoopCity.getTradeCity(nTradeRoute)
+            # Not quite sure what this does but it's in the MainInterface
+            # and I pretty much C&Ped :p
+            if (pTradeCity and pTradeCity.getOwner() >= 0):
+                for j in range( YieldTypes.NUM_YIELD_TYPES ):
+                    nTradeProfit = pLoopCity.calculateTradeYield(j, pLoopCity.calculateTradeProfit(pTradeCity))
+                    # If the TradeProfit is greater than 0 add it to the total
+                    if ( nTradeProfit > 0 and pTradeCity.getOwner() == nTradePartner):
+                        nTotalTradeProfit += nTradeProfit
 
     return nTotalTradeProfit
 

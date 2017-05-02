@@ -430,7 +430,7 @@
     <French>After completion of a unit in a weapon manufactory, two units are created instead of one.</French>
     <German>In einer Waffenmanufaktur werden nach Fertigstellung einer Einheit zwei anstelle von einer erstellt.</German>
     <Italian>After completion of a unit in a weapon manufactory, two units are created instead of one.</Italian>
-    <Spanish>After completion of a unit in a weapon manufactory, two units are created instead of one.</Spanish>
+    <Spanish>Despu&#233;s del entrenamiento de una unidad en una f&#225;brica de armas, dos unidades ser&#225;n creadas en vez de solo una.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TECH_BANKWESEN_STRATEGY</Tag>
@@ -620,8 +620,8 @@
     <Tag>TXT_KEY_TECH_CAVALRY_STRATEGY</Tag>
     <English>This technology allows the construction of strong cavalry units.</English>
     <French>Cette technologie permet la construction d'unit&#233;s mont&#233;es puissantes.</French>
-    <German>Diese Technologie erm&#246;glicht den Bau von starken Kavallerieinheiten.</German>
-    <Italian>This technology allows the construction of strong cavalry units.</Italian>
+    <German>Diese Technologie erm&#246;glicht den Bau von starken Kavallerieinheiten.[NEWLINE]</German>
+    <Italian>[NEWLINE]</Italian>
     <Spanish>Esta tecnolog&#237;a permite la construcci&#243;n de poderosas unidades de caballer&#237;a.</Spanish>
   </TEXT>
   <TEXT>
@@ -810,6 +810,14 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TECH_TORSION_STRATEGY</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FREE</Tag>
     <English></English>
     <French></French>
     <German></German>

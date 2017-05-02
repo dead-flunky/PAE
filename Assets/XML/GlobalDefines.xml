@@ -375,15 +375,15 @@
   </Define>
   <Define>
     <DefineName>INITIAL_CITY_MAINTENANCE</DefineName>
-    <iDefineIntVal>2</iDefineIntVal>
+    <iDefineIntVal>0</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>MAX_DISTANCE_CITY_MAINTENANCE</DefineName>
-    <iDefineIntVal>100</iDefineIntVal>
+    <iDefineIntVal>25</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>MAX_TRADE_ROUTES</DefineName>
-    <iDefineIntVal>12</iDefineIntVal>
+    <iDefineIntVal>8</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>MIN_TIMER_UNIT_DOUBLE_MOVES</DefineName>
@@ -467,27 +467,27 @@
   </Define>
   <Define>
     <DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE</DefineName>
-    <iDefineIntVal>50</iDefineIntVal>
+    <iDefineIntVal>200</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE_TEAM</DefineName>
-    <iDefineIntVal>50</iDefineIntVal>
+    <iDefineIntVal>200</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_PEOPLE_THRESHOLD</DefineName>
-    <iDefineIntVal>100</iDefineIntVal>
+    <iDefineIntVal>200</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_GENERALS_THRESHOLD_INCREASE</DefineName>
-    <iDefineIntVal>50</iDefineIntVal>
+    <iDefineIntVal>100</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_GENERALS_THRESHOLD_INCREASE_TEAM</DefineName>
-    <iDefineIntVal>50</iDefineIntVal>
+    <iDefineIntVal>100</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_GENERALS_THRESHOLD</DefineName>
-    <iDefineIntVal>50</iDefineIntVal>
+    <iDefineIntVal>100</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>BASE_SPY_SABOTAGE_COST</DefineName>
@@ -607,7 +607,7 @@
   </Define>
   <Define>
     <DefineName>CAPITAL_TRADE_MODIFIER</DefineName>
-    <iDefineIntVal>100</iDefineIntVal>
+    <iDefineIntVal>50</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>OVERSEAS_TRADE_MODIFIER</DefineName>
@@ -967,11 +967,11 @@
   </Define>
   <Define>
     <DefineName>MIN_EXPERIENCE_PER_COMBAT</DefineName>
-    <iDefineIntVal>0</iDefineIntVal>
+    <iDefineIntVal>1</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>MAX_EXPERIENCE_PER_COMBAT</DefineName>
-    <iDefineIntVal>4</iDefineIntVal>
+    <iDefineIntVal>3</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>EXPERIENCE_FROM_WITHDRAWL</DefineName>
@@ -999,7 +999,7 @@
   </Define>
   <Define>
     <DefineName>BASE_UNIT_UPGRADE_COST</DefineName>
-    <iDefineIntVal>10</iDefineIntVal>
+    <iDefineIntVal>20</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>UNIT_UPGRADE_COST_PER_PRODUCTION</DefineName>

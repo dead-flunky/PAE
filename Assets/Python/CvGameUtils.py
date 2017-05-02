@@ -157,7 +157,10 @@ class CvGameUtils:
         if iUnitType in PAE_Trade.lCultivationUnits:
             eBonus = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
             if eBonus != -1 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
-                pCity = pHeadSelectedUnit.plot().getWorkingCity()
+              pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
+              (pCity, iter) = pPlayer.firstCity(False)
+              while pCity:
+                #pCity = pHeadSelectedUnit.plot().getWorkingCity()
                 if pCity != None:
                     pBestPlot = PAE_Trade.AI_bestCultivation(pCity, 0, eBonus)
                     if pBestPlot:
@@ -165,6 +168,7 @@ class CvGameUtils:
                         pSecondBestPlot = PAE_Trade.AI_bestCultivation(pCity, 1, eBonus)
                         if pSecondBestPlot:
                             CyEngine().addColoredPlotAlt(pSecondBestPlot.getX(), pSecondBestPlot.getY(), PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_HIGHLIGHT_TEXT", 1.0)
+                (pCity,iter) = pPlayer.nextCity(iter, False)
 
                 # iRange = 2
                 # for iDX in range(-iRange, iRange+1):
@@ -1775,7 +1779,7 @@ class CvGameUtils:
                 self.PAE_AI_Cities_Horses.append(xCity.getID())
 
                 if not xCity.isHasBuilding(iBuilding1):
-                  if xCity.isHasBuilding(iBuilding2):                    
+                  if xCity.isHasBuilding(iBuilding2):
                     pUnit.getGroup().pushMoveToMission(xCity.getX(), xCity.getY())
                     return True
 
@@ -1796,7 +1800,7 @@ class CvGameUtils:
               lCityX = lCity
 
           if lCityX:
-            if not pUnit.atPlot(lCityX.plot()):             
+            if not pUnit.atPlot(lCityX.plot()):
               pUnit.getGroup().pushMoveToMission(lCityX.getX(), lCityX.getY())
             else:
               lCityX.changePopulation(1)
@@ -1805,20 +1809,25 @@ class CvGameUtils:
 
 # Beutegold / Treasure / Goldkarren -> zur Hauptstadt
       if iUnitType == gc.getInfoTypeForString("UNIT_GOLDKARREN") and iOwner != gc.getBARBARIAN_PLAYER():
-        pCapital = pOwner.getCapitalCity()
-        if pCapital.getID() == -1: pCityX = lCities[0].GetCy()
-        else: pCityX = pCapital
-        if not pUnit.atPlot(pCityX.plot()):
-          pUnit.getGroup().pushMoveToMission(pCityX.getX(), pCityX.getY())
-          return True
-        else:
-          if pCapital.getID() == pCityX.getID():
-            iGold = 80 + self.myRandom(71, None)
-            pOwner.changeGold(iGold)
-            pUnit.kill(1,pUnit.getOwner())
-          else:
-            pUnit.finishMoves()
-          return True
+
+        if pOwner.getNumCities() > 0:
+          pCapital = pOwner.getCapitalCity()
+          if pCapital.getID() == -1: pCityX = lCities[0].GetCy()
+          else: pCityX = pCapital
+
+          if not pCityX.isNone() and pCityX != None:
+            if not pUnit.atPlot(pCityX.plot()):
+              pUnit.getGroup().pushMoveToMission(pCityX.getX(), pCityX.getY())
+              return True
+            else:
+              if pCapital.getID() == pCityX.getID():
+                iGold = 80 + self.myRandom(71, None)
+                pOwner.changeGold(iGold)
+                pUnit.kill(1,pUnit.getOwner())
+              else:
+                pUnit.finishMoves()
+              return True
+        return False
 
 # Trojanisches Pferd
       if iUnitType == gc.getInfoTypeForString("UNIT_TROJAN_HORSE") and iOwner != gc.getBARBARIAN_PLAYER():
@@ -1850,11 +1859,15 @@ class CvGameUtils:
 
                  pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
-                 iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT4")
+                 iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT6")
                  if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)
                  iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT5")
                  if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)
-                 iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT6")
+                 iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT4")
+                 if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)
+                 iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT3")
+                 if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)
+                 iPromo = gc.getInfoTypeForString("PROMOTION_COMBAT2")
                  if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)
                  iPromo = gc.getInfoTypeForString("PROMOTION_HERO")
                  if pUnit.isHasPromotion(iPromo): pUnit.setHasPromotion(iPromo, False)

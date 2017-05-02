@@ -12,7 +12,6 @@
 <!-- It is possible to use the tool simultaneously! -->
 <!-- All texts get new imported for every patch/version. -->
 
-
 <!-- Technologies should be colored COLOR_TECH_TEXT (example: [COLOR_TECH_TEXT]Bronze Working[COLOR_REVERT]) -->
 <!-- Unit should be colored COLOR_UNIT_TEXT (example: [COLOR_UNIT_TEXT]Archers[COLOR_REVERT]) -->
 <!-- Buildings should be colored COLOR_BUILDING_TEXT (example: [COLOR_BUILDING_TEXT]Theatre[COLOR_REVERT]) -->

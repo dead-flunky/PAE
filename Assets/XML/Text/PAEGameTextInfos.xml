@@ -50,10 +50,10 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2SPECIALIST1_TRUE</Tag>
-    <English>Use slaves as [COLOR_HIGHLIGHT_TEXT]field slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD][NEWLINE]</English>
-    <French>Affecter l'esclave aux [COLOR_HIGHLIGHT_TEXT]champs[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD][NEWLINE]</French>
-    <German>Sklaven als [COLOR_HIGHLIGHT_TEXT]Feldsklaven[COLOR_REVERT] nutzen.[NEWLINE][ICON_BULLET]+2 [ICON_FOOD][NEWLINE]</German>
-    <Italian>Use slaves as [COLOR_HIGHLIGHT_TEXT]field slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD][NEWLINE]</Italian>
+    <English>Use slaves as [COLOR_HIGHLIGHT_TEXT]field slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD]</English>
+    <French>Affecter l'esclave aux [COLOR_HIGHLIGHT_TEXT]champs[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD]</French>
+    <German>Sklaven als [COLOR_HIGHLIGHT_TEXT]Feldsklaven[COLOR_REVERT] nutzen.[NEWLINE][ICON_BULLET]+2 [ICON_FOOD]</German>
+    <Italian>Use slaves as [COLOR_HIGHLIGHT_TEXT]field slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD]</Italian>
     <Spanish>Usar los esclavos como [COLOR_HIGHLIGHT_TEXT]esclavos del campo[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_FOOD]</Spanish>
   </TEXT>
   <TEXT>
@@ -1238,10 +1238,10 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_UNIT_ELEPHANT_DAMAGE_1</Tag>
-    <English>An enemy %s1 has panicked, tearing through your enemy's soldiers before it died!</English>
+    <English>An enemy %s1 has panicked, tearing through your enemy's soldiers before it died![NEWLINE]</English>
     <French>Une unit&#233; ennemie (%s1) prise de panique et hors de contr&#244;le a d&#233;vast&#233; ses propres rangs avant de mourrir !</French>
     <German>Eine gegnerische Einheit %s1 raste panisch durch die eigenen Soldaten, bevor sie zu erliegen kam.</German>
-    <Italian>An enemy %s1 has panicked, tearing through your enemy's soldiers before it died!</Italian>
+    <Italian>An enemy %s1 has panicked, tearing through your enemy's soldiers before it died![NEWLINE]</Italian>
     <Spanish>&#161;Una unidad enemiga %s1 corri&#243; sin control alimentado por el p&#225;nico a trav&#233;s de sus propios soldados antes de morir!</Spanish>
   </TEXT>
   <TEXT>
@@ -1918,11 +1918,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_GLADIATOR</Tag>
-    <English>Settle slave into city as [COLOR_HIGHLIGHT_TEXT]exhibition fighter[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+1[ICON_GOLD][NEWLINE][ICON_BULLET]+1 experience point for new units[NEWLINE]</English>
-    <French>Affecter l'esclave aux combats de [COLOR_HIGHLIGHT_TEXT]gladiateurs[COLOR_REVERT][NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+1[ICON_GOLD][NEWLINE][ICON_BULLET]+1 XP aux nouvelles unit&#233;s</French>
-    <German>Sklave als [COLOR_HIGHLIGHT_TEXT]Schauk&#228;mpfer[COLOR_REVERT] der Stadt anschlie&#223;en.[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+1[ICON_GOLD][NEWLINE][ICON_BULLET]+1 Erfahrungspunkt f&#252;r neue Einheiten[NEWLINE]</German>
-    <Italian>Settle slave into city as [COLOR_HIGHLIGHT_TEXT]exhibition fighter[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+1[ICON_GOLD][NEWLINE][ICON_BULLET]+1 experience point for new units[NEWLINE]</Italian>
-    <Spanish>Asentar esclavo en la ciudad como [COLOR_HIGHLIGHT_TEXT]luchador de espect&#225;culo[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+1[ICON_GOLD][NEWLINE][ICON_BULLET]+1 punto de experiencia por nuevas unidades</Spanish>
+    <English>Settle slave into city as [COLOR_HIGHLIGHT_TEXT]exhibition fighter[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_COMMERCE][NEWLINE][ICON_BULLET]+1 experience point for new units</English>
+    <French>Affecter l'esclave aux combats de [COLOR_HIGHLIGHT_TEXT]gladiateurs[COLOR_REVERT][NEWLINE][ICON_BULLET]+1[ICON_COMMERCE][NEWLINE][ICON_BULLET]+1 XP aux nouvelles unit&#233;s</French>
+    <German>Sklave als [COLOR_HIGHLIGHT_TEXT]Schauk&#228;mpfer[COLOR_REVERT] der Stadt anschlie&#223;en.[NEWLINE][ICON_BULLET]+1[ICON_COMMERCE][NEWLINE][ICON_BULLET]+1 Erfahrungspunkt f&#252;r neue Einheiten[NEWLINE]</German>
+    <Italian>Settle slave into city as [COLOR_HIGHLIGHT_TEXT]exhibition fighter[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_COMMERCE][NEWLINE][ICON_BULLET]+1 experience point for new units</Italian>
+    <Spanish>Asentar esclavo en la ciudad como [COLOR_HIGHLIGHT_TEXT]luchador de espect&#225;culo[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_COMMERCE][NEWLINE][ICON_BULLET]+1 punto de experiencia por nuevas unidades</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_THEATRE</Tag>
@@ -6854,10 +6854,10 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_POPUP_MERCENARY_TORTURE_FAILED_4</Tag>
-    <English> My goodness, gracious me! Blood everywhere! The prisoner bleed to death before he could reveal his secrets.</English>
+    <English> My goodness, gracious me! Blood everywhere! The prisoner bleed to death before he could reveal his secrets. [NEWLINE]</English>
     <French>Mon Dieu, tout ce sang ! Le prisonnier s'est vid&#233; de son sang avant de pouvoir r&#233;v&#233;ler ses secrets.</French>
     <German>Du meine G&#252;te! So viel Blut! Der Gefangene ist bei unseren Foltermethoden leider verblutet, ehe er n&#252;tzliche Informationen ausspucken konnte...</German>
-    <Italian> My goodness, gracious me! Blood everywhere! The prisoner bleed to death before he could reveal his secrets.</Italian>
+    <Italian> My goodness, gracious me! Blood everywhere! The prisoner bleed to death before he could reveal his secrets. [NEWLINE]</Italian>
     <Spanish>&#161;Dios m&#237;o, perd&#243;name! &#161;Sangre por todas partes! El prisionero muri&#243; desangrado antes de revelar sus secretos...</Spanish>
   </TEXT>
   <TEXT>
@@ -7018,7 +7018,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <French>Un esclave disponible a pu le remplacer en tant que gladiateur.</French>
     <German>Ein stehender Sklave konnte seinen Platz als Schauk&#228;mpfer einnehmen.</German>
     <Italian>A standing slave could take his place as an exhibition fighter.</Italian>
-    <Spanish>Un esclavo parado tom&#243; su lugar como un luchador de espect&#225;culo.</Spanish>
+    <Spanish>Un esclavo parado tom&#243; su lugar como un luchador de espect&#225;culo.[NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_GLADS_ERSATZ2</Tag>
@@ -7026,7 +7026,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <French>Un esclave disponible a pu le remplacer en tant que gladiateur.</French>
     <German>Ein stehender Sklave konnte seinen Platz als Gladiator einnehmen.</German>
     <Italian>A standing slave could take his place as a gladiator.</Italian>
-    <Spanish>Un esclavo parado tom&#243; su lugar como un gladiador.</Spanish>
+    <Spanish>Un esclavo parado tom&#243; su lugar como un gladiador.[NEWLINE]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_POPUP_MERCENARIES_ASSIGN_BONUS</Tag>
@@ -7242,7 +7242,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <French>La commande n'a pas pu &#234;tre execut&#233;e ! Le cartographe a disparu sans laisser de trace !</French>
     <German>Der Auftrag konnte nicht ausgef&#252;hrt werden! Vom Kartenersteller fehlt jede Spur!</German>
     <Italian>The comission could not be executed! The map maker has disappeared without trace!</Italian>
-    <Spanish>&#161;El encargo no pudo ser realizado! &#161;El realizador de mapas ha desaparecido sin dejar rastro!</Spanish>
+    <Spanish>&#161;El encargo no pudo ser realizado! &#161;El cart&#243;grafo ha desaparecido sin dejar rastro!</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_POPUP_KARTE_ZEICHNEN_1</Tag>
@@ -7510,11 +7510,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2SPECIALIST2_TRUE</Tag>
-    <English>Use slaves as [COLOR_HIGHLIGHT_TEXT]mine slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION][NEWLINE]</English>
-    <French>A1ffecter l'esclave aux [COLOR_HIGHLIGHT_TEXT]mines[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION][NEWLINE]</French>
-    <German>Sklaven als [COLOR_HIGHLIGHT_TEXT]Bergwerkssklaven[COLOR_REVERT] nutzen.[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION][NEWLINE]</German>
-    <Italian>Use slaves as [COLOR_HIGHLIGHT_TEXT]mine slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION][NEWLINE]</Italian>
-    <Spanish>Usar los esclavos como [COLOR_HIGHLIGHT_TEXT]esclavos mineros[COLOR_REVERT].[NEWLINE][ICON_BULLET]-1 [ICON_FOOD][NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION]</Spanish>
+    <English>Use slaves as [COLOR_HIGHLIGHT_TEXT]mine slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION]</English>
+    <French>A1ffecter l'esclave aux [COLOR_HIGHLIGHT_TEXT]mines[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION]</French>
+    <German>Sklaven als [COLOR_HIGHLIGHT_TEXT]Bergwerkssklaven[COLOR_REVERT] nutzen.[NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION]</German>
+    <Italian>Use slaves as [COLOR_HIGHLIGHT_TEXT]mine slaves[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION]</Italian>
+    <Spanish>Usar los esclavos como [COLOR_HIGHLIGHT_TEXT]esclavos mineros[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_PRODUCTION]</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2SPECIALIST1_FALSE</Tag>
@@ -7579,6 +7579,22 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <German>[ICON_TRADE] Durch den ertragreichen Handel von %s1 (%s2) entstand zwischen den St&#228;dten %s3 und %s4 eine befestigte Handelsstra&#223;e!</German>
     <Italian>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4!</Italian>
     <Spanish>[ICON_TRADE] Debido al rentable comercio de %s1 (%s2), &#161;una ruta comercial se ha originado entre las ciudades %s3 y %s4!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_INFO_CLOSED_TRADEPOST</Tag>
+    <English>Your trade post was broken down by foreign cultural borders!</English>
+    <French>Your trade post was broken down by foreign cultural borders!</French>
+    <German>Euer Handelsposten wurde durch fremde Kulturgrenzen abgebaut!</German>
+    <Italian>Your trade post was broken down by foreign cultural borders!</Italian>
+    <Spanish>&#161;Tu puesto comercial ha sido destru&#237;do por fronteras culturales extranjeras!</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_INFO_DOM_ELEFANT</Tag>
+    <English>A herd of wild elephants was sighted in your land. Explore the technology of Elephant Husbandry to capture and use them.</English>
+    <French>A herd of wild elephants was sighted in your land. Explore the technology of Elephant Husbandry to capture and use them.</French>
+    <German>Eine Herde von Wildelefanten wurde in Eurem Land gesichtet. Erforscht die Technologie Elefantendomestizierung um sie einfangen und nutzen zu k&#246;nnen.</German>
+    <Italian>A herd of wild elephants was sighted in your land. Explore the technology of Elephant Husbandry to capture and use them.</Italian>
+    <Spanish>Una manada de elefantes salvajes ha sido vista dentro de tus tierras. Investiga la tecnolog&#237;a de la domesticaci&#243;n del elefante para capturarlos y usarlos.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_PEDIA_CATEGORY_RANKS</Tag>
@@ -7693,6 +7709,14 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <Spanish>[ICON_TRADE] La ciudad de %s1 ya no requiere %s2 y ha retirado su pedido.</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_INFO_DOM_CAMEL</Tag>
+    <English>A herd of wild camels was sighted in your land. Explore the technology of Camel Husbandry to capture and use them.</English>
+    <French>A herd of wild camels was sighted in your land. Explore the technology of Camel Husbandry to capture and use them.</French>
+    <German>Eine Herde von Wildkamelen wurde in Eurem Land gesichtet. Erforscht die Technologie Kameldomestizierung um sie einfangen und nutzen zu k&#246;nnen.</German>
+    <Italian>A herd of wild camels was sighted in your land. Explore the technology of Camel Husbandry to capture and use them.</Italian>
+    <Spanish>Una manada de camellos salvajes ha sido vista dentro de tus tierras. Investiga la tecnolog&#237;a de la domesticaci&#243;n del camello para capturarlos y usarlos.</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2LATIFUNDIUM</Tag>
     <English>[COLOR_HIGHLIGHT_TEXT]Villa rustica farming[COLOR_REVERT][NEWLINE]Reduces time to next level.</English>
     <French>[COLOR_HIGHLIGHT_TEXT]Villa rustica farming[COLOR_REVERT][NEWLINE]Reduces time to next level.</French>
@@ -7771,6 +7795,14 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <German>Kann nur erforscht werden von</German>
     <Italian>Can only be researched by</Italian>
     <Spanish>Solo puede ser investigado por </Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_INFO_DOM_HORSE</Tag>
+    <English>A herd of wild horses was sighted in your land. Explore the technology of Horse Husbandry to capture and use them.</English>
+    <French>A herd of wild horses was sighted in your land. Explore the technology of Horse Husbandry to capture and use them.</French>
+    <German>Eine Herde von Wildpferden wurde in Eurem Land gesichtet. Erforscht die Technologie Pferdedomestizierung um sie einfangen und nutzen zu k&#246;nnen.</German>
+    <Italian>A herd of wild horses was sighted in your land. Explore the technology of Horse Husbandry to capture and use them.</Italian>
+    <Spanish>Una manada de caballos salvajes ha sido vista dentro de tus tierras. Investiga la tecnolog&#237;a de la domesticaci&#243;n del caballo para capturarlos y usarlos.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TRADE_ROUTE_HANDELSZENTRUM</Tag>
