@@ -512,7 +512,7 @@ class CvExoticForeignAdvisor (CvForeignAdvisor.CvForeignAdvisor):
 
             szName = self.getNextWidgetName()
             nAttitude = self.ltPlayerRelations[iLoopPlayer][j]
-            if nAttitude != None:
+            if nAttitude is not None:
               szText = self.getAttitudeText (nAttitude, j, iLoopPlayer)
               screen.setTextAt (szName, playerPanelName, szText, CvUtil.FONT_CENTER_JUSTIFY, self.X_GLANCE_OFFSET + (self.nSpread * nCount), self.Y_GLANCE_OFFSET + (self.GLANCE_BUTTON_SIZE / 2), -0.1, FontTypes.GAME_FONT, WidgetTypes.WIDGET_LEADERHEAD, j, iLoopPlayer)
             else:

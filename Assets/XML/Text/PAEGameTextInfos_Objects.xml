@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- Sid Meier's Civilization 4 -->
-<!-- Copyright Firaxis Games 2005 -->
-<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- PAE For translators: please read the PAE_TranslationREADME.txt file of this folder -->
-<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <Civ4GameText xmlns="http://www.firaxis.com">
   <TEXT>
     <Tag>TXT_KEY_BUILDING_COLOSSUS</Tag>
@@ -5470,10 +5465,10 @@
   <TEXT>
     <Tag>TXT_KEY_UNIT_TRADE_MERCHANT</Tag>
     <English>Trade wagon</English>
-    <French>Marchand</French>
+    <French>Wagon commercial</French>
     <German>Handelskarren</German>
-    <Italian>Commerciante</Italian>
-    <Spanish><Text>Mercader:Mercaderes</Text><Gender>Male</Gender><Plural>0:1</Plural></Spanish>
+    <Italian>Carro commerciale</Italian>
+    <Spanish>Vag&#243;n de comercio</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_TRADE_MERCHANTMAN</Tag>

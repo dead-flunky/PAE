@@ -17,15 +17,7 @@
       <ImprovementType>NONE</ImprovementType>
       <RouteType>ROUTE_ROAD</RouteType>
       <EntityEvent>ENTITY_EVENT_SHOVEL</EntityEvent>
-      <FeatureStructs>
-        <FeatureStruct>
-          <FeatureType>FEATURE_RIVER_FORD</FeatureType>
-          <PrereqTech>TECH_NONE</PrereqTech>
-          <iTime>4700</iTime>
-          <iProduction>0</iProduction>
-          <bRemove>0</bRemove>
-        </FeatureStruct>
-      </FeatureStructs>
+      <FeatureStructs/>
       <HotKey>KB_R</HotKey>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>
@@ -44,15 +36,7 @@
       <ImprovementType>NONE</ImprovementType>
       <RouteType>ROUTE_RAILROAD</RouteType>
       <EntityEvent>ENTITY_EVENT_RAILROAD</EntityEvent>
-      <FeatureStructs>
-        <FeatureStruct>
-          <FeatureType>FEATURE_RIVER_FORD</FeatureType>
-          <PrereqTech>TECH_NONE</PrereqTech>
-          <iTime>4700</iTime>
-          <iProduction>0</iProduction>
-          <bRemove>0</bRemove>
-        </FeatureStruct>
-      </FeatureStructs>
+      <FeatureStructs/>
       <HotKey>KB_R</HotKey>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>
@@ -71,15 +55,7 @@
       <ImprovementType>NONE</ImprovementType>
       <RouteType>ROUTE_PERSIAN_ROAD</RouteType>
       <EntityEvent>ENTITY_EVENT_RAILROAD</EntityEvent>
-      <FeatureStructs>
-        <FeatureStruct>
-          <FeatureType>FEATURE_RIVER_FORD</FeatureType>
-          <PrereqTech>TECH_NONE</PrereqTech>
-          <iTime>4700</iTime>
-          <iProduction>0</iProduction>
-          <bRemove>0</bRemove>
-        </FeatureStruct>
-      </FeatureStructs>
+      <FeatureStructs/>
       <HotKey>KB_R</HotKey>
       <bAltDown>0</bAltDown>
       <bShiftDown>0</bShiftDown>

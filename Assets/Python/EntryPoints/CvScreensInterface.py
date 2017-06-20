@@ -46,11 +46,11 @@ import CvEventInterface
 import CvPopupInterface
 import CvScreenUtilsInterface
 import ScreenInput as PyScreenInput
-import random
 from CvScreenEnums import *
 from CvPythonExtensions import *
 
 import PAE_Trade
+import PAE_Cultivation
 import PAE_Unit
 
 gc = CyGlobalContext()
@@ -348,7 +348,7 @@ def WorldBuilderOnAdvancedStartBrushSelected(argsList):
   if (iTab == worldBuilderScreen.m_iASTechTabID):
     showTechChooser()
   elif (iTab == worldBuilderScreen.m_iASCityTabID and iList == worldBuilderScreen.m_iASAutomateListID):
-    CyMessageControl().sendAdvancedStartAction(AdvancedStartActionTypes.ADVANCEDSTARTACTION_AUTOMATE, worldBuilderScreen.m_iCurrentPlayer, -1, -1, -1, true)
+    CyMessageControl().sendAdvancedStartAction(AdvancedStartActionTypes.ADVANCEDSTARTACTION_AUTOMATE, worldBuilderScreen.m_iCurrentPlayer, -1, -1, -1, True)
 
   if (worldBuilderScreen.setCurrentAdvancedStartIndex(iIndex)):
     if (worldBuilderScreen.setCurrentAdvancedStartList(iList)):
@@ -538,7 +538,7 @@ def WorldBuilderOnAdvancedStartBrushSelected(argsList):
         if (iTab == worldBuilderScreen.m_iASTechTabID):
                 showTechChooser()
         elif (iTab == worldBuilderScreen.m_iASCityTabID and iList == worldBuilderScreen.m_iASAutomateListID):
-                CyMessageControl().sendAdvancedStartAction(AdvancedStartActionTypes.ADVANCEDSTARTACTION_AUTOMATE, worldBuilderScreen.m_iCurrentPlayer, -1, -1, -1, true)
+                CyMessageControl().sendAdvancedStartAction(AdvancedStartActionTypes.ADVANCEDSTARTACTION_AUTOMATE, worldBuilderScreen.m_iCurrentPlayer, -1, -1, -1, True)
 
         if (worldBuilderScreen.setCurrentAdvancedStartIndex(iIndex)):
                 if (worldBuilderScreen.setCurrentAdvancedStartList(iList)):
@@ -732,7 +732,8 @@ def handleWorldBuilderDiplomacyExitCB(argsList):
 
 def movieDone(argsList):
         # allows overides for mods
-        if (CvScreenUtilsInterface.getScreenUtils().movieDone(argsList)):
+        if hasattr(CvScreenUtilsInterface.getScreenUtils(), "movieDone"):
+            if (CvScreenUtilsInterface.getScreenUtils().movieDone(argsList)):
                 return
 
         if (argsList[0] == INTRO_MOVIE_SCREEN):
@@ -810,7 +811,7 @@ def forceScreenUpdate (argsList):
 
         # Tech chooser update (forced from net message)
         if ( argsList[0] == TECH_CHOOSER ):
-                techChooser.updateTechRecords(false)
+                techChooser.updateTechRecords(False)
         # Main interface Screen
         elif ( argsList[0] == MAIN_INTERFACE ):
                 mainInterface.updateScreen()
@@ -838,7 +839,7 @@ def forceScreenRedraw (argsList):
         #elif ( argsList[0] == WORLDBUILDER_DIPLOMACY_SCREEN ):
         #        worldBuilderDiplomacyScreen.redraw()
         elif ( argsList[0] == TECH_CHOOSER ):
-                techChooser.updateTechRecords(true)
+                techChooser.updateTechRecords(True)
 
 
 def minimapClicked (argsList):
@@ -1485,7 +1486,7 @@ def popupTradeChooseBonus4Cultivation(argsList):
     pUnit = pPlayer.getUnit(iUnitId)
     # Since CyPopup can only store 3 values, the city needs to be identified by the merchant's position...
     pCity = CyMap().plot(pUnit.getX(), pUnit.getY()).getPlotCity()
-    lGoods = PAE_Trade.getCollectableGoods4Cultivation(pUnit)
+    lGoods = PAE_Cultivation.getCollectableGoods4Cultivation(pUnit)
     if iButtonId < len(lGoods): # Otherwise: Cancel button
         CyMessageControl().sendModNetMessage( 739, lGoods[iButtonId], 0, iUnitOwner, iUnitId )
 
@@ -1756,7 +1757,7 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           eSupply = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
           pKorinth.initUnit(eHorseman, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-          PAE_Unit.setSupply(pUnit,200)
+          PAE_Unit.setSupply(pSupply,200)
           pKorinth.initUnit(eHoplit, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pKorinth.initUnit(eSkirmisher, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           # 250 Gold pro Hoplit+Skirmisher, jeweils 1 erhaelt man immer -> iPay beginnt bei 250 und man benoetigt mind. 500, um mehr zu erhalten
@@ -1800,7 +1801,7 @@ def peloponnesianWarKeinpferd_Poteidaia3(argsList):
           pKorinth.initUnit(eProdromoi, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pKorinth.initUnit(eSkirmish, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pSupply = pKorinth.initUnit(eSupply, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-          PAE_Unit.setSupply(pUnit,200)
+          PAE_Unit.setSupply(pSupply,200)
           pGeneral = pKorinth.initUnit(eGeneral, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
           pGeneral.setName("Iolaos")
           if bIsHuman:
@@ -1838,7 +1839,7 @@ def peloponnesianWarKeinpferd_Megara1(argsList):
             iNumCities = pPlayer.getNumCities()
             for iCity in range(iNumCities):
               pCity = pPlayer.getCity(iCity)
-              if pCity != None and not pCity.isNone():
+              if pCity is not None and not pCity.isNone():
                 if pCity.isHasBuilding(eHafen):
                   iStandard = pCity.getBuildingCommerceByBuilding(0, eHafen) # 0 = Gold
                   pCity.setBuildingCommerceChange(eHafenClass, 0, iStandard + iVerlust)
@@ -1896,7 +1897,7 @@ def peloponnesianWarKeinpferd_Megara2(argsList):
         pSparta = gc.getPlayer(iSparta)
         bIsHuman = pSparta.isHuman()
         if iButtonId == 0:
-          iRand = random.randint(0, 2)
+          iRand = CvUtil.myRandom(2, "pelo_1")
           if not gc.getTeam(iSparta).canDeclareWar(iAthen):
             if bIsHuman:
               # Kein Krieg moeglich -> Kein Gold/Bronze
@@ -1936,7 +1937,7 @@ def peloponnesianWarKeinpferd_Megara2(argsList):
                 popupInfo.setText(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_SPARTA_OPTION_1_OUTCOME_BRONZE",()))
                 popupInfo.addPopup(iSparta)
         elif iButtonId == 1:
-          iRand = random.randint(0, 1)
+          iRand = CvUtil.myRandom(1, "pelo_2")
           if not gc.getTeam(iTheben).canDeclareWar(iAthen): iRand = 1 # Theben kann nicht
           # Theben ist einverstanden -> Krieg
           if iRand == 0:
@@ -2024,7 +2025,7 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
         # Wird kein Krieg erklaert, passiert nichts
         if bWar:
          if iButtonId == 0:
-          iRand = random.randint(0,2)
+          iRand = CvUtil.myRandom(2, "pelo_3")
           # Klein
           if iRand == 0:
             iCultTheben = pPlotPlataiai.getCulture(iTheben)
@@ -2112,9 +2113,9 @@ def peloponnesianWarKeinpferd_Plataiai1(argsList):
          elif iButtonId == 2:
             iAthenX = 57
             iAthenY = 30
-            pAthenCity = CyMap().plot(iAthenX, iAthenY)
-            if not pAthenCity.isNone() and pAthenCity != None:
-              if pAthenCity.getOwner == iAthen:
+            pAthenCity = CyMap().plot(iAthenX, iAthenY).getPlotCity()
+            if not pAthenCity.isNone() and pAthenCity is not None:
+              if pAthenCity.getOwner() == iAthen:
                 # Fluechtlinge
                 pAthenCity.changePopulation(1)
                 if bIsHuman:

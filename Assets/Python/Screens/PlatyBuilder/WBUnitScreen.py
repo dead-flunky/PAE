@@ -46,7 +46,7 @@ class WBUnitScreen:
     global pPlot
 
     pUnit = pUnitX
-    if pUnit != None:
+    if pUnit is not None:
       pPlot = pUnit.plot()
     else:
       pPlot = CyMap().plot(0,0)
@@ -137,7 +137,7 @@ class WBUnitScreen:
     iY = self.iTable_Y
     iMapHeight = min((screen.getYResolution()/2 - self.iScriptH - 35 - iY), iWidth * 2/3)
     iMapWidth = iMapHeight * 3/2
-    if pUnit != None:
+    if pUnit is not None:
       screen.addPlotGraphicGFC("PlotView", screen.getXResolution()/2 - iMapWidth/2, iY, iMapWidth, iMapHeight, pUnit.plot(), 250, True, WidgetTypes.WIDGET_GENERAL, -1, -1)
 
   def placeDirection(self):
@@ -407,7 +407,7 @@ class WBUnitScreen:
   def changeHold(self, pUnit, eType = None):
     pGroup = pUnit.getGroup()
     pGroup.clearMissionQueue()
-    if( ( eType != None and eType not in holdActivities) or
+    if( ( eType is not None and eType not in holdActivities) or
       ( eType == None and pGroup.getActivityType() in holdActivities ) ):
       #pGroup.pushMission (MissionTypes.MISSION_IDLE,0,0,0,
       #   False,False,MissionAITypes.NO_MISSIONAI,pUnit.plot(),pUnit )
@@ -812,7 +812,7 @@ class WBUnitScreen:
     # Einstellung der aktuellen Einheit übernehmen
     # => Sie muss für diese Einheit beibehalten werden
     #global pUnit # => Produziert Warnung?!
-    #if pUnit != None:
+    #if pUnit is not None:
     if "pUnit" in globals():
       global pUnit
       bFlip = False

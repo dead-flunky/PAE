@@ -2826,7 +2826,7 @@
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
       <PrereqBuilding>NONE</PrereqBuilding>
-      <PrereqTech>TECH_AGRICULTURE</PrereqTech>
+      <PrereqTech>TECH_HUNTING</PrereqTech>
       <TechTypes/>
       <BonusType>NONE</BonusType>
       <PrereqBonuses/>
@@ -3448,7 +3448,7 @@
       <Capture>UNITCLASS_SUPPLY_FOOD</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_SUPPLY_FOOD</Description>
@@ -3610,7 +3610,7 @@
       <Capture>UNITCLASS_GOLDKARREN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_GOLDKARREN</Description>
@@ -3657,12 +3657,7 @@
       <UnitClassDefenders/>
       <UnitCombatDefenders/>
       <FlankingStrikes/>
-      <UnitAIs>
-        <UnitAI>
-          <UnitAIType>UNITAI_UNKNOWN</UnitAIType>
-          <bUnitAI>1</bUnitAI>
-        </UnitAI>
-      </UnitAIs>
+      <UnitAIs/>
       <NotUnitAIs/>
       <Builds/>
       <ReligionSpreads/>
@@ -3944,7 +3939,7 @@
       <Capture>UNITCLASS_GOLDKARREN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_IMMOBILE</Domain>
-      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STRANDGUT</Description>
@@ -4271,12 +4266,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_DESERT_DOUBLEMOVE</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -4390,7 +4380,7 @@
       <iBaseHurry>0</iBaseHurry>
       <iHurryMultiplier>0</iHurryMultiplier>
       <iBaseTrade>40</iBaseTrade>
-      <iTradeMultiplier>8</iTradeMultiplier>
+      <iTradeMultiplier>4</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
       <TerrainImpassables/>
@@ -4464,7 +4454,7 @@
       <Type>UNIT_TRADE_MERCHANTMAN</Type>
       <UniqueNames/>
       <Special>NONE</Special>
-      <Capture>UNITCLASS_GOLDKARREN</Capture>
+      <Capture>NONE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_SEA</Domain>
       <DefaultUnitAI>UNITAI_MERCHANT</DefaultUnitAI>
@@ -4567,7 +4557,7 @@
       <iBaseHurry>0</iBaseHurry>
       <iHurryMultiplier>0</iHurryMultiplier>
       <iBaseTrade>44</iBaseTrade>
-      <iTradeMultiplier>12</iTradeMultiplier>
+      <iTradeMultiplier>6</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
       <TerrainImpassables/>
@@ -12889,7 +12879,7 @@
       <bFirstStrikeImmune>0</bFirstStrikeImmune>
       <bNoDefensiveBonus>0</bNoDefensiveBonus>
       <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
-      <bCanMoveImpassable>1</bCanMoveImpassable>
+      <bCanMoveImpassable>0</bCanMoveImpassable>
       <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
       <bFlatMovementCost>0</bFlatMovementCost>
       <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
@@ -13520,7 +13510,7 @@
       <bFirstStrikeImmune>0</bFirstStrikeImmune>
       <bNoDefensiveBonus>0</bNoDefensiveBonus>
       <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
-      <bCanMoveImpassable>1</bCanMoveImpassable>
+      <bCanMoveImpassable>0</bCanMoveImpassable>
       <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
       <bFlatMovementCost>0</bFlatMovementCost>
       <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
@@ -14741,7 +14731,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>10</iCombat>
+      <iCombat>9</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -15043,7 +15033,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -15354,7 +15344,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -15547,7 +15537,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -15751,7 +15741,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -16049,7 +16039,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -16350,7 +16340,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -16625,7 +16615,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>14</iCombat>
+      <iCombat>12</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -17220,7 +17210,7 @@
       <bFirstStrikeImmune>0</bFirstStrikeImmune>
       <bNoDefensiveBonus>0</bNoDefensiveBonus>
       <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
-      <bCanMoveImpassable>1</bCanMoveImpassable>
+      <bCanMoveImpassable>0</bCanMoveImpassable>
       <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
       <bFlatMovementCost>0</bFlatMovementCost>
       <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
@@ -18663,7 +18653,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>11</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -18847,7 +18837,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>14</iCombat>
+      <iCombat>12</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -19037,7 +19027,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>14</iCombat>
+      <iCombat>12</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -19217,7 +19207,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -19682,7 +19672,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>14</iCombat>
+      <iCombat>12</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -19864,7 +19854,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -20050,7 +20040,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -20260,7 +20250,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>12</iCombat>
+      <iCombat>10</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -20488,7 +20478,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>14</iCombat>
+      <iCombat>12</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -21856,7 +21846,7 @@
       <ProductionTraits/>
       <Flavors/>
       <iAIWeight>0</iAIWeight>
-      <iCost>140</iCost>
+      <iCost>120</iCost>
       <iHurryCostModifier>0</iHurryCostModifier>
       <iAdvancedStartCost>100</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -21880,7 +21870,7 @@
       <FeatureImpassables/>
       <TerrainPassableTechs/>
       <FeaturePassableTechs/>
-      <iCombat>10</iCombat>
+      <iCombat>8</iCombat>
       <iCombatLimit>100</iCombatLimit>
       <iAirCombat>0</iAirCombat>
       <iAirCombatLimit>0</iAirCombatLimit>
@@ -31308,7 +31298,7 @@
       <StateReligion>NONE</StateReligion>
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>BUILDING_STABLE</PrereqBuilding>
+      <PrereqBuilding>BUILDING_STADT</PrereqBuilding>
       <PrereqTech>TECH_MARIAN_REFORM</PrereqTech>
       <TechTypes/>
       <BonusType>BONUS_HORSE</BonusType>
@@ -31838,7 +31828,7 @@
       <StateReligion>NONE</StateReligion>
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>BUILDING_STABLE</PrereqBuilding>
+      <PrereqBuilding>BUILDING_STADT</PrereqBuilding>
       <PrereqTech>TECH_BERUFSSOLDATEN</PrereqTech>
       <TechTypes/>
       <BonusType>BONUS_HORSE</BonusType>
@@ -38918,10 +38908,6 @@
           <PromotionType>PROMOTION_SKIRMISH1</PromotionType>
           <bFreePromotion>1</bFreePromotion>
         </FreePromotion>
-        <FreePromotion>
-          <PromotionType>PROMOTION_DESERT_DOUBLEMOVE</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
       </FreePromotions>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
@@ -39202,12 +39188,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_DESERT_DOUBLEMOVE</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -39487,12 +39468,7 @@
       <bShiftDown>0</bShiftDown>
       <bCtrlDown>0</bCtrlDown>
       <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions>
-        <FreePromotion>
-          <PromotionType>PROMOTION_DESERT_DOUBLEMOVE</PromotionType>
-          <bFreePromotion>1</bFreePromotion>
-        </FreePromotion>
-      </FreePromotions>
+      <FreePromotions/>
       <LeaderPromotion>NONE</LeaderPromotion>
       <iLeaderExperience>0</iLeaderExperience>
     </UnitInfo>
@@ -40798,7 +40774,7 @@
       <UniqueNames/>
       <Special>NONE</Special>
       <Capture>UNITCLASS_BALLISTA</Capture>
-      <Combat>UNITCOMBAT_SIEGE</Combat>
+      <Combat>UNITCOMBAT_ARCHER</Combat>
       <Domain>DOMAIN_LAND</Domain>
       <DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
       <Invisible>NONE</Invisible>
@@ -42525,7 +42501,12 @@
                         <iTradeMultiplier>0</iTradeMultiplier>
                         <iGreatWorkCulture>0</iGreatWorkCulture>
                         <iEspionagePoints>0</iEspionagePoints>
-                        <TerrainImpassables/>
+                        <TerrainImpassables>
+                                <TerrainImpassable>
+                                          <TerrainType>TERRAIN_OCEAN</TerrainType>
+                                          <bTerrainImpassable>1</bTerrainImpassable>
+                                </TerrainImpassable>
+                        </TerrainImpassables>
                         <FeatureImpassables/>
                         <TerrainPassableTechs>
                                 <TerrainPassableTech>
@@ -42715,9 +42696,19 @@
       <iTradeMultiplier>9</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
+      <TerrainImpassables>
+        <TerrainImpassable>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <bTerrainImpassable>1</bTerrainImpassable>
+        </TerrainImpassable>
+      </TerrainImpassables>
       <FeatureImpassables/>
-      <TerrainPassableTechs/>
+      <TerrainPassableTechs>
+        <TerrainPassableTech>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <PassableTech>TECH_COLONIZATION2</PassableTech>
+        </TerrainPassableTech>
+      </TerrainPassableTechs>
       <FeaturePassableTechs/>
       <iCombat>1</iCombat>
       <iCombatLimit>100</iCombatLimit>
@@ -42758,8 +42749,8 @@
       <iBombRate>0</iBombRate>
       <iBombardRate>0</iBombardRate>
       <SpecialCargo>NONE</SpecialCargo>
-      <DomainCargo>DOMAIN_LAND</DomainCargo>
-      <iCargo>1</iCargo>
+      <DomainCargo>NONE</DomainCargo>
+      <iCargo>0</iCargo>
       <iConscription>0</iConscription>
       <iCultureGarrison>0</iCultureGarrison>
       <iExtraCost>0</iExtraCost>
@@ -42897,9 +42888,19 @@
       <iTradeMultiplier>0</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
+      <TerrainImpassables>
+        <TerrainImpassable>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <bTerrainImpassable>1</bTerrainImpassable>
+        </TerrainImpassable>
+      </TerrainImpassables>
       <FeatureImpassables/>
-      <TerrainPassableTechs/>
+      <TerrainPassableTechs>
+        <TerrainPassableTech>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <PassableTech>TECH_COLONIZATION2</PassableTech>
+        </TerrainPassableTech>
+      </TerrainPassableTechs>
       <FeaturePassableTechs/>
       <iCombat>2</iCombat>
       <iCombatLimit>100</iCombatLimit>
@@ -43079,9 +43080,19 @@
       <iTradeMultiplier>0</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
+      <TerrainImpassables>
+        <TerrainImpassable>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <bTerrainImpassable>1</bTerrainImpassable>
+        </TerrainImpassable>
+      </TerrainImpassables>
       <FeatureImpassables/>
-      <TerrainPassableTechs/>
+      <TerrainPassableTechs>
+        <TerrainPassableTech>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <PassableTech>TECH_COLONIZATION2</PassableTech>
+        </TerrainPassableTech>
+      </TerrainPassableTechs>
       <FeaturePassableTechs/>
       <iCombat>3</iCombat>
       <iCombatLimit>100</iCombatLimit>
@@ -43274,9 +43285,19 @@
       <iTradeMultiplier>15</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
+      <TerrainImpassables>
+        <TerrainImpassable>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <bTerrainImpassable>1</bTerrainImpassable>
+        </TerrainImpassable>
+      </TerrainImpassables>
       <FeatureImpassables/>
-      <TerrainPassableTechs/>
+      <TerrainPassableTechs>
+        <TerrainPassableTech>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <PassableTech>TECH_COLONIZATION2</PassableTech>
+        </TerrainPassableTech>
+      </TerrainPassableTechs>
       <FeaturePassableTechs/>
       <iCombat>2</iCombat>
       <iCombatLimit>100</iCombatLimit>
@@ -43460,9 +43481,19 @@
       <iTradeMultiplier>0</iTradeMultiplier>
       <iGreatWorkCulture>0</iGreatWorkCulture>
       <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
+      <TerrainImpassables>
+        <TerrainImpassable>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <bTerrainImpassable>1</bTerrainImpassable>
+        </TerrainImpassable>
+      </TerrainImpassables>
       <FeatureImpassables/>
-      <TerrainPassableTechs/>
+      <TerrainPassableTechs>
+        <TerrainPassableTech>
+          <TerrainType>TERRAIN_OCEAN</TerrainType>
+          <PassableTech>TECH_COLONIZATION2</PassableTech>
+        </TerrainPassableTech>
+      </TerrainPassableTechs>
       <FeaturePassableTechs/>
       <iCombat>3</iCombat>
       <iCombatLimit>100</iCombatLimit>
@@ -46820,212 +46851,6 @@
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_GREAT_GENERAL</Description>
       <Civilopedia>TXT_KEY_CONCEPT_GREAT_GENERALS_PEDIA</Civilopedia>
-      <Strategy>TXT_KEY_UNIT_GREAT_GENERAL_STRATEGY</Strategy>
-      <Advisor>ADVISOR_MILITARY</Advisor>
-      <bAnimal>0</bAnimal>
-      <bFood>0</bFood>
-      <bNoBadGoodies>0</bNoBadGoodies>
-      <bOnlyDefensive>0</bOnlyDefensive>
-      <bNoCapture>0</bNoCapture>
-      <bQuickCombat>0</bQuickCombat>
-      <bRivalTerritory>0</bRivalTerritory>
-      <bMilitaryHappiness>0</bMilitaryHappiness>
-      <bMilitarySupport>0</bMilitarySupport>
-      <bMilitaryProduction>0</bMilitaryProduction>
-      <bPillage>0</bPillage>
-      <bSpy>0</bSpy>
-      <bSabotage>0</bSabotage>
-      <bDestroy>0</bDestroy>
-      <bStealPlans>0</bStealPlans>
-      <bInvestigate>0</bInvestigate>
-      <bCounterSpy>0</bCounterSpy>
-      <bFound>0</bFound>
-      <bGoldenAge>0</bGoldenAge>
-      <bInvisible>0</bInvisible>
-      <bFirstStrikeImmune>0</bFirstStrikeImmune>
-      <bNoDefensiveBonus>0</bNoDefensiveBonus>
-      <bIgnoreBuildingDefense>0</bIgnoreBuildingDefense>
-      <bCanMoveImpassable>0</bCanMoveImpassable>
-      <bCanMoveAllTerrain>0</bCanMoveAllTerrain>
-      <bFlatMovementCost>0</bFlatMovementCost>
-      <bIgnoreTerrainCost>0</bIgnoreTerrainCost>
-      <bNukeImmune>0</bNukeImmune>
-      <bPrereqBonuses>0</bPrereqBonuses>
-      <bPrereqReligion>0</bPrereqReligion>
-      <bMechanized>0</bMechanized>
-      <bSuicide>0</bSuicide>
-      <bHiddenNationality>0</bHiddenNationality>
-      <bAlwaysHostile>0</bAlwaysHostile>
-      <UnitClassUpgrades/>
-      <UnitClassTargets/>
-      <UnitCombatTargets/>
-      <UnitClassDefenders/>
-      <UnitCombatDefenders/>
-      <FlankingStrikes/>
-      <UnitAIs>
-        <UnitAI>
-          <UnitAIType>UNITAI_GENERAL</UnitAIType>
-          <bUnitAI>1</bUnitAI>
-        </UnitAI>
-      </UnitAIs>
-      <NotUnitAIs/>
-      <Builds/>
-      <ReligionSpreads/>
-      <CorporationSpreads/>
-      <GreatPeoples>
-        <GreatPeople>
-          <GreatPeopleType>SPECIALIST_GREAT_GENERAL</GreatPeopleType>
-          <bGreatPeople>1</bGreatPeople>
-        </GreatPeople>
-      </GreatPeoples>
-      <Buildings>
-        <Building>
-          <BuildingType>BUILDING_HEROIC_EPIC</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-        <Building>
-          <BuildingType>BUILDING_HEROIC_EPIC_SUMER</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-        <Building>
-          <BuildingType>BUILDING_HEROIC_EPIC_EGYPT</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-        <Building>
-          <BuildingType>BUILDING_HEROIC_EPIC_INDIA</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-        <Building>
-          <BuildingType>BUILDING_MILITARY_ACADEMY</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-        <Building>
-          <BuildingType>BUILDING_STATUE_OF_ZEUS</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-        <Building>
-          <BuildingType>BUILDING_ROMAN_SHRINE</BuildingType>
-          <bBuilding>1</bBuilding>
-        </Building>
-      </Buildings>
-      <ForceBuildings/>
-      <HolyCity>NONE</HolyCity>
-      <ReligionType>NONE</ReligionType>
-      <StateReligion>NONE</StateReligion>
-      <PrereqReligion>NONE</PrereqReligion>
-      <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>NONE</PrereqBuilding>
-      <PrereqTech>NONE</PrereqTech>
-      <TechTypes/>
-      <BonusType>NONE</BonusType>
-      <PrereqBonuses/>
-      <ProductionTraits/>
-      <Flavors>
-        <Flavor>
-          <FlavorType>FLAVOR_MILITARY</FlavorType>
-          <iFlavor>10</iFlavor>
-        </Flavor>
-      </Flavors>
-      <iAIWeight>0</iAIWeight>
-      <iCost>-1</iCost>
-      <iHurryCostModifier>0</iHurryCostModifier>
-      <iAdvancedStartCost>-1</iAdvancedStartCost>
-      <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iMinAreaSize>-1</iMinAreaSize>
-      <iMoves>2</iMoves>
-      <bNoRevealMap>0</bNoRevealMap>
-      <iAirRange>0</iAirRange>
-      <iAirUnitCap>0</iAirUnitCap>
-      <iDropRange>0</iDropRange>
-      <iNukeRange>-1</iNukeRange>
-      <iWorkRate>0</iWorkRate>
-      <iBaseDiscover>0</iBaseDiscover>
-      <iDiscoverMultiplier>0</iDiscoverMultiplier>
-      <iBaseHurry>0</iBaseHurry>
-      <iHurryMultiplier>0</iHurryMultiplier>
-      <iBaseTrade>0</iBaseTrade>
-      <iTradeMultiplier>0</iTradeMultiplier>
-      <iGreatWorkCulture>0</iGreatWorkCulture>
-      <iEspionagePoints>0</iEspionagePoints>
-      <TerrainImpassables/>
-      <FeatureImpassables/>
-      <TerrainPassableTechs/>
-      <FeaturePassableTechs/>
-      <iCombat>0</iCombat>
-      <iCombatLimit>0</iCombatLimit>
-      <iAirCombat>0</iAirCombat>
-      <iAirCombatLimit>0</iAirCombatLimit>
-      <iXPValueAttack>0</iXPValueAttack>
-      <iXPValueDefense>0</iXPValueDefense>
-      <iFirstStrikes>0</iFirstStrikes>
-      <iChanceFirstStrikes>0</iChanceFirstStrikes>
-      <iInterceptionProbability>0</iInterceptionProbability>
-      <iEvasionProbability>0</iEvasionProbability>
-      <iWithdrawalProb>0</iWithdrawalProb>
-      <iCollateralDamage>0</iCollateralDamage>
-      <iCollateralDamageLimit>0</iCollateralDamageLimit>
-      <iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
-      <iCityAttack>0</iCityAttack>
-      <iCityDefense>0</iCityDefense>
-      <iAnimalCombat>0</iAnimalCombat>
-      <iHillsAttack>0</iHillsAttack>
-      <iHillsDefense>0</iHillsDefense>
-      <TerrainNatives/>
-      <FeatureNatives/>
-      <TerrainAttacks/>
-      <TerrainDefenses/>
-      <FeatureAttacks/>
-      <FeatureDefenses/>
-      <UnitClassAttackMods/>
-      <UnitClassDefenseMods/>
-      <UnitCombatMods/>
-      <UnitCombatCollateralImmunes/>
-      <DomainMods/>
-      <BonusProductionModifiers/>
-      <iBombRate>0</iBombRate>
-      <iBombardRate>0</iBombardRate>
-      <SpecialCargo>NONE</SpecialCargo>
-      <DomainCargo>NONE</DomainCargo>
-      <iCargo>0</iCargo>
-      <iConscription>0</iConscription>
-      <iCultureGarrison>0</iCultureGarrison>
-      <iExtraCost>0</iExtraCost>
-      <iAsset>5</iAsset>
-      <iPower>0</iPower>
-      <UnitMeshGroups>
-        <iGroupSize>1</iGroupSize>
-        <fMaxSpeed>1.75</fMaxSpeed>
-        <fPadTime>1</fPadTime>
-        <iMeleeWaveSize>1</iMeleeWaveSize>
-        <iRangedWaveSize>1</iRangedWaveSize>
-        <UnitMeshGroup>
-          <iRequired>1</iRequired>
-          <EarlyArtDefineTag>ART_DEF_UNIT_WARLORD_ANCIENT</EarlyArtDefineTag>
-        </UnitMeshGroup>
-      </UnitMeshGroups>
-      <FormationType>FORMATION_TYPE_DEFAULT</FormationType>
-      <HotKey/>
-      <bAltDown>0</bAltDown>
-      <bShiftDown>0</bShiftDown>
-      <bCtrlDown>0</bCtrlDown>
-      <iHotKeyPriority>0</iHotKeyPriority>
-      <FreePromotions/>
-      <LeaderPromotion>PROMOTION_LEADER</LeaderPromotion>
-      <iLeaderExperience>20</iLeaderExperience>
-    </UnitInfo>
-    <UnitInfo>
-      <Class>UNITCLASS_GREAT_GENERAL2</Class>
-      <Type>UNIT_GREAT_GENERAL2</Type>
-      <UniqueNames/>
-      <Special>SPECIALUNIT_PEOPLE</Special>
-      <Capture>UNITCLASS_GREAT_GENERAL2</Capture>
-      <Combat>NONE</Combat>
-      <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_GENERAL</DefaultUnitAI>
-      <Invisible>NONE</Invisible>
-      <SeeInvisible>NONE</SeeInvisible>
-      <Description>TXT_KEY_UNIT_GREAT_GENERAL2</Description>
-      <Civilopedia>TXT_KEY_CONCEPT_GREAT_GENERALS_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_GREAT_GENERAL_STRATEGY2</Strategy>
       <Advisor>ADVISOR_MILITARY</Advisor>
       <bAnimal>0</bAnimal>
@@ -47080,6 +46905,34 @@
       <CorporationSpreads/>
       <GreatPeoples/>
       <Buildings>
+        <Building>
+          <BuildingType>BUILDING_HEROIC_EPIC</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+        <Building>
+          <BuildingType>BUILDING_HEROIC_EPIC_SUMER</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+        <Building>
+          <BuildingType>BUILDING_HEROIC_EPIC_EGYPT</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+        <Building>
+          <BuildingType>BUILDING_HEROIC_EPIC_INDIA</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+        <Building>
+          <BuildingType>BUILDING_MILITARY_ACADEMY</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+        <Building>
+          <BuildingType>BUILDING_STATUE_OF_ZEUS</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
+        <Building>
+          <BuildingType>BUILDING_ROMAN_SHRINE</BuildingType>
+          <bBuilding>1</bBuilding>
+        </Building>
         <Building>
           <BuildingType>BUILDING_SIEGESSTELE</BuildingType>
           <bBuilding>1</bBuilding>
@@ -47208,7 +47061,7 @@
       <iHotKeyPriority>0</iHotKeyPriority>
       <FreePromotions/>
       <LeaderPromotion>PROMOTION_LEADER</LeaderPromotion>
-      <iLeaderExperience>10</iLeaderExperience>
+      <iLeaderExperience>20</iLeaderExperience>
     </UnitInfo>
     <UnitInfo>
       <Class>UNITCLASS_GREAT_SPY</Class>
@@ -52343,9 +52196,9 @@
       <BonusProductionModifiers/>
       <iBombRate>0</iBombRate>
       <iBombardRate>0</iBombardRate>
-      <SpecialCargo>NONE</SpecialCargo>
-      <DomainCargo>NONE</DomainCargo>
-      <iCargo>0</iCargo>
+      <SpecialCargo>SPECIALUNIT_FUSSTRUPPEN</SpecialCargo>
+      <DomainCargo>DOMAIN_LAND</DomainCargo>
+      <iCargo>3</iCargo>
       <iConscription>0</iConscription>
       <iCultureGarrison>0</iCultureGarrison>
       <iExtraCost>0</iExtraCost>

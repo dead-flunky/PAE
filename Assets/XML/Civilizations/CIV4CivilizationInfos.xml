@@ -672,14 +672,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -1170,14 +1162,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -1412,14 +1396,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -1722,14 +1698,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -2036,14 +2004,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -2270,14 +2230,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -2540,14 +2492,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -2885,14 +2829,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -3182,14 +3118,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -3509,14 +3437,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -3950,14 +3870,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -4706,14 +4618,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -4941,14 +4845,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -5207,14 +5103,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
       </DisableTechs>
@@ -5757,14 +5645,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -6029,14 +5909,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -6373,14 +6245,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -6649,14 +6513,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
@@ -8061,14 +7917,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -8762,14 +8610,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -9401,14 +9241,6 @@
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
           <TechType>TECH_PARTHERSCHUSS</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
@@ -9720,14 +9552,6 @@
         </DisableTech>
         <DisableTech>
           <TechType>TECH_HORSE_ARCHER</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_HORSE_ARMOR</TechType>
-          <bDisableTech>1</bDisableTech>
-        </DisableTech>
-        <DisableTech>
-          <TechType>TECH_PANZERREITER</TechType>
           <bDisableTech>1</bDisableTech>
         </DisableTech>
         <DisableTech>

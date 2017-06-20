@@ -75,7 +75,7 @@
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_SPARTA</Type>
-                        <StartX>47</StartX>
+                        <StartX>46</StartX>
                         <StartY>32</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
@@ -105,7 +105,7 @@
                 <CivilizationInfo>
                         <Type>CIVILIZATION_ISRAEL</Type>
                         <StartX>76</StartX>
-                        <StartY>23</StartY>
+                        <StartY>22</StartY>
                 </CivilizationInfo>
                 <CivilizationInfo>
                         <Type>CIVILIZATION_PERSIA</Type>

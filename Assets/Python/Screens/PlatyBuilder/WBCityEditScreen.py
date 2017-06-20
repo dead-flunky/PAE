@@ -61,14 +61,15 @@ class WBCityEditScreen:
     screen.setTableColumnHeader("CurrentCity", 0, "", iWidth)
 
     pPlayer = gc.getPlayer(iPlayer)
-    (loopCity, iter) = pPlayer.firstCity(False)
-    while(loopCity):
-      iRow = screen.appendTableRow("CurrentCity")
-      sColor = CyTranslator().getText("[COLOR_WARNING_TEXT]", ())
-      if loopCity.getID() == pCity.getID():
-        sColor = CyTranslator().getText("[COLOR_POSITIVE_TEXT]", ())
-      screen.setTableText("CurrentCity", 0, iRow, "<font=3>" + sColor + loopCity.getName() + "</font></color>", gc.getCivilizationInfo(pCity.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY )
-      (loopCity, iter) = pPlayer.nextCity(iter, False)
+    (loopCity, pIter) = pPlayer.firstCity(False)
+    while loopCity:
+        if not loopCity.isNone() and loopCity.getOwner() == pPlayer.getID(): #only valid cities
+            iRow = screen.appendTableRow("CurrentCity")
+            sColor = CyTranslator().getText("[COLOR_WARNING_TEXT]", ())
+            if loopCity.getID() == pCity.getID():
+                sColor = CyTranslator().getText("[COLOR_POSITIVE_TEXT]", ())
+            screen.setTableText("CurrentCity", 0, iRow, "<font=3>" + sColor + loopCity.getName() + "</font></color>", gc.getCivilizationInfo(pCity.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY )
+        (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
     screen.addDropDownBoxGFC("ChangeBy", screen.getXResolution()/4, self.iTable_Y, iWidth, WidgetTypes.WIDGET_GENERAL, -1, -1, FontTypes.GAME_FONT)
     i = 1

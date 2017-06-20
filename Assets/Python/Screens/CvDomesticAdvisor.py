@@ -68,12 +68,13 @@ class CvDomesticAdvisor:
                 screen.setText("DomesticExit", "Background", localText.getText("TXT_KEY_PEDIA_SCREEN_EXIT", ()).upper(), CvUtil.FONT_RIGHT_JUSTIFY, self.nScreenWidth - 25, self.nScreenHeight - 45, -0.1, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_CLOSE_SCREEN, -1, -1 )
 
                 bCanLiberate = false
-                (loopCity, iter) = player.firstCity(false)
+                (loopCity, pIter) = player.firstCity(False)
                 while(loopCity):
+                    if not loopCity.isNone() and loopCity.getOwner() == player.getID(): #only valid cities
                         if loopCity.getLiberationPlayer(false) != -1:
-                                bCanLiberate = true
-                                break
-                        (loopCity, iter) = player.nextCity(iter, false)
+                            bCanLiberate = true
+                            break
+                    (loopCity, pIter) = player.nextCity(pIter, False)
 
                 if (bCanLiberate or gc.getPlayer(gc.getGame().getActivePlayer()).canSplitEmpire()):
                     screen.setImageButton( "DomesticSplit", "", self.nScreenWidth - 180, self.nScreenHeight - 45, 28, 28, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_FREE_COLONY).getActionInfoIndex(), -1 )
@@ -167,14 +168,15 @@ class CvDomesticAdvisor:
 
                 # Loop through the cities
                 i = 0
-                (pLoopCity, iter) = player.firstCity(false)
-                while(pLoopCity):
+                (loopCity, pIter) = player.firstCity(False)
+                while loopCity:
+                    if not loopCity.isNone() and loopCity.getOwner() == player.getID(): #only valid cities
                         screen.appendTableRow( "CityListBackground" )
-                        if (pLoopCity.getName() in self.listSelectedCities):
+                        if (loopCity.getName() in self.listSelectedCities):
                                 screen.selectRow( "CityListBackground", i, True )
-                        self.updateTable(pLoopCity, i)
+                        self.updateTable(loopCity, i)
                         i += 1
-                        (pLoopCity, iter) = player.nextCity(iter, false)
+                    (loopCity, pIter) = player.nextCity(pIter, False)
 
                 self.drawHeaders()
 
@@ -430,11 +432,12 @@ class CvDomesticAdvisor:
                         player = gc.getPlayer(CyGame().getActivePlayer())
 
                         i = 0
-                        (pLoopCity, iter) = player.firstCity(false)
-                        while(pLoopCity):
-                                self.updateTable(pLoopCity, i)
+                        (loopCity, pIter) = player.firstCity(False)
+                        while loopCity:
+                            if not loopCity.isNone() and loopCity.getOwner() == player.getID(): #only valid cities
+                                self.updateTable(loopCity, i)
                                 i += 1
-                                (pLoopCity, iter) = player.nextCity(iter, false)
+                            (loopCity, pIter) = player.nextCity(pIter, False)
 
                         self.updateSpecialists()
 

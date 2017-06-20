@@ -58,11 +58,19 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BONUS_SOLD</Tag>
-    <English>[ICON_TRADE] %s2 has sold %s1 to one of your cities.</English>
-    <French>[ICON_TRADE] %s2 has sold %s1 to one of your cities.</French>
-    <German>[ICON_TRADE] %s2 hat in einer Eurer St&#228;dte %s1 verkauft.</German>
-    <Italian>[ICON_TRADE] %s2 has sold %s1 to one of your cities.</Italian>
-    <Spanish>[ICON_TRADE] %s2 ha vendido %s1 a una de tus ciudades.</Spanish>
+    <English>[ICON_TRADE] %s1_name (%s2_civ) has sold [COLOR_HIGHLIGHT_TEXT]%s4[COLOR_REVERT] in %s3_city (+%d5 [ICON_RESEARCH]).</English>
+    <French>[ICON_TRADE] %s1_name (%s2_civ) has sold [COLOR_HIGHLIGHT_TEXT]%s4[COLOR_REVERT] in %s3_city (+%d5 [ICON_RESEARCH]).</French>
+    <German>[ICON_TRADE] %s1_name (%s2_civ) hat in %s3_city [COLOR_HIGHLIGHT_TEXT]%s4[COLOR_REVERT] verkauft (+%d5 [ICON_RESEARCH]).</German>
+    <Italian>[ICON_TRADE] %s1_name (%s2_civ) has sold [COLOR_HIGHLIGHT_TEXT]%s4[COLOR_REVERT] in %s3_city (+%d5 [ICON_RESEARCH]).</Italian>
+    <Spanish>[ICON_TRADE] %s1_name (%s2_civ) ha vendido [COLOR_HIGHLIGHT_TEXT]%s4[COLOR_REVERT] en %s3_city (+%d5 [ICON_RESEARCH]).</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BONUS_BOUGHT</Tag>
+    <English>[ICON_TRADE] %s1_name (%s2_civ) has bought [COLOR_HIGHLIGHT_TEXT]%s4_bonus[COLOR_REVERT] in %s3_city (+%d5 [ICON_GOLD]).</English>
+    <French>[ICON_TRADE] %s1_name (%s2_civ) has bought [COLOR_HIGHLIGHT_TEXT]%s4_bonus[COLOR_REVERT] in %s3_city (+%d5 [ICON_GOLD]).</French>
+    <German>[ICON_TRADE] %s1_name (%s2_civ) hat in Eurer Stadt %s3_city [COLOR_HIGHLIGHT_TEXT]%s4_bonus[COLOR_REVERT] gekauft (+%d5 [ICON_GOLD]).</German>
+    <Italian>[ICON_TRADE] %s1_name (%s2_civ) has bought [COLOR_HIGHLIGHT_TEXT]%s4_bonus[COLOR_REVERT] in %s3_city (+%d5 [ICON_GOLD]).</Italian>
+    <Spanish>[ICON_TRADE] %s1_name (%s2_civ) ha comprado [COLOR_HIGHLIGHT_TEXT]%s4_bonus[COLOR_REVERT] en %s3_city (+%d5 [ICON_GOLD]).</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MAIN_CITY_SLAVES_AB</Tag>
@@ -81,12 +89,12 @@
     <Spanish>(Luchas de espec.)</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_MAIN_CITY_SLAVES_N_GLADS_CALC</Tag>
-    <English>%d1/%d2</English>
-    <French>%d1/%d2</French>
-    <German>%d1/%d2</German>
-    <Italian>%d1/%d2</Italian>
-    <Spanish>%d1/%d2</Spanish>
+    <Tag>TXT_KEY_FREE</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_SCENARIO_VALLEY</Tag>
@@ -108,7 +116,7 @@
     <Tag>TXT_KEY_MITTELMEER_4000BC</Tag>
     <English>Pie's Ancient Europe 5000 BC[NEWLINE]Map Sizes (WxH): Mini (52x32), Small (55x28), Standard (64x44), Large (84x64)[NEWLINE]Lead your tribe into the era of the ancient world and create an empire.[NEWLINE][NEWLINE]Play our history (these are no victory conditions):[NEWLINE]Romans: Conquer Gaul, S-England and all coastal cities of the mediterranean sea.[NEWLINE]Greeks or Macedonians: Build at least 10 coastal cities and conquer Anatolia, N-Egypt and Asia Minor.[NEWLINE]Sumerians or Babylonians: Conquer Mesopotamia.[NEWLINE]Persians: Conquer Asia Minor and Anatolia. Try to conquer greece.[NEWLINE]Phoenicians: Build at least 5 coastal cities and pull through.[NEWLINE]Carthago: Try to conquer Spain and Rome.[NEWLINE]Huns: Invade europe and cause chaos. Settle down in Hungary and suppress the Vandals.[NEWLINE]Vandals, Gauls, Celts, Germanians: Conquer Rome.[NEWLINE]All others: Pull through!</English>
     <French>Pie's Ancient Europe 5000 av JC.[NEWLINE]Taille de carte (LxH) : Mini (52x32), Petit (55x28), Standard (64x44), Grande (84x64)[NEWLINE]Guidez votre tribu &#224; travers l'antiquit&#233; et b&#226;tissez un empire.[NEWLINE][NEWLINE]Rejouez l'Histoire (il n'y a pas de conditions de victoire) :[NEWLINE]Romains : Prenez la Gaule, le sud de l'Angleterre et toutes les villes c&#244;ti&#232;res de la M&#233;diterran&#233;e[NEWLINE]Grecs ou Mac&#233;doniens : Construisez 10 villes c&#244;ti&#232;res et prenez l'Anatolie, le nord de l'Egypte et l'Asie Mineure[NEWLINE]Sum&#233;riens ou Babyloniens : Prenez la M&#233;sopotamie[NEWLINE]Perses : Prenez l'Anatolie et l'Asie Mineure et essayez de conqu&#233;rir la Gr&#232;ce[NEWLINE]Ph&#233;niciens : Construisez 5 villes c&#244;ti&#232;res et restez en vie[NEWLINE]Cartage: Prenez l'Espagne et Rome[NEWLINE]Huns : Envahissez l'Europe et semez le chaos. Installez-vous en Hongrie et d&#233;truisez les Vandales.[NEWLINE]Vandales, Gaulois, Celtes, Germains : Prenez Rome[NEWLINE]Les autres : Survivez</French>
-    <German>Pies Antikes Europa 5000 BC[NEWLINE]Kartengr&#246;&#223;e (BxH): Mini (52x32), Small (55x28), Standard (64x44), Large (84x64)[NEWLINE]F&#252;hre dein Volk in das Zeitalter der Antike und erschaffe ein Imperium.[NEWLINE][NEWLINE]Stelle unsere Geschichte nach (dies sind keine Siegbedingungen):[NEWLINE]R&#246;mer: Erobere Gallien, S-England und alle K&#252;stenst&#228;dte des Mittelmeeres.[NEWLINE]Griechen oder Makedonier: Errichte mind. 10 Mittelmeerst&#228;dte und erobere Anatolien, N-&#196;gypten und Kleinasien.[NEWLINE]Sumerer oder Babylonier: Erobert ganz Mesopotamien.[NEWLINE]Perser: Erobere Kleinasien und Anatolien. Versuche Griechenland zu erobern.[NEWLINE]Ph&#246;nizier: Besiedle mind. 5 Mittelmeerst&#228;dte und halte durch.[NEWLINE]Karthago: Versuche Spanien und Rom zu erobern.[NEWLINE]Hunnen: Falle in Europa ein und verursache ein Chaos. Besiedle das heutige Ungarn und verdr&#228;nge die Vandalen.[NEWLINE]Vandalen, Gallier, Kelten, Germanen: Erobere Rom.[NEWLINE]Alle anderen: Haltet durch!</German>
+    <German>Pies Antikes Europa 5000 v.Chr.[NEWLINE]Kartengr&#246;&#223;e (BxH): Mini (52x32), Small (55x28), Standard (64x44), Large (84x64)[NEWLINE]F&#252;hre dein Volk in das Zeitalter der Antike und erschaffe ein Imperium.[NEWLINE][NEWLINE]Stelle unsere Geschichte nach (dies sind keine Siegbedingungen):[NEWLINE]R&#246;mer: Erobere Gallien, S-England und alle K&#252;stenst&#228;dte des Mittelmeeres.[NEWLINE]Griechen oder Makedonier: Errichte mind. 10 Mittelmeerst&#228;dte und erobere Anatolien, N-&#196;gypten und Kleinasien.[NEWLINE]Sumerer oder Babylonier: Erobert ganz Mesopotamien.[NEWLINE]Perser: Erobere Kleinasien und Anatolien. Versuche Griechenland zu erobern.[NEWLINE]Ph&#246;nizier: Besiedle mind. 5 Mittelmeerst&#228;dte und halte durch.[NEWLINE]Karthago: Versuche Spanien und Rom zu erobern.[NEWLINE]Hunnen: Falle in Europa ein und verursache ein Chaos. Besiedle das heutige Ungarn und verdr&#228;nge die Vandalen.[NEWLINE]Vandalen, Gallier, Kelten, Germanen: Erobere Rom.[NEWLINE]Alle anderen: Haltet durch!</German>
     <Italian>Pie's Ancient Europe 5000 BC[NEWLINE]Map Sizes (WxH): Mini (52x32), Small (55x28), Standard (64x44), Large (84x64)[NEWLINE]Lead your tribe into the era of the ancient world and create an empire.[NEWLINE][NEWLINE]Play our history (these are no victory conditions):[NEWLINE]Romans: Conquer Gaul, S-England and all coastal cities of the mediterranean sea.[NEWLINE]Greeks or Macedonians: Build at least 10 coastal cities and conquer Anatolia, N-Egypt and Asia Minor.[NEWLINE]Sumerians or Babylonians: Conquer Mesopotamia.[NEWLINE]Persians: Conquer Asia Minor and Anatolia. Try to conquer greece.[NEWLINE]Phoenicians: Build at least 5 coastal cities and pull through.[NEWLINE]Carthago: Try to conquer Spain and Rome.[NEWLINE]Huns: Invade europe and cause chaos. Settle down in Hungary and suppress the Vandals.[NEWLINE]Vandals, Gauls, Celts, Germanians: Conquer Rome.[NEWLINE]All others: Pull through!</Italian>
     <Spanish>Pie's Ancient Europe 5000 a.C.[NEWLINE]Tama&#241;o del mapa (Ancho por alto): Diminuto (52x32), peque&#241;o (55x28), normal (64x44), grande (84x64)[NEWLINE]Lidera tu tribu hacia la era del mundo antiguo y crea un imperio.[NEWLINE][NEWLINE]Juega nuestra historia (no hay condiciones de victoria):[NEWLINE]Romanos: Conquista la Galia, sur de Inglaterra y toda las ciudades costera del mar Mediterr&#225;neo.[NEWLINE]Griegos o Macedonios: Construye al menos 10 ciudades costeras y conquista Anatolia, norte de Egipto y Asia Menor.[NEWLINE]Sumerios o Babilonios: Conquista Mesopotamia.[NEWLINE]Persas: Conquista Asia Menor y Anatolia. Intenta conquistar Grecia.[NEWLINE]Fenicios: Construye al menos 5 ciudades costeras y sal adelante.[NEWLINE]Cartago: Intenta conquistar Espa&#241;a y Roma[NEWLINE]Hunos: Invade Europa y causa el caos. Asi&#233;ntate en Hungr&#237;a y ahoga a los V&#225;ndalos.[NEWLINE]V&#225;ndalos, Galos, Celtas, Germanos: Conquista Roma.[NEWLINE]Todos los dem&#225;s: &#161;Sal adelante!</Spanish>
   </TEXT>
@@ -116,7 +124,7 @@
     <Tag>TXT_KEY_MITTELMEER_4000BC_2</Tag>
     <English>Pie's Ancient Europe 5000 BC[NEWLINE]Map Size (WxH): 64x44[NEWLINE]Historical starting points[NEWLINE]This map is full of Barbarian tribes (cities) from begin on[NEWLINE]Lead your tribe into the era of the ancient world and stand the ancient test of time.....</English>
     <French>Pie's Ancient Europe 5000 av JC.[NEWLINE]Taille de carte (LxH) : 64x44[NEWLINE]Positions de d&#233;part historiques[NEWLINE]La carte est pleine de villes barbares d&#232;s le d&#233;but[NEWLINE]Guidez votre tribu &#224; travers l'antiquit&#233; et r&#233;sistez &#224; l'&#233;preuve du temps...</French>
-    <German>Pies Antikes Europa 5000 BC[NEWLINE]Kartengr&#246;&#223;e (BxH): 64x44[NEWLINE]Historische Startpositionen[NEWLINE]Diese Karte ist von Anfang an voll von barbarischen V&#246;lkern (St&#228;dten) [NEWLINE]F&#252;hre dein Volk in das Zeitalter der Antike und &#252;berstehe die T&#252;cken der antiken Zeit!</German>
+    <German>Pies Antikes Europa 5000 v.Chr.[NEWLINE]Kartengr&#246;&#223;e (BxH): 64x44[NEWLINE]Historische Startpositionen[NEWLINE]Diese Karte ist von Anfang an voll von barbarischen V&#246;lkern (St&#228;dten) [NEWLINE]F&#252;hre dein Volk in das Zeitalter der Antike und &#252;berstehe die T&#252;cken der antiken Zeit!</German>
     <Italian>Pie's Ancient Europe 5000 BC[NEWLINE]Map Size (WxH): 64x44[NEWLINE]Historical starting points[NEWLINE]This map is full of Barbarian tribes (cities) from begin on[NEWLINE]Lead your tribe into the era of the ancient world and stand the ancient test of time.....</Italian>
     <Spanish>Pie's Ancient Europe 5000 a.C.[NEWLINE]Tama&#241;o del mapa (Ancho por Alto): 64x44[NEWLINE]Puntos de inicio hist&#243;ricos[NEWLINE]Este mapa est&#225; lleno de tribus b&#225;rbaras (ciudades) desde el inicio[NEWLINE]Lidera tu tribu hacia la era del mundo antiguo y resiste el antiguo paso del tiempo .....</Spanish>
   </TEXT>
@@ -480,7 +488,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <Tag>TXT_KEY_POPUP_VASSAL_02</Tag>
     <English>[H1]%s1_city has fallen![\H1][NEWLINE]This war saps our strength and it is time to think about our citizens and about preventing further enslavement! For %d3 gold %s2_leader offers you to become his vassal! Do you take this offer?[NEWLINE]</English>
     <French>[H1]%s1_city est tomb&#233;e ![\H1][NEWLINE]La guerre nous a affaibli. Il est temps de penser &#224; nos citoyens et leur &#233;viter d'&#234;tre r&#233;duit en esclavage ! Pour %d3 [ICON_GOLD], %s2_leader vous offre de devenir son vassal ! Qu'allez-vous r&#233;pondre ?[NEWLINE]</French>
-    <German>[H1]%s1_city ist gefallen![\H1][NEWLINE]Dieser Krieg zehrt an unseren Kr&#228;ften und es wird Zeit an unsere B&#252;rger zu denken und weitere Versklavungen zu vehindern! F&#252;r %d3 Gold bietet Euch %s2_leader an, sein Vasall zu werden! Nehmt ihr dieses Angebot an?[NEWLINE]</German>
+    <German>[H1]%s1_city ist gefallen![\H1][NEWLINE]Dieser Krieg zehrt an unseren Kr&#228;ften und es wird Zeit an unsere B&#252;rger zu denken und weitere Versklavungen zu vehindern! F&#252;r %d3 Gold w&#252;rde Euch %s2_leader verschonen und Euch zu seinem Vasall machen! Geht Ihr auf dieses Angebot ein?[NEWLINE]</German>
     <Italian>[H1]%s1_city &#232; caduta![\H1][NEWLINE]Questa guerra prosciuga le nostre forze ed &#232; tempo di pensare ai nostri cittadini e a evitare che altri ancora vengano ridotti in schiavit&#249;! %s2_leader ti chiede di diventare suo vassallo per %d3 monete d'oro! Accetti questa offerta?[NEWLINE]</Italian>
     <Spanish>[H1]&#161;%s1_city ha caido![\H1][NEWLINE]&#161;Esta guerra debilita nuestra fuerza y es el momento para pensar en nuestros ciudadanos y evitar nuestra destrucci&#243;n! &#161;Por %d3 de oro %s2_leader te ofrece convertirnos en su vasallo! &#191;La aceptamos?[NEWLINE]</Spanish>
   </TEXT>
@@ -1232,9 +1240,9 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <Tag>TXT_KEY_MESSAGE_GOLDKARREN_ADD_GOLD</Tag>
     <English>You have added %d1[ICON_GOLD] to your treasury!</English>
     <French>Vous avez ajout&#233; %d1 [ICON_GOLD] &#224; votre tr&#233;sor !</French>
-    <German>Ihr habt Eure Schatzkammer mit %d1 Goldst&#252;cken aufgef&#252;llt!</German>
-    <Italian>Hai aggiunto %d1 oro per il tuo tesoro!</Italian>
-    <Spanish>&#161;Has a&#241;adido %d1 de Oro a tu tesoro!</Spanish>
+    <German>Ihr habt Eure Schatzkammer mit %d1 [ICON_GOLD] aufgef&#252;llt!</German>
+    <Italian>Hai aggiunto %d1 [ICON_GOLD] per il tuo tesoro!</Italian>
+    <Spanish>&#161;Has a&#241;adido %d1 [ICON_GOLD] a tu tesoro!</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_UNIT_ELEPHANT_DAMAGE_1</Tag>
@@ -1806,51 +1814,51 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_MANUFAKTUR_FOOD</Tag>
-    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_FOOD]. 5 food production/slaves maximum. This will remove the unit.</English>
-    <French>Assigner &#224; la [COLOR_HIGHLIGHT_TEXT]manufacture[COLOR_REVERT][NEWLINE][ICON_BULLET]+1[ICON_FOOD] (Bonus maximum : 5[ICON_FOOD]). Supprimera l'unit&#233;.</French>
-    <German>Sklave der [COLOR_HIGHLIGHT_TEXT]Manufaktur[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+1[ICON_FOOD]. Maximal 5 Nahrungsmittelproduktion/Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_FOOD]. 5 food production/slaves maximum. This will remove the unit.</Italian>
-    <Spanish>Asignar esclavo a la [COLOR_HIGHLIGHT_TEXT]manufactor&#237;a[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_FOOD]. M&#225;ximo 5 producci&#243;n de comida/esclavos. Esto elimina la unidad.</Spanish>
+    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_FOOD]. 5 slaves maximum. This will remove the unit.</English>
+    <French>Assigner &#224; la [COLOR_HIGHLIGHT_TEXT]manufacture[COLOR_REVERT][NEWLINE][ICON_BULLET]+2[ICON_FOOD] (Bonus maximum : 10[ICON_FOOD]). Supprimera l'unit&#233;.</French>
+    <German>Sklave der [COLOR_HIGHLIGHT_TEXT]Manufaktur[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+2[ICON_FOOD]. Maximal 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_FOOD]. 5 slaves maximum. This will remove the unit.</Italian>
+    <Spanish>Asignar esclavo a la [COLOR_HIGHLIGHT_TEXT]manufactor&#237;a[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_FOOD]. M&#225;ximo 5 esclavos. Esto elimina la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_MANUFAKTUR_PROD</Tag>
-    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_PRODUCTION]. 5 production/slaves maximum. This will remove the unit.</English>
-    <French>Assigner &#224; la [COLOR_HIGHLIGHT_TEXT]manufacture[COLOR_REVERT][NEWLINE][ICON_BULLET]+1[ICON_PRODUCTION] (Bonus maximum : 5[ICON_PRODUCTION]). Supprimera l'unit&#233;.</French>
-    <German>Sklave der [COLOR_HIGHLIGHT_TEXT]Manufaktur[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+1[ICON_PRODUCTION]. Maximal 5 Produktion/Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_PRODUCTION]. 5 production/slaves maximum. This will remove the unit.</Italian>
-    <Spanish>Asignar esclavo a la [COLOR_HIGHLIGHT_TEXT]manufactor&#237;a[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_PRODUCTION]. M&#225;ximo 5 producci&#243;n/esclavos. Esto elimina la unidad.</Spanish>
+    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_PRODUCTION]. 5 slaves maximum. This will remove the unit.</English>
+    <French>Assigner &#224; la [COLOR_HIGHLIGHT_TEXT]manufacture[COLOR_REVERT][NEWLINE][ICON_BULLET]+2[ICON_PRODUCTION] (Bonus maximum : 10[ICON_PRODUCTION]). Supprimera l'unit&#233;.</French>
+    <German>Sklave der [COLOR_HIGHLIGHT_TEXT]Manufaktur[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+2[ICON_PRODUCTION]. Maximal 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]manufactory[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_PRODUCTION]. 5 slaves maximum. This will remove the unit.</Italian>
+    <Spanish>Asignar esclavo a la [COLOR_HIGHLIGHT_TEXT]manufactor&#237;a[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_PRODUCTION]. M&#225;ximo 5 esclavos. Esto elimina la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_MANUFAKTUR_SLAVES_FOOD</Tag>
-    <English>In the manufactory in %s1_city a slave disappeared! The food production is reduced by -1[ICON_FOOD].</English>
-    <French>Un esclave a disparu dans la manufacture de %s1_city ! La production de [ICON_FOOD] a &#233;t&#233; r&#233;duite de 1.</French>
-    <German>In der Manufaktur in %s1_city verschwand ein Sklave! Die Nahrungsmittelproduktion sinkt um -1[ICON_FOOD].</German>
-    <Italian>In the manufactory in %s1_city a slave disappeared! The food production is reduced by -1[ICON_FOOD].</Italian>
-    <Spanish>En la manufactor&#237;a en %s1_city un esclavo ha desaparecido! La producci&#243;n de comida se ha reducido en -1[ICON_FOOD].</Spanish>
+    <English>In the manufactory in %s1_city a slave disappeared! The food production is reduced by -2[ICON_FOOD].</English>
+    <French>Un esclave a disparu dans la manufacture de %s1_city ! La production de [ICON_FOOD] a &#233;t&#233; r&#233;duite de 2.</French>
+    <German>In der Manufaktur in %s1_city verschwand ein Sklave! Die Nahrungsmittelproduktion sinkt um -2[ICON_FOOD].</German>
+    <Italian>In the manufactory in %s1_city a slave disappeared! The food production is reduced by -2[ICON_FOOD].</Italian>
+    <Spanish>En la manufactor&#237;a en %s1_city un esclavo ha desaparecido! La producci&#243;n de comida se ha reducido en -2[ICON_FOOD].</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_MANUFAKTUR_SLAVES_PROD</Tag>
-    <English>In the manufactory in %s1_city was a slave rebellion! The production is reduced by -1[ICON_PRODUCTION].</English>
-    <French>Un esclave a disparu dans la manufacture de %s1_city ! La production de [ICON_PRODUCTION] a &#233;t&#233; r&#233;duite de 1.</French>
-    <German>In der Manufaktur in %s1_city gab es einen Sklavenaufstand! Die Produktion sinkt um -1[ICON_PRODUCTION].</German>
-    <Italian>In the manufactory in %s1_city was a slave rebellion! The production is reduced by -1[ICON_PRODUCTION].</Italian>
-    <Spanish>&#161;En la manufactor&#237;a en %s1_city hubo una rebeli&#243;n de esclavos! La producci&#243;n se redujo en -1[ICON_PRODUCTION].</Spanish>
+    <English>In the manufactory in %s1_city was a slave rebellion! The production is reduced by -2[ICON_PRODUCTION].</English>
+    <French>Un esclave a disparu dans la manufacture de %s1_city ! La production de [ICON_PRODUCTION] a &#233;t&#233; r&#233;duite de 2.</French>
+    <German>In der Manufaktur in %s1_city gab es einen Sklavenaufstand! Die Produktion sinkt um -2[ICON_PRODUCTION].</German>
+    <Italian>In the manufactory in %s1_city was a slave rebellion! The production is reduced by -2[ICON_PRODUCTION].</Italian>
+    <Spanish>&#161;En la manufactor&#237;a en %s1_city hubo una rebeli&#243;n de esclavos! La producci&#243;n se redujo en -2[ICON_PRODUCTION].</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SCHULE</Tag>
-    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]school[COLOR_REVERT] as teacher.[NEWLINE][ICON_BULLET]+1[ICON_RESEARCH] for the school. 5 research points/slaves maximum. This will remove the unit.</English>
-    <French>Assigner &#224; l'[COLOR_HIGHLIGHT_TEXT]&#233;cole[COLOR_REVERT] en tant qu'enseignant.[NEWLINE][ICON_BULLET]+1 [ICON_RESEARCH] (Bonus maximum : 5 [ICON_RESEARCH]). Supprimera l'unit&#233;.</French>
-    <German>Sklave der [COLOR_HIGHLIGHT_TEXT]Schule[COLOR_REVERT] als Lehrer zuteilen.[NEWLINE][ICON_BULLET]+1[ICON_RESEARCH] f&#252;r die Schule. Maximal 5 Forschungspunkte/Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]school[COLOR_REVERT] as teacher.[NEWLINE][ICON_BULLET]+1[ICON_RESEARCH] for the school. 5 research points/slaves maximum. This will remove the unit.</Italian>
-    <Spanish>Asignar esclavo a la [COLOR_HIGHLIGHT_TEXT]escuela[COLOR_REVERT] como profesor.[NEWLINE][ICON_BULLET]+1[ICON_RESEARCH] por la escuela. M&#225;ximo 5 puntos de investigaci&#243;n/esclavos. Esto elimina la unidad.</Spanish>
+    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]school[COLOR_REVERT] as teacher.[NEWLINE][ICON_BULLET]+2[ICON_RESEARCH] for the school. 5 slaves maximum. This will remove the unit.</English>
+    <French>Assigner &#224; l'[COLOR_HIGHLIGHT_TEXT]&#233;cole[COLOR_REVERT] en tant qu'enseignant.[NEWLINE][ICON_BULLET]+2 [ICON_RESEARCH] (Bonus maximum : 10 [ICON_RESEARCH]). Supprimera l'unit&#233;.</French>
+    <German>Sklave der [COLOR_HIGHLIGHT_TEXT]Schule[COLOR_REVERT] als Lehrer zuteilen.[NEWLINE][ICON_BULLET]+2[ICON_RESEARCH] f&#252;r die Schule. Maximal 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]school[COLOR_REVERT] as teacher.[NEWLINE][ICON_BULLET]+2[ICON_RESEARCH] for the school. 5 slaves maximum. This will remove the unit.</Italian>
+    <Spanish>Asignar esclavo a la [COLOR_HIGHLIGHT_TEXT]escuela[COLOR_REVERT] como profesor.[NEWLINE][ICON_BULLET]+2[ICON_RESEARCH] por la escuela. M&#225;ximo 5 esclavos. Esto elimina la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_SCHULE_SLAVES</Tag>
-    <English>The school in %s1_city has lost a teacher! (-1[ICON_RESEARCH])</English>
-    <French>Un enseignant a disparu dans l'&#233;cole de %s1_city ! La production de [ICON_RESEARCH] a &#233;t&#233; r&#233;duite de 1.</French>
-    <German>Der Schule in %s1_city ist ein Lehrer abhanden gekommen! (-1[ICON_RESEARCH])</German>
-    <Italian>The school in %s1_city has lost a teacher! (-1[ICON_RESEARCH])</Italian>
-    <Spanish>&#161;La escuela en %s1_city ha perdido a su profesor! (-1[ICON_RESEARCH])</Spanish>
+    <English>The school in %s1_city has lost a teacher! (-2[ICON_RESEARCH])</English>
+    <French>Un enseignant a disparu dans l'&#233;cole de %s1_city ! La production de [ICON_RESEARCH] a &#233;t&#233; r&#233;duite de 2.</French>
+    <German>Der Schule in %s1_city ist ein Lehrer abhanden gekommen! (-2[ICON_RESEARCH])</German>
+    <Italian>The school in %s1_city has lost a teacher! (-2[ICON_RESEARCH])</Italian>
+    <Spanish>&#161;La escuela en %s1_city ha perdido a su profesor! (-2[ICON_RESEARCH])</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2PALACE</Tag>
@@ -1886,11 +1894,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2FEUERWEHR</Tag>
-    <English>Use slave as [COLOR_HIGHLIGHT_TEXT]Vigiles[COLOR_REVERT] to the fire service.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] for the fire service. Infinite slaves possible. This will remove the unit.</English>
-    <French>Affecter &#224; la [COLOR_HIGHLIGHT_TEXT]caserne de pompiers[COLOR_REVERT][NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] pour la caserne de pompiers. Pas de limite d'esclave. L'unit&#233; sera supprim&#233;e.</French>
-    <German>Sklave als [COLOR_HIGHLIGHT_TEXT]Vigiles[COLOR_REVERT] der Feuerwehr unterstellen.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] f&#252;r die Feuerwehr. Unendlich viele Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Use slave as [COLOR_HIGHLIGHT_TEXT]Vigiles[COLOR_REVERT] to the fire service.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] for the fire service. Infinite slaves possible. This will remove the unit.</Italian>
-    <Spanish>Usar esclavo como [COLOR_HIGHLIGHT_TEXT]Vigilias[COLOR_REVERT] para servicios de bomberos.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] por servicio de bomberos. Infinitos esclavos posibles. Esto elimina la unidad.</Spanish>
+    <English>Use slave as [COLOR_HIGHLIGHT_TEXT]Vigiles[COLOR_REVERT] to the fire service.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] for the fire service. Max. 3 slaves possible. This will remove the unit.</English>
+    <French>Affecter &#224; la [COLOR_HIGHLIGHT_TEXT]caserne de pompiers[COLOR_REVERT][NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] pour la caserne de pompiers. 3 esclaves maximum. L'unit&#233; sera supprim&#233;e.</French>
+    <German>Sklave als [COLOR_HIGHLIGHT_TEXT]Vigiles[COLOR_REVERT] der Feuerwehr unterstellen.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] f&#252;r die Feuerwehr. Max. 3 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Use slave as [COLOR_HIGHLIGHT_TEXT]Vigiles[COLOR_REVERT] to the fire service.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] for the fire service. Max. 3 slaves possible. This will remove the unit.</Italian>
+    <Spanish>Usar esclavo como [COLOR_HIGHLIGHT_TEXT]Vigilias[COLOR_REVERT] para servicios de bomberos.[NEWLINE][ICON_BULLET]+1 [ICON_HAPPY] por servicio de bomberos. M&#225;ximo de 3 esclavos posibles. Esto elimina la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_SLAVE2FEUERWEHR_LOST</Tag>
@@ -1902,19 +1910,19 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_BORDELL</Tag>
-    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]Brothel[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] for the Brothel. 5 culture points/slaves maximum. This will remove the unit.</English>
-    <French>Affecter au [COLOR_HIGHLIGHT_TEXT]bordel[COLOR_REVERT][NEWLINE][ICON_BULLET]+1 [ICON_CULTURE] (Bonus maximum : 5 [ICON_CULTURE]). Supprimera l'unit&#233;.</French>
-    <German>Sklave dem [COLOR_HIGHLIGHT_TEXT]Freudenhaus[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] f&#252;r das Freudenhaus. Maximal 5 Kulturpunkte/Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]Brothel[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] for the Brothel. 5 culture points/slaves maximum. This will remove the unit.</Italian>
-    <Spanish>Asignar esclavo al [COLOR_HIGHLIGHT_TEXT]burdel[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] por el burdel. M&#225;ximo 5 puntos de cultura/esclavos. Esto elimina la unidad.</Spanish>
+    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]Brothel[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] for the Brothel. 5 slaves maximum. This will remove the unit.</English>
+    <French>Affecter au [COLOR_HIGHLIGHT_TEXT]bordel[COLOR_REVERT][NEWLINE][ICON_BULLET]+2 [ICON_CULTURE] (Bonus maximum : 10 [ICON_CULTURE]). Supprimera l'unit&#233;.</French>
+    <German>Sklave dem [COLOR_HIGHLIGHT_TEXT]Freudenhaus[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] f&#252;r das Freudenhaus. Maximal 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]Brothel[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] for the Brothel. 5 slaves maximum. This will remove the unit.</Italian>
+    <Spanish>Asignar esclavo al [COLOR_HIGHLIGHT_TEXT]burdel[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] por el burdel. M&#225;ximo 5 esclavos. Esto elimina la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_BORDELL_SLAVES</Tag>
-    <English>The Brothel in %s1_city has lost a slave! (-1[ICON_CULTURE])</English>
-    <French>Un esclave d'est &#233;chapp&#233; du bordel de %s1_city ! La production de [ICON_CULTURE] a &#233;t&#233; r&#233;duite de 1.</French>
-    <German>Dem Freudenhaus in %s1_city ist eine Sklavin abhanden gekommen! (-1[ICON_CULTURE])</German>
-    <Italian>The Brothel in %s1_city has lost a slave! (-1[ICON_CULTURE])</Italian>
-    <Spanish>&#161;El burdel en %s1_city ha perdido un esclavo! (-1[ICON_CULTURE])</Spanish>
+    <English>The Brothel in %s1_city has lost a slave! (-2[ICON_CULTURE])</English>
+    <French>Un esclave d'est &#233;chapp&#233; du bordel de %s1_city ! La production de [ICON_CULTURE] a &#233;t&#233; r&#233;duite de 2.</French>
+    <German>Dem Freudenhaus in %s1_city ist eine Sklavin abhanden gekommen! (-2[ICON_CULTURE])</German>
+    <Italian>The Brothel in %s1_city has lost a slave! (-2[ICON_CULTURE])</Italian>
+    <Spanish>&#161;El burdel en %s1_city ha perdido un esclavo! (-2[ICON_CULTURE])</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_GLADIATOR</Tag>
@@ -1926,11 +1934,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_THEATRE</Tag>
-    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]theatre[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] for the theatre. 5 culture points (3 slaves) maximum. This will remove the unit.</English>
-    <French>Affecter au [COLOR_HIGHLIGHT_TEXT]th&#233;&#226;tre[COLOR_REVERT][NEWLINE][ICON_BULLET]+1 [ICON_CULTURE] (Bonus maximum : 5 [ICON_CULTURE]). Supprimera l'unit&#233;.</French>
-    <German>Sklave dem [COLOR_HIGHLIGHT_TEXT]Theater[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] f&#252;r das Theater. Maximal 5 Kulturpunkte (3 Sklaven) m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]theatre[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] for the theatre. 5 culture points (3 slaves) maximum. This will remove the unit.</Italian>
-    <Spanish>Asignar esclavo al [COLOR_HIGHLIGHT_TEXT]teatro[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1[ICON_CULTURE] por el teatro. M&#225;ximo 5 puntos de cultura (3 esclavos). Esto elimina la unidad.</Spanish>
+    <English>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]theatre[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] for the theatre. 5 slaves maximum. This will remove the unit.</English>
+    <French>Affecter au [COLOR_HIGHLIGHT_TEXT]th&#233;&#226;tre[COLOR_REVERT][NEWLINE][ICON_BULLET]+2 [ICON_CULTURE] (Bonus maximum : 10 [ICON_CULTURE]). Supprimera l'unit&#233;.</French>
+    <German>Sklave dem [COLOR_HIGHLIGHT_TEXT]Theater[COLOR_REVERT] zuteilen.[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] f&#252;r das Theater. Maximal 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Allocate slave to the [COLOR_HIGHLIGHT_TEXT]theatre[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] for the theatre. 5 slaves maximum. This will remove the unit.</Italian>
+    <Spanish>Asignar esclavo al [COLOR_HIGHLIGHT_TEXT]teatro[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2[ICON_CULTURE] por el teatro. M&#225;ximo 5 esclavos. Esto elimina la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_ODEON</Tag>
@@ -2219,6 +2227,30 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <German>Die Verschmutzung in %s1 zwang einige B&#252;rger Eure Stadt zu verlassen, die nun auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
     <Italian>L'aria insalubre di %s1 costringe alcuni cittadini a lasciare la citt&#224; che scende a livello %d2 (da %d3).</Italian>
     <Spanish>La poluci&#243;n en %s1 forz&#243; a algunos ciudadanos a salir de tu ciudad que disminuy&#243; al tama&#241;o %d2 (de %d3).</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_3</Tag>
+    <English>The anarchie forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</English>
+    <French></French>
+    <German>Die Anarchie zwang einige B&#252;rger Eure Stadt %s1 zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_4</Tag>
+    <English>The absence of your state religion in %s1 forced some citizens to leave your city which dropped to the size %d2 (of %d3).</English>
+    <French></French>
+    <German>Die fehlende Staatsreligion in %s1 zwang einige B&#252;rger Eure Stadt zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_5</Tag>
+    <English>The high taxes forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</English>
+    <French></French>
+    <German>Die hohen Steuern zwangen einige B&#252;rger Eure Stadt %s1 zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_CITY_ADD_FOOD</Tag>
@@ -6312,7 +6344,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <Tag>TXT_KEY_MITTELMEER_4000BC_3</Tag>
     <English>Pie's Ancient Europe 5000 BC[NEWLINE]Map Size (WxH): 64x44[NEWLINE]Historical starting points[NEWLINE]Random bonus placement[NEWLINE]Lead your tribe into the era of the ancient world and create an empire.</English>
     <French>Pie's Ancient Europe 5000 av JC[NEWLINE]Taille de carte (LxH) : 64x44 [NEWLINE]Emplacements de d&#233;part historiques[NEWLINE]Placement al&#233;atoire des ressources[NEWLINE]Guidez votre peuple &#224; travers l'antiquit&#233; et b&#226;tissez un empire.</French>
-    <German>Pies Antikes Europa 5000 BC[NEWLINE]Kartengr&#246;&#223;e (BxH): 64x44[NEWLINE]Historische Startpositionen[NEWLINE]Resourcen zuf&#228;llig verteilt[NEWLINE]F&#252;hre dein Volk in das Zeitalter der Antike und erschaffe ein Imperium.</German>
+    <German>Pies Antikes Europa 5000 v.Chr.[NEWLINE]Kartengr&#246;&#223;e (BxH): 64x44[NEWLINE]Historische Startpositionen[NEWLINE]Resourcen zuf&#228;llig verteilt[NEWLINE]F&#252;hre dein Volk in das Zeitalter der Antike und erschaffe ein Imperium.</German>
     <Italian>Pie's Ancient Europe 5000 BC[NEWLINE]Map Size (WxH): 64x44[NEWLINE]Historical starting points[NEWLINE]Random bonus placement[NEWLINE]Lead your tribe into the era of the ancient world and create an empire.</Italian>
     <Spanish>Pie's Ancient Europe 5000 a.C.[NEWLINE]Tama&#241;o del mapa (Ancho por alto): 64x44[NEWLINE]Puntos de inicio hist&#243;ricos[NEWLINE]Disposici&#243;n de los bonus aleatorio[NEWLINE]Lidera tu tribu hacia la era del mundo antiguo y crea un imperio.</Spanish>
   </TEXT>
@@ -7150,10 +7182,10 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_HELP_LEGEND_HERO_TO_GENERAL</Tag>
-    <English>Create a Commander out of your legendary or heroic unit</English>
-    <French>Promouvoir un Commandeur illustre parmi votre unit&#233; l&#233;gendaire ou h&#233;ro&#239;que</French>
-    <German>Einen Feldherrn aus Eurer legend&#228;ren bzw. heldenhaften Einheit erschaffen</German>
-    <Italian>Create a Commander out of your legendary or heroic unit</Italian>
+    <English>Create a Great General out of your legendary or heroic unit</English>
+    <French>Promouvoir un Grand G&#233;n&#233;ral illustre parmi votre unit&#233; l&#233;gendaire ou h&#233;ro&#239;que</French>
+    <German>Einen Gro&#223;en General aus Eurer legend&#228;ren bzw. heldenhaften Einheit erschaffen</German>
+    <Italian>Create a Great General out of your legendary or heroic unit</Italian>
     <Spanish>Crear un comandante a partir de tu unidad heroica o legendaria</Spanish>
   </TEXT>
   <TEXT>
@@ -7574,11 +7606,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TRADE_ROUTE_BUILT</Tag>
-    <English>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4!</English>
-    <French>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4!</French>
-    <German>[ICON_TRADE] Durch den ertragreichen Handel von %s1 (%s2) entstand zwischen den St&#228;dten %s3 und %s4 eine befestigte Handelsstra&#223;e!</German>
-    <Italian>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4!</Italian>
-    <Spanish>[ICON_TRADE] Debido al rentable comercio de %s1 (%s2), &#161;una ruta comercial se ha originado entre las ciudades %s3 y %s4!</Spanish>
+    <English>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4 (+1[ICON_COMMERCE])!</English>
+    <French>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4 (+1[ICON_COMMERCE])!</French>
+    <German>[ICON_TRADE] Durch den ertragreichen Handel von %s1 (%s2) entstand zwischen den St&#228;dten %s3 und %s4 eine befestigte Handelsstra&#223;e (+1[ICON_COMMERCE])!</German>
+    <Italian>[ICON_TRADE] Due to the profitable trade of %s1 (%s2), a surfaced trade road originated between the cities %s3 and %s4 (+1[ICON_COMMERCE])!</Italian>
+    <Spanish>[ICON_TRADE] Debido al rentable comercio de %s1 (%s2), &#161;una ruta comercial se ha originado entre las ciudades %s3 y %s4 (+1[ICON_COMMERCE])!</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_INFO_CLOSED_TRADEPOST</Tag>
@@ -7662,11 +7694,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_MERCHANT_ROBBERY_INFO</Tag>
-    <English>Decrease the chance of robbery by destroying barbaric cities. (Recent danger: %d1 / Minimum: %d2)</English>
-    <French>Decrease the chance of robbery by destroying barbaric cities. (Recent danger: %d1 / Minimum: %d2)</French>
-    <German>Verringere die Chance eines Raub&#252;berfalls, indem du barbarische St&#228;dte vernichtest. (Aktuelle Gefahr: %d1 / Minimum: %d2)</German>
-    <Italian>Decrease the chance of robbery by destroying barbaric cities. (Recent danger: %d1 / Minimum: %d2)</Italian>
-    <Spanish>Disminuye la posibilidad de robo mediante la destrucci&#243;n de ciudades b&#225;rbaras. (Peligro reciente: %d1 / M&#237;nimo: %d2)[NEWLINE]</Spanish>
+    <English>Decrease the chance of robbery by destroying barbaric cities. (Recent danger: %d1% / Minimum: %d2%)</English>
+    <French>Decrease the chance of robbery by destroying barbaric cities. (Recent danger: %d1% / Minimum: %d2%)</French>
+    <German>Verringere die Chance eines Raub&#252;berfalls, indem du barbarische St&#228;dte vernichtest. (Aktuelle Gefahr: %d1% / Minimum: %d2%)</German>
+    <Italian>Decrease the chance of robbery by destroying barbaric cities. (Recent danger: %d1% / Minimum: %d2%)</Italian>
+    <Spanish>Disminuye la posibilidad de robo mediante la destrucci&#243;n de ciudades b&#225;rbaras. (Peligro reciente: %d1% / M&#237;nimo: %d2%)</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_UNIT_INFO_BAR_5</Tag>
@@ -7686,19 +7718,19 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BONUS_SOLD2</Tag>
-    <English>[ICON_TRADE] You have sold %s1 for %d2 [ICON_GOLD].</English>
-    <French>[ICON_TRADE] You have sold %s1 for %d2 [ICON_GOLD].</French>
-    <German>[ICON_TRADE] Ihr habt %s1 f&#252;r %d2 [ICON_GOLD] verkauft.</German>
-    <Italian>[ICON_TRADE] You have sold %s1 for %d2 [ICON_GOLD].</Italian>
-    <Spanish>[ICON_TRADE] Has vendido %s1 por %d2 [ICON_GOLD].</Spanish>
+    <English>[ICON_TRADE] You have sold [COLOR_HIGHLIGHT_TEXT]%s3_bonus[COLOR_REVERT] (+%d4 [ICON_GOLD], +%d5 [ICON_RESEARCH]) in %s1_city (%s2_civ).</English>
+    <French>[ICON_TRADE] You have sold [COLOR_HIGHLIGHT_TEXT]%s3_bonus[COLOR_REVERT] (+%d4 [ICON_GOLD], +%d5 [ICON_RESEARCH]) in %s1_city (%s2_civ).</French>
+    <German>[ICON_TRADE] Ihr habt in %s1_city (%s2_civ) [COLOR_HIGHLIGHT_TEXT]%s3_bonus[COLOR_REVERT] verkauft (+%d4 [ICON_GOLD], +%d5 [ICON_RESEARCH]).</German>
+    <Italian>[ICON_TRADE] You have sold [COLOR_HIGHLIGHT_TEXT]%s3_bonus[COLOR_REVERT] (+%d4 [ICON_GOLD], +%d5 [ICON_RESEARCH]) in %s1_city (%s2_civ).</Italian>
+    <Spanish>[ICON_TRADE] Has vendido [COLOR_HIGHLIGHT_TEXT]%s3_bonus[COLOR_REVERT] (+%d4 [ICON_GOLD], +%d5 [ICON_RESEARCH]) en %s1_city (%s2_civ).</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TRADE_ROUTE_BUILT2</Tag>
-    <English>[ICON_TRADE] Because of your valuable trade business, a paved trade road could arise between the cities %s1 and %s2!</English>
-    <French>[ICON_TRADE] Because of your valuable trade business, a paved trade road could arise between the cities %s1 and %s2!</French>
-    <German>[ICON_TRADE] Auf Grund Eurer lukrativen Handelsgesch&#228;fte konnte zwischen den St&#228;dten %s1 und %s2 eine befestigte Handelsstra&#223;e entstehen!</German>
-    <Italian>[ICON_TRADE] Because of your valuable trade business, a paved trade road could arise between the cities %s1 and %s2!</Italian>
-    <Spanish>[ICON_TRADE] Debido al gran valor de tus negocios comerciales, &#161;una ruta comercial pavimentada podr&#237;a surgir entre las ciudades %s1 y %s2!</Spanish>
+    <English>[ICON_TRADE] Because of your valuable trade business, a paved trade road could arise between the cities %s1 and %s2 (+1[ICON_COMMERCE])!</English>
+    <French>[ICON_TRADE] Because of your valuable trade business, a paved trade road could arise between the cities %s1 and %s2 (+1[ICON_COMMERCE])!</French>
+    <German>[ICON_TRADE] Auf Grund Eurer lukrativen Handelsgesch&#228;fte konnte zwischen den St&#228;dten %s1 und %s2 eine befestigte Handelsstra&#223;e entstehen (+1[ICON_COMMERCE])!</German>
+    <Italian>[ICON_TRADE] Because of your valuable trade business, a paved trade road could arise between the cities %s1 and %s2 (+1[ICON_COMMERCE])!</Italian>
+    <Spanish>[ICON_TRADE] Debido al gran valor de tus negocios comerciales, &#161;una ruta comercial pavimentada podr&#237;a surgir entre las ciudades %s1 y %s2 (+1[ICON_COMMERCE])!</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_TRADE_SPECIAL_1</Tag>
@@ -7750,11 +7782,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_TRADE_COLLECT_GOODS</Tag>
-    <English>[ICON_TRADE] The goods %s1 are being charged.</English>
-    <French>[ICON_TRADE] The goods %s1 are being charged.</French>
-    <German>[ICON_TRADE] Die G&#252;ter %s1 werden aufgeladen.</German>
-    <Italian>[ICON_TRADE] The goods %s1 are being charged.</Italian>
-    <Spanish>[ICON_TRADE] Las mercanc&#237;as %s1 est&#225;n siendo cargadas.</Spanish>
+    <English>[ICON_TRADE] The goods %s1 are being charged (%d2 [ICON_GOLD]).</English>
+    <French>[ICON_TRADE] The goods %s1 are being charged (%d2 [ICON_GOLD]).</French>
+    <German>[ICON_TRADE] Die G&#252;ter %s1 werden aufgeladen (%d2 [ICON_GOLD]).</German>
+    <Italian>[ICON_TRADE] The goods %s1 are being charged (%d2 [ICON_GOLD]).</Italian>
+    <Spanish>[ICON_TRADE] Las mercanc&#237;as %s1 est&#225;n siendo cargadas (%d2 [ICON_GOLD]).</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_10GEBOTE</Tag>
@@ -7934,11 +7966,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_CIVIC_MILITARY_FOOD</Tag>
-    <English>[ICON_BULLET]Military Units prod. with [ICON_PRODUCTION]+[ICON_FOOD]</English>
-    <French>[ICON_BULLET]Unit&#233;s militaires prod. avec : [ICON_PRODUCTION]+[ICON_FOOD]</French>
-    <German>[ICON_BULLET]Mit [ICON_PRODUCTION]+[ICON_FOOD] prod. Milit&#228;reinheiten</German>
-    <Italian>[ICON_BULLET]Unit&#224; militari prod. con [ICON_PRODUCTION]+[ICON_FOOD]</Italian>
-    <Spanish>[ICON_BULLET]Las unidades militares se prod. con [ICON_PRODUCTION]+[ICON_FOOD]</Spanish>
+    <English>[ICON_BULLET]Military Units prod. with [ICON_PRODUCTION]+[ICON_FOOD] (slows down city growth)</English>
+    <French>[ICON_BULLET]Unit&#233;s militaires prod. avec : [ICON_PRODUCTION]+[ICON_FOOD] (ralentit croissance urbaine)</French>
+    <German>[ICON_BULLET]Mit [ICON_PRODUCTION]+[ICON_FOOD] prod. Milit&#228;reinheiten (bremst Stadtwachstum)</German>
+    <Italian>[ICON_BULLET]Unit&#224; militari prod. con [ICON_PRODUCTION]+[ICON_FOOD] (rallenta crescita urbana)</Italian>
+    <Spanish>[ICON_BULLET]Las unidades militares se prod. con [ICON_PRODUCTION]+[ICON_FOOD] (retarda crecimiento urbano)</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TRADE_ADVISOR_TITLE_PANEL1</Tag>

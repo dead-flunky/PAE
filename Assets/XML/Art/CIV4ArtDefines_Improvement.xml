@@ -22,7 +22,7 @@
       <fInterfaceScale>1.0</fInterfaceScale>
       <NIF>Art/Structures/Improvements/WaterWorked/WaterWorked.nif</NIF>
       <KFM>Art/Structures/Improvements/WaterWorked/WaterWorked.kfm</KFM>
-      <Button>,Art/Interface/Buttons/Brown_empty.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,-1,-1</Button>
+      <Button>,Art/Interface/Buttons/Brown_empty.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,6</Button>
     </ImprovementArtInfo>
     <ImprovementArtInfo>
       <Type>ART_DEF_IMPROVEMENT_CITY_RUINS</Type>

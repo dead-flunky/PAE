@@ -2173,6 +2173,7 @@
       <Description>TXT_KEY_CIVIC_BAUERNMILIZ</Description>
       <Civilopedia>TXT_KEY_CIVIC_BAUERNMILIZ_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_CIVIC_BAUERNMILIZ_STRATEGY</Strategy>
+      <Help>TXT_KEY_CIVIC_MILITARY_FOOD</Help>
       <Button>Art/Interface/Buttons/Civics/button_civic_bauernmiliz.dds</Button>
       <TechPrereq>TECH_POTTERY</TechPrereq>
       <iAnarchyLength>0</iAnarchyLength>

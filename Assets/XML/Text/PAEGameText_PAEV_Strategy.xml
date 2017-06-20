@@ -817,18 +817,10 @@
     <Spanish></Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_FREE</Tag>
-    <English></English>
-    <French></French>
-    <German></German>
-    <Italian></Italian>
-    <Spanish></Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_UNIT_GREAT_GENERAL2_STRATEGY</Tag>
-    <English>A [COLOR_UNIT_TEXT]commander[COLOR_REVERT] may become a Warlord by joining another unit in the field and giving a one-time combat experience to units in the same tile. Does a unit win a battle, each Warlord on the same plot, earns automatically +1 experience with a chance of 10%.</English>
-    <French>Un [COLOR_UNIT_TEXT]commandant[COLOR_REVERT] peut devenir un Seigneur de guerre en rejoignant une autre unit&#233; sur le champ de bataille et octroyant une exp&#233;rience du combat ponctuelle aux unit&#233;s plac&#233;es dans la m&#234;me case. Does a unit win a battle, each Seigneur de guerre on the same plot, earns automatically +1 experience with a chance of 10%.</French>
-    <German>Ein [COLOR_UNIT_TEXT]Feldherr[COLOR_REVERT] kann sich als Kriegsherr einer anderen Einheit im Feld anschlie&#223;en und einmalig Erfahrungspunkte auf die Einheiten auf demselben Gel&#228;ndefeld &#252;bertragen. Gewinnt eine Einheit einen Kampf, so erh&#228;lt jeder Kriegsherr auf demselben Feld mit einer Wahrscheinlichkeit von 10% +1 Erfahrungspunkt.</German>
+    <English>A [COLOR_UNIT_TEXT]Great General[COLOR_REVERT] may become a Warlord by joining another unit in the field and giving a one-time combat experience to units in the same tile. Does a unit win a battle, each Warlord on the same plot, earns automatically +1 experience with a chance of 10%.</English>
+    <French>Un [COLOR_UNIT_TEXT]Grand G&#233;n&#233;ral[COLOR_REVERT] peut devenir un Seigneur de guerre en rejoignant une autre unit&#233; sur le champ de bataille et octroyant une exp&#233;rience du combat ponctuelle aux unit&#233;s plac&#233;es dans la m&#234;me case. Does a unit win a battle, each Seigneur de guerre on the same plot, earns automatically +1 experience with a chance of 10%.</French>
+    <German>Ein [COLOR_UNIT_TEXT]Gro&#223;er General[COLOR_REVERT] kann sich als Feldherr einer anderen Einheit im Feld anschlie&#223;en und einmalig Erfahrungspunkte auf die Einheiten auf demselben Gel&#228;ndefeld &#252;bertragen. Gewinnt eine normale Einheit einen Kampf, so erh&#228;lt jeder anwesende Feldherr mit einer Wahrscheinlichkeit von 10% +1 Erfahrungspunkt.</German>
     <Italian>Un [COLOR_UNIT_TEXT]Grande Generale[COLOR_REVERT] pu&#242; diventare un Guerriero unendosi a un'altra unit&#224; sul campo e dando alle unit&#224; presenti nella stessa casella un bonus di esperienza da combattimento una tantum. Does a unit win a battle, each general-unit on the same plot, earns automatically +1 experience with a chance of 10%.</Italian>
     <Spanish>Un [COLOR_UNIT_TEXT]Gran general[COLOR_REVERT] puede convertirse en un Caudillo si se une a otra unidad en la casilla y da experiencia de combate una sola vez a las unidades que haya en la misma. Que una unidad gane un combate hace que, cada unidad de general en la misma casilla, adquiera autom&#225;ticamente +1 de experiencia con una probabilidad del 10%.</Spanish>
   </TEXT>

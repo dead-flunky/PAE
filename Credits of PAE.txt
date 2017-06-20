@@ -37,6 +37,7 @@ Babylonian Walls: veBear
 Nuraghe: C. Roland, woodelf
 Siege Workshop: Duke van Frost
 Wonder Books by Dual
+Hagia Sophia: heroicfort
 
 Great modelling by Andreas Charell (www.andreascharell.de):
 Zoroastrian shrine
@@ -119,11 +120,13 @@ Goat: C2C
 Triarii: charles88
 Treibgut: Kathy
 Imperial Praetorian: Aranor
-Late Roman Units: Willi Tell, Hunk
-Thracian Units: Hunk
+Roman Optio, Centurio, Praetorian Units: Willi Tell
+Late Roman Units: HUNK
+Thracian Units: HUNK
+Manuballistae: Heroicfort
 
 Some other units by Bernie14, Civmansam and RI
-Some improved skins: Hunk
+Some improved skins: HUNK
 Most of the different unit artstyles and more by
 ambrox62 and Bakuel. Great work, guys!
 

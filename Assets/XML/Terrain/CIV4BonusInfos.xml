@@ -57,9 +57,59 @@
           <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ZINN</Type>
@@ -123,8 +173,46 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ZINK</Type>
@@ -176,12 +264,58 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
         <TerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
           <TerrainType>TERRAIN_TUNDRA</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MAGNETIT</Type>
@@ -195,7 +329,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -245,8 +379,46 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_OBSIDIAN</Type>
@@ -301,9 +473,55 @@
           <TerrainType>TERRAIN_DESERT</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ZEDERNHOLZ</Type>
@@ -421,8 +639,46 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_BRONZE</Type>
@@ -433,11 +689,7 @@
       <TechReveal>TECH_BRONZE_WORKING</TechReveal>
       <TechCityTrade>NONE</TechCityTrade>
       <TechObsolete>NONE</TechObsolete>
-      <YieldChanges>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-      </YieldChanges>
+      <YieldChanges/>
       <iAITradeModifier>4</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
       <iHealth>0</iHealth>
@@ -530,8 +782,46 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_MARBLE</Type>
@@ -575,20 +865,42 @@
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
         <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
           <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_TUNDRA</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_SNOW</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_STONE</Type>
@@ -632,6 +944,10 @@
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
         <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
           <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
@@ -640,8 +956,38 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_OREICHALKOS</Type>
@@ -683,28 +1029,7 @@
       <bFlatlands>0</bFlatlands>
       <bNoRiverSide>0</bNoRiverSide>
       <bNormalize>0</bNormalize>
-      <TerrainBooleans>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_GRASS</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_PLAINS</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_DESERT</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_TUNDRA</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_SNOW</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-      </TerrainBooleans>
+      <TerrainBooleans/>
       <FeatureBooleans/>
       <FeatureTerrainBooleans/>
     </BonusInfo>
@@ -800,7 +1125,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -833,9 +1158,31 @@
           <TerrainType>TERRAIN_GRASS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_ELEKTRON</Type>
@@ -849,7 +1196,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -879,16 +1226,22 @@
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
         <TerrainBoolean>
-          <TerrainType>TERRAIN_PLAINS</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-        <TerrainBoolean>
           <TerrainType>TERRAIN_DESERT</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GOLD</Type>
@@ -940,8 +1293,26 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_SILVER</Type>
@@ -955,7 +1326,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>8</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -985,16 +1356,42 @@
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
         <TerrainBoolean>
-          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
         <TerrainBoolean>
-          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_PEARL</Type>
@@ -1173,7 +1570,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>2</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -1230,7 +1627,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>4</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -1293,7 +1690,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>0</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -1327,8 +1724,30 @@
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_JUNGLE</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_GRAPES</Type>
@@ -1371,6 +1790,10 @@
       <bNoRiverSide>0</bNoRiverSide>
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
         <TerrainBoolean>
           <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bTerrain>1</bTerrain>
@@ -1494,6 +1917,153 @@
       </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
+      <Type>BONUS_FISH</Type>
+      <Description>TXT_KEY_BONUS_FISH</Description>
+      <Civilopedia>TXT_KEY_BONUS_FISH_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_MISC</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_FISH</ArtDefineTag>
+      <TechReveal>NONE</TechReveal>
+      <TechCityTrade>NONE</TechCityTrade>
+      <TechObsolete>NONE</TechObsolete>
+      <YieldChanges>
+        <iYieldChange>1</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+      </YieldChanges>
+      <iAITradeModifier>2</iAITradeModifier>
+      <iAIObjective>0</iAIObjective>
+      <iHealth>1</iHealth>
+      <iHappiness>0</iHappiness>
+      <iPlacementOrder>6</iPlacementOrder>
+      <iConstAppearance>60</iConstAppearance>
+      <iMinAreaSize>10</iMinAreaSize>
+      <iMinLatitude>0</iMinLatitude>
+      <iMaxLatitude>90</iMaxLatitude>
+      <Rands>
+        <iRandApp1>50</iRandApp1>
+        <iRandApp2>50</iRandApp2>
+        <iRandApp3>0</iRandApp3>
+        <iRandApp4>0</iRandApp4>
+      </Rands>
+      <iPlayer>0</iPlayer>
+      <iTilesPer>8</iTilesPer>
+      <iMinLandPercent>0</iMinLandPercent>
+      <iUnique>1</iUnique>
+      <iGroupRange>0</iGroupRange>
+      <iGroupRand>0</iGroupRand>
+      <bArea>0</bArea>
+      <bHills>0</bHills>
+      <bFlatlands>0</bFlatlands>
+      <bNoRiverSide>0</bNoRiverSide>
+      <bNormalize>1</bNormalize>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_COAST</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
+      <FeatureBooleans/>
+      <FeatureTerrainBooleans/>
+    </BonusInfo>
+    <BonusInfo>
+      <Type>BONUS_CRAB</Type>
+      <Description>TXT_KEY_BONUS_CRAB</Description>
+      <Civilopedia>TXT_KEY_BONUS_CRAB_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_MISC</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_CRAB</ArtDefineTag>
+      <TechReveal>TECH_ELEMENTARLEHRE</TechReveal>
+      <TechCityTrade>NONE</TechCityTrade>
+      <TechObsolete>NONE</TechObsolete>
+      <YieldChanges>
+        <iYieldChange>1</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+      </YieldChanges>
+      <iAITradeModifier>3</iAITradeModifier>
+      <iAIObjective>0</iAIObjective>
+      <iHealth>1</iHealth>
+      <iHappiness>0</iHappiness>
+      <iPlacementOrder>3</iPlacementOrder>
+      <iConstAppearance>100</iConstAppearance>
+      <iMinAreaSize>10</iMinAreaSize>
+      <iMinLatitude>40</iMinLatitude>
+      <iMaxLatitude>90</iMaxLatitude>
+      <Rands>
+        <iRandApp1>25</iRandApp1>
+        <iRandApp2>25</iRandApp2>
+        <iRandApp3>0</iRandApp3>
+        <iRandApp4>0</iRandApp4>
+      </Rands>
+      <iPlayer>0</iPlayer>
+      <iTilesPer>16</iTilesPer>
+      <iMinLandPercent>0</iMinLandPercent>
+      <iUnique>1</iUnique>
+      <iGroupRange>0</iGroupRange>
+      <iGroupRand>0</iGroupRand>
+      <bArea>0</bArea>
+      <bHills>0</bHills>
+      <bFlatlands>0</bFlatlands>
+      <bNoRiverSide>0</bNoRiverSide>
+      <bNormalize>1</bNormalize>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_COAST</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
+      <FeatureBooleans/>
+      <FeatureTerrainBooleans/>
+    </BonusInfo>
+    <BonusInfo>
+      <Type>BONUS_CLAM</Type>
+      <Description>TXT_KEY_BONUS_CLAM</Description>
+      <Civilopedia>TXT_KEY_BONUS_CLAM_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_MISC</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_CLAM</ArtDefineTag>
+      <TechReveal>TECH_WARENHANDEL</TechReveal>
+      <TechCityTrade>NONE</TechCityTrade>
+      <TechObsolete>NONE</TechObsolete>
+      <YieldChanges>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
+      </YieldChanges>
+      <iAITradeModifier>5</iAITradeModifier>
+      <iAIObjective>0</iAIObjective>
+      <iHealth>1</iHealth>
+      <iHappiness>0</iHappiness>
+      <iPlacementOrder>6</iPlacementOrder>
+      <iConstAppearance>100</iConstAppearance>
+      <iMinAreaSize>10</iMinAreaSize>
+      <iMinLatitude>0</iMinLatitude>
+      <iMaxLatitude>50</iMaxLatitude>
+      <Rands>
+        <iRandApp1>25</iRandApp1>
+        <iRandApp2>25</iRandApp2>
+        <iRandApp3>0</iRandApp3>
+        <iRandApp4>0</iRandApp4>
+      </Rands>
+      <iPlayer>0</iPlayer>
+      <iTilesPer>20</iTilesPer>
+      <iMinLandPercent>0</iMinLandPercent>
+      <iUnique>1</iUnique>
+      <iGroupRange>0</iGroupRange>
+      <iGroupRand>0</iGroupRand>
+      <bArea>0</bArea>
+      <bHills>0</bHills>
+      <bFlatlands>0</bFlatlands>
+      <bNoRiverSide>0</bNoRiverSide>
+      <bNormalize>1</bNormalize>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_COAST</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
+      <FeatureBooleans/>
+      <FeatureTerrainBooleans/>
+    </BonusInfo>
+    <BonusInfo>
       <Type>BONUS_COW</Type>
       <Description>TXT_KEY_BONUS_COW</Description>
       <Civilopedia>TXT_KEY_BONUS_COW_PEDIA</Civilopedia>
@@ -1565,12 +2135,12 @@
       </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
-      <Type>BONUS_CRAB</Type>
-      <Description>TXT_KEY_BONUS_CRAB</Description>
-      <Civilopedia>TXT_KEY_BONUS_CRAB_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_MISC</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_CRAB</ArtDefineTag>
-      <TechReveal>TECH_ELEMENTARLEHRE</TechReveal>
+      <Type>BONUS_PIG</Type>
+      <Description>TXT_KEY_BONUS_PIG</Description>
+      <Civilopedia>TXT_KEY_BONUS_PIG_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_LIVESTOCK</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_PIG</ArtDefineTag>
+      <TechReveal>NONE</TechReveal>
       <TechCityTrade>NONE</TechCityTrade>
       <TechObsolete>NONE</TechObsolete>
       <YieldChanges>
@@ -1578,40 +2148,129 @@
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
       </YieldChanges>
-      <iAITradeModifier>3</iAITradeModifier>
+      <iAITradeModifier>2</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
       <iHealth>1</iHealth>
       <iHappiness>0</iHappiness>
-      <iPlacementOrder>3</iPlacementOrder>
+      <iPlacementOrder>4</iPlacementOrder>
       <iConstAppearance>100</iConstAppearance>
-      <iMinAreaSize>10</iMinAreaSize>
-      <iMinLatitude>40</iMinLatitude>
-      <iMaxLatitude>90</iMaxLatitude>
+      <iMinAreaSize>3</iMinAreaSize>
+      <iMinLatitude>10</iMinLatitude>
+      <iMaxLatitude>50</iMaxLatitude>
       <Rands>
-        <iRandApp1>25</iRandApp1>
-        <iRandApp2>25</iRandApp2>
+        <iRandApp1>50</iRandApp1>
+        <iRandApp2>50</iRandApp2>
         <iRandApp3>0</iRandApp3>
         <iRandApp4>0</iRandApp4>
       </Rands>
       <iPlayer>0</iPlayer>
-      <iTilesPer>16</iTilesPer>
+      <iTilesPer>64</iTilesPer>
       <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>1</iUnique>
+      <iUnique>0</iUnique>
       <iGroupRange>0</iGroupRange>
       <iGroupRand>0</iGroupRand>
-      <bArea>0</bArea>
+      <bArea>1</bArea>
       <bHills>0</bHills>
-      <bFlatlands>0</bFlatlands>
+      <bFlatlands>1</bFlatlands>
       <bNoRiverSide>0</bNoRiverSide>
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
         <TerrainBoolean>
-          <TerrainType>TERRAIN_COAST</TerrainType>
+          <TerrainType>TERRAIN_SWAMP</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
           <bTerrain>1</bTerrain>
         </TerrainBoolean>
       </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SWAMP</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
+    </BonusInfo>
+    <BonusInfo>
+      <Type>BONUS_SHEEP</Type>
+      <Description>TXT_KEY_BONUS_SHEEP</Description>
+      <Civilopedia>TXT_KEY_BONUS_SHEEP_PEDIA</Civilopedia>
+      <BonusClassType>BONUSCLASS_LIVESTOCK</BonusClassType>
+      <ArtDefineTag>ART_DEF_BONUS_SHEEP</ArtDefineTag>
+      <TechReveal>NONE</TechReveal>
+      <TechCityTrade>NONE</TechCityTrade>
+      <TechObsolete>NONE</TechObsolete>
+      <YieldChanges>
+        <iYieldChange>1</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+        <iYieldChange>0</iYieldChange>
+      </YieldChanges>
+      <iAITradeModifier>2</iAITradeModifier>
+      <iAIObjective>0</iAIObjective>
+      <iHealth>1</iHealth>
+      <iHappiness>0</iHappiness>
+      <iPlacementOrder>4</iPlacementOrder>
+      <iConstAppearance>100</iConstAppearance>
+      <iMinAreaSize>3</iMinAreaSize>
+      <iMinLatitude>30</iMinLatitude>
+      <iMaxLatitude>90</iMaxLatitude>
+      <Rands>
+        <iRandApp1>50</iRandApp1>
+        <iRandApp2>50</iRandApp2>
+        <iRandApp3>0</iRandApp3>
+        <iRandApp4>0</iRandApp4>
+      </Rands>
+      <iPlayer>0</iPlayer>
+      <iTilesPer>64</iTilesPer>
+      <iMinLandPercent>0</iMinLandPercent>
+      <iUnique>0</iUnique>
+      <iGroupRange>0</iGroupRange>
+      <iGroupRand>0</iGroupRand>
+      <bArea>0</bArea>
+      <bHills>1</bHills>
+      <bFlatlands>1</bFlatlands>
+      <bNoRiverSide>0</bNoRiverSide>
+      <bNormalize>1</bNormalize>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
+      <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+      </FeatureBooleans>
+      <FeatureTerrainBooleans>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+      </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
       <Type>BONUS_DEER</Type>
@@ -1676,226 +2335,6 @@
       </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
-      <Type>BONUS_FISH</Type>
-      <Description>TXT_KEY_BONUS_FISH</Description>
-      <Civilopedia>TXT_KEY_BONUS_FISH_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_MISC</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_FISH</ArtDefineTag>
-      <TechReveal>NONE</TechReveal>
-      <TechCityTrade>NONE</TechCityTrade>
-      <TechObsolete>NONE</TechObsolete>
-      <YieldChanges>
-        <iYieldChange>1</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-      </YieldChanges>
-      <iAITradeModifier>2</iAITradeModifier>
-      <iAIObjective>0</iAIObjective>
-      <iHealth>1</iHealth>
-      <iHappiness>0</iHappiness>
-      <iPlacementOrder>6</iPlacementOrder>
-      <iConstAppearance>60</iConstAppearance>
-      <iMinAreaSize>10</iMinAreaSize>
-      <iMinLatitude>0</iMinLatitude>
-      <iMaxLatitude>90</iMaxLatitude>
-      <Rands>
-        <iRandApp1>50</iRandApp1>
-        <iRandApp2>50</iRandApp2>
-        <iRandApp3>0</iRandApp3>
-        <iRandApp4>0</iRandApp4>
-      </Rands>
-      <iPlayer>0</iPlayer>
-      <iTilesPer>8</iTilesPer>
-      <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>1</iUnique>
-      <iGroupRange>0</iGroupRange>
-      <iGroupRand>0</iGroupRand>
-      <bArea>0</bArea>
-      <bHills>0</bHills>
-      <bFlatlands>0</bFlatlands>
-      <bNoRiverSide>0</bNoRiverSide>
-      <bNormalize>1</bNormalize>
-      <TerrainBooleans>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_COAST</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-      </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
-    </BonusInfo>
-    <BonusInfo>
-      <Type>BONUS_CLAM</Type>
-      <Description>TXT_KEY_BONUS_CLAM</Description>
-      <Civilopedia>TXT_KEY_BONUS_CLAM_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_MISC</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_CLAM</ArtDefineTag>
-      <TechReveal>TECH_WARENHANDEL</TechReveal>
-      <TechCityTrade>NONE</TechCityTrade>
-      <TechObsolete>NONE</TechObsolete>
-      <YieldChanges>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
-      </YieldChanges>
-      <iAITradeModifier>5</iAITradeModifier>
-      <iAIObjective>0</iAIObjective>
-      <iHealth>1</iHealth>
-      <iHappiness>0</iHappiness>
-      <iPlacementOrder>6</iPlacementOrder>
-      <iConstAppearance>100</iConstAppearance>
-      <iMinAreaSize>10</iMinAreaSize>
-      <iMinLatitude>0</iMinLatitude>
-      <iMaxLatitude>50</iMaxLatitude>
-      <Rands>
-        <iRandApp1>25</iRandApp1>
-        <iRandApp2>25</iRandApp2>
-        <iRandApp3>0</iRandApp3>
-        <iRandApp4>0</iRandApp4>
-      </Rands>
-      <iPlayer>0</iPlayer>
-      <iTilesPer>20</iTilesPer>
-      <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>1</iUnique>
-      <iGroupRange>0</iGroupRange>
-      <iGroupRand>0</iGroupRand>
-      <bArea>0</bArea>
-      <bHills>0</bHills>
-      <bFlatlands>0</bFlatlands>
-      <bNoRiverSide>0</bNoRiverSide>
-      <bNormalize>1</bNormalize>
-      <TerrainBooleans>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_COAST</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-      </TerrainBooleans>
-      <FeatureBooleans/>
-      <FeatureTerrainBooleans/>
-    </BonusInfo>
-    <BonusInfo>
-      <Type>BONUS_PIG</Type>
-      <Description>TXT_KEY_BONUS_PIG</Description>
-      <Civilopedia>TXT_KEY_BONUS_PIG_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_LIVESTOCK</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_PIG</ArtDefineTag>
-      <TechReveal>NONE</TechReveal>
-      <TechCityTrade>NONE</TechCityTrade>
-      <TechObsolete>NONE</TechObsolete>
-      <YieldChanges>
-        <iYieldChange>1</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-      </YieldChanges>
-      <iAITradeModifier>2</iAITradeModifier>
-      <iAIObjective>0</iAIObjective>
-      <iHealth>1</iHealth>
-      <iHappiness>0</iHappiness>
-      <iPlacementOrder>4</iPlacementOrder>
-      <iConstAppearance>100</iConstAppearance>
-      <iMinAreaSize>3</iMinAreaSize>
-      <iMinLatitude>10</iMinLatitude>
-      <iMaxLatitude>50</iMaxLatitude>
-      <Rands>
-        <iRandApp1>50</iRandApp1>
-        <iRandApp2>50</iRandApp2>
-        <iRandApp3>0</iRandApp3>
-        <iRandApp4>0</iRandApp4>
-      </Rands>
-      <iPlayer>0</iPlayer>
-      <iTilesPer>64</iTilesPer>
-      <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>0</iUnique>
-      <iGroupRange>0</iGroupRange>
-      <iGroupRand>0</iGroupRand>
-      <bArea>1</bArea>
-      <bHills>0</bHills>
-      <bFlatlands>1</bFlatlands>
-      <bNoRiverSide>0</bNoRiverSide>
-      <bNormalize>1</bNormalize>
-      <TerrainBooleans>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_SWAMP</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-      </TerrainBooleans>
-      <FeatureBooleans>
-        <FeatureBoolean>
-          <FeatureType>FEATURE_FOREST</FeatureType>
-          <bFeature>1</bFeature>
-        </FeatureBoolean>
-      </FeatureBooleans>
-      <FeatureTerrainBooleans>
-        <FeatureTerrainBoolean>
-          <TerrainType>TERRAIN_SWAMP</TerrainType>
-          <bFeatureTerrain>1</bFeatureTerrain>
-        </FeatureTerrainBoolean>
-        <FeatureTerrainBoolean>
-          <TerrainType>TERRAIN_GRASS</TerrainType>
-          <bFeatureTerrain>1</bFeatureTerrain>
-        </FeatureTerrainBoolean>
-      </FeatureTerrainBooleans>
-    </BonusInfo>
-    <BonusInfo>
-      <Type>BONUS_SHEEP</Type>
-      <Description>TXT_KEY_BONUS_SHEEP</Description>
-      <Civilopedia>TXT_KEY_BONUS_SHEEP_PEDIA</Civilopedia>
-      <BonusClassType>BONUSCLASS_LIVESTOCK</BonusClassType>
-      <ArtDefineTag>ART_DEF_BONUS_SHEEP</ArtDefineTag>
-      <TechReveal>NONE</TechReveal>
-      <TechCityTrade>NONE</TechCityTrade>
-      <TechObsolete>NONE</TechObsolete>
-      <YieldChanges>
-        <iYieldChange>1</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-        <iYieldChange>0</iYieldChange>
-      </YieldChanges>
-      <iAITradeModifier>2</iAITradeModifier>
-      <iAIObjective>0</iAIObjective>
-      <iHealth>1</iHealth>
-      <iHappiness>0</iHappiness>
-      <iPlacementOrder>4</iPlacementOrder>
-      <iConstAppearance>100</iConstAppearance>
-      <iMinAreaSize>3</iMinAreaSize>
-      <iMinLatitude>30</iMinLatitude>
-      <iMaxLatitude>90</iMaxLatitude>
-      <Rands>
-        <iRandApp1>50</iRandApp1>
-        <iRandApp2>50</iRandApp2>
-        <iRandApp3>0</iRandApp3>
-        <iRandApp4>0</iRandApp4>
-      </Rands>
-      <iPlayer>0</iPlayer>
-      <iTilesPer>64</iTilesPer>
-      <iMinLandPercent>0</iMinLandPercent>
-      <iUnique>0</iUnique>
-      <iGroupRange>0</iGroupRange>
-      <iGroupRand>0</iGroupRand>
-      <bArea>1</bArea>
-      <bHills>1</bHills>
-      <bFlatlands>0</bFlatlands>
-      <bNoRiverSide>0</bNoRiverSide>
-      <bNormalize>1</bNormalize>
-      <TerrainBooleans>
-        <TerrainBoolean>
-          <TerrainType>TERRAIN_PLAINS</TerrainType>
-          <bTerrain>1</bTerrain>
-        </TerrainBoolean>
-      </TerrainBooleans>
-      <FeatureBooleans>
-        <FeatureBoolean>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
-          <bFeature>1</bFeature>
-        </FeatureBoolean>
-      </FeatureBooleans>
-      <FeatureTerrainBooleans>
-        <FeatureTerrainBoolean>
-          <TerrainType>TERRAIN_PLAINS</TerrainType>
-          <bFeatureTerrain>1</bFeatureTerrain>
-        </FeatureTerrainBoolean>
-      </FeatureTerrainBooleans>
-    </BonusInfo>
-    <BonusInfo>
       <Type>BONUS_WALRUS</Type>
       <Description>TXT_KEY_BONUS_WALRUS</Description>
       <Civilopedia>TXT_KEY_BONUS_IVORY2_PEDIA</Civilopedia>
@@ -1933,7 +2372,7 @@
       <bArea>0</bArea>
       <bHills>0</bHills>
       <bFlatlands>1</bFlatlands>
-      <bNoRiverSide>1</bNoRiverSide>
+      <bNoRiverSide>0</bNoRiverSide>
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
         <TerrainBoolean>
@@ -2295,6 +2734,10 @@
                         </FeatureBooleans>
                         <FeatureTerrainBooleans>
                                 <FeatureTerrainBoolean>
+                                        <TerrainType>TERRAIN_SWAMP</TerrainType>
+                                        <bFeatureTerrain>1</bFeatureTerrain>
+                                </FeatureTerrainBoolean>
+                                <FeatureTerrainBoolean>
                                         <TerrainType>TERRAIN_GRASS</TerrainType>
                                         <bFeatureTerrain>1</bFeatureTerrain>
                                 </FeatureTerrainBoolean>
@@ -2312,7 +2755,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>2</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -2374,7 +2817,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>2</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -2436,7 +2879,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -2466,11 +2909,39 @@
       <bNormalize>1</bNormalize>
       <TerrainBooleans>
          <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
            <TerrainType>TERRAIN_PLAINS</TerrainType>
            <bTerrain>1</bTerrain>
          </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
       </TerrainBooleans>
       <FeatureBooleans>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_FOREST</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_DICHTERWALD</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
+        <FeatureBoolean>
+          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <bFeature>1</bFeature>
+        </FeatureBoolean>
         <FeatureBoolean>
           <FeatureType>FEATURE_JUNGLE</FeatureType>
           <bFeature>1</bFeature>
@@ -2479,6 +2950,22 @@
       <FeatureTerrainBooleans>
         <FeatureTerrainBoolean>
           <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_PLAINS</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_TUNDRA</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_SNOW</TerrainType>
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
@@ -2495,7 +2982,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -2544,7 +3031,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -2700,6 +3187,10 @@
           <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
+        <FeatureTerrainBoolean>
+          <TerrainType>TERRAIN_DESERT</TerrainType>
+          <bFeatureTerrain>1</bFeatureTerrain>
+        </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
     </BonusInfo>
     <BonusInfo>
@@ -2714,7 +3205,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>0</iYieldChange>
-        <iYieldChange>1</iYieldChange>
+        <iYieldChange>2</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>5</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -2742,7 +3233,12 @@
       <bFlatlands>1</bFlatlands>
       <bNoRiverSide>0</bNoRiverSide>
       <bNormalize>1</bNormalize>
-      <TerrainBooleans/>
+      <TerrainBooleans>
+        <TerrainBoolean>
+          <TerrainType>TERRAIN_GRASS</TerrainType>
+          <bTerrain>1</bTerrain>
+        </TerrainBoolean>
+      </TerrainBooleans>
       <FeatureBooleans>
         <FeatureBoolean>
           <FeatureType>FEATURE_SAVANNA</FeatureType>
@@ -2752,10 +3248,6 @@
       <FeatureTerrainBooleans>
         <FeatureTerrainBoolean>
           <TerrainType>TERRAIN_GRASS</TerrainType>
-          <bFeatureTerrain>1</bFeatureTerrain>
-        </FeatureTerrainBoolean>
-        <FeatureTerrainBoolean>
-          <TerrainType>TERRAIN_PLAINS</TerrainType>
           <bFeatureTerrain>1</bFeatureTerrain>
         </FeatureTerrainBoolean>
       </FeatureTerrainBooleans>
@@ -2835,7 +3327,7 @@
       <YieldChanges>
         <iYieldChange>0</iYieldChange>
         <iYieldChange>1</iYieldChange>
-        <iYieldChange>0</iYieldChange>
+        <iYieldChange>1</iYieldChange>
       </YieldChanges>
       <iAITradeModifier>6</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
@@ -3110,7 +3602,7 @@
       <TechCityTrade>NONE</TechCityTrade>
       <TechObsolete>NONE</TechObsolete>
       <YieldChanges/>
-      <iAITradeModifier>2</iAITradeModifier>
+      <iAITradeModifier>5</iAITradeModifier>
       <iAIObjective>0</iAIObjective>
       <iHealth>0</iHealth>
       <iHappiness>0</iHappiness>

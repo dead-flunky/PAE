@@ -938,10 +938,10 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_MONUMENT2_STRATEGY</Tag>
-    <English>This building can only be build by a Commander and reduces war weariness and provides cultural points!</English>
-    <French>This building can only be build by a Commander and reduces war weariness and provides cultural points!</French>
-    <German>Dieses Geb&#228;ude kann nur von einem Feldherrn errichtet werden und verringert die Kriegsm&#252;digkeit und liefert Kulturpunkte!</German>
-    <Italian>This building can only be build by a Commander and reduces war weariness and provides cultural points!</Italian>
+    <English>This building can only be build by a Great General. A supply wagon can dismantle this building and re-build it into another city.</English>
+    <French>This building can only be build by a Great General. A supply wagon can dismantle this building and re-build it into another city.</French>
+    <German>Dieses Geb&#228;ude kann nur von einem Gro&#223;en General errichtet werden. Ein Versorgungskarren kann dieses Geb&#228;ude abbauen und in einer anderen Stadt wieder aufstellen.</German>
+    <Italian>This building can only be build by a Great General. A supply wagon can dismantle this building and re-build it into another city.</Italian>
     <Spanish>&#161;Este edificio solo puede ser construido por un general y reduce el hast&#237;o b&#233;lico y proporciona puntos culturales!</Spanish>
   </TEXT>
   <TEXT>
@@ -1026,11 +1026,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_BORDELL_STRATEGY</Tag>
-    <English>A [COLOR_BUILDING_TEXT]Brothel[COLOR_REVERT] increases happiness by one and with [COLOR_HIGHLIGHT_TEXT]Slaves[COLOR_REVERT] you are able to increase its culture value by 1 per slave (maximum of 5).</English>
-    <French>A [COLOR_BUILDING_TEXT]Brothel[COLOR_REVERT] increases happiness by one and with [COLOR_HIGHLIGHT_TEXT]Slaves[COLOR_REVERT] you are able to increase its culture value by 1 per slave (maximum of 5).</French>
-    <German>Ein [COLOR_BUILDING_TEXT]Freudenhaus[COLOR_REVERT] erh&#246;ht die Zufriedenheit um eins und mittels [COLOR_HIGHLIGHT_TEXT]Sklaven[COLOR_REVERT] kann dessen Kulturwert um jeweils eins erh&#246;ht werden (maximal 5).</German>
-    <Italian>A [COLOR_BUILDING_TEXT]Brothel[COLOR_REVERT] increases happiness by one and with [COLOR_HIGHLIGHT_TEXT]Slaves[COLOR_REVERT] you are able to increase its culture value by 1 per slave (maximum of 5).</Italian>
-    <Spanish>Un [COLOR_BUILDING_TEXT]burdel[COLOR_REVERT] aumenta la felicidad en uno y con [COLOR_HIGHLIGHT_TEXT]esclavos[COLOR_REVERT] podr&#225;s incrementar su valor cultural en 1 por cada uno (m&#225;ximo de 5).</Spanish>
+    <English>A [COLOR_BUILDING_TEXT]Brothel[COLOR_REVERT] increases happiness by one and with [COLOR_HIGHLIGHT_TEXT]Slaves[COLOR_REVERT] you are able to increase its culture value by 2 per slave (maximum 5 slaves).</English>
+    <French>A [COLOR_BUILDING_TEXT]Brothel[COLOR_REVERT] increases happiness by one and with [COLOR_HIGHLIGHT_TEXT]Slaves[COLOR_REVERT] you are able to increase its culture value by 2 per slave (maximum 5 slaves).</French>
+    <German>Ein [COLOR_BUILDING_TEXT]Freudenhaus[COLOR_REVERT] erh&#246;ht die Zufriedenheit um eins und mittels [COLOR_HIGHLIGHT_TEXT]Sklaven[COLOR_REVERT] kann dessen Kulturwert um jeweils 2erh&#246;ht werden (maximal 5 Sklaven).</German>
+    <Italian>A [COLOR_BUILDING_TEXT]Brothel[COLOR_REVERT] increases happiness by one and with [COLOR_HIGHLIGHT_TEXT]Slaves[COLOR_REVERT] you are able to increase its culture value by 2 per slave (maximum 5 slaves).</Italian>
+    <Spanish>Un [COLOR_BUILDING_TEXT]burdel[COLOR_REVERT] aumenta la felicidad en uno y con [COLOR_HIGHLIGHT_TEXT]esclavos[COLOR_REVERT] podr&#225;s incrementar su valor cultural en 2 por cada uno (m&#225;ximo de 5 esclavos).</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_TAVERN_STRATEGY</Tag>
@@ -2954,10 +2954,10 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_TRADE_MERCHANT_STRATEGY</Tag>
-    <English>[COLOR_UNIT_TEXT]Merchants, trade caravan and merchantmen[COLOR_REVERT] can trade with foreign cities to fill up treasury. Merchants can transport [COLOR_UNIT_TEXT]ships[COLOR_REVERT]. From currency on, the construction of merchants can be replaced with wealth.</English>
-    <French>[COLOR_UNIT_TEXT]Merchants, trade caravan and merchantmen[COLOR_REVERT] can trade with foreign cities to fill up treasury. Merchants can transport [COLOR_UNIT_TEXT]ships[COLOR_REVERT]. From currency on, the construction of merchants can be replaced with wealth.</French>
-    <German>[COLOR_UNIT_TEXT]H&#228;ndler, Handelskarwanen und Handelsschiffe[COLOR_REVERT] k&#246;nnen mit fremden St&#228;dten handeln und so die Staatskasse auff&#252;llen! H&#228;ndler k&#246;nnen auch [COLOR_UNIT_TEXT]Schiffe[COLOR_REVERT] transportieren. Ab W&#228;hrung kann der Bau von H&#228;ndlereinheiten mit Wohlstand ersetzt werden.</German>
-    <Italian>[COLOR_UNIT_TEXT]Merchants, trade caravan and merchantmen[COLOR_REVERT] can trade with foreign cities to fill up treasury. Merchants can transport [COLOR_UNIT_TEXT]ships[COLOR_REVERT]. From currency on, the construction of merchants can be replaced with wealth.</Italian>
+    <English>[COLOR_UNIT_TEXT]Trade wagons, caravans and merchantmen[COLOR_REVERT] can buy and sell goods between two cities and fill the state fund! Trade wagons are capable of transporting [COLOR_UNIT_TEXT]ships[COLOR_REVERT] across the country. Caravans are cheaper and more profitable than trade wagons.</English>
+    <French>[COLOR_UNIT_TEXT]Trade wagons, caravans and merchantmen[COLOR_REVERT] can buy and sell goods between two cities and fill the state fund! Trade wagons are capable of transporting [COLOR_UNIT_TEXT]ships[COLOR_REVERT] across the country. Caravans are cheaper and more profitable than trade wagons.</French>
+    <German>[COLOR_UNIT_TEXT]Handelkarren, Handelskarwanen und Handelsschiffe[COLOR_REVERT] k&#246;nnen G&#252;ter zwischen zwei St&#228;dten ein- und verkaufen und so die Staatskasse f&#252;llen! Handelskarren sind f&#228;hig [COLOR_UNIT_TEXT]Schiffe[COLOR_REVERT] &#252;ber Land zu transportieren. Karawanen sind g&#252;nstiger und ertragreicher als Handelskarren.</German>
+    <Italian>[COLOR_UNIT_TEXT]Trade wagons, caravans and merchantmen[COLOR_REVERT] can buy and sell goods between two cities and fill the state fund! Trade wagons are capable of transporting [COLOR_UNIT_TEXT]ships[COLOR_REVERT] across the country. Caravans are cheaper and more profitable than trade wagons.</Italian>
     <Spanish>Los [COLOR_UNIT_TEXT]mercantes, caravanas de comercio y mercaderes[COLOR_REVERT] pueden comerciar con ciudades extranjeras para llenar el tesoro. Los mercantes pueden transportar [COLOR_UNIT_TEXT]barcos[COLOR_REVERT]. Desde la moneda, la construcci&#243;n de mecantes puede ser reemplazada con riqueza.</Spanish>
   </TEXT>
   <TEXT>

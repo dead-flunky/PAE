@@ -1397,15 +1397,6 @@
       <DefaultUnit>UNIT_GREAT_GENERAL</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
-      <Type>UNITCLASS_GREAT_GENERAL2</Type>
-      <Description>TXT_KEY_UNIT_GREAT_GENERAL2</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iInstanceCostModifier>0</iInstanceCostModifier>
-      <DefaultUnit>UNIT_GREAT_GENERAL2</DefaultUnit>
-    </UnitClassInfo>
-    <UnitClassInfo>
       <Type>UNITCLASS_GREAT_SPY</Type>
       <Description>TXT_KEY_SPECIALIST_GREAT_SPY</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>

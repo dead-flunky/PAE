@@ -32042,7 +32042,7 @@ BeginPlot
                 BuildingType=BUILDING_CURINGHUT
                 BuildingType=BUILDING_GRANARY
                 BuildingType=BUILDING_ZISTERNE
-                BuildingType=BUILDING_EGYPTIAN_OBELISK
+                BuildingType=BUILDING_OBELISK
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_EGYPT_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
@@ -33967,7 +33967,7 @@ BeginPlot
                 BuildingType=BUILDING_FORGE
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
                 BuildingType=BUILDING_PIRATENNEST
-                BuildingType=BUILDING_EGYPTIAN_OBELISK
+                BuildingType=BUILDING_OBELISK
                 BuildingType=BUILDING_LIBRARY
                 BuildingType=BUILDING_WINERY
                 BuildingType=BUILDING_MARKET
@@ -35176,7 +35176,7 @@ BeginPlot
                 BuildingType=BUILDING_NUBIAN_PYRAMID
                 BuildingType=BUILDING_ZISTERNE
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
-                BuildingType=BUILDING_EGYPTIAN_OBELISK
+                BuildingType=BUILDING_OBELISK
                 BuildingType=BUILDING_ARCHIVE
                 BuildingType=BUILDING_LIBRARY
                 BuildingType=BUILDING_BRAUSTAETTE
@@ -37015,7 +37015,7 @@ BeginPlot
                 BuildingType=BUILDING_NUBIAN_PYRAMID
                 BuildingType=BUILDING_ZISTERNE
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
-                BuildingType=BUILDING_EGYPTIAN_OBELISK
+                BuildingType=BUILDING_OBELISK
                 BuildingType=BUILDING_LIBRARY
                 BuildingType=BUILDING_WINERY
                 BuildingType=BUILDING_MARKET
@@ -38320,7 +38320,7 @@ BeginPlot
                 BuildingType=BUILDING_ZISTERNE
                 BuildingType=BUILDING_FORGE
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
-                BuildingType=BUILDING_EGYPTIAN_OBELISK
+                BuildingType=BUILDING_OBELISK
                 BuildingType=BUILDING_ARCHIVE
                 BuildingType=BUILDING_ANCIENT_OBSERVATORY
                 BuildingType=BUILDING_LIBRARY
@@ -38414,7 +38414,7 @@ BeginPlot
                 BuildingType=BUILDING_SCHMIEDE1
                 BuildingType=BUILDING_FORGE
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
-                BuildingType=BUILDING_EGYPTIAN_OBELISK
+                BuildingType=BUILDING_OBELISK
                 BuildingType=BUILDING_ARCHIVE
                 BuildingType=BUILDING_ANCIENT_OBSERVATORY
                 BuildingType=BUILDING_LIBRARY
@@ -46950,7 +46950,7 @@ BeginPlot
                 BuildingType=BUILDING_CURINGHUT
                 BuildingType=BUILDING_SCHMIEDE1
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
-                BuildingType=BUILDING_SAEULE
+                BuildingType=BUILDING_SIEGESSTATUE
                 BuildingType=BUILDING_BORDELL
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG
@@ -47692,7 +47692,7 @@ BeginPlot
                 BuildingType=BUILDING_CURINGHUT
                 BuildingType=BUILDING_SCHMIEDE1
                 BuildingType=BUILDING_SCHMIEDE_BRONZE
-                BuildingType=BUILDING_SAEULE
+                BuildingType=BUILDING_SIEGESSTATUE
                 BuildingType=BUILDING_BORDELL
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_SIEDLUNG

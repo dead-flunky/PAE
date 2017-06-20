@@ -44,15 +44,17 @@
       <iSoundtrackSpace>200</iSoundtrackSpace>
       <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
       <EraInfoSoundtracks>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_1</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X24</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X1</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X2</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_1</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_2</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_3</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_4</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_MUSIC_PAE_MOD_1</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_GOODYMUSIC</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_GOODYMUSIC2</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_CATHERINE_EARLY</EraInfoSoundtrack>
       </EraInfoSoundtracks>
       <CitySoundscapes>
         <CitySoundscape>
@@ -102,10 +104,7 @@
       <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
       <EraInfoSoundtracks>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X4</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_1</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_2</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_3</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_4</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X7</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_OPENING_MENU_VANILLA</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_CIV_III_ANC_AMERICA</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_CIV_III_ANC_MID_EAST</EraInfoSoundtrack>
@@ -168,10 +167,6 @@
       <iSoundtrackSpace>200</iSoundtrackSpace>
       <bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
       <EraInfoSoundtracks>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_1</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_2</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_3</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_4</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X4</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_OPENING_MENU_VANILLA</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_CIV_III_ANC_AMERICA</EraInfoSoundtrack>
@@ -187,6 +182,7 @@
         <EraInfoSoundtrack>AS2D_SONG_DIP_NA_LATE_WAR</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_OPENING_MENU_WARLORDS</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_MUSIC_PAE_MOD_1</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X7</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X11</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X12</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X14</EraInfoSoundtrack>
@@ -261,15 +257,11 @@
         <EraInfoSoundtrack>AS2D_SONG_DIP_ME_LATE_PEACE</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_BARBARIAN</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_CIV_III_MOD_MID_EAST</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_CREDITS1</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_CREDITS2</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_OPENING_MENU</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_GENGHIS_KHAN</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DESPREZ_LAMENT</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANONYMOUS_AY_SANTA_MARIA</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DE_LA_TORRE_ALTA</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_DIPLO_BISMARCK_EARLY</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_DIPLO_CATHERINE_EARLY</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_CATHERINE_LATE</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DIPLO_CYRUS_LATE_INTRO</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DIPLO_GENGHISKHAN_LATE_LP</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_MUSIC_PAE_MOD_1</EraInfoSoundtrack>
@@ -361,15 +353,11 @@
         <EraInfoSoundtrack>AS2D_SONG_DIP_ME_LATE_PEACE</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_BARBARIAN</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_CIV_III_MOD_MID_EAST</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_CREDITS1</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_CREDITS2</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_OPENING_MENU</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_SONG_GENGHIS_KHAN</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DESPREZ_LAMENT</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANONYMOUS_AY_SANTA_MARIA</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DE_LA_TORRE_ALTA</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_DIPLO_BISMARCK_EARLY</EraInfoSoundtrack>
-        <EraInfoSoundtrack>AS2D_DIPLO_CATHERINE_EARLY</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_DIPLO_CATHERINE_LATE</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DIPLO_CYRUS_LATE_INTRO</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_DIPLO_GENGHISKHAN_LATE_LP</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_MUSIC_PAE_MOD_1</EraInfoSoundtrack>
@@ -391,6 +379,7 @@
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X21</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X22</EraInfoSoundtrack>
         <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X23</EraInfoSoundtrack>
+        <EraInfoSoundtrack>AS2D_ANCIENT_SOUNDTRACK_X25</EraInfoSoundtrack>
       </EraInfoSoundtracks>
       <CitySoundscapes>
         <CitySoundscape>

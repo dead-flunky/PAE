@@ -47,14 +47,15 @@ class WBBuildingScreen:
     screen.setTableColumnHeader("CurrentCity", 0, "", iWidth)
 
     pPlayer = gc.getPlayer(iPlayer)
-    (loopCity, iter) = pPlayer.firstCity(False)
+    (loopCity, pIter) = pPlayer.firstCity(False)
     while(loopCity):
-      iRow = screen.appendTableRow("CurrentCity")
-      sColor = CyTranslator().getText("[COLOR_WARNING_TEXT]", ())
-      if loopCity.getID() == pCity.getID():
-        sColor = CyTranslator().getText("[COLOR_POSITIVE_TEXT]", ())
-      screen.setTableText("CurrentCity", 0, iRow, "<font=3>" + sColor + loopCity.getName() + "</font></color>", gc.getCivilizationInfo(pCity.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY )
-      (loopCity, iter) = pPlayer.nextCity(iter, False)
+        if not loopCity.isNone() and loopCity.getOwner() == pPlayer.getID(): #only valid cities
+            iRow = screen.appendTableRow("CurrentCity")
+            sColor = CyTranslator().getText("[COLOR_WARNING_TEXT]", ())
+            if loopCity.getID() == pCity.getID():
+                sColor = CyTranslator().getText("[COLOR_POSITIVE_TEXT]", ())
+            screen.setTableText("CurrentCity", 0, iRow, "<font=3>" + sColor + loopCity.getName() + "</font></color>", gc.getCivilizationInfo(pCity.getCivilizationType()).getButton(), WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY )
+        (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
     screen.addDropDownBoxGFC("WonderClass", screen.getXResolution()/4, 50, 150, WidgetTypes.WIDGET_GENERAL, -1, -1, FontTypes.GAME_FONT)
     screen.addPullDownString("WonderClass", CyTranslator().getText("TXT_KEY_WB_CITY_ALL", ()), 0, 0, iSelectedClass == 0)
@@ -298,23 +299,29 @@ class WBBuildingScreen:
     ItemInfo = gc.getBuildingInfo(item)
     iType = iChangeType or bAvailable
     if bApplyAll and not bWonder:
-      (loopCity, iter) = pPlayerX.firstCity(False)
+      (loopCity, pIter) = pPlayerX.firstCity(False)
       while(loopCity):
-        bModify = True
-        if ItemInfo.isWater() and not loopCity.isCoastal(ItemInfo.getMinAreaSize()): bModify = False
-        if ItemInfo.isRiver() and not loopCity.plot().isRiver(): bModify = False
-        if bAvailable:
-          if ItemInfo.isCapital(): bModify = False
-          iHolyReligion = ItemInfo.getHolyCity()
-          if iHolyReligion > -1 and not loopCity.isHolyCityByType(iHolyReligion): bModify = False
-          if not loopCity.canConstruct(item, True, False, True): bModify = False
-          #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(item)
-          #if not loopCity.canConstruct(iBuilding, True, False, True): bModify = False
-        if bModify:
-          if iChangeType == 2 and not bAvailable:
-            iType = not loopCity.getNumRealBuilding(item)
-          self.doEffects(loopCity, item, iType)
-        (loopCity, iter) = pPlayerX.nextCity(iter, False)
+        if not loopCity.isNone() and loopCity.getOwner() == pPlayerX.getID(): #only valid cities
+            bModify = True
+            if ItemInfo.isWater() and not loopCity.isCoastal(ItemInfo.getMinAreaSize()):
+                bModify = False
+            if ItemInfo.isRiver() and not loopCity.plot().isRiver():
+                bModify = False
+            if bAvailable:
+                if ItemInfo.isCapital():
+                    bModify = False
+                iHolyReligion = ItemInfo.getHolyCity()
+                if iHolyReligion > -1 and not loopCity.isHolyCityByType(iHolyReligion):
+                    bModify = False
+                if not loopCity.canConstruct(item, True, False, True):
+                    bModify = False
+                #iBuilding = gc.getCivilizationInfo(pPlayer.getCivilizationType()).getCivilizationBuildings(item)
+                #if not loopCity.canConstruct(iBuilding, True, False, True): bModify = False
+            if bModify:
+                if iChangeType == 2 and not bAvailable:
+                    iType = not loopCity.getNumRealBuilding(item)
+                self.doEffects(loopCity, item, iType)
+        (loopCity, pIter) = pPlayerX.nextCity(pIter, False)
     else:
       if bAvailable:
         if ItemInfo.isCapital(): return

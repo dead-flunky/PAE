@@ -3874,11 +3874,11 @@ Advantages of slaves:
 [ICON_BULLET] They can join a city as household, field and mine slaves (see below)
 [ICON_BULLET] A new slave unit can be available if the city contains settled slaves and/or has a slave market (chance of 1.5% every turn in every city, 3% with Tyranny), unless Christianity is not state religion
 [ICON_BULLET] They can join a city as exhibition fighters (Tech: Exhibition Fight necessary), that adds +1 [ICON_COMMERCE], +1 [ICON_CULTURE] and +1 experience to the city.
-[ICON_BULLET] They can be assigned to a Brothel to increase its culture value by +1 (maximum of 5).
-[ICON_BULLET] They can be assigned to a Theater to increase its culture value by +1 (maximum of 5).
-[ICON_BULLET] They can be assigned to a School to increase its research value by +1 (maximum of 5).
-Exception: Gymnasion, this generates +5 research anyway
-[ICON_BULLET] They can be assigned to a Manufactory to increase its food yield or production yield by +1 (maximum of 5 each).
+[ICON_BULLET] They can be assigned to a Brothel to increase its culture value by +2 (max. 10).
+[ICON_BULLET] They can be assigned to a Theater to increase its culture value by +2 (max. 10).
+[ICON_BULLET] They can be assigned to a School to increase its research value by +2 (max. 10).
+Exception: Gymnasion, this generates +6 research anyway
+[ICON_BULLET] They can be assigned to a Manufactory to increase its food yield or production yield by +2 (max. 10 each).
 [ICON_BULLET] Settled slaves and exhibition fighters can, with the civic "Civil Right", become free citizens (+2 [ICON_COMMERCE]) (chance of 2% every turn)
 [ICON_BULLET] Settled slaves and exhibition fighters can, with the civic "International law", become free citizens (+2 [ICON_COMMERCE]) (chance of 3% every turn)
 [ICON_BULLET] Settled exhibition fighters can become a [LINK=UNIT_GLADIATOR]gladiator[\LINK] unit, which can found a gladiator school or remain in your army (chance of 2% every turn, Tech Gladiator required)
@@ -3990,10 +3990,10 @@ Avantages des esclaves :
 [ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; une ville en tant que domestique, paysan ou mineur (voir ci-dessous)
 [ICON_BULLET] Un nouvel esclave peut &#234;tre cr&#233;&#233; dans une ville dans laquelle des esclaves on d&#233;j&#224; &#233;t&#233; affect&#233;s (probabilit&#233; de 1.5% par tour), sauf si le christianisme est la religion d'&#233;tat
 [ICON_BULLET] Ils peuvent rejoindre une ville en tant que gladiateur (Technologie [LINK=TECH_GLADIATOR]Jeux du cirque[\LINK] n&#233;cessaire) : +1 [ICON_COMMERCE], +1 [ICON_CULTURE] et + 1 EXP aux nouvelles unit&#233;s
-[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; un Bordel pour accro&#238;tre son bonus de culture de 1 (5 maximum)
-[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; un Th&#233;&#234;tre pour accro&#238;tre son bonus de culture de 1 (5 maximum)
-[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; une Ecole pour accro&#238;tre son bonus de recherche de 1 (5 maximum)
-[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; une Manufacture pour accro&#238;tre son bonus de nourriture ou production de 1 (5 maximum par bonus)
+[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; un Bordel pour accro&#238;tre son bonus de culture de 2 (10 maximum)
+[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; un Th&#233;&#234;tre pour accro&#238;tre son bonus de culture de 2 (10 maximum)
+[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; une Ecole pour accro&#238;tre son bonus de recherche de 2 (10 maximum)
+[ICON_BULLET] Ils peuvent &#234;tre affect&#233;s &#224; une Manufacture pour accro&#238;tre son bonus de nourriture ou production de 2 (10 maximum par bonus)
 [ICON_BULLET] Les esclaves et gladiateurs affect&#233;s dans une ville peuvent devenir des citoyens libres si la doctrine Droit civil est active (Probabilit&#233; : 2% par tour)
 [ICON_BULLET] Les esclaves et gladiateurs affect&#233;s dans une ville peuvent devenir des citoyens libres si la doctrine Loi internationale est active (Probabilit&#233; : 3% par tour)
 [ICON_BULLET] Les gladiateurs affect&#233;s &#224; une ville peuvent rejoindre votre arm&#233;e en tant que [LINK=UNIT_GLADIATOR]Gladiateur[\LINK]. Cette unit&#233; peut fonder une Ecole de gladiateurs (N&#233;cessite la technologie Gladiateurs – Probabilit&#233; : 2% par tour)
@@ -4102,11 +4102,11 @@ Vorteile der Sklaven:
 [ICON_BULLET] K&#246;nnen in einer Stadt als Haus-, Feld- und Berwerkssklaven angesiedelt werden (siehe unten)
 [ICON_BULLET] Eine neue Sklaveneinheit kann durch ans&#228;ssige Sklaven oder einen Sklavenmarkt verf&#252;gbar werden (nur wenn Christentum nicht Staatsreligion ist, 1.5% Wahrscheinlichkeit pro Runde und Stadt, 3% mit Tyrannis)
 [ICON_BULLET] K&#246;nnen in einer Stadt als Schauk&#228;mpfer angesiedelt werden (Technologie Schaukampf notwendig) und bringt der Stadt +1 [ICON_COMMERCE], +1 [ICON_CULTURE] und +1 Erfahrung.
-[ICON_BULLET] K&#246;nnen einem Freudenhaus zugeteilt werden und erh&#246;hen dadurch dessen Kultur um +1 (maximal 5)
-[ICON_BULLET] K&#246;nnen einem Theater zugeteilt werden und erh&#246;hen dadurch dessen Kultur um +1 (maximal 5)
-[ICON_BULLET] K&#246;nnen einer Schule zugeteilt werden und erh&#246;hen dadurch dessen Forschung um +1 (maximal 5)
-Ausnahme: Gymnasion, dieses erwirtschaftet ohnehin +5 Forschung
-[ICON_BULLET] K&#246;nnen einer Manufaktur zugeteilt werden und erh&#246;hen dadurch dessen Nahrungsmittelproduktion oder Produktion um +1 (maximal 5 f&#252;r jedes)
+[ICON_BULLET] K&#246;nnen einem Freudenhaus zugeteilt werden und erh&#246;hen dadurch dessen Kultur um +2 (max. 10)
+[ICON_BULLET] K&#246;nnen einem Theater zugeteilt werden und erh&#246;hen dadurch dessen Kultur um +2 (max. 10)
+[ICON_BULLET] K&#246;nnen einer Schule zugeteilt werden und erh&#246;hen dadurch dessen Forschung um +2 (max. 10)
+Ausnahme: Gymnasion, dieses erwirtschaftet ohnehin +6 Forschung
+[ICON_BULLET] K&#246;nnen einer Manufaktur zugeteilt werden und erh&#246;hen dadurch dessen Nahrungsmittelproduktion oder Produktion um +2 (max. 10 jeweils)
 [ICON_BULLET] Angesiedelte Sklaven und Schauk&#228;mpfer k&#246;nnen innerhalb der Staatsform "B&#252;rgerrecht" zu freien B&#252;rgern (+2 [ICON_COMMERCE]) werden (2% Wahrscheinlichkeit pro Runde)
 [ICON_BULLET] Angesiedelte Sklaven und Schauk&#228;mpfer k&#246;nnen innerhalb der Staatsform "V&#246;lkerrecht" zu freien B&#252;rgern (+2 [ICON_COMMERCE]) werden (3% Wahrscheinlichkeit pro Runde)
 [ICON_BULLET] Angesiedelte Schauk&#228;mpfer k&#246;nnen als Gladiatoren-Einheit zu Euren Diensten stehen, sofern man die Tech Gladiatoren erforscht hat (2% Wahrscheinlichkeit pro Runde, Technologie Gladiatoren notwendig)
@@ -4217,11 +4217,11 @@ Vantaggi di schiavi :
 Essere [ICON_BULLET] Pu&#242; situato in una citt&#224; come una casa , di campo e Berwerkssklaven ( vedi sotto )
 [ICON_BULLET] Una nuova unit&#224; slave pu&#242; essere disponibile ( solo se il cristianesimo non &#232; la religione di stato , 1,5 % di possibilit&#224; per ogni turno e la citt&#224;, il 3% in Tyrannis ) da schiavo residente o un mercato di schiavi
 [ICON_BULLET] Pu&#242; essere situato in una citt&#224; come combattenti per occhiali ( match di esibizione tecnologia necessaria ) e contribuisce alla citt&#224; uno [ICON_COMMERCE] , +1 [ICON_CULTURE] e +1 esperienza .
-[ICON_BULLET] pu&#242; essere assegnato ad una casa di piacere e quindi aumentare la sua cultura da 1 ( massimo 5 )
-[ICON_BULLET] Pu&#242; essere assegnato a un teatro , e migliorare di conseguenza la sua cultura da 1 ( massimo 5 )
-[ICON_BULLET] Pu&#242; una scuola assegnata , e quindi aumentare la sua ricerca da parte di uno ( massimo 5 )
-Eccezione : la palestra , questo genera comunque +5 Research
-[ICON_BULLET] Pu&#242; una fabbrica da assegnare e quindi aumentare la propria produzione alimentare o di produzione di +1 ( massimo 5 per ogni )
+[ICON_BULLET] pu&#242; essere assegnato ad una casa di piacere e quindi aumentare la sua cultura da 2 ( massimo 10 )
+[ICON_BULLET] Pu&#242; essere assegnato a un teatro , e migliorare di conseguenza la sua cultura da 2 ( massimo 10 )
+[ICON_BULLET] Pu&#242; una scuola assegnata , e quindi aumentare la sua ricerca da parte di 2 ( massimo 10 )
+Eccezione : la palestra , questo genera comunque +6 sua ricerca
+[ICON_BULLET] Pu&#242; una fabbrica da assegnare e quindi aumentare la propria produzione alimentare o di produzione di +2 ( massimo 10 per ogni )
 [ICON_BULLET] schiavi e combattenti domiciliati in grado di dimostrare entro la forma di governo " diritti civili " per cittadini liberi ( +2 [ICON_COMMERCE] ) sono ( 2 % di possibilit&#224; per ogni turno )
 [ICON_BULLET] schiavi e combattenti domiciliati in grado di dimostrare entro la forma di governo " diritto internazionale " per cittadini liberi ( +2 [ICON_COMMERCE] ) essere ( 3 % di possibilit&#224; per round )
 [ICON_BULLET] combattenti espositivi domiciliati possono come unit&#224; di gladiatori sono al vostro servizio , se hai studiato i gladiatori tech ( 2 % possibilit&#224; per round , i gladiatori tecnologia necessaria )
@@ -4332,11 +4332,11 @@ Ventajas de los esclavos:
 [ICON_BULLET] Pueden unirse a una ciudad como esclavos del campo, de la mina o dom&#233;sticos. (ver m&#225;s abajo)
 [ICON_BULLET] Un nuevo esclavo puede estar disponible si la ciudad contiene esclavos asentados y/o tiene un mercado de esclavos (probabilidad del 1.5% cada turno en cada ciudad, 3% con tiran&#237;a), excepto si el cristianismo es la religi&#243;n oficial.
 [ICON_BULLET] Pueden unirse a una ciudad como luchadores de espect&#225;culo (Tecnolog&#237;a necesaria: Lucha de espect&#225;culo) y da +1 [ICON_COMMERCE], +1 [ICON_CULTURE] y +1 de experiencia a las unidades construidas en esta ciudad.
-[ICON_BULLET] Pueden ser asignados a un burdel para incrementar la cultura de dicho edificio en +1 (m&#225;ximo de 5 esclavos).
-[ICON_BULLET] Pueden ser asignados a un teatro para incrementar la cultura de dicho edificio en +1 (m&#225;ximo de 5 esclavos).
-[ICON_BULLET] Pueden ser asignados a una escuela para incrementar las probetas producidas por dicho edificio en +1 (m&#225;ximo de 5 esclavos).
-Excepci&#243;n: Gymnasion, esto genera +5 de investigaci&#243;n de cualquier manera
-[ICON_BULLET] Pueden ser asignados a una manufactor&#237;a para aumentar la comida o la producci&#243;n en +1 (m&#225;ximo de 5 por cada uno).
+[ICON_BULLET] Pueden ser asignados a un burdel para incrementar la cultura de dicho edificio en +2 (m&#225;ximo de 5 esclavos).
+[ICON_BULLET] Pueden ser asignados a un teatro para incrementar la cultura de dicho edificio en +2 (m&#225;ximo de 5 esclavos).
+[ICON_BULLET] Pueden ser asignados a una escuela para incrementar las probetas producidas por dicho edificio en +2 (m&#225;ximo de 5 esclavos).
+Excepci&#243;n: Gymnasion, esto genera +6 de investigaci&#243;n de cualquier manera
+[ICON_BULLET] Pueden ser asignados a una manufactor&#237;a para aumentar la comida o la producci&#243;n en +2 (m&#225;ximo de 10 por cada uno).
 [ICON_BULLET] Los esclavos y gladiadores asentados en una ciudad, con el principio "Derecho civil", pueden volverse ciudadanos libres (+2 [ICON_COMMERCE]) (probabilidad del 2% cada turno)
 [ICON_BULLET] Los esclavos y gladiadores asentados en una ciudad pueden, con el principio "Ley Internacional", volverse ciudadanos libres (+2 [ICON_COMMERCE]) (probabilidad del 3% cada turno)
 [ICON_BULLET] Los luchadores de espect&#225;culo asentados en una ciudad pueden convertirse en una unidad de [LINK=UNIT_GLADIATOR]gladiador[\LINK], la cual puede fundar una escuela de gladiadores o servir en tu ej&#233;rcito (probabilidad del 2% cada turno, tecnolog&#237;a necesaria: Gladiadores)

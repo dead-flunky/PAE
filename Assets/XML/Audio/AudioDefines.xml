@@ -12088,6 +12088,20 @@
       <bIsCompressed>1</bIsCompressed>
       <bInGeneric>1</bInGeneric>
     </SoundData>
+    <SoundData>
+      <SoundID>SONG_ANCIENT_SOUNDTRACK_X24</SoundID>
+      <Filename>Sounds/Soundtrack/Smetana-MoldauBeginning</Filename>
+      <LoadType>STREAMED</LoadType>
+      <bIsCompressed>1</bIsCompressed>
+      <bInGeneric>1</bInGeneric>
+    </SoundData>
+    <SoundData>
+      <SoundID>SONG_ANCIENT_SOUNDTRACK_X25</SoundID>
+      <Filename>Sounds/Soundtrack/Haendel-Hallelujah</Filename>
+      <LoadType>STREAMED</LoadType>
+      <bIsCompressed>1</bIsCompressed>
+      <bInGeneric>1</bInGeneric>
+    </SoundData>
   </SoundDatas>
   <ContextTypes>
     <ContextType>Generic</ContextType>

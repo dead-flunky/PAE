@@ -1387,7 +1387,7 @@
   </Define>
   <Define>
     <DefineName>VASSAL_HAPPINESS</DefineName>
-    <iDefineIntVal>2</iDefineIntVal>
+    <iDefineIntVal>1</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>FREE_VASSAL_LAND_PERCENT</DefineName>
@@ -1657,5 +1657,13 @@
   <Define>
     <DefineName>USE_SPIES_NO_ENTER_BORDERS</DefineName>
     <iDefineIntVal>0</iDefineIntVal>
+  </Define>
+  <Define>
+    <DefineName>NO_ESPIONAGE_CULTURE_LEVEL_MODIFIER</DefineName>
+    <iDefineIntVal>100</iDefineIntVal>
+  </Define>
+  <Define>
+    <DefineName>FORCE_UNOWNED_CITY_TIMER</DefineName>
+    <iDefineIntVal>2</iDefineIntVal>
   </Define>
 </Civ4Defines>

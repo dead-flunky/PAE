@@ -722,27 +722,27 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MAIN_CITY_SUPPLY</Tag>
-    <English>[ICON_FOOD] Supply: %d1/%d2 units</English>
-    <French>[ICON_FOOD] Ravitaillement : %d1/%d2 unit&#233;s</French>
-    <German>[ICON_FOOD] Versorgung: %d1/%d2 Einheiten</German>
-    <Italian>[ICON_FOOD] Alimentazione: %d1/%d2 unit&#224;</Italian>
-    <Spanish>[ICON_FOOD] Alimentaci&#243;n: %d1/%d2 unidades</Spanish>
+    <English>Supply (%d1[ICON_FOOD]): %d2/%d3 units</English>
+    <French>Ravitaillement (%d1[ICON_FOOD]): %d2/%d3 unit&#233;s</French>
+    <German>Versorgung (%d1[ICON_FOOD]): %d2/%d3 Einheiten</German>
+    <Italian>Alimentazione (%d1[ICON_FOOD]): %d2/%d3 unit&#224;</Italian>
+    <Spanish>Alimentaci&#243;n (%d1[ICON_FOOD]): %d2/%d3 unidades</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_MAIN_CITY_SUPPLY_STAGNATION</Tag>
-    <English>[ICON_FOOD] Stagnation: [COLOR_RED]%d1[COLOR_REVERT]/%d2 units</English>
-    <French>[ICON_FOOD] Stagnation : [COLOR_RED]%d1[COLOR_REVERT]/%d2 unit&#233;s</French>
-    <German>[ICON_FOOD] Stagnation: [COLOR_RED]%d1[COLOR_REVERT]/%d2 Einheiten</German>
-    <Italian>[ICON_FOOD] Stagnazione: [COLOR_RED]%d1[COLOR_REVERT]/%d2 unit&#224;</Italian>
-    <Spanish>[ICON_FOOD] Estancamiento: [COLOR_RED]%d1[COLOR_REVERT]/%d2 unidades</Spanish>
+    <Tag>TXT_KEY_FREE</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MAIN_CITY_SUPPLY_DANGER</Tag>
-    <English>[ICON_EATENFOOD] Hunger: [COLOR_RED]%d1[COLOR_REVERT]/%d2 units</English>
-    <French>[ICON_EATENFOOD] Famine : [COLOR_RED]%d1[COLOR_REVERT]/%d2 unit&#233;s</French>
-    <German>[ICON_EATENFOOD] Hunger: [COLOR_RED]%d1[COLOR_REVERT]/%d2 Einheiten</German>
-    <Italian>[ICON_EATENFOOD] Fame: [COLOR_RED]%d1[COLOR_REVERT]/%d2 units</Italian>
-    <Spanish>[ICON_EATENFOOD] Hambruna: [COLOR_RED]%d1[COLOR_REVERT]/%d2 unidades</Spanish>
+    <English>Hunger (%d1[ICON_EATENFOOD]): [COLOR_RED]%d2[COLOR_REVERT]/%d3 units</English>
+    <French>Famine (%d1[ICON_EATENFOOD]) : [COLOR_RED]%d2[COLOR_REVERT]/%d3 unit&#233;s</French>
+    <German>Hunger (%d1[ICON_EATENFOOD]): [COLOR_RED]%d2[COLOR_REVERT]/%d3 Einheiten</German>
+    <Italian>Fame (%d1[ICON_EATENFOOD]): [COLOR_RED]%d2[COLOR_REVERT]/%d3 units</Italian>
+    <Spanish>Hambruna (%d1[ICON_EATENFOOD]): [COLOR_RED]%d2[COLOR_REVERT]/%d3 unidades</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_CITY_UNITS_STARVATION_1</Tag>
@@ -1786,11 +1786,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_SLAVE2LIBRARY</Tag>
-    <English>Use slave as [COLOR_HIGHLIGHT_TEXT]library slave[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1 [ICON_RESEARCH] for a library. Max. 5 slaves possible. This will remove the unit.</English>
-    <French>Affecter &#224; la [COLOR_HIGHLIGHT_TEXT]biblioth&#232;que[COLOR_REVERT][NEWLINE][ICON_BULLET]+1 [ICON_RESEARCH] pour la biblioth&#232;que. 5 esclaves maximum. L'unit&#233; sera supprim&#233;e.</French>
-    <German>Sklave als [COLOR_HIGHLIGHT_TEXT]Bibliothekssklave[COLOR_REVERT] einstellen.[NEWLINE][ICON_BULLET]+1 [ICON_RESEARCH] f&#252;r die Bibliothek. Bis zu 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
-    <Italian>Use slave as [COLOR_HIGHLIGHT_TEXT]library slave[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1 [ICON_RESEARCH] for a library. Max. 5 slaves possible. This will remove the unit.</Italian>
-    <Spanish>Usar esclavo como [COLOR_HIGHLIGHT_TEXT]esclavo bibliotecario[COLOR_REVERT].[NEWLINE][ICON_BULLET]+1 [ICON_RESEARCH] para una biblioteca. M&#225;ximo de 5 esclavos posibles. Esto eliminar&#225; la unidad.</Spanish>
+    <English>Use slave as [COLOR_HIGHLIGHT_TEXT]library slave[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_RESEARCH] for a library. Max. 5 slaves possible. This will remove the unit.</English>
+    <French>Affecter &#224; la [COLOR_HIGHLIGHT_TEXT]biblioth&#232;que[COLOR_REVERT][NEWLINE][ICON_BULLET]+2 [ICON_RESEARCH] pour la biblioth&#232;que. 5 esclaves maximum. L'unit&#233; sera supprim&#233;e.</French>
+    <German>Sklave als [COLOR_HIGHLIGHT_TEXT]Bibliothekssklave[COLOR_REVERT] einstellen.[NEWLINE][ICON_BULLET]+2[ICON_RESEARCH] f&#252;r die Bibliothek. Bis zu 5 Sklaven m&#246;glich. Die Einheit wird dabei verbraucht.</German>
+    <Italian>Use slave as [COLOR_HIGHLIGHT_TEXT]library slave[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_RESEARCH] for a library. Max. 5 slaves possible. This will remove the unit.</Italian>
+    <Spanish>Usar esclavo como [COLOR_HIGHLIGHT_TEXT]esclavo bibliotecario[COLOR_REVERT].[NEWLINE][ICON_BULLET]+2 [ICON_RESEARCH] para una biblioteca. M&#225;ximo de 5 esclavos posibles. Esto eliminar&#225; la unidad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_UNIT_WAR_WEARINESS</Tag>
@@ -2210,11 +2210,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_RANG_PROMO_UP2</Tag>
-    <English>The commander of this unit can now be promoted in your capital city with a ceremony to the next higher rank. (-100[ICON_GOLD])</English>
-    <French>The commander of this unit can now be promoted in your capital city with a ceremony to the next higher rank. (-100[ICON_GOLD])</French>
-    <German>Der Kommandant dieser Einheit kann nun in Eurer Hauptstadt zeremoniell zum n&#228;chst h&#246;heren Rang bef&#246;rdert werden. (-100[ICON_GOLD])</German>
-    <Italian>The commander of this unit can now be promoted in your capital city with a ceremony to the next higher rank. (-100[ICON_GOLD])</Italian>
-    <Spanish>El comandante de esta unidad puede ser promocionada ahora en tu capital con una ceremonia para el m&#225;s alto rango. (-100[ICON_GOLD])</Spanish>
+    <English>The commander of this unit can now be promoted in your capital or a city with provincial palace within a ceremony to the next higher rank. (-100[ICON_GOLD])</English>
+    <French>The commander of this unit can now be promoted in your capital or a city with provincial palace within a ceremony to the next higher rank. (-100[ICON_GOLD])</French>
+    <German>Der Kommandant dieser Einheit kann nun in Eurer Hauptstadt oder einer Stadt mit Provinzpalast zeremoniell zum n&#228;chst h&#246;heren Rang bef&#246;rdert werden. (-100[ICON_GOLD])</German>
+    <Italian>The commander of this unit can now be promoted in your capital or a city with provincial palace within a ceremony to the next higher rank. (-100[ICON_GOLD])</Italian>
+    <Spanish>El comandante de esta unidad puede ser promocionada ahora en tu capital o en un palacio provincial con una ceremonia para el m&#225;s alto rango. (-100[ICON_GOLD])</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_TECH_INFO_10</Tag>
@@ -3727,14 +3727,6 @@
     <German>W&#228;hlt Besitzer der ersten Stadt in Handelsroute.</German>
     <Italian>Choose owner of first city in trade route.</Italian>
     <Spanish>Elige el propietario de la primera ciudad de la ruta comercial.</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_BONUS_BOUGHT</Tag>
-    <English>[ICON_TRADE] %s2 has bought %s1 for %d3 [ICON_GOLD] in one of your cities.</English>
-    <French>[ICON_TRADE] %s2 has bought %s1 for %d3 [ICON_GOLD] in one of your cities.</French>
-    <German>[ICON_TRADE] %s2 hat in einer Eurer St&#228;dte %s1 f&#252;r %d3 [ICON_GOLD] gekauft.</German>
-    <Italian>[ICON_TRADE] %s2 has bought %s1 for %d3 [ICON_GOLD] in one of your cities.</Italian>
-    <Spanish>[ICON_TRADE] %s2 ha comprado %s1 por %d3 [ICON_GOLD] en una de tus ciudades.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUTTON_COLLECT_BONUS</Tag>
@@ -5729,12 +5721,12 @@
     <Spanish>Iglesia magn&#237;fica</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_UNIT_GREAT_GENERAL2</Tag>
-    <English>Commander</English>
-    <French>Commandant</French>
-    <German><Text>Feldherr:Feldherren</Text><Gender>Male</Gender><Plural>0:1</Plural></German>
-    <Italian><Text>Comandante:Comandanti</Text><Gender>Male</Gender><Plural>0:1</Plural></Italian>
-    <Spanish><Text>Comandante:Comandantes</Text><Gender>Male</Gender><Plural>0:1</Plural></Spanish>
+    <Tag>TXT_KEY_FREE</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_HORSE_ARCHER_BAKTRIEN</Tag>
@@ -6095,5 +6087,13 @@
     <German>Parkanlagen</German>
     <Italian>Public Parks</Italian>
     <Spanish>Parques p&#250;blicos</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FREE</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
 </Civ4GameText>

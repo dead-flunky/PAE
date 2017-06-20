@@ -9,7 +9,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_SEE_DEMOGRAPHICS</Type>
                         <Description>TXT_KEY_ESPIONAGE_CAN_SEE_DEMOGRAPHICS</Description>
-                        <iCost>100</iCost>
+                        <iCost>60</iCost>
                         <bIsPassive>1</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>0</bTargetsCity>
@@ -44,7 +44,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_CITY_VISIBILITY</Type>
                         <Description>TXT_KEY_ESPIONAGE_CITY_VISIBILITY</Description>
-                        <iCost>200</iCost>
+                        <iCost>120</iCost>
                         <bIsPassive>1</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
@@ -79,7 +79,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_INVESTIGATE_CITY</Type>
                         <Description>TXT_KEY_ESPIONAGE_INVESTIGATE_CITY</Description>
-                        <iCost>300</iCost>
+                        <iCost>100</iCost>
                         <bIsPassive>1</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
@@ -114,7 +114,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_SEE_RESEARCH</Type>
                         <Description>TXT_KEY_ESPIONAGE_SEE_RESEARCH</Description>
-                        <iCost>250</iCost>
+                        <iCost>100</iCost>
                         <bIsPassive>1</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>0</bTargetsCity>
@@ -184,7 +184,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_DESTROY_IMPROVEMENT</Type>
                         <Description>TXT_KEY_ESPIONAGE_DESTROY_IMPROVEMENT</Description>
-                        <iCost>100</iCost>
+                        <iCost>75</iCost>
                         <bIsPassive>0</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>0</bTargetsCity>
@@ -231,7 +231,7 @@
                         <bNoActiveMissions>0</bNoActiveMissions>
                         <bSeeResearch>0</bSeeResearch>
                         <bDestroyImprovement>0</bDestroyImprovement>
-                        <iDifficultyMod>25</iDifficultyMod>
+                        <iDifficultyMod>10</iDifficultyMod>
                         <iDestroyBuildingCostFactor>200</iDestroyBuildingCostFactor>
                         <iDestroyUnitCostFactor>0</iDestroyUnitCostFactor>
                         <iDestroyProjectCostFactor>0</iDestroyProjectCostFactor>
@@ -301,11 +301,11 @@
                         <bNoActiveMissions>0</bNoActiveMissions>
                         <bSeeResearch>0</bSeeResearch>
                         <bDestroyImprovement>0</bDestroyImprovement>
-                        <iDifficultyMod>25</iDifficultyMod>
+                        <iDifficultyMod>0</iDifficultyMod>
                         <iDestroyBuildingCostFactor>0</iDestroyBuildingCostFactor>
                         <iDestroyUnitCostFactor>0</iDestroyUnitCostFactor>
                         <iDestroyProjectCostFactor>0</iDestroyProjectCostFactor>
-                        <iDestroyProductionCostFactor>200</iDestroyProductionCostFactor>
+                        <iDestroyProductionCostFactor>300</iDestroyProductionCostFactor>
                         <iBuyUnitCostFactor>0</iBuyUnitCostFactor>
                         <iBuyCityCostFactor>0</iBuyCityCostFactor>
                         <iStealTreasuryTypes>0</iStealTreasuryTypes>
@@ -324,7 +324,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_STEAL_TREASURY</Type>
                         <Description>TXT_KEY_ESPIONAGE_STEAL_TREASURY</Description>
-                        <iCost>250</iCost>
+                        <iCost>200</iCost>
                         <bIsPassive>0</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
@@ -394,7 +394,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_CITY_POISON_WATER</Type>
                         <Description>TXT_KEY_ESPIONAGE_CITY_POISON_WATER</Description>
-                        <iCost>200</iCost>
+                        <iCost>120</iCost>
                         <bIsPassive>0</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
@@ -429,7 +429,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_CITY_UNHAPPINESS</Type>
                         <Description>TXT_KEY_ESPIONAGE_CITY_UNHAPPINESS</Description>
-                        <iCost>250</iCost>
+                        <iCost>150</iCost>
                         <bIsPassive>0</bIsPassive>
                         <bIsTwoPhases>0</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
@@ -488,7 +488,7 @@
                         <iCityInsertCultureCostFactor>0</iCityInsertCultureCostFactor>
                         <iCityPoisonWaterCounter>0</iCityPoisonWaterCounter>
                         <iCityUnhappinessCounter>0</iCityUnhappinessCounter>
-                        <iCityRevoltCounter>4</iCityRevoltCounter>
+                        <iCityRevoltCounter>2</iCityRevoltCounter>
                         <iBuyTechCostFactor>0</iBuyTechCostFactor>
                         <iSwitchCivicCostFactor>0</iSwitchCivicCostFactor>
                         <iSwitchReligionCostFactor>0</iSwitchReligionCostFactor>
@@ -499,7 +499,7 @@
                 <EspionageMissionInfo>
                         <Type>ESPIONAGEMISSION_BUY_TECH</Type>
                         <Description>TXT_KEY_ESPIONAGE_BUY_TECH</Description>
-                        <iCost>300</iCost>
+                        <iCost>0</iCost>
                         <bIsPassive>0</bIsPassive>
                         <bIsTwoPhases>1</bIsTwoPhases>
                         <bTargetsCity>1</bTargetsCity>
@@ -524,7 +524,7 @@
                         <iCityPoisonWaterCounter>0</iCityPoisonWaterCounter>
                         <iCityUnhappinessCounter>0</iCityUnhappinessCounter>
                         <iCityRevoltCounter>0</iCityRevoltCounter>
-                        <iBuyTechCostFactor>50</iBuyTechCostFactor>
+                        <iBuyTechCostFactor>25</iBuyTechCostFactor>
                         <iSwitchCivicCostFactor>0</iSwitchCivicCostFactor>
                         <iSwitchReligionCostFactor>0</iSwitchReligionCostFactor>
                         <iPlayerAnarchyCounter>0</iPlayerAnarchyCounter>

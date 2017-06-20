@@ -1392,18 +1392,18 @@
       <Civilopedia>TXT_KEY_TERRAIN_RIVER_PEDIA</Civilopedia>
       <ArtDefineTag>ART_DEF_TERRAIN_RIVER</ArtDefineTag>
       <Yields>
-        <iYield>1</iYield>
-        <iYield>1</iYield>
+        <iYield>2</iYield>
+        <iYield>0</iYield>
         <iYield>1</iYield>
       </Yields>
       <RiverYieldChange/>
       <HillsYieldChange/>
-      <bWater>1</bWater>
+      <bWater>0</bWater>
       <bImpassable>0</bImpassable>
       <bFound>0</bFound>
       <bFoundCoast>0</bFoundCoast>
       <bFoundFreshWater>0</bFoundFreshWater>
-      <iMovement>1</iMovement>
+      <iMovement>2</iMovement>
       <iSeeFrom>0</iSeeFrom>
       <iSeeThrough>0</iSeeThrough>
       <iBuildModifier>0</iBuildModifier>
