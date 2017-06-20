@@ -23,14 +23,14 @@ Setup:
                 self.loc = locals()
                 civ4Console.init()
 
-    # In CvEventManager.OnGameUpdate
+    # In CvEventManager.onGameUpdate
             if CIV4_SHELL:
                 civ4Console.update(self.glob, self.loc)
 
 3. Start Civ4 and load a game.
 
 4. Type
-     'python Cyconsole [port]' 
+     'python Pyconsole [port]' 
    into a local terminal window.  
 
 5. Run 'test' in the new subshell to

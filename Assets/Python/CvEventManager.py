@@ -80,6 +80,12 @@ import PeloponnesianWarKeinpferd
 import Schmelz
 import FirstPunicWar
 
+# Debug Shell
+CIV4_SHELL = True
+if CIV4_SHELL:
+    import Civ4ShellBackend
+    civ4Console = Civ4ShellBackend.Server(tcp_port=3333)
+
 gc = CyGlobalContext()
 localText = CyTranslator()
 PyPlayer = PyHelpers.PyPlayer
@@ -113,6 +119,11 @@ class CvEventManager:
         self.bRiverTiles_NeedUpdate = False
         self.bRiverTiles_WaitOnMainInterface = False
         # PAE - River tiles end
+
+        if CIV4_SHELL:
+            self.glob = globals()
+            self.loc = locals()
+            civ4Console.init()
 
         self.bCtrl = False
         self.bShift = False
@@ -7501,6 +7512,9 @@ class CvEventManager:
         # Added by Gerikes for OOS logging.
         OOSLogger.doGameUpdate()
         # End added by Gerikes for OOS logging.
+
+        if CIV4_SHELL:
+            civ4Console.update(self.glob, self.loc)
 
     def onMouseEvent(self, argsList):
         'mouse handler - returns 1 if the event was consumed'
