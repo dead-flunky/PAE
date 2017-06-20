@@ -1,6 +1,9 @@
-import CvUtil
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
+import CvUtil
 
 # globals
 gc = CyGlobalContext()
@@ -8,7 +11,7 @@ gc = CyGlobalContext()
 CHAR_TO_CARDINAL = {"n": 1, "e": 2, "s": 4, "w": 8}
 COORD_TO_CARDINAL = {(-1, 0): 8, (0, -1): 4,
                      (0, 1): 1, (1, 0): 2}
-#INVERT_CARDINAL = {"n": "s", "e": "w", "s": "n", "w": "e", None: None}
+# INVERT_CARDINAL = {"n": "s", "e": "w", "s": "n", "w": "e", None: None}
 INVERT_CARDINAL = {1: 4, 4: 1, 2: 8, 8: 2, None: None}
 
 # Texturen einer Gruppe sollten auf die gleichen Modelle passen
@@ -233,20 +236,27 @@ def _flipGroup2(keys):
 
 # Add flipped versions
 _flipGroup1(["RIVER_NS", "RIVER_WE", "RIVER_NW",
-            "RIVER_NE", "RIVER_SW", "RIVER_SE"])
+             "RIVER_NE", "RIVER_SW", "RIVER_SE"])
 _flipGroup1(["DEST_N", "DEST_W", "DEST_S", "DEST_E",
-            "SOURCE_N", "SOURCE_W", "SOURCE_S", "SOURCE_E"])
+             "SOURCE_N", "SOURCE_W", "SOURCE_S", "SOURCE_E"])
 _flipGroup2(["BRANCH_N", "BRANCH_W", "BRANCH_S", "BRANCH_E"])
 
-# Unrolling struct for linear map.
-DecoList = []
-for k, v in DecoTypes.iteritems():
-    for o in v:
-        DecoList.append(k+"_"+o)
 
-WaterList = []
-for wt in WaterTypes:
-    WaterList.extend(wt[1])
+# Unrolling struct for linear map.
+def _unroll():
+    dl = []
+    for k, v in DecoTypes.iteritems():
+        for o in v:
+            dl.append(k+"_"+o)
+
+    wl = []
+    for wt in WaterTypes:
+        WaterList.extend(wt[1])
+
+    return (dl, wl)
+
+(DecoList, WaterList) = _unroll()
+
 
 # Dicts stores list of terrain and feature ids
 # which are releated to the river feature.
@@ -269,7 +279,7 @@ class RiverDesc:
         self.waterColor = 0
         self.waterRotation = 0
         if scriptDataDict is not None:
-            self.loadScriptData(scriptDataDict)
+            self.loadScriptDict(scriptDataDict)
 
     # read short description
     def loadScriptDict(self, scriptDataDict):
@@ -554,6 +564,7 @@ def addGoldNearbyRiverTiles():
     """
     iMapW = gc.getMap().getGridWidth()
     iMapH = gc.getMap().getGridHeight()
+    global RIVER_TERRAINS
     RIVER_TERRAINS = [
         gc.getInfoTypeForString("TERRAIN_RIVER"),
         gc.getInfoTypeForString("TERRAIN_RIVER_FORD")]
@@ -743,7 +754,7 @@ def _setSourceDirection(plot, sDir):
 
     if idx < len(oris):
         desc.rapids = idx + 1
-        _debugMsg( "new rapid: " + str(desc.rapids))
+        _debugMsg("new rapid: " + str(desc.rapids))
         updateRiverFeature(plot, desc, True)
 
 
@@ -784,7 +795,7 @@ def _setDestDirection(plot, dDir):
 
     if idx < len(oris):
         desc.rapids = idx + 1
-        _debugMsg( "new rapid: " + str(desc.rapids))
+        _debugMsg("new rapid: " + str(desc.rapids))
         updateRiverFeature(plot, desc, True)
 
 
@@ -820,10 +831,10 @@ def setRapidDirection(nearbyPlots):
         destDir = _destPlot(cur, prev)
         if sourceDir is not None:
             # Die Seite 'sourceDir' muss Quelle werden.
-            _debugMsg( "set source dir "+ str(cur.getX())+","+str(cur.getY()))
+            _debugMsg("set source dir " + str(cur.getX())+","+str(cur.getY()))
             _setSourceDirection(cur, sourceDir)
         elif destDir is not None:
-            _debugMsg( "set dest dir "+ str(cur.getX())+","+str(cur.getY()))
+            _debugMsg("set dest dir " + str(cur.getX())+","+str(cur.getY()))
             # Die Seite 'destDir' muss Senke werden.
             _setDestDirection(cur, destDir)
 
@@ -840,7 +851,7 @@ def setWaterColor(nearbyPlots):
     - Branch tiles and BTS-Rivers could be problematic.
     """
     COORD_TO_ROTATION_INDEX = {(-1, 0): 2, (0, -1): 3,
-                     (0, 1): 1, (1, 0): 4}
+                               (0, 1): 1, (1, 0): 4}
     lHandled = [nearbyPlots.pop(0)[0]]
     lNext = [(cur, prev, _) for (cur, prev, _) in nearbyPlots
              if prev == lHandled[0]]
@@ -856,9 +867,9 @@ def setWaterColor(nearbyPlots):
         descPrev = getRiverScriptData(prev)
         descCur = getRiverScriptData(cur)
         w = descPrev.waterColor
-        w -= 1-(w%2)  # Normalize on index of full texture
+        w -= 1-(w % 2)  # Normalize on index of full texture
         # Prev plot get FULL texture and cur Plot HALVE.
-        descPrev.waterColor = max(0,w)
+        descPrev.waterColor = max(0, w)
         descPrev.waterRotation = 0
         descCur.waterColor = w+1
         descCur.waterRotation = rotation
@@ -888,5 +899,5 @@ def setTexture(nearbyPlots, iSelectedSide, iNew):
 
 def _debugMsg(m):
     CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 5,
-                        m, None, 2, None, ColorTypes(14), 0, 0,
-                        False, False)
+                             m, None, 2, None, ColorTypes(14), 0, 0,
+                             False, False)

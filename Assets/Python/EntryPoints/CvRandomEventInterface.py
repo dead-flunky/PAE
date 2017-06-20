@@ -2399,13 +2399,13 @@ def canTriggerKilikien(argsList):
                 return False
 
 #   At least one civ on the board must know Sailing.
-        bFoundValid = false
+        bFoundValid = False
         iTech = CvUtil.findInfoTypeNum(gc.getTechInfo, gc.getNumTechInfos(), 'TECH_WARSHIPS2')
         for iPlayer in range(gc.getMAX_CIV_PLAYERS()):
                 loopPlayer = gc.getPlayer(iPlayer)
                 if loopPlayer.isAlive():
                         if gc.getTeam(loopPlayer.getTeam()).isHasTech(iTech):
-                                bFoundValid = true
+                                bFoundValid = True
                                 break
 
         if not bFoundValid:
@@ -2415,7 +2415,7 @@ def canTriggerKilikien(argsList):
         map = gc.getMap()
         for i in range(map.numPlots()):
                 plot = map.plotByIndex(i)
-                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, true)):
+                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, True)):
                         return True
 
         return False
@@ -2437,7 +2437,7 @@ def applyKilikien1(argsList):
         map = gc.getMap()
         for i in range(map.numPlots()):
                 plot = map.plotByIndex(i)
-                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, true)):
+                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, True)):
                         listPlots.append(i)
 
         if 0 == len(listPlots):
@@ -2588,13 +2588,13 @@ def canTriggerPiraten(argsList):
                 return False
 
 #   At least one civ on the board must know Piracy.
-        bFoundValid = false
+        bFoundValid = False
         iTech = CvUtil.findInfoTypeNum(gc.getTechInfo, gc.getNumTechInfos(), 'TECH_PIRACY')
         for iPlayer in range(gc.getMAX_CIV_PLAYERS()):
                 loopPlayer = gc.getPlayer(iPlayer)
                 if loopPlayer.isAlive():
                         if gc.getTeam(loopPlayer.getTeam()).isHasTech(iTech):
-                                bFoundValid = true
+                                bFoundValid = True
                                 break
 
         if not bFoundValid:
@@ -2604,7 +2604,7 @@ def canTriggerPiraten(argsList):
         map = gc.getMap()
         for i in range(map.numPlots()):
                 plot = map.plotByIndex(i)
-                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, true)):
+                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, True)):
                         return True
 
         return False
@@ -2626,7 +2626,7 @@ def applyPiraten1(argsList):
         map = gc.getMap()
         for i in range(map.numPlots()):
                 plot = map.plotByIndex(i)
-                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, true)):
+                if (plot.getOwner() == -1 and plot.isWater() and not plot.isImpassable() and not plot.getNumUnits() > 0 and not plot.isLake() and plot.isAdjacentPlayer(kTriggeredData.ePlayer, True)):
                         listPlots.append(i)
 
         if 0 == len(listPlots):
@@ -2813,9 +2813,9 @@ def canTriggerOreichalkos(argsList):
 
         iOreichalkos = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_OREICHALKOS')
         if player.getNumAvailableBonuses(iOreichalkos) > 0:
-                return false
+                return False
 
-        return true
+        return True
 
 def doOreichalkos2(argsList):
         iEvent = argsList[0]
@@ -2829,7 +2829,7 @@ def doOreichalkos2(argsList):
         plot.setBonusType(iOreichalkos)
 
         szBuffer = localText.getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", (gc.getBonusInfo(iOreichalkos).getTextKey(), city.getNameKey()))
-        CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT, gc.getBonusInfo(iOreichalkos).getButton(), gc.getInfoTypeForString("COLOR_WHITE"), plot.getX(), plot.getY(), true, true)
+        CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT, gc.getBonusInfo(iOreichalkos).getButton(), gc.getInfoTypeForString("COLOR_WHITE"), plot.getX(), plot.getY(), True, True)
 
 def getHelpOreichalkos2(argsList):
         iEvent = argsList[0]
@@ -2849,9 +2849,9 @@ def canTriggerMagnetit(argsList):
 
         iMagnetit = CvUtil.findInfoTypeNum(gc.getBonusInfo,gc.getNumBonusInfos(),'BONUS_MAGNETIT')
         if player.getNumAvailableBonuses(iMagnetit) > 0:
-                return false
+                return False
 
-        return true
+        return True
 
 def doMagnetit2(argsList):
         iEvent = argsList[0]
@@ -2865,7 +2865,7 @@ def doMagnetit2(argsList):
         plot.setBonusType(iMagnetit)
 
         szBuffer = localText.getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", (gc.getBonusInfo(iMagnetit).getTextKey(), city.getNameKey()))
-        CyInterface().addMessage(kTriggeredData.ePlayer, false, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT, gc.getBonusInfo(iMagnetit).getButton(), gc.getInfoTypeForString("COLOR_WHITE"), plot.getX(), plot.getY(), true, true)
+        CyInterface().addMessage(kTriggeredData.ePlayer, False, gc.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT, gc.getBonusInfo(iMagnetit).getButton(), gc.getInfoTypeForString("COLOR_WHITE"), plot.getX(), plot.getY(), True, True)
 
 def getHelpMagnetit2(argsList):
         iEvent = argsList[0]
@@ -3017,7 +3017,7 @@ def canTriggerIsis(argsList):
 
         #city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
         #if None == city or city.isNone():
-        #        return false
+        #        return False
 
         # Hack to remember the number of cities you already have with the Corporation
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3026,17 +3026,17 @@ def canTriggerIsis(argsList):
         kActualTriggeredDataObject.iPlotX = city.getX()
         kActualTriggeredDataObject.iPlotY = city.getY()
 
-        bFound = false
+        bFound = False
         for iBuilding in range(gc.getNumBuildingInfos()):
                 if gc.getBuildingInfo(iBuilding).getFoundsCorporation() == kTriggeredData.eCorporation:
                         kActualTriggeredDataObject.eBuilding = BuildingTypes(iBuilding)
-                        bFound = true
+                        bFound = True
                         break
 
         if not bFound:
-                return false
+                return False
 
-        return true
+        return True
 
 def expireIsis1(argsList):
         iEvent = argsList[0]
@@ -3045,9 +3045,9 @@ def expireIsis1(argsList):
 
         city = player.getCity(kTriggeredData.iCityId)
         if None == city or city.isNone():
-                return true
+                return True
 
-        return false
+        return False
 
 def getHelpIsis1(argsList):
         iEvent = argsList[0]
@@ -3068,7 +3068,7 @@ def canTriggerIsisDone(argsList):
         iNumCitiesRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() + 5 + kOrigTriggeredData.iOtherPlayerCityId
 
         if iNumCitiesRequired > gc.getGame().countCorporationLevels(kOrigTriggeredData.eCorporation):
-                return false
+                return False
 
 
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3078,7 +3078,7 @@ def canTriggerIsisDone(argsList):
         kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
         kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 
-        return true
+        return True
 
 ######## Mithras ###########
 
@@ -3089,7 +3089,7 @@ def canTriggerMithras(argsList):
 
         #city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
         #if None == city or city.isNone():
-        #        return false
+        #        return False
 
         # Hack to remember the number of cities you already have with the Corporation
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3098,17 +3098,17 @@ def canTriggerMithras(argsList):
         kActualTriggeredDataObject.iPlotX = city.getX()
         kActualTriggeredDataObject.iPlotY = city.getY()
 
-        bFound = false
+        bFound = False
         for iBuilding in range(gc.getNumBuildingInfos()):
                 if gc.getBuildingInfo(iBuilding).getFoundsCorporation() == kTriggeredData.eCorporation:
                         kActualTriggeredDataObject.eBuilding = BuildingTypes(iBuilding)
-                        bFound = true
+                        bFound = True
                         break
 
         if not bFound:
-                return false
+                return False
 
-        return true
+        return True
 
 def expireMithras1(argsList):
         iEvent = argsList[0]
@@ -3117,9 +3117,9 @@ def expireMithras1(argsList):
 
         city = player.getCity(kTriggeredData.iCityId)
         if None == city or city.isNone():
-                return true
+                return True
 
-        return false
+        return False
 
 def getHelpMithras1(argsList):
         iEvent = argsList[0]
@@ -3140,7 +3140,7 @@ def canTriggerMithrasDone(argsList):
         iNumCitiesRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() + 5 + kOrigTriggeredData.iOtherPlayerCityId
 
         if iNumCitiesRequired > gc.getGame().countCorporationLevels(kOrigTriggeredData.eCorporation):
-                return false
+                return False
 
 
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3150,7 +3150,7 @@ def canTriggerMithrasDone(argsList):
         kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
         kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 
-        return true
+        return True
 
 ######## Helle ###########
 
@@ -3161,7 +3161,7 @@ def canTriggerHelle(argsList):
 
         #city = gc.getGame().getHeadquarters(kTriggeredData.eCorporation)
         #if None == city or city.isNone():
-        #        return false
+        #        return False
 
         # Hack to remember the number of cities you already have with the Corporation
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3170,17 +3170,17 @@ def canTriggerHelle(argsList):
         kActualTriggeredDataObject.iPlotX = city.getX()
         kActualTriggeredDataObject.iPlotY = city.getY()
 
-        bFound = false
+        bFound = False
         for iBuilding in range(gc.getNumBuildingInfos()):
                 if gc.getBuildingInfo(iBuilding).getFoundsCorporation() == kTriggeredData.eCorporation:
                         kActualTriggeredDataObject.eBuilding = BuildingTypes(iBuilding)
-                        bFound = true
+                        bFound = True
                         break
 
         if not bFound:
-                return false
+                return False
 
-        return true
+        return True
 
 def expireHelle1(argsList):
         iEvent = argsList[0]
@@ -3189,9 +3189,9 @@ def expireHelle1(argsList):
 
         city = player.getCity(kTriggeredData.iCityId)
         if None == city or city.isNone():
-                return true
+                return True
 
-        return false
+        return False
 
 def getHelpHelle1(argsList):
         iEvent = argsList[0]
@@ -3212,7 +3212,7 @@ def canTriggerHelleDone(argsList):
         iNumCitiesRequired = gc.getWorldInfo(gc.getMap().getWorldSize()).getDefaultPlayers() + 7 + kOrigTriggeredData.iOtherPlayerCityId
 
         if iNumCitiesRequired > gc.getGame().countCorporationLevels(kOrigTriggeredData.eCorporation):
-                return false
+                return False
 
 
         kActualTriggeredDataObject = player.getEventTriggered(kTriggeredData.iId)
@@ -3222,7 +3222,7 @@ def canTriggerHelleDone(argsList):
         kActualTriggeredDataObject.iPlotX = kOrigTriggeredData.iPlotX
         kActualTriggeredDataObject.iPlotY = kOrigTriggeredData.iPlotY
 
-        return true
+        return True
 
 ######## MEUTEREI ###########
 

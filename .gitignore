@@ -25,3 +25,6 @@ PAE_Extras
 /PieAncientEuropeV/Assets/XML/Interface/CIV4InterfaceSchema.xml
 /PieAncientEuropeV/Assets/XML/Misc/CIV4MiscSchema.xml
 /PieAncientEuropeV/Assets/XML/Units/CIV4UnitSchema.xml
+.ropeproject
+*.pyc
+.pyconsole.history

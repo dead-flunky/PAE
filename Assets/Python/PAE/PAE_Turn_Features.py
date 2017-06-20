@@ -4,8 +4,6 @@
 from CvPythonExtensions import *
 import CvEventInterface
 import CvUtil
-import random
-import itertools
 import PAE_Barbaren
 ### Defines
 gc = CyGlobalContext()
@@ -14,15 +12,14 @@ bMultiPlayer = False
 bGoodyHuts = True
 bBarbForts = True
 bRageBarbs = False
-if gc.getGame().isGameMultiPlayer(): bMultiPlayer = True
-if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_GOODY_HUTS): bGoodyHuts = False
-if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS): bBarbForts = False
-if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS): bRageBarbs = True
-
-
-def myRandom (num):
-    if num <= 1: return 0
-    else: return random.randint(0, num-1)
+if gc.getGame().isGameMultiPlayer():
+    bMultiPlayer = True
+if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_GOODY_HUTS):
+    bGoodyHuts = False
+if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
+    bBarbForts = False
+if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS):
+    bRageBarbs = True
 
 # ------ Handelsposten erzeugen Kultur (PAE V Patch 3: und wieder Forts/Festungen)
 # ------ Berberloewen erzeugen
@@ -49,9 +46,10 @@ def doPlotFeatures():
 
     for x in range(iMapW):
         for y in range(iMapH):
-            loopPlot = gc.getMap().plot(x,y)
+            loopPlot = gc.getMap().plot(x, y)
             if loopPlot != None and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
+                if loopPlot.getFeatureType() == iDarkIce:
+                    continue
                 if not loopPlot.isWater() and not loopPlot.isPeak():
                     iPlotOwner = loopPlot.getOwner()
                     # nur ausserhalb von Staedten
@@ -63,13 +61,13 @@ def doPlotFeatures():
                                 iOwner = -1
                                 # Handelsposten
                                 if loopPlot.getImprovementType() == eHandelsposten:
-                                    iOwner = int(CvUtil.getScriptData(loopPlot,["p","t"], loopPlot.getOwner()))
+                                    iOwner = int(CvUtil.getScriptData(loopPlot, ["p", "t"], loopPlot.getOwner()))
                                 # Forts
                                 elif loopPlot.getNumUnits() > 0:
                                     # Besitzer ist der mit den meisten Einheiten drauf
                                     OwnerArray = {}
                                     iNumUnits = loopPlot.getNumUnits()
-                                    for i in range (iNumUnits):
+                                    for i in range(iNumUnits):
                                         if loopPlot.getUnit(i).isMilitaryHappiness():
                                             iOwner = loopPlot.getUnit(i).getOwner()
                                             if iOwner in OwnerArray:
@@ -84,16 +82,16 @@ def doPlotFeatures():
                                 for i in range(iRange):
                                     iPlayerID = gc.getPlayer(i).getID()
                                     if iPlayerID == iOwner:
-                                        loopPlot.setCulture(iPlayerID,1,True)
+                                        loopPlot.setCulture(iPlayerID, 1, True)
                                         loopPlot.setOwner(iPlayerID)
                                     else:
                                         # TODO: das macht hidden culture in ehemals besiedeltem Gebiet kaputt.
-                                        loopPlot.setCulture(iPlayerID,0,True)
+                                        loopPlot.setCulture(iPlayerID, 0, True)
 
                             # Lion - 2% Appearance
                             elif loopPlot.getBonusType(-1) == bonus_lion and loopPlot.getImprovementType() == -1:
                                 if loopPlot.getNumUnits() < 3:
-                                    if myRandom(50) == 1:
+                                    if CvUtil.myRandom(50, "lion") == 1:
                                         iUnitType = gc.getInfoTypeForString("UNIT_LION")
                                         pBarbPlayer.initUnit(iUnitType, x, y, UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
                                         # ***TEST***
@@ -104,18 +102,18 @@ def doPlotFeatures():
                             if iPlotOwner == -1 or iPlotOwner == iBarbPlayer:
                                 if loopPlot.getNumUnits() == 0:
                                     # Verteidiger setzen
-                                    setFortDefence(loopPlot)
+                                    PAE_Barbaren.setFortDefence(loopPlot)
                                 elif pBarbPlayer.getCurrentEra() > 0 and gc.getGame().getGameTurn() % 5 == 0:
                                     # Einheiten) setzen
                                     createBarbUnit(loopPlot)
                         # Handelsposten entfernen, wenn der Plot in einem fremden Kulturkreis liegt
                         elif loopPlot.getImprovementType() == eHandelsposten:
-                          iOwner = int(CvUtil.getScriptData(loopPlot,["p","t"], loopPlot.getOwner()))
-                          if iOwner != iPlotOwner:
-                            loopPlot.setImprovementType(-1)
-                            if gc.getPlayer(iOwner).isHuman():
-                              szText = CyTranslator().getText("TXT_KEY_INFO_CLOSED_TRADEPOST",("",));
-                              CyInterface().addMessage(iOwner, True, 15, szText, "AS2D_UNIT_BUILD_UNIT", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
+                            iOwner = int(CvUtil.getScriptData(loopPlot, ["p", "t"], loopPlot.getOwner()))
+                            if iOwner != iPlotOwner:
+                                loopPlot.setImprovementType(-1)
+                                if gc.getPlayer(iOwner).isHuman():
+                                    szText = CyTranslator().getText("TXT_KEY_INFO_CLOSED_TRADEPOST", ("",))
+                                    CyInterface().addMessage(iOwner, True, 15, szText, "AS2D_UNIT_BUILD_UNIT", 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(7), loopPlot.getX(), loopPlot.getY(), True, True)
                     # end if --- nur ausserhalb von Staedten
 
                     # Bei jedem Plot:
@@ -127,7 +125,7 @@ def doPlotFeatures():
                             iTechDom = gc.getInfoTypeForString("TECH_PFERDEZUCHT")
                             sTextDom = "TXT_KEY_INFO_DOM_HORSE"
                             if loopPlot.getNumUnits() == 0:
-                                if myRandom(75) == 1:
+                                if CvUtil.myRandom(75, "horse") == 1:
                                     # Check Owner
                                     iNewUnitOwner = iBarbPlayer
                                     if iPlotOwner != -1 and iPlotOwner != iBarbPlayer:
@@ -135,7 +133,7 @@ def doPlotFeatures():
                                             iNewUnitOwner = iPlotOwner
                                             iUnitType = iUnitTypeDom
                                         elif gc.getPlayer(iPlotOwner).isHuman():
-                                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText(sTextDom,("",)), None, 2, gc.getBonusInfo(bonus_horse).getButton(), ColorTypes(14), x, y, True, True)
+                                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText(sTextDom, ("",)), None, 2, gc.getBonusInfo(bonus_horse).getButton(), ColorTypes(14), x, y, True, True)
                                     # Add Unit
                                     gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
 
@@ -146,7 +144,7 @@ def doPlotFeatures():
                             iTechDom = gc.getInfoTypeForString("TECH_KAMELZUCHT")
                             sTextDom = "TXT_KEY_INFO_DOM_CAMEL"
                             if loopPlot.getNumUnits() == 0:
-                                if myRandom(75) == 1:
+                                if CvUtil.myRandom(75, "camel") == 1:
                                     # Check Owner
                                     iNewUnitOwner = iBarbPlayer
                                     if iPlotOwner != -1:
@@ -154,7 +152,7 @@ def doPlotFeatures():
                                             iNewUnitOwner = iPlotOwner
                                             iUnitType = iUnitTypeDom
                                         elif gc.getPlayer(iPlotOwner).isHuman():
-                                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText(sTextDom,("",)), None, 2, gc.getBonusInfo(bonus_camel).getButton(), ColorTypes(14), x, y, True, True)
+                                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText(sTextDom, ("",)), None, 2, gc.getBonusInfo(bonus_camel).getButton(), ColorTypes(14), x, y, True, True)
                                     # Add Unit
                                     gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
 
@@ -162,14 +160,14 @@ def doPlotFeatures():
                         elif loopPlot.getBonusType(iPlotOwner) == bonus_ivory and pBarbPlayer.getCurrentEra() >= 2:
                             iUnitType = gc.getInfoTypeForString("UNIT_ELEFANT")
                             if loopPlot.getNumUnits() == 0:
-                                if myRandom(75) == 1:
+                                if CvUtil.myRandom(75, "ele") == 1:
                                     # Check Owner
                                     iNewUnitOwner = iBarbPlayer
                                     if iPlotOwner != -1:
                                         if gc.getTeam(gc.getPlayer(iPlotOwner).getTeam()).isHasTech(gc.getInfoTypeForString("TECH_ELEFANTENZUCHT")):
                                             iNewUnitOwner = iPlotOwner
                                         elif gc.getPlayer(iPlotOwner).isHuman():
-                                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText("TXT_KEY_INFO_DOM_ELEFANT",("",)), None, 2, gc.getBonusInfo(bonus_ivory).getButton(), ColorTypes(14), x, y, True, True)
+                                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText("TXT_KEY_INFO_DOM_ELEFANT", ("",)), None, 2, gc.getBonusInfo(bonus_ivory).getButton(), ColorTypes(14), x, y, True, True)
                                     # Add Unit
                                     gc.getPlayer(iNewUnitOwner).initUnit(iUnitType, x, y, UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
 
@@ -184,7 +182,7 @@ def doStrandgut():
     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
     eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
 
-    (loopUnit, iter) = pBarbPlayer.firstUnit(false)
+    (loopUnit, pIter) = pBarbPlayer.firstUnit(False)
     while loopUnit:
         if loopUnit.getUnitType() == iTreibgut:
             pPlot = loopUnit.plot()
@@ -196,18 +194,26 @@ def doStrandgut():
                 for i in range(-iRange, iRange+1):
                     for j in range(-iRange, iRange+1):
                         loopPlot = plotXY(iX, iY, i, j)
-                        if loopPlot == None or loopPlot.isNone(): continue
-                        if loopPlot.isWater(): continue
-                        if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce: continue
+                        if loopPlot is None or loopPlot.isNone():
+                            continue
+                        if loopPlot.isWater():
+                            continue
+                        if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce:
+                            continue
                         lPlots.append(loopPlot)
 
-                if len(lPlots) > 0:
-                    iPlot = myRandom(len(lPlots))
+                if lPlots:
+                    iPlot = CvUtil.myRandom(len(lPlots), "strandgut")
                     # Create Strandgut
                     pBarbPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                     # Disband Treibgut
-                    loopUnit.kill(1,loopUnit.getOwner())
-        (loopUnit, iter) = pBarbPlayer.nextUnit(iter, false)
+                    loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            elif pPlot.isCity():
+                # Create Goldkarren
+                pBarbPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                # Disband Treibgut
+                loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        (loopUnit, pIter) = pBarbPlayer.nextUnit(pIter, False)
      # --------- Strandgut -----------
 
 ##### Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ####
@@ -233,8 +239,7 @@ def setGoodyHuts():
 
         terrOzean = gc.getInfoTypeForString("TERRAIN_OCEAN")
 
-        if gc.getTeam(pBarbPlayer.getTeam()).isHasTech(iTech): bFlot = True
-        else: bFlot = False
+        bFlot = gc.getTeam(pBarbPlayer.getTeam()).isHasTech(iTech)
 
         #  0 = WORLDSIZE_DUEL
         #  1 = WORLDSIZE_TINY
@@ -243,64 +248,80 @@ def setGoodyHuts():
         #  4 = WORLDSIZE_LARGE
         #  5 = WORLDSIZE_HUGE
         iMapSize = gc.getMap().getWorldSize()
-        if iMapSize == 0: iMaxHuts = 3
-        elif iMapSize == 1: iMaxHuts = 6
-        elif iMapSize == 2: iMaxHuts = 9
-        elif iMapSize == 3: iMaxHuts = 12
-        elif iMapSize == 4: iMaxHuts = 15
-        elif iMapSize == 5: iMaxHuts = 18
-        else: iMaxHuts = 20
+        if iMapSize == 0:
+            iMaxHuts = 3
+        elif iMapSize == 1:
+            iMaxHuts = 6
+        elif iMapSize == 2:
+            iMaxHuts = 9
+        elif iMapSize == 3:
+            iMaxHuts = 12
+        elif iMapSize == 4:
+            iMaxHuts = 15
+        elif iMapSize == 5:
+            iMaxHuts = 18
+        else:
+            iMaxHuts = 20
 
         iMaxFlot = iMaxHuts / 2
 
         # TODO: geht das nicht schneller?
         # Bis zu iNumTries soll versucht werden, ein Dorf zu erstellen
         iNumTries = iMaxHuts
-        for i in range(iNumTries):
-            iX = myRandom(iMapW)
-            iY = myRandom(iMapH)
+        for _ in range(iNumTries):
+            iX = CvUtil.myRandom(iMapW, "W_hut")
+            iY = CvUtil.myRandom(iMapH, "H_hut")
 
-            if iNumSetGoodies >= iMaxHuts: break
+            if iNumSetGoodies >= iMaxHuts:
+                break
 
             # Terrain checken
             loopPlot = gc.getMap().plot(iX, iY)
             if loopPlot != None and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce: continue
+                if loopPlot.getFeatureType() == iDarkIce:
+                    continue
                 if not loopPlot.isWater():
                     if not loopPlot.isPeak() and loopPlot.getImprovementType() == -1 and loopPlot.getNumUnits() == 0 and not loopPlot.isActiveVisible(0):
                         if loopPlot.getOwner() == -1 or loopPlot.getOwner() == iBarbPlayer:
                             bSet = True
                             iRange = 5
                             # Im Umkreis von 5 Feldern soll kein weiteres Goody oder City sein
-                            for x in range(-iRange,iRange+1):
-                              for y in range(-iRange,iRange+1):
-                                loopPlot2 = plotXY(iX, iY, x, y)
-                                if loopPlot2 != None and not loopPlot2.isNone():
-                                  if loopPlot2.isGoody() or loopPlot2.isCity():
-                                    bSet = False
-                                    break
-                              if not bSet: break
+                            for x in range(-iRange, iRange+1):
+                                for y in range(-iRange, iRange+1):
+                                    loopPlot2 = plotXY(iX, iY, x, y)
+                                    if loopPlot2 != None and not loopPlot2.isNone():
+                                        if loopPlot2.isGoody() or loopPlot2.isCity():
+                                            bSet = False
+                                            break
+                                if not bSet: break
+                            if not bSet: break
 
                             # Goody setzen oder Barbarenfort
                             if bSet:
-                              # No extra Goody Huts in MultiBarbPlayer Mode
-                              if bMultiPlayer: imp = -1
-                              else: imp = impGoody
+                                # No extra Goody Huts in MultiBarbPlayer Mode
+                                if bMultiPlayer:
+                                    imp = -1
+                                else:
+                                    imp = impGoody
 
-                              # Barbarian Forts nur mit aktivierten Barbaren
-                              if bBarbForts:
-                                if bRageBarbs:
-                                  if loopPlot.isHills( ) or myRandom(2) == 1: imp = impBarbFort
-                                elif loopPlot.isHills() and myRandom(2) == 1: imp = impBarbFort
-                              loopPlot.setImprovementType(imp)
-                              iNumSetGoodies += 1
-                              #loopPlot.isActiveVisible(0)
+                                # Barbarian Forts nur mit aktivierten Barbaren
+                                if bBarbForts:
+                                    randFort = CvUtil.myRandom(2, "barbFort")
+                                    if bRageBarbs:
+                                        if loopPlot.isHills() or randFort == 1:
+                                            imp = impBarbFort
+                                    elif loopPlot.isHills() and randFort == 1:
+                                        imp = impBarbFort
+                                loopPlot.setImprovementType(imp)
+                                iNumSetGoodies += 1
+                                #loopPlot.isActiveVisible(0)
 
-                              # Einheit in die Festung setzen
-                              if imp == impBarbFort: PAE_Barbaren.setFortDefence(loopPlot)
+                                # Einheit in die Festung setzen
+                                if imp == impBarbFort:
+                                    PAE_Barbaren.setFortDefence(loopPlot)
 
-                              # ***TEST***
-                              #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                                # ***TEST***
+                                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
                 # isWater
                 elif bFlot:
@@ -333,43 +354,44 @@ def doSeewind():
 
     iWindplots = 6 # amount of wind arrows (plots) per wind
     OceanPlots = []
-    lDirection = []
     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
 
     iMapW = gc.getMap().getGridWidth()
     iMapH = gc.getMap().getGridHeight()
     # get all ocean plots
-    for i in range (iMapW):
-      for j in range (iMapH):
-        loopPlot = gc.getMap().plot(i, j)
-        if loopPlot != None and not loopPlot.isNone():
-          if loopPlot.getFeatureType() == iDarkIce: continue
-          if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-            OceanPlots.append(loopPlot)
+    for i in range(iMapW):
+        for j in range(iMapH):
+            loopPlot = gc.getMap().plot(i, j)
+            if loopPlot != None and not loopPlot.isNone():
+                if loopPlot.getFeatureType() == iDarkIce:
+                    continue
+                if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
+                    OceanPlots.append(loopPlot)
 
-    if len(OceanPlots) > 0:
+    if OceanPlots:
         #  0 = WORLDSIZE_DUEL
         #  1 = WORLDSIZE_TINY
         #  2 = WORLDSIZE_SMALL
         #  3 = WORLDSIZE_STANDARD
         #  4 = WORLDSIZE_LARGE
         #  5 = WORLDSIZE_HUGE
-     iMaxEffects = (gc.getMap().getWorldSize() + 1) * 2
-     for i in range (iMaxEffects):
-      # get first ocean plot
-      iRand = myRandom(len(OceanPlots))
-      loopPlot = OceanPlots[iRand]
-      # First direction
-      iDirection = myRandom(iNumDirection)
+        iMaxEffects = (gc.getMap().getWorldSize() + 1) * 2
+        for i in range(iMaxEffects):
+            # get first ocean plot
+            iRand = CvUtil.myRandom(len(OceanPlots))
+            loopPlot = OceanPlots[iRand]
+            # First direction
+            iDirection = CvUtil.myRandom(iNumDirection)
 
-      # Start Windplots
-      for j in range (iWindplots):
-         if loopPlot != None and not loopPlot.isNone():
-          if loopPlot.getFeatureType() == iDarkIce: continue
-          if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-            loopPlot.setFeatureType(lFeatWind[iDirection],0)
-            iDirection = (iDirection+myRandom(3)-1)%iNumDirection
-            loopPlot = plotDirection(loopPlot.getX(), loopPlot.getY(), DirectionTypes(iDirection))
+            # Start Windplots
+            for j in range(iWindplots):
+                if loopPlot != None and not loopPlot.isNone():
+                    if loopPlot.getFeatureType() == iDarkIce:
+                        continue
+                    if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
+                        loopPlot.setFeatureType(lFeatWind[iDirection], 0)
+                        iDirection = (iDirection+CvUtil.myRandom(3)-1)%iNumDirection
+                        loopPlot = plotDirection(loopPlot.getX(), loopPlot.getY(), DirectionTypes(iDirection))
 
 
 # ++++++++++++++++++ Historische Texte ++++++++++++++++++++++++++++++++++++++++++++++
@@ -423,17 +445,18 @@ def doHistory():
     elif iGameYear == 440: txts = 3
 
     if txts > 0:
-     iRand = myRandom(txts)
+        iRand = CvUtil.myRandom(txts)
 
-     # iRand 0 bedeutet keinen Text anzeigen. Bei mehr als 2 Texte immer einen einblenden
-     if txts > 2: iRand += 1
+        # iRand 0 bedeutet keinen Text anzeigen. Bei mehr als 2 Texte immer einen einblenden
+        if txts > 2:
+            iRand += 1
 
-     if iRand > 0:
-       text = "TXT_KEY_HISTORY_"
-       if iGameYear < 0:
-         text = text + str(iGameYear * (-1)) + "BC_" + str(iRand)
-       else:
-         text = text + str(iGameYear) + "AD_" + str(iRand)
+        if iRand > 0:
+            text = "TXT_KEY_HISTORY_"
+            if iGameYear < 0:
+                text = text + str(iGameYear * (-1)) + "BC_" + str(iRand)
+            else:
+                text = text + str(iGameYear) + "AD_" + str(iRand)
 
-       text = CyTranslator().getText("TXT_KEY_HISTORY",("",)) + " " + CyTranslator().getText(text,("",))
-       CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
+            text = CyTranslator().getText("TXT_KEY_HISTORY", ("",)) + " " + CyTranslator().getText(text, ("",))
+            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, text, None, 2, None, ColorTypes(14), 0, 0, False, False)

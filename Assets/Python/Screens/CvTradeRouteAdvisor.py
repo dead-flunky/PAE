@@ -6,10 +6,6 @@ import CvUtil
 import ScreenInput
 import CvScreenEnums
 import PAE_Trade
-import time
-import random # Seed! fixed MP-OOS
-seed = int(time.strftime("%d%m%Y"))
-random.seed(seed)
 
 # globals
 gc = CyGlobalContext()
