@@ -252,7 +252,7 @@ class CvEventManager:
           'playerChangeStateReligion': self.onPlayerChangeStateReligion,
           'playerGoldTrade': self.onPlayerGoldTrade,
           'windowActivation': self.onWindowActivation,
-          'gameUpdate': self.onGameUpdate,    # sample generic event
+          'gameUpdate': self.onGameUpdate,  # sample generic event
         }
 
         ################## Events List ###############################
@@ -299,7 +299,6 @@ class CvEventManager:
         self.origArgsList = argsList  # point to original
         tag = argsList[0]        # event type string
         idx = len(argsList)-6
-        bDummy = False
         self.bDbg, bDummy, self.bAlt, self.bCtrl, self.bShift, self.bAllowCheats = argsList[idx:]
         ret = 0
         if tag in self.EventHandlerMap:
@@ -322,13 +321,13 @@ class CvEventManager:
 
         entry = self.Events[context]
 
-        if (context not in CvUtil.SilentEvents):
+        if context not in CvUtil.SilentEvents:
             self.reportEvent(entry, context, (playerID, netUserData, popupReturn))
         return entry[1](playerID, netUserData, popupReturn)   # the apply function
 
     def reportEvent(self, entry, context, argsList):
         'Report an Event to Events.log '
-        if (gc.getGame().getActivePlayer() != -1):
+        if gc.getGame().getActivePlayer() != -1:
             message = "DEBUG Event: %s (%s)" % (entry[0], gc.getActivePlayer().getName())
             CyInterface().addImmediateMessage(message, "")
             CvUtil.pyPrint(message)
@@ -633,7 +632,7 @@ class CvEventManager:
             pUnit = pPlayer.getUnit(iData5)
             iCost = gc.getUnitInfo(pUnit.getUnitType()).getCombat() * 12
             if iCost < 0:
-                iCost * (-1)
+                iCost = -iCost
             pPlayer.changeGold(-iCost)
             iPromo = gc.getInfoTypeForString("PROMOTION_EDLE_RUESTUNG")
             pUnit.setHasPromotion(iPromo, True)
@@ -708,8 +707,8 @@ class CvEventManager:
 
                     if iNum > 0:
                         for _ in itertools.repeat(None, iNum):
-                            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         pCity.setPopulation(iNum)
 
                     # set city and temple slaves => 0
@@ -721,7 +720,7 @@ class CvEventManager:
                     iBeute = int(pCity.getPopulation() / 2) + 1
                     # if iBeute > 0: das ist >=1
                     for _ in itertools.repeat(None, iBeute):
-                        pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
                     pPlayer.disband(pCity)
 
@@ -787,6 +786,7 @@ class CvEventManager:
                     if iNumUnits > 0:
                         for k in range(iNumUnits):
                             if iData4 != loopPlot.getUnit(k).getOwner() and loopPlot.getUnit(k).getOwner() != gc.getBARBARIAN_PLAYER():
+                                tCoordOffset = (i, j)
                                 bSwitch = False
                                 break
                     if not bSwitch:
@@ -827,7 +827,7 @@ class CvEventManager:
                 UnitName = pUnit.getName()
                 #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
                 if UnitName != gc.getUnitInfo(pUnit.getUnitType()).getText():
-                    UnitName = re.sub(" \(.*?\)", "", UnitName)
+                    UnitName = re.sub(r" \(.*?\)", "", UnitName)
                     NewUnit.setName(UnitName)
                 # Check its promotions
                 iRange = gc.getNumPromotionInfos()
@@ -848,7 +848,14 @@ class CvEventManager:
 
                 # changeMoves
             else:
-                CyInterface().addMessage(iData4, True, 10, CyTranslator().getText("TXT_KEY_HELP_GO2PIRATE3", ("",)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(11), pUnit.getX() + i - iVisible, pUnit.getY() + j - iVisible, True, True)
+                CyInterface().addMessage(
+                    iData4, True, 10,
+                    CyTranslator().getText("TXT_KEY_HELP_GO2PIRATE3", ("",)),
+                    None, 2, "Art/Interface/Buttons/General/button_alert_new.dds",
+                    ColorTypes(11),
+                    pUnit.getX() + tCoordOffset[0] - iVisible,
+                    pUnit.getY() + tCoordOffset[1] - iVisible,
+                    True, True)
 
         # iData1 723: EspionageMission Info im TechChooser
 
@@ -1425,7 +1432,7 @@ class CvEventManager:
 
         # Salae oder Dezimierung
         elif iData1 == 735:
-            # 735, Typ: 1=Sold 2=Dezimierung, 0=PopUp oder 1=Anwenden,  iPlayer, iUnitID
+            # 735, Typ: 1=Sold 2=Dezimierung, 0=PopUp oder 1=Anwenden, iPlayer, iUnitID
             pPlayer = gc.getPlayer(iData4)
             pUnit = pPlayer.getUnit(iData5)
 
@@ -3189,7 +3196,7 @@ class CvEventManager:
                     # Create a new unit
                     #pPlot = pLoser.plot()
                     #if pPlot.getNumUnits() == 1: pLoser.jumpToNearestValidPlot()
-                    NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(pLoser.getUnitType(),  pLoser.getX(), pLoser.getY(), UnitAITypes(pLoser.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
+                    NewUnit = gc.getPlayer(pLoser.getOwner()).initUnit(pLoser.getUnitType(), pLoser.getX(), pLoser.getY(), UnitAITypes(pLoser.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
                     if pLoser.isMadeAttack():
                         NewUnit.finishMoves()
 
@@ -3211,7 +3218,7 @@ class CvEventManager:
                     #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
                     UnitName = pLoser.getName()
                     if UnitName != gc.getUnitInfo(pLoser.getUnitType()).getText():
-                        UnitName = re.sub(" \(.*?\)", "", UnitName)
+                        UnitName = re.sub(r" \(.*?\)", "", UnitName)
                         NewUnit.setName(UnitName)
 
                     if not bIsCity:
@@ -3311,7 +3318,7 @@ class CvEventManager:
         bAnimal = False
         if not bUnitDone:
             if pWinner.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL and \
-                    ( pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitType() in AnimalArray ) and \
+                    (pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitType() in AnimalArray) and \
                     pWinner.getUnitType() not in WildAnimals and pLoser.getUnitType() in WildAnimals:
                 bAnimal = True
                 if pLoser.getCaptureUnitType(pLoser.getCivilizationType()) == -1:
@@ -3796,7 +3803,7 @@ class CvEventManager:
                             team = gc.getTeam(iThisTeam)
                             if team.isHasTech(iTechEnslavement):
                                 # Create a slave unit
-                                NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                                NewUnit = gc.getPlayer(pWinner.getOwner()).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                                 NewUnit.finishMoves()
                                 if gc.getPlayer(pWinner.getOwner()).isHuman():
                                     CyInterface().addMessage(pWinner.getOwner(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_1", (unitY.getDescription(), 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
@@ -5578,7 +5585,7 @@ class CvEventManager:
 
             # 2nd Settler for AI (Immortal, Deity) (PAE V)
             if iHandicap >= 7 and unit.getUnitType() == gc.getInfoTypeForString("UNIT_SETTLER"):
-                pPlayer.initUnit(unit.getUnitType(),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                pPlayer.initUnit(unit.getUnitType(), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             # -----------------------
             # Experienced units on higher handicap level (PAE V Patch 3)
@@ -6507,7 +6514,7 @@ class CvEventManager:
         if team.isHasTech(iTechEnslavement):
             iSlaves = city.getPopulation()
             for i in range(iSlaves):
-                gc.getPlayer(iPlayer).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                gc.getPlayer(iPlayer).initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             if gc.getPlayer(iPlayer).isHuman():
                 if iSlaves == 1:
@@ -6725,34 +6732,34 @@ class CvEventManager:
                     iRand = CvUtil.myRandom(20)
                     NewUnit = ""
                     if iRand == 0:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_AXEMAN'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_1", (0, 0))
                     elif iRand == 1:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_UNSTERBLICH'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_UNSTERBLICH'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_2", (0, 0))
                     elif iRand == 2:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_3", (0, 0))
                     elif iRand == 3:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_SPY'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SPY, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_SPY'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SPY, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_4", (0, 0))
                     elif iRand == 4:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_HOPLIT'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_HOPLIT'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_5", (0, 0))
                     elif iRand == 5:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_ARCHER_KRETA'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_ARCHER_KRETA'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_6", (0, 0))
                     elif iRand == 6:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_7", (0, 0))
                     elif iRand == 7:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_BALEAREN'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_BALEAREN'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_COUNTER, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_8", (0, 0))
                     elif iRand == 8:
-                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GERMANNE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GERMANNE'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_ATTACK, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_9", (0, 0))
                     else:
-                        gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'),  pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_SPECIAL, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'), pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_CITY_SPECIAL, DirectionTypes.DIRECTION_SOUTH)
                         text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_0", (0, 0))
 
                     if gc.getPlayer(iNewOwner).isHuman():
@@ -6812,7 +6819,7 @@ class CvEventManager:
                 for i in range(iCityGP1):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
                             if iRand == 0:
@@ -6850,7 +6857,7 @@ class CvEventManager:
                 for i in range(iCityGP2):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
                             if iRand == 0:
@@ -6862,7 +6869,7 @@ class CvEventManager:
                             CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
                     elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
                         iJump2Plot = CvUtil.myRandom(len(fleePlotArray))
-                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         # pUnit.jumpToNearestValidPlot()
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
@@ -6888,7 +6895,7 @@ class CvEventManager:
                 for i in range(iCityGP3):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
                             if iRand == 0:
@@ -6900,7 +6907,7 @@ class CvEventManager:
                             CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
                     elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
                         iJump2Plot = CvUtil.myRandom(len(fleePlotArray))
-                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         # pUnit.jumpToNearestValidPlot()
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
@@ -6926,7 +6933,7 @@ class CvEventManager:
                 for i in range(iCityGP4):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
                             if iRand == 0:
@@ -6938,7 +6945,7 @@ class CvEventManager:
                             CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
                     elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
                         iJump2Plot = CvUtil.myRandom(len(fleePlotArray))
-                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         # pUnit.jumpToNearestValidPlot()
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
@@ -6964,7 +6971,7 @@ class CvEventManager:
                 for i in range(iCityGP5):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = CvUtil.myRandom(3)
                             if iRand == 0:
@@ -6976,7 +6983,7 @@ class CvEventManager:
                             CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
                     elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
                         iJump2Plot = CvUtil.myRandom(len(fleePlotArray))
-                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         # pUnit.jumpToNearestValidPlot()
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = 1 + CvUtil.myRandom(3)
@@ -6990,13 +6997,13 @@ class CvEventManager:
                 for i in range(iCityGP6):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = 1 + CvUtil.myRandom(11)
                             CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP6_"+str(iRand), (0, 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
                     elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
                         iJump2Plot = CvUtil.myRandom(len(fleePlotArray))
-                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         # pUnit.jumpToNearestValidPlot()
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = 1 + CvUtil.myRandom(3)
@@ -7010,13 +7017,13 @@ class CvEventManager:
                 for i in range(iCityGP7):
                     iRand = CvUtil.myRandom(10)
                     if iRand < 5:
-                        gc.getPlayer(iNewOwner).initUnit(iNewUnit,  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(iNewUnit, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = 1 + CvUtil.myRandom(4)
                             CyInterface().addMessage(iNewOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP7_"+str(iRand), (0, 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
                     elif iRand < 9 and gc.getPlayer(iPreviousOwner).isAlive():
                         iJump2Plot = CvUtil.myRandom(len(fleePlotArray))
-                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit,  fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        pUnit = gc.getPlayer(iPreviousOwner).initUnit(iNewUnit, fleePlotArray[iJump2Plot].getX(), fleePlotArray[iJump2Plot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                         # pUnit.jumpToNearestValidPlot()
                         if gc.getPlayer(iNewOwner).isHuman():
                             iRand = 1 + CvUtil.myRandom(3)
@@ -7133,7 +7140,7 @@ class CvEventManager:
                 iBeute = int(pCity.getPopulation() / 2)
                 if iBeute > 0:
                     for i in range(iBeute):
-                        gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        gc.getPlayer(iNewOwner).initUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'), pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Beutegold erhalten (Zeile 3475)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
