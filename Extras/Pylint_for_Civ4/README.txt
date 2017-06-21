@@ -16,8 +16,8 @@ Setup:
    Use '--init-hook' but not 'init-hook' if you use it as arguments.
    Please note that the arguments after = should always be en quoted with double quotes.
 
-    init-hook="API='[absolute path to this folder]/Civ4PythonApi';
-    CIV4='C:\\Civ4'; MOD='PieAncientEuropeV';
+    init-hook="API='[absolute path of Git repo]\PAE\Extras\Pylint_for_Civ4\Civ4PythonApi';
+    CIV4='C:\Civ4'; MOD='PieAncientEuropeV';
     import sys; sys.path.append(API); import Civ4Paths;
     sys.path.extend(Civ4Paths.civ4_paths(CIV4, MOD))"
 
