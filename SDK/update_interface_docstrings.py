@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 # The function declaration of Boost::Python objects are hardcoded
-# as string. This Script should show changes/update this strings.
+# as string. This Script should update this strings.
 #
 # (Example of such issue in Civ4:BTS is CyPlayer::initUnit.)
+#
+# Place the script into CvGameCoreDLL folder and call it with python.
 #
 
 import os
