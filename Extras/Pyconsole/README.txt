@@ -23,7 +23,7 @@ Setup:
                 self.loc = locals()
                 civ4Console.init()
 
-    # In CvEventManager.OnGameUpdate
+    # In CvEventManager.onGameUpdate
             if CIV4_SHELL:
                 civ4Console.update(self.glob, self.loc)
 
