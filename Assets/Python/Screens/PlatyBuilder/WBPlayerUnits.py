@@ -80,7 +80,7 @@ class WBPlayerUnits:
         screen.setTableColumnHeader( "WBUnitList", 6, "Y", iColWidth)
         screen.enableSort("WBUnitList")
 
-        (loopUnit, iter) = pPlayer.firstUnit(False)
+        (loopUnit, pIter) = pPlayer.firstUnit(False)
         while(loopUnit):
             iRow = screen.appendTableRow("WBUnitList")
             if pPlayer.getUnit(iUnitID).isNone():
@@ -92,7 +92,7 @@ class WBPlayerUnits:
             screen.setTableInt("WBUnitList", 4, iRow, "<font=3>" + str(loopUnit.plot().getArea()) + "</font>", "", WidgetTypes.WIDGET_PYTHON, 8300 + iPlayer, loopUnit.getID(), CvUtil.FONT_LEFT_JUSTIFY)
             screen.setTableInt("WBUnitList", 5, iRow, "<font=3>" + str(loopUnit.getX()) + "</font>", "", WidgetTypes.WIDGET_PYTHON, 8300 + iPlayer, loopUnit.getID(), CvUtil.FONT_LEFT_JUSTIFY)
             screen.setTableInt("WBUnitList", 6, iRow, "<font=3>" + str(loopUnit.getY()) + "</font>", "", WidgetTypes.WIDGET_PYTHON, 8300 + iPlayer, loopUnit.getID(), CvUtil.FONT_LEFT_JUSTIFY)
-            (loopUnit, iter) = pPlayer.nextUnit(iter, False)
+            (loopUnit, pIter) = pPlayer.nextUnit(pIter, False)
         self.placeUnitMap()
 
     def setCityTable(self):
@@ -113,7 +113,7 @@ class WBPlayerUnits:
         screen.setTableColumnHeader( "WBCityList", 6, "Y", iColWidth)
         screen.enableSort("WBCityList")
 
-        (loopCity, iter) = pPlayer.firstCity(False)
+        (loopCity, pIter) = pPlayer.firstCity(False)
         while(loopCity):
             if not loopCity.isNone() and loopCity.getOwner() == pPlayer.getID(): #only valid cities
                 iRow = screen.appendTableRow("WBCityList")
@@ -126,7 +126,7 @@ class WBPlayerUnits:
                 screen.setTableInt("WBCityList", 4, iRow, "<font=3>" + str(loopCity.plot().getArea()) + "</font>", "", WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY)
                 screen.setTableInt("WBCityList", 5, iRow, "<font=3>" + str(loopCity.getX()) + "</font>", "", WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY)
                 screen.setTableInt("WBCityList", 6, iRow, "<font=3>" + str(loopCity.getY()) + "</font>", "", WidgetTypes.WIDGET_PYTHON, 7200 + iPlayer, loopCity.getID(), CvUtil.FONT_LEFT_JUSTIFY)
-            (loopCity, iter) = pPlayer.nextCity(iter, False)
+            (loopCity, pIter) = pPlayer.nextCity(pIter, False)
         self.placeCityMap()
 
     def placeCityMap(self):

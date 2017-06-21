@@ -161,7 +161,7 @@ class WBCorporationScreen:
                 (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isNone() and loopCity.getOwner() == pPlayer.getID(): #only valid cities
-                        if iter - 1 == inputClass.getData():
+                        if pIter - 1 == inputClass.getData():
                             if bHeadquarter:
                                 self.editHeadquarter(inputClass.getData2(), loopCity)
                             else:

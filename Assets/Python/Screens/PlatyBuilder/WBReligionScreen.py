@@ -88,7 +88,7 @@ class WBReligionScreen:
             screen.setTableColumnHeader("WBCityReligions", i + 1, "", (iWidth - 150) / gc.getNumReligionInfos())
 
         pPlayer = gc.getPlayer(iSelectedPlayer)
-        (loopCity, iter) = pPlayer.firstCity(False)
+        (loopCity, pIter) = pPlayer.firstCity(False)
         while loopCity:
             if not loopCity.isNone() and loopCity.getOwner() == pPlayer.getID(): #only valid cities
                 iRow = screen.appendTableRow("WBCityReligions")
@@ -100,7 +100,7 @@ class WBReligionScreen:
                     if loopCity.isHolyCityByType(i):
                         sText = u"%c" %(gc.getReligionInfo(i).getHolyCityChar())
                     screen.setTableText("WBCityReligions", i + 1, iRow, "<font=4>" + sText + "</font>", "", WidgetTypes.WIDGET_HELP_RELIGION, i, loopCity.getID(), CvUtil.FONT_CENTER_JUSTIFY)
-            (loopCity, iter) = pPlayer.nextCity(iter, False)
+            (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
     def placeHolyCities(self):
         screen = CyGInterfaceScreen("WBReligionScreen", CvScreenEnums.WB_RELIGION)
@@ -194,11 +194,11 @@ class WBReligionScreen:
         elif inputClass.getFunctionName() == "WBAllReligions":
             if inputClass.getButtonType() == WidgetTypes.WIDGET_HELP_RELIGION:
                 pPlayer = gc.getPlayer(iSelectedPlayer)
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isNone() and loopCity.getOwner() == pPlayer.getID(): #only valid cities
                         self.editReligion(inputClass.getData1(), loopCity, inputClass.getData2() == 1)
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
                 self.placePlayerCities()
 
         elif inputClass.getFunctionName() == "SetHoly":

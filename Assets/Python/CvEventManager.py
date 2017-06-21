@@ -26,8 +26,8 @@
 # import sys
 # import pickle
 # import math
-import re
-import itertools  # faster repeating of stuff
+# import re
+# import itertools  # faster repeating of stuff
 
 from CvPythonExtensions import *
 import CvUtil
@@ -80,6 +80,12 @@ import PeloponnesianWarKeinpferd
 import Schmelz
 import FirstPunicWar
 
+# At head of file:
+CIV4_SHELL = True
+if CIV4_SHELL:
+    import Civ4ShellBackend
+    civ4Console = Civ4ShellBackend.Server(tcp_port=3333)
+
 gc = CyGlobalContext()
 localText = CyTranslator()
 PyPlayer = PyHelpers.PyPlayer
@@ -93,6 +99,11 @@ class CvEventManager:
     def __init__(self):
         #################### ON EVENT MAP ######################
         # print "EVENTMANAGER INIT"
+        # In CvEventManager.__init__:
+        if CIV4_SHELL:
+            self.glob = globals()
+            self.loc = locals()
+            civ4Console.init()
 
         # PAE - Great General Names
         self.GG_UsedNames = []
@@ -174,83 +185,83 @@ class CvEventManager:
 
         # EVENTLIST
         self.EventHandlerMap = {
-          'mouseEvent': self.onMouseEvent,
-          'kbdEvent': self.onKbdEvent,
-          'ModNetMessage': self.onModNetMessage,
-          'Init': self.onInit,
-          'Update': self.onUpdate,
-          'UnInit': self.onUnInit,
-          'OnSave': self.onSaveGame,
-          'OnPreSave': self.onPreSave,
-          'OnLoad': self.onLoadGame,
-          'GameStart': self.onGameStart,
-          'GameEnd': self.onGameEnd,
-          'plotRevealed': self.onPlotRevealed,
-          'plotFeatureRemoved': self.onPlotFeatureRemoved,
-          'plotPicked': self.onPlotPicked,
-          'nukeExplosion': self.onNukeExplosion,
-          'gotoPlotSet': self.onGotoPlotSet,
-          'BeginGameTurn': self.onBeginGameTurn,
-          'EndGameTurn': self.onEndGameTurn,
-          'BeginPlayerTurn': self.onBeginPlayerTurn,
-          'EndPlayerTurn': self.onEndPlayerTurn,
-          'endTurnReady': self.onEndTurnReady,
-          'combatResult': self.onCombatResult,
-          'combatLogCalc': self.onCombatLogCalc,
-          'combatLogHit': self.onCombatLogHit,
-          'improvementBuilt': self.onImprovementBuilt,
-          'improvementDestroyed': self.onImprovementDestroyed,
-          'routeBuilt': self.onRouteBuilt,
-          'firstContact': self.onFirstContact,
-          'cityBuilt': self.onCityBuilt,
-          'cityRazed': self.onCityRazed,
-          'cityAcquired': self.onCityAcquired,
-          'cityAcquiredAndKept': self.onCityAcquiredAndKept,
-          'cityLost': self.onCityLost,
-          'cultureExpansion': self.onCultureExpansion,
-          'cityGrowth': self.onCityGrowth,
-          'cityDoTurn': self.onCityDoTurn,
-          'cityBuildingUnit': self.onCityBuildingUnit,
-          'cityBuildingBuilding': self.onCityBuildingBuilding,
-          'cityRename': self.onCityRename,
-          'cityHurry': self.onCityHurry,
-          'selectionGroupPushMission': self.onSelectionGroupPushMission,
-          'unitMove': self.onUnitMove,
-          'unitSetXY': self.onUnitSetXY,
-          'unitCreated': self.onUnitCreated,
-          'unitBuilt': self.onUnitBuilt,
-          'unitKilled': self.onUnitKilled,
-          'unitLost': self.onUnitLost,
-          'unitPromoted': self.onUnitPromoted,
-          'unitSelected': self.onUnitSelected,
-          'UnitRename': self.onUnitRename,
-          'unitPillage': self.onUnitPillage,
-          'unitSpreadReligionAttempt': self.onUnitSpreadReligionAttempt,
-          'unitGifted': self.onUnitGifted,
-          'unitBuildImprovement': self.onUnitBuildImprovement,
-          'goodyReceived': self.onGoodyReceived,
-          'greatPersonBorn': self.onGreatPersonBorn,
-          'buildingBuilt': self.onBuildingBuilt,
-          'projectBuilt': self.onProjectBuilt,
-          'techAcquired': self.onTechAcquired,
-          'techSelected': self.onTechSelected,
-          'religionFounded': self.onReligionFounded,
-          'religionSpread': self.onReligionSpread,
-          'religionRemove': self.onReligionRemove,
-          'corporationFounded': self.onCorporationFounded,
-          'corporationSpread': self.onCorporationSpread,
-          'corporationRemove': self.onCorporationRemove,
-          'goldenAge': self.onGoldenAge,
-          'endGoldenAge': self.onEndGoldenAge,
-          'chat': self.onChat,
-          'victory': self.onVictory,
-          'vassalState': self.onVassalState,
-          'changeWar': self.onChangeWar,
-          'setPlayerAlive': self.onSetPlayerAlive,
-          'playerChangeStateReligion': self.onPlayerChangeStateReligion,
-          'playerGoldTrade': self.onPlayerGoldTrade,
-          'windowActivation': self.onWindowActivation,
-          'gameUpdate': self.onGameUpdate,    # sample generic event
+            'mouseEvent': self.onMouseEvent,
+            'kbdEvent': self.onKbdEvent,
+            'ModNetMessage': self.onModNetMessage,
+            'Init': self.onInit,
+            'Update': self.onUpdate,
+            'UnInit': self.onUnInit,
+            'OnSave': self.onSaveGame,
+            'OnPreSave': self.onPreSave,
+            'OnLoad': self.onLoadGame,
+            'GameStart': self.onGameStart,
+            'GameEnd': self.onGameEnd,
+            'plotRevealed': self.onPlotRevealed,
+            'plotFeatureRemoved': self.onPlotFeatureRemoved,
+            'plotPicked': self.onPlotPicked,
+            'nukeExplosion': self.onNukeExplosion,
+            'gotoPlotSet': self.onGotoPlotSet,
+            'BeginGameTurn': self.onBeginGameTurn,
+            'EndGameTurn': self.onEndGameTurn,
+            'BeginPlayerTurn': self.onBeginPlayerTurn,
+            'EndPlayerTurn': self.onEndPlayerTurn,
+            'endTurnReady': self.onEndTurnReady,
+            'combatResult': self.onCombatResult,
+            'combatLogCalc': self.onCombatLogCalc,
+            'combatLogHit': self.onCombatLogHit,
+            'improvementBuilt': self.onImprovementBuilt,
+            'improvementDestroyed': self.onImprovementDestroyed,
+            'routeBuilt': self.onRouteBuilt,
+            'firstContact': self.onFirstContact,
+            'cityBuilt': self.onCityBuilt,
+            'cityRazed': self.onCityRazed,
+            'cityAcquired': self.onCityAcquired,
+            'cityAcquiredAndKept': self.onCityAcquiredAndKept,
+            'cityLost': self.onCityLost,
+            'cultureExpansion': self.onCultureExpansion,
+            'cityGrowth': self.onCityGrowth,
+            'cityDoTurn': self.onCityDoTurn,
+            'cityBuildingUnit': self.onCityBuildingUnit,
+            'cityBuildingBuilding': self.onCityBuildingBuilding,
+            'cityRename': self.onCityRename,
+            'cityHurry': self.onCityHurry,
+            'selectionGroupPushMission': self.onSelectionGroupPushMission,
+            'unitMove': self.onUnitMove,
+            'unitSetXY': self.onUnitSetXY,
+            'unitCreated': self.onUnitCreated,
+            'unitBuilt': self.onUnitBuilt,
+            'unitKilled': self.onUnitKilled,
+            'unitLost': self.onUnitLost,
+            'unitPromoted': self.onUnitPromoted,
+            'unitSelected': self.onUnitSelected,
+            'UnitRename': self.onUnitRename,
+            'unitPillage': self.onUnitPillage,
+            'unitSpreadReligionAttempt': self.onUnitSpreadReligionAttempt,
+            'unitGifted': self.onUnitGifted,
+            'unitBuildImprovement': self.onUnitBuildImprovement,
+            'goodyReceived': self.onGoodyReceived,
+            'greatPersonBorn': self.onGreatPersonBorn,
+            'buildingBuilt': self.onBuildingBuilt,
+            'projectBuilt': self.onProjectBuilt,
+            'techAcquired': self.onTechAcquired,
+            'techSelected': self.onTechSelected,
+            'religionFounded': self.onReligionFounded,
+            'religionSpread': self.onReligionSpread,
+            'religionRemove': self.onReligionRemove,
+            'corporationFounded': self.onCorporationFounded,
+            'corporationSpread': self.onCorporationSpread,
+            'corporationRemove': self.onCorporationRemove,
+            'goldenAge': self.onGoldenAge,
+            'endGoldenAge': self.onEndGoldenAge,
+            'chat': self.onChat,
+            'victory': self.onVictory,
+            'vassalState': self.onVassalState,
+            'changeWar': self.onChangeWar,
+            'setPlayerAlive': self.onSetPlayerAlive,
+            'playerChangeStateReligion': self.onPlayerChangeStateReligion,
+            'playerGoldTrade': self.onPlayerGoldTrade,
+            'windowActivation': self.onWindowActivation,
+            'gameUpdate': self.onGameUpdate,    # sample generic event
         }
 
         ################## Events List ###############################
@@ -274,21 +285,21 @@ class CvEventManager:
         #  CvUtil.EventWBStartYearPopup : ('WBStartYearPopup', self.__eventWBStartYearPopupApply, self.__eventWBStartYearPopupBegin),
         #  CvUtil.EventShowWonder: ('ShowWonder', self.__eventShowWonderApply, self.__eventShowWonderBegin),
         #}
-## Platy WorldBuilder ##
+        ## Platy WorldBuilder ##
         self.Events = {
-          CvUtil.EventEditCityName: ('EditCityName', self.__eventEditCityNameApply, self.__eventEditCityNameBegin),
-          CvUtil.EventPlaceObject: ('PlaceObject', self.__eventPlaceObjectApply, self.__eventPlaceObjectBegin),
-          CvUtil.EventAwardTechsAndGold: ('AwardTechsAndGold', self.__eventAwardTechsAndGoldApply, self.__eventAwardTechsAndGoldBegin),
-          CvUtil.EventEditUnitName: ('EditUnitName', self.__eventEditUnitNameApply, self.__eventEditUnitNameBegin),
-          CvUtil.EventWBLandmarkPopup: ('WBLandmarkPopup', self.__eventWBLandmarkPopupApply, self.__eventWBScriptPopupBegin),
-          CvUtil.EventShowWonder: ('ShowWonder', self.__eventShowWonderApply, self.__eventShowWonderBegin),
-          1111: ('WBPlayerScript', self.__eventWBPlayerScriptPopupApply, self.__eventWBScriptPopupBegin),
-          2222: ('WBCityScript', self.__eventWBCityScriptPopupApply, self.__eventWBScriptPopupBegin),
-          3333: ('WBUnitScript', self.__eventWBUnitScriptPopupApply, self.__eventWBScriptPopupBegin),
-          4444: ('WBGameScript', self.__eventWBGameScriptPopupApply, self.__eventWBScriptPopupBegin),
-          5555: ('WBPlotScript', self.__eventWBPlotScriptPopupApply, self.__eventWBScriptPopupBegin),
-            ## Platy WorldBuilder ##
+            CvUtil.EventEditCityName: ('EditCityName', self.__eventEditCityNameApply, self.__eventEditCityNameBegin),
+            CvUtil.EventPlaceObject: ('PlaceObject', self.__eventPlaceObjectApply, self.__eventPlaceObjectBegin),
+            CvUtil.EventAwardTechsAndGold: ('AwardTechsAndGold', self.__eventAwardTechsAndGoldApply, self.__eventAwardTechsAndGoldBegin),
+            CvUtil.EventEditUnitName: ('EditUnitName', self.__eventEditUnitNameApply, self.__eventEditUnitNameBegin),
+            CvUtil.EventWBLandmarkPopup: ('WBLandmarkPopup', self.__eventWBLandmarkPopupApply, self.__eventWBScriptPopupBegin),
+            CvUtil.EventShowWonder: ('ShowWonder', self.__eventShowWonderApply, self.__eventShowWonderBegin),
+            1111: ('WBPlayerScript', self.__eventWBPlayerScriptPopupApply, self.__eventWBScriptPopupBegin),
+            2222: ('WBCityScript', self.__eventWBCityScriptPopupApply, self.__eventWBScriptPopupBegin),
+            3333: ('WBUnitScript', self.__eventWBUnitScriptPopupApply, self.__eventWBScriptPopupBegin),
+            4444: ('WBGameScript', self.__eventWBGameScriptPopupApply, self.__eventWBScriptPopupBegin),
+            5555: ('WBPlotScript', self.__eventWBPlotScriptPopupApply, self.__eventWBScriptPopupBegin),
         }
+        ## Platy WorldBuilder ##
 
 #################### EVENT STARTERS ######################
     def handleEvent(self, argsList):
@@ -320,13 +331,13 @@ class CvEventManager:
 
         entry = self.Events[context]
 
-        if (context not in CvUtil.SilentEvents):
+        if context not in CvUtil.SilentEvents:
             self.reportEvent(entry, context, (playerID, netUserData, popupReturn))
         return entry[1](playerID, netUserData, popupReturn)   # the apply function
 
     def reportEvent(self, entry, context, argsList):
         'Report an Event to Events.log '
-        if (gc.getGame().getActivePlayer() != -1):
+        if gc.getGame().getActivePlayer() != -1:
             message = "DEBUG Event: %s (%s)" % (entry[0], gc.getActivePlayer().getName())
             CyInterface().addImmediateMessage(message, "")
             CvUtil.pyPrint(message)
@@ -339,17 +350,17 @@ class CvEventManager:
         eventType, key, mx, my, px, py = argsList
         # game = gc.getGame()
 
-        if (self.bAllowCheats):
+        if self.bAllowCheats:
             # notify debug tools of input to allow it to override the control
             argsList = (eventType, key, self.bCtrl, self.bShift, self.bAlt, mx, my, px, py, gc.getGame().isNetworkMultiPlayer())
-            if (CvDebugTools.g_CvDebugTools.notifyInput(argsList)):
+            if CvDebugTools.g_CvDebugTools.notifyInput(argsList):
                 return 0
 
-        if (eventType == self.EventKeyDown):
+        if eventType == self.EventKeyDown:
             theKey = int(key)
 
 # From FfH-Mod: by Kael 07/05/2008
-            if (theKey == int(InputTypes.KB_LEFT)):
+            if theKey == int(InputTypes.KB_LEFT):
                 if self.bCtrl:
                     CyCamera().SetBaseTurn(CyCamera().GetBaseTurn() - 45.0)
                     return 1
@@ -357,7 +368,7 @@ class CvEventManager:
                     CyCamera().SetBaseTurn(CyCamera().GetBaseTurn() - 10.0)
                     return 1
 
-            if (theKey == int(InputTypes.KB_RIGHT)):
+            if theKey == int(InputTypes.KB_RIGHT):
                 if self.bCtrl:
                     CyCamera().SetBaseTurn(CyCamera().GetBaseTurn() + 45.0)
                     return 1
@@ -367,7 +378,7 @@ class CvEventManager:
 # From FfH: End
 
 # PAE Spieler am Zug Message aktivieren/deaktvieren: STRG+P / CTRL+P --
-            if (theKey == int(InputTypes.KB_P)):
+            if theKey == int(InputTypes.KB_P):
                 if self.bCtrl:
                     if self.bPAE_ShowMessagePlayerTurn:
                         self.bPAE_ShowMessagePlayerTurn = False
@@ -387,52 +398,52 @@ class CvEventManager:
                     return 1
 ## AI AutoPlay ##
 
-            if (self.bAllowCheats):
+            if self.bAllowCheats:
                 # Shift - T (Debug - No MP)
-                if (theKey == int(InputTypes.KB_T)):
-                    if (self.bShift):
+                if theKey == int(InputTypes.KB_T):
+                    if self.bShift:
                         self.beginEvent(CvUtil.EventAwardTechsAndGold)
                         # self.beginEvent(CvUtil.EventCameraControlPopup)
                         return 1
 
-                elif (theKey == int(InputTypes.KB_W)):
-                    if (self.bShift and self.bCtrl):
+                elif theKey == int(InputTypes.KB_W):
+                    if self.bShift and self.bCtrl:
                         self.beginEvent(CvUtil.EventShowWonder)
                         return 1
 
                 # Shift - ] (Debug - currently mouse-overd unit, health += 10
-                elif (theKey == int(InputTypes.KB_LBRACKET) and self.bShift):
+                elif theKey == int(InputTypes.KB_LBRACKET) and self.bShift:
                     unit = CyMap().plot(px, py).getUnit(0)
-                    if (not unit.isNone()):
+                    if not unit.isNone():
                         d = min(unit.maxHitPoints()-1, unit.getDamage() + 10)
                         unit.setDamage(d, PlayerTypes.NO_PLAYER)
 
                 # Shift - [ (Debug - currently mouse-overd unit, health -= 10
-                elif (theKey == int(InputTypes.KB_RBRACKET) and self.bShift):
+                elif theKey == int(InputTypes.KB_RBRACKET) and self.bShift:
                     unit = CyMap().plot(px, py).getUnit(0)
-                    if (not unit.isNone()):
+                    if not unit.isNone():
                         d = max(0, unit.getDamage() - 10)
                         unit.setDamage(d, PlayerTypes.NO_PLAYER)
 
-                elif (theKey == int(InputTypes.KB_F1)):
-                    if (self.bShift):
+                elif theKey == int(InputTypes.KB_F1):
+                    if self.bShift:
                         CvScreensInterface.replayScreen.showScreen(False)
                         return 1
                     # don't return 1 unless you want the input consumed
 
-                elif (theKey == int(InputTypes.KB_F2)):
-                    if (self.bShift):
+                elif theKey == int(InputTypes.KB_F2):
+                    if self.bShift:
                         import CvDebugInfoScreen
                         CvScreensInterface.showDebugInfoScreen()
                         return 1
 
-                elif (theKey == int(InputTypes.KB_F3)):
-                    if (self.bShift):
+                elif theKey == int(InputTypes.KB_F3):
+                    if self.bShift:
                         CvScreensInterface.showDanQuayleScreen(())
                         return 1
 
-                elif (theKey == int(InputTypes.KB_F4)):
-                    if (self.bShift):
+                elif theKey == int(InputTypes.KB_F4):
+                    if self.bShift:
                         CvScreensInterface.showUnVictoryScreen(())
                         return 1
 
@@ -631,7 +642,7 @@ class CvEventManager:
             pUnit = pPlayer.getUnit(iData5)
             iCost = gc.getUnitInfo(pUnit.getUnitType()).getCombat() * 12
             if iCost < 0:
-                iCost * (-1)
+                iCost *= (-1)
             pPlayer.changeGold(-iCost)
             iPromo = gc.getInfoTypeForString("PROMOTION_EDLE_RUESTUNG")
             pUnit.setHasPromotion(iPromo, True)
@@ -705,9 +716,9 @@ class CvEventManager:
                         iNum = 1
 
                     if iNum > 0:
-                        for _ in itertools.repeat(None, iNum):
-                            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                        for _ in range(iNum):
+                            CvUtil.spawnUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pCity.plot(), pPlayer)
+                            CvUtil.spawnUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pCity.plot(), pPlayer)
                         pCity.setPopulation(iNum)
 
                     # set city and temple slaves => 0
@@ -718,13 +729,13 @@ class CvEventManager:
                     # --- Getting goldkarren / treasure / Beutegold ------
                     iBeute = int(pCity.getPopulation() / 2) + 1
                     # if iBeute > 0: das ist >=1
-                    for _ in itertools.repeat(None, iBeute):
-                        pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"),  pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                    for _ in range(iBeute):
+                        CvUtil.spawnUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pCity.plot(), pPlayer)
 
                     pPlayer.disband(pCity)
 
         # Hire or Commission Mercenary Menu
-        elif (iData1 >= 707 and iData1 <= 717):
+        elif iData1 >= 707 and iData1 <= 717:
             PAE_Mercenaries.onModNetMessage(argsList)
 
         # Unit FORMATIONS ----------------------
@@ -778,6 +789,7 @@ class CvEventManager:
             iY = pUnit.getY()
             bSwitch = True
             iVisible = pUnit.visibilityRange()
+            loopPlot = pUnit.plot()
             for i in range(-iVisible, iVisible+1):
                 for j in range(-iVisible, iVisible+1):
                     loopPlot = plotXY(iX, iY, i, j)
@@ -821,12 +833,8 @@ class CvEventManager:
                 # 1 Bewegungspunkt Verlust
                 NewUnit.changeMoves(pUnit.getMoves() + 60)
 
-                #if NewUnit.getName() != sPlot.getUnit(iRand).getName(): NewUnit.setName(sPlot.getUnit(iRand).getName())
-                UnitName = pUnit.getName()
-                #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
-                if UnitName != gc.getUnitInfo(pUnit.getUnitType()).getText():
-                    UnitName = re.sub(" \(.*?\)", "", UnitName)
-                    NewUnit.setName(UnitName)
+                PAE_Unit.copyName(NewUnit, pUnit.getUnitType(), pUnit.getName())
+
                 # Check its promotions
                 iRange = gc.getNumPromotionInfos()
                 for j in range(iRange):
@@ -844,9 +852,8 @@ class CvEventManager:
                 # Original unit killen
                 pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
 
-                # changeMoves
             else:
-                CyInterface().addMessage(iData4, True, 10, CyTranslator().getText("TXT_KEY_HELP_GO2PIRATE3", ("",)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(11), pUnit.getX() + i - iVisible, pUnit.getY() + j - iVisible, True, True)
+                CyInterface().addMessage(iData4, True, 10, CyTranslator().getText("TXT_KEY_HELP_GO2PIRATE3", ("",)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
 
         # iData1 723: EspionageMission Info im TechChooser
 
@@ -1546,7 +1553,7 @@ class CvEventManager:
                                     if loopPlot.getOwner() == iPlayer and not (loopPlot.isWater() or loopPlot.isImpassable() or loopPlot.isCity()):
                                         reservePlotArray.append(loopPlot)
 
-                        if len(rebelPlotArray) == 0:
+                        if not rebelPlotArray:
                             rebelPlotArray = reservePlotArray
 
                         if rebelPlotArray:
@@ -1970,9 +1977,9 @@ class CvEventManager:
         for iPlayer in range(iRange):
             player = gc.getPlayer(iPlayer)
             if player.isAlive():
-                # Flunky: (unit, iter) statt for range
+                # Flunky: (unit, pIter) statt for range
                 # +++++ Correct naming for units (not available in BTS)
-                (unit, iter) = player.firstUnit(False)
+                (unit, pIter) = player.firstUnit(False)
                 while unit:
                     UnitText = unit.getName()
                     if UnitText[:7] == "TXT_KEY":
@@ -1990,13 +1997,13 @@ class CvEventManager:
                     #     #unit.setScriptData(str(pPlot.getPlotCity().getID()))
                     #     CvUtil.addScriptData(unit, "c", pPlot.getPlotCity().getID()) # CityID
 
-                    (unit, iter) = player.nextUnit(iter, False)
+                    (unit, pIter) = player.nextUnit(pIter, False)
 
                 # Flunky: Einrueckung angepasst
                 # Trait-Gebaeude ueberpruefen
                 PAE_City.doCheckGlobalTraitBuildings(iPlayer)
 
-                # Flunky: (city, iter) statt for range
+                # Flunky: (city, pIter) statt for range
                 # +++++ Check city status
                 # und Trait-Gebaeude / trait buildings
                 (loopCity, pIter) = player.firstCity(False)
@@ -2165,7 +2172,7 @@ class CvEventManager:
 
         # --- Automated trade routes for HI (Boggy)
         if pPlayer.isHuman():
-            (pLoopUnit, iter) = pPlayer.firstUnit(False)
+            (pLoopUnit, pIter) = pPlayer.firstUnit(False)
             while pLoopUnit:
                 iUnitType = pLoopUnit.getUnitType()
                 if iUnitType in PAE_Trade.lTradeUnits:
@@ -2175,7 +2182,7 @@ class CvEventManager:
                         # pLoopUnit.finishMoves()
                         # Falls Haendler in Stadt zieht und noch Fortbewegung hat, soll direkt ge-/verkauft werden
                         #if pLoopUnit.canMove(): PAE_Trade.doAutomateMerchant(pLoopUnit, False)
-                (pLoopUnit, iter) = pPlayer.nextUnit(iter, False)
+                (pLoopUnit, pIter) = pPlayer.nextUnit(pIter, False)
 
         # ------- Scenario PeloponnesianWarKeinpferd Events Poteidaia, Megara, Plataiai, Syrakus
         sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S", "t"])
@@ -2472,28 +2479,25 @@ class CvEventManager:
                                     pPlot.setRevealed(iTeam, 0, 0, -1)
 
 
-# -- AI Commissions Mercenaries (AI Mercenaries)
+        # -- AI Commissions Mercenaries (AI Mercenaries)
         # not in first turn (scenarios)
         if not pPlayer.isHuman():
             if iGameTurn > 1 and iGameTurn % 10 == 0:
                 if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SOELDNERTUM")):
-
                     iGold = pPlayer.getGold()
-
                     if iGold > 400:
                         bDoIt = False
-
                         if iGold > 800:
                             iChance = 20
                         else:
                             iChance = 10
-                        if iChance > CvUtil.myRandom(100, "AI Mercenaries"):
+                        if CvUtil.myRandom(100, "AI Mercenaries") < iChance:
                             PAE_Mercenaries.doAIPlanAssignMercenaries(iPlayer)
                             # 20% gleich nochmal
-                            if 0 == CvUtil.myRandom(5, "AI Mercenaries2"):
+                            if CvUtil.myRandom(5, "AI Mercenaries2") == 0:
                                 PAE_Mercenaries.doAIPlanAssignMercenaries(iPlayer)
                                 # 10% ein drittes Mal damits interessant wird ;)
-                                if 0 == CvUtil.myRandom(10, "AI Mercenaries3"):
+                                if CvUtil.myRandom(10, "AI Mercenaries3") == 0:
                                     PAE_Mercenaries.doAIPlanAssignMercenaries(iPlayer)
 
         # Kriegslager soll alle x Runden Einheit erzeugen
@@ -2510,9 +2514,9 @@ class CvEventManager:
         #"""
 
 # ++ Standard BTS ++
-        if (gc.getGame().getElapsedGameTurns() == 1):
-            if (gc.getPlayer(iPlayer).isHuman()):
-                if (gc.getPlayer(iPlayer).canRevolution(0)):
+        if gc.getGame().getElapsedGameTurns() == 1:
+            if gc.getPlayer(iPlayer).isHuman():
+                if gc.getPlayer(iPlayer).canRevolution(0):
                     popupInfo = CyPopupInfo()
                     popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_CHANGECIVIC)
                     popupInfo.addPopup(iPlayer)
@@ -2536,7 +2540,7 @@ class CvEventManager:
                     showPlayer = 0
             pShowPlayer = gc.getPlayer(showPlayer)
             thisPlayer = pShowPlayer.getCivilizationDescription(0)
-            if (self.bAllowCheats):
+            if self.bAllowCheats:
                 CyInterface().addMessage(self.iPAE_ShowMessagePlayerHumanID, True, 3, CyTranslator().getText("TXT_KEY_MESSAGE_PAE_CIV_TURN", (thisPlayer, "")), None, 2, None, ColorTypes(14), 0, 0, False, False)
             else:
                 iThisTeam = gc.getPlayer(showPlayer).getTeam()
@@ -2549,13 +2553,13 @@ class CvEventManager:
         iGameTurn = argsList[0]
 
     def onFirstContact(self, argsList):
+        'Contact'
         ## Platy WorldBuilder ##
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
-    ## Platy WorldBuilder ##
-        'Contact'
+        ## Platy WorldBuilder ##
         iTeamX, iHasMetTeamY = argsList
-        if (not self.__LOG_CONTACT):
+        if not self.__LOG_CONTACT:
             return
         CvUtil.pyPrint('Team %d has met Team %d' % (iTeamX, iHasMetTeamY))
 
@@ -2703,7 +2707,7 @@ class CvEventManager:
                         barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
 
                         for i in range(iMaxTreibgut):
-                            if len(SeaPlots) == 0:
+                            if not SeaPlots:
                                 break
                             iRand = CvUtil.myRandom(len(SeaPlots), "SeaPlots")
                             loopPlot = SeaPlots[iRand]
@@ -3182,11 +3186,7 @@ class CvEventManager:
                             if pLoser.isHasPromotion(iPromotion):
                                 NewUnit.setHasPromotion(iPromotion, True)
 
-                    #if UnitName != "" and UnitName != NewUnit.getName(): NewUnit.setName(UnitName)
-                    UnitName = pLoser.getName()
-                    if UnitName != gc.getUnitInfo(pLoser.getUnitType()).getText():
-                        UnitName = re.sub(" \(.*?\)", "", UnitName)
-                        NewUnit.setName(UnitName)
+                    PAE_Unit.copyName(NewUnit, pLoser.getUnitType(), pLoser.getName())
 
                     if not bIsCity:
                         NewUnit.jumpToNearestValidPlot()
@@ -3813,8 +3813,8 @@ class CvEventManager:
                     # Check its promotions
                     iRange = gc.getNumPromotionInfos()
                     for iPromotion in range(iRange):
-                                    # init all promotions the unit had
-                        if (pLoser.isHasPromotion(iPromotion)):
+                        # init all promotions the unit had
+                        if pLoser.isHasPromotion(iPromotion):
                             NewUnit.setHasPromotion(iPromotion, True)
 
                     if gc.getPlayer(pWinner.getOwner()).isHuman():
@@ -3832,12 +3832,12 @@ class CvEventManager:
                     for i in range(3):
                         for j in range(3):
                             loopPlot = gc.getMap().plot(pLoser.getX() + i - 1, pLoser.getY() + j - 1)
-                            if None != loopPlot and not loopPlot.isNone() and not loopPlot.isUnit():
-                                if not (loopPlot.isWater() or loopPlot.isImpassable() or loopPlot.isCity()):
+                            if loopPlot is not None and not loopPlot.isNone() and not loopPlot.isUnit():
+                                if not loopPlot.isWater() and not loopPlot.isImpassable() and not loopPlot.isCity():
                                     rebelPlotArray.append(loopPlot)
 
                     # Create Barbarian Horse Unit
-                    if len(rebelPlotArray) > 0:
+                    if rebelPlotArray:
                         barbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
                         iPlot = CvUtil.myRandom(len(rebelPlotArray), None)
                         barbPlayer.initUnit(iUnitType, rebelPlotArray[iPlot].getX(), rebelPlotArray[iPlot].getY(), UnitAITypes.UNITAI_EXPLORE, DirectionTypes.DIRECTION_SOUTH)
@@ -3954,7 +3954,7 @@ class CvEventManager:
         # PAE Debug Mark
         #"""
 
-        if (not self.__LOG_COMBAT):
+        if not self.__LOG_COMBAT:
             return
         # BTS Original
         # if playerX and playerX and unitX and playerY:
@@ -3986,7 +3986,7 @@ class CvEventManager:
 
     def onCombatLogHit(self, argsList):
         'Combat Message'
-        global gCombatMessages, gCombatLog
+        # global gCombatMessages, gCombatLog
         genericArgs = argsList[0][0]
         cdAttacker = genericArgs[0]
         cdDefender = genericArgs[1]
@@ -3994,32 +3994,33 @@ class CvEventManager:
         iDamage = genericArgs[3]
 
         # BTS Original
-        # if cdDefender.eOwner == cdDefender.eVisualOwner:
-        #  szDefenderName = gc.getPlayer(cdDefender.eOwner).getNameKey()
-        # else:
-        #  szDefenderName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
-        # if cdAttacker.eOwner == cdAttacker.eVisualOwner:
-        #  szAttackerName = gc.getPlayer(cdAttacker.eOwner).getNameKey()
-        # else:
-        #  szAttackerName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
-        #
-        # if (iIsAttacker == 0):
-        #  combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szDefenderName, cdDefender.sUnitName, iDamage, cdDefender.iCurrHitPoints, cdDefender.iMaxHitPoints))
-        #  CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-        #  CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
-        #  if (cdDefender.iCurrHitPoints <= 0):
-        #    combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szAttackerName, cdAttacker.sUnitName, szDefenderName, cdDefender.sUnitName))
-        #    CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-        #    CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
-        # elif (iIsAttacker == 1):
-        #  combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szAttackerName, cdAttacker.sUnitName, iDamage, cdAttacker.iCurrHitPoints, cdAttacker.iMaxHitPoints))
-        #  CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-        #  CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
-        #  if (cdAttacker.iCurrHitPoints <= 0):
-        #    combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szDefenderName, cdDefender.sUnitName, szAttackerName, cdAttacker.sUnitName))
-        #    CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-        #    CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+        if cdDefender.eOwner == cdDefender.eVisualOwner:
+            szDefenderName = gc.getPlayer(cdDefender.eOwner).getNameKey()
+        else:
+            szDefenderName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
+        if cdAttacker.eOwner == cdAttacker.eVisualOwner:
+            szAttackerName = gc.getPlayer(cdAttacker.eOwner).getNameKey()
+        else:
+            szAttackerName = localText.getText("TXT_KEY_TRAIT_PLAYER_UNKNOWN", ())
 
+        if iIsAttacker == 0:
+            combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szDefenderName, cdDefender.sUnitName, iDamage, cdDefender.iCurrHitPoints, cdDefender.iMaxHitPoints))
+            CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+            CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+            if cdDefender.iCurrHitPoints <= 0:
+                combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szAttackerName, cdAttacker.sUnitName, szDefenderName, cdDefender.sUnitName))
+                CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+                CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+        elif iIsAttacker == 1:
+            combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szAttackerName, cdAttacker.sUnitName, iDamage, cdAttacker.iCurrHitPoints, cdAttacker.iMaxHitPoints))
+            CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+            CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+            if cdAttacker.iCurrHitPoints <= 0:
+                combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szDefenderName, cdDefender.sUnitName, szAttackerName, cdAttacker.sUnitName))
+                CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
+                CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+
+        ## TODO: only if not hidden nationality
         # PAE Wegen Bekanntgabe der Piraten im Log wird hier auskommentiert!
         # if (iIsAttacker == 0):
         #  combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (gc.getPlayer(cdDefender.eOwner).getNameKey(), cdDefender.sUnitName, iDamage, cdDefender.iCurrHitPoints, cdDefender.iMaxHitPoints))
@@ -4039,11 +4040,11 @@ class CvEventManager:
         #    CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
 
     def onImprovementBuilt(self, argsList):
+        'Improvement Built'
         ## Platy WorldBuilder ##
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
-    ## Platy WorldBuilder ##
-        'Improvement Built'
+        ## Platy WorldBuilder ##
         iImprovement, iX, iY = argsList
 
         if iImprovement in (-1, gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT"), gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")):
@@ -4060,45 +4061,45 @@ class CvEventManager:
             if pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_FOREST"):
                 pPlot.setFeatureType(-1, 0)
 
-        if (not self.__LOG_IMPROVEMENT):
+        if not self.__LOG_IMPROVEMENT:
             return
         CvUtil.pyPrint('Improvement %s was built at %d, %d'
                        % (PyInfo.ImprovementInfo(iImprovement).getDescription(), iX, iY))
 
     def onImprovementDestroyed(self, argsList):
+        'Improvement Destroyed'
         ## Platy WorldBuilder ##
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
-    ## Platy WorldBuilder ##
-        'Improvement Destroyed'
+        ## Platy WorldBuilder ##
         iImprovement, iOwner, iX, iY = argsList
 
         if iImprovement in (-1, gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT"), gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")):
             return
 
-        if (not self.__LOG_IMPROVEMENT):
+        if not self.__LOG_IMPROVEMENT:
             return
         CvUtil.pyPrint('Improvement %s was Destroyed at %d, %d'
                        % (PyInfo.ImprovementInfo(iImprovement).getDescription(), iX, iY))
 
     def onRouteBuilt(self, argsList):
+        'Route Built'
         ## Platy WorldBuilder ##
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
-    ## Platy WorldBuilder ##
-        'Route Built'
+        ## Platy WorldBuilder ##
         iRoute, iX, iY = argsList
-        if (not self.__LOG_IMPROVEMENT):
+        if not self.__LOG_IMPROVEMENT:
             return
         CvUtil.pyPrint('Route %s was built at %d, %d'
                        % (gc.getRouteInfo(iRoute).getDescription(), iX, iY))
 
     def onPlotRevealed(self, argsList):
+        'Plot Revealed'
         ## Platy WorldBuilder ##
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
-    ## Platy WorldBuilder ##
-        'Plot Revealed'
+        ## Platy WorldBuilder ##
         pPlot = argsList[0]
         iTeam = argsList[1]
 
@@ -4197,7 +4198,7 @@ class CvEventManager:
         # WEIN - FEATURE ---------------------
         # Winzer / Vintager -> Winery / Weinverbreitung
         iBuilding = gc.getInfoTypeForString('BUILDING_WINERY')
-        if iBuildingType == iBuilding and CvUtil.myRandom(2, None) == 1:
+        if iBuildingType == iBuilding and CvUtil.myRandom(2, "Wein") == 1:
             terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
             terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
             terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
@@ -4226,72 +4227,69 @@ class CvEventManager:
             setWinery = True
 
             # wenn bereits eine Weinressource im nahen (5x5-Feld) Umkreis der Stadt ist
-            for i in range(5):
-
-                if not setWinery:
-                    break
-
-                for j in range(5):
-                    loopPlot = gc.getMap().plot(pCity.getX() + i - 2, pCity.getY() + j - 2)
-                    if loopPlot.getBonusType(-1) == bonus_grapes and not (i == 0 and j == 0) and not (i == 4 and j == 0) and not (i == 0 and j == 4) and not (i == 4 and j == 4):
+            for iI in range(gc.getNUM_CITY_PLOTS()):
+                loopPlot = pCity.getCityIndexPlot(iI)
+                # die beste position finden:
+                if loopPlot is not None and not loopPlot.isNone():
+                    if loopPlot.getBonusType(-1) == bonus_grapes:
                         setWinery = False
                         break
+                        # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
+                    if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak():
+                        if (loopPlot.getBonusType(-1) == -1
+                                and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass)
+                                and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1)):
 
-                    # die beste position finden:
-                    if loopPlot is not None and not loopPlot.isNone() and not (i == 0 and j == 0) and not (i == 4 and j == 0) and not (i == 0 and j == 4) and not (i == 4 and j == 4):
-                            # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-                        if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak():
-                            if loopPlot.getBonusType(loopPlot.getOwner()) == -1 and loopPlot.getBonusType(-1) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1):
-
-                                # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
-                                if loopPlot.isCity():
-                                    PlotPrio4.append(loopPlot)
-                                else:
-                                    # 1. plain and hills, unworked
-                                    if loopPlot.getTerrainType() == terr_plain and loopPlot.isHills() and loopPlot.getImprovementType() == -1:
-                                        PlotPrio1.append(loopPlot)
-                                    # 2. grass and hills, unworked
-                                    if loopPlot.getTerrainType() == terr_grass and loopPlot.isHills() and loopPlot.getImprovementType() == -1:
-                                        PlotPrio2.append(loopPlot)
+                            # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
+                            if loopPlot.isCity():
+                                PlotPrio4.append(loopPlot)
+                            else:
+                                if loopPlot.getImprovementType() == -1:
+                                    if loopPlot.isHills():
+                                        # 1. plain and hills, unworked
+                                        if loopPlot.getTerrainType() == terr_plain:
+                                            PlotPrio1.append(loopPlot)
+                                        # 2. grass and hills, unworked
+                                        if loopPlot.getTerrainType() == terr_grass:
+                                            PlotPrio2.append(loopPlot)
                                     # 3. irgendeinen passenden ohne Improvement
-                                    if loopPlot.getImprovementType() == -1:
-                                        PlotPrio3.append(loopPlot)
-                                    # 4. nach Improvements selektieren
-                                    if loopPlot.getImprovementType() == iImpType1:
-                                        PlotPrio5.append(loopPlot)
-                                    if loopPlot.getImprovementType() == iImpType2:
-                                        PlotPrio6.append(loopPlot)
-                                    if loopPlot.getImprovementType() == iImpType3:
-                                        PlotPrio7.append(loopPlot)
-                                    if loopPlot.getImprovementType() == iImpType4:
-                                        PlotPrio8.append(loopPlot)
-                                    if loopPlot.getImprovementType() == iImpType5:
-                                        PlotPrio9.append(loopPlot)
-                                    if loopPlot.getImprovementType() == iImpType6:
-                                        PlotPrio10.append(loopPlot)
+                                    PlotPrio3.append(loopPlot)
+                                # 4. nach Improvements selektieren
+                                if loopPlot.getImprovementType() == iImpType1:
+                                    PlotPrio5.append(loopPlot)
+                                if loopPlot.getImprovementType() == iImpType2:
+                                    PlotPrio6.append(loopPlot)
+                                if loopPlot.getImprovementType() == iImpType3:
+                                    PlotPrio7.append(loopPlot)
+                                if loopPlot.getImprovementType() == iImpType4:
+                                    PlotPrio8.append(loopPlot)
+                                if loopPlot.getImprovementType() == iImpType5:
+                                    PlotPrio9.append(loopPlot)
+                                if loopPlot.getImprovementType() == iImpType6:
+                                    PlotPrio10.append(loopPlot)
 
-            if len(PlotPrio1) > 0:
+            if PlotPrio1:
                 correctPlotArray = PlotPrio1
-            elif len(PlotPrio2) > 0:
+            elif PlotPrio2:
                 correctPlotArray = PlotPrio2
-            elif len(PlotPrio3) > 0:
+            elif PlotPrio3:
                 correctPlotArray = PlotPrio3
-            elif len(PlotPrio5) > 0:
+            elif PlotPrio5:
                 correctPlotArray = PlotPrio5
-            elif len(PlotPrio6) > 0:
+            elif PlotPrio6:
                 correctPlotArray = PlotPrio6
-            elif len(PlotPrio7) > 0:
+            elif PlotPrio7:
                 correctPlotArray = PlotPrio7
-            elif len(PlotPrio8) > 0:
+            elif PlotPrio8:
                 correctPlotArray = PlotPrio8
-            elif len(PlotPrio9) > 0:
+            elif PlotPrio9:
                 correctPlotArray = PlotPrio9
-            # elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4 # Stadt doch nicht
-            elif len(PlotPrio10) > 0:
+            # elif PlotPrio4: correctPlotArray = PlotPrio4 # Stadt doch nicht
+            elif PlotPrio10:
                 correctPlotArray = PlotPrio10
 
             # Wein setzen
-            if setWinery and len(correctPlotArray) > 0:
+            if setWinery and correctPlotArray:
                 iPlot = CvUtil.myRandom(len(correctPlotArray), None)
                 sPlot = correctPlotArray[iPlot]
                 # Feature (Wald) entfernen
@@ -4351,84 +4349,82 @@ class CvEventManager:
             PlotPrio16 = []
             correctPlotArray = []
 
-            for i in range(5):
-                for j in range(5):
-                    loopPlot = gc.getMap().plot(pCity.getX() + i - 2, pCity.getY() + j - 2)
+            for iI in range(gc.getNUM_CITY_PLOTS()):
+                loopPlot = pCity.getCityIndexPlot(iI)
+                # die beste position finden:
+                if loopPlot is not None and not loopPlot.isNone():
+                        # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
+                    if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1):
 
-                    # die beste position finden:
-                    if loopPlot is not None and not loopPlot.isNone() and not (i == 0 and j == 0) and not (i == 4 and j == 0) and not (i == 0 and j == 4) and not (i == 4 and j == 4):
-                            # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-                        if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak() and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1):
+                            # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
+                        if loopPlot.isCity():
+                            PlotPrio4.append(loopPlot)
+                        else:
+                                # 1. plain and hills, unworked
+                            if loopPlot.getTerrainType() == terr_plain and not loopPlot.isHills() and loopPlot.getImprovementType() == -1:
+                                PlotPrio1.append(loopPlot)
+                            # 2. grass and hills, unworked
+                            if loopPlot.getTerrainType() == terr_grass and not loopPlot.isHills() and loopPlot.getImprovementType() == -1:
+                                PlotPrio2.append(loopPlot)
+                            # 3. irgendeinen passenden ohne Improvement
+                            if loopPlot.getImprovementType() == -1:
+                                PlotPrio3.append(loopPlot)
+                            # 4. nach Improvements selektieren
+                            if loopPlot.getImprovementType() == iImpType1:
+                                PlotPrio5.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType2:
+                                PlotPrio6.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType3:
+                                PlotPrio7.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType4:
+                                PlotPrio8.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType5:
+                                PlotPrio9.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType6:
+                                PlotPrio10.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType7:
+                                PlotPrio11.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType8:
+                                PlotPrio12.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType9:
+                                PlotPrio13.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType10:
+                                PlotPrio14.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType11:
+                                PlotPrio15.append(loopPlot)
+                            if loopPlot.getImprovementType() == iImpType12:
+                                PlotPrio16.append(loopPlot)
 
-                                # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
-                            if loopPlot.isCity():
-                                PlotPrio4.append(loopPlot)
-                            else:
-                                    # 1. plain and hills, unworked
-                                if loopPlot.getTerrainType() == terr_plain and not loopPlot.isHills() and loopPlot.getImprovementType() == -1:
-                                    PlotPrio1.append(loopPlot)
-                                # 2. grass and hills, unworked
-                                if loopPlot.getTerrainType() == terr_grass and not loopPlot.isHills() and loopPlot.getImprovementType() == -1:
-                                    PlotPrio2.append(loopPlot)
-                                # 3. irgendeinen passenden ohne Improvement
-                                if loopPlot.getImprovementType() == -1:
-                                    PlotPrio3.append(loopPlot)
-                                # 4. nach Improvements selektieren
-                                if loopPlot.getImprovementType() == iImpType1:
-                                    PlotPrio5.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType2:
-                                    PlotPrio6.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType3:
-                                    PlotPrio7.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType4:
-                                    PlotPrio8.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType5:
-                                    PlotPrio9.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType6:
-                                    PlotPrio10.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType7:
-                                    PlotPrio11.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType8:
-                                    PlotPrio12.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType9:
-                                    PlotPrio13.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType10:
-                                    PlotPrio14.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType11:
-                                    PlotPrio15.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType12:
-                                    PlotPrio16.append(loopPlot)
-
-            if len(PlotPrio1) > 0:
+            if PlotPrio1:
                 correctPlotArray = PlotPrio1
-            elif len(PlotPrio2) > 0:
+            elif PlotPrio2:
                 correctPlotArray = PlotPrio2
-            elif len(PlotPrio3) > 0:
+            elif PlotPrio3:
                 correctPlotArray = PlotPrio3
-            # elif len(PlotPrio4) > 0: correctPlotArray = PlotPrio4 # Stadt doch nicht
-            elif len(PlotPrio5) > 0:
+            # elif PlotPrio4: correctPlotArray = PlotPrio4 # Stadt doch nicht
+            elif PlotPrio5:
                 correctPlotArray = PlotPrio5
-            elif len(PlotPrio6) > 0:
+            elif PlotPrio6:
                 correctPlotArray = PlotPrio6
-            elif len(PlotPrio7) > 0:
+            elif PlotPrio7:
                 correctPlotArray = PlotPrio7
-            elif len(PlotPrio8) > 0:
+            elif PlotPrio8:
                 correctPlotArray = PlotPrio8
-            elif len(PlotPrio9) > 0:
+            elif PlotPrio9:
                 correctPlotArray = PlotPrio9
-            elif len(PlotPrio10) > 0:
+            elif PlotPrio10:
                 correctPlotArray = PlotPrio10
-            elif len(PlotPrio11) > 0:
+            elif PlotPrio11:
                 correctPlotArray = PlotPrio11
-            elif len(PlotPrio12) > 0:
+            elif PlotPrio12:
                 correctPlotArray = PlotPrio12
-            elif len(PlotPrio13) > 0:
+            elif PlotPrio13:
                 correctPlotArray = PlotPrio13
-            elif len(PlotPrio14) > 0:
+            elif PlotPrio14:
                 correctPlotArray = PlotPrio14
-            elif len(PlotPrio15) > 0:
+            elif PlotPrio15:
                 correctPlotArray = PlotPrio15
-            elif len(PlotPrio16) > 0:
+            elif PlotPrio16:
                 correctPlotArray = PlotPrio16
 
             # Bonus setzen
@@ -4464,39 +4460,36 @@ class CvEventManager:
             correctPlotArray = []
             bCityHasBonus = False
 
-            for i in range(5):
-                if bCityHasBonus:
-                    break
-                for j in range(5):
-                    if i == 0 and j == 0 or i == 4 and j == 0 or i == 0 and j == 4 or i == 4 and j == 4:
+            for iI in range(gc.getNUM_CITY_PLOTS()):
+                loopPlot = pCity.getCityIndexPlot(iI)
+                # die beste position finden:
+                if loopPlot is not None and not loopPlot.isNone():
+                    if loopPlot.isHills() or loopPlot.isPeak():
                         continue
-                    loopPlot = gc.getMap().plot(pCity.getX() + i - 2, pCity.getY() + j - 2)
+                    if loopPlot.isCity():
+                        continue
+                    if loopPlot.getBonusType(loopPlot.getOwner()) == iBonus:
+                        bCityHasBonus = True
+                        break
+                    if (loopPlot.getFeatureType() != feat_flood_plains
+                            and loopPlot.getBonusType(-1) == -1
+                            and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_desert)
+                            and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1)):
 
-                    # die beste position finden:
-                    if loopPlot is not None and not loopPlot.isNone():
-                        if loopPlot.isHills() or loopPlot.isPeak():
-                            continue
-                        if loopPlot.isCity():
-                            continue
-                        if loopPlot.getBonusType(loopPlot.getOwner()) == iBonus:
-                            bCityHasBonus = True
-                            break
-                        if loopPlot.getFeatureType() != feat_flood_plains and loopPlot.getBonusType(loopPlot.getOwner()) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_desert) and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1):
-
-                                # 1. nach Improvements selektieren
-                            if loopPlot.getImprovementType() == iImpType1:
-                                PlotPrio1.append(loopPlot)
-                            # 2. desert, unworked
-                            elif loopPlot.getTerrainType() == terr_desert and loopPlot.getImprovementType() == -1:
-                                PlotPrio2.append(loopPlot)
-                            # 3. plains, unworked
-                            elif loopPlot.getTerrainType() == terr_plain and loopPlot.getImprovementType() == -1:
-                                PlotPrio3.append(loopPlot)
-                            # 4. irgendeinen passenden ohne Improvement
-                            elif loopPlot.getImprovementType() == -1:
-                                PlotPrio4.append(loopPlot)
-                            else:
-                                PlotPrio5.append(loopPlot)
+                            # 1. nach Improvements selektieren
+                        if loopPlot.getImprovementType() == iImpType1:
+                            PlotPrio1.append(loopPlot)
+                        # 2. desert, unworked
+                        elif loopPlot.getTerrainType() == terr_desert and loopPlot.getImprovementType() == -1:
+                            PlotPrio2.append(loopPlot)
+                        # 3. plains, unworked
+                        elif loopPlot.getTerrainType() == terr_plain and loopPlot.getImprovementType() == -1:
+                            PlotPrio3.append(loopPlot)
+                        # 4. irgendeinen passenden ohne Improvement
+                        elif loopPlot.getImprovementType() == -1:
+                            PlotPrio4.append(loopPlot)
+                        else:
+                            PlotPrio5.append(loopPlot)
 
             if PlotPrio1:
                 correctPlotArray = PlotPrio1
@@ -4764,7 +4757,7 @@ class CvEventManager:
 
         CvAdvisorUtils.buildingBuiltFeats(pCity, iBuildingType)
 
-        if (not self.__LOG_BUILDING):
+        if not self.__LOG_BUILDING:
             return
         CvUtil.pyPrint('%s was finished by Player %d Civilization %s'
                        % (PyInfo.BuildingInfo(iBuildingType).getDescription(), iPlayer, pPlayer.getCivilizationDescription(0)))
@@ -4960,7 +4953,7 @@ class CvEventManager:
         # if eMission == MissionTypes.MISSION_BOMBARD:
         #  CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Bombard - Owner",eOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-        if (not self.__LOG_PUSH_MISSION):
+        if not self.__LOG_PUSH_MISSION:
             return
         else:
             CvUtil.pyPrint("Selection Group pushed mission %d" % (eMission))
@@ -5434,7 +5427,7 @@ class CvEventManager:
 # -----
         # PAE Debug Mark
         #"""
-        if (not self.__LOG_MOVEMENT):
+        if not self.__LOG_MOVEMENT:
             return
         elif not pUnit.isDead():
             player = PyPlayer(pUnit.getOwner())
@@ -5449,7 +5442,7 @@ class CvEventManager:
         pPlot, pUnit = argsList
         player = PyPlayer(pUnit.getOwner())
         unitInfo = PyInfo.UnitInfo(pUnit.getUnitType())
-        if (not self.__LOG_MOVEMENT):
+        if not self.__LOG_MOVEMENT:
             return
 
     def onUnitCreated(self, argsList):
@@ -5460,7 +5453,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         unit = argsList[0]
         player = PyPlayer(unit.getOwner())
-        if (not self.__LOG_UNITBUILD):
+        if not self.__LOG_UNITBUILD:
             return
 
     # Global
@@ -5652,7 +5645,7 @@ class CvEventManager:
         # PAE Debug Mark
         #"""
 
-        if (not self.__LOG_UNITBUILD):
+        if not self.__LOG_UNITBUILD:
             return
 #    CvUtil.pyPrint('%s was finished by Player %d Civilization %s'
 #      %(unit.getName(), player.getID(), player.getCivilizationName()))
@@ -5665,7 +5658,7 @@ class CvEventManager:
         player = PyPlayer(unit.getOwner())
         attacker = PyPlayer(iAttacker)
 
-        if (not self.__LOG_UNITKILLED):
+        if not self.__LOG_UNITKILLED:
             return
         CvUtil.pyPrint(u'Player %d Civilization %s Unit %s was killed by Player %d'
                        % (player.getID(), player.getCivilizationName(), unit.getName(), attacker.getID()))
@@ -5676,7 +5669,7 @@ class CvEventManager:
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
         ## Platy WorldBuilder ##
-        if (not self.__LOG_UNITLOST):
+        if not self.__LOG_UNITLOST:
             return
         unit = argsList[0]
         player = PyPlayer(unit.getOwner())
@@ -5685,7 +5678,7 @@ class CvEventManager:
 
     def onUnitPromoted(self, argsList):
         'Unit Promoted'
-        if (not self.__LOG_UNITPROMOTED):
+        if not self.__LOG_UNITPROMOTED:
             return
         pUnit, iPromotion = argsList
 #    player = PyPlayer(pUnit.getOwner())
@@ -5700,7 +5693,7 @@ class CvEventManager:
         # if pUnit.isBarbarian():
         # PAE_Barbaren.onUnitSelected(pUnit)
 
-        if (not self.__LOG_UNITSELECTED):
+        if not self.__LOG_UNITSELECTED:
             return
 #    player = PyPlayer(pUnit.getOwner())
 #    CvUtil.pyPrint('%s was selected by Player %d Civilization %s'
@@ -5709,7 +5702,7 @@ class CvEventManager:
     def onUnitRename(self, argsList):
         'Unit is renamed'
         pUnit = argsList[0]
-        if (pUnit.getOwner() == gc.getGame().getActivePlayer()):
+        if pUnit.getOwner() == gc.getGame().getActivePlayer():
             self.__eventEditUnitNameBegin(pUnit)
 
     # global
@@ -5790,7 +5783,7 @@ class CvEventManager:
         # PAE Debug Mark
         #"""
 
-        if (not self.__LOG_UNITPILLAGE):
+        if not self.__LOG_UNITPILLAGE:
             return
 #    CvUtil.pyPrint("Player %d's %s pillaged improvement %d and route %d at plot at (%d, %d)"
 #      %(iOwner, pUnit.getName(), iImprovement, iRoute, iPlotX, iPlotY))
@@ -6030,33 +6023,26 @@ class CvEventManager:
         # Tech und freie Einheit / Free Unit
         bNewUnit = False
 
-        iUnit = -1
         # Religionen
-        if iTechType == gc.getInfoTypeForString("TECH_RELIGION_NORDIC"):
-            iUnit = gc.getInfoTypeForString("UNIT_NORDIC_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_CELTIC"):
-            iUnit = gc.getInfoTypeForString("UNIT_CELTIC_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_SUMER"):
-            iUnit = gc.getInfoTypeForString("UNIT_SUMER_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_GREEK"):
-            iUnit = gc.getInfoTypeForString("UNIT_GREEK_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_EGYPT"):
-            iUnit = gc.getInfoTypeForString("UNIT_EGYPT_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_PHOEN"):
-            iUnit = gc.getInfoTypeForString("UNIT_PHOEN_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_HINDU"):
-            iUnit = gc.getInfoTypeForString("UNIT_HINDU_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_RELIGION_ROME"):
-            iUnit = gc.getInfoTypeForString("UNIT_ROME_MISSIONARY")
-        elif iTechType == gc.getInfoTypeForString("TECH_DUALISMUS"):
-            iUnit = gc.getInfoTypeForString("UNIT_ZORO_MISSIONARY")
-        # Kulte
-        elif iTechType == gc.getInfoTypeForString("TECH_FRUCHTBARKEIT"):
-            iUnit = gc.getInfoTypeForString("UNIT_EXECUTIVE_2")
-        elif iTechType == gc.getInfoTypeForString("TECH_MANUFAKTUREN"):
-            iUnit = gc.getInfoTypeForString("UNIT_EXECUTIVE_3")
-        elif iTechType == gc.getInfoTypeForString("TECH_GLADIATOR"):
-            iUnit = gc.getInfoTypeForString("UNIT_EXECUTIVE_5")
+        lTechs = {
+            gc.getInfoTypeForString("TECH_RELIGION_NORDIC"): gc.getInfoTypeForString("UNIT_NORDIC_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_CELTIC"): gc.getInfoTypeForString("UNIT_CELTIC_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_SUMER"): gc.getInfoTypeForString("UNIT_SUMER_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_GREEK"): gc.getInfoTypeForString("UNIT_GREEK_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_EGYPT"): gc.getInfoTypeForString("UNIT_EGYPT_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_PHOEN"): gc.getInfoTypeForString("UNIT_PHOEN_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_HINDU"): gc.getInfoTypeForString("UNIT_HINDU_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_RELIGION_ROME"): gc.getInfoTypeForString("UNIT_ROME_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_DUALISMUS"): gc.getInfoTypeForString("UNIT_ZORO_MISSIONARY"),
+            gc.getInfoTypeForString("TECH_FRUCHTBARKEIT"): gc.getInfoTypeForString("UNIT_EXECUTIVE_2"),
+            gc.getInfoTypeForString("TECH_MANUFAKTUREN"): gc.getInfoTypeForString("UNIT_EXECUTIVE_3"),
+            gc.getInfoTypeForString("TECH_GLADIATOR"): gc.getInfoTypeForString("UNIT_EXECUTIVE_5"),
+        }
+
+        try:
+            iUnit = lTechs[iTechType]
+        except KeyError:
+            iUnit = -1
 
         # Einheit erstellen
         if iUnit != -1:
@@ -6072,43 +6058,71 @@ class CvEventManager:
         # Matriarchist
         if bNewUnit and iTechType == gc.getInfoTypeForString("TECH_FRUCHTBARKEIT"):
             # Verschiedene Gottesanbeter
-            if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_CELTS", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_GERMAN", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_ROME", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_EGYPT", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_PHOEN", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_GREEK", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_BABYLON", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SUMERIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_SUMER", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_HETHIT"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_HITTI", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_PERSIA", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BERBER") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_NUMIDIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_BERBER", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_IBERER"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_IBERIA", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_DAKER"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_DACIA", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_SCYTHS", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_ILLYRIA", ("",))
-            else:
-                text = ""
+            lCivs = [
+                (gc.getInfoTypeForString("CIVILIZATION_CELT"), "TXT_KEY_UNIT_MATRIACHAT_CELTS"),
+                (gc.getInfoTypeForString("CIVILIZATION_GERMANEN"), "TXT_KEY_UNIT_MATRIACHAT_GERMAN"),
+                (gc.getInfoTypeForString("CIVILIZATION_ROME"), "TXT_KEY_UNIT_MATRIACHAT_ROME"),
+                (gc.getInfoTypeForString("CIVILIZATION_GREECE"), "TXT_KEY_UNIT_MATRIACHAT_GREEK"),
+                (gc.getInfoTypeForString("CIVILIZATION_ATHENS"), "TXT_KEY_UNIT_MATRIACHAT_GREEK"),
+                (gc.getInfoTypeForString("CIVILIZATION_THEBAI"), "TXT_KEY_UNIT_MATRIACHAT_GREEK"),
+                (gc.getInfoTypeForString("CIVILIZATION_SPARTA"), "TXT_KEY_UNIT_MATRIACHAT_GREEK"),
+                (gc.getInfoTypeForString("CIVILIZATION_EGYPT"), "TXT_KEY_UNIT_MATRIACHAT_EGYPT"),
+                (gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"), "TXT_KEY_UNIT_MATRIACHAT_PHOEN"),
+                (gc.getInfoTypeForString("CIVILIZATION_PHON"), "TXT_KEY_UNIT_MATRIACHAT_PHOEN"),
+                (gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"), "TXT_KEY_UNIT_MATRIACHAT_ILLYRIA"),
+                (gc.getInfoTypeForString("CIVILIZATION_BABYLON"), "TXT_KEY_UNIT_MATRIACHAT_BABYLON"),
+                (gc.getInfoTypeForString("CIVILIZATION_SUMERIA"), "TXT_KEY_UNIT_MATRIACHAT_SUMER"),
+                (gc.getInfoTypeForString("CIVILIZATION_HETHIT"), "TXT_KEY_UNIT_MATRIACHAT_HITTI"),
+                (gc.getInfoTypeForString("CIVILIZATION_PERSIA"), "TXT_KEY_UNIT_MATRIACHAT_PERSIA"),
+                (gc.getInfoTypeForString("CIVILIZATION_BERBER"), "TXT_KEY_UNIT_MATRIACHAT_BERBER"),
+                (gc.getInfoTypeForString("CIVILIZATION_NUMIDIA"), "TXT_KEY_UNIT_MATRIACHAT_BERBER"),
+                (gc.getInfoTypeForString("CIVILIZATION_IBERER"), "TXT_KEY_UNIT_MATRIACHAT_IBERIA"),
+                (gc.getInfoTypeForString("CIVILIZATION_DAKER"), "TXT_KEY_UNIT_MATRIACHAT_DACIA"),
+                (gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"), "TXT_KEY_UNIT_MATRIACHAT_SCYTHS"),
+            ]
+            # Verschiedene Gottesanbeter
+            text = ""
+            for lCiv in lCivs:
+                if pPlayer.getCivilizationType() == lCiv[0]:
+                    text = CyTranslator().getText(lCiv[1], ("",))
+                    break
+            # if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_CELTS", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_GERMAN", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_ROME", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_EGYPT", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") \
+                    # or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_PHOEN", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
+                    # or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
+                    # or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") \
+                    # or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_GREEK", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_BABYLON", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SUMERIA"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_SUMER", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_HETHIT"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_HITTI", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_PERSIA", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BERBER") \
+                    # or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_NUMIDIA"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_BERBER", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_IBERER"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_IBERIA", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_DAKER"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_DACIA", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_SCYTHS", ("",))
+            # elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"):
+                # text = CyTranslator().getText("TXT_KEY_UNIT_MATRIACHAT_ILLYRIA", ("",))
+            # else:
+                # text = ""
 
             if text != "":
                 text = text + " " + CyTranslator().getText("TXT_KEY_UNIT_KULT_FOLLOWER", ("",))
@@ -6119,35 +6133,29 @@ class CvEventManager:
 
         # Heroenkultist
         if bNewUnit and iTechType == gc.getInfoTypeForString("TECH_GLADIATOR"):
+            lCivs = [
+                (gc.getInfoTypeForString("CIVILIZATION_CELT"), "TXT_KEY_UNIT_HEROEN_CELTS"),
+                (gc.getInfoTypeForString("CIVILIZATION_GERMANEN"), "TXT_KEY_UNIT_HEROEN_GERMAN"),
+                (gc.getInfoTypeForString("CIVILIZATION_ROME"), "TXT_KEY_UNIT_HEROEN_ROME"),
+                (gc.getInfoTypeForString("CIVILIZATION_GREECE"), "TXT_KEY_UNIT_HEROEN_ROME"),
+                (gc.getInfoTypeForString("CIVILIZATION_ATHENS"), "TXT_KEY_UNIT_HEROEN_ROME"),
+                (gc.getInfoTypeForString("CIVILIZATION_THEBAI"), "TXT_KEY_UNIT_HEROEN_ROME"),
+                (gc.getInfoTypeForString("CIVILIZATION_SPARTA"), "TXT_KEY_UNIT_HEROEN_ROME"),
+                (gc.getInfoTypeForString("CIVILIZATION_EGYPT"), "TXT_KEY_UNIT_HEROEN_EGYPT"),
+                (gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"), "TXT_KEY_UNIT_HEROEN_PHOEN"),
+                (gc.getInfoTypeForString("CIVILIZATION_PHON"), "TXT_KEY_UNIT_HEROEN_PHOEN"),
+                (gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"), "TXT_KEY_UNIT_HEROEN_PHOEN"),
+                (gc.getInfoTypeForString("CIVILIZATION_BABYLON"), "TXT_KEY_UNIT_HEROEN_BABYLON"),
+                (gc.getInfoTypeForString("CIVILIZATION_SUMERIA"), "TXT_KEY_UNIT_HEROEN_SUMER"),
+                (gc.getInfoTypeForString("CIVILIZATION_HETHIT"), "TXT_KEY_UNIT_HEROEN_HITTI"),
+                (gc.getInfoTypeForString("CIVILIZATION_PERSIA"), "TXT_KEY_UNIT_HEROEN_PERSIA"),
+            ]
             # Verschiedene Gottesanbeter
-            if pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_CELTS", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_GERMAN", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ROME"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_ROME", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_EGYPT", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CARTHAGE") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_PHOEN", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI") \
-                    or pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_ROME", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_BABYLON", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SUMERIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_SUMER", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_HETHIT"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_HITTI", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_PERSIA", ("",))
-            elif pPlayer.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"):
-                text = CyTranslator().getText("TXT_KEY_UNIT_HEROEN_PHOEN", ("",))
-            else:
-                text = ""
+            text = ""
+            for lCiv in lCivs:
+                if pPlayer.getCivilizationType() == lCiv[0]:
+                    text = CyTranslator().getText(lCiv[1], ("",))
+                    break
 
             if text != "":
                 text = text + " " + CyTranslator().getText("TXT_KEY_UNIT_KULT_FOLLOWER", ("",))
@@ -6259,7 +6267,7 @@ class CvEventManager:
                 popupInfo.setText(u"showWonderMovie")
                 popupInfo.addPopup(iFounder)
 
-        if (not self.__LOG_RELIGION):
+        if not self.__LOG_RELIGION:
             return
         CvUtil.pyPrint('Player %d Civilization %s has founded %s'
                        % (iFounder, player.getCivilizationName(), gc.getReligionInfo(iReligion).getDescription()))
@@ -6272,7 +6280,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         iReligion, iOwner, pSpreadCity = argsList
         player = PyPlayer(iOwner)
-        if (not self.__LOG_RELIGIONSPREAD):
+        if not self.__LOG_RELIGIONSPREAD:
             return
         CvUtil.pyPrint('%s has spread to Player %d Civilization %s city of %s'
                        % (gc.getReligionInfo(iReligion).getDescription(), iOwner, player.getCivilizationName(), pSpreadCity.getName()))
@@ -6285,7 +6293,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         iReligion, iOwner, pRemoveCity = argsList
         player = PyPlayer(iOwner)
-        if (not self.__LOG_RELIGIONSPREAD):
+        if not self.__LOG_RELIGIONSPREAD:
             return
         CvUtil.pyPrint('%s has been removed from Player %d Civilization %s city of %s'
                        % (gc.getReligionInfo(iReligion).getDescription(), iOwner, player.getCivilizationName(), pRemoveCity.getName()))
@@ -6302,7 +6310,7 @@ class CvEventManager:
         # Clear cult headquarter
         CyGame().clearHeadquarters(iCorporation)
 
-        if (not self.__LOG_RELIGION):
+        if not self.__LOG_RELIGION:
             return
         CvUtil.pyPrint('Player %d Civilization %s has founded %s'
                        % (iFounder, player.getCivilizationName(), gc.getCorporationInfo(iCorporation).getDescription()))
@@ -6315,7 +6323,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         iCorporation, iOwner, pSpreadCity = argsList
         player = PyPlayer(iOwner)
-        if (not self.__LOG_RELIGIONSPREAD):
+        if not self.__LOG_RELIGIONSPREAD:
             return
         CvUtil.pyPrint('%s has spread to Player %d Civilization %s city of %s'
                        % (gc.getCorporationInfo(iCorporation).getDescription(), iOwner, player.getCivilizationName(), pSpreadCity.getName()))
@@ -6328,7 +6336,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         iCorporation, iOwner, pRemoveCity = argsList
         player = PyPlayer(iOwner)
-        if (not self.__LOG_RELIGIONSPREAD):
+        if not self.__LOG_RELIGIONSPREAD:
             return
         CvUtil.pyPrint('%s has been removed from Player %d Civilization %s city of %s'
                        % (gc.getCorporationInfo(iCorporation).getDescription(), iOwner, player.getCivilizationName(), pRemoveCity.getName()))
@@ -6341,7 +6349,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         iPlayer = argsList[0]
         player = PyPlayer(iPlayer)
-        if (not self.__LOG_GOLDENAGE):
+        if not self.__LOG_GOLDENAGE:
             return
         CvUtil.pyPrint('Player %d Civilization %s has begun a golden age'
                        % (iPlayer, player.getCivilizationName()))
@@ -6354,7 +6362,7 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         iPlayer = argsList[0]
         player = PyPlayer(iPlayer)
-        if (not self.__LOG_ENDGOLDENAGE):
+        if not self.__LOG_ENDGOLDENAGE:
             return
         CvUtil.pyPrint('Player %d Civilization %s golden age has ended'
                        % (iPlayer, player.getCivilizationName()))
@@ -6368,9 +6376,9 @@ class CvEventManager:
         bIsWar = argsList[0]
         iTeam = argsList[1]
         iRivalTeam = argsList[2]
-        if (not self.__LOG_WARPEACE):
+        if not self.__LOG_WARPEACE:
             return
-        if (bIsWar):
+        if bIsWar:
             strStatus = "declared war"
         else:
             strStatus = "declared peace"
@@ -6398,7 +6406,7 @@ class CvEventManager:
     def onCityBuilt(self, argsList):
         'City Built'
         city = argsList[0]
-        if (city.getOwner() == gc.getGame().getActivePlayer()):
+        if city.getOwner() == gc.getGame().getActivePlayer():
             ## AI AutoPlay ##
             if CyGame().getAIAutoPlay() == 0 and not CyGame().GetWorldBuilderMode():
                 self.__eventEditCityNameBegin(city, False)
@@ -6716,8 +6724,18 @@ class CvEventManager:
 # --- gets captured: 50 % | can flee: 40 % | get killed: 10 %
 
             pCityPlot = pCity.plot()
+            lUnits = [
+                [gc.getInfoTypeForString("UNIT_PROPHET"), 3, 3, 3],
+                [gc.getInfoTypeForString("UNIT_ARTIST"), 3, 3, 3],
+                [gc.getInfoTypeForString("UNIT_SCIENTIST"), 3, 3, 3],
+                [gc.getInfoTypeForString("UNIT_MERCHANT"), 3 , 3, 3],
+                [gc.getInfoTypeForString("UNIT_ENGINEER"), 3, 3, 4],
+                [gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), 11, 3, 10],
+                [gc.getInfoTypeForString("UNIT_GREAT_SPY"), 4, 3, 4],
+            ]
+            numGPTypes = len(lUnits)
             if bAssimilation:
-                lNumGP = [0] * 7
+                lNumGP = [0] * numGPTypes
             else:
                 lNumGP = [
                     pCity.getFreeSpecialistCount(8),  # SPECIALIST_GREAT_PRIEST
@@ -6746,22 +6764,13 @@ class CvEventManager:
                                     fleePlotArray.append(loopPlot)
                 if not fleePlotArray:
                     fleePlotArray.append(pCityPlot.getNearestLandPlot())
-            lUnits = [
-                [gc.getInfoTypeForString("UNIT_PROPHET"), 3, 3, 3],
-                [gc.getInfoTypeForString("UNIT_ARTIST"), 3, 3, 3],
-                [gc.getInfoTypeForString("UNIT_SCIENTIST"), 3, 3, 3],
-                [gc.getInfoTypeForString("UNIT_MERCHANT"), 3 , 3, 3],
-                [gc.getInfoTypeForString("UNIT_ENGINEER"), 3, 3, 4],
-                [gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), 11, 3, 10],
-                [gc.getInfoTypeForString("UNIT_GREAT_SPY"), 4, 3, 4],
-            ]
+
             bText = pPlayer.isHuman()
             iNumFleePlots = len(fleePlotArray)
             bAlive = pPreviousOwner.isAlive()
-            # iterate over both lists in parallel using zip
-            for iCityGP, lUnit in itertools.izip(lNumGP, lUnits):
-                # iCityGP = lNumGP[i]
-                # lUnit = lUnits[i]
+            for i in range(numGPTypes):
+                iCityGP = lNumGP[i]
+                lUnit = lUnits[i]
                 iNewUnit = lUnit[0]
                 for _ in range(iCityGP):
                     iRand = CvUtil.myRandom(10)
@@ -6769,18 +6778,18 @@ class CvEventManager:
                         CvUtil.spawnUnit(iNewUnit, pCityPlot, pPlayer)
                         if bText:
                             iRand = 1 + CvUtil.myRandom(lUnit[1])
-                            text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP"+str(i)+"_"+str(iRand), (0, 0))
+                            text = CyTranslator().getText("TXT_KEY_MESSAGE_CATCH_GP"+str(i+1)+"_"+str(iRand), (0, 0))
                             CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
-                    elif iRand < 9 and bAlive:
+                    elif iRand < 9 and bAlive and iNumFleePlots != 0:
                         iJump2Plot = CvUtil.myRandom(iNumFleePlots)
                         CvUtil.spawnUnit(iNewUnit, fleePlotArray[iJump2Plot], pPreviousOwner)
                         if bText:
                             iRand = 1 + CvUtil.myRandom(lUnit[2])
-                            text = CyTranslator().getText("TXT_KEY_MESSAGE_FLEE_GP"+str(i)+"_"+str(iRand), (0, 0))
+                            text = CyTranslator().getText("TXT_KEY_MESSAGE_FLEE_GP"+str(i+1)+"_"+str(iRand), (0, 0))
                             CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(7), 0, 0, False, False)
                     elif bText:
                         iRand = 1 + CvUtil.myRandom(lUnit[3])
-                        text = CyTranslator().getText("TXT_KEY_MESSAGE_UNCATCH_GP"+str(i)+"_"+str(iRand), (0, 0))
+                        text = CyTranslator().getText("TXT_KEY_MESSAGE_UNCATCH_GP"+str(i+1)+"_"+str(iRand), (0, 0))
                         CyInterface().addMessage(iNewOwner, True, 10, text, None, 2, None, ColorTypes(7), 0, 0, False, False)
 
 # --- Great People Catch end --
@@ -6987,7 +6996,7 @@ class CvEventManager:
         city = argsList[0]
         player = PyPlayer(city.getOwner())
         PAE_City.doCheckGlobalTraitBuildings(city.getOwner())
-        if (not self.__LOG_CITYLOST):
+        if not self.__LOG_CITYLOST:
             return
         CvUtil.pyPrint('City %s was lost by Player %d Civilization %s'
                        % (city.getName(), player.getID(), player.getCivilizationName()))
@@ -7198,7 +7207,7 @@ class CvEventManager:
         'City begins building a unit'
         pCity = argsList[0]
         iUnitType = argsList[1]
-        if (not self.__LOG_CITYBUILDING):
+        if not self.__LOG_CITYBUILDING:
             return
         CvUtil.pyPrint("%s has begun building a %s" % (pCity.getName(), gc.getUnitInfo(iUnitType).getDescription()))
 
@@ -7206,14 +7215,14 @@ class CvEventManager:
         'City begins building a Building'
         pCity = argsList[0]
         iBuildingType = argsList[1]
-        if (not self.__LOG_CITYBUILDING):
+        if not self.__LOG_CITYBUILDING:
             return
         CvUtil.pyPrint("%s has begun building a %s" % (pCity.getName(), gc.getBuildingInfo(iBuildingType).getDescription()))
 
     def onCityRename(self, argsList):
         'City is renamed'
         pCity = argsList[0]
-        if (pCity.getOwner() == gc.getGame().getActivePlayer()):
+        if pCity.getOwner() == gc.getGame().getActivePlayer():
             self.__eventEditCityNameBegin(pCity, True)
 
     def onCityHurry(self, argsList):
@@ -7228,7 +7237,7 @@ class CvEventManager:
     def onVictory(self, argsList):
         'Victory'
         iTeam, iVictory = argsList
-        if (iVictory >= 0 and iVictory < gc.getNumVictoryInfos()):
+        if iVictory >= 0 and iVictory < gc.getNumVictoryInfos():
             victoryInfo = gc.getVictoryInfo(int(iVictory))
             CvUtil.pyPrint("Victory!  Team %d achieves a %s victory"
                            % (iTeam, victoryInfo.getDescription()))
@@ -7237,7 +7246,7 @@ class CvEventManager:
         'Vassal State'
         iMaster, iVassal, bVassal = argsList
 
-        if (bVassal):
+        if bVassal:
             CvUtil.pyPrint("Team %d becomes a Vassal State of Team %d"
                            % (iVassal, iMaster))
         else:
@@ -7249,6 +7258,8 @@ class CvEventManager:
         genericArgs = argsList[0][0]  # tuple of tuple of my args
         turnSlice = genericArgs[0]
 
+        if CIV4_SHELL:
+            civ4Console.update(self.glob, self.loc)
         # Added by Gerikes for OOS logging.
         OOSLogger.doGameUpdate()
         # End added by Gerikes for OOS logging.
@@ -7256,21 +7267,21 @@ class CvEventManager:
     def onMouseEvent(self, argsList):
         'mouse handler - returns 1 if the event was consumed'
         eventType, mx, my, px, py, interfaceConsumed, screens = argsList
-        if (px != -1 and py != -1):
-            if (eventType == self.EventLButtonDown):
-                if (self.bAllowCheats and self.bCtrl and self.bAlt and CyMap().plot(px, py).isCity() and not interfaceConsumed):
+        if px != -1 and py != -1:
+            if eventType == self.EventLButtonDown:
+                if self.bAllowCheats and self.bCtrl and self.bAlt and CyMap().plot(px, py).isCity() and not interfaceConsumed:
                     # Launch Edit City Event
                     self.beginEvent(CvUtil.EventEditCity, (px, py))
                     return 1
 
-                elif (self.bAllowCheats and self.bCtrl and self.bShift and not interfaceConsumed):
+                elif self.bAllowCheats and self.bCtrl and self.bShift and not interfaceConsumed:
                     # Launch Place Object Event
                     self.beginEvent(CvUtil.EventPlaceObject, (px, py))
                     return 1
 
-        if (eventType == self.EventBack):
+        if eventType == self.EventBack:
             return CvScreensInterface.handleBack(screens)
-        elif (eventType == self.EventForward):
+        elif eventType == self.EventForward:
             return CvScreensInterface.handleForward(screens)
 
         return 0
@@ -7285,7 +7296,7 @@ class CvEventManager:
 
     def __eventPlaceObjectApply(self, playerID, userData, popupReturn):
         'Place Object Event Apply'
-        if (getChtLvl() > 0):
+        if getChtLvl() > 0:
             CvDebugTools.CvDebugTools().applyUnitPicker((popupReturn, userData))
 
     def __eventAwardTechsAndGoldBegin(self, argsList):
@@ -7294,7 +7305,7 @@ class CvEventManager:
 
     def __eventAwardTechsAndGoldApply(self, playerID, netUserData, popupReturn):
         'Award Techs & Gold Event Apply'
-        if (getChtLvl() > 0):
+        if getChtLvl() > 0:
             CvDebugTools.CvDebugTools().applyTechCheat((popupReturn))
 
     def __eventShowWonderBegin(self, argsList):
@@ -7303,7 +7314,7 @@ class CvEventManager:
 
     def __eventShowWonderApply(self, playerID, netUserData, popupReturn):
         'Wonder Movie Apply'
-        if (getChtLvl() > 0):
+        if getChtLvl() > 0:
             CvDebugTools.CvDebugTools().applyWonderMovie((popupReturn))
 
 # BTS Original kann bei Bedarf aus dem Originalcode kopiert werden ------

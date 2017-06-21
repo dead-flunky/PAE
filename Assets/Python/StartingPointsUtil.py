@@ -85,13 +85,13 @@ def ResortCivs(Debugging):
     for iMoveAway in xrange(iMaxPlayer):
         if iMoveAway != gc.getBARBARIAN_PLAYER():
             pLoopCiv = gc.getPlayer(iMoveAway)
-            (loopUnit, iter) = pLoopCiv.firstUnit(False)
+            (loopUnit, pIter) = pLoopCiv.firstUnit(False)
             while(loopUnit):
                 unitOwner = loopUnit.getOwner()
                 if not loopUnit.isNone() and loopUnit.getOwner() == pLoopCiv.getID():  # only valid units
                     #loopUnit.setXY(-1,-1, False,False,False)
                     loopUnit.setXY(gc.getINVALID_PLOT_COORD(), gc.getINVALID_PLOT_COORD(), False, False, False)
-                (loopUnit, iter) = pLoopCiv.nextUnit(iter, False)
+                (loopUnit, pIter) = pLoopCiv.nextUnit(pIter, False)
 
 # this loop replaces the current units/moves them to the right place
 # invalid civs are killed, and the number is counted
@@ -121,12 +121,12 @@ def ResortCivs(Debugging):
                         CounterInvalid += 1
                         if Debugging:
                             CyInterface().addMessage(iHumanPlayer, False, 15, "Counter invalid civs "+str(CounterInvalid), '', 0, 'Art/Interface/Buttons/General/warning_popup.dds', ColorTypes(gc.getInfoTypeForString("COLOR_RED")), 1, 1, True, True)
-                        (loopUnit, iter) = pLoopCiv.firstUnit(False)
+                        (loopUnit, pIter) = pLoopCiv.firstUnit(False)
                         while loopUnit:
                             unitOwner = loopUnit.getOwner()
                             if not loopUnit.isNone() and loopUnit.getOwner() == pLoopCiv.getID():  # only valid units
                                 loopUnit.setXY(1, 1, False, False, False)
-                            (loopUnit, iter) = pLoopCiv.nextUnit(iter, False)
+                            (loopUnit, pIter) = pLoopCiv.nextUnit(pIter, False)
                         pLoopCiv.killUnits()
                         continue
                     else:
@@ -139,7 +139,7 @@ def ResortCivs(Debugging):
                     iX = SpawnCivList[j].SpawnX[iPos]
                     iY = SpawnCivList[j].SpawnY[iPos]
                     SpawnCivList[j].timesUsed += 1
-                    (loopUnit, iter) = pLoopCiv.firstUnit(False)
+                    (loopUnit, pIter) = pLoopCiv.firstUnit(False)
                     while loopUnit:
                         unitOwner = loopUnit.getOwner()
                         if not loopUnit.isNone() and loopUnit.getOwner() == pLoopCiv.getID():  # only valid units
@@ -149,7 +149,7 @@ def ResortCivs(Debugging):
                                 idstring = pLoopCiv.getCivilizationAdjective(0)+"unit moved to X="+str(iX)+"and Y="+str(iY)
                                 print(idstring)
                                 CyInterface().addMessage(iHumanPlayer, False, 15, idstring, '', 0, 'Art/Interface/Buttons/General/warning_popup.dds', ColorTypes(gc.getInfoTypeForString("COLOR_RED")), iY, iY, True, True)
-                        (loopUnit, iter) = pLoopCiv.nextUnit(iter, False)
+                        (loopUnit, pIter) = pLoopCiv.nextUnit(pIter, False)
     # PAE change: check if CounterInvalid > 0
     # PAE: do not replace missing civ
     if CounterInvalid > 0:

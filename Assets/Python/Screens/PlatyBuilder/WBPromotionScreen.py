@@ -99,7 +99,7 @@ class WBPromotionScreen:
       if iOwnerType == 2 and iPlayerX != pUnit.getTeam(): continue
       pPlayerX = gc.getPlayer(iPlayerX)
       if pPlayerX.isAlive():
-        (loopUnit, iter) = pPlayerX.firstUnit(False)
+        (loopUnit, pIter) = pPlayerX.firstUnit(False)
         while(loopUnit):
           bCopy = True
           if iEditType == 0:
@@ -122,7 +122,7 @@ class WBPromotionScreen:
               bCopy = False
           if bCopy:
             lUnits.append([loopUnit.getOwner(), loopUnit.getID()])
-          (loopUnit, iter) = pPlayerX.nextUnit(iter, False)
+          (loopUnit, pIter) = pPlayerX.nextUnit(pIter, False)
     lUnits.sort()
     self.placeCurrentUnit()
 

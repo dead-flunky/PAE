@@ -163,7 +163,7 @@ class CvGameUtils:
                 terr_plains = gc.getInfoTypeForString("TERRAIN_PLAINS")
                 feat_jungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
 
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
                         # Check plots (Klima / climate)
@@ -190,14 +190,14 @@ class CvGameUtils:
                         if bOK:
                             CyEngine().addColoredPlotAlt(iX, iY, PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
 
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
             # Kamel
             elif iUnitType == gc.getInfoTypeForString("UNIT_CAMEL") or iUnitType == gc.getInfoTypeForString("UNIT_WILD_CAMEL"):
                 pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
                 terr_desert = gc.getInfoTypeForString("TERRAIN_DESERT")
 
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
                         # Check plots (Klima / climate)
@@ -216,7 +216,7 @@ class CvGameUtils:
                                 break
                         if bOK:
                             CyEngine().addColoredPlotAlt(iX, iY, PlotStyles.PLOT_STYLE_CIRCLE, PlotLandscapeLayers.PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS, "COLOR_WHITE", 1)
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
         return False
 
@@ -952,12 +952,12 @@ class CvGameUtils:
             if pCity.canConstruct(iBuilding, 0, 0, 0):
                 bDoIt = True
                 # Stadtproduktionen durchgehen
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if loopCity.getProductionBuilding() == iBuilding:
                         bDoIt = False
                         break
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
                 if bDoIt:
                     pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT, iBuilding, -1, False, False, False, False)
                     return True
@@ -965,12 +965,12 @@ class CvGameUtils:
         # Projects
         bDoIt = True
         # Stadtproduktionen durchgehen
-        (loopCity, iter) = pPlayer.firstCity(False)
+        (loopCity, pIter) = pPlayer.firstCity(False)
         while loopCity:
             if loopCity.isProductionProject():
                 bDoIt = False
                 break
-            (loopCity, iter) = pPlayer.nextCity(iter, False)
+            (loopCity, pIter) = pPlayer.nextCity(pIter, False)
         if bDoIt:
             iProject = -1
             # Seidenstrasse: wenn Zugang zu Seide
@@ -989,11 +989,11 @@ class CvGameUtils:
                 iReligion = gc.getInfoTypeForString("RELIGION_CHRISTIANITY")
 
                 iNumCities = pPlayer.getNumCities()
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if loopCity.isHasReligion(iReligion):
                         iNumCitiesWithChristianity += 1
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
                 if iNumCitiesWithChristianity > iNumCities / 2:
                     iProject = iProjectX
@@ -1524,7 +1524,7 @@ class CvGameUtils:
                         # Weitere Cities auf Sklavenmarkt checken und Sklaven zuerst dort hinschicken
                         if iOwner != gc.getBARBARIAN_PLAYER() and len(lCities) > len(self.PAE_AI_Cities_Slavemarket):
                             if CvUtil.myRandom(10, "ai_sklavenmarkt") < 2:
-                                (loopCity, iter) = pPlayer.firstCity(False)
+                                (loopCity, pIter) = pPlayer.firstCity(False)
                                 while loopCity:
                                     if loopCity.getID() not in self.PAE_AI_Cities_Slavemarket:
                                         # PAE AI City Instance
@@ -1533,7 +1533,7 @@ class CvGameUtils:
                                             if loopCity.isHasBuilding(iBuilding2):
                                                 pUnit.getGroup().pushMoveToMission(loopCity.getX(), loopCity.getY())
                                                 return True
-                                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
                         # Sklaven bringen Unzufriedenheit und werden beruecksichtigt
                         iHappiness = pCity.happyLevel() - pCity.unhappyLevel(0)
@@ -1782,7 +1782,7 @@ class CvGameUtils:
 
                                 # Weitere Cities auf Stallungen checken und Pferd dort hinschicken
                                 if iOwner != gc.getBARBARIAN_PLAYER():
-                                    (loopCity, iter) = pPlayer.firstCity(False)
+                                    (loopCity, pIter) = pPlayer.firstCity(False)
                                     while loopCity:
                                         if loopCity.getID() not in self.PAE_AI_Cities_Horses:
 
@@ -1793,7 +1793,7 @@ class CvGameUtils:
                                                 if loopCity.isHasBuilding(iBuilding2):
                                                     pUnit.getGroup().pushMoveToMission(loopCity.getX(), loopCity.getY())
                                                     return True
-                                        (loopCity, iter) = pPlayer.nextCity(iter, False)
+                                        (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
 
 # Auswanderer / Emigrant -> zu schwachen Staedten
@@ -2897,7 +2897,7 @@ class CvGameUtils:
 
                 iDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
                 iJungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
                         # Check plots (Klima / climate)
@@ -2923,7 +2923,7 @@ class CvGameUtils:
                                     loopCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"), 1)
                                     pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                     return True
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
     # Kamellager
     def doCamel_AI(self, pUnit):
@@ -2940,7 +2940,7 @@ class CvGameUtils:
                 lCities = PyPlayer(iOwner).getCityList()
                 iDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
 
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
                             # Check plots (Klima / climate)
@@ -2964,7 +2964,7 @@ class CvGameUtils:
                                     loopCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE"), 1)
                                     pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                     return True
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
     # Inquisitor -------------------
     def doInquisitorCore_AI(self, pUnit):
@@ -3023,7 +3023,7 @@ class CvGameUtils:
         if pUnitGroup.getMissionType(0) != 0:
             iOwner = pUnit.getOwner()
             pOwner = gc.getPlayer(iOwner)
-            (loopCity, iter) = pOwner.firstCity(False)
+            (loopCity, pIter) = pOwner.firstCity(False)
 
             pSeekCity = None
             iSeek = 0
@@ -3033,7 +3033,7 @@ class CvGameUtils:
                 if iNum <= iSeek or iNum == 0:
                     pSeekCity = loopCity
                     iSeek = iNum
-                (loopCity, iter) = pOwner.nextCity(iter, False)
+                (loopCity, pIter) = pOwner.nextCity(pIter, False)
 
             # PAE Better AI soll direkt ansiedeln
             if pSeekCity is not None and not pSeekCity.isNone():
@@ -3073,13 +3073,13 @@ class CvGameUtils:
                         pSeekCity = None
                         iSeek = 0
 
-                        (pCity, iter) = pOwner.firstCity(False)
+                        (pCity, pIter) = pOwner.firstCity(False)
                         while pCity:
                             iNum = pCity.getFreeSpecialistCount(19) # SPECIALIST_RESERVIST
                             if iNum <= iSeek or iNum == 0:
                                 pSeekCity = pCity
                                 iSeek = iNum
-                            (pCity, iter) = pOwner.nextCity(iter, False)
+                            (pCity, pIter) = pOwner.nextCity(pIter, False)
 
                         # PAE Better AI soll direkt ansiedeln - rausgegeben
                         if pSeekCity is not None and not pSeekCity.isNone():
@@ -3144,11 +3144,11 @@ class CvGameUtils:
                         iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_NAVI")
                         break
             if iBuilding != -1:
-                (loopCity, iter) = pPlayer.firstCity(False)
+                (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(iBuilding):
                         if iPromo != gc.getInfoTypeForString("PROMOTION_NAVIGATION4") or loopCity.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
                             loopCity.setNumRealBuilding(iBuilding, 1)
                             pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                             return True
-                    (loopCity, iter) = pPlayer.nextCity(iter, False)
+                    (loopCity, pIter) = pPlayer.nextCity(pIter, False)

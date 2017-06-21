@@ -30,7 +30,7 @@ Setup:
 3. Start Civ4 and load a game.
 
 4. Type
-     'python Cyconsole [port]' 
+     'python Pyconsole [port]' 
    into a local terminal window.  
 
 5. Run 'test' in the new subshell to

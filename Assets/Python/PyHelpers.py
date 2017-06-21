@@ -257,11 +257,11 @@ class PyPlayer:
     def getUnitList(self):
         ' UnitList - All of the players alive units '
         lUnit = []
-        (loopUnit, iter) = self.player.firstUnit(false)
+        (loopUnit, pIter) = self.player.firstUnit(false)
         while( loopUnit ):
             if ( not loopUnit.isDead() ): #is the unit alive and valid?
                 lUnit.append(loopUnit) #add unit instance to list
-            (loopUnit, iter) = self.player.nextUnit(iter, false)
+            (loopUnit, pIter) = self.player.nextUnit(pIter, false)
         return lUnit
 
     def getNumUnits(self):
@@ -315,12 +315,12 @@ class PyPlayer:
     def getCityList(self):
         ' PyCitylist - list of PyCity player owns '
         lCity = []
-        (loopCity, iter) = self.player.firstCity(false)
+        (loopCity, pIter) = self.player.firstCity(false)
         while(loopCity):
             if not loopCity.isNone() and loopCity.getOwner() == self.getID(): #only valid cities
                 city = PyCity( self.getID(), loopCity.getID() )
                 lCity.append(city)
-            (loopCity, iter) = self.player.nextCity(iter, False)
+            (loopCity, pIter) = self.player.nextCity(pIter, False)
         return lCity
 
     def getNumCities(self):

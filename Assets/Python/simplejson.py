@@ -362,7 +362,7 @@ class JSONEncoder(object):
             
             def default(self, o):
                 try:
-                    iterable = iter(o)
+                    iterable = pIter(o)
                 except TypeError:
                     pass
                 else:

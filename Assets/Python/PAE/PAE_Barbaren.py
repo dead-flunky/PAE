@@ -2,7 +2,7 @@
 
 ### Imports
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
 import CvUtil
 import PyHelpers
 ### Defines
@@ -34,6 +34,7 @@ def setFortDefence(pPlot):
     # inits
     iBarbPlayer = gc.getBARBARIAN_PLAYER()
     pBarbPlayer = gc.getPlayer(iBarbPlayer)
+    eCiv = gc.getCivilizationInfo(pBarbPlayer.getCivilizationType())
 
     iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS") # Moves -1
     iPromo2 = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2") # Moves -2
@@ -43,23 +44,25 @@ def setFortDefence(pPlot):
         iAnz += 2
 
     # Einheit herausfinden
-    if pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_REFLEX_ARCHER"), 0, 0):
-        iUnit = gc.getInfoTypeForString("UNIT_REFLEX_ARCHER")
-    elif pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER"), 0, 0):
-        iUnit = gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-    elif pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_ARCHER"), 0, 0):
-        iUnit = gc.getInfoTypeForString("UNIT_ARCHER")
-    else:
-        iUnit = gc.getInfoTypeForString("UNIT_LIGHT_ARCHER")
-
-    # Einheit setzen
-    for _ in range(iAnz):
-        pUnit = pBarbPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
-        if pUnit.getMoves() > 1:
-            pUnit.setHasPromotion(iPromo2, True)
-        else:
-            pUnit.setHasPromotion(iPromo, True)
-        pUnit.finishMoves()
+    lTempUnit = [
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARCHER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"))
+    ]
+    iUnit = -1
+    for iUnit in lTempUnit:
+        if pBarbPlayer.canTrain(iUnit, 0, 0):
+            break
+    if iUnit != -1:
+        # Einheit setzen
+        for _ in range(iAnz):
+            pUnit = pBarbPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.UNITAI_CITY_DEFENSE, DirectionTypes.DIRECTION_SOUTH)
+            if pUnit.getMoves() > 1:
+                pUnit.setHasPromotion(iPromo2, True)
+            else:
+                pUnit.setHasPromotion(iPromo, True)
+            pUnit.finishMoves()
 
 # Barbarische Einheit erzeugen
 def createBarbUnit(pPlot):
@@ -68,6 +71,7 @@ def createBarbUnit(pPlot):
 
     iBarbPlayer = gc.getBARBARIAN_PLAYER()
     pBarbPlayer = gc.getPlayer(iBarbPlayer)
+    eCiv = gc.getCivilizationInfo(pBarbPlayer.getCivilizationType())
 
     iAnz = 1
     if bRageBarbs:
@@ -76,10 +80,10 @@ def createBarbUnit(pPlot):
     lUnits = []
     # Bogen
     lTempUnit = [
-        gc.getInfoTypeForString("UNIT_REFLEX_ARCHER"),
-        gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER"),
-        gc.getInfoTypeForString("UNIT_ARCHER"),
-        gc.getInfoTypeForString("UNIT_LIGHT_ARCHER")
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARCHER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNIT_LIGHT_ARCHER"))
     ]
     iUnit = -1
     for iUnit in lTempUnit:
@@ -90,8 +94,8 @@ def createBarbUnit(pPlot):
 
     # Speer
     lTempUnit = [
-        gc.getInfoTypeForString("UNIT_SPEARMAN"),
-        gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN")
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SPEARMAN")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_LIGHT_SPEARMAN"))
     ]
     for iUnit in lTempUnit:
         if pBarbPlayer.canTrain(iUnit, 0, 0):
@@ -100,10 +104,10 @@ def createBarbUnit(pPlot):
 
     # Axt
     lTempUnit = [
-        gc.getInfoTypeForString("UNIT_WURFAXT"),
-        gc.getInfoTypeForString("UNIT_AXEMAN2"),
-        gc.getInfoTypeForString("UNIT_AXEMAN"),
-        gc.getInfoTypeForString("UNIT_AXEWARRIOR")
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_WURFAXT")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_AXEMAN2")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_AXEMAN")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_AXEWARRIOR"))
     ]
     for iUnit in lTempUnit:
         if pBarbPlayer.canTrain(iUnit, 0, 0):
@@ -112,35 +116,30 @@ def createBarbUnit(pPlot):
 
     # Schwert
     lTempUnit = [
-        gc.getInfoTypeForString("UNIT_SWORDSMAN"),
-        gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"),
-        gc.getInfoTypeForString("UNIT_KURZSCHWERT")
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SWORDSMAN")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_SCHILDTRAEGER")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_KURZSCHWERT"))
     ]
     for iUnit in lTempUnit:
         if pBarbPlayer.canTrain(iUnit, 0, 0):
             lUnits.append(iUnit)
             break
-
-    if pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"), 0, 0):
-        lUnits.append(gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"))
-
 
     # Reiter
     lTempUnit = [
-        gc.getInfoTypeForString("UNIT_CATAPHRACT"),
-        gc.getInfoTypeForString("UNIT_HORSEMAN_LANCIER"),
-        gc.getInfoTypeForString("UNIT_HORSEMAN_SKYTHEN"),
-        gc.getInfoTypeForString("UNIT_HORSEMAN")
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_CATAPHRACT")),
+        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_HORSEMAN"))
     ]
     for iUnit in lTempUnit:
         if pBarbPlayer.canTrain(iUnit, 0, 0):
             lUnits.append(iUnit)
             break
-
-    if pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"), 0, 0):
-        lUnits.append(gc.getInfoTypeForString("UNIT_HORSE_ARCHER"))
-    if pBarbPlayer.canTrain(gc.getInfoTypeForString("UNIT_CLIBANARII"), 0, 0):
-        lUnits.append(gc.getInfoTypeForString("UNIT_CLIBANARII"))
+    iUnit = eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER"))
+    if pBarbPlayer.canTrain(iUnit, 0, 0):
+        lUnits.append(iUnit)
+    iUnit = eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_CLIBANARII"))
+    if pBarbPlayer.canTrain(iUnit, 0, 0):
+        lUnits.append(iUnit)
 
     lUnitAIs = [UnitAITypes.UNITAI_ATTACK, UnitAITypes.UNITAI_PILLAGE, UnitAITypes.UNITAI_ATTACK_CITY_LEMMING]
     # Einheit setzen
@@ -154,6 +153,7 @@ def createBarbUnit(pPlot):
 # ------ Camp/Kriegslager Einheit setzen (PAE V Patch 4)
 def createCampUnit(iPlayer):
     pPlayer = gc.getPlayer(iPlayer)
+    eCiv = gc.getCivilizationInfo(pPlayer.getCivilizationType())
 
     if not pPlayer.isAlive():
         return
@@ -171,7 +171,6 @@ def createCampUnit(iPlayer):
         lUnits = PyPlayer(pPlayer.getID()).getUnitsOfType(eCamp)
         for pUnit in lUnits:
             if pUnit is not None and not pUnit.isNone():
-
                 #pUnit.NotifyEntity(MissionTypes.MISSION_FOUND)
                 pPlot = pUnit.plot()
                 iUnit = -1

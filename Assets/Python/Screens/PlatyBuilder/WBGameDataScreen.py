@@ -394,12 +394,12 @@ class WBGameDataScreen:
             for iPlayerX in xrange(gc.getMAX_CIV_PLAYERS()):
                 pPlayerX = gc.getPlayer(iPlayerX)
                 if pPlayerX.isHuman():
-                    (loopCity, iter) = pPlayerX.firstCity(false)
+                    (loopCity, pIter) = pPlayerX.firstCity(false)
                     while loopCity:
                         if not loopCity.isNone() and loopCity.getOwner() == pPlayerX.getID(): #only valid cities
                             if not loopCity.isCapital():
                                 loopCity.kill()
-                        (loopCity, iter) = pPlayerX.nextCity(iter, false)
+                        (loopCity, pIter) = pPlayerX.nextCity(pIter, false)
         elif iGameOption == GameOptionTypes.GAMEOPTION_NO_BARBARIANS and CyGame().isOption(iGameOption):
             pPlayerBarb = gc.getPlayer(gc.getBARBARIAN_PLAYER ())
             pPlayerBarb.killCities()
