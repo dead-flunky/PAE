@@ -251,7 +251,7 @@ def _unroll():
 
     wl = []
     for wt in WaterTypes:
-        WaterList.extend(wt[1])
+        wl.extend(wt[1])
 
     return (dl, wl)
 
