@@ -309,7 +309,7 @@ def stackDoTurn(iPlayer, iGameTurn):
             for loopUnit in lHealer:
                 if iMounted <= 0 and iMelee <= 0:
                     break
-                (iSupplyValue, _) = getSupply(loopUnit)
+                iSupplyValue = getSupply(loopUnit)
 
                 # ***TEST***
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Supply Unit init "+str(loopUnit.getID()),iSupplyValue)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -327,7 +327,7 @@ def stackDoTurn(iPlayer, iGameTurn):
                     else:
                         iSupplyValue -= iMounted
                         if iSupplyValue < 0:
-                            iMounted = -iSupplyValue
+                            iMounted = (-1)*iSupplyValue
                             iSupplyValue = 0
                         else:
                             iMounted = 0
@@ -335,7 +335,7 @@ def stackDoTurn(iPlayer, iGameTurn):
                     # Melee Units
                     iSupplyValue -= iMelee
                     if iSupplyValue < 0:
-                        iMelee = -iSupplyValue
+                        iMelee = (-1)*iSupplyValue
                         iSupplyValue = 0
                     else:
                         iMelee = 0
@@ -2222,7 +2222,7 @@ def unsettledSlaves(iPlayer):
         if pPlot.getTerrainType() != gc.getInfoTypeForString("TERRAIN_OCEAN"):
             iChance = 8
             # Civic that increase rebelling
-            if gc.getPlayer(iPlayer).isCivic(17):
+            if pPlayer.isCivic(gc.getInfoTypeForString("CIVIC_VOELKERRECHT")):
                 iChance += 4
             # Military units decrease odds
             if pPlot.getNumDefenders(pUnit.getOwner()) > 0:
@@ -2307,11 +2307,12 @@ def copyName(NewUnit, iUnitType, sUnitName):
         NewUnit.setName(sUnitName)
 
 def initSupply(pUnit):
-    (_, iMaxSupply) = getSupply(pUnit)
+    iMaxSupply = getMaxSupply(pUnit)
     setSupply(pUnit,iMaxSupply)
 
 def fillSupply(pUnit, iChange):
-    (iCurrentSupply, iMaxSupply) = getSupply(pUnit)
+    iMaxSupply = getMaxSupply(pUnit)
+    iCurrentSupply = getSupply(pUnit)
     if iCurrentSupply != iMaxSupply:
         if iCurrentSupply + iChange > iMaxSupply:
             iChange -= (iMaxSupply - iCurrentSupply)
@@ -2327,6 +2328,17 @@ def setSupply(pUnit,iValue):
     CvUtil.addScriptData(pUnit,"s",iValue)
 
 def getSupply(pUnit):
+    iMaxSupply = getMaxSupply(pUnit)
+
+    # kein Eintrag == Fabrikneu
+    iCurrentSupply = CvUtil.getScriptData(pUnit, ["s"], iMaxSupply)
+    if iCurrentSupply > iMaxSupply:
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply is bogus",iCurrentSupply)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        setSupply(pUnit, iMaxSupply)
+        iCurrentSupply = iMaxSupply
+    return iCurrentSupply
+
+def getMaxSupply(pUnit):
     eDruide = gc.getInfoTypeForString("UNIT_DRUIDE")
     eBrahmane = gc.getInfoTypeForString("UNIT_BRAHMANE")
     # Maximalwert herausfinden
@@ -2337,11 +2349,4 @@ def getSupply(pUnit):
     # Trait Strategist / Stratege: +50% Kapazitaet / +50% capacity
     if gc.getPlayer(pUnit.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_STRATEGE")):
         iMaxSupply += int(iMaxSupply/2)
-
-    # kein Eintrag == Fabrikneu
-    iCurrentSupply = CvUtil.getScriptData(pUnit, ["s"], iMaxSupply)
-    if iCurrentSupply > iMaxSupply:
-        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Current Supply is bogus",iCurrentSupply)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        setSupply(pUnit, iMaxSupply)
-        iCurrentSupply = iMaxSupply
-    return (iCurrentSupply, iMaxSupply)
+    return iMaxSupply

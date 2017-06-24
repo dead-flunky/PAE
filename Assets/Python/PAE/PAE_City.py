@@ -1407,7 +1407,7 @@ def doUnitSupply(pCity, iPlayer):
             pLoopUnit = pCityPlot.getUnit(i)
             if pLoopUnit.getUnitCombatType() != -1:
                 if pLoopUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
-                    (iExtraSupply, _) = PAE_Unit.getSupply(pLoopUnit)
+                    iExtraSupply = PAE_Unit.getSupply(pLoopUnit)
                     if iExtraSupply <= iMaintainUnits:
                         iMaintainUnits -= iExtraSupply
                         iExtraSupply = 0
@@ -2076,10 +2076,15 @@ def doPlagueEffects(pCity):
     iPopChange = 1 + CvUtil.myRandom(2)
 
     # Slaves and Glads
-    iCityGlads = pCity.getFreeSpecialistCount(15)  # SPECIALIST_GLADIATOR = 16
-    iCitySlavesHaus = pCity.getFreeSpecialistCount(16)  # SPECIALIST_SLAVE = 15
-    iCitySlavesFood = pCity.getFreeSpecialistCount(17)  # SPECIALIST_SLAVE_FOOD = 17
-    iCitySlavesProd = pCity.getFreeSpecialistCount(18)  # SPECIALIST_SLAVE_PROD = 18
+    eSpecialistGlad = gc.getInfoTypeForString("SPECIALIST_GLADIATOR")
+    eSpecialistHouse = gc.getInfoTypeForString("SPECIALIST_SLAVE")
+    eSpecialistFood = gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD")
+    eSpecialistProd = gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD")
+
+    iCityGlads = pCity.getFreeSpecialistCount(eSpecialistGlad)
+    iCitySlavesHaus = pCity.getFreeSpecialistCount(eSpecialistHouse)
+    iCitySlavesFood = pCity.getFreeSpecialistCount(eSpecialistFood)
+    iCitySlavesProd = pCity.getFreeSpecialistCount(eSpecialistProd)
 
     # Pop
     iNewPop = max(1, iOldPop - iPopChange)
@@ -2096,22 +2101,22 @@ def doPlagueEffects(pCity):
     iSlaves = iCityGlads + iCitySlavesHaus + iCitySlavesFood + iCitySlavesProd
     while iSlaves > 0 and iPopChange > 0:
         if iCitySlavesHaus > 1:
-            pCity.changeFreeSpecialistCount(16, -1)
+            pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
             iCitySlavesHaus -= 1
             if pPlayer.isHuman():
                 CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_HAUS", (pCity.getName(),)), None, 2, None, ColorTypes(7), 0, 0, False, False)
         elif iCitySlavesFood > 0:
-            pCity.changeFreeSpecialistCount(17, -1)
+            pCity.changeFreeSpecialistCount(eSpecialistFood, -1)
             iCitySlavesFood -= 1
             if pPlayer.isHuman():
                 CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_FOOD", (pCity.getName(),)), None, 2, None, ColorTypes(7), 0, 0, False, False)
         elif iCityGlads > 0:
-            pCity.changeFreeSpecialistCount(15, -1)
+            pCity.changeFreeSpecialistCount(eSpecialistGlad, -1)
             iCityGlads -= 1
             if pPlayer.isHuman():
                 CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_GLAD", (pCity.getName(),)), None, 2, None, ColorTypes(7), 0, 0, False, False)
         elif iCitySlavesProd > 0:
-            pCity.changeFreeSpecialistCount(18, -1)
+            pCity.changeFreeSpecialistCount(eSpecialistProd, -1)
             iCitySlavesProd -= 1
             if pPlayer.isHuman():
                 CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_PROD", (pCity.getName(),)), None, 2, None, ColorTypes(7), 0, 0, False, False)
@@ -2300,14 +2305,23 @@ def doSettledSlavesAndReservists(pCity):
     pTeam = gc.getTeam(pPlayer.getTeam())
     pCityPlot = pCity.plot()
     iCityPop = pCity.getPopulation()
-    iCityGlads = pCity.getFreeSpecialistCount(15)  # SPECIALIST_GLADIATOR
-    iCitySlavesHaus = pCity.getFreeSpecialistCount(16)  # SPECIALIST_SLAVE
-    iCitySlavesFood = pCity.getFreeSpecialistCount(17)  # SPECIALIST_SLAVE_FOOD
-    iCitySlavesProd = pCity.getFreeSpecialistCount(18)  # SPECIALIST_SLAVE_PROD
+
+    eSpecialistGlad = gc.getInfoTypeForString("SPECIALIST_GLADIATOR")
+    eSpecialistHouse = gc.getInfoTypeForString("SPECIALIST_SLAVE")
+    eSpecialistFood = gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD")
+    eSpecialistProd = gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD")
+
+    eSpecialistReserve = gc.getInfoTypeForString("SPECIALIST_RESERVIST")
+    eSpecialistFreeCitizen = gc.getInfoTypeForString("SPECIALIST_CITIZEN2")
+    
+    iCityGlads = pCity.getFreeSpecialistCount(eSpecialistGlad)
+    iCitySlavesHaus = pCity.getFreeSpecialistCount(eSpecialistHouse)
+    iCitySlavesFood = pCity.getFreeSpecialistCount(eSpecialistFood)
+    iCitySlavesProd = pCity.getFreeSpecialistCount(eSpecialistProd)
     iCitySlaves = iCitySlavesHaus + iCitySlavesFood + iCitySlavesProd
     iCitySlaves2 = 0  # Unsettled Slaves in city
 
-    iCityReservists = pCity.getFreeSpecialistCount(19)  # SPECIALIST_RESERVIST
+    iCityReservists = pCity.getFreeSpecialistCount(eSpecialistReserve)
 
     # Wenn es Sklaven gibt = verschiedene Sterbensarten
     if iCitySlaves > 0 or iCityReservists > 0:
@@ -2333,7 +2347,7 @@ def doSettledSlavesAndReservists(pCity):
 
         # Reservisten
         if iTyp == 3:
-            pCity.changeFreeSpecialistCount(19, -1)
+            pCity.changeFreeSpecialistCount(eSpecialistReserve, -1)
             if pPlayer.isHuman():
                 iRand = 1 + CvUtil.myRandom(9, "Reservisten")
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DYING_RESERVIST_"+str(iRand), (pCity.getName(), "")), None, 2, ",Art/Interface/MainScreen/CityScreen/Great_Engineer.dds,Art/Interface/Buttons/Warlords_Atlas_2.dds,7,6", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
@@ -2352,7 +2366,7 @@ def doSettledSlavesAndReservists(pCity):
             # Feldsklaven
             if iTyp == 0:
                 if not bErsatz:
-                    pCity.changeFreeSpecialistCount(17, -1)
+                    pCity.changeFreeSpecialistCount(eSpecialistFood, -1)
                     iCitySlavesFood -= 1
                 if pPlayer.isHuman():
                     iRand = 1 + CvUtil.myRandom(16, "Feldsklaven")
@@ -2361,7 +2375,7 @@ def doSettledSlavesAndReservists(pCity):
             # Bergwerkssklaven
             elif iTyp == 1:
                 if not bErsatz:
-                    pCity.changeFreeSpecialistCount(18, -1)
+                    pCity.changeFreeSpecialistCount(eSpecialistProd, -1)
                     iCitySlavesProd -= 1
                 if pPlayer.isHuman():
                     iRand = 1 + CvUtil.myRandom(20, "Bergwerkssklaven")
@@ -2378,7 +2392,7 @@ def doSettledSlavesAndReservists(pCity):
                 # Dying
                 if CvUtil.myRandom(iRand, "Haussklaven1") == 0:
                     if not bErsatz:
-                        pCity.changeFreeSpecialistCount(16, -1)
+                        pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
                         iCitySlavesHaus -= 1
                     if pPlayer.isHuman():
                         iRand = 1 + CvUtil.myRandom(14, "Haussklaven2")
@@ -2386,9 +2400,9 @@ def doSettledSlavesAndReservists(pCity):
                 # Patronat
                 else:
                     bErsatz = False
-                    pCity.changeFreeSpecialistCount(16, -1)
+                    pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
                     iCitySlavesHaus -= 1
-                    pCity.changeFreeSpecialistCount(0, +1)  # SPECIALIST_CITIZEN2
+                    pCity.changeFreeSpecialistCount(eSpecialistFreeCitizen, +1)  # SPECIALIST_CITIZEN2
                     if pPlayer.isHuman():
                         iRand = 1 + CvUtil.myRandom(2, "Haussklaven3")
                         CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVES_PATRONAT_"+str(iRand), (pCity.getName(), "")), None, 2, "Art/Interface/Buttons/Units/button_slave.dds", ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
@@ -2490,24 +2504,24 @@ def doSettledSlavesAndReservists(pCity):
                         iNumRebTmp = iNumRebels
                         # Zuerst Feldsklaven
                         if iNumRebTmp >= iCitySlavesFood:
-                            pCity.setFreeSpecialistCount(17, 0)
+                            pCity.setFreeSpecialistCount(eSpecialistFood, 0)
                             iNumRebTmp -= iCitySlavesFood
                         else:
-                            pCity.changeFreeSpecialistCount(17, iNumRebTmp * (-1))
+                            pCity.changeFreeSpecialistCount(eSpecialistFood, iNumRebTmp * (-1))
                             iNumRebTmp = 0
                         # Dann Bergwerkssklaven
                         if iNumRebTmp >= iCitySlavesProd and iNumRebTmp > 0:
-                            pCity.setFreeSpecialistCount(18, 0)
+                            pCity.setFreeSpecialistCount(eSpecialistProd, 0)
                             iNumRebTmp -= iCitySlavesProd
                         else:
-                            pCity.changeFreeSpecialistCount(18, iNumRebTmp * (-1))
+                            pCity.changeFreeSpecialistCount(eSpecialistProd, iNumRebTmp * (-1))
                             iNumRebTmp = 0
                         # Der Rest Haussklaven
                         if iNumRebTmp >= iCitySlavesHaus and iNumRebTmp > 0:
-                            pCity.setFreeSpecialistCount(16, 0)
+                            pCity.setFreeSpecialistCount(eSpecialistHouse, 0)
                             # iNumRebTmp -= iCitySlavesHaus
                         else:
-                            pCity.changeFreeSpecialistCount(16, iNumRebTmp * (-1))
+                            pCity.changeFreeSpecialistCount(eSpecialistHouse, iNumRebTmp * (-1))
                             # iNumRebTmp = 0
 
                     # GLADIATOR REVOLT (GLADIATORENAUFSTAND)
@@ -2515,7 +2529,7 @@ def doSettledSlavesAndReservists(pCity):
                         iUnitType = gc.getInfoTypeForString("UNIT_GLADIATOR")
                         # Settled gladiators
                         iNumRebels = CvUtil.myRandom(iCityGlads - 1, "Settled gladiators")+1
-                        pCity.changeFreeSpecialistCount(15, iNumRebels * (-1))
+                        pCity.changeFreeSpecialistCount(eSpecialistGlad, iNumRebels * (-1))
 
                     iNumRebels += iNumRebels2
 
@@ -2573,59 +2587,54 @@ def doSettledSlavesAndReservists(pCity):
                         CyInterface().addMessage(iLoopPlayer, True, 8, CyTranslator().getText("TXT_KEY_REVOLT_CHRISTIANS", (pCity.getName(), pPlayer.getCivilizationAdjective(1))), None, InterfaceMessageTypes.MESSAGE_TYPE_INFO, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(iColor), pCity.getX(), pCity.getY(), True, True)
 
                 # 1 settled Slave (Slave or gladiator) gets killed
-                bChristSlaves = False
-                bChristGlads = False
-                if iCitySlaves > 0 and iCityGlads > 0:
-                    iRand = CvUtil.myRandom(2, "1 settled Slave (Slave or gladiator) gets killed")
-                    if iRand == 0:
-                        bChristSlaves = True
+                if iCitySlaves > 0 or iCityGlads > 0:
+                    bChristSlaves = False
+                    if iCitySlaves > 0 and iCityGlads > 0:
+                        iRand = CvUtil.myRandom(2, "1 settled Slave (Slave or gladiator) gets killed")
+                        bChristSlaves = (iRand == 0) # 0 = Slaves, 1 = Glads
                     else:
-                        bChristGlads = True
-                elif iCitySlaves > 0:
-                    bChristSlaves = True
-                elif iCityGlads > 0:
-                    bChristGlads = True
+                        bChristSlaves = (iCitySlaves > 0) # either slaves or glads
 
-                if bChristSlaves:
-                    if iCitySlavesHaus > 0 and iCitySlavesFood > 0 and iCitySlavesProd > 0:
-                        iRand = CvUtil.myRandom(3, "bChristSlaves")
-                        if iRand == 1:
-                            pCity.changeFreeSpecialistCount(17, -1)
-                        elif iRand == 2:
-                            pCity.changeFreeSpecialistCount(18, -1)
+                    if bChristSlaves:
+                        if iCitySlavesHaus > 0 and iCitySlavesFood > 0 and iCitySlavesProd > 0:
+                            iRand = CvUtil.myRandom(3, "bChristSlaves")
+                            if iRand == 1:
+                                pCity.changeFreeSpecialistCount(eSpecialistFood, -1)
+                            elif iRand == 2:
+                                pCity.changeFreeSpecialistCount(eSpecialistProd, -1)
+                            else:
+                                pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
+                        elif iCitySlavesHaus > 0 and iCitySlavesFood > 0:
+                            iRand = CvUtil.myRandom(2, "bChristSlaves2")
+                            if iRand == 1:
+                                pCity.changeFreeSpecialistCount(eSpecialistFood, -1)
+                            else:
+                                pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
+                        elif iCitySlavesHaus > 0 and iCitySlavesProd > 0:
+                            iRand = CvUtil.myRandom(2, "bChristSlaves3")
+                            if iRand == 1:
+                                pCity.changeFreeSpecialistCount(eSpecialistProd, -1)
+                            else:
+                                pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
+                        elif iCitySlavesFood > 0 and iCitySlavesProd > 0:
+                            iRand = CvUtil.myRandom(2, "bChristSlaves4")
+                            if iRand == 1:
+                                pCity.changeFreeSpecialistCount(eSpecialistFood, -1)
+                            else:
+                                pCity.changeFreeSpecialistCount(eSpecialistProd, -1)
+                        elif iCitySlavesFood > 0:
+                            pCity.changeFreeSpecialistCount(eSpecialistFood, -1)
+                        elif iCitySlavesProd > 0:
+                            pCity.changeFreeSpecialistCount(eSpecialistProd, -1)
                         else:
-                            pCity.changeFreeSpecialistCount(16, -1)
-                    elif iCitySlavesHaus > 0 and iCitySlavesFood > 0:
-                        iRand = CvUtil.myRandom(2, "bChristSlaves2")
-                        if iRand == 1:
-                            pCity.changeFreeSpecialistCount(17, -1)
-                        else:
-                            pCity.changeFreeSpecialistCount(16, -1)
-                    elif iCitySlavesHaus > 0 and iCitySlavesProd > 0:
-                        iRand = CvUtil.myRandom(2, "bChristSlaves3")
-                        if iRand == 1:
-                            pCity.changeFreeSpecialistCount(18, -1)
-                        else:
-                            pCity.changeFreeSpecialistCount(16, -1)
-                    elif iCitySlavesFood > 0 and iCitySlavesProd > 0:
-                        iRand = CvUtil.myRandom(2, "bChristSlaves4")
-                        if iRand == 1:
-                            pCity.changeFreeSpecialistCount(17, -1)
-                        else:
-                            pCity.changeFreeSpecialistCount(18, -1)
-                    elif iCitySlavesFood > 0:
-                        pCity.changeFreeSpecialistCount(17, -1)
-                    elif iCitySlavesProd > 0:
-                        pCity.changeFreeSpecialistCount(18, -1)
+                            pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
+
+                        if pPlayer.isHuman():
+                            CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_REVOLT_CHRISTIANS_1_SLAVE", (pCity.getName(), )), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
                     else:
-                        pCity.changeFreeSpecialistCount(16, -1)
-
-                    if pPlayer.isHuman():
-                        CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_REVOLT_CHRISTIANS_1_SLAVE", (pCity.getName(), )), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
-                elif bChristGlads:
-                    pCity.changeFreeSpecialistCount(15, -1)
-                    if pPlayer.isHuman():
-                        CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_REVOLT_CHRISTIANS_1_GLAD", (pCity.getName(), )), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
+                        pCity.changeFreeSpecialistCount(eSpecialistGlad, -1)
+                        if pPlayer.isHuman():
+                            CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_REVOLT_CHRISTIANS_1_GLAD", (pCity.getName(), )), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(7), pCity.getX(), pCity.getY(), True, True)
 
     # Christentum kommt in die Stadt 5%
     if iCitySlaves > 0 and not bRevolt:
