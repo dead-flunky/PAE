@@ -72,6 +72,7 @@ else:
 class Client:
     def __init__(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     def connect(self, tAddrPort):
         print("Connect to %s" % str(tAddrPort))
@@ -86,12 +87,10 @@ class Client:
 
     def send(self, msg, bRecv=True):
         self.s.send(msg + EOF)
-        # self.s.send(EOF)
         ret = ""
         if bRecv:
             recv = self.s.recv(BUFFER_SIZE)
             while len(recv) == BUFFER_SIZE and recv[-1] != EOF:
-                sys.stdout.write(recv)
                 ret += recv
                 recv = self.s.recv(BUFFER_SIZE)
 
@@ -99,6 +98,19 @@ class Client:
             # sys.stdout.write(recv)
             ret += recv
         return ret
+
+def caster(v):
+    """ Returns casting function for a few base types. """
+    if isinstance(v, int):
+        return "int"
+    if isinstance(v, float):
+        return "float"
+    if isinstance(v, str):
+        return "str"
+    if isinstance(v, unicode):
+        return "unicode"
+    print("To caster defined for %s" % (str(type(v))))
+    return None
 
 class Civ4Shell(cmd.Cmd):
     intro = """
@@ -117,6 +129,7 @@ class Civ4Shell(cmd.Cmd):
         self.client = None
         self.server = None
         self.bImport_doc = False
+        self.latest_save_list = None
 
         # Overwrite address
         self.remote_server_adr = (
@@ -124,7 +137,7 @@ class Civ4Shell(cmd.Cmd):
                         kwargs.get("port", self.remote_server_adr[1]))
         print(kwargs)
         print(self.remote_server_adr)
-        # Start client 
+        # Start client
         self.init()
 
     def init(self):
@@ -135,7 +148,7 @@ class Civ4Shell(cmd.Cmd):
         try:
             self.client.connect(self.remote_server_adr)
         except ValueError:
-            warn("Connectiong failed. Invalid port?")
+            warn("Connecting failed. Invalid port?")
 
         """
         # Server
@@ -175,7 +188,7 @@ class Civ4Shell(cmd.Cmd):
         """Close Civ4 shell and exit:          bye
         """
         warn('Quitting Civ4 shell.')
-        # self.send("Q:", True)  # Inform server that client quits.
+        # self.send("q:", True)  # Inform server that client quits.
         self.close()
         return True
 
@@ -188,7 +201,7 @@ class Civ4Shell(cmd.Cmd):
         self.default("print('Num Units: %i' % gc.getPlayer(0).getNumUnits())")
         print(" Add unit (Player 0):")
         # Attention pydoc.doc(CyPlayer.initUnit)) returns wrong declaration!
-        self.default("gc.getPlayer(0).initUnit(1, 1, 1," 
+        self.default("gc.getPlayer(0).initUnit(1, 1, 1,"
                 "UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)")
         self.default("print('Num Units: %i' % gc.getPlayer(0).getNumUnits())")
 
@@ -205,23 +218,269 @@ class Civ4Shell(cmd.Cmd):
         print(d)
         self.default(d)
 
+    def do_config(self, args):
+        """Show, save, reload or edit Pitboss configuration (requires PB Mod).
+
+        Assumed maximal nesting depth of the json structure: 2.
+        Examples to edit key:
+            'config edit noGui=1'
+            'config edit adminpw=the_password'
+            'config edit shell/port=3334'
+          Note that in example the prefix 'shell/' is required because
+            the key 'port' is globally not unique.
+        """
+
+        args = args.strip().split(" ")
+        if len(args) > 0 and args[0] == "show":
+            settings = self.getPbSettings()
+            # Get some string width, firstly.
+            w = 20
+            for (k, v) in settings.items():
+                if isinstance(v, dict):
+                    for kk in v:
+                        w = max(w, len(kk)+2)
+
+                w = max(w, len(k))
+            w = [w+1, w+1-2]  # +1 for ':' and -2 for indent.
+
+            print("==================================")
+            for (k, v) in settings.items():
+                if isinstance(v, dict):
+                    print("%s:" % (k,))
+                    for kk in v:
+                        print("  %*.*s  %s" % (-w[1], w[1], kk + ":", str(v[kk])))
+
+                else:
+                    print("%*.*s  %s" % (-w[0], w[0], k + ":", str(v)))
+            print("==================================")
+
+        elif len(args) > 0 and args[0] == "save":
+            d = "Webserver.savePbSettings()"
+            self.default(d)
+        elif len(args) > 0 and args[0] == "reload":
+            # Nullify settings dict to force reload of file.
+            d = "Webserver.pbSettings = None; Webserver.getPbSettings()"
+            self.default(d)
+        elif(len(args) > 1 and args[0] == "edit"
+             and "=" in args[1]):
+            conf_key = args[1].split("=")[0].split("/")  # ['b'] or ['a', 'b']
+            new_value = args[1].split("=")[1]
+            settings = self.getPbSettings()
+            template_edit1 = "Webserver.getPbSettings()['%s'] = %s('%s');"
+            template_edit2 = "Webserver.getPbSettings()['%s']['%s'] = %s('%s');"
+            template_del1 = "Webserver.getPbSettings().pop('%s');"
+            template_del2 = "Webserver.getPbSettings()['%s'].pop('%s');"
+
+            changes = []
+            for (k, v) in settings.items():
+                if isinstance(v, dict):
+                    if len(conf_key) > 1 and not conf_key[0] == k:
+                        continue
+
+                    for (kk, vv) in v.items():
+                        if kk == conf_key[-1]:
+                            if new_value:
+                                changes.append(template_edit2 % (
+                                    k, kk, caster(vv), new_value))
+                            else:
+                                changes.append(template_del2 % (k, kk))
+
+                else:
+                    if k == conf_key[0] and caster(v):
+                        if new_value:
+                            changes.append(template_edit1 % (
+                                k, caster(v), new_value))
+                        else:
+                            changes.append(template_del1 % (k,))
+
+                        break
+
+            if len(changes) == 1:
+                print(changes)
+                self.send("p:" + changes[0])
+            elif len(changes) > 1:
+                print("Key not unique: %s" % ("/".join(conf_key)))
+            else:
+                print("No editable key: %s" % ("/".join(conf_key)))
+
+        else:
+            print("Usage: config [show|reload|save|edit [key]=[value]]")
+
+
+    def do_save(self, arg):
+        """Create CivBeyondSwordSave.
+
+        Example usage: 'save MySave'
+
+        The path is relative to [Altroot dir]\\Saves\\multi,
+        if gc.getAltrootDir() function is available.
+
+        Otherwise, it will be paced below the game
+        directory [Folder of executable]\\Saves\\multi.
+        """
+        if len(arg) > 0:
+            saveName = "%s.CivBeyondSwordSave" % (arg.split(" ")[0])
+            saveName = saveName.replace(".CivBeyondSwordSave.CivBeyondSwordSave",
+                             ".CivBeyondSwordSave")
+
+            # Path relative to game dir, but not root/altroot.
+            filepath = "\\".join(["Saves", "multi", saveName])
+
+            mode = str(self.send("M:"))
+            if mode == "pb_wizard":
+                warn("PB server is in startup phase and no game is loaded."
+                      "\nCurrent mode is '{0}' ".format(mode))
+                return
+
+            d = """\
+try:
+  abs_path = gc.getAltrootDir() + "\\\\"
+except AttributeError:
+  abs_path = ""
+
+fpath = \"%s%s\" % (abs_path, \"{0}\") 
+if CyPitboss().save(fpath):
+  print(\"Game saved as %s\" % (fpath,))
+else:
+  print(\"Save failed\")
+""".format(filepath)
+            # print(d)
+            self.default(d)
+
+        else:
+            warn("No file name given.")
+
+    def do_pb_start(self, arg):
+        """ Send command to PbWizard to start game and load PbAdmin window.
+        """
+
+        mode = str(self.send("M:"))
+        if not mode == "pb_wizard":
+            warn("PB server is not in startup phase and can't load save."
+                  "\nDoes the game already run?\n"
+                  "Current mode is '{0}' ".format(mode))
+            return
+
+        #self.send("p:"+"self.shell_loop=False")
+        self.send("q:")  # Quit loop which blockades the startup process
+
+        # The backend will re-create the socket and we had to
+        # reflect/respect it.
+        self.close()
+        print("Wait a few seconds...")
+        sleep(10)
+        print("...and open socket again.")
+        self.init()
+
+    def do_pb_quit(self, arg):
+        """ Send quit command (and probably restarts the server).
+        """
+        # self.send("p:PB.quit()")
+        self.send("Q:")
+
+    def do_status(self, arg):
+        """ Return some status information.
+        
+        Should return list of player (points/gold/num units/num cities) 
+        Uptime, Mode, etc
+        TODO """
+        mode = str(self.send("M:"))
+        print("-Current mode is '{0}' ".format(mode))
+
+    def do_list(self, sArgs):
+        """ List newest available saves.
+
+            list [Pattern] [Number]
+        """
+
+        args = sArgs.split(" ")
+        if len(args) == 1:
+            # Interpret arg as number or pattern
+            try:
+                num = int(args[0])
+                pat = ".*"
+            except ValueError:
+                num = -1
+                if args[0].strip():
+                    num = -1
+                    pat = args[0]
+                else:
+                    num = 10
+                    pat = None
+        else:
+            try:
+                num = int(args[1])
+                pat = args[0]
+            except ValueError:
+                num = -1
+                pat = args[0]
+
+        saves = self.getPbSaves("*", pat, num)
+        index = 1
+        # print(saves)
+        for s in saves:
+            print("%2i - %20s | %s" %(index,
+                                    s.get("date", "date?"),
+                                    s.get("name", "name?")))
+            index += 1
+
+        self.latest_save_list = saves
+
+    def do_load(self, arg):
+        """ Load save over it's name or the index number
+        in relation to the latest list command.
+        """
+
+        try:
+            num = int(arg)
+            pat = ".*"
+        except ValueError:
+            num = -1
+            pat = arg
+
+        if not self.latest_save_list:
+            # Fetch new list
+            self.do_list("%s %i" % (pat, num))
+
+        dSel = None
+        if num > -1:
+            l = len(self.latest_save_list)
+            if l > num-1:
+                dSel = self.latest_save_list[num-1]
+            else:
+                warn("Latest list of saves only contain %i elements" % (l,))
+        else:
+            reg = re.compile(pat)
+            for s in self.latest_save_list():
+                if reg.search(s.get("name", "name?")):
+                    dSel = s
+                    break
+
+        if dSel:
+            name = dSel.get("name", "name?")
+            print("Select %s" % (name,))
+            self.do_config("edit save/filename=%s" % (name,))
+
+    def do_pause(self, arg):
+        """ Toggle pause. """
+
+        # See Webserver.py for details
+        d = """\
+if not gc.getGame().isPaused():
+    gc.sendPause(0)
+    print(1)
+else:
+    gc.getGame().setPausePlayer(-1)
+    gc.sendChat("RemovePause", ChatTargetTypes.CHATTARGET_ALL)
+    print(0)
+"""
+        result = str(self.send("p:"+d))
+        feedback(result)
+
     def default(self, line):
         """Send input as python command"""
         result = str(self.send("P:"+line))
-        if RESULT_LINE_SPLIT is not None:
-          result = self.restrict_textwidth(
-                  result,
-                  RESULT_LINE_SPLIT[0],
-                  RESULT_LINE_SPLIT[1])
-
-        result_with_tabs = "%s%s%s%s" % (
-            ColorOut,
-            RESULT_LINE_PREFIX,
-            result.rstrip('\n').replace('\n', '\n' + RESULT_LINE_PREFIX),
-            ColorReset)
-        print(result_with_tabs)
-        # Restore prompt
-        sys.stdout.write("%s" % (MY_PROMPT))
+        feedback(result)
 
     '''
     def do_help(self, args):
@@ -236,7 +495,7 @@ class Civ4Shell(cmd.Cmd):
             print("================")
             print("None\n")
         elif args == "!":
-            print("TODO")
+            print("TO DO")
         else:
             cmd.Cmd.do_help(self, args)
 
@@ -298,7 +557,7 @@ class Civ4Shell(cmd.Cmd):
         if self.server is not None:
             self.server.stop()
             self.server_thread.join()
-        """    
+        """
 
     def send(self, s, bRecv=True):
         try:
@@ -308,26 +567,48 @@ class Civ4Shell(cmd.Cmd):
 
         return ""
 
-    def restrict_textwidth(self, text, max_width, prefix):
-        """ Fill in extra line breaks if destance between two newline
-        characters is to long.
-        """
-        if len(text) <= max_width:
-            return text
+    def getPbSettings(self):
+        d = "import simplejson as json; print(json.dumps(Webserver.getPbSettings()))"
+        result = str(self.send("p:"+d))
+        # print(result)
+        # Strip unwanted output (reason?!)
+        if result[0] is not "{":
+            result = result[result.find("{"):]
+        try:
+            import json
+            settings = json.loads(result)
+        except ValueError:
+            print("Can not decode settings")
+            settings = {}
 
-        posL = 0
-        while len(text) - posL > max_width:
-            posR = text.find('\n', posL, posL+max_width)
-            if posR == -1:
-                text = "%s\n%s%s" % (
-                        text[0:posL+max_width],
-                        prefix,
-                        text[posL+max_width:])
-                posL += max_width + 1 + len(prefix) + 1
-            else:
-                posL = posR+1
+        return settings
 
-        return text
+    def getPbSaves(self, pattern="*", regPattern=None, sOptNum=-1):
+        if not regPattern:
+            regPattern = ".*"
+        d = """\
+import simplejson as json
+print(json.dumps({0}'saves':Webserver.getListOfSaves('{2}','{3}', {4}){1}))
+""".format("{", "}", pattern, regPattern, sOptNum)
+
+        # print(d)
+        result = str(self.send("p:"+d))
+        if result:
+            # Strip unwanted output (reason?!)
+            if result[0] is not "{":
+                result = result[result.find("{"):]
+
+            if result[-1] is not "}":
+                result = result[:result.rfind("}")+1]
+
+        try:
+            import json
+            saves = json.loads(result)
+        except ValueError:
+            print("Can not decode list of saves.")
+            saves = {}
+
+        return saves.get("saves", [])
 
 # -----------------------------------------
 
@@ -337,6 +618,8 @@ class Completer:
     def __init__(self, completer=None, shell=None, bBind=True):
         self.prefix = None
         self.shell = shell
+
+        self.matching_words = []  # For completer
         self.completer = \
             self.complete_advanced if completer is None else completer
         if bBind:
@@ -383,6 +666,43 @@ class Completer:
 
 def warn(s):
     print(ColorWarn+s+ColorReset)
+
+def feedback(s):
+    if RESULT_LINE_SPLIT is not None:
+        s = restrict_textwidth(
+            s,
+            RESULT_LINE_SPLIT[0],
+            RESULT_LINE_SPLIT[1])
+
+    s_with_tabs = "%s%s%s%s" % (
+        ColorOut,
+        RESULT_LINE_PREFIX,
+        s.rstrip('\n').replace('\n', '\n' + RESULT_LINE_PREFIX),
+        ColorReset)
+    print(s_with_tabs)
+    # Restore prompt
+    sys.stdout.write("%s" % (MY_PROMPT))
+
+def restrict_textwidth(text, max_width, prefix):
+    """ Fill in extra line breaks if distance between two newline
+    characters is to long.
+    """
+    if len(text) <= max_width:
+        return text
+
+    posL = 0
+    while len(text) - posL > max_width:
+        posR = text.find('\n', posL, posL+max_width)
+        if posR == -1:
+            text = "%s\n%s%s" % (
+                    text[0:posL+max_width],
+                    prefix,
+                    text[posL+max_width:])
+            posL += max_width + 1 + len(prefix) + 1
+        else:
+            posL = posR+1
+
+    return text
 
 try:
     lib_dict

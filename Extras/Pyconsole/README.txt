@@ -6,7 +6,6 @@ a local TCP interface. You can send arbitary
 python commands to the running instance.
 
 Setup:
-
 1. Place Civ4ShellBackend.py into [Your mod]\Assets\Python
 
 2. Add the following lines into your CvEventManager.py:
@@ -35,4 +34,8 @@ Setup:
 
 5. Run 'test' in the new subshell to
    send a few commands to the Civ4 instance.
+
+6. (Optional/Win-Only) Install pyreadline for
+   command history, etc, https://pypi.python.org/pypi/pyreadline
+   Pip command: pip install pyreadline
 

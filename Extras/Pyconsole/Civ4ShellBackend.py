@@ -17,8 +17,12 @@ EOF = '\x04'
 class Server:
     def __init__(self, tcp_ip=TCP_IP, tcp_port=TCP_PORT):
         self.t = None
+        self.s = None
+        self.conn = None
+        self.addr = None
+        self.mode = ""
         self.code_store = list()  # Holds input for game loop thread.
-        self.output_store = list() # Holds output for polling 
+        self.output_store = list() # Holds output for polling
         self.run = False
         self.tcp_ip = tcp_ip
         self.tcp_port = tcp_port
@@ -26,16 +30,24 @@ class Server:
     def __del__(self):
         # Stop server
         self.run = False
+        self.close()
+
+    def close(self):
         if self.conn is not None:
+            # print("Closing Server...")
             self.conn.close()
             self.conn = None
+        if self.s is not None:
+            self.s.close()
+            self.s = None
 
     def start(self):
+        self.run = True
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.s.bind((self.tcp_ip, self.tcp_port))
         self.s.listen(1)
         self.conn, self.addr = self.s.accept()
-        self.run = True
 
         while self.run:
             data = self.conn.recv(BUFFER_SIZE)
@@ -45,7 +57,8 @@ class Server:
                 continue
 
             while data[-1] != EOF:
-                if not data: break
+                if not data:
+                    break
                 data += self.conn.recv(BUFFER_SIZE)
 
             data = data.rstrip(EOF)
@@ -58,40 +71,51 @@ class Server:
             if len(self.output_store) > 0:
                 self.conn.send("\n".join(self.output_store) + EOF)
                 self.output_store[:] = []
-            else:
+            elif self.run:
                 # Client expect message
                 self.conn.send(EOF)
 
-        if self.conn is not None:
-            self.conn.close()
+        self.close()
 
     def init(self):
         """ Should be called by game loop thread. """
         if self.t is None:
-          self.t = Thread(target=self.start)
-          self.t.setDaemon(True)
-          self.t.start()
+            self.t = Thread(target=self.start)
+            self.t.setDaemon(True)
+            self.t.start()
 
     def update(self, glob=globals(), loc=locals()):
         """ Should be called by game loop thread. """
 
         while len(self.code_store) > 0:
             data = self.code_store.pop(0)
-            if data[0:2] == "P:":  # Call code
+            if data[0:2].lower() == "p:":  # Call code
                 # Execute input
                 (out, err) = self.run_code(data[2:], glob, loc)
 
-                # Propagate stdout and stderr
-                if len(err) > 0:
-                    err = '\n' + err
-                self.output_store.append("%s%s%c" % ( out, err, EOF))
-            elif data[0:2] == "Q:":  # Quit
+                if data[0:2] == "P:":
+                    # Propagate stdout and stderr
+                    if len(err) > 0:
+                        err = '\n' + err
+                    self.output_store.append("%s%s%c" % (out, err, EOF))
+                else:  # Without stderr
+                    self.output_store.append("%s%c" % (out, EOF))
+            elif data[0:2] == "q:":  # Quit shell
+                self.run = False
                 return False
+            elif data[0:2] == "Q:":  # Quit PB_Server
+                q = "if gc.getGame().isPitbossHost(): PB.quit();"
+                self.output_store.append("%s%c" % (q, EOF))
+                sleep(0.5)
+                self.run = False
+                return False
+            elif data[0:2] == "M:":
+                self.output_store.append("%s%c" % (self.get_mode(), EOF))
             elif data[0:2] == "S:":  # Search/Completion
                 # TODO
                 break
             else:
-                self.output_store.append("%s%c" % ( "No action defined for this input.", EOF))
+                self.output_store.append("%s%c" % ("No action defined for this input.", EOF))
 
         return True
 
@@ -122,9 +146,19 @@ class Server:
 
         return ret
 
+    def set_mode(self, mode_desc):
+        """ Status string which can be fetched by client with 'M:' command.
+
+        I.e. used to inform client if PbWizard or PbAdmin is currently active.
+        """
+        self.mode_desc = mode_desc
+
+    def get_mode(self):
+        return str(self.mode_desc)
+
 # '''
-from CvPythonExtensions import *
-gc = CyGlobalContext()
+# from CvPythonExtensions import *
+# gc = CyGlobalContext()
 class GameDummy:
     """ Simulates periodical call of game event loop in second thread.  """
 
@@ -138,6 +172,7 @@ class GameDummy:
 
     def handle_function(self):
         self.slice += 1
+        # sys.stdout.write("."); sys.stdout.flush()
         if self.onGameUpdate((((self.slice,),),)):
             # Restart
             self.timer = Timer(self.seconds, self.handle_function)  # New context
@@ -151,14 +186,31 @@ class GameDummy:
 
         self.loc["turnSlice"] = turnSlice
         if civ4Console:
-            return civ4Console.update(self.glob, self.loc);
+            return civ4Console.update(self.glob, self.loc)
         else:
             return False
 
 
-if __name__ == "__main__":        
+if __name__ == "__main__":
+    civ4Console = Server()
+    civ4Console.init()
+
+    GameDummy(0.25)  # Loop, non-blocking
+
+    while civ4Console.run:
+        sleep(1)
+
+    print("Quit server first time. Try restart")
+
+    # Wait until port get free again.
+    sleep(1)
+    # civ4Console__del__()
     civ4Console = Server()
     civ4Console.init()
 
     GameDummy(0.25)  # Loop
+
+    while civ4Console.run:
+        sleep(1)
+    print("Quit server second time.")
 # '''
