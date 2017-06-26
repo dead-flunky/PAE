@@ -20,7 +20,7 @@ class Server:
         self.s = None
         self.conn = None
         self.addr = None
-        self.mode = ""
+        self.mode_desc = ""
         self.code_store = list()  # Holds input for game loop thread.
         self.output_store = list() # Holds output for polling
         self.run = False
@@ -104,13 +104,18 @@ class Server:
                 self.run = False
                 return False
             elif data[0:2] == "Q:":  # Quit PB_Server
-                q = "if gc.getGame().isPitbossHost(): PB.quit();"
-                self.output_store.append("%s%c" % (q, EOF))
-                sleep(0.5)
+                gc = glob.get("gc")
+                PB = glob.get("PB")
+                if gc and PB and gc.getGame().isPitbossHost():
+                    PB.quit()
                 self.run = False
                 return False
             elif data[0:2] == "M:":
                 self.output_store.append("%s%c" % (self.get_mode(), EOF))
+            elif data[0:2] == "s:":  # Status information
+                import simplejson as json
+                s = json.dumps(self.gen_status_infos(glob))
+                self.output_store.append("%s%c" % (s, EOF))
             elif data[0:2] == "S:":  # Search/Completion
                 # TODO
                 break
@@ -155,6 +160,23 @@ class Server:
 
     def get_mode(self):
         return str(self.mode_desc)
+
+    def gen_status_infos(self, glob):
+        ws = glob.get("Webserver")
+        gc = glob.get("gc")
+        if not ws:
+            return {"error": "No Webserver module available."}
+
+        gd = ws.createGameData()
+        gd["mode"] = self.get_mode()
+
+        for pl in gd.get("players", []):
+            pPlayer = gc.getPlayer(pl["id"])
+            pl['gold'] = pPlayer.getGold()
+            pl['nUnits'] = pPlayer.getNumUnits()
+            pl['nCities'] = pPlayer.getNumCities()
+
+        return gd
 
 # '''
 # from CvPythonExtensions import *

@@ -80,7 +80,7 @@ class Client:
 
     def close(self):
         if not self.s is None:
-            warn("Close Client")
+            # warn("Close Client")
             self.s.shutdown(socket.SHUT_RDWR)
             self.s.close()
             self.s = None
@@ -296,7 +296,7 @@ class Civ4Shell(cmd.Cmd):
                         break
 
             if len(changes) == 1:
-                print(changes)
+                # print(changes)
                 self.send("p:" + changes[0])
             elif len(changes) > 1:
                 print("Key not unique: %s" % ("/".join(conf_key)))
@@ -350,27 +350,80 @@ else:
         else:
             warn("No file name given.")
 
+    def do_start(self, arg):
+        """ Synonym for 'pb_start'. """
+        self.do_pbstart(arg)
+
     def do_pb_start(self, arg):
         """ Send command to PbWizard to start game and load PbAdmin window.
         """
 
         mode = str(self.send("M:"))
+        """
         if not mode == "pb_wizard":
             warn("PB server is not in startup phase and can't load save."
                   "\nDoes the game already run?\n"
                   "Current mode is '{0}' ".format(mode))
             return
+        """
 
-        #self.send("p:"+"self.shell_loop=False")
-        self.send("q:")  # Quit loop which blockades the startup process
+        if mode in ["pb_wizard", "pb_admin"]:
+            result = self.send("l:")
+            if result:
+                result = result[result.find("{"):result.rfind("}")+1]
+
+            try:
+                import json
+                loadable_check = json.loads(result)
+            except ValueError:
+                print("Can not decode result of loadable check.")
+                return
+
+            if loadable_check.get("loadable") == -1:
+                warn("No file for given name '%s' found." %
+                     loadable_check.get("file", "name?"))
+                return
+            if loadable_check.get("loadable") == -2:
+                warn("Given admin password is wrong and search in list of"
+                     "alternatives ( see pbPasswords.json) also fails.\n\n"
+                    "Fix 'adminpw' value.")
+
+        if mode == "pb_wizard":
+                self.send("q:")  # Quit loop which blockades the startup process
+
+        if mode == "pb_admin":
+            # An other game is already loaded. Update settings file
+            # and quit PB server. At next startup, the new file should be
+            # loaded.
+            self.send("p:Webserver.pbSettings[\"save\"][\"oneOffAutostart\"] = 1; Webserver.savePbSettings()")
+            print("Restart PB server")
+            self.send("Q:")
 
         # The backend will re-create the socket and we had to
         # reflect/respect it.
         self.close()
+
+        # TODO: re-open of socket fails...
+        # Exit as workaround...
+        return True
+
         print("Wait a few seconds...")
-        sleep(10)
-        print("...and open socket again.")
-        self.init()
+        sleep(2)
+        for _ in xrange(60):
+            sleep(2)
+            sys.stdout.write(".")
+            sys.stdout.flush()
+            try:
+                self.init()
+                print("...and open socket again.")
+                return
+            except socket.error:  # IOError:
+                # self.close()
+                pass
+            except:
+                pass
+
+        warn("...reconnection failed")
 
     def do_pb_quit(self, arg):
         """ Send quit command (and probably restarts the server).
@@ -380,12 +433,63 @@ else:
 
     def do_status(self, arg):
         """ Return some status information.
-        
+
         Should return list of player (points/gold/num units/num cities) 
         Uptime, Mode, etc
         TODO """
-        mode = str(self.send("M:"))
-        print("-Current mode is '{0}' ".format(mode))
+        result = str(self.send("s:"))
+        try:
+            import json
+            status = json.loads(result)
+        except ValueError:
+            status = {"error" : "Can not decode status."}
+
+        keys = ["error", "gameName", "gameTurn", "gameYear",
+                "modName", "bAutostart", "bPaused", "mode"]
+        for k in keys:
+            if k in status:
+                print(" %14s: %s" % (k, status[k]))
+
+        from datetime import timedelta
+        upt = status.get("uptime")
+        if upt:
+            upt = str(timedelta(minutes=int(upt)))
+            print(" %14s: %s" % ("Total uptime", upt))
+
+        ttv = status.get("turnTimerValue")
+        if ttv:
+            ttv = str(timedelta(seconds=int(ttv)/4))
+            print(" %14s: %s" % ("Current timer", ttv))
+
+        ttm = status.get("turnTimerMax")
+        if ttm:
+            ttm = str(timedelta(hours=int(ttm)))
+            print(" %14s: %s" % ("Next timer", ttm))
+
+        def player_status(pl):
+            s = pl.get("ping", "")
+            if s == "Offline":
+                return ""
+            return s
+
+        print("\n%c %s %12.12s %s %12.12s %12.12s %s %s %s %s" % (
+            "X", "Id", "Player", "Score", "Leader", "Nation", "Gold",
+                                     "Cities", "Units", "Status"))
+        for pl in status.get("players", []):
+            print("%c %2i %12.12s %5.5s %12.12s %12.12s %4i %6i %5i %s" % (
+                "*" if pl.get("finishedTurn") else " ",
+                pl.get("id", -1),
+                pl.get("name", "?"),
+                pl.get("score", "-1"),
+                pl.get("leader", "?"),
+                pl.get("civilization", "?"),
+                pl.get("gold", -1),
+                pl.get("nCities", -1),
+                pl.get("nUnits", -1),
+                player_status(pl))
+            )
+
+        print("")
 
     def do_list(self, sArgs):
         """ List newest available saves.
@@ -416,6 +520,7 @@ else:
                 pat = args[0]
 
         saves = self.getPbSaves("*", pat, num)
+        saves.reverse()  # Newest at top
         index = 1
         # print(saves)
         for s in saves:
@@ -451,7 +556,7 @@ else:
                 warn("Latest list of saves only contain %i elements" % (l,))
         else:
             reg = re.compile(pat)
-            for s in self.latest_save_list():
+            for s in self.latest_save_list:
                 if reg.search(s.get("name", "name?")):
                     dSel = s
                     break
@@ -476,6 +581,41 @@ else:
 """
         result = str(self.send("p:"+d))
         feedback(result)
+
+    def do_pb_set_timer(self, arg):
+        """ Set timer for next round(s).
+        
+            Format: pb_set_timer {iHours}
+        """
+        try:
+            iHours = int(arg)
+            d = "PB.turnTimerChanged({0})".format(iHours)
+            self.send("p:"+d)
+            feedback("Set timer on %i" % (iHours,))
+        except ValueError:
+            warn("Input no integer.")
+
+    def do_pb_set_current_timer(self, args):
+        """ Set timer for current round.
+
+            Format: pb_set_current_timer {iHours} [iMinutes] [iSeconds]
+        """
+        try:
+            iArgs = [int(x) for x in args.split(" ")]
+            iArgs.append(0)  # Guarantee minute arg
+            iArgs.append(0)  # Guarantee second arg
+        except ValueError:
+            warn("Can't parse arguments.")
+            return
+
+        iSeconds = iArgs[2] + 60*iArgs[1] + 3600*iArgs[0]
+        if iSeconds < 5:
+            iSeconds = 5
+
+        d = "gc.getGame().incrementTurnTimer("\
+                "-PB.getTurnTimeLeft() + 4 * {0})".format(iSeconds)
+        self.send("p:"+d)
+        feedback("Set timer on %02i:%02i:%02i" % tuple(iArgs[0:3]))
 
     def default(self, line):
         """Send input as python command"""
@@ -572,8 +712,9 @@ else:
         result = str(self.send("p:"+d))
         # print(result)
         # Strip unwanted output (reason?!)
-        if result[0] is not "{":
-            result = result[result.find("{"):]
+        if result:
+            result = result[result.find("{"):result.rfind("}")+1]
+
         try:
             import json
             settings = json.loads(result)
@@ -594,12 +735,7 @@ print(json.dumps({0}'saves':Webserver.getListOfSaves('{2}','{3}', {4}){1}))
         # print(d)
         result = str(self.send("p:"+d))
         if result:
-            # Strip unwanted output (reason?!)
-            if result[0] is not "{":
-                result = result[result.find("{"):]
-
-            if result[-1] is not "}":
-                result = result[:result.rfind("}")+1]
+            result = result[result.find("{"):result.rfind("}")+1]
 
         try:
             import json
