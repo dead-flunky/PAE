@@ -1194,7 +1194,7 @@ class CvEventManager:
                                     bShow = False
                                     if pPlot.isCity():
                                         pCity = pPlot.getPlotCity()
-                                        if pCity.getPopulation() > 17:
+                                        if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_METROPOLE")):
                                             bShow = True
                                     # Show plot
                                     if bShow:
@@ -1337,45 +1337,51 @@ class CvEventManager:
             pPlayer = gc.getPlayer(iData4)
             pUnit = pPlayer.getUnit(iData5)
 
-            lBuildInfos = []
-            lImpInfos = []
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES1"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES3"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES4"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES5"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES6"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES7"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES8"))
-            lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES9"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES1"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES3"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES4"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES5"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES6"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES7"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES8"))
-            lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES9"))
+            lBuildInfos = [
+                gc.getInfoTypeForString("BUILD_LIMES1"),
+                gc.getInfoTypeForString("BUILD_LIMES2"),
+                gc.getInfoTypeForString("BUILD_LIMES3"),
+                gc.getInfoTypeForString("BUILD_LIMES4"),
+                gc.getInfoTypeForString("BUILD_LIMES5"),
+                gc.getInfoTypeForString("BUILD_LIMES6"),
+                gc.getInfoTypeForString("BUILD_LIMES7"),
+                gc.getInfoTypeForString("BUILD_LIMES8"),
+                gc.getInfoTypeForString("BUILD_LIMES9"),
+            ]
+            lImpInfos = [
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES1"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES2"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES3"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES4"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES5"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES6"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES7"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES8"),
+                gc.getInfoTypeForString("IMPROVEMENT_LIMES9")
+            ]
             if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_DEFENCES_2")):
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_1"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_2"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_3"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_4"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_5"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_6"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_7"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_8"))
-                lBuildInfos.append(gc.getInfoTypeForString("BUILD_LIMES2_9"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_1"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_2"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_3"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_4"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_5"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_6"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_7"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_8"))
-                lImpInfos.append(gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9"))
+                lBuildInfos.extend([
+                    gc.getInfoTypeForString("BUILD_LIMES2_1"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_2"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_3"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_4"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_5"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_6"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_7"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_8"),
+                    gc.getInfoTypeForString("BUILD_LIMES2_9")
+                ])
+                lImpInfos.extend([
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_1"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_2"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_3"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_4"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_5"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_6"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_7"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_8"),
+                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9")
+                ])
 
             # PopUp
             if iData2 == -1:
@@ -1412,13 +1418,12 @@ class CvEventManager:
             pPlayer = gc.getPlayer(iData4)
             pUnit = pPlayer.getUnit(iData5)
             pCity = pPlayer.getCity(iData2)
-
             # Feldsklaven
             if iData3 == 1:
-                pCity.changeFreeSpecialistCount(17, 1)
+                pCity.changeFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD"), 1)
             # Bergwerksklave
             else:
-                pCity.changeFreeSpecialistCount(18, 1)
+                pCity.changeFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD"), 1)
             pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
 
         # Salae oder Dezimierung
@@ -1430,34 +1435,35 @@ class CvEventManager:
             # Sold
             if iData2 == 1:
                 # +x Gold pro Promotion
-                FormationArray = []
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KEIL"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_GASSE"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_WILDLIFE"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_LOYALITAT"))
-                FormationArray.append(gc.getInfoTypeForString("PROMOTION_MERCENARY"))
+                FormationArray = [
+                    gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_CLOSED_FORM"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_PHALANX"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_SCHIEF"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_PHALANX2"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_MANIPEL"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_KEIL"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_ZANGENANGRIFF"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_TREFFEN"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_FLANKENSCHUTZ"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_GASSE"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_PARTHER"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_KANTAKREIS"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_FLIGHT"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"),
+                    gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"),
+                    gc.getInfoTypeForString("PROMOTION_WILDLIFE"),
+                    gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE"),
+                    gc.getInfoTypeForString("PROMOTION_TRAIT_MARITIME"),
+                    gc.getInfoTypeForString("PROMOTION_LOYALITAT"),
+                    gc.getInfoTypeForString("PROMOTION_MERCENARY")
+                ]
                 iGold = 0
                 iRange = gc.getNumPromotionInfos()
                 for j in range(iRange):
@@ -6678,8 +6684,8 @@ class CvEventManager:
                 iCitySlaves = 0
                 iCityGlads = 0
             else:
-                iCitySlaves = pCity.getFreeSpecialistCount(16) + pCity.getFreeSpecialistCount(17) + pCity.getFreeSpecialistCount(18)  # SPECIALIST_SLAVE = 16,17,18
-                iCityGlads = pCity.getFreeSpecialistCount(15)  # SPECIALIST_GLADIATOR = 15
+                iCitySlaves = pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE")) + pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD")) + pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD"))
+                iCityGlads = pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_GLADIATOR"))
 
             iFreedSlaves = iCitySlaves + iCityGlads
             if iFreedSlaves > 0:

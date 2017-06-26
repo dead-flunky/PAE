@@ -15,6 +15,7 @@ import PAE_Trade
 import PAE_Cultivation
 import PAE_City
 import PAE_Unit
+import PAE_Sklaven
 # globals
 gc = CyGlobalContext()
 PyPlayer = PyHelpers.PyPlayer
@@ -1502,24 +1503,27 @@ class CvGameUtils:
 
                     pCity = pPlot.getPlotCity()
                     if not pCity.isNone() and pCity.getID() not in self.PAE_AI_Cities_Slaves:
-
+                        eSpecialistGlad = gc.getInfoTypeForString("SPECIALIST_GLADIATOR")
+                        eSpecialistHouse = gc.getInfoTypeForString("SPECIALIST_SLAVE")
+                        eSpecialistFood = gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD")
+                        eSpecialistProd = gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD")
                         iCityPop = pCity.getPopulation()
-                        iCityGlads = pCity.getFreeSpecialistCount(15)  # SPECIALIST_GLADIATOR = 15
-                        iCitySlaves = pCity.getFreeSpecialistCount(16)  # SPECIALIST_SLAVE = 16
-                        iCitySlavesFood = pCity.getFreeSpecialistCount(17)  # SPECIALIST_SLAVE = 17
-                        iCitySlavesProd = pCity.getFreeSpecialistCount(18)  # SPECIALIST_SLAVE = 18
+                        iCityGlads = pCity.getFreeSpecialistCount(eSpecialistGlad)
+                        iCitySlaves = pCity.getFreeSpecialistCount(eSpecialistHouse)
+                        iCitySlavesFood = pCity.getFreeSpecialistCount(eSpecialistFood)
+                        iCitySlavesProd = pCity.getFreeSpecialistCount(eSpecialistProd)
 
                         # Zuerst Sklavenmarkt bauen
                         bSlaveMarket = False
                         iBuilding1 = gc.getInfoTypeForString("BUILDING_SKLAVENMARKT")
                         iBuilding2 = gc.getInfoTypeForString("BUILDING_STADT")
-                        if not pCity.isHasBuilding(iBuilding1):
-                            if pCity.isHasBuilding(iBuilding2):
-                                pCity.setNumRealBuilding(iBuilding1, 1)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                                return True
-                        else:
+                        if pCity.isHasBuilding(iBuilding1):
                             bSlaveMarket = True
+                            
+                        elif pCity.isHasBuilding(iBuilding2):
+                            pCity.setNumRealBuilding(iBuilding1, 1)
+                            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                            return True
 
                         # Weitere Cities auf Sklavenmarkt checken und Sklaven zuerst dort hinschicken
                         if iOwner != gc.getBARBARIAN_PLAYER() and len(lCities) > len(self.PAE_AI_Cities_Slavemarket):
@@ -1560,22 +1564,22 @@ class CvGameUtils:
                         if pCity.happyLevel() > iCitySlavesAll:
                             if iCitySlavesAll + iCityGlads + iNumGlads <= iCityPop:
                                 if iCitySlavesFood == 0:
-                                    pCity.changeFreeSpecialistCount(17, 1)
+                                    pCity.changeFreeSpecialistCount(eSpecialistFood, 1)
                                 elif iCitySlavesProd == 0:
-                                    pCity.changeFreeSpecialistCount(18, 1)
+                                    pCity.changeFreeSpecialistCount(eSpecialistProd, 1)
                                 elif iCitySlavesFood < iCitySlavesProd or iCitySlavesFood < iCitySlaves:
-                                    pCity.changeFreeSpecialistCount(17, 1)
+                                    pCity.changeFreeSpecialistCount(eSpecialistFood, 1)
                                 elif iCitySlavesProd < iCitySlavesFood or iCitySlavesProd < iCitySlaves:
-                                    pCity.changeFreeSpecialistCount(18, 1)
+                                    pCity.changeFreeSpecialistCount(eSpecialistProd, 1)
                                 else:
-                                    pCity.changeFreeSpecialistCount(16, 1)
+                                    pCity.changeFreeSpecialistCount(eSpecialistHouse, 1)
                                 pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 return True
 
                             # settle as gladiators
                             if bHasGladTech:
                                 if iCitySlavesAll + iCityGlads <= iCityPop:
-                                    pCity.changeFreeSpecialistCount(15, 1)  # Gladiator = 15
+                                    pCity.changeFreeSpecialistCount(eSpecialistGlad, 1)
                                     pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                     return True
 
@@ -1606,111 +1610,48 @@ class CvGameUtils:
                                 return True
 
                         # Priority 2 - Manufaktur
-
                         # assign to manufactory
-                        # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MANUFAKTUREN")):
                         iBuilding1 = gc.getInfoTypeForString('BUILDING_CORP3')
                         if pCity.isHasBuilding(iBuilding1):
-                            iFood = pCity.getBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0)
-                            iProd = pCity.getBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 1)
+                            iFood = pCity.getBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), YieldTypes.YIELD_FOOD)
+                            iProd = pCity.getBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), YieldTypes.YIELD_PRODUCTION)
                             if iProd <= iFood and iProd < 10:
-                                iProd += 1
-                                pCity.setBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 1, iProd)
+                                iProd += 2
+                                pCity.setBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), YieldTypes.YIELD_PRODUCTION, iProd)
                                 pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 return True
                             elif iFood < 10:
-                                iFood += 1
-                                pCity.setBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0, iFood)
+                                iFood += 2
+                                pCity.setBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), YieldTypes.YIELD_FOOD, iFood)
                                 pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 return True
 
                         # Priority 3 - Bordell
-
                         # assign to the house of pleasure (bordell/freudenhaus)
-                        # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_SYNKRETISMUS")):
-                        iBuilding1 = gc.getInfoTypeForString('BUILDING_BORDELL')
-                        if pCity.isHasBuilding(iBuilding1):
-                            iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_CULTURE, iBuilding1)
-                            if iCulture < 10:
-                                iNewCulture = iCulture + 2
-                                pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iNewCulture)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                                return True
+                        if PAE_Sklaven.doSlave2Bordell(pCity, pUnit):
+                            return True
 
                         # Priority 4 - Theater
-
                         # assign to the theatre
-                        # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_DRAMA")):
-                        iBuilding1 = gc.getInfoTypeForString('BUILDING_THEATER')
-                        if pCity.isHasBuilding(iBuilding1):
-                            iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_CULTURE, iBuilding1)
-                            if iCulture < 10:
-                                iNewCulture = iCulture + 2
-                                pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iNewCulture)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                                return True
+                        if PAE_Sklaven.doSlave2Theatre(pCity, pUnit):
+                            return True
 
                         # Priority 5 - Palace
-
                         # assign to the Palace  10%
-                        iBuilding1 = gc.getInfoTypeForString('BUILDING_PALACE')
-                        if pCity.isHasBuilding(iBuilding1):
-                            if 1 == CvUtil.myRandom(10, "assign_slave_palace"):
-                                iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_CULTURE, iBuilding1)
-                                iNewCulture = iCulture + 1
-                                pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iNewCulture)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                        if CvUtil.myRandom(10, "assign_slave_palace") == 1:
+                            if PAE_Sklaven.doSlave2Palace(pCity, pUnit):
                                 return True
 
                         # Priority 6 - Temples
-
                         # assign to a temple 10%
                         if CvUtil.myRandom(10, "assign_slave_temple") == 1:
-                            iBuilding1 = gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE")
-                            iBuilding2 = gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE")
-                            iBuilding3 = gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE")
-                            iBuilding4 = gc.getInfoTypeForString("BUILDING_ROME_TEMPLE")
-                            iBuilding5 = gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE")
-                            iBuilding6 = gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE")
-                            iBuilding7 = gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE")
-                            iBuilding8 = gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-                            TempleArray = []
-                            if pCity.isHasBuilding(iBuilding1):
-                                TempleArray.append(iBuilding1)
-                            if pCity.isHasBuilding(iBuilding2):
-                                TempleArray.append(iBuilding2)
-                            if pCity.isHasBuilding(iBuilding3):
-                                TempleArray.append(iBuilding3)
-                            if pCity.isHasBuilding(iBuilding4):
-                                TempleArray.append(iBuilding4)
-                            if pCity.isHasBuilding(iBuilding5):
-                                TempleArray.append(iBuilding5)
-                            if pCity.isHasBuilding(iBuilding6):
-                                TempleArray.append(iBuilding6)
-                            if pCity.isHasBuilding(iBuilding7):
-                                TempleArray.append(iBuilding7)
-                            if pCity.isHasBuilding(iBuilding8):
-                                TempleArray.append(iBuilding8)
-
-                            if TempleArray:
-                                iBuilding = CvUtil.myRandom(len(TempleArray), "assign_slave_temple_which")
-                                iCulture = pCity.getBuildingCommerceByBuilding(2, TempleArray[iBuilding])
-                                iCulture += 1
-                                pCity.setBuildingCommerceChange(gc.getBuildingInfo(TempleArray[iBuilding]).getBuildingClassType(), CommerceTypes.COMMERCE_CULTURE, iCulture)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                            if PAE_Sklaven.doSlave2Temple(pCity, pUnit):
                                 return True
 
                         # Priority 7 - Feuerwehr
-
                         # assign to the fire station 10%
-                        # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_FEUERWEHR")):
-                        iBuilding1 = gc.getInfoTypeForString('BUILDING_FEUERWEHR')
-                        if pCity.isHasBuilding(iBuilding1):
-                            iHappyiness = pCity.getBuildingHappyChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType())
-                            if iHappyiness < 3:
-                                iHappyiness += 1
-                                pCity.setBuildingHappyChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), iHappyiness)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                        if CvUtil.myRandom(10, "assign_slave_temple") == 1:
+                            if PAE_Sklaven.doSlave2Feuerwehr(pCity, pUnit):
                                 return True
 
                         # Priority 8 - Sell slave 25%

@@ -57,11 +57,10 @@ def setHolyCity():
             if loopPlayer.isAlive():
                 loopCity = loopPlayer.getCapitalCity()
                 if loopCity is not None and not loopCity.isNone():
-
-                    iSlaves = loopCity.getFreeSpecialistCount(15) # SPECIALIST_GLADIATOR
-                    iSlaves += loopCity.getFreeSpecialistCount(16) # SPECIALIST_SLAVE
-                    iSlaves += loopCity.getFreeSpecialistCount(17) # SPECIALIST_SLAVE_FOOD
-                    iSlaves += loopCity.getFreeSpecialistCount(18) # SPECIALIST_SLAVE_PROD
+                    iSlaves = (loopCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_GLADIATOR"))
+                               + loopCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE"))
+                               + loopCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD"))
+                               + loopCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD")))
 
                     iCityPop = loopCity.getPopulation()
                     if iSlaves == 0:

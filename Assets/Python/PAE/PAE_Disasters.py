@@ -1094,11 +1094,11 @@ def doVulkan(iX, iY, iSkala):
             # Ellipse nach Osten oder Westen: 15 Plots
             iRand_W_O = CvUtil.myRandom(2)
             for i in range(20):
-                for j in range(11):
+                for j in range(-5, 6):
                     if iRand_W_O == 1:
-                        loopPlot = gc.getMap().plot(iRandX + i, iRandY - 5 + j)
+                        loopPlot = gc.getMap().plot(iRandX + i, iRandY + j)
                     else:
-                        loopPlot = gc.getMap().plot(iRandX - i, iRandY - 5 + j)
+                        loopPlot = gc.getMap().plot(iRandX - i, iRandY + j)
 
                     if loopPlot is not None and not loopPlot.isNone():
                         iFeature = loopPlot.getFeatureType()
@@ -1106,17 +1106,17 @@ def doVulkan(iX, iY, iSkala):
                             continue
                         if iFeature != feat_flood_plains and iFeature != feat_oasis and iFeature != feat_vulkan and not loopPlot.isPeak():
                             bDoIt = False
-                            if (i == 0 or i == 19) and j > 3 and j < 8:
-                                bDoIt = True
-                            if (i == 1 or i == 18) and j > 2 and j < 8:
-                                bDoIt = True
-                            if (i == 2 or i == 17) and j > 1 and j < 9:
-                                bDoIt = True
-                            if (i == 3 or i == 16) and j > 0 and j < 10:
-                                bDoIt = True
-                            if (i == 4 or i == 15) and j > 0 and j < 10:
-                                bDoIt = True
                             if i > 4 and i < 15:
+                                bDoIt = True
+                            elif (i == 0 or i == 19) and abs(j) < 2:
+                                bDoIt = True
+                            elif (i == 1 or i == 18) and abs(j) < 3:
+                                bDoIt = True
+                            elif (i == 2 or i == 17) and abs(j) < 4:
+                                bDoIt = True
+                            elif (i == 3 or i == 16) and abs(j) < 5:
+                                bDoIt = True
+                            elif (i == 4 or i == 15) and abs(j) < 10:
                                 bDoIt = True
                             if bDoIt:
                                 #loopPlot.setRouteType(-1)
