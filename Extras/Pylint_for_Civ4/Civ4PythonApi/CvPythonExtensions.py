@@ -10,6 +10,8 @@ from CvTypes import *
 # from CvGameCoreUtils import *
 from CvDLLUtilityIFaceBase import *
 
+# Extensions/Mods
+PB_MOD = True
 
 class CombatDetails:
 
@@ -8072,7 +8074,7 @@ class CyFractal:
         FRAC_WRAP_X = -1
         FRAC_WRAP_Y = -1
 
-    FracVals = FracValClass()    
+    FracVals = FracValClass()
 
     @staticmethod
     def fracInit(iNewXs, iNewYs, iGrain, random, iFlags, iFracXExp, iFracYExp):
@@ -10030,6 +10032,22 @@ class CyGame:
     def doControl(eControlType):
         pass
 
+    if PB_MOD:
+        @staticmethod
+        def setPausePlayer(iPlayer):
+            pass
+
+        @staticmethod
+        def incrementTurnTimer(iFrames):
+            pass
+
+        @staticmethod
+        def setCivPassword(iPlayer, sNewPassword, sAdminPasswordHash):
+            return int()
+
+        @staticmethod
+        def setPitbossShortNames(bEnable, iLenName, iLenDesc):
+            pass
 
 class CyGameTextMgr:
 
@@ -11188,6 +11206,19 @@ class CyGlobalContext:
     def setDefineSTRING(szName, szValue):
         pass
 
+    if PB_MOD:
+        @staticmethod
+        def getAltrootDir():
+            return str()
+
+        @staticmethod
+        def sendPause(iPlayer):
+            pass
+
+        @staticmethod
+        def sendChat(sMsg, eChatTargetType):
+            pass
+
 
 class CyGlobeLayer:
 
@@ -11828,7 +11859,7 @@ class CyMap:
         return int()
 
     @staticmethod
-    def getCustomMapOptionName( iOption, sMapName):
+    def getCustomMapOptionName(iOption, sMapName):
         return str()
 
     @staticmethod
@@ -12105,6 +12136,10 @@ class CyMessageControl:
     def sendUpdateCivics(iCivics):
         pass
 
+    if PB_MOD:
+        @staticmethod
+        def sendTurnCompleteAll():
+            pass
 
 class CyPlayer:
 
@@ -18208,7 +18243,6 @@ class CyPitboss:
     @staticmethod
     def login(sUser, sPassword):
         return bool()
-        pass
 
     @staticmethod
     def load(sPath, sAdminPwd):
@@ -18229,7 +18263,6 @@ class CyPitboss:
     @staticmethod
     def host(bPublic, bScenario):
         return bool()
-        pass
 
     @staticmethod
     def setGamename(sGamename):
@@ -18272,23 +18305,23 @@ class CyPitboss:
     @staticmethod
     def playerParamChanged(iSlot, iWho, iCiv, iTeam,
                           iDifficulty, iGlobalLeaderID):
-        # iWho is slot status 
+        # iWho is slot status
         pass
 
     @staticmethod
-    def gameOptionChanged( iVictoryID, iValue):
+    def gameOptionChanged(iVictoryID, iValue):
         pass
 
     @staticmethod
-    def mpOptionChanged( iVictoryID, iValue):
+    def mpOptionChanged(iVictoryID, iValue):
         pass
 
     @staticmethod
-    def customMapOptionChanged( iOptionID, iValue):
+    def customMapOptionChanged(iOptionID, iValue):
         pass
 
     @staticmethod
-    def victoriesChanged( iVictoryID, iValue):
+    def victoriesChanged(iVictoryID, iValue):
         pass
 
     @staticmethod
