@@ -2176,6 +2176,9 @@ class CvEventManager:
         PAE_Mercenaries.PAEMercComission = {}
         PAE_City.PAEStatthalterTribut = {}
 
+        if pPlayer.isHuman():
+            x = 1/0
+
         # --- Automated trade routes for HI (Boggy)
         if pPlayer.isHuman():
             (pLoopUnit, pIter) = pPlayer.firstUnit(False)
