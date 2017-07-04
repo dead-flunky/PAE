@@ -22,12 +22,6 @@ if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
 if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS):
     bRageBarbs = True
 
-def onUnitSelected(pUnit):
-
-    if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT") \
-    or pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN") \
-    or pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
 
 # leere Festung mit barbarischen Einheiten belegen
 def setFortDefence(pPlot):
