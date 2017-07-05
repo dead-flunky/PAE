@@ -1,6 +1,6 @@
 ### Imports
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
 import CvUtil
 
 ### Defines
@@ -43,7 +43,7 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
 
                     # Wenn Vasall gemeinsam mit dem Feind staerker als Hegemon ist
                     # weiters trotzdem loyal zum Hegemon 1:3
-                    if iVassalPower + iWinnerPower > iLoserPower and (CvUtil.myRandom(30) + pPlayer.AI_getAttitude(iPreviousOwner) - pPlayer.AI_getAttitude(iNewOwner)) < 10:
+                    if iVassalPower + iWinnerPower > iLoserPower and (CvUtil.myRandom(30, "weiters trotzdem loyal zum Hegemon") + pPlayer.AI_getAttitude(iPreviousOwner) - pPlayer.AI_getAttitude(iNewOwner)) < 10:
 
                         # ***TEST***
                         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Vassal interaction",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -110,7 +110,7 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
                                     iBribe = iMinGold
 
                                 # KI bietet zu 50% ein Angebot an
-                                if CvUtil.myRandom(2) < 1:
+                                if CvUtil.myRandom(2, "KI bietet zu 50% ein Angebot an") < 1:
                                     popupInfo = CyPopupInfo()
                                     popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
                                     popupInfo.setText( CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),iBribe,pWinner.getCivilizationShortDescription(0))) )
@@ -121,7 +121,7 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
                                     popupInfo.setOnClickedPythonCallback("popupVassal11") # EntryPoints/CvScreenInterface und CvGameUtils / 690
                                     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_YES",(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription())), "")
                                     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_NO",()), "")
-                                    iRand = 1 + CvUtil.myRandom(9)
+                                    iRand = 1 + CvUtil.myRandom(9, "TXT_KEY_POPUP_VASSAL_KILL_")
                                     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
                                     popupInfo.addPopup(iVassal)
 
@@ -181,20 +181,20 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
                             bDeclareWar = False
                             if iVassalPower > iLoserPower:
                                 # 2/3 Chance, dass Vasall dem Hegemon Krieg erklaert
-                                if CvUtil.myRandom(3) < 2:
+                                if CvUtil.myRandom(3, "2/3 Chance, dass Vasall dem Hegemon Krieg erklaert") < 2:
                                     bDeclareWar = True
 
                             # KI-KI-Interaktion
                             # Winner hat mehr als das erforderte Gold, Akzeptanz: Winner: 50%, Loser: 100%
                             if not bDeclareWar and iMinGold <= iWinnerGold * fGold:
-                                if CvUtil.myRandom(2) < 1:
+                                if CvUtil.myRandom(2, "Winner hat mehr als das erforderte Gold") < 1:
                                     bDeclareWar = True
                                     pPlayer.changeGold(int(iWinnerGold * fGold))
                                     pWinner.changeGold(int(iWinnerGold * fGold) * (-1))
 
                             # Winner hat das mindest geforderte Gold, Akzeptanz: Winner: 100%, Loser: 50%
                             if not bDeclareWar and iWinnerGold >= iMinGold:
-                                if CvUtil.myRandom(2) < 1:
+                                if CvUtil.myRandom(2, "Winner hat das mindest geforderte Gold") < 1:
                                     bDeclareWar = True
                                     pPlayer.changeGold(iMinGold)
                                     pWinner.changeGold(iMinGold * (-1))
@@ -230,8 +230,8 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
 
             # KI bietet der HI Vasallenstatus an, 120% - 10% pro Stadt
             elif pWinner.isHuman():
-                if 12 - pLoser.getNumCities() > CvUtil.myRandom(10):
-                    iGold = pLoser.getGold() / 2 + CvUtil.myRandom(pLoser.getGold() / 2)
+                if 12 - pLoser.getNumCities() > CvUtil.myRandom(10, "KI bietet der HI Vasallenstatus an"):
+                    iGold = pLoser.getGold() / 2 + CvUtil.myRandom(pLoser.getGold() / 2, "iGold KI Vasall")
                     iGold = int(iGold)
                     popupInfo = CyPopupInfo()
                     popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
@@ -243,13 +243,13 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
                     popupInfo.setOnClickedPythonCallback("popupVassal01") # EntryPoints/CvScreenInterface und CvGameUtils / 671
                     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01_YES",()), "")
                     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01_NO",()), "")
-                    iRand = 1 + CvUtil.myRandom(9)
+                    iRand = 1 + CvUtil.myRandom(9, "TXT_KEY_POPUP_VASSAL_KILL_")
                     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
                     popupInfo.addPopup(iNewOwner)
 
         # HI: Abfrage ob HI als Verlierer Vasall werden will
         elif pLoser.isHuman() and iLoserPowerWithVassals <= iWinnerPower*1.2:
-            iGold = pLoser.getGold() / 2 + CvUtil.myRandom(pLoser.getGold() / 2)
+            iGold = pLoser.getGold() / 2 + CvUtil.myRandom(pLoser.getGold() / 2, "iGold HI Vasall")
             iGold = int(iGold)
             popupInfo = CyPopupInfo()
             popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
@@ -261,17 +261,17 @@ def onCityAcquired(pCity, iNewOwner, iPreviousOwner):
             popupInfo.setOnClickedPythonCallback("popupVassal01") # EntryPoints/CvScreenInterface und CvGameUtils / 671
             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_02_YES",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(), pWinner.getCivilizationShortDescription(0))), "")
             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_01_NO",()), "")
-            iRand = 1 + CvUtil.myRandom(9)
+            iRand = 1 + CvUtil.myRandom(9, "TXT_KEY_POPUP_VASSAL_KILL_")
             popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
             popupInfo.addPopup(iPreviousOwner)
 
   # KI-KI Vasall, 120% - 10% pro Stadt
   # PAE V Patch 4: deaktiviert
   # else:
-  #   if 12 - pLoser.getNumCities() > CvUtil.myRandom(10):
+  #   if 12 - pLoser.getNumCities() > CvUtil.myRandom(10, "KI-KI Vasall"):
   #     pWinnerTeam.assignVassal (iLoserTeam, 1) # surrender
   #     VassalHegemonGetsVassal(iPreviousOwner) # Hegemon verliert seine Vasallen
-  #     iGold = pLoser.getGold() / 2 + CvUtil.myRandom(pLoser.getGold() / 2)
+  #     iGold = pLoser.getGold() / 2 + CvUtil.myRandom(pLoser.getGold() / 2, "iGold KI-KI Vasall")
   #     pWinner.changeGold(iGold)
   #     pLoser.changeGold(iGold * (-1))
 
@@ -321,7 +321,7 @@ def VassalHItoHI (iNewOwner, iPreviousOwner, pCity):
     # 1a) Wenn negativ, dann soll Winner eine Meldung bekommen und dem Loser einen Vorschlag unterbreiten => 2
     # 1b) Der Winner darf entscheiden, ob der Vorschlag angenommen wird
     # 2) Der Loser darf entscheiden, ob er mit dem Angebot des Winners Vasall wird
-    iGold1 = CvUtil.myRandom(pLoser.getGold() / 2)
+    iGold1 = CvUtil.myRandom(pLoser.getGold() / 2, "iGold1 HI-HI Interaktion")
     if iGold1 < pLoser.getGold() / 4:
         iGold1 = pLoser.getGold() / 4
     iGold2 = iGold1 * 2
@@ -477,7 +477,7 @@ def do682(iWinner, iLoser, iGold):
     # Loser moechte nix zu tun haben = 1a
     # Winner bietet Hegemonschaft an
     if iGold == -1:
-        iGold1 = CvUtil.myRandom(pWinner.getGold() / 4)
+        iGold1 = CvUtil.myRandom(pWinner.getGold() / 4, "iGold1 Winner bietet Hegemonschaft an")
         if iGold1 < pWinner.getGold() / 8:
             iGold1 = pWinner.getGold() / 8 + iGold1
         iGold2 = iGold1 * 2
@@ -507,7 +507,7 @@ def do682(iWinner, iLoser, iGold):
         popupInfo.setOnClickedPythonCallback("popupVassal06") # EntryPoints/CvScreenInterface und CvGameUtils / 685
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_06_YES",()), "")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_06_NO",()), "")
-        iRand = 1 + CvUtil.myRandom(9)
+        iRand = 1 + CvUtil.myRandom(9, "TXT_KEY_POPUP_VASSAL_KILL_")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(),)), "")
         popupInfo.addPopup(iWinner)
 
@@ -531,7 +531,7 @@ def do683(iWinner, iLoser, iData4):
         popupInfo.setOnClickedPythonCallback("popupVassal05") # EntryPoints/CvScreenInterface und CvGameUtils / 684
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_YES",(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_05_NO",(iData4,)), "")
-        iRand = 1 + CvUtil.myRandom(9)
+        iRand = 1 + CvUtil.myRandom(9, "TXT_KEY_POPUP_VASSAL_KILL_")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand),(gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
         popupInfo.addPopup(iLoser)
 
@@ -727,7 +727,7 @@ def do689(iWinner, iLoser, iVassal, iGold):
         popupInfo.setOnClickedPythonCallback("popupVassal11") # EntryPoints/CvScreenInterface und CvGameUtils / 690
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_YES", (gc.getLeaderHeadInfo(pLoser.getLeaderType()).getDescription(), gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription())), "")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_11_NO", ()), "")
-        iRand = 1 + CvUtil.myRandom(9)
+        iRand = 1 + CvUtil.myRandom(9, "TXT_KEY_POPUP_VASSAL_KILL_")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_VASSAL_KILL_"+str(iRand), (gc.getLeaderHeadInfo(pWinner.getLeaderType()).getDescription(),)), "")
         popupInfo.addPopup(iVassal)
 

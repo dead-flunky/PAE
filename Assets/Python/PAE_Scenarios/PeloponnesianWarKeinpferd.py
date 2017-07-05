@@ -42,7 +42,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_TRIBUT_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Poteidaia1")
                 CvScreensInterface.peloponnesianWarKeinpferd_Poteidaia1([iAiDecision])
     # Event 2: Krieg um Poteidaia
     iTurnPotei = 18  # Runde, in der die Popups fuer den Menschen erscheinen sollen
@@ -54,9 +54,9 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
             PAE_City.doRenegadeCity(pPoteidaia, 2, -1)
             pKorinth = gc.getPlayer(iKorinth)
             ePantodapoi = gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
-            iRange = CvUtil.myRandom(3)
+            iRange = CvUtil.myRandom(3, "num ePantodapoi")
             # Korinth erhaelt 0 - 2 zusaetzliche makedonische Hilfstrupps in Poteidaia
-            for i in range(iRange):
+            for _ in range(iRange):
                 pKorinth.initUnit(ePantodapoi, 56, 46, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
             CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_WORLDNEWS", ()), None, 2, None, ColorTypes(11), 0, 0, False, False)
             if pPlayer.isHuman():
@@ -69,7 +69,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_ATHEN_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Poteidaia2")
                 CvScreensInterface.peloponnesianWarKeinpferd_Poteidaia2([iAiDecision])
     # Nur, wenn Poteidaia existiert + von Korinth oder Athen kontrolliert wird (menschlicher Spieler spielt Korinth: zu diesem Zeitpunkt gehoert Poteidaia noch Athen; KI spielt Korinth: ist bereits zu Korinth gewechselt)
     elif iTeam == iKorinth and ((iGameTurn == iTurnPotei-1 and pPlayer.isHuman()) or (iGameTurn == iTurnPotei and not pPlayer.isHuman())) and not pPoteidaia.isNone() and pPoteidaia is not None:
@@ -85,7 +85,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_POTEIDAIA_KRIEG_KORINTH_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Poteidaia3")
                 CvScreensInterface.peloponnesianWarKeinpferd_Poteidaia3([iAiDecision])
     # Event 3: Megara unterstuetzt Korinth
     iTurnMegaraAthen = 22  # Runde, in der die Popups fuer den Menschen erscheinen sollen
@@ -104,7 +104,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_ATHEN_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Megara1")
                 CvScreensInterface.peloponnesianWarKeinpferd_Megara1([iAiDecision])
     # Event 3.2: Reaktion Spartas (nur wenn Sparta noch keinen Krieg mit Athen hat)
     iTurnMegaraSparta = 23  # Runde, in der die Popups fuer den Menschen erscheinen sollen
@@ -121,7 +121,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_MEGARA_SPARTA_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Megara2")
                 CvScreensInterface.peloponnesianWarKeinpferd_Megara2([iAiDecision])
     # Event 4: Kriegseintritt Thebens
     iTurnPlataiai = 28  # Runde, in der die Popups fuer den Menschen erscheinen sollen
@@ -137,7 +137,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_PLATAIAI_THEBEN_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Plataiai1")
                 CvScreensInterface.peloponnesianWarKeinpferd_Plataiai1([iAiDecision])
     # Event 5: Volksversammlung Athens will Krieg gegen Syrakus
     # Event 5.1: Ankuendigung fuer Athen
@@ -165,7 +165,7 @@ def onBeginPlayerTurn(iGameTurn, pPlayer):
                 popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_EVENT_SYRAKUS_ATHEN_OPTION_3", ()), "")
                 popupInfo.addPopup(iPlayer)
             else:
-                iAiDecision = CvUtil.myRandom(3)
+                iAiDecision = CvUtil.myRandom(3, "peloponnesianWarKeinpferd_Syra1")
                 CvScreensInterface.peloponnesianWarKeinpferd_Syra1([iAiDecision])
 
     # Temporaere Effekte der Events rueckgaengig machen (Event 3.1 Handelsboykott, Event 3.2 Bronze fuer Sparta)

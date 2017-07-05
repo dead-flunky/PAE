@@ -3,7 +3,7 @@
 
 ### Imports
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
 import CvUtil
 
 ### Defines
@@ -33,10 +33,10 @@ def onModNetMessage(argsList):
         pPlayer = gc.getPlayer(iPlayer)
         iCity = iData1
         pCity = pPlayer.getCity(iCity)
-
+        iRandStr = str(1 + CvUtil.myRandom(5, "POPUP_MERCENARIES_MAIN-String"))
         popupInfo = CyPopupInfo()
         popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
-        popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_MAIN" + str(1 + CvUtil.myRandom(5)), (pCity.getName(),)))
+        popupInfo.setText(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_MAIN" + iRandStr, (pCity.getName(),)))
         popupInfo.setData1(iCity) # CityID
         popupInfo.setData2(iPlayer)
         popupInfo.setOnClickedPythonCallback("popupMercenariesMain") # EntryPoints/CvScreenInterface und CvGameUtils -> 708, 709 usw
@@ -109,11 +109,16 @@ def onModNetMessage(argsList):
                 for iLoopPlayer in lNeighbors:
                     pLoopPlayer = gc.getPlayer(iLoopPlayer)
                     eAtt = pLoopPlayer.AI_getAttitude(iPlayer)
-                    if   eAtt == AttitudeTypes.ATTITUDE_FRIENDLY: szBuffer = "<color=0,255,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_PLEASED:  szBuffer = "<color=0,155,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_CAUTIOUS: szBuffer = "<color=255,255,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_ANNOYED:  szBuffer = "<color=255,180,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_FURIOUS:  szBuffer = "<color=255,0,0,255>"
+                    if eAtt == AttitudeTypes.ATTITUDE_FRIENDLY:
+                        szBuffer = "<color=0,255,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_PLEASED:
+                        szBuffer = "<color=0,155,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_CAUTIOUS:
+                        szBuffer = "<color=255,255,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_ANNOYED:
+                        szBuffer = "<color=255,180,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_FURIOUS:
+                        szBuffer = "<color=255,0,0,255>"
 
                     szBuffer = szBuffer + " (" + localText.getText("TXT_KEY_"+str(eAtt), ()) + ")"
                     popupInfo.addPythonButton(pLoopPlayer.getCivilizationShortDescription(0) + szBuffer, gc.getCivilizationInfo(pLoopPlayer.getCivilizationType()).getButton())
@@ -277,18 +282,28 @@ def onModNetMessage(argsList):
         sFaktor = str(iData2)
         iCost = 0
         # siege units
-        if sFaktor[0] == "2":   iCost += 50
-        elif sFaktor[0] == "3": iCost += 90
-        elif sFaktor[0] == "4": iCost += 120
+        if sFaktor[0] == "2":
+            iCost += 50
+        elif sFaktor[0] == "3":
+            iCost += 90
+        elif sFaktor[0] == "4":
+            iCost += 120
         # size
-        if sFaktor[2] == "2":   iCost += 150
-        elif sFaktor[2] == "3": iCost += 300
-        elif sFaktor[2] == "4": iCost += 400
+        if sFaktor[2] == "2":
+            iCost += 150
+        elif sFaktor[2] == "3":
+            iCost += 300
+        elif sFaktor[2] == "4":
+            iCost += 400
         # inter/national
-        if sFaktor[3] == "1":   iCost += 200
-        elif sFaktor[3] == "2": iCost += 300
-        elif sFaktor[3] == "3": iCost += 400
-        elif sFaktor[3] == "4": iCost += 500
+        if sFaktor[3] == "1":
+            iCost += 200
+        elif sFaktor[3] == "2":
+            iCost += 300
+        elif sFaktor[3] == "3":
+            iCost += 400
+        elif sFaktor[3] == "4":
+            iCost += 500
         # ----------
 
         szText = ""
@@ -305,7 +320,7 @@ def onModNetMessage(argsList):
         popupInfo.setData3(iPlayer) # iPlayer
 
         # Confirm
-        popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN6_" + str(1 + CvUtil.myRandom(13)), ("", )), ",Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5")
+        popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARIES_ASSIGN6_" + str(1 + CvUtil.myRandom(13, "TXT_KEY_POPUP_MERCENARIES_ASSIGN6_")), ("", )), ",Art/Interface/Buttons/Process/Blank.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5")
         popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL", ("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
         popupInfo.addPopup(iPlayer)
 
@@ -333,7 +348,7 @@ def onModNetMessage(argsList):
                 popupInfo.addPopup(iPlayer)
         else:
             pPlayer.changeGold(-80)
-            if CvUtil.myRandom(2) == 0:
+            if CvUtil.myRandom(2, "doFailedMercenaryTortureMessage") == 0:
                 doFailedMercenaryTortureMessage(iPlayer)
             else:
                 # Check neighbours
@@ -348,7 +363,7 @@ def onModNetMessage(argsList):
 
                 # select neighbours if more than 5
                 while len(lNeighbors) > 5:
-                    iRand = CvUtil.myRandom(len(lNeighbors))
+                    iRand = CvUtil.myRandom(len(lNeighbors), "select neighbours if more than 5")
                     if lNeighbors[iRand] != iMercenaryCiv:
                         lNeighbors.remove(lNeighbors[iRand])
 
@@ -362,11 +377,16 @@ def onModNetMessage(argsList):
                 for iLoopPlayer in lNeighbors:
                     pLoopPlayer = gc.getPlayer(iLoopPlayer)
                     eAtt = pLoopPlayer.AI_getAttitude(iPlayer)
-                    if   eAtt == AttitudeTypes.ATTITUDE_FRIENDLY: szBuffer = "<color=0,255,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_PLEASED: szBuffer = "<color=0,155,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_CAUTIOUS: szBuffer = "<color=255,255,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_ANNOYED: szBuffer = "<color=255,180,0,255>"
-                    elif eAtt == AttitudeTypes.ATTITUDE_FURIOUS: szBuffer = "<color=255,0,0,255>"
+                    if eAtt == AttitudeTypes.ATTITUDE_FRIENDLY:
+                        szBuffer = "<color=0,255,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_PLEASED:
+                        szBuffer = "<color=0,155,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_CAUTIOUS:
+                        szBuffer = "<color=255,255,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_ANNOYED:
+                        szBuffer = "<color=255,180,0,255>"
+                    elif eAtt == AttitudeTypes.ATTITUDE_FURIOUS:
+                        szBuffer = "<color=255,0,0,255>"
 
                     szText = szText + localText.getText("[NEWLINE][ICON_STAR] <color=255,255,255,255>", ()) + pLoopPlayer.getCivilizationShortDescription(0) + szBuffer + " (" + localText.getText("TXT_KEY_"+str(eAtt), ()) + ")"
 
@@ -411,7 +431,7 @@ def onModNetMessage(argsList):
                 popupInfo.addPopup(iPlayer)
         else:
             pPlayer.changeGold(-iGold)
-            if iChance < CvUtil.myRandom(20):
+            if iChance < CvUtil.myRandom(20, "doFailedMercenaryTortureMessage2"):
                 doFailedMercenaryTortureMessage(iPlayer)
             else:
                 if iPlayer != iMercenaryCiv:
@@ -431,7 +451,8 @@ def onModNetMessage(argsList):
 def getAvailableUnits(lNeighbors, lTestUnits):
     lUnits = []
     for pNeighbor in lNeighbors:
-        if len(lTestUnits) == len(lUnits): break
+        if len(lTestUnits) == len(lUnits):
+            break
         for eLoopUnit in lTestUnits:
             if eLoopUnit not in lUnits:
                 if canTrain(eLoopUnit, pNeighbor):
@@ -441,7 +462,8 @@ def getAvailableUnits(lNeighbors, lTestUnits):
 def getCost(eUnit, iMultiplier, bCivicSoeldner, iExtraMultiplier=1):
     iCost = gc.getUnitInfo(eUnit).getProductionCost() * iExtraMultiplier
     iCost += (iCost / 10) * 2 * iMultiplier
-    if bCivicSoeldner: iCost -= iCost/4
+    if bCivicSoeldner:
+        iCost -= iCost/4
     return int(iCost)
 
 # Einheiten einen Zufallsrang vergeben (max. Elite)
@@ -453,8 +475,8 @@ def doMercenaryRanking(pUnit, iMinRang, iMaxRang):
         gc.getInfoTypeForString("PROMOTION_COMBAT4"),
         gc.getInfoTypeForString("PROMOTION_COMBAT5"),
     ]
-    # zwischen 0 und einschließlich iMaxRang
-    iRang = CvUtil.myRandom(iMaxRang+1)
+    # zwischen 0 und einschliesslich iMaxRang
+    iRang = CvUtil.myRandom(iMaxRang+1, "doMercenaryRanking")
     iRang = max(iMinRang, iRang)
     iRang = min(4, iRang)
 
@@ -518,10 +540,34 @@ def canTrain(eUnit, pPlayer):
 
     return True
 
+def startMercTorture(pLoser, iWinnerPlayer):
+    pWinnerPlayer = gc.getPlayer(iWinnerPlayer)
+    UnitText = CvUtil.getScriptData(pLoser, ["U", "t"])
+    if UnitText != "":
+        # Commissioned Mercenary (MercFromCIV=CivID)
+        if UnitText[:11] == "MercFromCIV":
+            iMercenaryCiv = int(UnitText[12:])
+            if not pWinnerPlayer.isHuman():
+                # Ein minimaler Vorteil fuer die KI
+                if iWinnerPlayer != iMercenaryCiv:
+                    doAIMercTorture(iWinnerPlayer, iMercenaryCiv)
+            else:
+                szText = CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE", ("",))
+                szText = szText + localText.getText("[NEWLINE][NEWLINE][ICON_STAR] ", ()) + CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE1", ("",))
+
+                popupInfo = CyPopupInfo()
+                popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
+                popupInfo.setText(szText)
+                popupInfo.setData1(iMercenaryCiv)  # iMercenaryCiv
+                popupInfo.setData2(iWinnerPlayer)  # iPlayer
+                popupInfo.setOnClickedPythonCallback("popupMercenaryTorture")  # EntryPoints/CvScreenInterface und CvGameUtils -> 716
+                popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_YES", (80, 50)), "")
+                popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL", ("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
+                popupInfo.addPopup(iWinnerPlayer)
 
 # Failed Mercenary Torture (from 716 and 717)
 def doFailedMercenaryTortureMessage(iPlayer):
-    iRand = CvUtil.myRandom(8) + 1
+    iRand = CvUtil.myRandom(8, "TXT_KEY_POPUP_MERCENARY_TORTURE_FAILED_") + 1
     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_MERCENARY_TORTURE_FAILED_0", ("",)), None, 2, None, ColorTypes(7), 0, 0, False, False)
     popupInfo = CyPopupInfo()
     popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
@@ -534,7 +580,7 @@ def doAIMercTorture(iPlayer, iMercenaryCiv):
     iGold = pPlayer.getGold()
 
     if iGold >= 350:
-        if CvUtil.myRandom(2) == 1:
+        if CvUtil.myRandom(2, "doAIPlanAssignMercenaries") == 1:
             pPlayer.changeGold(-50)
             pPlayer.AI_changeAttitudeExtra(iMercenaryCiv, -2)
             doAIPlanAssignMercenaries(iMercenaryCiv)
@@ -577,11 +623,11 @@ def doAIPlanAssignMercenaries(iPlayer):
 
                         if iCoastalCities > 0:
                             if iCoastalCities >= iLandCities:
-                                if CvUtil.myRandom(2) == 1:
+                                if CvUtil.myRandom(2, "iAttackAtSea") == 1:
                                     iAttackAtSea = 1
                             else:
                                 iChance = iNumCities - iCoastalCities
-                                if CvUtil.myRandom(iChance) == 0:
+                                if CvUtil.myRandom(iChance, "iAttackAtSea2") == 0:
                                     iAttackAtSea = 1
 
                         lNeighbors.append((iLoopPlayer, iAttackAtSea))
@@ -613,7 +659,7 @@ def doAIPlanAssignMercenaries(iPlayer):
     #6 +120      iFaktor: +4000
 
     if lNeighbors:
-        iRand = CvUtil.myRandom(len(lNeighbors))
+        iRand = CvUtil.myRandom(len(lNeighbors), "doAIPlanAssignMercenaries select neighbour")
         iTargetPlayer = lNeighbors[iRand][0]
         iTargetAtSea = lNeighbors[iRand][1]
         iGold = pPlayer.getGold()
@@ -621,7 +667,7 @@ def doAIPlanAssignMercenaries(iPlayer):
         # inter/national
         if pPlayer.getTechScore() > gc.getPlayer(iTargetPlayer).getTechScore():
             if iGold > 1000:
-                if CvUtil.myRandom(3) == 1:
+                if CvUtil.myRandom(3, "doAIPlanAssignMercenaries1") == 1:
                     iFaktor += 3
                     iCost += 400
                 else:
@@ -635,7 +681,7 @@ def doAIPlanAssignMercenaries(iPlayer):
                 iCost += 200
         else:
             if iGold > 1000:
-                if CvUtil.myRandom(3) == 1:
+                if CvUtil.myRandom(3, "doAIPlanAssignMercenaries2") == 1:
                     iFaktor += 3
                     iCost += 400
                 else:
@@ -648,7 +694,7 @@ def doAIPlanAssignMercenaries(iPlayer):
         # size
         if pPlayer.getPower() > gc.getPlayer(iTargetPlayer).getPower():
             if iGold > iCost + 150:
-                if CvUtil.myRandom(3) == 1:
+                if CvUtil.myRandom(3, "doAIPlanAssignMercenaries3") == 1:
                     iFaktor += 10
                     iSize = 1
                 else:
@@ -660,7 +706,7 @@ def doAIPlanAssignMercenaries(iPlayer):
                 iSize = 1
         else:
             if iGold > iCost + 150:
-                if CvUtil.myRandom(3) != 1:
+                if CvUtil.myRandom(3, "doAIPlanAssignMercenaries4") != 1:
                     iFaktor += 10
                     iSize = 1
                 else:
@@ -675,7 +721,7 @@ def doAIPlanAssignMercenaries(iPlayer):
         if iTargetAtSea == 1:
             iType = 5
         else:
-            iType = 1 + CvUtil.myRandom(4)
+            iType = 1 + CvUtil.myRandom(4, "doAIPlanAssignMercenaries5")
         iFaktor += iType * 100
 
         # siege units
@@ -1126,7 +1172,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
                 for x2 in [-2, 0, 2]:
                     for y2 in [-2, 0, 2]:
                         loopPlot2 = plotXY(iLX, iLY, x2, y2)
-                        if not loopPlot2.isNone():
+                        if loopPlot2 is not None and not loopPlot2.isNone():
                             if loopPlot2.getNumUnits() > 0:
                                 iRange = loopPlot2.getNumUnits()
                                 for iUnit in range(iRange):
@@ -1140,7 +1186,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
                         break
         # set units
         if CivPlots:
-            iPlot = CvUtil.myRandom(len(CivPlots))
+            iPlot = CvUtil.myRandom(len(CivPlots), "doCommissionMercenaries")
             iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
             # Loyality disabled for elite units
             iPromo2 = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
@@ -1183,7 +1229,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
                         iAnz = 12
 
                 for _ in range(iAnz):
-                    iRand = CvUtil.myRandom(len(lEliteUnits))
+                    iRand = CvUtil.myRandom(len(lEliteUnits), "doCommissionMercenaries2")
                     NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
                     if not NewUnit.isHasPromotion(iPromo):
                         NewUnit.setHasPromotion(iPromo, True)
@@ -1267,7 +1313,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
                         NewUnit.setImmobileTimer(1)
 
                         # Cargo
-                        iRand = CvUtil.myRandom(len(lUnit))
+                        iRand = CvUtil.myRandom(len(lUnit), "doCommissionMercenaries3")
                         NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
                         NewLandUnit.setTransportUnit(NewUnit)
 
@@ -1281,7 +1327,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
                         NewUnit.setImmobileTimer(1)
 
                         # Cargo
-                        iRand = CvUtil.myRandom(len(lUnit))
+                        iRand = CvUtil.myRandom(len(lUnit), "doCommissionMercenaries4")
                         NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
                         NewLandUnit.setTransportUnit(NewUnit)
 
@@ -1295,7 +1341,7 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
 
             # Eine Einheit bekommt iPlayer als Auftraggeber
             if ScriptUnit:
-                iRand = CvUtil.myRandom(len(ScriptUnit))
+                iRand = CvUtil.myRandom(len(ScriptUnit), "doCommissionMercenaries5")
                 CvUtil.addScriptData(ScriptUnit[iRand], "U", "MercFromCIV=" + str(iPlayer))
 
             # Meldungen
@@ -1370,18 +1416,19 @@ def AI_doHireMercenaries(iPlayer, pCity, iMaintainUnits, iCityUnits, iEnemyUnits
                 # iPromo = gc.getInfoTypeForString("PROMOTION_MERCENARY")
                 # AI hires max 2 - 4 units per city and turn
                 iHiredUnits = 0
-                iHiredUnitsMax = 2 + CvUtil.myRandom(3)
+                iHiredUnitsMax = 2 + CvUtil.myRandom(3, "AI_doHireMercenaries1")
                 while iMaintainUnits > 0 and pPlayer.getGold() > 50 and pPlayer.getGold() > iMinCost and iHiredUnits < iHiredUnitsMax and iCityUnits * iMultiplikator < iEnemyUnits:
                     eUnit = -1
                     iGold = pPlayer.getGold()
 
                     iTry = 0
                     while iTry < 3:
-                        if CvUtil.myRandom(10) < 7:
-                            eUnit, iCost = lArchers[CvUtil.myRandom(len(lArchers))]
+                        if CvUtil.myRandom(10, "AI_doHireMercenaries2") < 7:
+                            eUnit, iCost = lArchers[CvUtil.myRandom(len(lArchers), "AI_doHireMercenaries3")]
                         else:
-                            eUnit, iCost = lOtherUnits[CvUtil.myRandom(len(lOtherUnits))]
-                        if iCost <= 0: iCost = 50
+                            eUnit, iCost = lOtherUnits[CvUtil.myRandom(len(lOtherUnits), "AI_doHireMercenaries4")]
+                        if iCost <= 0:
+                            iCost = 50
                         if iCost <= iGold:
                             if doHireMercenary(iPlayer, eUnit, 0, bCivicSoeldner, pCity, 1, iExtraMultiplier):
                                 iMaintainUnits -= 1
@@ -1524,7 +1571,7 @@ def doHireMercenariesINIT(pPlayer, lNeighbors):
     # Archers: Peltist (Steinschleuderer?) geht immer
     lTemp = lArchers[:1]+getAvailableUnits(lNeighbors, lArchers[1:])
     ## ab Plaenkler duerfen alle Kompositbogis
-    if not lArchers[3] in lTemp:
+    if lArchers[3] not in lTemp:
         for pNeighbor in lNeighbors:
             if gc.getTeam(pNeighbor.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_SKIRMISH_TACTICS")):
                 lTemp.append(lArchers[3])
