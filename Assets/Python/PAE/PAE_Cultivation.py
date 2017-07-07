@@ -213,7 +213,8 @@ def doCultivateBonus(pPlot, pUnit, eBonus):
             pPlot.setBonusType(eBonus)
             if pPlayer.isHuman():
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_DONE", (gc.getBonusInfo(eBonus).getDescription(),)), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             pUnit = None
         else:
             CvUtil.removeScriptData(pUnit, "b")
@@ -359,12 +360,12 @@ def doCultivation_AI(pUnit):
         # kauf was, das es hier gibt und dort gebraucht wird und los geht's
         for eBonus in lBonuses:
             iLocalPrice = -1
-            iPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pLoopCity.plot())
+            iPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer, pLoopCity.plot())
             if eBonus in lLocalCityBonuses:
-                iLocalPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pLocalCity.plot())
+                iLocalPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer, pLocalCity.plot())
             if iLocalPrice != -1 and iLocalPrice <= iPrice:
                 #buy here. wait if not enough money
-                doBuyBonus4Cultivation(pUnit,eBonus)
+                doBuyBonus4Cultivation(pUnit, eBonus)
                 pUnit.finishMoves()
                 return True
             elif iPrice != -1:
@@ -510,7 +511,8 @@ def doCultivation_AI(pUnit):
                 #~ # KI 10% mehr Chance
                 #~ if CvUtil.myRandom(100) < iChance + 10:
                   #~ loopPlot.setBonusType(iBonus)
-                #~ pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                #~ # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                #~ pUnit.kill(True, -1)  # RAMK_CTD
                 #~ pUnit = None
                 #~ return True
 

@@ -40,13 +40,14 @@ def setFortDefence(pPlot):
     # Einheit herausfinden
     lTempUnit = [
         eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER")),
-        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER")),
+        # UNITCLASS_COMPOSITE_ARCHER ist garnicht baubar
+        # eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER")),
         eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARCHER")),
         eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"))
     ]
     iUnit = -1
     for iUnit in lTempUnit:
-        if pBarbPlayer.canTrain(iUnit, 0, 0):
+        if iUnit != -1 and pBarbPlayer.canTrain(iUnit, 0, 0):
             break
     if iUnit != -1:
         # Einheit setzen

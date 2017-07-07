@@ -7388,7 +7388,7 @@
       <iTradeRoutes>0</iTradeRoutes>
       <iHealth>0</iHealth>
       <iHappiness>0</iHappiness>
-      <iFirstFreeTechs>1</iFirstFreeTechs>
+      <iFirstFreeTechs>0</iFirstFreeTechs>
       <iAsset>24</iAsset>
       <iPower>0</iPower>
       <bRepeat>0</bRepeat>
@@ -13075,7 +13075,7 @@
       <iTradeRoutes>0</iTradeRoutes>
       <iHealth>0</iHealth>
       <iHappiness>0</iHappiness>
-      <iFirstFreeTechs>1</iFirstFreeTechs>
+      <iFirstFreeTechs>0</iFirstFreeTechs>
       <iAsset>32</iAsset>
       <iPower>0</iPower>
       <bRepeat>0</bRepeat>
@@ -15548,7 +15548,7 @@
       <iTradeRoutes>0</iTradeRoutes>
       <iHealth>0</iHealth>
       <iHappiness>0</iHappiness>
-      <iFirstFreeTechs>1</iFirstFreeTechs>
+      <iFirstFreeTechs>0</iFirstFreeTechs>
       <iAsset>32</iAsset>
       <iPower>0</iPower>
       <bRepeat>0</bRepeat>
@@ -16157,7 +16157,7 @@
       <iTradeRoutes>0</iTradeRoutes>
       <iHealth>0</iHealth>
       <iHappiness>0</iHappiness>
-      <iFirstFreeTechs>0</iFirstFreeTechs>
+      <iFirstFreeTechs>1</iFirstFreeTechs>
       <iAsset>32</iAsset>
       <iPower>0</iPower>
       <bRepeat>0</bRepeat>

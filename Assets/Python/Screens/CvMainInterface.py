@@ -5049,7 +5049,7 @@ class CvMainInterface:
                     szBuffer = localText.getText("TXT_KEY_MAIN_EMIGRATE_AB_1",("",))
                 elif not pTeam.isHasTech(iTech):
                     szBuffer = localText.getText("TXT_KEY_MAIN_EMIGRATE_AB_2",("",))
-                elif iCityPop < 4:
+                elif iCityPop < 6:
                     szBuffer = localText.getText("TXT_KEY_MAIN_EMIGRATE_AB_3",("",))
                 else:
                     iCityUnhappy = pCity.unhappyLevel(0) - pCity.happyLevel()
@@ -5255,8 +5255,9 @@ class CvMainInterface:
                             loopPlot = gc.getMap().plot(pPlot.getX() + i - 1, pPlot.getY() + j - 1)
                             for iUnit in range(loopPlot.getNumUnits()):
                                 if loopPlot.getUnit(iUnit).canFight():
-                                    if gc.getTeam(pPlot.getOwner()).isAtWar(gc.getPlayer(loopPlot.getUnit(iUnit).getOwner()).getTeam()):
-                                        iUnitAnzahl += 1
+                                    if pPlot.getOwner() != -1: # kann ja garnicht sein, ist schliesslich der Stadtplot. Aber sicher ist sicher.
+                                        if gc.getTeam(pPlot.getOwner()).isAtWar(gc.getPlayer(loopPlot.getUnit(iUnit).getOwner()).getTeam()):
+                                            iUnitAnzahl += 1
 
                     # Anz Einheiten in der Stadt (military units)
                     iUnitCity = i = iChanceUnits = 0
