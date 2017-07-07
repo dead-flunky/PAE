@@ -42585,7 +42585,7 @@
       <Capture>NONE</Capture>
       <Combat>UNITCOMBAT_NAVAL</Combat>
       <Domain>DOMAIN_SEA</Domain>
-      <DefaultUnitAI>UNITAI_SETTLER_SEA</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_MERCHANT</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_CARVEL_TRADE</Description>

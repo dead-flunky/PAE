@@ -451,13 +451,13 @@ def doTornado():
                 pPlot.setFeatureType(feat_tornado, 0)
 
                 iPlayer = pPlot.getOwner()
-                pOwner = gc.getPlayer(iPlayer)
-
                 if iPlayer != -1:
+                    pOwner = gc.getPlayer(iPlayer)
+
                     if pPlot.isVisibleToWatchingHuman():
                         CyCamera().JustLookAtPlot(pPlot)
 
-                    if gc.getPlayer(iPlayer).isHuman():
+                    if pOwner.isHuman():
                         popupInfo = CyPopupInfo()
                         popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
                         sText = CyTranslator().getText("TXT_KEY_DISASTER_TORNADO", ("", ))
@@ -465,22 +465,21 @@ def doTornado():
                         popupInfo.addPopup(iPlayer)
                         CyInterface().addMessage(iPlayer, True, 12, sText, None, 2, gc.getFeatureInfo(feat_tornado).getButton(), ColorTypes(7), iRandX, iRandY, True, True)
 
-                if pPlot.isCity():
-                    pCity = pPlot.getPlotCity()
-                    iPop_alt = pCity.getPopulation()
-                    iPop_neu = max(1, int(pCity.getPopulation() / 2))
+                    if pPlot.isCity():
+                        pCity = pPlot.getPlotCity()
+                        iPop_alt = pCity.getPopulation()
+                        iPop_neu = max(1, int(pCity.getPopulation() / 2))
 
-                    pCity.setPopulation(iPop_neu)
-                    if iPlayer != -1:
-                        if gc.getPlayer(iPlayer).isHuman() and pPlot.isVisibleToWatchingHuman():
-                            if gc.getPlayer(iPlayer).isHuman():
+                        pCity.setPopulation(iPop_neu)
+                        if pPlot.isVisibleToWatchingHuman():
+                            if pOwner.isHuman():
                                 CyInterface().addMessage(iPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_TORNADO_CITY", (pCity.getName(), iPop_neu, iPop_alt)), None, 2, gc.getFeatureInfo(feat_tornado).getButton(), ColorTypes(7), iRandX, iRandY, True, True)
                             else:
                                 CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 12, CyTranslator().getText("TXT_KEY_DISASTER_TORNADO_CITY_OTHER", (pOwner.getCivilizationAdjective(2), pCity.getName())), None, 2, gc.getFeatureInfo(feat_tornado).getButton(), ColorTypes(2), iRandX, iRandY, True, True)
-                    # City, Wahrscheinlichkeit in %
-                    doDestroyCityBuildings(pCity, 25)
-                    doKillUnits(pPlot, 10)
-                    PAE_City.doCheckCityState(pCity)
+                        # City, Wahrscheinlichkeit in %
+                        doDestroyCityBuildings(pCity, 25)
+                        doKillUnits(pPlot, 10)
+                        PAE_City.doCheckCityState(pCity)
 
                 # rundherum Sturm kreieren
                 for i in range(3):
@@ -811,10 +810,11 @@ def doErdbeben(iX, iY):
                     iBonus = lBonus[iRand]
 
                     iRandPlot = CvUtil.myRandom(len(bonusPlotArray), "doErdbeben11")
-                    bonusPlotArray[iRandPlot].setBonusType(iBonus)
-                    iOwner = bonusPlotArray[iRandPlot].getOwner()
+                    pRandPlot = bonusPlotArray[iRandPlot]
+                    pRandPlot.setBonusType(iBonus)
+                    iOwner = pRandPlot.getOwner()
                     if iOwner > -1 and gc.getPlayer(iOwner).isHuman():
-                        CyInterface().addMessage(bonusPlotArray[iRandPlot].getOwner(), True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS", (gc.getBonusInfo(iBonus).getDescription(),)), None, 2, gc.getBonusInfo(iBonus).getButton(), ColorTypes(14), bonusPlotArray[iRandPlot].getX(), bonusPlotArray[iRandPlot].getY(), True, True)
+                        CyInterface().addMessage(iOwner, True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS", (gc.getBonusInfo(iBonus).getDescription(),)), None, 2, gc.getBonusInfo(iBonus).getButton(), ColorTypes(14), pRandPlot.getX(), pRandPlot.getY(), True, True)
 
 
                 # Zusaetzliche Gefahren durch das Erdbeben
@@ -946,7 +946,6 @@ def doVulkan(iX, iY, iSkala):
 
         # Staerke 1
         if iSkala == 8:
-
             for i in range(3):
                 for j in range(3):
                     loopPlot = gc.getMap().plot(iRandX - 1 + i, iRandY - 1 + j)
@@ -1642,7 +1641,7 @@ def doComet():
                                     popupInfo.setText(sText)
                                     popupInfo.addPopup(iPlayer)
                                     CyInterface().addMessage(iPlayer, True, 12, sText, None, 2, gc.getFeatureInfo(feat_comet).getButton(), ColorTypes(7), iRandX, iRandY, True, True)
-                                else:
+                                elif iPlayer != -1:
                                     # Message an alle
                                     CyInterface().addMessage(iSecondPlayer, True, 12, CyTranslator().getText("TXT_KEY_DISASTER_COMET_CITY_OTHER", (gc.getPlayer(iPlayer).getCivilizationAdjective(2), pCity.getName())), None, 2, gc.getFeatureInfo(feat_comet).getButton(), ColorTypes(2), iRandX, iRandY, True, True)
 
@@ -1710,14 +1709,11 @@ def doComet():
                         else:
                             iNewBonus = bonus_oreichalkos
                         pPlot.setBonusType(iNewBonus)
-                        if pPlot.getOwner() > -1 and gc.getPlayer(pPlot.getOwner()).isHuman():
-                            CyInterface().addMessage(pPlot.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS", (gc.getBonusInfo(iNewBonus).getDescription(),)), None, 2, gc.getBonusInfo(iNewBonus).getButton(), ColorTypes(14), pPlot.getX(), pPlot.getY(), True, True)
-
-
+                        iPlotOwner = pPlot.getOwner()
+                        if iPlotOwner != -1 and gc.getPlayer(iPlotOwner).isHuman():
+                            CyInterface().addMessage(iPlotOwner, True, 10, CyTranslator().getText("TXT_KEY_NEW_BONUS", (gc.getBonusInfo(iNewBonus).getDescription(),)), None, 2, gc.getBonusInfo(iNewBonus).getButton(), ColorTypes(14), pPlot.getX(), pPlot.getY(), True, True)
 
   # ------------------- Anfang Gebaeude, Wunder und Einheiten Damage  -----------------
-
-
   # iChance = Wahrscheinlichkeit, dass ein Gebaeude zerstoert wird
 def doDestroyCityBuildings(pCity, iChance):
     if pCity.getNumBuildings() > 0:

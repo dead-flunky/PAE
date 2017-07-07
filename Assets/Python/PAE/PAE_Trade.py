@@ -911,7 +911,7 @@ def addCityWithSpecialBonus(iGameTurn):
     iRange = gc.getMAX_PLAYERS()
     for i in range(iRange):
         loopPlayer = gc.getPlayer(i)
-        if loopPlayer.isAlive() and not loopPlayer.isHuman():
+        if loopPlayer.isAlive() and not loopPlayer.isHuman() and not loopPlayer.isBarbarian():
             (loopCity, pIter) = loopPlayer.firstCity(False)
             while loopCity:
                 if not loopCity.isNone() and loopCity.getOwner() == loopPlayer.getID(): #only valid cities

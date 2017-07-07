@@ -102,8 +102,9 @@ def stackDoTurn(iPlayer, iGameTurn):
             for y in range(3):
                 loopPlot = gc.getMap().plot(h[0]-1+x,h[1]-1+y)
                 if loopPlot is not None and not loopPlot.isNone():
-                    if loopPlot.isCity():
-                        if pTeam.isAtWar(gc.getPlayer(loopPlot.getOwner()).getTeam()):
+                    iLoopPlotOwner = loopPlot.getOwner()
+                    if iLoopPlotOwner != -1 and loopPlot.isCity():
+                        if pTeam.isAtWar(gc.getPlayer(iLoopPlotOwner).getTeam()):
                             pPlotEnemyCity = loopPlot
                             break
             if pPlotEnemyCity is not None:
@@ -151,7 +152,6 @@ def stackDoTurn(iPlayer, iGameTurn):
         # Inits for Supply Units (nur notwendig, wenns Versorger gibt)
         if lHealer:
             iLoopOwner = loopPlot.getOwner()
-            pLoopOwner = gc.getPlayer(iLoopOwner)
             # Eigenes Terrain
             if iLoopOwner == iPlayer:
                 if loopPlot.isCity():
@@ -181,6 +181,7 @@ def stackDoTurn(iPlayer, iGameTurn):
                     gc.getInfoTypeForString("IMPROVEMENT_BRUNNEN")
                 ]
                 if iLoopOwner != -1:
+                    pLoopOwner = gc.getPlayer(iLoopOwner)
                     iTeamPlot = pLoopOwner.getTeam()
                     pTeamPlot = gc.getTeam(iTeamPlot)
 
@@ -657,8 +658,7 @@ def doUpgradeVeteran(pUnit, iNewUnit, bChangeCombatPromo):
             NewUnit.setDamage(pUnit.getDamage(), -1)
             NewUnit.setImmobileTimer(1)
 
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-            pUnit = None
+            pUnit.kill(True, -1)
 
 # Unit Rang Promos (PAE, ModMessage:751)
 def doUpgradeRang(iPlayer,iUnit):
@@ -1556,7 +1556,7 @@ def doBuildHandelsposten(pUnit):
 # PAE CITY builds UNIT -> auto promotions (land units)
 def doCityUnitPromotions (pCity, pUnit):
     initChanceCity = 1  # ab Stadt: Chance * City Pop
-    initChance = 5      # Chance * Plots
+    initChance = 3      # Chance * Plots
     #initChanceRiver = 2 # for PROMOTION_AMPHIBIOUS only
     # --------------
     # iCityAttack = 0
@@ -1667,7 +1667,7 @@ def doCityUnitPromotions4Ships (pCity, pUnit):
             if pLoopPlot.isWater():
                 iWater += 1
 
-    if iWater > 0:
+    if iWater > 3:
         iRand = CvUtil.myRandom(10, "doCityUnitPromotions4Ships")
         if iWater * initChance > iRand:
             iPromo = gc.getInfoTypeForString("PROMOTION_NAVIGATION1")
@@ -1781,33 +1781,6 @@ def removeMercenaryPromo(pWinner):
             if pWinnerPlayer.isHuman():
                 CyInterface().addMessage(iWinnerPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_HERO_6", (pWinner.getName(),)), "AS2D_WELOVEKING", 2, pWinner.getButton(), ColorTypes(8), pWinner.getX(), pWinner.getY(), True, True)
 
-def doFuror(pWinner, pLoser):
-    iWinnerPlayer = pWinner.getOwner()
-    pWinnerPlayer = gc.getPlayer(iWinnerPlayer)
-    iWinnerST = pWinner.baseCombatStr()
-    iLoserST = pLoser.baseCombatStr()
-    # weak units without death calc (eg animal)
-    # enemy units should be equal
-    if iLoserST >= (iWinnerST / 5) * 4:
-        iPromoFuror1 = gc.getInfoTypeForString('PROMOTION_FUROR1')
-        iPromoFuror2 = gc.getInfoTypeForString('PROMOTION_FUROR2')
-        iPromoFuror3 = gc.getInfoTypeForString('PROMOTION_FUROR3')
-        if pWinner.isHasPromotion(iPromoFuror3):
-            iChanceSuicide = 1
-        elif pWinner.isHasPromotion(iPromoFuror2):
-            iChanceSuicide = 2
-        elif pWinner.isHasPromotion(iPromoFuror1):
-            iChanceSuicide = 3
-        else:
-            iChanceSuicide = 0
-
-        if iChanceSuicide > 0:
-            if iChanceSuicide > CvUtil.myRandom(10, "Furor"):
-                if pWinnerPlayer.isHuman():
-                    CyInterface().addMessage(iWinnerPlayer, True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_FUROR_SUICIDE", (pWinner.getName(), 0)), None, 2, pWinner.getButton(), ColorTypes(7), pWinner.getX(), pWinner.getY(), True, True)
-                pWinner.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                return True
-    return False
 
 def doHunterHero(pWinner, pLoser):
     iWinnerPlayer = pWinner.getOwner()

@@ -3906,9 +3906,9 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_HOPLIT_SPARTA</Tag>
-    <English>Spartiates</English>
+    <English>Spartiate</English>
     <French>Homoioi</French>
-    <German>Spartiaten</German>
+    <German>Spartiat</German>
     <Italian>Homoioi</Italian>
     <Spanish>Homoioi</Spanish>
   </TEXT>
@@ -5721,14 +5721,6 @@
     <Spanish>Iglesia magn&#237;fica</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_FREE</Tag>
-    <English></English>
-    <French></French>
-    <German></German>
-    <Italian></Italian>
-    <Spanish></Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_UNIT_HORSE_ARCHER_BAKTRIEN</Tag>
     <English>Bactrian Mounted Archers</English>
     <French>Bactrian Mounted Archers</French>
@@ -6087,13 +6079,5 @@
     <German>Parkanlagen</German>
     <Italian>Public Parks</Italian>
     <Spanish>Parques p&#250;blicos</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_FREE</Tag>
-    <English></English>
-    <French></French>
-    <German></German>
-    <Italian></Italian>
-    <Spanish></Spanish>
   </TEXT>
 </Civ4GameText>

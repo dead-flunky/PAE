@@ -9890,15 +9890,15 @@
       </Buildings>
       <Units>
         <Unit>
+          <UnitClassType>UNITCLASS_SETTLER</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_CATAPULT</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_PELTIST</UnitClassType>
-          <UnitType>NONE</UnitType>
-        </Unit>
-        <Unit>
-          <UnitClassType>UNITCLASS_WAR_ELEPHANT</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
         <Unit>
@@ -9910,17 +9910,85 @@
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_WAR_ELEPHANT</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_CARVEL_WAR</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
+		<Unit>
+          <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_SUPPLY_FOOD</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CARAVAN</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_TRADE_MERCHANT</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>		
+        <Unit>
+          <UnitClassType>UNITCLASS_NORDIC_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+		<Unit>
+          <UnitClassType>UNITCLASS_JEWISH_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CHRISTIAN_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>	
+		<Unit>
+          <UnitClassType>UNITCLASS_ZORO_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_PHOEN_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_GREEK_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_CELTIC_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_EGYPT_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>		
+        <Unit>
+          <UnitClassType>UNITCLASS_ROME_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>		
+        <Unit>
+          <UnitClassType>UNITCLASS_SUMER_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>		
+        <Unit>
+          <UnitClassType>UNITCLASS_HINDU_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>		
+        <Unit>
+          <UnitClassType>UNITCLASS_BUDDHIST_MISSIONARY</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>	
+        <Unit>
+          <UnitClassType>UNITCLASS_MISSIONARY_JAINISMUS</UnitClassType>
+          <UnitType>NONE</UnitType>
+        </Unit>			
       </Units>
       <FreeUnitClasses>
         <FreeUnitClass>
           <UnitClassType>UNITCLASS_WARRIOR</UnitClassType>
-          <iFreeUnits>1</iFreeUnits>
-        </FreeUnitClass>
-        <FreeUnitClass>
-          <UnitClassType>UNITCLASS_SETTLER</UnitClassType>
           <iFreeUnits>1</iFreeUnits>
         </FreeUnitClass>
       </FreeUnitClasses>

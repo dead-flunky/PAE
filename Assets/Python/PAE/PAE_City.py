@@ -945,8 +945,10 @@ def doDesertification(pCity, pUnit):
 
                 elif iPlotPlayer > -1 and iPlotPlayer != gc.getBARBARIAN_PLAYER():
                     pPlotPlayer = gc.getPlayer(iPlotPlayer)
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_2", (pPlotPlayer.getCivilizationShortDescription(0), pPlotPlayer.getCivilizationAdjective(1))), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-                    CyInterface().addMessage(iPlotPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_3", (pPlayer.getCivilizationShortDescription(0), 0)), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+                    if pPlayer.isHuman():
+                        CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_2", (pPlotPlayer.getCivilizationShortDescription(0), pPlotPlayer.getCivilizationAdjective(1))), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+                    if pPlotPlayer.isHuman():
+                        CyInterface().addMessage(iPlotPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_3", (pPlayer.getCivilizationShortDescription(0), 0)), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
                     pPlotPlayer.AI_changeAttitudeExtra(iPlayer, -1)
 
     # Feature Waldrodung Ende
@@ -980,16 +982,17 @@ def doEmigrant(pCity, pUnit):
 
 # disband city
 def doDisbandCity(pCity, pUnit, pPlayer):
-    iRand = CvUtil.myRandom(10, "disband")
-    if iRand < 5:
+    iRand = CvUtil.myRandom(10, "disbandCity")
+    if iRand < 8:
         CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_OK", (pCity.getName(),)), "AS2D_PILLAGE", 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), False, False)
         pPlayer.disband(pCity)
-        #iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-        #pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
+        iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
+        pNewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        pNewUnit.finishMoves()
+        pUnit.finishMoves()
     else:
         CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_NOT_OK", (pCity.getName(),)), "AS2D_CITY_REVOLT", 2, None, ColorTypes(7), pCity.getX(), pCity.getY(), False, False)
         pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-        pUnit = None
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Emigrant disbands/shrinks City (Zeile 6474)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -2104,7 +2107,7 @@ def doEmigrantSpawn(pCity):
     if bRevoltDanger:
         if CvUtil.myRandom(100, "doEmigrantSpawn") < iChance:
             iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-            NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             # Einheit die richtige Kultur geben
             iPlayerCulture = pCity.findHighestCulture()
