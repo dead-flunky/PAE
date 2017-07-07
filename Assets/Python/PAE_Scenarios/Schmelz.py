@@ -2,9 +2,9 @@
 
 # Imports
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
 import CvUtil
-import PyHelpers
+# import PyHelpers
 
 # Defines
 gc = CyGlobalContext()
@@ -124,13 +124,14 @@ def onEndGameTurn(iGameTurn, sScenarioName):
         # Marathon alle 52 Runden (insg. 1220 Runden)
         iTurnSchmelzIntervall = 40
         iTurnLimit = 800
-        if gc.getGame().getGameSpeedType() == gc.getInfoTypeForString("GAMESPEED_QUICK"):
+        iGameSpeed = gc.getGame().getGameSpeedType()
+        if iGameSpeed == gc.getInfoTypeForString("GAMESPEED_QUICK"):
             iTurnSchmelzIntervall = 32
             iTurnLimit = 600
-        elif gc.getGame().getGameSpeedType() == gc.getInfoTypeForString("GAMESPEED_EPIC"):
+        elif iGameSpeed == gc.getInfoTypeForString("GAMESPEED_EPIC"):
             iTurnSchmelzIntervall = 45
             iTurnLimit = 900
-        elif gc.getGame().getGameSpeedType() == gc.getInfoTypeForString("GAMESPEED_MARATHON"):
+        elif iGameSpeed == gc.getInfoTypeForString("GAMESPEED_MARATHON"):
             iTurnSchmelzIntervall = 52
             iTurnLimit = 1000
 
@@ -151,9 +152,9 @@ def onEndGameTurn(iGameTurn, sScenarioName):
             eDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
 
             # Schnee -> Tundra
-            if len(IceSnow):
+            if IceSnow:
                 for pPlot in IceSnow:
-                    iRand = CvUtil.myRandom(iWahrscheinlichkeit)
+                    iRand = CvUtil.myRandom(iWahrscheinlichkeit, "IceSnow")
                     if iRand == 1:
                         pPlot.setTerrainType(eTundra, 1, 1)
                         IceSnow.remove(pPlot)
@@ -164,21 +165,21 @@ def onEndGameTurn(iGameTurn, sScenarioName):
                             IceTundra.append(pPlot)
 
             # Tundra -> Gras (25%) oder Ebene (75%)
-            if len(IceTundra):
+            if IceTundra:
                 for pPlot in IceTundra:
-                    iRand = CvUtil.myRandom(iWahrscheinlichkeit)
+                    iRand = CvUtil.myRandom(iWahrscheinlichkeit, "IceTundra")
                     if iRand == 1:
-                        iRand = CvUtil.myRandom(4)
+                        iRand = CvUtil.myRandom(4, "IceTundraB")
                         if iRand == 1:
                             pPlot.setTerrainType(eGras, 1, 1)
                         else:
                             pPlot.setTerrainType(eEbene, 1, 1)
                         IceTundra.remove(pPlot)
-            if len(IceTundra2):
+            if IceTundra2:
                 for pPlot in IceTundra2:
-                    iRand = CvUtil.myRandom(iWahrscheinlichkeit*3)
+                    iRand = CvUtil.myRandom(iWahrscheinlichkeit*3, "IceTundra2")
                     if iRand == 1:
-                        iRand = CvUtil.myRandom(4)
+                        iRand = CvUtil.myRandom(4, "IceTundra2B")
                         if iRand == 1:
                             pPlot.setTerrainType(eGras, 1, 1)
                         else:
@@ -186,36 +187,35 @@ def onEndGameTurn(iGameTurn, sScenarioName):
                         IceTundra2.remove(pPlot)
 
             # Eis schmilzt
-            if len(IceEis):
+            if IceEis:
                 for pPlot in IceEis:
-                    iRand = CvUtil.myRandom(iWahrscheinlichkeit)
+                    iRand = CvUtil.myRandom(iWahrscheinlichkeit, "IceEis")
                     if iRand == 1:
                         pPlot.setFeatureType(-1, 0)
                         IceEis.remove(pPlot)
 
             # Ueberflutung
-            if len(IceCoast):
+            if IceCoast:
                 for pPlot in IceCoast:
-                    iRand = CvUtil.myRandom(50)
+                    iRand = CvUtil.myRandom(50, "IceCoast")
                     if iRand == 1:
                         pPlot.setTerrainType(eCoast, 1, 1)
                         IceCoast.remove(pPlot)
 
             # Desertifizierung
             if sScenarioName == "SchmelzEuro":
-                if len(IceDesertEbene):
+                if IceDesertEbene:
                     for pPlot in IceDesertEbene:
-                        iRand = CvUtil.myRandom(iWahrscheinlichkeit)
+                        iRand = CvUtil.myRandom(iWahrscheinlichkeit, "IceDesertEbene")
                         if iRand == 1:
                             pPlot.setTerrainType(eDesert, 1, 1)
                             pPlot.setImprovementType(-1)
                             IceDesertEbene.remove(pPlot)
-                elif len(IceDesertCoast):
+                elif IceDesertCoast:
                     for pPlot in IceDesertCoast:
-                        iRand = CvUtil.myRandom(iWahrscheinlichkeit)
+                        iRand = CvUtil.myRandom(iWahrscheinlichkeit, "IceDesertCoast")
                         if iRand == 1:
                             pPlot.setTerrainType(eEbene, 1, 1)
                             IceDesertCoast.remove(pPlot)
                             # Desert Liste updaten
                             IceDesertEbene.append(pPlot)
-        #---------------------------Ende Schmelzen---------------------------------------

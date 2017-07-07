@@ -473,7 +473,7 @@ class CvMainInterface:
         self.createMinimapButtons()
 
         # Help button (always visible)
-        screen.setImageButton( "InterfaceHelpButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_GENERAL_CIVILOPEDIA_ICON").getPath(), xResolution - 28, 2, 24, 24, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_CIVILOPEDIA).getActionInfoIndex(), -1 )
+        screen.setImageButton("InterfaceHelpButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_GENERAL_CIVILOPEDIA_ICON").getPath(), xResolution - 28, 2, 24, 24, WidgetTypes.WIDGET_ACTION, gc.getControlInfo(ControlTypes.CONTROL_CIVILOPEDIA).getActionInfoIndex(), -1)
         screen.hide( "InterfaceHelpButton" )
 
         screen.setImageButton( "MainMenuButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_GENERAL_MENU_ICON").getPath(), xResolution - 54, 2, 24, 24, WidgetTypes.WIDGET_MENU_ICON, -1, -1 )
@@ -1793,7 +1793,6 @@ class CvMainInterface:
 
                 # Units to construct
                 for i in range(g_NumUnitClassInfos):
-
                     # PAE - Abbruch bei unbaubare Einheiten
                     if i == gc.getInfoTypeForString("UNITCLASS_PROPHET"):
                         break
@@ -1801,9 +1800,14 @@ class CvMainInterface:
                     eLoopUnit = gc.getCivilizationInfo(pHeadSelectedCity.getCivilizationType()).getCivilizationUnits(i)
 
                     # PAE - Zeilenumbruch bei bestimmten Einheitenklassen (unitcombattypes)
-                    if (eLoopUnit == gc.getInfoTypeForString("UNIT_WARRIOR") or eLoopUnit == gc.getInfoTypeForString("UNIT_LIGHT_ARCHER") \
-                        or eLoopUnit == gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT") or i == gc.getInfoTypeForString("UNITCLASS_SPECIAL1") \
-                        or eLoopUnit == gc.getInfoTypeForString("UNIT_INQUISITOR") or eLoopUnit == gc.getInfoTypeForString("UNITCLASS_ARCHER_KRETA")) and iCount > 6:
+                    lBreakLineUnits = [
+                        gc.getInfoTypeForString("UNIT_WARRIOR"),
+                        gc.getInfoTypeForString("UNIT_LIGHT_ARCHER"),
+                        gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT"),
+                        gc.getInfoTypeForString("UNIT_INQUISITOR"),
+                        gc.getInfoTypeForString("UNITCLASS_ARCHER_KRETA")
+                    ]
+                    if iCount > 6 and (eLoopUnit in lBreakLineUnits or i == gc.getInfoTypeForString("UNITCLASS_SPECIAL1")):
                         iCount = 0
                         if bFound:
                             iRow = iRow + 1
@@ -1813,21 +1817,10 @@ class CvMainInterface:
 
                     # Ramks city widgets
                     if pHeadSelectedCity.canTrain(eLoopUnit, False, True):
-                        # PAE: Sobald die Einheit mit irgendeiner CLASS upgradebar ist, soll diese nicht mehr angezeigt werden
-                        bShow = True
-                        #j=i # Upgrade Classes kommen im XML eigentlich immer nachher, erspart den check von Beginn an
-                        #for j in range(g_NumUnitClassInfos):
-                        #  if gc.getUnitInfo(eLoopUnit).getUpgradeUnitClass(j):
-                        #    eLoopUnit2 = gc.getCivilizationInfo(pHeadSelectedCity.getCivilizationType()).getCivilizationUnits(j)
-                        #    if pHeadSelectedCity.canTrain(eLoopUnit2, False, False):
-                        #      bShow = False
-                        #      break
-
-                        if bShow:
-                            szButton = gc.getPlayer(pHeadSelectedCity.getOwner()).getUnitButton(eLoopUnit)
-                            self.iconsLeft[rowLeft].append(([szButton, WidgetTypes.WIDGET_TRAIN, i, -1, False], pHeadSelectedCity.canTrain(eLoopUnit, False, False), cityTab))
-                            iCount = iCount + 1
-                            bFound = True
+                        szButton = gc.getPlayer(pHeadSelectedCity.getOwner()).getUnitButton(eLoopUnit)
+                        self.iconsLeft[rowLeft].append(([szButton, WidgetTypes.WIDGET_TRAIN, i, -1, False], pHeadSelectedCity.canTrain(eLoopUnit, False, False), cityTab))
+                        iCount = iCount + 1
+                        bFound = True
 
                 iCount = 0
                 if bFound:
@@ -2687,20 +2680,22 @@ class CvMainInterface:
                                         iCount = iCount + 1
 
                                     # Sklaven -> Tempel
-                                    iBuilding1 = gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE")
-                                    iBuilding2 = gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE")
-                                    iBuilding3 = gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE")
-                                    iBuilding4 = gc.getInfoTypeForString("BUILDING_ROME_TEMPLE")
-                                    iBuilding5 = gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE")
-                                    iBuilding6 = gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE")
-                                    iBuilding7 = gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE")
-                                    iBuilding8 = gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-                                    if (pCity.isHasBuilding(iBuilding1) or pCity.isHasBuilding(iBuilding2) or pCity.isHasBuilding(iBuilding3)
-                                            or pCity.isHasBuilding(iBuilding4) or pCity.isHasBuilding(iBuilding5) or pCity.isHasBuilding(iBuilding6)
-                                            or pCity.isHasBuilding(iBuilding7) or pCity.isHasBuilding(iBuilding8)):
-                                        screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_SLAVES_TEMPLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 693, 693, False )
-                                        screen.show( "BottomButtonContainer" )
-                                        iCount = iCount + 1
+                                    lTemples = [
+                                        gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_ROME_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"),
+                                        gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
+                                    ]
+                                    for iBuilding in lTemples:
+                                        if pCity.isHasBuilding(iBuilding):
+                                            screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_SLAVES_TEMPLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 693, 693, False )
+                                            screen.show( "BottomButtonContainer" )
+                                            iCount = iCount + 1
+                                            break
 
                                     # Sklaven -> Feuerwehr
                                     #if pTeam.isHasTech(gc.getInfoTypeForString("TECH_FEUERWEHR")):
@@ -5565,7 +5560,7 @@ class CvMainInterface:
                 pSelectedGroup = 0
 
             if CyInterface().getLengthSelectionList() > 1:
-                screen.setText( "SelectedUnitLabel", "Background", localText.getText("TXT_KEY_UNIT_STACK", (CyInterface().getLengthSelectionList(), )), CvUtil.FONT_LEFT_JUSTIFY, 18, yResolution - 137, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_UNIT_NAME, -1, -1 )
+                screen.setText("SelectedUnitLabel", "Background", localText.getText("TXT_KEY_UNIT_STACK", (CyInterface().getLengthSelectionList(), )), CvUtil.FONT_LEFT_JUSTIFY, 18, yResolution - 137, -0.1, FontTypes.SMALL_FONT, WidgetTypes.WIDGET_UNIT_NAME, -1, -1)
 
 
                 # BUG - Stack Promotions - start

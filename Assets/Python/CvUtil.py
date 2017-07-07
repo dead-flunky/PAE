@@ -86,7 +86,7 @@ FONT_LEFT_JUSTIFY = 1 << 0
 # CyRandom().init(seed)
 
 
-def myRandom(num, txt="dummy"):
+def myRandom(num, txt):
     if txt is None:
         txt = "dummyNone"
     return gc.getGame().getSorenRandNum(num, txt)
@@ -94,7 +94,7 @@ def myRandom(num, txt="dummy"):
     # else: return random.randint(0, num-1)
 
 
-def myLocalRandom(num, txt="dummy"):
+def myLocalRandom(num, txt):
     return gc.getGame().getMapRandNum(num, txt)
     # if num <= 1: return 0
     # else: return random.randint(0, num-1)

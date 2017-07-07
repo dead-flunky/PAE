@@ -2,7 +2,7 @@
 
 ### Imports
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
 import CvUtil
 import PAE_Barbaren
 import PyHelpers
@@ -22,6 +22,52 @@ if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
     bBarbForts = False
 if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS):
     bRageBarbs = True
+
+lNumHistoryTexts = {
+    -3480: 4,
+    -3000: 5,
+    -2680: 4,
+    -2000: 6,
+    -1680: 5,
+    -1480: 7,
+    -1280: 5,
+    -1200: 6,
+    -1000: 5,
+    -800: 6,
+    -750: 3,
+    -700: 6,
+    -615: 5,
+    -580: 5,
+    -540: 4,
+    -510: 5,
+    -490: 5,
+    -450: 4,
+    -400: 5,
+    -350: 7,
+    -330: 4,
+    -260: 3,
+    -230: 5,
+    -215: 4,
+    -200: 4,
+    -150: 5,
+    -120: 2,
+    -100: 2,
+    -70: 3,
+    -50: 2,
+    -30: 2,
+    -20: 2,
+    -10: 3,
+    10: 3,
+    60: 4,
+    90: 3,
+    130: 3,
+    210: 3,
+    250: 2,
+    280: 2,
+    370: 2,
+    400: 2,
+    440: 3,
+}
 
 # ------ Handelsposten erzeugen Kultur (PAE V Patch 3: und wieder Forts/Festungen)
 # ------ Berberloewen erzeugen
@@ -175,46 +221,46 @@ def doPlotFeatures():
 
 # --------- Strandgut -----------
 # -- PAE V: Treibgut -> Strandgut
-# TODO: globale Liste mit Treibguetern fuer Zeitersparnis
 def doStrandgut():
     iBarbPlayer = gc.getBARBARIAN_PLAYER()
     pBarbPlayer = gc.getPlayer(iBarbPlayer)
     iTreibgut = gc.getInfoTypeForString("UNIT_TREIBGUT")
     iStrandgut = gc.getInfoTypeForString("UNIT_STRANDGUT")
+    iGoldkarren = gc.getInfoTypeForString("UNIT_GOLDKARREN")
     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
     eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
 
-    lUnits = PyPlayer(pBarbPlayer.getID()).getUnitList()
+    lUnits = PyPlayer(iBarbPlayer).getUnitsOfType(iTreibgut)
     for loopUnit in lUnits:
-        if loopUnit.getUnitType() == iTreibgut:
-            pPlot = loopUnit.plot()
-            if pPlot.getTerrainType() == eCoast:
-                lPlots = []
-                iX = pPlot.getX()
-                iY = pPlot.getY()
-                iRange = 1
-                for i in range(-iRange, iRange+1):
-                    for j in range(-iRange, iRange+1):
-                        loopPlot = plotXY(iX, iY, i, j)
-                        if loopPlot is None or loopPlot.isNone():
-                            continue
-                        if loopPlot.isWater():
-                            continue
-                        if loopPlot.isPeak() or loopPlot.isUnit() or loopPlot.getFeatureType() == iDarkIce:
-                            continue
-                        lPlots.append(loopPlot)
+        pPlot = loopUnit.plot()
+        if pPlot.getTerrainType() == eCoast:
+            lPlots = []
+            iX = pPlot.getX()
+            iY = pPlot.getY()
+            # iRange = 1
+            for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
+                loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
+            # for i in range(-iRange, iRange+1):
+                # for j in range(-iRange, iRange+1):
+                    # loopPlot = plotXY(iX, iY, i, j)
+                if loopPlot is not None and not loopPlot.isNone():
+                    if not loopPlot.isWater():
+                        if not loopPlot.isPeak() and not loopPlot.isUnit() and loopPlot.getFeatureType() != iDarkIce:
+                            lPlots.append(loopPlot)
 
-                if lPlots:
-                    iPlot = CvUtil.myRandom(len(lPlots), "strandgut")
-                    # Create Strandgut
-                    pBarbPlayer.initUnit(iStrandgut, lPlots[iPlot].getX(), lPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                    # Disband Treibgut
-                    loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-            elif pPlot.isCity():
-                # Create Goldkarren
-                pBarbPlayer.initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            if lPlots:
+                iPlot = CvUtil.myRandom(len(lPlots), "strandgut")
+                # Create Strandgut
+                CvUtil.spawnUnit(iStrandgut, lPlots[iPlot], pBarbPlayer)
                 # Disband Treibgut
                 loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                loopUnit = None
+        elif pPlot.isCity():
+            # Create Goldkarren
+            CvUtil.spawnUnit(iGoldkarren, pPlot, pBarbPlayer)
+            # Disband Treibgut
+            loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            loopUnit = None
      # --------- Strandgut -----------
 
 ##### Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ####
@@ -294,36 +340,36 @@ def setGoodyHuts():
                                         if loopPlot2.isGoody() or loopPlot2.isCity():
                                             bSet = False
                                             break
-                                if not bSet: break
-                            if not bSet: break
+                                if not bSet:
+                                    break
+                            if not bSet:
+                                break
 
                             # Goody setzen oder Barbarenfort
-                            if bSet:
-                                # No extra Goody Huts in MultiBarbPlayer Mode
-                                if bMultiPlayer:
-                                    imp = -1
-                                else:
-                                    imp = impGoody
+                            # No extra Goody Huts in Multiplayer Mode
+                            if bMultiPlayer:
+                                imp = -1
+                            else:
+                                imp = impGoody
 
-                                # Barbarian Forts nur mit aktivierten Barbaren
-                                if bBarbForts:
-                                    randFort = CvUtil.myRandom(2, "barbFort")
-                                    if bRageBarbs:
-                                        if loopPlot.isHills() or randFort == 1:
-                                            imp = impBarbFort
-                                    elif loopPlot.isHills() and randFort == 1:
+                            # Barbarian Forts nur mit aktivierten Barbaren
+                            if bBarbForts:
+                                randFort = CvUtil.myRandom(2, "barbFort")
+                                if bRageBarbs:
+                                    if loopPlot.isHills() or randFort == 1:
                                         imp = impBarbFort
-                                loopPlot.setImprovementType(imp)
-                                iNumSetGoodies += 1
-                                #loopPlot.isActiveVisible(0)
+                                elif loopPlot.isHills() and randFort == 1:
+                                    imp = impBarbFort
+                            loopPlot.setImprovementType(imp)
+                            iNumSetGoodies += 1
+                            #loopPlot.isActiveVisible(0)
 
-                                # Einheit in die Festung setzen
-                                if imp == impBarbFort:
-                                    PAE_Barbaren.setFortDefence(loopPlot)
+                            # Einheit in die Festung setzen
+                            if imp == impBarbFort:
+                                PAE_Barbaren.setFortDefence(loopPlot)
 
-                                # ***TEST***
-                                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
+                            # ***TEST***
+                            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Goody Dorf/Festung/Nix gesetzt",imp)), None, 2, None, ColorTypes(10), 0, 0, False, False)
                 # isWater
                 elif bFlot:
                     if not bMultiPlayer:
@@ -364,10 +410,9 @@ def doSeewind():
         for j in range(iMapH):
             loopPlot = gc.getMap().plot(i, j)
             if loopPlot is not None and not loopPlot.isNone():
-                if loopPlot.getFeatureType() == iDarkIce:
-                    continue
-                if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-                    OceanPlots.append(loopPlot)
+                if loopPlot.getTerrainType() == terr_ocean:
+                    if loopPlot.getFeatureType() != feat_ice and loopPlot.getFeatureType() != iDarkIce:
+                        OceanPlots.append(loopPlot)
 
     if OceanPlots:
         #  0 = WORLDSIZE_DUEL
@@ -379,10 +424,10 @@ def doSeewind():
         iMaxEffects = (gc.getMap().getWorldSize() + 1) * 2
         for i in range(iMaxEffects):
             # get first ocean plot
-            iRand = CvUtil.myRandom(len(OceanPlots))
+            iRand = CvUtil.myRandom(len(OceanPlots), "doSeewind1")
             loopPlot = OceanPlots[iRand]
             # First direction
-            iDirection = CvUtil.myRandom(iNumDirection)
+            iDirection = CvUtil.myRandom(iNumDirection, "doSeewind2")
 
             # Start Windplots
             for j in range(iWindplots):
@@ -391,62 +436,18 @@ def doSeewind():
                         continue
                     if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
                         loopPlot.setFeatureType(lFeatWind[iDirection], 0)
-                        iDirection = (iDirection+CvUtil.myRandom(3)-1)%iNumDirection
+                        iDirection = (iDirection+CvUtil.myRandom(3, "doSeewind3")-1)%iNumDirection
                         loopPlot = plotDirection(loopPlot.getX(), loopPlot.getY(), DirectionTypes(iDirection))
 
 
-# ++++++++++++++++++ Historische Texte ++++++++++++++++++++++++++++++++++++++++++++++
-
 def doHistory():
+    """++++++++++++++++++ Historische Texte ++++++++++++++++++++++++++++++++++++++++++++++"""
     iGameYear = gc.getGame().getGameTurnYear()
-    txts = 0
-
-    if iGameYear == -3480: txts = 4
-    elif iGameYear == -3000: txts = 5
-    elif iGameYear == -2680: txts = 4
-    elif iGameYear == -2000: txts = 6
-    elif iGameYear == -1680: txts = 5
-    elif iGameYear == -1480: txts = 7
-    elif iGameYear == -1280: txts = 5
-    elif iGameYear == -1200: txts = 6
-    elif iGameYear == -1000: txts = 5
-    elif iGameYear == -800: txts = 6
-    elif iGameYear == -750: txts = 3
-    elif iGameYear == -700: txts = 6
-    elif iGameYear == -615: txts = 5
-    elif iGameYear == -580: txts = 5
-    elif iGameYear == -540: txts = 4
-    elif iGameYear == -510: txts = 5
-    elif iGameYear == -490: txts = 5
-    elif iGameYear == -450: txts = 4
-    elif iGameYear == -400: txts = 5
-    elif iGameYear == -350: txts = 7
-    elif iGameYear == -330: txts = 4
-    elif iGameYear == -260: txts = 3
-    elif iGameYear == -230: txts = 5
-    elif iGameYear == -215: txts = 4
-    elif iGameYear == -200: txts = 4
-    elif iGameYear == -150: txts = 5
-    elif iGameYear == -120: txts = 2
-    elif iGameYear == -100: txts = 2
-    elif iGameYear == -70: txts = 3
-    elif iGameYear == -50: txts = 2
-    elif iGameYear == -30: txts = 2
-    elif iGameYear == -20: txts = 2
-    elif iGameYear == -10: txts = 3
-    elif iGameYear == 10: txts = 3
-    elif iGameYear == 60: txts = 4
-    elif iGameYear == 90: txts = 3
-    elif iGameYear == 130: txts = 3
-    elif iGameYear == 210: txts = 3
-    elif iGameYear == 250: txts = 2
-    elif iGameYear == 280: txts = 2
-    elif iGameYear == 370: txts = 2
-    elif iGameYear == 400: txts = 2
-    elif iGameYear == 440: txts = 3
-
-    if txts > 0:
-        iRand = CvUtil.myRandom(txts)
+    # txts = 0
+    if iGameYear in lNumHistoryTexts:
+        txts = lNumHistoryTexts[iGameYear]
+    # if txts > 0:
+        iRand = CvUtil.myRandom(txts, "doHistory")
 
         # iRand 0 bedeutet keinen Text anzeigen. Bei mehr als 2 Texte immer einen einblenden
         if txts > 2:
@@ -461,3 +462,36 @@ def doHistory():
 
             text = CyTranslator().getText("TXT_KEY_HISTORY", ("",)) + " " + CyTranslator().getText(text, ("",))
             CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, text, None, 2, None, ColorTypes(14), 0, 0, False, False)
+
+def doRevoltAnarchy(iPlayer):
+    pPlayer = gc.getPlayer(iPlayer)
+    iRand = CvUtil.myRandom(3, "getAnarchyTurns")
+    if iRand == 1:
+        iBuilding = gc.getInfoTypeForString("BUILDING_PLAGUE")
+        iNumCities = pPlayer.getNumCities()
+        iCityPlague = 0
+        iCityRevolt = 0
+        (loopCity, pIter) = pPlayer.firstCity(False)
+        while loopCity:
+            if not loopCity.isNone() and loopCity.getOwner() == iPlayer: #only valid cities
+                if loopCity.isHasBuilding(iBuilding):
+                    iCityPlague += 1
+                if loopCity.getOccupationTimer() > 1: # Flunky: changed 0->1, because the counter is not yet updated from the previous round.
+                    iCityRevolt += 1
+            (loopCity, pIter) = pPlayer.nextCity(pIter, False)
+
+        if iCityRevolt > 1 and iNumCities <= iCityRevolt * 2:
+            pPlayer.changeAnarchyTurns(3)
+            if pPlayer.isHuman():
+                popupInfo = CyPopupInfo()
+                popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+                popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_PLAYER_ANARCHY_FROM_REVOLTS", ("", )))
+                popupInfo.addPopup(iPlayer)
+
+        elif iNumCities <= iCityPlague * 2:
+            pPlayer.changeAnarchyTurns(2)
+            if pPlayer.isHuman():
+                popupInfo = CyPopupInfo()
+                popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_TEXT)
+                popupInfo.setText(CyTranslator().getText("TXT_KEY_MESSAGE_PLAYER_ANARCHY_FROM_PLAGUE", ("", )))
+                popupInfo.addPopup(iPlayer)
