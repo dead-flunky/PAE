@@ -80,11 +80,18 @@ import PeloponnesianWarKeinpferd
 import Schmelz
 import FirstPunicWar
 
-# At head of file:
-CIV4_SHELL = True
+""" Flag to enable Civ4 shell (See Extras/Pyconsole).
+    Note that the flag will also be used to enable/disable
+    other debugging features of Ramkhamhaeng
+"""
+CIV4_SHELL = False
 if CIV4_SHELL:
     import Civ4ShellBackend
     civ4Console = Civ4ShellBackend.Server(tcp_port=3333)
+
+    # Ramk - Redirect exception handler
+    import ExtendedDebug
+    ExtendedDebug.init_extended_debug()
 
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -1796,8 +1803,9 @@ class CvEventManager:
     def onInit(self, argsList):
         'Called when Civ starts up'
         CvUtil.pyPrint('OnInit')
-        import Wrappers
-        Wrappers.addWrappers()
+        if CIV4_SHELL:
+            import Wrappers
+            Wrappers.addWrappers()
 
     def onUpdate(self, argsList):
         'Called every frame'
