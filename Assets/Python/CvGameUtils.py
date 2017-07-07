@@ -1716,7 +1716,7 @@ class CvGameUtils:
 
                                             if not loopCity.isHasBuilding(iBuilding1):
                                                 if loopCity.isHasBuilding(iBuilding2):
-                                                    if pUnit.generatePath(loopCity.plot()):
+                                                    if pUnit.generatePath(loopCity.plot(), 0, False, None):
                                                         pUnit.getGroup().pushMoveToMission(loopCity.getX(), loopCity.getY())
                                                         return True
                                         (loopCity, pIter) = pOwner.nextCity(pIter, False)
@@ -1736,7 +1736,7 @@ class CvGameUtils:
                             lCityX = lCity
 
                     if lCityX:
-                        if not pUnit.atPlot(lCityX.plot()) and pUnit.generatePath(lCityX.plot()): # generatePath returns True, if a path was found.
+                        if not pUnit.atPlot(lCityX.plot()) and pUnit.generatePath(lCityX.plot(), 0, False, None): # generatePath returns True, if a path was found.
                             pUnit.getGroup().pushMoveToMission(lCityX.getX(), lCityX.getY())
                         else:
                             lCityX.changePopulation(1)
