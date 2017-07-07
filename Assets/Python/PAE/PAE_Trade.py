@@ -206,7 +206,7 @@ def doSellBonus(pUnit, pCity):
                     # Rarities doubles chance
                     if eBonus in lRarity:
                         iChance *= 2
-                    if CvUtil.myRandom(100) < iChance:
+                    if CvUtil.myRandom(100, "Handelsstrasse") < iChance:
                         iOriginX = CvUtil.getScriptData(pUnit, ["x"], -1)
                         iOriginY = CvUtil.getScriptData(pUnit, ["y"], -1)
                         pOriginPlot = CyMap().plot(iOriginX, iOriginY)
@@ -911,7 +911,7 @@ def addCityWithSpecialBonus(iGameTurn):
     iRange = gc.getMAX_PLAYERS()
     for i in range(iRange):
         loopPlayer = gc.getPlayer(i)
-        if loopPlayer.isAlive() and not loopPlayer.isHuman():
+        if loopPlayer.isAlive() and not loopPlayer.isHuman() and not loopPlayer.isBarbarian():
             (loopCity, pIter) = loopPlayer.firstCity(False)
             while loopCity:
                 if not loopCity.isNone() and loopCity.getOwner() == loopPlayer.getID(): #only valid cities
@@ -923,9 +923,9 @@ def addCityWithSpecialBonus(iGameTurn):
     lNewBonus = []
     while lNewCities and iTry < 3:
         # Stadt auswaehlen
-        pCity = lNewCities[CvUtil.myRandom(len(lNewCities))]
+        pCity = lNewCities[CvUtil.myRandom(len(lNewCities), "city addCityWithSpecialBonus")]
         # Dauer auswaehlen
-        iTurns = lTurns[CvUtil.myRandom(len(lTurns))]
+        iTurns = lTurns[CvUtil.myRandom(len(lTurns), "turns addCityWithSpecialBonus")]
         # Bonusgut herausfinden
         # lNewBonus = [iBonus for iBonus in lLuxury + lRarity if not pCity.hasBonus(iBonus)]
         for iBonus in lLuxury + lRarity:
@@ -937,7 +937,7 @@ def addCityWithSpecialBonus(iGameTurn):
             # Globale Variable setzen
             lCitiesSpecialBonus.append(pCity)
             CvUtil.addScriptData(pCity, "tst", iGameTurn+iTurns)
-            eBonus = lNewBonus[CvUtil.myRandom(len(lNewBonus))]
+            eBonus = lNewBonus[CvUtil.myRandom(len(lNewBonus), "bonus addCityWithSpecialBonus")]
             CvUtil.addScriptData(pCity, "tsb", eBonus)
 
             iCityOwner = pCity.getOwner()
@@ -971,7 +971,7 @@ def _doCheckCitySpecialBonus(pUnit, pCity, eBonus):
         lGift = []
 
         # Military unit as gift:
-        if CvUtil.myRandom(5) == 1:
+        if CvUtil.myRandom(5, "Military unit as gift") == 1:
             eCiv = gc.getCivilizationInfo(gc.getPlayer(pCity.getOwner()).getCivilizationType())
             eOrigCiv = gc.getCivilizationInfo(gc.getPlayer(pCity.getOriginalOwner()).getCivilizationType())
 
@@ -1029,7 +1029,7 @@ def _doCheckCitySpecialBonus(pUnit, pCity, eBonus):
 
         for _ in range(3):
             # Choose units
-            iNewUnit = lGift[CvUtil.myRandom(len(lGift))]
+            iNewUnit = lGift[CvUtil.myRandom(len(lGift), "Choose gift units")]
             # Create units
             pPlayer.initUnit(iNewUnit, pCity.getX(), pCity.getY(), iNewUnitAIType, DirectionTypes.DIRECTION_SOUTH)
 

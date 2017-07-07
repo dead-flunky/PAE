@@ -22,12 +22,6 @@ if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
 if gc.getGame().isOption(GameOptionTypes.GAMEOPTION_RAGING_BARBARIANS):
     bRageBarbs = True
 
-def onUnitSelected(pUnit):
-
-    if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT") \
-    or pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN") \
-    or pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
 
 # leere Festung mit barbarischen Einheiten belegen
 def setFortDefence(pPlot):
@@ -46,13 +40,14 @@ def setFortDefence(pPlot):
     # Einheit herausfinden
     lTempUnit = [
         eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER")),
-        eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER")),
+        # UNITCLASS_COMPOSITE_ARCHER ist garnicht baubar
+        # eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER")),
         eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_ARCHER")),
         eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"))
     ]
     iUnit = -1
     for iUnit in lTempUnit:
-        if pBarbPlayer.canTrain(iUnit, 0, 0):
+        if iUnit != -1 and pBarbPlayer.canTrain(iUnit, 0, 0):
             break
     if iUnit != -1:
         # Einheit setzen

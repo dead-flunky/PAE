@@ -28,13 +28,13 @@ def resetNoLiberateCities():
 
 
 def featPopup(iPlayer):
-    if (not gc.getPlayer(iPlayer).isOption(PlayerOptionTypes.PLAYEROPTION_ADVISOR_POPUPS)):
+    if not gc.getPlayer(iPlayer).isOption(PlayerOptionTypes.PLAYEROPTION_ADVISOR_POPUPS):
         return False
-    if (not gc.getPlayer(iPlayer).isHuman()):
+    if not gc.getPlayer(iPlayer).isHuman():
         return False
-    if (gc.getGame().isNetworkMultiPlayer()):
+    if gc.getGame().isNetworkMultiPlayer():
         return False
-    if (gc.getGame().getElapsedGameTurns() == 0):
+    if gc.getGame().getElapsedGameTurns() == 0:
         return False
     return True
 

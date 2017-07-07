@@ -6,8 +6,6 @@ from CvPythonExtensions import *
 # import CvEventInterface
 import CvUtil
 
-import PAE_Unit
-
 ### Defines
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -70,7 +68,9 @@ def onModNetMessage(iData1, iData2, iData3, iData4, iData5):
 def doSlave2Gladiator(pCity, pUnit):
     'Slave -> Gladiator'
     pCity.changeFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_GLADIATOR"), 1)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    pUnit.kill(True, -1)  # RAMK_CTD
+    pUnit = None
 
 
 def doSlave2Schule(pCity, pUnit):
@@ -82,7 +82,8 @@ def doSlave2Schule(pCity, pUnit):
         if iResearch < iMaxSchoolResearch:
             iResearch += iSchoolResearch
             pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_RESEARCH, iResearch)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             return True
     return False
 
@@ -96,7 +97,8 @@ def doSlave2Library(pCity, pUnit):
         if iResearch < iMaxLibraryResearch:
             iResearch += iLibraryResearch
             pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_RESEARCH, iResearch)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             return True
     return False
 
@@ -110,7 +112,8 @@ def doSlave2Bordell(pCity, pUnit):
         if iCulture < iMaxBordellCulture:
             iCulture += iBordellCulture
             pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE, iCulture)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             return True
     return False
         # ***TEST***
@@ -126,7 +129,8 @@ def doSlave2Theatre(pCity, pUnit):
         if iCulture < iMaxTheatreCulture:
             iCulture += iTheatreCulture
             pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE, iCulture)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             return True
     return False
         # ***TEST***
@@ -149,7 +153,8 @@ def doSlave2Manufaktur(pCity, pUnit, doProduction):
         if iBonus < iMax:
             iBonus += iIncr
             pCity.setBuildingYieldChange(eBuildingClass, eYield, iBonus)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             return True
     return False
 
@@ -164,7 +169,8 @@ def doSlave2Palace(pCity, pUnit):
         iCulture = pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE)
         iCulture += iPalaceCulture
         pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE, iCulture)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        pUnit.kill(True, -1)  # RAMK_CTD
         return True
     return False
         # ***TEST***
@@ -197,7 +203,8 @@ def doSlave2Temple(pCity, pUnit):
         else:
             iCulture += iTempleCulture
         pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE, iCulture)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        pUnit.kill(True, -1)  # RAMK_CTD
         return True
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Temple (Zeile 6282)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -212,7 +219,8 @@ def doSlave2Feuerwehr(pCity, pUnit):
         if iHappyiness < iMaxFeuerwehrHappy:
             iHappyiness += iFeuerwehrHappy
             pCity.setBuildingHappyChange(eBuildingClass, iHappyiness)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
             return True
     return False
 
@@ -228,7 +236,7 @@ def dyingBuildingSlave(pCity):
         eBuildingClass = gc.getBuildingInfo(iBuilding1).getBuildingClassType()
         iCulture = pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE)
         if iCulture > 0:
-            iRand = CvUtil.myRandom(25)
+            iRand = CvUtil.myRandom(25, "dyingBuildingSlaveBUILDING_BORDELL")
             if iRand == 1:
                 iCulture -= iBordellCulture
                 pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE, iCulture)
@@ -245,7 +253,7 @@ def dyingBuildingSlave(pCity):
         eBuildingClass = gc.getBuildingInfo(iBuilding1).getBuildingClassType()
         iResearch = pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_RESEARCH)
         if iResearch > 0:
-            iRand = CvUtil.myRandom(33)
+            iRand = CvUtil.myRandom(33, "dyingBuildingSlaveBUILDING_SCHULE")
             if iRand == 1:
                 iResearch -= iSchoolResearch
                 pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_RESEARCH, iResearch)
@@ -264,7 +272,7 @@ def dyingBuildingSlave(pCity):
         iFood = pCity.getBuildingYieldChange(eBuildingClass, YieldTypes.YIELD_FOOD)
         iProd = pCity.getBuildingYieldChange(eBuildingClass, YieldTypes.YIELD_PRODUCTION)
         if iProd > 0 or iFood > 0:
-            iRand = CvUtil.myRandom(25)
+            iRand = CvUtil.myRandom(25, "dyingBuildingSlaveBUILDING_CORP3")
             if iRand == 1:
                 if iProd > 0:
                     iProd -= iManufakturProd
@@ -287,7 +295,7 @@ def dyingBuildingSlave(pCity):
         eBuildingClass = gc.getBuildingInfo(iBuilding1).getBuildingClassType()
         iCulture = pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE)
         if iCulture > 0:
-            iRand = CvUtil.myRandom(50)
+            iRand = CvUtil.myRandom(50, "dyingBuildingSlaveBUILDING_PALACE")
             if iRand < 1:
                 iCulture -= iPalaceCulture
                 pCity.setBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE, iCulture)
@@ -322,8 +330,8 @@ def dyingBuildingSlave(pCity):
             if pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE) >= iCultureSlave:
                 TempleArray.append(iBuilding1)
 
-    if TempleArray and CvUtil.myRandom(33) < 1:
-        iBuilding = TempleArray[CvUtil.myRandom(len(TempleArray))]
+    if TempleArray and CvUtil.myRandom(33, "dyingBuildingSlaveBUILDING_TEMPLE") < 1:
+        iBuilding = TempleArray[CvUtil.myRandom(len(TempleArray), "which temple")]
         eBuildingClass = gc.getBuildingInfo(iBuilding).getBuildingClassType()
         iCulture = pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE)
         iCulture -= iCultureSlave
@@ -341,7 +349,7 @@ def dyingBuildingSlave(pCity):
         eBuildingClass = gc.getBuildingInfo(iBuilding1).getBuildingClassType()
         iHappiness = pCity.getBuildingHappyChange(eBuildingClass)
         if iHappiness > 0:
-            if CvUtil.myRandom(33) == 1:
+            if CvUtil.myRandom(33, "dyingBuildingSlaveBUILDING_Feuerwehr") == 1:
                 iHappiness -= iFeuerwehrHappy
                 pCity.setBuildingHappyChange(eBuildingClass, iHappiness)
                 if pPlayer.isHuman():
@@ -493,6 +501,8 @@ def doSell(iPlayer, iUnit):
     if pPlayer.isHuman():
         CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_BUTTON_SELL_SLAVE_SOLD", (iGold,)), None, InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Units/button_slave.dds", ColorTypes(8), pUnit.getX(), pUnit.getY(), True, True)
     pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    # pUnit.kill(True, -1)  # RAMK_CTD
+    pUnit = None
 
 
   ##############
@@ -549,11 +559,6 @@ def doCheckSlavesAfterPillage(pUnit, pPlot):
     pCity = pPlot.getWorkingCity()
 
     if pCity is not None:
-        # PAE V ab Patch 3: Einheiten mobilisieren
-        # Flunky: was hat das hier zu suchen?
-        if pCity.isCapital():
-            PAE_Unit.doMobiliseFortifiedArmy(pCity.getOwner())
-
         # TEST
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pCity.getName(),0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
@@ -580,27 +585,20 @@ def doCheckSlavesAfterPillage(pUnit, pPlot):
             gc.getInfoTypeForString("IMPROVEMENT_QUARRY")
         ]
 
-        iX = pCity.getX()
-        iY = pCity.getY()
-        for x in range(5):
-            for y in range(5):
-                loopPlot = plotXY(iX, iY, x - 2, y - 2)
-                if loopPlot is not None and not loopPlot.isNone():
-                    if not loopPlot.isWater():
-                        # Plot besetzt?
-                        if pCity.canWork(loopPlot):
-                            if loopPlot.getImprovementType() in lFarms:
-                                bFarms = True
-                            elif loopPlot.getImprovementType() in lMines:
-                                bMines = True
-                # Schleife vorzeitig beenden
-                if bFarms and bMines:
-                    break
-            # Schleife vorzeitig beenden
-            if bFarms and bMines:
-                break
-
-
+        for iI in range(gc.getNUM_CITY_PLOTS()):
+            loopPlot = pCity.getCityIndexPlot(iI)
+            # die beste position finden:
+            if loopPlot is not None and not loopPlot.isNone():
+                if not loopPlot.isWater():
+                    # Plot besetzt?
+                    if pCity.canWork(loopPlot):
+                        if loopPlot.getImprovementType() in lFarms:
+                            bFarms = True
+                        elif loopPlot.getImprovementType() in lMines:
+                            bMines = True
+                        # Schleife vorzeitig beenden
+                        if bFarms and bMines:
+                            break
 
         iSlaves = 0
         # Feldsklaven checken
@@ -618,15 +616,13 @@ def doCheckSlavesAfterPillage(pUnit, pPlot):
             lFluchtPlots = []
             iX = pPlot.getX()
             iY = pPlot.getY()
-            for x in range(3):
-                for y in range(3):
-                    loopPlot = plotXY(iX, iY, x - 1, y - 1)
-                    if loopPlot is not None and not loopPlot.isNone():
-                        if not loopPlot.isWater() and not loopPlot.isPeak():
-                            if loopPlot.getNumUnits() == 0:
-                                lFluchtPlots.append(loopPlot)
+            for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
+                loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
+                if loopPlot is not None and not loopPlot.isNone():
+                    if not loopPlot.isWater() and not loopPlot.isPeak() and not loopPlot.isUnit():
+                        lFluchtPlots.append(loopPlot)
             if not lFluchtPlots:
-                lFluchtPlots.append(pCity)
+                lFluchtPlots = [pCity]
 
             pBarbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
             for _ in range(iSlaves):
@@ -638,6 +634,47 @@ def doCheckSlavesAfterPillage(pUnit, pPlot):
             if pUnit.getOwner() == gc.getGame().getActivePlayer() or pCity.getOwner() == gc.getGame().getActivePlayer():
                 szButton = ",Art/Interface/Buttons/Actions/Pillage.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,8,2"
                 CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_PILLAGE_SLAVES", (pCity.getName(),)), None, 2, szButton, ColorTypes(10), pPlot.getX(), pPlot.getY(), True, True)
+
+def freeSlaves(pCity, pPlayer):
+    iCitySlaves = pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE")) + pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD")) + pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD"))
+    iCityGlads = pCity.getFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_GLADIATOR"))
+
+    iFreedSlaves = iCitySlaves + iCityGlads
+    if iFreedSlaves > 0:
+        text = ""
+        lUnits = [
+            [gc.getInfoTypeForString('UNIT_AXEMAN'), UnitAITypes.UNITAI_ATTACK],
+            [gc.getInfoTypeForString('UNIT_UNSTERBLICH'), UnitAITypes.UNITAI_CITY_COUNTER],
+            [gc.getInfoTypeForString('UNIT_COMPOSITE_ARCHER'), UnitAITypes.UNITAI_CITY_DEFENSE],
+            [gc.getInfoTypeForString('UNIT_SPY'), UnitAITypes.UNITAI_SPY],
+            [gc.getInfoTypeForString('UNIT_HOPLIT'), UnitAITypes.UNITAI_ATTACK],
+            [gc.getInfoTypeForString('UNIT_ARCHER_KRETA'), UnitAITypes.UNITAI_CITY_DEFENSE],
+            [gc.getInfoTypeForString('UNIT_CELTIC_GALLIC_WARRIOR'), UnitAITypes.UNITAI_ATTACK],
+            [gc.getInfoTypeForString('UNIT_BALEAREN'), UnitAITypes.UNITAI_CITY_COUNTER],
+            [gc.getInfoTypeForString('UNIT_GERMANNE'), UnitAITypes.UNITAI_ATTACK]
+        ]
+        iPromoCombat1 = gc.getInfoTypeForString("PROMOTION_COMBAT1")
+        iPromoCombat2 = gc.getInfoTypeForString("PROMOTION_COMBAT2")
+        iX = pCity.getX()
+        iY = pCity.getY()
+        for i in range(iFreedSlaves):
+            iRand = CvUtil.myRandom(20, "freedSlaveType")
+            NewUnit = None
+            if iRand < len(lUnits):
+                NewUnit = pPlayer.initUnit(lUnits[iRand][0], iX, iY, lUnits[iRand][1], DirectionTypes.DIRECTION_SOUTH)
+                text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_"+str(iRand+1), (0, 0))
+            else:
+                CvUtil.spawnUnit(gc.getInfoTypeForString('UNIT_FREED_SLAVE'), pCity.plot(), pPlayer)
+                text = CyTranslator().getText("TXT_KEY_MESSAGE_FREED_SLAVES_0", (0, 0))
+
+            if NewUnit:
+                NewUnit.setHasPromotion(iPromoCombat1, True)  # Combat 1
+                NewUnit.setHasPromotion(iPromoCombat2, True)  # Combat 2
+
+            if pPlayer.isHuman():
+                CyInterface().addMessage(pPlayer.getID(), True, 12, text, None, 2, None, ColorTypes(8), 0, 0, False, False)
+        # ***TEST***
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stadtsklaven befreit (Zeile 3237)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 def freeCitizen(pCity):
     iPlayer = pCity.getOwner()
@@ -665,7 +702,7 @@ def freeCitizen(pCity):
             if pPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_PHILOSOPHICAL")):
                 iRand /= 2
 
-            if CvUtil.myRandom(iRand) == 1:
+            if CvUtil.myRandom(iRand, "Free Citizen") == 1:
                 pCity.changeFreeSpecialistCount(eSpecialistFreeCitizen, 1)  # Citizen = 0
                 if iCitySlavesHaus > 0:
                     pCity.changeFreeSpecialistCount(eSpecialistHouse, -1)
@@ -698,7 +735,7 @@ def freeCitizenGlad(pCity):
             if pPlayer.isCivic(eCivicVoelkerrecht):
                 iChance = 3
 
-            if CvUtil.myRandom(100) < iChance:
+            if CvUtil.myRandom(100, "Free citizen glad") < iChance:
                 pCity.changeFreeSpecialistCount(eSpecialistFreeCitizen, 1)  # Citizen = 0
                 pCity.changeFreeSpecialistCount(eSpecialistGlad, -1) # Gladiator = 14
                 iCityGlads -= 1
@@ -732,7 +769,7 @@ def spawnSlave(pCity, iCitySlaves):
     if not pPlayer.isHuman():
         iChance += 10
 
-    if CvUtil.myRandom(1000) < iChance:
+    if CvUtil.myRandom(1000, "spawnSlave") < iChance:
         iUnitType = gc.getInfoTypeForString("UNIT_SLAVE")
         CvUtil.spawnUnit(iUnitType, pCity.plot(), pPlayer)
         if pPlayer.isHuman():
@@ -744,7 +781,7 @@ def spawnSlave(pCity, iCitySlaves):
 def spawnGlad(pCity, iCityGlads):
     iPlayer = pCity.getOwner()
     pPlayer = gc.getPlayer(iPlayer)
-    if CvUtil.myRandom(50) == 1:
+    if CvUtil.myRandom(50, "spawnGlad") == 1:
         iUnitType = gc.getInfoTypeForString("UNIT_GLADIATOR")
         eSpecialistGlad = gc.getInfoTypeForString("SPECIALIST_GLADIATOR")
         CvUtil.spawnUnit(iUnitType, pCity.plot(), pPlayer)
@@ -759,7 +796,7 @@ def dyingGlad(pCity, iCityGlads, bTeamHasGladiators):
     pPlayer = gc.getPlayer(iPlayer)
     iChanceGlads = max(3, iCityGlads)
 
-    if CvUtil.myRandom(100) < iChanceGlads:
+    if CvUtil.myRandom(100, "dyingGlad") < iChanceGlads:
         eSpecialistGlad = gc.getInfoTypeForString("SPECIALIST_GLADIATOR")
         # PAE V: stehende Sklaven werden zugewiesen
         bErsatz = False
@@ -769,7 +806,9 @@ def dyingGlad(pCity, iCityGlads, bTeamHasGladiators):
         for iUnit in range(iRangeUnits):
             pLoopUnit = pCityPlot.getUnit(iUnit)
             if pLoopUnit.getOwner() == iPlayer and pLoopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SLAVE"):
-                pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                pLoopUnit.kill(True, -1)  # RAMK_CTD
+                pLoopUnit = None
                 bErsatz = True
                 break
 
@@ -780,15 +819,15 @@ def dyingGlad(pCity, iCityGlads, bTeamHasGladiators):
             iBuilding1 = gc.getInfoTypeForString('BUILDING_COLOSSEUM')
             iBuilding2 = gc.getInfoTypeForString('BUILDING_BYZANTINE_HIPPODROME')
 
-            iRand = CvUtil.myRandom(3)
+            iRand = CvUtil.myRandom(3, "dyingGlad2")
             if iRand < 1 and pCity.isHasBuilding(iBuilding1):
-                iRand = 1 + CvUtil.myRandom(5)
+                iRand = 1 + CvUtil.myRandom(5, "dyingGlad3")
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_COL_"+str(iRand),(pCity.getName(),"")),None,2,None,ColorTypes(13),pCity.getX(),pCity.getY(),True,True)
             elif iRand < 1 and pCity.isHasBuilding(iBuilding2):
-                iRand = 1 + CvUtil.myRandom(5)
+                iRand = 1 + CvUtil.myRandom(5, "dyingGlad4")
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_HIP_"+str(iRand),(pCity.getName(),"")),None,2,None,ColorTypes(13),pCity.getX(),pCity.getY(),True,True)
             else:
-                iRand = CvUtil.myRandom(14)
+                iRand = CvUtil.myRandom(14, "dyingGlad5")
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_"+str(iRand),(pCity.getName(),"")),None,2,None,ColorTypes(13),pCity.getX(),pCity.getY(),True,True)
 
             if bErsatz:

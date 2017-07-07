@@ -3,7 +3,7 @@
 
 ### Imports
 from CvPythonExtensions import *
-import CvEventInterface
+# import CvEventInterface
 import CvUtil
 
 import PAE_Unit
@@ -92,7 +92,7 @@ def getCityCultivationAmount(pCity):
         iAnz = 3
     elif pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_STADT")):
         iAnz = 2
-    else: 
+    else:
         iAnz = 1
     return iAnz
 
@@ -115,10 +115,10 @@ def _isBonusCultivationChance(iPlayer, pPlot, eBonus, bVisibleOnly=True):
     """
     # Variety of invalid situations
     if (eBonus not in lCultivatable
-        or pPlot is None or pPlot.isNone()
-        or pPlot.getOwner() != iPlayer
-        or pPlot.isCity()
-        or pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_DARK_ICE") or pPlot.isPeak() or pPlot.isWater()):
+            or pPlot is None or pPlot.isNone()
+            or pPlot.getOwner() != iPlayer
+            or pPlot.isCity()
+            or pPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_DARK_ICE") or pPlot.isPeak() or pPlot.isWater()):
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "peak/water/black ice", None, 2, None, ColorTypes(10), 0, 0, False, False)
         return False
 
@@ -132,12 +132,12 @@ def _isBonusCultivationChance(iPlayer, pPlot, eBonus, bVisibleOnly=True):
 
     # Fertility conditions
     if (not canHaveBonus(pPlot, eBonus, True)
-        # or (eBonus in lCorn and not pPlot.isFreshWater()) # siehe https://www.civforum.de/showthread.php?97599-PAE-Bonusressourcen&p=7653686&viewfull=1#post7653686
-        or (eBonus in lPlantation and 
-            (eBonus == gc.getInfoTypeForString("BONUS_DATTELN") and not pPlot.isFreshWater())
-            or (eBonus == gc.getInfoTypeForString("BONUS_OLIVES") and not pPlot.isCoastalLand())
-            or (eBonus == gc.getInfoTypeForString("BONUS_GRAPES") and not pPlot.isFreshWater()))):
-            return False
+            # or (eBonus in lCorn and not pPlot.isFreshWater()) # siehe https://www.civforum.de/showthread.php?97599-PAE-Bonusressourcen&p=7653686&viewfull=1#post7653686
+            or (eBonus in lPlantation and
+                (eBonus == gc.getInfoTypeForString("BONUS_DATTELN") and not pPlot.isFreshWater())
+                or (eBonus == gc.getInfoTypeForString("BONUS_OLIVES") and not pPlot.isCoastalLand())
+                or (eBonus == gc.getInfoTypeForString("BONUS_GRAPES") and not pPlot.isFreshWater()))):
+        return False
 
     # Regel: Resourcen pro Stadt und dessen Status (Flunky)
     lCities = _getCitiesInRange(pPlot, iPlayer)
@@ -159,7 +159,7 @@ def canHaveBonus(pPlot, eBonus, bIgnoreLatitude):
     ## Gipfel
     if pPlot.isPeak():
         return False
-    ## wenn die Ressource auf Hügeln vorkommen muss
+    ## wenn die Ressource auf Huegeln vorkommen muss
     if pPlot.isHills():
         if not gc.getBonusInfo(eBonus).isHills():
             return False
@@ -172,7 +172,7 @@ def canHaveBonus(pPlot, eBonus, bIgnoreLatitude):
         if pPlot.isRiverSide():
             return False
 
-    ## Ist die Insel groß genug
+    ## Ist die Insel gross genug
     if gc.getBonusInfo(eBonus).getMinAreaSize() != -1:
         if pPlot.area().getNumTiles() < gc.getBonusInfo(eBonus).getMinAreaSize():
             return False
@@ -182,7 +182,7 @@ def canHaveBonus(pPlot, eBonus, bIgnoreLatitude):
             return False
         if pPlot.getLatitude() < gc.getBonusInfo(eBonus).getMinLatitude():
             return False
-    ## Von einem Landplot erreichbar? Nimmt keine Rücksicht auf Gipfel oder sonstige Landfelder, auf denen man nicht gründen kann.
+    ## Von einem Landplot erreichbar? Nimmt keine Ruecksicht auf Gipfel oder sonstige Landfelder, auf denen man nicht gruenden kann.
     if not pPlot.isPotentialCityWork():
         return False
     ## Ein Feature ist vorhanden
@@ -195,7 +195,7 @@ def canHaveBonus(pPlot, eBonus, bIgnoreLatitude):
     if gc.getBonusInfo(eBonus).isTerrain(pPlot.getTerrainType()):
         return True
 
-    return False  
+    return False
 
 def doCultivateBonus(pPlot, pUnit, eBonus):
     """Cultivates eBonus on current plot (80% chance). Unit does not need to stand on pPlot (cultivation from city)"""
@@ -209,11 +209,13 @@ def doCultivateBonus(pPlot, pUnit, eBonus):
     iChance = 80
     #CyInterface().addMessage(iPlayer, True, 10, str(eBonus), None, 2, None, ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
     if bCanCultivate:
-        if CvUtil.myRandom(100) < iChance:
+        if CvUtil.myRandom(100, "doCultivateBonus") < iChance:
             pPlot.setBonusType(eBonus)
             if pPlayer.isHuman():
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_DONE", (gc.getBonusInfo(eBonus).getDescription(),)), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
-            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
+            pUnit = None
         else:
             CvUtil.removeScriptData(pUnit, "b")
             if pPlayer.isHuman():
@@ -241,7 +243,7 @@ def getCityCultivationPlot(pCity, eBonus):
                 lPlotList.append(pLoopPlot)
 
     if lPlotList:
-        return lPlotList[CvUtil.myRandom(len(lPlotList))]
+        return lPlotList[CvUtil.myRandom(len(lPlotList), "getCityCultivationPlot")]
     return None
 
 # Returns list of bonuses which can be cultivated by this particular cultivation unit
@@ -259,9 +261,8 @@ def isBonusCultivatable(pUnit):
     if pPlot.isCity():
         # Cultivation from city (comfort function), no replacement of existing bonuses
         return _bonusIsCultivatableFromCity(pUnit.getOwner(), pPlot.getPlotCity(), eBonus)
-    else:
-        # Cultivation on current plot, bonus can be replaced (player knows what he's doing)
-        return _isBonusCultivationChance(pUnit.getOwner(), pPlot, eBonus)
+    # Cultivation on current plot, bonus can be replaced (player knows what he's doing)
+    return _isBonusCultivationChance(pUnit.getOwner(), pPlot, eBonus)
 
 # Returns True if eBonus can be (principally) cultivated by iPlayer from pCity
 # Independent from cultivation unit, only checks fertility conditions
@@ -286,7 +287,8 @@ def AI_bestCultivation(pCity, iSkipN=-1, eBonus=-1):
                     ePlotBonus = pLoopPlot.getBonusType(pLoopPlot.getTeam())
                     eImprovement = pLoopPlot.getImprovementType()
                     bAlreadyImproved = False
-                    if eImprovement != -1 and gc.getImprovementInfo(eImprovement).isImprovementBonusTrade(eBonus): bAlreadyImproved = True
+                    if eImprovement != -1 and gc.getImprovementInfo(eImprovement).isImprovementBonusTrade(eBonus):
+                        bAlreadyImproved = True
                     # first pass: only plots without bonus or its improvement
                     if ePlotBonus == -1 or bAlreadyImproved or iPass > 0:
                         # second pass: no improved plots or matching improved plots
@@ -509,7 +511,9 @@ def doCultivation_AI(pUnit):
                 #~ # KI 10% mehr Chance
                 #~ if CvUtil.myRandom(100) < iChance + 10:
                   #~ loopPlot.setBonusType(iBonus)
-                #~ pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                #~ # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                #~ pUnit.kill(True, -1)  # RAMK_CTD
+                #~ pUnit = None
                 #~ return True
 
       #~ # --- Stadt gecheckt
@@ -615,6 +619,7 @@ def doCultivation_AI(pUnit):
         #~ else:
           #~ pCity.changeFood(50)
           #~ pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+          #~ pUnit = None
           #~ return True
 
     #~ return
@@ -644,7 +649,8 @@ def doCollectBonus4Cultivation(pUnit):
     lImprovements = []
     lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"))
     lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_PASTURE"))
-    if pPlot.getImprovementType() in lImprovements: pPlot.setImprovementType(-1)
+    if pPlot.getImprovementType() in lImprovements:
+        pPlot.setImprovementType(-1)
 
     pUnit.finishMoves()
     return True
@@ -657,7 +663,8 @@ def getCollectableGoods4Cultivation(pUnit):
         lGoods = _getCollectableGoods4Cultivation(pCity)
     else:
         ePlotBonus = pPlot.getBonusType(pPlot.getTeam())
-        if ePlotBonus != -1 and ePlotBonus in lCultivatable: lGoods = [ePlotBonus]
+        if ePlotBonus != -1 and ePlotBonus in lCultivatable:
+            lGoods = [ePlotBonus]
 
     return lGoods
 
@@ -665,7 +672,8 @@ def getCollectableGoods4Cultivation(pUnit):
 def _getCollectableGoods4Cultivation(pCity):
     lGoods = []
     for eBonus in lCultivatable:
-        if pCity.hasBonus(eBonus): lGoods.append(eBonus)
+        if pCity.hasBonus(eBonus):
+            lGoods.append(eBonus)
     return lGoods
 
 
@@ -681,8 +689,7 @@ def _calculateBonusBuyingPrice4Cultivation(eBonus, iBuyer, pPlot):
         # Bonus on plot: regional price
         if pPlot.getBonusType(pPlot.getTeam()) == eBonus:
             return iPrice
-        else:
-            return -1
+        return -1
 
     if not pCity.hasBonus(eBonus):
         return -1

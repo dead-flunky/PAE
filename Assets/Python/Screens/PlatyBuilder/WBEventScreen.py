@@ -286,7 +286,8 @@ class WBEventScreen:
             if iIndex == 0:
                 WBPlotScreen.WBPlotScreen().interfaceScreen(pPlot)
             elif iIndex == 2:
-                WBPlayerScreen.WBPlayerScreen().interfaceScreen(pPlot.getOwner())
+                if pPlot.getOwner() != -1:
+                    WBPlayerScreen.WBPlayerScreen().interfaceScreen(pPlot.getOwner())
             elif iIndex == 3:
                 WBTeamScreen.WBTeamScreen().interfaceScreen(pPlot.getTeam())
             elif iIndex == 4:
