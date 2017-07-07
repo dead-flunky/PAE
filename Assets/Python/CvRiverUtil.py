@@ -586,19 +586,10 @@ def addGoldNearbyRiverTiles():
                     iYield = loopPlot.getYield(YieldTypes(goldYield))
                     iImprovement = loopPlot.getImprovementType()
                     if iImprovement > -1:
-                        iYield -= loopPlot.calculateImprovementYieldChange(
-                            iImprovement,
-                            YieldTypes(goldYield),
-                            loopPlot.getOwner(),
-                            False)
+                        iYield -= loopPlot.calculateImprovementYieldChange(iImprovement, YieldTypes(goldYield), loopPlot.getOwner(), False)
                     if iYield == 0:
-                        # Achtung, Methode wirkt eher wie eine
-                        # Change-Routine?!
-                        CyGame().setPlotExtraYield(
-                            loopPlot.getX(),
-                            loopPlot.getY(),
-                            goldYield,
-                            iYield + 1)
+                        # Achtung, Methode wirkt eher wie eine Change-Routine?!
+                        CyGame().setPlotExtraYield(loopPlot.getX(), loopPlot.getY(), goldYield, iYield + 1)
                         break
 
 

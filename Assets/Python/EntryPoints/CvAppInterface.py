@@ -13,7 +13,6 @@
 import sys
 import os
 import CvUtil
-import ExtendedDebug
 #
 
 from CvPythonExtensions import *
@@ -38,9 +37,6 @@ def init():
     sys.stderr=CvUtil.RedirectError()
     sys.excepthook = CvUtil.myExceptHook
     sys.stdout=CvUtil.RedirectDebug()
-
-    # Ramk - Redirect exception handler
-    ExtendedDebug.init_extended_debug()
 
 def onSave():
     'Here is your chance to save data.  This function should return a string'

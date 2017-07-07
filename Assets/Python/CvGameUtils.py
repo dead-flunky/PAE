@@ -1121,7 +1121,7 @@ class CvGameUtils:
             # Freed slaves
             if iUnitType == gc.getInfoTypeForString("UNIT_FREED_SLAVE"):
                 #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("AI Freed Slave",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-                if self.doSettleFreedSlaves_AI(pUnit):
+                if self._doSettleFreedSlaves_AI(pUnit):
                     return True
 
             # Elefant (Zucht/Elefantenstall)
@@ -1404,7 +1404,7 @@ class CvGameUtils:
 
                 # Allgemein Veteran -> Reservist
                 elif CvUtil.myRandom(20, "ai_vet_res") == 1:
-                    if self.doReservist_AI(pUnit):
+                    if self._doReservist_AI(pUnit):
                         return True
 
             # ---- ENDE Veteran -------
@@ -1483,8 +1483,10 @@ class CvGameUtils:
                                     # init all promotions the unit had
                                     if pUnit.isHasPromotion(iPromotion):
                                         NewUnit.setHasPromotion(iPromotion, True)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                                pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+
+                                # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                pUnit.kill(True, -1)  # RAMK_CTD
+                                pLoopUnit.kill(False, -1) # andere Einheit direkt toeten, siehe isSuicide im CombatResult
                                 return True
             # END Unit -> Horse UPGRADE
 
@@ -1513,7 +1515,8 @@ class CvGameUtils:
                                 bSlaveMarket = True
                             elif pCity.isHasBuilding(iBuilding2):
                                 pCity.setNumRealBuilding(iBuilding1, 1)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1) # RAMK_CTD
+                                pUnit.kill(True, -1)
                                 return True
 
                             # Weitere Cities auf Sklavenmarkt checken und Sklaven zuerst dort hinschicken
@@ -1556,14 +1559,17 @@ class CvGameUtils:
                                         pCity.changeFreeSpecialistCount(eSpecialistProd, 1)
                                     else:
                                         pCity.changeFreeSpecialistCount(eSpecialistHouse, 1)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                     return True
 
                                 # settle as gladiators
                                 if bHasGladTech:
                                     if iCitySlavesAll + iCityGlads <= iCityPop:
                                         pCity.changeFreeSpecialistCount(eSpecialistGlad, 1)
-                                        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                        pUnit.kill(True, -1)  # RAMK_CTD
                                         return True
 
                             # Priority 1 - Schule
@@ -1575,7 +1581,8 @@ class CvGameUtils:
                                 if iCulture < 10:
                                     iNewCulture = iCulture + 2
                                     pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iNewCulture)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                     return True
 
                             # assign to library
@@ -1585,7 +1592,8 @@ class CvGameUtils:
                                 if iCulture < 10:
                                     iNewCulture = iCulture + 2
                                     pCity.setBuildingCommerceChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), CommerceTypes.COMMERCE_RESEARCH, iNewCulture)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                     return True
 
                             # Priority 2 - Manufaktur
@@ -1597,12 +1605,14 @@ class CvGameUtils:
                                 if iProd <= iFood and iProd < 10:
                                     iProd += 2
                                     pCity.setBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), YieldTypes.YIELD_PRODUCTION, iProd)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                     return True
                                 elif iFood < 10:
                                     iFood += 2
                                     pCity.setBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), YieldTypes.YIELD_FOOD, iFood)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                     return True
 
                             # Priority 3 - Bordell
@@ -1667,7 +1677,8 @@ class CvGameUtils:
                                     if iImp in lLatifundien:
                                         if pPlot.getUpgradeTimeLeft(iImp, iOwner) > 1:
                                             pPlot.changeUpgradeProgress(10)
-                                            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                            pUnit.kill(True, -1)  # RAMK_CTD
                                             return True
 
             # Horses - create stables
@@ -1687,7 +1698,8 @@ class CvGameUtils:
                                 if not pCity.isHasBuilding(iBuilding1):
                                     if pCity.isHasBuilding(iBuilding2):
                                         pCity.setNumRealBuilding(iBuilding1, 1)
-                                        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                        pUnit.kill(True, -1)  # RAMK_CTD
                                         return True
 
                                 # PAE AI City Horse Instance
@@ -1704,8 +1716,9 @@ class CvGameUtils:
 
                                             if not loopCity.isHasBuilding(iBuilding1):
                                                 if loopCity.isHasBuilding(iBuilding2):
-                                                    pUnit.getGroup().pushMoveToMission(loopCity.getX(), loopCity.getY())
-                                                    return True
+                                                    if pUnit.generatePath(loopCity.plot()):
+                                                        pUnit.getGroup().pushMoveToMission(loopCity.getX(), loopCity.getY())
+                                                        return True
                                         (loopCity, pIter) = pOwner.nextCity(pIter, False)
 
             # Auswanderer / Emigrant -> zu schwachen Staedten
@@ -1723,11 +1736,12 @@ class CvGameUtils:
                             lCityX = lCity
 
                     if lCityX:
-                        if not pUnit.atPlot(lCityX.plot()):
+                        if not pUnit.atPlot(lCityX.plot()) and pUnit.generatePath(lCityX.plot()): # generatePath returns True, if a path was found.
                             pUnit.getGroup().pushMoveToMission(lCityX.getX(), lCityX.getY())
                         else:
                             lCityX.changePopulation(1)
-                            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                            pUnit.kill(True, -1)  # RAMK_CTD
                         return True
 
             # Beutegold / Treasure / Goldkarren -> zur Hauptstadt oder zur naechst gelegenen Stadt (Insel)
@@ -1747,7 +1761,8 @@ class CvGameUtils:
                                 else:
                                     iGold = 100 + CvUtil.myRandom(76, "ai_beutegold")  # KI Bonus (HI: 50 + x)
                                     pOwner.changeGold(iGold)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                 return True
 
                         # Nearest City
@@ -1755,7 +1770,8 @@ class CvGameUtils:
                             if pPlot.isCity():
                                 iGold = 100 + CvUtil.myRandom(76, "ai_beutegold2")  # KI Bonus (HI: 50 + x)
                                 pOwner.changeGold(iGold)
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                pUnit.kill(True, -1)  # RAMK_CTD
                                 return True
                 return False
             # Trojanisches Pferd
@@ -1775,7 +1791,8 @@ class CvGameUtils:
                                     iDamage = loopCity.getDefenseModifier(0)
                                     if iDamage > 100:
                                         loopCity.changeDefenseDamage(iDamage)
-                                        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                        pUnit.kill(True, -1)  # RAMK_CTD
                                         return True
             # -----------------
 
@@ -2805,7 +2822,8 @@ class CvGameUtils:
                                     pUnitGroup.pushMission(MissionTypes.MISSION_MOVE_TO, iX, iY, 0, False, False, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
                                 else:
                                     loopCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE"), 1)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                     return True
                     (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
@@ -2845,7 +2863,8 @@ class CvGameUtils:
                                     pUnit.getGroup().pushMoveToMission(iX, iY)
                                 else:
                                     loopCity.setNumRealBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE"), 1)
-                                    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                    pUnit.kill(True, -1)  # RAMK_CTD
                                 return True
                     (loopCity, pIter) = pPlayer.nextCity(pIter, False)
 
@@ -2900,7 +2919,7 @@ class CvGameUtils:
         return iExperienceNeeded
 
     # Freed slaves for AI
-    def doSettleFreedSlaves_AI(self, pUnit):
+    def _doSettleFreedSlaves_AI(self, pUnit):
         pUnitGroup = pUnit.getGroup()
 
         if pUnitGroup.getMissionType(0) != 0:
@@ -2921,12 +2940,13 @@ class CvGameUtils:
             # PAE Better AI soll direkt ansiedeln
             if pSeekCity is not None and not pSeekCity.isNone():
                 pSeekCity.changeFreeSpecialistCount(0, 1)  # Spezialist Citizen
-                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                pUnit.kill(True, -1)  # RAMK_CTD
                 return True
 
 
     # Veteran -> Reservist in city for AI
-    def doReservist_AI(self, pUnit):
+    def _doReservist_AI(self, pUnit):
         pUnitGroup = pUnit.getGroup()
 
         if pUnitGroup.getMissionType(0) != 0:
@@ -2967,7 +2987,8 @@ class CvGameUtils:
                                 pUnit.getGroup().pushMoveToMission(pSeekCity.getX(), pSeekCity.getY())
                             else:
                                 pSeekCity.changeFreeSpecialistCount(19, 1)  # SPECIALIST_RESERVIST
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                pUnit.kill(True, -1)  # RAMK_CTD
                                 return True
 
 
@@ -3003,7 +3024,8 @@ class CvGameUtils:
                     if not loopCity.isHasBuilding(iBuilding):
                         if iPromo != gc.getInfoTypeForString("PROMOTION_NAVIGATION4") or loopCity.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
                             loopCity.setNumRealBuilding(iBuilding, 1)
-                            pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                            pUnit.kill(True, -1)  # RAMK_CTD
                             return True
                     (loopCity, pIter) = pPlayer.nextCity(pIter, False)
         return False

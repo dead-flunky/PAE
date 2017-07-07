@@ -897,11 +897,7 @@ class WBRiverScreen:
                 iY,
                 iWidth,
                 iHeight,
-                False,
-                False,
-                24,
-                24,
-                TableStyles.TABLE_STYLE_STANDARD)
+                False, False, 24, 24, TableStyles.TABLE_STYLE_STANDARD)
             screen.setTableColumnHeader("WBRiverDecoration", 0, "", iWidth)
 
             for dtype, aligns in CvRiverUtil.DecoTypes.iteritems():
@@ -943,8 +939,8 @@ class WBRiverScreen:
             if iIndex == 1:
                 WBEventScreen.WBEventScreen().interfaceScreen(pPlot)
             elif iIndex == 2:
-                WBPlayerScreen.WBPlayerScreen().interfaceScreen(
-                    pPlot.getOwner())
+                if pPlot.getOwner() != -1:
+                    WBPlayerScreen.WBPlayerScreen().interfaceScreen(pPlot.getOwner())
             elif iIndex == 3:
                 WBTeamScreen.WBTeamScreen().interfaceScreen(pPlot.getTeam())
             elif iIndex == 4:

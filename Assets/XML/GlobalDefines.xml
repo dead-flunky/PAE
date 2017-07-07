@@ -467,11 +467,11 @@
   </Define>
   <Define>
     <DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE</DefineName>
-    <iDefineIntVal>200</iDefineIntVal>
+    <iDefineIntVal>150</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE_TEAM</DefineName>
-    <iDefineIntVal>200</iDefineIntVal>
+    <iDefineIntVal>150</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>GREAT_PEOPLE_THRESHOLD</DefineName>
@@ -971,7 +971,7 @@
   </Define>
   <Define>
     <DefineName>MAX_EXPERIENCE_PER_COMBAT</DefineName>
-    <iDefineIntVal>3</iDefineIntVal>
+    <iDefineIntVal>2</iDefineIntVal>
   </Define>
   <Define>
     <DefineName>EXPERIENCE_FROM_WITHDRAWL</DefineName>

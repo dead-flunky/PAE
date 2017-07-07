@@ -31,13 +31,13 @@ There are certain climatic condition for every resource which need to be fulfill
 There are two kinds of conditions: Some resources need a certain number (at least or maximum, depending on the resource) of plots with a particular feature (plains, desert etc.) near the city (3x3 square); others only need this feature on the plot where they are supposed to be distributed.
 
 [H2]Grain[\H2]
-[ICON_BULLET] All: Flatland; fresh water
+[ICON_BULLET] All: Flatlands
 [ICON_BULLET] Wheat: Grassland, plains or flood plains
-[ICON_BULLET] Barley: Grassland, plains or flood plains; at least one plains tile adjacent to the city
-[ICON_BULLET] Oat: Grassland, plains or flood plains
-[ICON_BULLET] Rye: Grassland, plains or flood plains
+[ICON_BULLET] Barley: Plains or flood plains
+[ICON_BULLET] Oat: Grassland or flood plains
+[ICON_BULLET] Rye: Grassland or flood plains
 [ICON_BULLET] Millet: Grassland, plains or flood plains
-[ICON_BULLET] Rice: Grassland and flood plains
+[ICON_BULLET] Rice: Jungle on swamp or grassland
 
 Each desert tile adjacent to the city decreases the chance of spreading (by default 80%) by 20 percentage points.
 The chance of spreading oat and rye is decreased by 40 percentage points per adjacent plains tile.
@@ -132,13 +132,13 @@ There are certain climatic condition for every resource which need to be fulfill
 There are two kinds of conditions: Some resources need a certain number (at least or maximum, depending on the resource) of plots with a particular feature (plains, desert etc.) near the city (3x3 square); others only need this feature on the plot where they are supposed to be distributed.
 
 [H2]Grain[\H2]
-[ICON_BULLET] All: Flatland; fresh water
+[ICON_BULLET] All: Flatlands
 [ICON_BULLET] Wheat: Grassland, plains or flood plains
-[ICON_BULLET] Barley: Grassland, plains or flood plains; at least one plains tile adjacent to the city
-[ICON_BULLET] Oat: Grassland, plains or flood plains
-[ICON_BULLET] Rye: Grassland, plains or flood plains
+[ICON_BULLET] Barley: Plains or flood plains
+[ICON_BULLET] Oat: Grassland or flood plains
+[ICON_BULLET] Rye: Grassland or flood plains
 [ICON_BULLET] Millet: Grassland, plains or flood plains
-[ICON_BULLET] Rice: Grassland and flood plains
+[ICON_BULLET] Rice: Jungle on swamp or grassland
 
 Each desert tile adjacent to the city decreases the chance of spreading (by default 80%) by 20 percentage points.
 The chance of spreading oat and rye is decreased by 40 percentage points per adjacent plains tile.
@@ -233,13 +233,13 @@ F&#252;r jede Ressource sind gewisse klimatische Bedingungen notwendig, um sie i
 F&#252;r die meisten Ressourcen ist nur das Feld, auf dem die Ressource verbreitet werden soll, von Relevanz; f&#252;r manche ist es jedoch n&#246;tig, dass mindestens ein Gel&#228;ndefeld mit einem bestimmten Klima an die Stadt grenzt (die Ressource muss aber nicht zwangsl&#228;ufig auf diesem Feld verbreitet werden) bzw. wird die Verbreitungswahrscheinlichkeit durch die Anzahl an die Stadt grenzender Felder mit bestimmten Klima (z.B. W&#252;ste) beeinflusst. "An die Stadt grenzend" meint hierbei die bis zu acht Felder (3x3-Quadrat), die sich direkt neben der Stadt befinden.
 
 [H2]Getreide[\H2]
-[ICON_BULLET] Alle: Flachland; S&#252;&#223;wasser
+[ICON_BULLET] Alle: Flachland
 [ICON_BULLET] Weizen: Grasland, Ebene oder Schwemmland
-[ICON_BULLET] Gerste: Grasland, Ebene oder Schwemmland; mindestens ein Ebenenfeld an die Stadt grenzend
-[ICON_BULLET] Hafer: Grasland, Ebene oder Schwemmland
-[ICON_BULLET] Roggen: Grasland, Ebene oder Schwemmland
+[ICON_BULLET] Gerste: Ebene oder Schwemmland
+[ICON_BULLET] Hafer: Grasland oder Schwemmland
+[ICON_BULLET] Roggen: Grasland oder Schwemmland
 [ICON_BULLET] Hirse: Grasland, Ebene oder Schwemmland
-[ICON_BULLET] Reis: Grasland und Schwemmland
+[ICON_BULLET] Reis: Dschungel auf Sumpf oder Gras
 
 Pro an die Stadt grenzendem W&#252;stenfeld sinkt die Verbreitungschance (standardm&#228;&#223;ig 80%) um 20 Prozentpunkte.
 F&#252;r Roggen und Hafer sinkt die Verbreitungschance pro angrenzendem Ebenenfeld um 40 Prozentpunkte.
@@ -334,13 +334,13 @@ There are certain climatic condition for every resource which need to be fulfill
 There are two kinds of conditions: Some resources need a certain number (at least or maximum, depending on the resource) of plots with a particular feature (plains, desert etc.) near the city (3x3 square); others only need this feature on the plot where they are supposed to be distributed.
 
 [H2]Grain[\H2]
-[ICON_BULLET] All: Flatland; fresh water
+[ICON_BULLET] All: Flatlands
 [ICON_BULLET] Wheat: Grassland, plains or flood plains
-[ICON_BULLET] Barley: Grassland, plains or flood plains; at least one plains tile adjacent to the city
-[ICON_BULLET] Oat: Grassland, plains or flood plains
-[ICON_BULLET] Rye: Grassland, plains or flood plains
+[ICON_BULLET] Barley: Plains or flood plains
+[ICON_BULLET] Oat: Grassland or flood plains
+[ICON_BULLET] Rye: Grassland or flood plains
 [ICON_BULLET] Millet: Grassland, plains or flood plains
-[ICON_BULLET] Rice: Grassland and flood plains
+[ICON_BULLET] Rice: Jungle on swamp or grassland
 
 Each desert tile adjacent to the city decreases the chance of spreading (by default 80%) by 20 percentage points.
 The chance of spreading oat and rye is decreased by 40 percentage points per adjacent plains tile.
@@ -435,7 +435,7 @@ Hay ciertas condiciones clim&#225;ticas para todos los recursos que necesitan se
 Hay dos tipos de condiciones: Algunos recursos necesitan un cierto n&#250;mero (m&#237;nimo o m&#225;ximo, dependiendo del recurso) de casillas con una caracter&#237;stica particular (llanuras, desierto, etc.) cerca de la ciudad (cuadrado de 3x3); otras s&#243;lo necesitan esta caracter&#237;stica en la casilla donde se supone que ser&#225; distribuido.
 
 [H2]Grano[\H2]
-[ICON_BULLET] Todos: Terreno llano; irrigaci&#243;n
+[ICON_BULLET] Todos: Terreno llano
 [ICON_BULLET] Trigo: Praderas, llanuras o terrenos de aluvi&#243;n
 [ICON_BULLET] Cebada: Praderas, llanuras o terrenos de aluvi&#243;n; al menos una casilla de llanura alrededor de la ciudad
 [ICON_BULLET] Avena: Praderas, llanuras o terrenos de aluvi&#243;n

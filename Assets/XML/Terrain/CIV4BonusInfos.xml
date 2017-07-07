@@ -566,7 +566,7 @@
       <TerrainBooleans/>
       <FeatureBooleans>
         <FeatureBoolean>
-          <FeatureType>FEATURE_SAVANNA</FeatureType>
+          <FeatureType>FEATURE_FOREST</FeatureType>
           <bFeature>1</bFeature>
         </FeatureBoolean>
       </FeatureBooleans>

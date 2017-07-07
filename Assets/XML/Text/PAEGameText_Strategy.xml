@@ -942,7 +942,7 @@
     <French>This building can only be build by a Great General. A supply wagon can dismantle this building and re-build it into another city.</French>
     <German>Dieses Geb&#228;ude kann nur von einem Gro&#223;en General errichtet werden. Ein Versorgungskarren kann dieses Geb&#228;ude abbauen und in einer anderen Stadt wieder aufstellen.</German>
     <Italian>This building can only be build by a Great General. A supply wagon can dismantle this building and re-build it into another city.</Italian>
-    <Spanish>&#161;Este edificio solo puede ser construido por un general y reduce el hast&#237;o b&#233;lico y proporciona puntos culturales!</Spanish>
+    <Spanish>Este edificio solo puede ser construido por un Gran General. Una caravana de suministros puede desmantelar este edificio y reconstruirlo en otra ciudad.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_ABU_SIMBEL_STRATEGY</Tag>
@@ -2958,7 +2958,7 @@
     <French>[COLOR_UNIT_TEXT]Trade wagons, caravans and merchantmen[COLOR_REVERT] can buy and sell goods between two cities and fill the state fund! Trade wagons are capable of transporting [COLOR_UNIT_TEXT]ships[COLOR_REVERT] across the country. Caravans are cheaper and more profitable than trade wagons.</French>
     <German>[COLOR_UNIT_TEXT]Handelkarren, Handelskarwanen und Handelsschiffe[COLOR_REVERT] k&#246;nnen G&#252;ter zwischen zwei St&#228;dten ein- und verkaufen und so die Staatskasse f&#252;llen! Handelskarren sind f&#228;hig [COLOR_UNIT_TEXT]Schiffe[COLOR_REVERT] &#252;ber Land zu transportieren. Karawanen sind g&#252;nstiger und ertragreicher als Handelskarren.</German>
     <Italian>[COLOR_UNIT_TEXT]Trade wagons, caravans and merchantmen[COLOR_REVERT] can buy and sell goods between two cities and fill the state fund! Trade wagons are capable of transporting [COLOR_UNIT_TEXT]ships[COLOR_REVERT] across the country. Caravans are cheaper and more profitable than trade wagons.</Italian>
-    <Spanish>Los [COLOR_UNIT_TEXT]mercantes, caravanas de comercio y mercaderes[COLOR_REVERT] pueden comerciar con ciudades extranjeras para llenar el tesoro. Los mercantes pueden transportar [COLOR_UNIT_TEXT]barcos[COLOR_REVERT]. Desde la moneda, la construcci&#243;n de mecantes puede ser reemplazada con riqueza.</Spanish>
+    <Spanish>Los [COLOR_UNIT_TEXT]mercantes, caravanas de comercio y mercaderes[COLOR_REVERT] pueden comprar y vender mercanc&#237;as entre ciudades para llenar el tesoro. Los mercantes pueden transportar [COLOR_UNIT_TEXT]barcos[COLOR_REVERT]. Las caravanas son m&#225;s baratas y producen m&#225;s rendimiento que los mercaderes.</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_MARODEUR_STRATEGY</Tag>

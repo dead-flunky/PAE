@@ -190,7 +190,9 @@ def onModNetMessage(argsList):
 
             if iData5 == -1:
 
-                szText = CyTranslator().getText("[H2]", ()) + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_1", ()).upper() + CyTranslator().getText("[\H2][NEWLINE]", ())
+                szText = CyTranslator().getText("[H2]", ())\
+                        + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_1", ()).upper()\
+                        + CyTranslator().getText(r"[\H2][NEWLINE]", ())
                 szText += CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_HALTUNG", ())
                 szText += u": %d " % (abs(iBuildingHappiness))
                 if iBuildingHappiness < 0:
@@ -261,7 +263,9 @@ def onModNetMessage(argsList):
 
             if iData5 == -1:
 
-                szText = CyTranslator().getText("[H2]", ()) + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_2", ()).upper() + CyTranslator().getText("[\H2][NEWLINE]", ())
+                szText = CyTranslator().getText("[H2]", ())\
+                        + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_2", ()).upper()\
+                        + CyTranslator().getText(r"[\H2][NEWLINE]", ())
                 szText += CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_HALTUNG", ())
                 szText += u": %d " % (abs(iBuildingHappiness))
                 if iBuildingHappiness < 0:
@@ -516,7 +520,8 @@ def doInquisitorPersecution(pCity, pUnit):
         popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
         popupInfo.addPopup(iPlayer)
 
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    pUnit.kill(True, -1)  # RAMK_CTD
     pUnit = None
   # -------------
 
@@ -543,7 +548,8 @@ def doInquisitorPersecution2(iPlayer, iCity, iButton, iReligion, iUnit):
         else:
             iHC = 15
         pUnit = pPlayer.getUnit(iUnit)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        pUnit.kill(True, -1)  # RAMK_CTD
         pUnit = None
 
         # Does Persecution succeed
@@ -945,8 +951,10 @@ def doDesertification(pCity, pUnit):
 
                 elif iPlotPlayer > -1 and iPlotPlayer != gc.getBARBARIAN_PLAYER():
                     pPlotPlayer = gc.getPlayer(iPlotPlayer)
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_2", (pPlotPlayer.getCivilizationShortDescription(0), pPlotPlayer.getCivilizationAdjective(1))), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
-                    CyInterface().addMessage(iPlotPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_3", (pPlayer.getCivilizationShortDescription(0), 0)), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+                    if pPlayer.isHuman():
+                        CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_2", (pPlotPlayer.getCivilizationShortDescription(0), pPlotPlayer.getCivilizationAdjective(1))), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+                    if pPlotPlayer.isHuman():
+                        CyInterface().addMessage(iPlotPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_RODUNG_3", (pPlayer.getCivilizationShortDescription(0), 0)), 'AS2D_BUILD_FORGE', 2, ',Art/Interface/Buttons/Builds/BuildChopDown.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,7,8', ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
                     pPlotPlayer.AI_changeAttitudeExtra(iPlayer, -1)
 
     # Feature Waldrodung Ende
@@ -967,7 +975,8 @@ def doEmigrant(pCity, pUnit):
     iCulture = min(1000, iCulture)
     # Stadt Kultur geben
     pPlot.changeCulture(iPlayerCulture, iCulture, 1)
-    pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    pUnit.kill(True, -1)  # RAMK_CTD
     pUnit = None
 
     pCity.changePopulation(1)
@@ -980,16 +989,18 @@ def doEmigrant(pCity, pUnit):
 
 # disband city
 def doDisbandCity(pCity, pUnit, pPlayer):
-    iRand = CvUtil.myRandom(10, "disband")
-    if iRand < 5:
+    iRand = CvUtil.myRandom(10, "disbandCity")
+    if iRand < 8:
         CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_OK", (pCity.getName(),)), "AS2D_PILLAGE", 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), False, False)
         pPlayer.disband(pCity)
-        #iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-        #pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_RESERVE, DirectionTypes.DIRECTION_SOUTH)
+        iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
+        pNewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        pNewUnit.finishMoves()
+        pUnit.finishMoves()
     else:
         CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DISBAND_CITY_NOT_OK", (pCity.getName(),)), "AS2D_CITY_REVOLT", 2, None, ColorTypes(7), pCity.getX(), pCity.getY(), False, False)
-        pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-        pUnit = None
+        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        pUnit.kill(True, -1)  # RAMK_CTD
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Emigrant disbands/shrinks City (Zeile 6474)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -1411,7 +1422,8 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnit):
                         # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten
                         if not iLoopPromo in lTraitPromos:  # or pNewOwner.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
                             NewUnit.setHasPromotion(iLoopPromo, True)
-        pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+        pLoopUnit.kill(True, -1)  # RAMK_CTD
         pLoopUnit = None
 
     if iNewOwner == gc.getBARBARIAN_PLAYER():
@@ -2104,7 +2116,7 @@ def doEmigrantSpawn(pCity):
     if bRevoltDanger:
         if CvUtil.myRandom(100, "doEmigrantSpawn") < iChance:
             iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-            NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             # Einheit die richtige Kultur geben
             iPlayerCulture = pCity.findHighestCulture()
@@ -2332,7 +2344,8 @@ def doPlagueEffects(pCity):
                     sOwner = pLoopUnit.getOwner()
                     psOwner = gc.getPlayer(sOwner)
                     if pLoopUnit.getDamage() > 95:
-                        pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                        # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                        pLoopUnit.kill(True, -1)  # RAMK_CTD
                         pLoopUnit = None
                         if psOwner is not None and psOwner.isHuman():
                             CyInterface().addMessage(sOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_KILL_UNIT", (pLoopUnit.getName(), pCity.getName())), None, 2, 'Art/Interface/Buttons/Actions/button_skull.dds', ColorTypes(12), loopPlot.getX(), loopPlot.getY(), True, True)
@@ -2547,7 +2560,8 @@ def doSettledSlavesAndReservists(pCity):
             for iUnit in range(iRangePlotUnits):
                 pLoopUnit = pCityPlot.getUnit(iUnit)
                 if pLoopUnit.getOwner() == iPlayer and pLoopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SLAVE"):
-                    pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                    # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                    pLoopUnit.kill(True, -1)  # RAMK_CTD
                     pLoopUnit = None
                     bErsatz = True
                     break
@@ -2680,7 +2694,8 @@ def doSettledSlavesAndReservists(pCity):
                         for iUnit in range(iRangePlotUnits):
                             pLoopUnit = pCityPlot.getUnit(iUnit)
                             if iDone < iNumRebels2 and pLoopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SLAVE"):
-                                pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                pLoopUnit.kill(True, -1)  # RAMK_CTD
                                 pLoopUnit = None
                                 iDone += 1
 
