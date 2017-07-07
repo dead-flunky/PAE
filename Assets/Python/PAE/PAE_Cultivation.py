@@ -360,12 +360,12 @@ def doCultivation_AI(pUnit):
         # kauf was, das es hier gibt und dort gebraucht wird und los geht's
         for eBonus in lBonuses:
             iLocalPrice = -1
-            iPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pLoopCity.plot())
+            iPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer, pLoopCity.plot())
             if eBonus in lLocalCityBonuses:
-                iLocalPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer,pLocalCity.plot())
+                iLocalPrice = _calculateBonusBuyingPrice4Cultivation(eBonus, iPlayer, pLocalCity.plot())
             if iLocalPrice != -1 and iLocalPrice <= iPrice:
                 #buy here. wait if not enough money
-                doBuyBonus4Cultivation(pUnit,eBonus)
+                doBuyBonus4Cultivation(pUnit, eBonus)
                 pUnit.finishMoves()
                 return True
             elif iPrice != -1:

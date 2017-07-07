@@ -2097,14 +2097,15 @@ class CvEventManager:
     def onBeginGameTurn(self, argsList):
         'Called at the beginning of the end of each turn'
         iGameTurn = argsList[0]
-## AI AutoPlay ##
+        ## AI AutoPlay ##
         if CyGame().getAIAutoPlay() == 0:
             CvTopCivs.CvTopCivs().turnChecker(iGameTurn)
-## AI AutoPlay ##
+        ## AI AutoPlay ##
         # CvTopCivs.CvTopCivs().turnChecker(iGameTurn)
 
         # Historische Texte ---------
         PAE_Turn_Features.doHistory()
+
 
     # global
     def onEndGameTurn(self, argsList):
@@ -2124,7 +2125,7 @@ class CvEventManager:
             if sScenarioName == "PeloponnesianWarKeinpferd":
                 PeloponnesianWarKeinpferd.onEndGameTurn(iGameTurn)
 
-        ## Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ##
+        # Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ##
         # PAE V: Treibgut erstellen
         # PAE V: Barbarenfort erstellen
         # PAE Trade Cities Special Bonus
@@ -2132,44 +2133,43 @@ class CvEventManager:
             if iGameTurn % 20 == 0:
                 PAE_Turn_Features.setGoodyHuts()
                 PAE_Trade.addCityWithSpecialBonus(iGameTurn)
-
             PAE_Trade.doUpdateCitiesWithSpecialBonus(iGameTurn)
 
-        # -- PAE V: Treibgut -> Strandgut
+        # PAE V: Treibgut -> Strandgut
         PAE_Turn_Features.doStrandgut()
 
-        # -- PAE Disasters / Katastrophen
+        # PAE Disasters / Katastrophen
         # Permanent Alliances entspricht = Naturkatastrophen (PAE)
         if not (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_PERMANENT_ALLIANCES) or gc.getGame().isGameMultiPlayer()):
             PAE_Disasters.doGenerateDisaster(iGameTurn)
 
-        # -- Seewind / Fair wind ----
+        # Seewind / Fair wind ----
         if iGameTurn % 15 == 0:
             PAE_Turn_Features.doSeewind()
 
         # PAE Debug Mark
         #"""
-# Seevoelker erschaffen: Langboot + Axtkrieger oder Axtkaempfer | -1500 bis -800
         if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-            if iGameTurn % 5 == 0 and gc.getGame().getGameTurnYear() > -1400 and gc.getGame().getGameTurnYear() < -800:
-                PAE_Barbaren.doSeevoelker()
-                # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Seevoelker erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            if iGameTurn % 5 == 0:
+                # Seevoelker erschaffen: Langboot + Axtkrieger oder Axtkaempfer | -1500 bis -800
+                if gc.getGame().getGameTurnYear() > -1400 and gc.getGame().getGameTurnYear() < -800:
+                    PAE_Barbaren.doSeevoelker()
+                    # ***TEST***
+                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Seevoelker erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-# Wikinger erschaffen: Langboot + Berserker | ab 400 AD
-        if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_BARBARIANS):
-            if iGameTurn % 5 == 0 and gc.getGame().getGameTurnYear() >= 400:
-                PAE_Barbaren.doVikings()
-                # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wikinger erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                # Wikinger erschaffen: Langboot + Berserker | ab 400 AD
+                if gc.getGame().getGameTurnYear() >= 400:
+                    PAE_Barbaren.doVikings()
+                    # ***TEST***
+                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wikinger erstellt",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-# -- Huns | Hunnen erschaffen: Hunnischer Reiter | ab 250 AD  ---------
+        # Huns | Hunnen erschaffen: Hunnischer Reiter | ab 250 AD  ---------
         PAE_Barbaren.doHuns(iGameTurn)
 
-# ------ Handelsposten erzeugen Kultur (PAE V Patch 3: und wieder Forts/Festungen)
-# ------ Berberloewen erzeugen
-# ------ Wildpferde, Wildelefanten, Wildkamele ab PAE V
-# ------ Barbarenfort beleben (PAE V Patch 4)
+        # Handelsposten erzeugen Kultur (PAE V Patch 3: und wieder Forts/Festungen)
+        # Berberloewen erzeugen
+        # Wildpferde, Wildelefanten, Wildkamele ab PAE V
+        # Barbarenfort beleben (PAE V Patch 4)
         PAE_Turn_Features.doPlotFeatures()
 
         # Christentum gruenden
@@ -2180,7 +2180,7 @@ class CvEventManager:
         # PAE Debug Mark
         #"""
 
-# global
+    # global
     def onBeginPlayerTurn(self, argsList):
         'Called at the beginning of a players turn'
         iGameTurn, iPlayer = argsList
@@ -2676,16 +2676,35 @@ class CvEventManager:
         #### ---- Ende unabhaengige Ereignisse ---- ####
 
         #### ---- betrifft Winner ---- ####
+        iPromoFuror1 = gc.getInfoTypeForString('PROMOTION_FUROR1')
+        iPromoFuror2 = gc.getInfoTypeForString('PROMOTION_FUROR2')
+        iPromoFuror3 = gc.getInfoTypeForString('PROMOTION_FUROR3')
         # Weil bSuicide in XML scheinbar so funktioniert, dass auf jeden Fall der Gegner stirbt (was ich nicht will)
         if pWinner.getUnitType() == gc.getInfoTypeForString("UNIT_BURNING_PIGS"):
-            pWinner.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)  # RAMK_CTD
-            pWinner = None
+            # Parallele zu isSuicide() im SDK direkt nach dieser Funktion:
+            # pWinner.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pWinner.kill(True, -1)  # RAMK_CTD
             bWinnerIsDead = True
-        else:
+        elif pWinner.isHasPromotion(iPromoFuror1):
             # ------- Furor germanicus / teutonicus: 30% / 20% / 10% Chance
-            bWinnerIsDead = PAE_Unit.doFuror(pWinner, pLoser)
-            if bWinnerIsDead:
-                pWinner = None
+            iWinnerST = pWinner.baseCombatStr()
+            iLoserST = pLoser.baseCombatStr()
+            # weak units without death calc (eg animal)
+            # enemy units should be equal
+            if iLoserST >= (iWinnerST / 5) * 4:
+                iChanceSuicide = 3
+                if pWinner.isHasPromotion(iPromoFuror3):
+                    iChanceSuicide = 1
+                elif pWinner.isHasPromotion(iPromoFuror2):
+                    iChanceSuicide = 2
+
+                if CvUtil.myRandom(10, "Furor") < iChanceSuicide:
+                    pWinner.kill(True, -1)
+                    bWinnerIsDead = True
+                    if pWinnerPlayer.isHuman():
+                        CyInterface().addMessage(iWinnerPlayer, True, 5,
+                                                 CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_FUROR_SUICIDE", (pWinner.getName(), 0)),
+                                                 None, 2, pWinner.getButton(), ColorTypes(7), pWinner.getX(), pWinner.getY(), True, True)
 
         # Promotions for winner
         if not bWinnerIsDead:
@@ -4391,7 +4410,6 @@ class CvEventManager:
         if gc.getUnitInfo(iUnitType).getCombat() > 0:
             if unit.getDomainType() == DomainTypes.DOMAIN_SEA:
                 if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-                    # TODO vielleicht wieder erlauben?
                     if iUnitType != gc.getInfoTypeForString("UNIT_WORKBOAT"):
                         PAE_Unit.doCityUnitPromotions4Ships(city, unit)
             else:
@@ -4482,12 +4500,6 @@ class CvEventManager:
                 if pUnit.plot().getImprovementType() not in lForts:
                     pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"), False)
                     pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"), False)
-
-        ## local function, causes OOS
-        # if pUnit.isBarbarian():
-        #     if pUnit.getUnitType() in [gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"), gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"), gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")]:
-        #         pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-        #         pUnit = None
 
         if not self.__LOG_UNITSELECTED:
             return

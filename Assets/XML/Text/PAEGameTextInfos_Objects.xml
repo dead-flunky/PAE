@@ -3344,9 +3344,9 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_MILITARY_ACADEMY_SPARTA</Tag>
-    <English>Agoge Training Place</English>
+    <English>Spartan Agoge</English>
     <French>Ecole spartiate</French>
-    <German>Agoge Ausbildungszentrum</German>
+    <German>Agoge</German>
     <Italian>Agoghe</Italian>
     <Spanish>Lugar de Entrenamiento Agog&#233;</Spanish>
   </TEXT>
@@ -4024,10 +4024,10 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_THE_COLOSSEUM</Tag>
-    <English>Colosseum</English>
+    <English>Colosseum of Rome</English>
     <French>Colis&#233;e</French>
-    <German>Kolosseum</German>
-    <Italian>Colosseo</Italian>
+    <German>Kolosseum von Rom</German>
+    <Italian>Colosseo di Roma</Italian>
     <Spanish>Coliseo</Spanish>
   </TEXT>
   <TEXT>
@@ -5468,7 +5468,7 @@
     <French>Wagon commercial</French>
     <German>Handelskarren</German>
     <Italian>Carro commerciale</Italian>
-    <Spanish>Vag&#243;n de comercio</Spanish>
+    <Spanish>Mercader</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_TRADE_MERCHANTMAN</Tag>
@@ -8237,5 +8237,13 @@
     <German>Wildkamel</German>
     <Italian><Text>Cammello selvatico</Text><Gender>Male</Gender><Plural>0</Plural></Italian>
     <Spanish>Camello salvaje</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_BUILDING_ARTEMIS</Tag>
+    <English>Temple of Artemis at Ephesus</English>
+    <French>Temple d'Art&#233;mis &#225; Eph&#232;se</French>
+    <German>Tempel der Artemis von Ephesos</German>
+    <Italian>Tempio di Artemide</Italian>
+    <Spanish><Text>Templo de Artemisa:Templos de Artemisa</Text><Gender>Male</Gender><Plural>0:1</Plural></Spanish>
   </TEXT>
 </Civ4GameText>

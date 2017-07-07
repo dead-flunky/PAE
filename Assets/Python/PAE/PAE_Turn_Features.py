@@ -249,9 +249,12 @@ def doStrandgut():
                             lPlots.append(loopPlot)
 
             if lPlots:
-                iPlot = CvUtil.myRandom(len(lPlots), "strandgut")
+                pPlot = lPlots[CvUtil.myRandom(len(lPlots), "strandgut")]
                 # Create Strandgut
-                CvUtil.spawnUnit(iStrandgut, lPlots[iPlot], pBarbPlayer)
+                CvUtil.spawnUnit(iStrandgut, pPlot, pBarbPlayer)
+                iPlotOwner = pPlot.getOwner()
+                if iPlotOwner != -1 and gc.getPlayer(iPlotOwner).isHuman():
+                    CyInterface().addMessage(iPlotOwner, True, 15, CyTranslator().getText("TXT_KEY_TREIB2STRANDGUT", ()), None, 2, None, ColorTypes(gc.getInfoTypeForString(COLOR_YIELD_FOOD)), pPlot.getX(), pPlot.getY(), False, False)
                 # Disband Treibgut
                 # loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 loopUnit.kill(True, -1)  # RAMK_CTD

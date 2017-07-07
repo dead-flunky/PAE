@@ -89,14 +89,6 @@
     <Spanish>(Luchas de espec.)</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_FREE</Tag>
-    <English></English>
-    <French></French>
-    <German></German>
-    <Italian></Italian>
-    <Spanish></Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_SCENARIO_VALLEY</Tag>
     <English>Play against 16 other players in a narrow, meandering valley, caught in a great mountain range and randomly spread resources.</English>
     <French>Jouez contre 16 autres joueurs dans une vall&#233;e escarp&#233;e ceinte de montagnes. Ressources r&#233;parties al&#233;atoirement.</French>
@@ -326,11 +318,11 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MAIN_EMIGRATE_AB_3</Tag>
-    <English>Emigration (from pop 4 on)</English>
-    <French>Emigration (si popul. > 3)</French>
-    <German>Auswanderung (ab Pop 4)</German>
-    <Italian>Emigrazione (dal pop 4)</Italian>
-    <Spanish>Emigraci&#243;n (desde 4 en ad.)</Spanish>
+    <English>Emigration (from pop 6 on)</English>
+    <French>Emigration (si popul. > 5)</French>
+    <German>Auswanderung (ab Pop 6)</German>
+    <Italian>Emigrazione (dal pop 6)</Italian>
+    <Spanish>Emigraci&#243;n (desde 6 en ad.)</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_MAIN_EMIGRATE_NO_DANGER</Tag>
@@ -2252,6 +2244,14 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <Italian></Italian>
     <Spanish></Spanish>
   </TEXT>
+  <TEXT>
+     <Tag>TXT_KEY_TREIB2STRANDGUT</Tag>
+     <English>Flotsam was washed on your beach!</English>
+     <French>Flotsam was washed on your beach!</French>
+     <German>Treibgut wurde an eurem Strand angeschwemmt!</German>
+     <Italian>Flotsam was washed on your beach!</Italian>
+     <Spanish>Flotsam was washed on your beach!</Spanish>
+   </TEXT>  
   <TEXT>
     <Tag>TXT_KEY_MESSAGE_CITY_ADD_FOOD</Tag>
     <English>Your %s1 returned wild game of %d3[ICON_FOOD] to %s2.</English>

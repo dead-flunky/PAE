@@ -117,7 +117,7 @@ def doSlave2Bordell(pCity, pUnit):
             return True
     return False
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Bordell (Zeile 5070)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Slave 2 Bordell (Zeile 5070)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
 def doSlave2Theatre(pCity, pUnit):
@@ -134,7 +134,7 @@ def doSlave2Theatre(pCity, pUnit):
             return True
     return False
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Theater (Zeile 5178)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Slave 2 Theater (Zeile 5178)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # Slave -> Manufaktur , doProduction: 0 = Nahrung; 1 = Produktion
 def doSlave2Manufaktur(pCity, pUnit, doProduction):
@@ -159,7 +159,7 @@ def doSlave2Manufaktur(pCity, pUnit, doProduction):
     return False
 
       # ***TEST***
-      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Manufaktur (Zeile 5196)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+      #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Slave 2 Manufaktur (Zeile 5196)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # Slave -> Palace
 def doSlave2Palace(pCity, pUnit):
@@ -174,7 +174,7 @@ def doSlave2Palace(pCity, pUnit):
         return True
     return False
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Palace (Zeile 6252)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Slave 2 Palace (Zeile 6252)", iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 # Slave -> Temple
 def doSlave2Temple(pCity, pUnit):
@@ -207,7 +207,7 @@ def doSlave2Temple(pCity, pUnit):
         pUnit.kill(True, -1)  # RAMK_CTD
         return True
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Slave 2 Temple (Zeile 6282)",iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Slave 2 Temple (Zeile 6282)", iCulture)), None, 2, None, ColorTypes(10), 0, 0, False, False)
     return False
 
 # Slave -> Feuerwehr
@@ -244,7 +244,7 @@ def dyingBuildingSlave(pCity):
                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_BORDELL_SLAVES", (pCity.getName(), "")), None, 2, "Art/Interface/Buttons/Builds/button_bordell.dds", ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
                 # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Freudemaus verschwunden (Zeile 3927)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Freudemaus verschwunden (Zeile 3927)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     # Schule
     # chance of losing a slave (3%)
@@ -261,7 +261,7 @@ def dyingBuildingSlave(pCity):
                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SCHULE_SLAVES", (pCity.getName(), "")), None, 2, "Art/Interface/Buttons/Builds/button_schule.dds", ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
             # ***TEST***
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Lehrer verschwunden (Zeile 3944)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Lehrer verschwunden (Zeile 3944)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
     # Manufaktur
@@ -286,7 +286,7 @@ def dyingBuildingSlave(pCity):
                         CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_MANUFAKTUR_SLAVES_FOOD", (pCity.getName(), "Art/Interface/Buttons/Corporations/button_manufaktur.dds")), None, 2, "", ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
                 # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Manufakturist draufgegangen (Zeile 3968)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Manufakturist draufgegangen (Zeile 3968)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     # Palast
     # chance of losing a slave (2%)
@@ -303,7 +303,7 @@ def dyingBuildingSlave(pCity):
                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE2PALACE_LOST", (pCity.getName(), "")), None, 2, gc.getBuildingInfo(iBuilding1).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
                 # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Palastsklave verschwunden (Zeile 5016)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Palastsklave verschwunden (Zeile 5016)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     # Tempel
     # chance of losing a slave (3%)
@@ -340,7 +340,7 @@ def dyingBuildingSlave(pCity):
             CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE2TEMPLE_LOST", (pCity.getName(), "")), None, 2, gc.getBuildingInfo(iBuilding).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Tempelsklave verschwunden (Zeile 5051)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Tempelsklave verschwunden (Zeile 5051)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
     # Feuerwehr
     # chance of losing a slave (3%)
@@ -356,7 +356,7 @@ def dyingBuildingSlave(pCity):
                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE2FEUERWEHR_LOST", (pCity.getName(), "")), None, 2, gc.getBuildingInfo(iBuilding1).getButton(), ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
               # ***TEST***
-              #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Palastsklave verschwunden (Zeile 5016)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+              #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Palastsklave verschwunden (Zeile 5016)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 def doReleaseSlaves(pPlayer, pCity, iData5):
     eSpecialistGlad = gc.getInfoTypeForString("SPECIALIST_GLADIATOR")
@@ -499,7 +499,7 @@ def doSell(iPlayer, iUnit):
     pPlayer.changeGold(iGold)
     gc.getPlayer(gc.getBARBARIAN_PLAYER()).changeGold(iGold)
     if pPlayer.isHuman():
-        CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_BUTTON_SELL_SLAVE_SOLD", (iGold,)), None, InterfaceMessageTypes.MESSAGE_TYPE_INFO,"Art/Interface/Buttons/Units/button_slave.dds", ColorTypes(8), pUnit.getX(), pUnit.getY(), True, True)
+        CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_BUTTON_SELL_SLAVE_SOLD", (iGold,)), None, InterfaceMessageTypes.MESSAGE_TYPE_INFO, "Art/Interface/Buttons/Units/button_slave.dds", ColorTypes(8), pUnit.getX(), pUnit.getY(), True, True)
     pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     # pUnit.kill(True, -1)  # RAMK_CTD
     pUnit = None
@@ -560,7 +560,7 @@ def doCheckSlavesAfterPillage(pUnit, pPlot):
 
     if pCity is not None:
         # TEST
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(pCity.getName(),0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", (pCity.getName(), 0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         eSpecialistFood = gc.getInfoTypeForString("SPECIALIST_SLAVE_FOOD")
         eSpecialistProd = gc.getInfoTypeForString("SPECIALIST_SLAVE_PROD")
@@ -674,7 +674,7 @@ def freeSlaves(pCity, pPlayer):
             if pPlayer.isHuman():
                 CyInterface().addMessage(pPlayer.getID(), True, 12, text, None, 2, None, ColorTypes(8), 0, 0, False, False)
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stadtsklaven befreit (Zeile 3237)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Stadtsklaven befreit (Zeile 3237)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 def freeCitizen(pCity):
     iPlayer = pCity.getOwner()
@@ -715,7 +715,7 @@ def freeCitizen(pCity):
                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_SLAVE_2_CITIZEN", (pCity.getName(), "")), None, 2, None, ColorTypes(14), pCity.getX(), pCity.getY(), True, True)
 
                 # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Sklave zu Buerger (Zeile 3828)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Sklave zu Buerger (Zeile 3828)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
     return iCitySlaves
 
 def freeCitizenGlad(pCity):
@@ -743,7 +743,7 @@ def freeCitizenGlad(pCity):
                     CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_2_CITIZEN", (pCity.getName(), "")), None, 2, None, ColorTypes(14), pCity.getX(), pCity.getY(), True, True)
 
             # ***TEST***
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gladiator zu Buerger (Zeile 3860)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Gladiator zu Buerger (Zeile 3860)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
     return iCityGlads
 
 def spawnSlave(pCity, iCitySlaves):
@@ -776,7 +776,7 @@ def spawnSlave(pCity, iCitySlaves):
             CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_SLAVE_BIRTH", (pCity.getName(), "")), None, 2, ",Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2", ColorTypes(14), pCity.getX(), pCity.getY(), True, True)
 
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Neuer Sklave verfuegbar (Zeile 3841)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Neuer Sklave verfuegbar (Zeile 3841)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 def spawnGlad(pCity, iCityGlads):
     iPlayer = pCity.getOwner()
@@ -822,19 +822,19 @@ def dyingGlad(pCity, iCityGlads, bTeamHasGladiators):
             iRand = CvUtil.myRandom(3, "dyingGlad2")
             if iRand < 1 and pCity.isHasBuilding(iBuilding1):
                 iRand = 1 + CvUtil.myRandom(5, "dyingGlad3")
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_COL_"+str(iRand),(pCity.getName(),"")),None,2,None,ColorTypes(13),pCity.getX(),pCity.getY(),True,True)
+                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_COL_"+str(iRand), (pCity.getName(), "")), None, 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
             elif iRand < 1 and pCity.isHasBuilding(iBuilding2):
                 iRand = 1 + CvUtil.myRandom(5, "dyingGlad4")
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_HIP_"+str(iRand),(pCity.getName(),"")),None,2,None,ColorTypes(13),pCity.getX(),pCity.getY(),True,True)
+                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_HIP_"+str(iRand), (pCity.getName(), "")), None, 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
             else:
                 iRand = CvUtil.myRandom(14, "dyingGlad5")
-                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_"+str(iRand),(pCity.getName(),"")),None,2,None,ColorTypes(13),pCity.getX(),pCity.getY(),True,True)
+                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_GLADIATOR_DEATH_"+str(iRand), (pCity.getName(), "")), None, 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
             if bErsatz:
                 if bTeamHasGladiators:
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GLADS_ERSATZ2",("",)),None,2,None,ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
+                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GLADS_ERSATZ2", ("",)), None, 2, None, ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
                 else:
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GLADS_ERSATZ",("",)),None,2,None,ColorTypes(8),pCity.getX(),pCity.getY(),True,True)
+                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GLADS_ERSATZ", ("",)), None, 2, None, ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
 
         # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Gladiator stirbt (Zeile 3977)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Gladiator stirbt (Zeile 3977)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)

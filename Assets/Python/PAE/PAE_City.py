@@ -190,7 +190,9 @@ def onModNetMessage(argsList):
 
             if iData5 == -1:
 
-                szText = CyTranslator().getText("[H2]", ()) + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_1", ()).upper() + CyTranslator().getText("[\H2][NEWLINE]", ())
+                szText = CyTranslator().getText("[H2]", ())\
+                        + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_1", ()).upper()\
+                        + CyTranslator().getText(r"[\H2][NEWLINE]", ())
                 szText += CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_HALTUNG", ())
                 szText += u": %d " % (abs(iBuildingHappiness))
                 if iBuildingHappiness < 0:
@@ -261,7 +263,9 @@ def onModNetMessage(argsList):
 
             if iData5 == -1:
 
-                szText = CyTranslator().getText("[H2]", ()) + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_2", ()).upper() + CyTranslator().getText("[\H2][NEWLINE]", ())
+                szText = CyTranslator().getText("[H2]", ())\
+                        + CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_2", ()).upper()\
+                        + CyTranslator().getText(r"[\H2][NEWLINE]", ())
                 szText += CyTranslator().getText("TXT_KEY_POPUP_STATTHALTER_HALTUNG", ())
                 szText += u": %d " % (abs(iBuildingHappiness))
                 if iBuildingHappiness < 0:
@@ -2112,7 +2116,7 @@ def doEmigrantSpawn(pCity):
     if bRevoltDanger:
         if CvUtil.myRandom(100, "doEmigrantSpawn") < iChance:
             iUnitType = gc.getInfoTypeForString("UNIT_EMIGRANT")
-            NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_SETTLE, DirectionTypes.DIRECTION_SOUTH)
+            NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
 
             # Einheit die richtige Kultur geben
             iPlayerCulture = pCity.findHighestCulture()
