@@ -73,6 +73,7 @@ import PAE_Vassal
 import PAE_Disasters
 # rundenbezogene Features
 import PAE_Turn_Features
+import PAE_Lists as L
 
 # Flunky: Scenario files
 import PeloponnesianWar
@@ -2501,46 +2502,20 @@ class CvEventManager:
         bUnitDone = False
         bWinnerIsDead = False
 
-        # Ausnahmen
-        lWarAnimals = [
-            gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
-            gc.getInfoTypeForString("UNIT_BURNING_PIGS")
-        ]
-        lDomesticated = [
-            gc.getInfoTypeForString("UNIT_HORSE"),
-            gc.getInfoTypeForString("UNIT_CAMEL"),
-            gc.getInfoTypeForString("UNIT_ELEFANT")
-        ]
-
-        lCanBeDomesticated = [
-            gc.getInfoTypeForString("UNIT_WILD_HORSE"),
-            gc.getInfoTypeForString("UNIT_WILD_CAMEL"),
-            gc.getInfoTypeForString("UNIT_ELEFANT")
-        ]
-
-        lWildAnimals = [
-            gc.getInfoTypeForString("UNIT_LION"),
-            gc.getInfoTypeForString("UNIT_BEAR"),
-            gc.getInfoTypeForString("UNIT_PANTHER"),
-            gc.getInfoTypeForString("UNIT_WOLF"),
-            gc.getInfoTypeForString("UNIT_BOAR"),
-            gc.getInfoTypeForString("UNIT_TIGER"),
-            gc.getInfoTypeForString("UNIT_LEOPARD"),
-            gc.getInfoTypeForString("UNIT_DEER"),
-            gc.getInfoTypeForString("UNIT_UR"),
-            gc.getInfoTypeForString("UNIT_BERGZIEGE")
-        ]
-
         # PAE Debug Mark
         #"""
         #### ---- unabhaengige Ereignisse ---- ####
 
-        bWinnerAnimal = pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or iWinnerUnitType in lCanBeDomesticated+lWildAnimals+lWarAnimals+lDomesticated
-        bLoserAnimal = pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or iLoserUnitType in lCanBeDomesticated+lWildAnimals+lWarAnimals+lDomesticated
+        bWinnerAnimal = (pWinner.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or
+                         iWinnerUnitType in L.LUnitCanBeDomesticated or
+                         iWinnerUnitType in L.LUnitWildAnimals or
+                         iWinnerUnitType in L.LUnitWarAnimals or
+                         iWinnerUnitType in L.LUnitDomesticated)
+        bLoserAnimal = (pLoser.getUnitAIType() == UnitAITypes.UNITAI_ANIMAL or
+                        iLoserUnitType in L.LUnitCanBeDomesticated or
+                        iLoserUnitType in L.LUnitWildAnimals or
+                        iLoserUnitType in L.LUnitWarAnimals or
+                        iLoserUnitType in L.LUnitDomesticated)
 
         sScenarioName = CvUtil.getScriptData(CyMap().plot(0, 0), ["S", "t"])
         if sScenarioName == "FirstPunicWar":
@@ -2609,19 +2584,13 @@ class CvEventManager:
                     iChance = 2
                     bFortress = True
 
-                    lCatapults = [
-                        gc.getInfoTypeForString("UNIT_ONAGER"),
-                        gc.getInfoTypeForString("UNIT_CATAPULT"),
-                        gc.getInfoTypeForString("UNIT_FIRE_CATAPULT")
-                    ]
-
                     # Get attacking unit
                     if pWinner.isAttacking():
                         sUnitType = iWinnerUnitType
                     else:
                         sUnitType = iLoserUnitType
 
-                    if sUnitType in lCatapults:
+                    if sUnitType in L.LBuildCatapults:
                         iChance = 10
 
                 # Chance calculation
@@ -2745,7 +2714,7 @@ class CvEventManager:
 
             # ------- Certain animals can be captured, when domestication has been researched
             # ------- Bestimmte Tiere koennen eingefangen werden, wenn Domestizier-Tech erforscht wurde
-            elif iLoserUnitType in lCanBeDomesticated:
+            elif iLoserUnitType in L.LUnitCanBeDomesticated:
                 iTech = -1
                 if iLoserUnitType == gc.getInfoTypeForString("UNIT_WILD_HORSE"):
                     iTech = gc.getInfoTypeForString("TECH_PFERDEZUCHT")
@@ -2927,20 +2896,20 @@ class CvEventManager:
 
         if iIsAttacker == 0:
             combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szDefenderName, cdDefender.sUnitName, iDamage, cdDefender.iCurrHitPoints, cdDefender.iMaxHitPoints))
-            CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-            CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+            CyInterface().addCombatMessage(cdAttacker.eOwner, combatMessage)
+            CyInterface().addCombatMessage(cdDefender.eOwner, combatMessage)
             if cdDefender.iCurrHitPoints <= 0:
                 combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szAttackerName, cdAttacker.sUnitName, szDefenderName, cdDefender.sUnitName))
-                CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-                CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+                CyInterface().addCombatMessage(cdAttacker.eOwner, combatMessage)
+                CyInterface().addCombatMessage(cdDefender.eOwner, combatMessage)
         elif iIsAttacker == 1:
             combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_HIT", (szAttackerName, cdAttacker.sUnitName, iDamage, cdAttacker.iCurrHitPoints, cdAttacker.iMaxHitPoints))
-            CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-            CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+            CyInterface().addCombatMessage(cdAttacker.eOwner, combatMessage)
+            CyInterface().addCombatMessage(cdDefender.eOwner, combatMessage)
             if cdAttacker.iCurrHitPoints <= 0:
                 combatMessage = localText.getText("TXT_KEY_COMBAT_MESSAGE_DEFEATED", (szDefenderName, cdDefender.sUnitName, szAttackerName, cdAttacker.sUnitName))
-                CyInterface().addCombatMessage(cdAttacker.eOwner,combatMessage)
-                CyInterface().addCombatMessage(cdDefender.eOwner,combatMessage)
+                CyInterface().addCombatMessage(cdAttacker.eOwner, combatMessage)
+                CyInterface().addCombatMessage(cdDefender.eOwner, combatMessage)
 
         ## TODO: only if not hidden nationality
         # PAE Wegen Bekanntgabe der Piraten im Log wird hier auskommentiert!
@@ -3290,20 +3259,6 @@ class CvEventManager:
         # Fernangriff / Fernkampfkosten
         # Nur 1x Fernangriff danach nur bewegen => GlobalDefines RANGED_ATTACKS_USE_MOVES=0
         if eMission == MissionTypes.MISSION_RANGE_ATTACK:
-            lSkirmishType = [
-                gc.getInfoTypeForString("UNIT_BALEAREN"),
-                gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"),
-                gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"),
-                gc.getInfoTypeForString("UNIT_THRAKIEN_PELTAST")
-            ]
-            lSkirmishClass = [
-                gc.getInfoTypeForString("UNITCLASS_PELTIST"),
-                gc.getInfoTypeForString("UNITCLASS_SKIRMISHER"),
-                gc.getInfoTypeForString("UNITCLASS_CHARIOT_ARCHER"),
-                gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER"),
-                gc.getInfoTypeForString("UNITCLASS_CAMEL_ARCHER")
-            ]
-
             lUnits = []
             for i in listUnitIds:
                 pLoopUnit = pPlayer.getUnit(i)
@@ -3312,47 +3267,22 @@ class CvEventManager:
                     lUnits.append(pLoopUnit)
 
                     # Nicht fuer Plaenklereinheiten
-                    if pLoopUnit.getUnitType() not in lSkirmishType and pLoopUnit.getUnitClassType() not in lSkirmishClass:
+                    if (pLoopUnit.getUnitType() not in L.LUnitSkirmish and
+                        pLoopUnit.getUnitClassType() not in L.LClassSkirmish):
                         if pLoopUnit.getGroup().hasMoved():
                             pLoopUnit.finishMoves()
 
             # Fernangriff kostet nur der HI Gold
             if pPlayer.isHuman() and lUnits:
-                lCivsNoCosts = [
-                    gc.getInfoTypeForString("CIVILIZATION_BERBER"),
-                    gc.getInfoTypeForString("CIVILIZATION_HUNNEN"),
-                    gc.getInfoTypeForString("CIVILIZATION_SKYTHEN")
-                ]
-                if pPlayer.getCivilizationType() not in lCivsNoCosts:
+                if pPlayer.getCivilizationType() not in L.LFernangriffNoCosts:
                     iGold = 0
                     for unit in lUnits:
                         iUnitType = unit.getUnitType()
                         iUnitClass = unit.getUnitClassType()
                         iUnitCombat = unit.getUnitCombatType()
-
-                        # Individuelle Kosten fuer iAirRange-Units
-                        if iUnitClass == gc.getInfoTypeForString("UNITCLASS_HUNTER"):
-                            iGold += 0
-                        elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_LIGHT_ARCHER"):
-                            iGold += 0
-                        elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER"):
-                            iGold += 1
-                        # elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_COMPOSITE_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_ARCHER_KRETA"): iGold += 2
-                        # elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_REFLEX_ARCHER") or iUnitClass == gc.getInfoTypeForString("UNITCLASS_ARCHER_LEGION"): iGold += 2
-                        elif iUnitType == gc.getInfoTypeForString("UNIT_INDIAN_LONGBOW") or iUnitType == gc.getInfoTypeForString("UNIT_LIBYAN_AMAZON"):
-                            iGold += 3
-                        # elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_PELTIST") or iUnitType == gc.getInfoTypeForString("UNIT_BALEAREN"): iGold += 2
-                        # elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_SKIRMISHER"): iGold += 2
-                        # elif iUnitType == gc.getInfoTypeForString("UNIT_THRAKIEN_PELTAST"): iGold += 2
-                        # elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_CHARIOT_ARCHER") or iUnitType == gc.getInfoTypeForString("UNIT_HETHIT_WARCHARIOT"): iGold += 2
-                        # elif iUnitType == gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS") or iUnitType == gc.getInfoTypeForString("UNIT_BAKTRIEN"): iGold += 2
-                        # elif iUnitClass == gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER") or iUnitClass == gc.getInfoTypeForString("UNITCLASS_CAMEL_ARCHER"): iGold += 2
-                        # elif iUnitType == gc.getInfoTypeForString("UNIT_BALLISTA"): iGold += 2
-                        elif iUnitCombat == gc.getInfoTypeForString("UNITCOMBAT_SIEGE"):
-                            iGold += 3
-                        elif iUnitType == gc.getInfoTypeForString("UNIT_ROME_DECAREME"):
-                            iGold += 4
-                        else:
+                        try:
+                            iGold += L.DFernangriffCosts[iUnitClass]
+                        except:
                             iGold += 2
 
                     if iGold > 0:
@@ -3393,18 +3323,8 @@ class CvEventManager:
         if pUnit.getDomainType() == DomainTypes.DOMAIN_SEA:
             # ------ Seewind -----
             if pPlot.getFeatureType() > -1:
-                lSeewind = [
-                    gc.getInfoTypeForString("FEATURE_WIND_N"),
-                    gc.getInfoTypeForString("FEATURE_WIND_E"),
-                    gc.getInfoTypeForString("FEATURE_WIND_S"),
-                    gc.getInfoTypeForString("FEATURE_WIND_W"),
-                    gc.getInfoTypeForString("FEATURE_WIND_NE"),
-                    gc.getInfoTypeForString("FEATURE_WIND_NW"),
-                    gc.getInfoTypeForString("FEATURE_WIND_SE"),
-                    gc.getInfoTypeForString("FEATURE_WIND_SW")
-                ]
                 iPlotWind = pPlot.getFeatureType()
-                if iPlotWind in lSeewind:
+                if iPlotWind in L.LSeewind:
                     iUnitDirection = pUnit.getFacingDirection()
 
                     # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("direction",iUnitDirection)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -3434,7 +3354,7 @@ class CvEventManager:
                         iSeitenWind,
                         iGegenSchraegWind,
                     ]
-                    iWindIdx = lSeewind.index(iPlotWind)
+                    iWindIdx = L.LSeewind.index(iPlotWind)
                     # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("wind",lMoves[abs(iWindIdx-iUnitDirection)])), None, 2, None, ColorTypes(10), 0, 0, False, False)
                     pUnit.changeMoves(lMoves[abs(iWindIdx-iUnitDirection)])
             # -- end Wind
@@ -3652,16 +3572,7 @@ class CvEventManager:
                 iImp = pPlot.getImprovementType()
 
                 # Bei einem Turm2 oder einer Festung1,2 oder einem Limeskastell
-                lForts = [
-                    gc.getInfoTypeForString("IMPROVEMENT_TURM2"),
-                    gc.getInfoTypeForString("IMPROVEMENT_FORT"),
-                    gc.getInfoTypeForString("IMPROVEMENT_FORT2"),
-                    gc.getInfoTypeForString("IMPROVEMENT_LIMES9"),
-                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9"),
-                    gc.getInfoTypeForString("IMPROVEMENT_BARBARENFORT")
-                ]
-
-                if iImp in lForts:
+                if iImp in L.LImprFortShort:
                         # Alle Formationen entfernen
                         #PAE_Unit.doUnitFormation (pUnit, -1)
 
@@ -3749,18 +3660,7 @@ class CvEventManager:
 
             # Stadtverteidiger
             iNum = 0
-            lArchers = [
-                gc.getInfoTypeForString("UNIT_LIGHT_ARCHER"),
-                gc.getInfoTypeForString("UNIT_ARCHER"),
-                gc.getInfoTypeForString("UNIT_COMPOSITE_ARCHER")
-            ]
-            lCatapults = [
-                gc.getInfoTypeForString("UNIT_ONAGER"),
-                gc.getInfoTypeForString("UNIT_CATAPULT"),
-                gc.getInfoTypeForString("UNIT_FIRE_CATAPULT")
-            ]
-
-            if iUnitType in lArchers+lCatapults:
+            if iUnitType in L.LBuildArchers or iUnitType in L.LBuildCatapults:
                 pPlot = city.plot()
                 iRange = pPlot.getNumUnits()
                 for i in range(iRange):
@@ -3769,7 +3669,8 @@ class CvEventManager:
                         if pLoopUnit.getUnitType() == iUnitType and pLoopUnit.getOwner() == iPlayer:
                             iNum += 1
                 # UnitAIType 10 = UNITAI_CITY_DEFENSE
-                if iUnitType in lArchers and iNum < 3 or iUnitType in lCatapults and iNum < 2:
+                if (iUnitType in L.LBuildArchers and iNum < 3 or
+                    iUnitType in L.LBuildCatapults and iNum < 2):
                     unit.setUnitAIType(10)
             # Set offensive Formations
             else:
@@ -3825,17 +3726,8 @@ class CvEventManager:
                         PAE_Unit.doCityUnitPromotions4Ships(city, unit)
             else:
                 PAE_Unit.doCityUnitPromotions(city, unit)
-                # PAE Waffenmanufakturen - adds a second unit (PAE V Patch 4)
-                lManufakturen = {
-                    gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"): gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_SCHWERT"),
-                    gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"): gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_AXT"),
-                    gc.getInfoTypeForString("UNITCOMBAT_ARCHER"): gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_BOGEN"),
-                    gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"):gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_SPEER"),
-                    gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"): gc.getInfoTypeForString("BUILDING_WAFFENMANUFAKTUR_SPEER")
-                }
-
                 try:
-                    iBuilding = lManufakturen[unit.getUnitCombatType()]
+                    iBuilding = L.DManufakturen[unit.getUnitCombatType()]
                     if city.isHasBuilding(iBuilding):
                         CvUtil.spawnUnit(iUnitType, city.plot(), pPlayer)
                 except KeyError:
@@ -3900,15 +3792,7 @@ class CvEventManager:
 
         if not gc.getPlayer(pUnit.getOwner()).isHuman():
             if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")) or pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")):
-                lForts = [
-                    gc.getInfoTypeForString("IMPROVEMENT_TURM2"),
-                    gc.getInfoTypeForString("IMPROVEMENT_FORT"),
-                    gc.getInfoTypeForString("IMPROVEMENT_FORT2"),
-                    gc.getInfoTypeForString("IMPROVEMENT_LIMES9"),
-                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9"),
-                    gc.getInfoTypeForString("IMPROVEMENT_BARBARENFORT")
-                ]
-                if pUnit.plot().getImprovementType() not in lForts:
+                if pUnit.plot().getImprovementType() not in L.LImprFortShort:
                     pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"), False)
                     pUnit.setHasPromotion(gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"), False)
 
@@ -3949,21 +3833,8 @@ class CvEventManager:
 
             if lHealer:
                 iSupplyChange = 0
-                lSupplyBonus = {
-                    gc.getInfoTypeForString("IMPROVEMENT_FARM"): 50,
-                    gc.getInfoTypeForString("IMPROVEMENT_PASTURE"): 50,
-                    gc.getInfoTypeForString("IMPROVEMENT_PLANTATION"): 30,
-                    gc.getInfoTypeForString("IMPROVEMENT_BRUNNEN"): 20,
-                    gc.getInfoTypeForString("IMPROVEMENT_COTTAGE"): 10,
-                    gc.getInfoTypeForString("IMPROVEMENT_HAMLET"): 15,
-                    gc.getInfoTypeForString("IMPROVEMENT_VILLAGE"): 20,
-                    gc.getInfoTypeForString("IMPROVEMENT_TOWN"): 25,
-                    gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"): 25,
-                    gc.getInfoTypeForString("IMPROVEMENT_FORT"): 30,
-                    gc.getInfoTypeForString("IMPROVEMENT_FORT2"): 40
-                }
                 try:
-                    iSupplyChange = lSupplyBonus[iImprovement]
+                    iSupplyChange = L.DImprSupplyBonus[iImprovement]
                     for loopUnit in lHealer:
                         if iSupplyChange <= 0:
                             break
@@ -3975,14 +3846,7 @@ class CvEventManager:
             # Free promotion when pillaging: 20%
             if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PILLAGE5")):
                 if CvUtil.myRandom(10, "pillage_promo") < 2:
-                    lPromoPillage = [
-                        gc.getInfoTypeForString("PROMOTION_PILLAGE1"),
-                        gc.getInfoTypeForString("PROMOTION_PILLAGE2"),
-                        gc.getInfoTypeForString("PROMOTION_PILLAGE3"),
-                        gc.getInfoTypeForString("PROMOTION_PILLAGE4"),
-                        gc.getInfoTypeForString("PROMOTION_PILLAGE5")
-                    ]
-                    for iPromo in lPromoPillage:
+                    for iPromo in L.LPromoPillage:
                         if not pUnit.isHasPromotion(iPromo):
                             pUnit.setHasPromotion(iPromo, True)
                             if gc.getPlayer(iPlayer).isHuman():
@@ -4020,7 +3884,7 @@ class CvEventManager:
 
         # Holzcamp entfernen, wenn Wald entfernt wurde
         if bFinished:
-            if iBuild in [gc.getInfoTypeForString("BUILD_REMOVE_JUNGLE"), gc.getInfoTypeForString("BUILD_REMOVE_FOREST"), gc.getInfoTypeForString("BUILD_REMOVE_FOREST_BURNT")]:
+            if iBuild in L.LWoodRemovedByLumberCamp:
                 pPlot = pUnit.plot()
                 if pPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP"):
                     pPlot.setImprovementType(-1)
@@ -4060,46 +3924,10 @@ class CvEventManager:
 
         # Names for Great Generals / Feldherrenliste
         if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_GREAT_GENERAL"):
-            listNamesStandard = ["Adiantunnus", "Divico", "Albion", "Malorix", "Inguiomer", "Archelaos", "Dorimachos", "Helenos", "Kerkidas", "Mikythos", "Philopoimen", "Pnytagoras", "Sophainetos", "Theopomopos", "Gylippos", "Proxenos", "Theseus", "Balakros", "Bar Kochba", "Julian ben Sabar", "Justasas", "Patricius", "Schimon bar Giora", "Artaphernes", "Harpagos", "Atropates", "Bahram Chobin", "Datis", "Schahin", "Egnatius", "Curius Aentatus", "Antiochos II", "Spartacus", "Herodes I", "Calgacus", "Suebonius Paulinus", "Maxentus", "Sapor II", "Alatheus", "Saphrax", "Honorius", "Aetius", "Achilles", "Herodes", "Heros", "Odysseus", "Anytos"]
-            lGGNames = {
-                gc.getInfoTypeForString("CIVILIZATION_ROME"): ["Agilo", "Marellus", "Flavius Theodosius", "Flavius Merobaudes", "Flavius Bauto", "Flavius Saturnius", "Flavius Fravitta", "Sextus Pompeius", "Publius Canidius Crassus", "Marcus Claudius Marellus", "Marcus Cato Censorius", "Flavius Felix", "Flavius Aetius", "Gnaeus Pompeius Strabo", "Ricimer", "Flavius Ardaburius Aspar", "Publius Quinctilius Varus", "Marcus Vispanius Agrippa", "Marcus Antonius Primus", "Tiberius Gracchus", "Petillius Cerialis", "Gaius Suetonius Paulimius", "Titus Labienus", "Gnaeus Iulius Verus", "Aulus Allienus", "Marcellinus", "Flavius Castinus", "Lucius Fannius", "Aulus Didius Gallus", "Rufio", "Publius Servilius Rullus", "Papias"],
-                gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"): ["Lars Tolumnius", "Lucius Tarquinius Priscus", "Arrunte Tarquinius", "Celio Vibenna", "Elbio Vulturreno", "Arrunte Porsena", "Tito Tarquinius", "Aulus Caecina Alienus", "Mezentius", "Aulus Caecina Severerus", "Sextus Tarquinius", "Velthur Spurinna"],
-                gc.getInfoTypeForString("CIVILIZATION_CELT"): ["Ortiagon", "Adiatunnus", "Boduognatus", "Indutiomarus", "Catuvolcus", "Deiotaros", "Viridomarus", "Chiomara", "Voccio", "Kauaros", "Komontorios"],
-                gc.getInfoTypeForString("CIVILIZATION_GALLIEN"): ["Vergobret", "Viridovix", "Acco", "Amandus", "Camulogenus", "Postumus", "Aelianus", "Capenus", "Tibatto", "Julias Classicus", "Diviciacus"],
-                gc.getInfoTypeForString("CIVILIZATION_GERMANEN"): ["Valamir", "Athaulf ", "Eurich", "Sigerich", "Walia", "Julius Civilis", "Malorix", "Edekon", "Vestralp", "Chnodomar", "Agenarich", "Ardarich", "Verritus", "Thuidimir", "Gundioch", "Priarius", "Kniva", "Radagaisus", "Alaviv", "Athanarich", "Hunulf", "Hunimund", "Rechiar", "Rechila", "Cannabaudes", "Eriulf", "Adovacrius", "Gundomad", "Hariobaud", "Hortar", "Suomar", "Marcomer", "Gennobaudes", "Sunno", "Merogaisus", "Segimer", "Inguiomer", "Vadomar", "Ascaricus", "Ursicinus", "Arbogast"],
-                gc.getInfoTypeForString("CIVILIZATION_DAKER"): ["Cotisone", "Oroles", "Duras", "Rubobostes", "Dromichaetes", "Rholes", "Zyraxes", "Dapys", "Fastida", "Zenon"],
-                gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"): ["Bardylis", "Glaukias", "Monunios II", "Skerdilaidas", "Bato I", "Demetrios Pharos", "Pleuratos I", "Sirras", "Bato II", "Epulon", "Longarus", "Pinnes Pannonien", "Cleitus", "Bardylis II", "Genthios"],
-                gc.getInfoTypeForString("CIVILIZATION_GREECE"): ["Adeimantos", "Xenokleides", "Timonides Leukas", "Pyrrhias", "Philopoimen", "Milon", "Leosthenes", "Kineas", "Dorimachos", "Daochos I", "Ameinias", "Herakleides", "Panares", "Lasthenes", "Onomarchus", "Menon Pharsalos", "Timoleon", "Hermokrates", "Archytas Tarent", "Keridas"],
-                gc.getInfoTypeForString("CIVILIZATION_ATHENS"): ["Konon", "Miltiades", "Perikles", "Leon", "Menon", "Aristeides", "Autokles", "Chares", "Eukrates", "Hippokrates", "Kallistratos", "Thrasyllos", "Timomachos", "Xanthippos", "Xenophon", "Demosthenes", "Anytos"],
-                gc.getInfoTypeForString("CIVILIZATION_THEBAI"): ["Kleomenes Boeotarich", "Pagondas", "Pelopidas", "Proxenos", "Coeratadas", "Gorgidas", "Peisis Thespiai", "Theagenes Boeotarich", "Apollokrates", "Polyxenos"],
-                gc.getInfoTypeForString("CIVILIZATION_SPARTA"): ["Brasidas", "Eurybiades", "Klearchos", "Xanthippos", "Mindaros", "Peisander", "Therimenes", "Thibron", "Agesilaos", "Gylippos", "Astyochos", "Aiantides Milet", "Antalkidas", "Archidamos II", "Aristodemos", "Chalkideus", "Derkylidas", "Euryanax", "Eurylochos", "Hippokrates Sparta", "Kallikratidas", "Phoibidas", "Cheirisophos"],
-                gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"): ["Admetos", "Attalos", "Antipatros", "Antigonos", "Antigenes", "Demetrios Althaimenes", "Gorgias", "Herakon", "Karanos", "Kleitos", "Memnon", "Nikanor", "Parmenion", "Philippos", "Pleistarchos", "Meleagros", "Menidas", "Menandros", "Telesphoros", "Demetrios I Poliorketes", "Adaios Alektryon", "Alexandros", "Koinos", "Zopyrion"],
-                gc.getInfoTypeForString("CIVILIZATION_HETHIT"): ["Pithana", "Anitta", "Labarna", "Mursili I", "Hantili I", "Arnuwanda II", "Muwattalli II", "Suppiluliuma II", "Kantuzzili", "Kurunta"],
-                gc.getInfoTypeForString("CIVILIZATION_LYDIA"): ["Ardys II", "Sadyattes II", "Gyges", "Paktyes", "Mazares", "Myrsus", "Lydus", "Manes", "Agron", "Meles"],
-                gc.getInfoTypeForString("CIVILIZATION_PHON"): ["Luli", "Abdi-Milkutti", "Straton I", "Tabnit", "Abd-Melqart", "Azemilkos", "Baal I", "Ithobaal III", "Elukaios", "Baal II", "Panam-muwa II", "Esmun-ezer"],
-                gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"): ["Adherbal", "Bomilkar", "Hannibal Gisko", "Boodes", "Hamilkar", "Mago", "Maharbal", "Hanno", "Himilkon", "Gisco", "Hannibal Bomilkars", "Hasdrubal Cartagagena", "Hasdrubal Barkas", "Hasdrubal Hannos", "Hasdrubal Gisco", "Mago Barkas", "Malchus"],
-                gc.getInfoTypeForString("CIVILIZATION_ISRAEL"): ["Bar Kochbar", "Jonathan", "Judas Makkabaeus", "Justasas", "Schimon bar Giora", "Simon Makkabaeus", "Johann Gischala", "Barak", "Patricius", "Abner", "Scheba", "Jaobs", "Benaja", "Omri", "Jeha", "Goliath"],
-                gc.getInfoTypeForString("CIVILIZATION_SUMERIA"): ["Agga", "Ur-Nammu", "Gudea", "Eanatum", "Amar-Sin", "Sulgi", "Utuhengal", "Lugalbanda", "Enuk-duanna", "Rim-Anum", "Ibbi-Sin"],
-                gc.getInfoTypeForString("CIVILIZATION_BABYLON"): ["Sumu-abum", "Sumulael", "Sabium", "Hammurapi", "Eriba-Marduk", "Burna-burias I", "Neriglissar", "Abi-esuh", "Nergalscharrussar", "Ulamburiasch", "Musezib-Marduk", "Bel-simanni", "Agum III", "Marduk-apla-iddina II", "Nabu-nasir", "Bel-ibni"],
-                gc.getInfoTypeForString("CIVILIZATION_ASSYRIA"): ["Dajan-Assur", "Samsi-ilu", "Sin-sumu-lisir", "Assur-bela-ka-in", "Bel-lu-Ballet", "Nergal-ilaya", "Nabu-da-inannil", "Inurta-ilaya", "Tustanu", "Schanabuschu", "Assur-dan I", "Assur-nirari V", "Eriba-Adad I", "Assur-dan II", "Sanherib", "Asarhaddon"],
-                gc.getInfoTypeForString("CIVILIZATION_PERSIA"): ["Artaphernes", "Artasyras", "Shahrbaraz", "Harpagos", "Mardonios", "Xenias Parrhasia", "Otanes Sisamnes", "Tissaphernes", "Hydarnes,", "Pharnabazos II", "Tithraustes", "Smerdomenes", "Tritantaichmes", "Tiribazos", "Megabazos", "Megabates", "Artabozos I", "Pharnabazos III", "Pherendates", "Abrokomas", "Atropates", "Datis", "Satibarzanes", "Oxyathres", "Struthas"],
-                gc.getInfoTypeForString("CIVILIZATION_EGYPT"): ["Ahmose", "Djehuti", "Ahmose Pennechbet", "Antef", "Seti", "Psammetich I", "Sib-e", "Ramses III", "Psammetich III", "Merenptah", "Haremhab", "Amasis", "Amenemhab", "Re-e", "Djefaihap", "Kanefer"],
-                gc.getInfoTypeForString("CIVILIZATION_NUBIA"): ["Kaschta", "Pije", "Schabaka", "Schabataka", "Tanotamun", "Aspelta", "Pekartror", "Harsijotef", "Charamadoye", "Cheperkare"],
-                gc.getInfoTypeForString("CIVILIZATION_IBERER"): ["Mandonio", "Caro Segeda", "Megara", "Olindico", "Culcas", "Gauson", "Hilerno", "Istolacio", "Luxinio", "Punico", "Besadino", "Budar", "Edecon", "Indortes"],
-                gc.getInfoTypeForString("CIVILIZATION_NUMIDIA"): ["Gauda", "Gulussa", "Matho", "Tacfarinas", "Syphax", "Hiempsal I", "Micipsa", "Arabion", "Suburra", "Mastanabal"],
-                gc.getInfoTypeForString("CIVILIZATION_BERBER"): ["Masties", "Lusius Quietus", "Firmus", "Gildon", "Quintus Lollius Urbicus", "Sabalus", "Bagas", "Bogud", "Bocchus II", "Lucius Balbus Minor"],
-                gc.getInfoTypeForString("CIVILIZATION_LIBYA"): ["Osorkon II", "Namilt I", "Iupet", "Osochor", "Paschedbastet", "Namilt II", "Takelot II", "Petubastis I", "Osorkon III", "Bakenntah"],
-                gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"): ["Idanthyrsos", "Maues", "Satrakes", "Skilurus", "Scopasis", "Palacus", "Madius", "Eunones", "Octamasadas", "Azes I"],
-                gc.getInfoTypeForString("CIVILIZATION_HUNNEN"): ["Balamir", "Dengizich", "Ellac", "Oktar", "Rua", "Uldin", "Kursisch""Hormidac", "Ernak", "Charaton"],
-                gc.getInfoTypeForString("CIVILIZATION_INDIA"): ["Pushyamitra Shunga", "Kujula Kadphises", "Chandragupta II", "Samudragupta", "Kharavela", "Skandagupta", "Dhana Nanda", "Vidudabha", "Vishvamitra", "Bimbisara", "Ajatashatru", "Bindusara", "Kanishka", "Vima Kadphises", "Soter Megas"],
-                gc.getInfoTypeForString("CIVILIZATION_BRITEN"): ["Cassivelanaunus", "Cingetorix", "Carvillius", "Taximagulus", "Segovax", "Ambrosius Aurelius", "Hengest", "Horsa", "Vortigern", "Riothamus", "Venutius", "Togodumnus", "Allectus", "Nennius", "Calgacus"],
-                gc.getInfoTypeForString("CIVILIZATION_PARTHER"): ["Surena", "Artabanus V", "Vologase I", "Vologase IV", "Phraates IV", "Osreos I", "Phraates II", "Pakoros I", "Artabanus IV", "Barzapharnes", "Pharnapates"],
-                gc.getInfoTypeForString("CIVILIZATION_VANDALS"): ["Godigisel", "Gunderich", "Gunthamund", "Gento", "Thrasamund", "Hoamer", "Wisimar", "Flavius Stilicho", "Andevoto", "Hilderich"]
-            }
             try:
-                listNames = lGGNames[pPlayer.getCivilizationType()]
+                listNames = L.DGGNames[pPlayer.getCivilizationType()]
             except KeyError:
-                listNames = listNamesStandard
+                listNames = L.LGGStandard
 
             GG_Name = ""
             i = 0
@@ -4113,8 +3941,8 @@ class CvEventManager:
                     break
 
             if GG_Name == "":
-                iRand = CvUtil.myRandom(len(listNamesStandard), "GGNames second try")
-                GG_Name = listNamesStandard[iRand]
+                iRand = CvUtil.myRandom(len(L.LGGStandard), "GGNames second try")
+                GG_Name = L.LGGStandard[iRand]
 
             if GG_Name != "":
                 pUnit.setName(GG_Name)
@@ -4190,18 +4018,10 @@ class CvEventManager:
                         # pCity.setNumRealBuilding(i,0)
                   # pCity.setHasCorporation(iCorp, 0, 0, 0)
 
-            # # Religionen
-            # ListRelis = []
-            # ListRelis.append(gc.getInfoTypeForString("RELIGION_HINDUISM"))
-            # ListRelis.append(gc.getInfoTypeForString("RELIGION_BUDDHISM"))
-            # ListRelis.append(gc.getInfoTypeForString("RELIGION_JUDAISM"))
-            # ListRelis.append(gc.getInfoTypeForString("RELIGION_CHRISTIANITY"))
-            # ListRelis.append(gc.getInfoTypeForString("RELIGION_JAINISMUS"))
-
             # iRange = gc.getNumReligionInfos()
             # iRange2 = gc.getNumBuildingInfos()
             # for iReli in range(iRange):
-              # if iReli not in ListRelis:
+              # if iReli not in L.LRelis:
                 # if pCity.isHasReligion(iReli) and not pCity.isHolyCityByType(iReli):
                   # for i in range(iRange2):
                     # if pCity.getNumBuilding(i) > 0:
@@ -4242,15 +4062,7 @@ class CvEventManager:
         iCityId = gc.getGame().getHolyCity(iReligion).getID()
 
         # PAE - capital gets Holy City for certain religions
-        lReligion = [
-            gc.getInfoTypeForString("RELIGION_CELTIC"),
-            gc.getInfoTypeForString("RELIGION_NORDIC"),
-            gc.getInfoTypeForString("RELIGION_PHOEN"),
-            gc.getInfoTypeForString("RELIGION_GREEK"),
-            gc.getInfoTypeForString("RELIGION_ROME"),
-            gc.getInfoTypeForString("RELIGION_JUDAISM")
-        ]
-        if iReligion in lReligion:
+        if iReligion in L.LRelisRemapCaptial:
             pCapitalCity = gc.getPlayer(iFounder).getCapitalCity()
             if pCapitalCity:
                 if iCityId != pCapitalCity.getID():

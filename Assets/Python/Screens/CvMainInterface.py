@@ -16,6 +16,7 @@ import PAE_Cultivation
 import PAE_Unit
 # import PAE_Mercenaries
 import PAE_City
+import PAE_Lists as L
 
 # globals
 gc = CyGlobalContext()
@@ -2420,20 +2421,14 @@ class CvMainInterface:
                                     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING")):
                                         bSearchPlot = True
                             elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")):
-                                lUnitAuxiliar = [
-                                    gc.getInfoTypeForString("UNIT_AUXILIAR"),
-                                    gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
-                                    gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
-                                ]
-
-                                if (iUnitType in lUnitAuxiliar
+                                if (iUnitType in L.LUnitAuxiliar
                                         or iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI")
                                         or iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE")):
                                     #or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
                                     #or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") \
 
 
-                                    if iUnitType in lUnitAuxiliar and pTeam.isHasTech(gc.getInfoTypeForString("TECH_HUFEISEN")):
+                                    if iUnitType in L.LUnitAuxiliar and pTeam.isHasTech(gc.getInfoTypeForString("TECH_HUFEISEN")):
                                         bSearchPlot = True
                                     elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"):
                                         TechHorse3 = gc.getInfoTypeForString("TECH_HUFEISEN")
@@ -2720,39 +2715,8 @@ class CvMainInterface:
                                 if pTeam.isHasTech(gc.getInfoTypeForString("TECH_ARMOR")):
                                     iPromo = gc.getInfoTypeForString("PROMOTION_EDLE_RUESTUNG")
                                     if not pUnit.isHasPromotion(iPromo):
-                                        iCombatArray = [
-                                            gc.getInfoTypeForString("UNITCOMBAT_NAVAL"),
-                                            gc.getInfoTypeForString("UNITCOMBAT_SIEGE"),
-                                            gc.getInfoTypeForString("UNITCOMBAT_RECON"),
-                                            gc.getInfoTypeForString("UNITCOMBAT_HEALER"),
-                                            gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),
-                                            UnitCombatTypes.NO_UNITCOMBAT,
-                                            gc.getInfoTypeForString("NONE")
-                                        ]
-                                        if pUnit.getUnitCombatType() not in iCombatArray and pUnit.getUnitCombatType() > 0:
-                                            iUnitArray = [
-                                                gc.getInfoTypeForString("UNIT_WARRIOR"),
-                                                gc.getInfoTypeForString("UNIT_AXEWARRIOR"),
-                                                gc.getInfoTypeForString("UNIT_HUNTER"),
-                                                gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN"),
-                                                gc.getInfoTypeForString("UNIT_KURZSCHWERT"),
-                                                gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"),
-                                                gc.getInfoTypeForString("UNIT_FALCATA_IBERIA"),
-                                                gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"),
-                                                gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT"),
-                                                gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER"),
-                                                gc.getInfoTypeForString("UNIT_MERC_HORSEMAN"),
-                                                gc.getInfoTypeForString("UNIT_HORSEMAN"),
-                                                gc.getInfoTypeForString("UNIT_HORSE_ARCHER"),
-                                                gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"),
-                                                gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-                                                gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-                                                gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-                                                gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
-                                                gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
-                                                gc.getInfoTypeForString("UNIT_BURNING_PIGS")
-                                            ]
-                                            if pUnit.getUnitType() not in iUnitArray:
+                                        if pUnit.getUnitCombatType() not in L.LCombatNoRuestung and pUnit.getUnitCombatType() > 0:
+                                            if pUnit.getUnitType() not in L.LUnitNoRuestung:
                                                 iBuilding1 = gc.getInfoTypeForString("BUILDING_FORGE")
                                                 bonus1 = gc.getInfoTypeForString("BONUS_OREICHALKOS")
                                                 bonus2 = gc.getInfoTypeForString("BONUS_MESSING")
@@ -2986,20 +2950,7 @@ class CvMainInterface:
                             if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
                                 if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
 
-                                    lCivPirates = [
-                                        gc.getInfoTypeForString("CIVILIZATION_BERBER"),
-                                        gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"),
-                                        gc.getInfoTypeForString("CIVILIZATION_HETHIT"),
-                                        gc.getInfoTypeForString("CIVILIZATION_IBERER"),
-                                        gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"),
-                                        gc.getInfoTypeForString("CIVILIZATION_LIBYA"),
-                                        gc.getInfoTypeForString("CIVILIZATION_LYDIA"),
-                                        gc.getInfoTypeForString("CIVILIZATION_NUBIA"),
-                                        gc.getInfoTypeForString("CIVILIZATION_NUMIDIA"),
-                                        gc.getInfoTypeForString("CIVILIZATION_VANDALS")
-                                    ]
-
-                                    if pUnit.getCivilizationType() in lCivPirates:
+                                    if pUnit.getCivilizationType() in L.LCivPirates:
                                         # Pirat -> normal
                                         UnitArray1 = [
                                             gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"),
@@ -3075,48 +3026,18 @@ class CvMainInterface:
                         if pUnit.canMove() or bFormationUndo:
                             # PAE V Patch 2: disabled for fights on his own units
                             if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
-                                lMelee = [gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN")]
-                                lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
-
                                 pPlot = pUnit.plot()
 
-                                FortArray = [
-                                    gc.getInfoTypeForString("IMPROVEMENT_TURM2"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_FORT"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_FORT2"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES1"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES3"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES4"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES5"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES6"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES7"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES8"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES9"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_1"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_2"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_3"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_4"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_5"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_6"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_7"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_8"),
-                                    gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9")
-                                ]
                                 iImp = pPlot.getImprovementType()
 
-                                #FeatureArray = []
-                                #FeatureArray.append(gc.getInfoTypeForString("FEATURE_FOREST"))
-                                #FeatureArray.append(gc.getInfoTypeForString("FEATURE_DICHTERWALD"))
                                 #iFeat = pPlot.getFeatureType()
 
                                 # in Festungen (keine Formationen erlauben, ausser PROMOTION_FORM_FORTRESS)
-                                if iImp in FortArray:
+                                if iImp in L.LImprFort:
                                     # Besitzerabfrage
                                     if pPlot.getOwner() == iUnitOwner or pPlot.getOwner() == -1:
                                         # Nur Melee
-                                        if pUnit.getUnitCombatType() in lMelee:
+                                        if pUnit.getUnitCombatType() in L.LMeleeCombats:
                                             # Festungsformation
                                             if PyInfo.UnitInfo(pUnit.getUnitType()).getMoves() == 1:
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
@@ -3128,20 +3049,12 @@ class CvMainInterface:
                                                 iCount = iCount + 1
 
                                 # ausserhalb von Festungen
-                                #elif iFeat not in FeatureArray:
+                                #elif iFeat not in L.LFeatureArray:
                                 else:
                                     # Naval
                                     if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
                                         if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_LOGIK")):
-                                            UnitArray = [
-                                                gc.getInfoTypeForString("UNIT_WORKBOAT"),
-                                                gc.getInfoTypeForString("UNIT_KILIKIEN"),
-                                                gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"),
-                                                gc.getInfoTypeForString("UNIT_PIRAT_BIREME"),
-                                                gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"),
-                                                gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE")
-                                            ]
-                                            if pUnit.getUnitType() not in UnitArray:
+                                            if pUnit.getUnitType() not in L.LFormationNoNaval:
                                                 # Keil
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL")
                                                 if pUnit.isHasPromotion(iFormation):
@@ -3167,30 +3080,8 @@ class CvMainInterface:
 
                                     # Mounted mit Fernangriff
                                     elif pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-                                        UnitArray = [
-                                            gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER"),
-                                            gc.getInfoTypeForString("UNIT_HORSE_ARCHER"),
-                                            gc.getInfoTypeForString("UNIT_HORSE_ARCHER_ROMAN"),
-                                            gc.getInfoTypeForString("UNIT_HORSE_ARCHER_SCYTHS"),
-                                            gc.getInfoTypeForString("UNIT_HORSE_ARCHER_BAKTRIEN"),
-                                            gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER")
-                                        ]
-                                        if pUnit.getUnitType() in UnitArray:
-                                            CivArray = [
-                                                gc.getInfoTypeForString("CIVILIZATION_HETHIT"),
-                                                gc.getInfoTypeForString("CIVILIZATION_PHON"),
-                                                gc.getInfoTypeForString("CIVILIZATION_ISRAEL"),
-                                                gc.getInfoTypeForString("CIVILIZATION_PERSIA"),
-                                                gc.getInfoTypeForString("CIVILIZATION_BABYLON"),
-                                                gc.getInfoTypeForString("CIVILIZATION_SUMERIA"),
-                                                gc.getInfoTypeForString("CIVILIZATION_ASSYRIA"),
-                                                gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"),
-                                                gc.getInfoTypeForString("CIVILIZATION_PARTHER"),
-                                                gc.getInfoTypeForString("CIVILIZATION_HUNNEN"),
-                                                gc.getInfoTypeForString("CIVILIZATION_INDIA"),
-                                                gc.getInfoTypeForString("CIVILIZATION_BARBARIAN")
-                                            ]
-                                            if pUnit.getCivilizationType() in CivArray and pTeam.isHasTech(gc.getInfoTypeForString("TECH_PARTHERSCHUSS")):
+                                        if pUnit.getUnitType() in L.LFormationMountedArcher:
+                                            if pUnit.getCivilizationType() in L.LCivPartherschuss and pTeam.isHasTech(gc.getInfoTypeForString("TECH_PARTHERSCHUSS")):
                                                 # Partherschuss
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_PARTHER")
                                                 if pUnit.isHasPromotion(iFormation):
@@ -3248,15 +3139,7 @@ class CvMainInterface:
                                                     screen.show( "BottomButtonContainer" )
                                                     iCount = iCount + 1
 
-                                        UnitArray = [
-                                            gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-                                            gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-                                            gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-                                            gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
-                                            gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
-                                            gc.getInfoTypeForString("UNIT_BURNING_PIGS")
-                                        ]
-                                        if pUnit.getUnitType() not in UnitArray:
+                                        if pUnit.getUnitType() not in L.LUnitNoSlaves:
                                             # Fourage
                                             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BRANDSCHATZEN")):
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE")
@@ -3271,7 +3154,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
 
                                     # Melee and Spear
-                                    elif pUnit.getUnitCombatType() in lMelee:
+                                    elif pUnit.getUnitCombatType() in L.LMeleeCombats:
                                         if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")):
                                             # Schildwall
                                             UnitArray = [
@@ -3501,7 +3384,7 @@ class CvMainInterface:
 
 
                                     # Archers
-                                    elif pUnit.getUnitCombatType() in lArcher:
+                                    elif pUnit.getUnitCombatType() in L.LArcherCombats:
                                         # Elefantengasse
                                         if pTeam.isHasTech(gc.getInfoTypeForString("TECH_GEOMETRIE2")):
                                             #if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
@@ -3553,8 +3436,7 @@ class CvMainInterface:
 
                         # Legend can become a Great General
                         if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT6")):
-                            lArcher = [gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER")]
-                            if pUnit.getUnitCombatType() not in lArcher:
+                            if pUnit.getUnitCombatType() not in L.LArcherCombats:
                                 if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_LEADER")):
                                     screen.appendMultiListButton( "BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_LEGEND_HERO_TO_GENERAL").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 720, 720, False )
                                     screen.show( "BottomButtonContainer" )

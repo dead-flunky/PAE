@@ -19,6 +19,9 @@ from CvPythonExtensions import *
 # For ScriptData dict
 import simplejson as json
 
+# Load lists with types
+from PAE_Lists import *
+
 # For exception handling
 SHOWEXCEPTIONS = 1
 
@@ -230,7 +233,7 @@ def shuffle(num, rand):
 
 
 def spawnUnit(iUnit, pPlot, pPlayer):
-    pPlayer.initUnit( iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)
+    pPlayer.initUnit(iUnit, pPlot.getX(), pPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)
     return 1
 
 
