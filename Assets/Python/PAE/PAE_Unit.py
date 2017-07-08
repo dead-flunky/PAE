@@ -523,24 +523,8 @@ def doStackRebellion(iPlayer, PlotArrayRebellion, iStackLimit2):
                             #Unit kopieren
                             pRandUnit = sPlot.getUnit(iRand)
                             if pRandUnit.getOwner() == iPlayer:
-                                iUnitType = pRandUnit.getUnitType()
+                                rebell(pRandUnit, pBarbarianPlayer, pRebelPlot)
 
-                                NewUnit = pBarbarianPlayer.initUnit(iUnitType, pRebelPlot.getX(), pRebelPlot.getY(), UnitAITypes(sPlot.getUnit(iRand).getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
-                                NewUnit.setExperience(pRandUnit.getExperience(), -1)
-                                NewUnit.setLevel(pRandUnit.getLevel())
-                                sUnitName = pRandUnit.getName()
-                                copyName(NewUnit, iUnitType, sUnitName)
-
-                                NewUnit.setDamage(pRandUnit.getDamage(), -1)
-                                # Check its promotions
-                                iRange = gc.getNumPromotionInfos()
-                                for j in range(iRange):
-                                    if pRandUnit.isHasPromotion(j):
-                                        NewUnit.setHasPromotion(j, True)
-                                # Original unit killen
-                                # pRandUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                                pRandUnit.kill(True, -1)  # RAMK_CTD
-                                pRandUnit = None
                         # Meldung an den Spieler auf dem Territorium einer dritten Partei
                         if iPlotOwner != -1:
                             if iPlotOwner != iPlayer and gc.getPlayer(iPlotOwner).isHuman():
@@ -2839,8 +2823,7 @@ def doNavalOnCombatResult(pWinner, pLoser, bWinnerIsDead):
                     iRand = CvUtil.myRandom(len(SeaPlots), "SeaPlots")
                     loopPlot = SeaPlots[iRand]
                     # Unit erzeugen
-                    NewUnit = barbPlayer.initUnit(iUnitTreibgut, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                    NewUnit.setImmobileTimer(2)
+                    CvUtil.spawnUnit(iUnitTreibgut, loopPlot, barbPlayer)
                     if pWinnerPlayer.isHuman():
                         CyInterface().addMessage(iWinnerPlayer, True, 10, CyTranslator().getText("TXT_KEY_UNIT_ERSTELLT", (gc.getUnitInfo(iUnitTreibgut).getDescription(),)), None, 2, gc.getUnitInfo(iUnitTreibgut).getButton(), ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
                     # Plot aus der Liste entfernen
@@ -3020,3 +3003,42 @@ def huntingResult(pLoser, pWinner):
             CityArray[iCity].changeFood(iFoodAdd)
             if pWinnerPlayer.isHuman():
                 CyInterface().addMessage(iWinnerPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_ADD_FOOD", (pWinner.getName(), CityArray[iCity].getName(), iFoodAdd)), None, 2, pLoser.getButton(), ColorTypes(13), pLoser.getX(), pLoser.getY(), True, True)
+
+def rebell(pOldUnit, pNewPlayer, pPlot):
+    iUnitType = pOldUnit.getUnitType()
+    pNewUnit = pNewPlayer.initUnit(iUnitType, pPlot.getX(), pPlot.getY(), UnitAITypes(pOldUnit.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
+    pNewUnit = initUnitFromUnit(pOldUnit, pNewUnit)
+    # Original unit killen
+    # pOldUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+    pOldUnit.kill(True, -1)  # RAMK_CTD
+
+
+def convert(pOldUnit, iNewUnit, pPlayer):
+    pNewUnit = pPlayer.initUnit(iNewUnit, pOldUnit.getX(), pOldUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pOldUnit.getFacingDirection()))
+    pNewUnit = initUnitFromUnit(pOldUnit, pNewUnit)
+    # 1 Bewegungspunkt Verlust
+    pNewUnit.changeMoves(pOldUnit.getMoves() + 60)
+    ## extra fuer Piraten
+    # Veteran und Mercenary Promo checken
+    # Veteran ohne Mercenary bleibt ohne Mercenary
+    iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
+    if pOldUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
+        if not pOldUnit.isHasPromotion(iPromoMercenary):
+            if pNewUnit.isHasPromotion(iPromoMercenary):
+                pNewUnit.setHasPromotion(iPromoMercenary, False)
+
+    # Original unit killen
+    pOldUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+
+
+def initUnitFromUnit(pOldUnit, pNewUnit):
+    pNewUnit.setExperience(pOldUnit.getExperience(), -1)
+    pNewUnit.setLevel(pOldUnit.getLevel())
+    pNewUnit.setDamage(pOldUnit.getDamage(), -1)
+    copyName(pNewUnit, pOldUnit.getUnitType(), pOldUnit.getName())
+    # Check its promotions
+    iRange = gc.getNumPromotionInfos()
+    for j in range(iRange):
+        if pOldUnit.isHasPromotion(j):
+            pNewUnit.setHasPromotion(j, True)
+    return pNewUnit

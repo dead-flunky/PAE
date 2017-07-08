@@ -29,36 +29,38 @@ class CvGameUtils:
     def __init__(self):
 
         # PAE Veterans to Reservists feature
-        self.lUnitsNoAIReservists = []
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_TRIARII2"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_PRAETORIAN"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_PRAETORIAN2"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_CELERES"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_ARCHER_LEGION"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_SPARTAN"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_PHARAONENGARDE"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_GAUFUERST"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_NUBIAFUERST"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_MACCABEE"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_STAMMESFUERST"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_FUERST_DAKER"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_GERMAN_HARIER"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_RADSCHA"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"))
-        self.lUnitsNoAIReservists.append(gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"))
+        self.lUnitsNoAIReservists = [
+            gc.getInfoTypeForString("UNIT_TRIARII2"),
+            gc.getInfoTypeForString("UNIT_PRAETORIAN"),
+            gc.getInfoTypeForString("UNIT_PRAETORIAN2"),
+            gc.getInfoTypeForString("UNIT_CELERES"),
+            gc.getInfoTypeForString("UNIT_ARCHER_LEGION"),
+            gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"),
+            gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"),
+            gc.getInfoTypeForString("UNIT_SPARTAN"),
+            gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"),
+            gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"),
+            gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"),
+            gc.getInfoTypeForString("UNIT_PHARAONENGARDE"),
+            gc.getInfoTypeForString("UNIT_GAUFUERST"),
+            gc.getInfoTypeForString("UNIT_NUBIAFUERST"),
+            gc.getInfoTypeForString("UNIT_MACCABEE"),
+            gc.getInfoTypeForString("UNIT_STAMMESFUERST"),
+            gc.getInfoTypeForString("UNIT_FUERST_DAKER"),
+            gc.getInfoTypeForString("UNIT_GERMAN_HARIER"),
+            gc.getInfoTypeForString("UNIT_RADSCHA"),
+            gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"),
+            gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"),
+            gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
+            gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER")
+        ]
 
         # PAE Foot soldier => Rider
-        self.lUnitAuxiliar = []
-        self.lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR"))
-        self.lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"))
-        self.lUnitAuxiliar.append(gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"))
+        self.lUnitAuxiliar = [
+            gc.getInfoTypeForString("UNIT_AUXILIAR"),
+            gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
+            gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
+        ]
 
         # PAE - vars for AI feature checks
         self.PAE_AI_ID = -1
@@ -233,15 +235,15 @@ class CvGameUtils:
         iUnitId = argsList[1]
         iPlotX = argsList[2]
         iPlotY = argsList[3]
-###########################################
-# Max Units on a Plot
-# Only available when changed in Assets/PythonCallbackDefines.xml
+        ###########################################
+        # Max Units on a Plot
+        # Only available when changed in Assets/PythonCallbackDefines.xml
         pPlot = CyMap().plot(iPlotX, iPlotY)
         iNum = pPlot.getNumUnits()
-#        CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GROWTH",("X",iNum)), None, 2, None, ColorTypes(12), 0, 0, False, False)
+        # CyInterface().addMessage(CyGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GROWTH",("X",iNum)), None, 2, None, ColorTypes(12), 0, 0, False, False)
         if not pPlot.isWater() and not pPlot.isCity() and iNum >= 14:
             return True
-# --------- end ---------------------------
+        # --------- end ---------------------------
         return False
 
     def cannotHandleAction(self, argsList):
@@ -397,8 +399,8 @@ class CvGameUtils:
         iHorse = gc.getInfoTypeForString('BONUS_HORSE')
         iEles = gc.getInfoTypeForString('BONUS_IVORY')
         iCamel = gc.getInfoTypeForString('BONUS_CAMEL')
-        iStone = gc.getInfoTypeForString('BONUS_STONE')
-        iMarble = gc.getInfoTypeForString('BONUS_MARBLE')
+        # iStone = gc.getInfoTypeForString('BONUS_STONE')
+        # iMarble = gc.getInfoTypeForString('BONUS_MARBLE')
 
         # Hauptabfragen, um nicht zuviele if-Checks zu haben:
 
@@ -1144,7 +1146,7 @@ class CvGameUtils:
                 if PAE_Cultivation.doCultivation_AI(pUnit):
                     return True
 
-            s = pOwner.getName()
+            # s = pOwner.getName()
             if iUnitType in PAE_Trade.lTradeUnits:
                 # CyInterface().addMessage(iHumanPlayer, True, 10, "Vor doAutom 1 " + s, None, 2, None, ColorTypes(5), pUnit.getX(), pUnit.getY(), False, False)
                 if PAE_Trade.doAutomateMerchant(pUnit, True):
@@ -1464,7 +1466,6 @@ class CvGameUtils:
 
                     # Pferd suchen
                     if bSearchPlot:
-                        bUpgrade = False
                         UnitHorse = gc.getInfoTypeForString('UNIT_HORSE')
                         iRange = pPlot.getNumUnits()
                         for i in range(iRange):
@@ -1472,18 +1473,8 @@ class CvGameUtils:
                             if pLoopUnit.getUnitType() == UnitHorse and pLoopUnit.getOwner() == iOwner:
                                 # Create a new unit
                                 NewUnit = pOwner.initUnit(iNewUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                                NewUnit.setExperience(pUnit.getExperience(), -1)
-                                NewUnit.setLevel(pUnit.getLevel())
+                                PAE_Unit.initUnitFromUnit(pUnit, NewUnit)
                                 NewUnit.changeMoves(90)
-                                NewUnit.setDamage(pUnit.getDamage(), False)
-                                PAE_Unit.copyName(NewUnit, iUnitType, pUnit.getName())
-                                # Check its promotions
-                                iRange = gc.getNumPromotionInfos()
-                                for iPromotion in range(iRange):
-                                    # init all promotions the unit had
-                                    if pUnit.isHasPromotion(iPromotion):
-                                        NewUnit.setHasPromotion(iPromotion, True)
-
                                 # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 pUnit.kill(True, -1)  # RAMK_CTD
                                 pLoopUnit.kill(False, -1) # andere Einheit direkt toeten, siehe isSuicide im CombatResult
@@ -1754,7 +1745,6 @@ class CvGameUtils:
                         # Capital
                         pCapital = pOwner.getCapitalCity()
                         if pCapital.getID() != -1 and pPlot.getArea() == pCapital.area().getID():
-                            pCityX = pCapital
                             if pCapital is not None and not pCapital.isNone():
                                 if not pUnit.atPlot(pCapital.plot()):
                                     pUnit.getGroup().pushMoveToMission(pCapital.getX(), pCapital.getY())
@@ -2304,10 +2294,11 @@ class CvGameUtils:
                         lTemp.append(sTemp)
                     if lTemp:
                         sText += "\n"
-                        for i in range(len(lTemp)):
-                            sText += lTemp[i]
-                            if i < len(lTemp) - 1:
-                                sText += ", "
+                        sText += ', '.join(map(str, lTemp))
+                        # for i in range(len(lTemp)):
+                            # sText += lTemp[i]
+                            # if i < len(lTemp) - 1:
+                                # sText += ", "
 
                     iMaintenance = pCity.getMaintenanceTimes100()
                     if iMaintenance != 0:
@@ -2326,17 +2317,19 @@ class CvGameUtils:
                     if lBuildings:
                         lBuildings.sort()
                         sText += "\n" + CyTranslator().getText("[COLOR_BUILDING_TEXT]", ()) + CyTranslator().getText("TXT_KEY_PEDIA_CATEGORY_BUILDING", ()) + ": </color>"
-                        for i in range(len(lBuildings)):
-                            sText += lBuildings[i]
-                            if i < len(lBuildings) - 1:
-                                sText += ", "
+                        sText += ', '.join(map(str, lBuildings))
+                        # for i in range(len(lBuildings)):
+                            # sText += lBuildings[i]
+                            # if i < len(lBuildings) - 1:
+                                # sText += ", "
                     if lWonders:
                         lWonders.sort()
                         sText += "\n" + CyTranslator().getText("[COLOR_SELECTED_TEXT]", ()) + CyTranslator().getText("TXT_KEY_CONCEPT_WONDERS", ()) + ": </color>"
-                        for i in range(len(lWonders)):
-                            sText += lWonders[i]
-                            if i < len(lWonders) - 1:
-                                sText += ", "
+                        sText += ', '.join(map(str, lWonders))
+                        # for i in range(len(lWonders)):
+                            # sText += lWonders[i]
+                            # if i < len(lWonders) - 1:
+                                # sText += ", "
                     sText += "</font>"
                     return sText
             ## Religion Widget Text##
@@ -2839,7 +2832,6 @@ class CvGameUtils:
             if self.PAE_AI_ID != iOwner:
                 self.PAE_AI_ID = iOwner
 
-                lCities = PyPlayer(iOwner).getCityList()
                 iDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
 
                 (loopCity, pIter) = pPlayer.firstCity(False)
@@ -2880,7 +2872,6 @@ class CvGameUtils:
                 #iOwnCulture = pOwner.getCultureHistory(iTurn)
                 #lPlayers = PyGame().getCivPlayerList()
             lCities = PyPlayer(iOwner).getCityList()
-            iNumReligions = gc.getNumReligionInfos()
 
             for pyCity in lCities:
                 # has this city probably unhappiness of religion cause

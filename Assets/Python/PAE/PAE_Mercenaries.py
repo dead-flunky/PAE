@@ -1203,6 +1203,8 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
             #UnitAI_Type = UnitAITypes.NO_UNITAI
 
             ScriptUnit = []
+
+            pBarbPlayer = gc.getPlayer(gc.getBARBARIAN_PLAYER())
             # set units
             # elite
             if sFaktor[3] == "4" and lEliteUnits:
@@ -1230,67 +1232,61 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
 
                 for _ in range(iAnz):
                     iRand = CvUtil.myRandom(len(lEliteUnits), "doCommissionMercenaries2")
-                    NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                    if not NewUnit.isHasPromotion(iPromo):
-                        NewUnit.setHasPromotion(iPromo, True)
-                    if NewUnit.isHasPromotion(iPromo2):
-                        NewUnit.setHasPromotion(iPromo2, False)
+                    NewUnit = pBarbPlayer.initUnit(lEliteUnits[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                    NewUnit.setHasPromotion(iPromo, True)
+                    NewUnit.setHasPromotion(iPromo2, False)
                     # Unit Rang / Unit ranking
                     doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                     NewUnit.setImmobileTimer(1)
                     ScriptUnit.append(NewUnit)
                 # Goldkarren
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                eGoldkarren = gc.getInfoTypeForString("UNIT_GOLDKARREN")
+                CvUtil.spawnUnit(eGoldkarren, CivPlots[iPlot], pBarbPlayer)
+                CvUtil.spawnUnit(eGoldkarren, CivPlots[iPlot], pBarbPlayer)
 
             # standard units
             else:
                 if iAnzSpear > 0:
                     for _ in range(iAnzSpear):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSpear, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                        if not NewUnit.isHasPromotion(iPromo):
-                            NewUnit.setHasPromotion(iPromo, True)
+                        NewUnit = pBarbPlayer.initUnit(iUnitSpear, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
                         ScriptUnit.append(NewUnit)
                 if iAnzAxe > 0:
                     for _ in range(iAnzAxe):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitAxe, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                        if not NewUnit.isHasPromotion(iPromo):
-                            NewUnit.setHasPromotion(iPromo, True)
+                        NewUnit = pBarbPlayer.initUnit(iUnitAxe, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
                         ScriptUnit.append(NewUnit)
                 if iAnzSword > 0 and iUnitSword != -1:
                     for _ in range(iAnzSword):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSword, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                        if not NewUnit.isHasPromotion(iPromo):
-                            NewUnit.setHasPromotion(iPromo, True)
+                        NewUnit = pBarbPlayer.initUnit(iUnitSword, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
                         ScriptUnit.append(NewUnit)
                 if iAnzArcher > 0:
                     for _ in range(iAnzArcher):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitArcher, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                        if not NewUnit.isHasPromotion(iPromo):
-                            NewUnit.setHasPromotion(iPromo, True)
+                        NewUnit = pBarbPlayer.initUnit(iUnitArcher, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
                 if iAnzSlinger > 0:
                     for _ in range(iAnzSlinger):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSlinger, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
-                        if not NewUnit.isHasPromotion(iPromo):
-                            NewUnit.setHasPromotion(iPromo, True)
+                        NewUnit = pBarbPlayer.initUnit(iUnitSlinger, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
                 if iAnzSiege > 0 and iUnitSiege != -1:
                     for _ in range(iAnzSiege):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iUnitSiege, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = pBarbPlayer.initUnit(iUnitSiege, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_CITY, DirectionTypes.DIRECTION_SOUTH)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
@@ -1305,21 +1301,20 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
 
                 if iAnzShip1 > 0 and iShip1 != -1:
                     for _ in range(iAnzShip1):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip1, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
-                        if not NewUnit.isHasPromotion(iPromo):
-                            NewUnit.setHasPromotion(iPromo, True)
+                        NewUnit = pBarbPlayer.initUnit(iShip1, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
                         doMercenaryRanking(NewUnit, iMinRanking, iMaxRanking)
                         NewUnit.setImmobileTimer(1)
 
                         # Cargo
                         iRand = CvUtil.myRandom(len(lUnit), "doCommissionMercenaries3")
-                        NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewLandUnit = pBarbPlayer.initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
                         NewLandUnit.setTransportUnit(NewUnit)
 
                 if iAnzShip2 > 0 and iShip2 != -1:
                     for _ in range(iAnzShip2):
-                        NewUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(iShip2, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
+                        NewUnit = pBarbPlayer.initUnit(iShip2, CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.UNITAI_ATTACK_SEA, DirectionTypes.DIRECTION_SOUTH)
                         if not NewUnit.isHasPromotion(iPromo):
                             NewUnit.setHasPromotion(iPromo, True)
                         # Unit Rang / Unit ranking
@@ -1328,13 +1323,12 @@ def doCommissionMercenaries(iTargetPlayer, iFaktor, iPlayer):
 
                         # Cargo
                         iRand = CvUtil.myRandom(len(lUnit), "doCommissionMercenaries4")
-                        NewLandUnit = gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
+                        NewLandUnit = pBarbPlayer.initUnit(lUnit[iRand], CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAI_Type, DirectionTypes.DIRECTION_SOUTH)
                         NewLandUnit.setTransportUnit(NewUnit)
 
                 # Goldkarren bei Landeinheiten
                 if not CivPlots[iPlot].isWater():
-                    gc.getPlayer(gc.getBARBARIAN_PLAYER()).initUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot].getX(), CivPlots[iPlot].getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-
+                    CvUtil.spawnUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), CivPlots[iPlot], pBarbPlayer)
 
             # Plot anzeigen
             CivPlots[iPlot].setRevealed(gc.getPlayer(iPlayer).getTeam(), 1, 0, -1)

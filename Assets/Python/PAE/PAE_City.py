@@ -1153,8 +1153,6 @@ def doRenegadeOnCombatResult(pLoser, pCity, iWinnerPlayer):
     if pCity.hasTrait(gc.getInfoTypeForString("TRAIT_PROTECTIVE")):
         return False
 
-    # Verhaeltnis 1:4
-    bCapital = False
     if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_ONE_CITY_CHALLENGE) and pCity.isCapital():
         return False
 
@@ -1368,7 +1366,6 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnit):
 
         iUnitType = pLoopUnit.getUnitType()
         iUnitAIType = pLoopUnit.getUnitAIType()
-        sUnitName = pLoopUnit.getName()
         iUnitCombatType = pLoopUnit.getUnitCombatType()
 
         # TEST
@@ -1376,14 +1373,9 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnit):
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 2 - iUnitOwner",iUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         # UnitAIType -1 (NO_UNITAI) -> UNITAI_UNKNOWN = 0 , ATTACK = 4, City Defense = 10
-        # happened: Emigrant = 4 !
         if iUnitAIType in [-1, 0, 4]:
-            if iUnitType == gc.getInfoTypeForString('UNIT_SLAVE'):
-                iUnitAIType = 0
-            elif iUnitType == gc.getInfoTypeForString('UNIT_FREED_SLAVE'):
-                iUnitAIType = 12
-            elif iUnitType == gc.getInfoTypeForString('UNIT_EMIGRANT'):
-                iUnitAIType = 2
+            if iUnitType == gc.getInfoTypeForString('UNIT_FREED_SLAVE'):
+                iUnitAIType = UnitAITypes(gc.getInfoTypeForString("UNITAI_ENGINEER"))
             elif iUnitType == gc.getInfoTypeForString('UNIT_TRADE_MERCHANT'):
                 iUnitAIType = 19
             elif iUnitType == gc.getInfoTypeForString('UNIT_TRADE_MERCHANTMAN'):
@@ -1394,37 +1386,25 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnit):
         # Slaves will be freed, nur wenn dessen Besitzer neu ist
         if iUnitType == gc.getInfoTypeForString('UNIT_SLAVE'):
             iUnitType = gc.getInfoTypeForString('UNIT_FREED_SLAVE')
-
-        # Create a new unit
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",(gc.getUnitInfo(iUnitType).getDescription(),iUnitType)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Unit Typ",iUnitType)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-        if iUnitType != -1:
+            NewUnit = pNewOwner.initUnit(iUnitType, iX, iY, UnitAITypes(gc.getInfoTypeForString("UNITAI_ENGINEER")), DirectionTypes.DIRECTION_SOUTH)
+            PAE_Unit.copyName(NewUnit, iUnitType, pLoopUnit.getName())
+        # Emigrant und dessen Kultur
+        elif iUnitType == gc.getInfoTypeForString('UNIT_EMIGRANT'):
+            NewUnit = pNewOwner.initUnit(iUnitType, iX, iY, UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            CvUtil.addScriptData(NewUnit, "p", iOldOwner)
+            PAE_Unit.copyName(NewUnit, iUnitType, pLoopUnit.getName())
+        elif iUnitType != -1:
             NewUnit = pNewOwner.initUnit(iUnitType, iX, iY, UnitAITypes(iUnitAIType), DirectionTypes.DIRECTION_SOUTH)
-
-            # Emigrant und dessen Kultur
-            if iUnitType == gc.getInfoTypeForString('UNIT_EMIGRANT'):
-                CvUtil.addScriptData(NewUnit, "p", iOldOwner)
-
-            PAE_Unit.copyName(NewUnit, iUnitType, sUnitName)
-
+            PAE_Unit.copyName(NewUnit, iUnitType, pLoopUnit.getName())
             if iUnitCombatType != -1:
-                NewUnit.setExperience(pLoopUnit.getExperience(), -1)
-                NewUnit.setLevel(pLoopUnit.getLevel())
-                if pLoopUnit.getCaptureUnitType(gc.getPlayer(iOldOwner).getCivilizationType()) == -1:
-                    NewUnit.setDamage(pLoopUnit.getDamage(), -1)
-
-                # Check its promotions
-                for iLoopPromo in range(gc.getNumPromotionInfos()):
-                    if pLoopUnit.isHasPromotion(iLoopPromo):
-                        # PAE V: Trait-Promotions
-                        # 1. Agg Promo weg
-                        # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten
-                        if not iLoopPromo in lTraitPromos:  # or pNewOwner.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
-                            NewUnit.setHasPromotion(iLoopPromo, True)
+                PAE_Unit.initUnitFromUnit(NewUnit, pLoopUnit)
+                # PAE V: Trait-Promotions
+                # 1. Agg Promo weg
+                # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten
+                for iLoopPromo in lTraitPromos:
+                    NewUnit.setHasPromotion(iLoopPromo, False)
         # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
         pLoopUnit.kill(True, -1)  # RAMK_CTD
-        pLoopUnit = None
 
     if iNewOwner == gc.getBARBARIAN_PLAYER():
         pNewOwner.initUnit(iPartisan, iX, iY, UnitAITypes(10), DirectionTypes.DIRECTION_SOUTH)
@@ -3213,10 +3193,9 @@ def getGoldkarren(pCity, pPlayer):
     iBeute = int(pCity.getPopulation() / 2)
     if iBeute > 0:
         for _ in range(iBeute):
-            CvUtil.spawnUnit(gc.getInfoTypeForString('UNIT_GOLDKARREN'), pCity.plot(), pPlayer)
+            CvUtil.spawnUnit(gc.getInfoTypeForString("UNIT_GOLDKARREN"), pCity.plot(), pPlayer)
 
 def doRefugeeToNeighborCity(pCity, iPreviousOwner, iNewOwner):
-    pPlayer = gc.getPlayer(iNewOwner)
     # --- Bevoelkerungszuwachs bei Nachbarstaedten (50% Chance pro Stadt fuer + 1 Pop)
     # --- PAE V Patch4: ab Pop 3 (sonst exploit)
     iX = pCity.getX()
@@ -3244,6 +3223,27 @@ def doRefugeeToNeighborCity(pCity, iPreviousOwner, iNewOwner):
                             doCheckCityState(loopCity)
                             # ***TEST***
                             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Stadtpop gewachsen durch Krieg (Zeile 3493)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
+def removeSwamp(pCity, sText):
+    iPlayer = pCity.getOwner()
+    pPlayer = gc.getPlayer(iPlayer)
+    bFeatSwamp = False
+    terrain_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
+    terrain_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
+    iX = pCity.getX()
+    iY = pCity.getY()
+    for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
+        loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
+        if loopPlot is not None and not loopPlot.isNone():
+            if loopPlot.getTerrainType() == terrain_swamp:
+                loopPlot.setTerrainType(terrain_grass, 1, 1)
+                bFeatSwamp = True
+    if bFeatSwamp and pPlayer.isHuman():
+        CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText(sText,(pCity.getName(),)), None, 2, None, ColorTypes(14), iX, iY, False, False)
+
+    # ***TEST***
+    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Sumpf wird entfernt (Zeile 2232)",1)), None, 2, None, ColorTypes(10), iX, iY, False, False)
+
 
 def doMessageWonderCapture(pCity):
     iOwner = pCity.getOwner()

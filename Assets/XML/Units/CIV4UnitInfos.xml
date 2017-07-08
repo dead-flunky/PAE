@@ -3448,7 +3448,7 @@
       <Capture>UNITCLASS_SUPPLY_FOOD</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_SUPPLY_FOOD</Description>
@@ -3610,7 +3610,7 @@
       <Capture>UNITCLASS_GOLDKARREN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_GOLDKARREN</Description>
@@ -3819,12 +3819,7 @@
       <UnitClassDefenders/>
       <UnitCombatDefenders/>
       <FlankingStrikes/>
-      <UnitAIs>
-        <UnitAI>
-          <UnitAIType>UNITAI_EXPLORE_SEA</UnitAIType>
-          <bUnitAI>1</bUnitAI>
-        </UnitAI>
-      </UnitAIs>
+      <UnitAIs/>
       <NotUnitAIs/>
       <Builds/>
       <ReligionSpreads/>
@@ -3939,7 +3934,7 @@
       <Capture>UNITCLASS_GOLDKARREN</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_IMMOBILE</Domain>
-      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STRANDGUT</Description>

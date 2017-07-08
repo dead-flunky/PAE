@@ -342,7 +342,6 @@ def doCultivation_AI(pUnit):
 
 
     lSortedCities = sorted(lCities, key=lambda value: lCities[0], reverse=True)
-    bDiscard = False
     for tTuple in lSortedCities:
         pLoopCity = tTuple[1]
         lCityBonuses = _getCollectableGoods4Cultivation(pLoopCity) # bonuses that city has access to
@@ -774,3 +773,301 @@ def doPopupChooseBonus4Cultivation(pUnit):
     popupInfo.addPythonButton(CyTranslator().getText("TXT_KEY_ACTION_CANCEL", ("", )), "Art/Interface/Buttons/Actions/Cancel.dds")
     popupInfo.setFlags(popupInfo.getNumPythonButtons()-1)
     popupInfo.addPopup(iPlayer)
+
+def wine(pCity):
+    iPlayer = pCity.getOwner()
+    pPlayer = gc.getPlayer(iPlayer)
+    eBonus = gc.getInfoTypeForString('BONUS_GRAPES')
+    kBonusInfo = gc.getBonusInfo(eBonus)
+    # sorted by priority
+    lTerrains = [
+        gc.getInfoTypeForString('TERRAIN_PLAINS'),
+        gc.getInfoTypeForString('TERRAIN_GRASS')
+    ]
+    # Improvements fuer Prioritaet
+    lImprovements = [
+        gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS"),
+        gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT"),
+        gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP"),
+        gc.getInfoTypeForString("IMPROVEMENT_FARM"),
+        gc.getInfoTypeForString("IMPROVEMENT_MINE"),
+        gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
+    ]
+
+    lPlotPrio = [[],[],[],[],[],[],[],[],[]]
+    iFirstBlock = len(lTerrains)
+
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        loopPlot = pCity.getCityIndexPlot(iI)
+        # die beste position finden:
+        if loopPlot is not None and not loopPlot.isNone():
+            # wenn bereits eine Weinressource im Umkreis der Stadt ist
+            if loopPlot.getBonusType(-1) == eBonus:
+                return
+            if _canBuildingCultivate(loopPlot, kBonusInfo, iPlayer):
+                if loopPlot.getImprovementType() == -1:
+                    if loopPlot.isHills():
+                        for iJ in iFirstBlock:
+                            if loopPlot.getTerrainType() == lTerrains[iJ]:
+                                lPlotPrio[iJ].append(loopPlot)
+                    # 3. irgendeinen passenden ohne Improvement
+                    else:
+                        lPlotPrio[iFirstBlock].append(loopPlot)
+                # 4. nach Improvements selektieren
+                else:
+                    for iJ in len(lImprovements):
+                        if loopPlot.getImprovementType() == lImprovements[iJ]:
+                            lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
+                            break
+
+    for lPlots in lPlotPrio:
+        if lPlots:
+            # Wein setzen
+            pPlot = lPlots[CvUtil.myRandom(len(lPlots), "Wein")]
+            # Feature (Wald) entfernen
+            pPlot.setFeatureType(-1, 0)
+            pPlot.setBonusType(eBonus)
+            iImprovement = gc.getInfoTypeForString('IMPROVEMENT_WINERY')
+            pPlot.setImprovementType(iImprovement)
+
+            if pPlayer.isHuman():
+                iRand = 1 + CvUtil.myRandom(4, "WeinText")
+                CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_VINTAGER_BUILT"+str(iRand), (pCity.getName(),)), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
+
+            # ***TEST***
+            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wein wird angebaut (Zeile 2288)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            break
+
+def horse(pCity):
+    iPlayer = pCity.getOwner()
+    # sorted by priority
+    lTerrains = [
+        gc.getInfoTypeForString('TERRAIN_PLAINS'),
+        gc.getInfoTypeForString('TERRAIN_GRASS')
+    ]
+    eBonus = gc.getInfoTypeForString('BONUS_HORSE')
+    kBonusInfo = gc.getBonusInfo(eBonus)
+
+    # Improvements fuer Prioritaet
+    # sorted by priority
+    lImprovements = [
+        gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS"),
+        gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT"),
+        gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP"),
+        gc.getInfoTypeForString("IMPROVEMENT_COTTAGE"),
+        gc.getInfoTypeForString("IMPROVEMENT_FARM"),
+        gc.getInfoTypeForString("IMPROVEMENT_QUARRY"),
+        gc.getInfoTypeForString("IMPROVEMENT_HAMLET"),
+        gc.getInfoTypeForString("IMPROVEMENT_COTTAGE_HILL"),
+        gc.getInfoTypeForString("IMPROVEMENT_HAMLET_HILL"),
+        gc.getInfoTypeForString("IMPROVEMENT_VILLAGE"),
+        gc.getInfoTypeForString("IMPROVEMENT_VILLAGE_HILL"),
+        gc.getInfoTypeForString("IMPROVEMENT_TOWN")
+    ]
+
+    lPlotPrio = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    iFirstBlock = len(lTerrains)
+
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        loopPlot = pCity.getCityIndexPlot(iI)
+        # die beste position finden:
+        if loopPlot is not None and not loopPlot.isNone():
+            if _canBuildingCultivate(loopPlot, kBonusInfo, iPlayer):
+                if loopPlot.getImprovementType() == -1:
+                    if not loopPlot.isHills():
+                        for iJ in iFirstBlock:
+                            if loopPlot.getTerrainType() == lTerrains[iJ]:
+                                lPlotPrio[iJ].append(loopPlot)
+                    # 3. irgendeinen passenden ohne Improvement
+                    else:
+                        lPlotPrio[iFirstBlock].append(loopPlot)
+                # 4. nach Improvements selektieren
+                else:
+                    for iJ in len(lImprovements):
+                        if loopPlot.getImprovementType() == lImprovements[iJ]:
+                            lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
+                            break
+
+    for lPlots in lPlotPrio:
+        if lPlots:
+            # Bonus setzen
+            pPlot = lPlots[CvUtil.myRandom(len(lPlots), "BonusPlot")]
+            # Feature (Wald) entfernen
+            pPlot.setFeatureType(-1, 0)
+            # Bonus adden
+            pPlot.setBonusType(eBonus)
+            # Improvement adden
+            iImprovement = gc.getInfoTypeForString('IMPROVEMENT_PASTURE')
+            pPlot.setImprovementType(iImprovement)
+            break
+
+def camel(pCity):
+    iPlayer = pCity.getOwner()
+    eBonus = gc.getInfoTypeForString('BONUS_CAMEL')
+    kBonusInfo = gc.getBonusInfo(eBonus)
+
+    # Improvements fuer Prioritaet
+    iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
+    # sorted by priority
+    lTerrains = [
+        gc.getInfoTypeForString('TERRAIN_DESERT'),
+        gc.getInfoTypeForString('TERRAIN_PLAINS')
+    ]
+    iFirstBlock = len(lTerrains)
+
+    lPlotPrio = [[],[],[],[],[]]
+
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        loopPlot = pCity.getCityIndexPlot(iI)
+        # die beste position finden:
+        if loopPlot is not None and not loopPlot.isNone():
+            if loopPlot.getBonusType(-1) == eBonus:
+                return
+            if not loopPlot.isHills():
+                if _canBuildingCultivate(loopPlot, kBonusInfo, iPlayer):
+                    # 1. nach Improvements selektieren
+                    if loopPlot.getImprovementType() == iImpType1:
+                        lPlotPrio[0].append(loopPlot)
+                    elif loopPlot.getImprovementType() == -1:
+                        for iJ in iFirstBlock:
+                            if loopPlot.getTerrainType() == lTerrains[iJ]:
+                                lPlotPrio[iJ+1].append(loopPlot)
+                                break
+                        # 4. irgendeinen passenden ohne Improvement
+                        else:
+                            lPlotPrio[iFirstBlock+1].append(loopPlot)
+                    else:
+                        lPlotPrio[iFirstBlock+2].append(loopPlot)
+
+    for lPlots in lPlotPrio:
+        if lPlots:
+            # Bonus setzen
+            pPlot = lPlots[CvUtil.myRandom(len(lPlots), "Kamelverbreitung")]
+            pPlot.setBonusType(eBonus)
+            pPlot.setImprovementType(iImpType1)
+
+
+def elephant(pCity):
+    iPlayer = pCity.getOwner()
+
+    lFeatures = [
+        gc.getInfoTypeForString('FEATURE_JUNGLE'),
+        gc.getInfoTypeForString('FEATURE_SAVANNA')
+    ]
+    iFirstBlock = len(lFeatures)
+    lTerrains = [
+        gc.getInfoTypeForString('TERRAIN_GRASS'),
+        gc.getInfoTypeForString('TERRAIN_PLAINS')
+    ]
+    iSecondBlock = len(lTerrains)
+    eBonus = gc.getInfoTypeForString('BONUS_IVORY')
+    kBonusInfo = gc.getBonusInfo(eBonus)
+
+    # Improvements fuer Prioritaet
+    iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
+
+    lPlotPrio = [[],[],[],[],[],[],[]]
+
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        loopPlot = pCity.getCityIndexPlot(iI)
+        # die beste position finden:
+        if loopPlot is not None and not loopPlot.isNone():
+
+            if loopPlot.getBonusType(-1) == eBonus:
+                return
+            if not loopPlot.isHills():
+                if _canBuildingCultivate(loopPlot, kBonusInfo, iPlayer):
+                    if loopPlot.getImprovementType() == -1:
+                        # 1. jungle, unworked
+                        # 2. savanna, unworked
+                        for iJ in iFirstBlock:
+                            if loopPlot.getFeatureType() == lFeatures[iJ]:
+                                lPlotPrio[iJ].append(loopPlot)
+                                break
+                        else:
+                            # 4. grass, unworked
+                            # 5. plains, unworked
+                            for iJ in iSecondBlock:
+                                if loopPlot.getTerrainType() == lTerrains[iJ]:
+                                    lPlotPrio[iJ+3].append(loopPlot)
+                                    break
+                            else:
+                                # 6. irgendeinen passenden ohne Improvement
+                                lPlotPrio[5].append(loopPlot)
+                    # 3. nach Improvements selektieren
+                    elif loopPlot.getImprovementType() == iImpType1:
+                        lPlotPrio[2].append(loopPlot)
+                    else:
+                        lPlotPrio[6].append(loopPlot)
+
+    for lPlots in lPlotPrio:
+        if lPlots:
+            # Bonus setzen
+            pPlot = lPlots[CvUtil.myRandom(len(lPlots), "Elefantverbreitung")]
+            # Feature (Wald) entfernen
+            # pPlot.setFeatureType(-1,0)
+            pPlot.setBonusType(eBonus)
+            pPlot.setImprovementType(iImpType1)
+
+
+def dog(pCity):
+    iPlayer = pCity.getOwner()
+    lTerrains = [
+        gc.getInfoTypeForString('TERRAIN_PLAINS'),
+        gc.getInfoTypeForString('TERRAIN_GRASS')
+    ]
+    iFirstBlock = len(lTerrains)
+    eBonus = gc.getInfoTypeForString('BONUS_HUNDE')
+
+    # Improvements fuer Prioritaet
+    lImprovements = [
+        gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS"),
+        gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT"),
+        gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP"),
+        gc.getInfoTypeForString("IMPROVEMENT_FARM"),
+        gc.getInfoTypeForString("IMPROVEMENT_MINE"),
+        gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
+    ]
+    lPlotPrio = [[],[],[],[],[],[],[],[],[]]
+
+    for iI in range(gc.getNUM_CITY_PLOTS()):
+        loopPlot = pCity.getCityIndexPlot(iI)
+        # die beste position finden:
+        if loopPlot is not None and not loopPlot.isNone():
+            if loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1:
+                if canHaveBonus(loopPlot, eBonus, True):
+                    if not loopPlot.isCity():
+                        # unworked
+                        if loopPlot.getImprovementType() == -1:
+                            if not loopPlot.isHills():
+                                for iJ in iFirstBlock:
+                                    if loopPlot.getTerrainType() == lTerrains[iJ]:
+                                        lPlotPrio[iJ].append(loopPlot)
+                                        break
+                            # 3. irgendeinen passenden ohne Improvement
+                            else:
+                                lPlotPrio[2].append(loopPlot)
+                        # 4. nach Improvements selektieren
+                        else:
+                            for iJ in len(lImprovements):
+                                if loopPlot.getImprovementType() == lImprovements[iJ]:
+                                    lPlotPrio[iJ + 3].append(loopPlot)
+                                    break
+
+    for lPlots in lPlotPrio:
+        if lPlots:
+            # Bonus setzen
+            pPlot = lPlots[CvUtil.myRandom(len(lPlots), "Hundeverbreitung")]
+            # Feature (Wald) entfernen
+            # pPlot.setFeatureType(-1,0)
+            pPlot.setBonusType(eBonus)
+            iImprovement = gc.getInfoTypeForString('IMPROVEMENT_CAMP')
+            pPlot.setImprovementType(iImprovement)
+
+def _canBuildingCultivate(loopPlot, kBonusInfo, iPlayer):
+    if not loopPlot.isPeak():
+        if loopPlot.getBonusType(-1) == -1:
+            if loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1:
+                if kBonusInfo.isTerrain(loopPlot.getTerrainType()) or (kBonusInfo.isFeature(loopPlot.getFeatureType()) and kBonusInfo.isFeatureTerrain(loopPlot.getTerrainType())):
+                    if not loopPlot.isCity():
+                        return True

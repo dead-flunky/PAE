@@ -771,7 +771,7 @@ class CvEventManager:
             # 720, 0, 0, iPlayer, iUnitID
             pPlayer = gc.getPlayer(iData4)
             pUnit = pPlayer.getUnit(iData5)
-            pPlayer.initUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            CvUtil.spawnUnit(gc.getInfoTypeForString("UNIT_GREAT_GENERAL"), pUnit.plot(), pPlayer)
             PAE_Unit.doRetireVeteran(pUnit)
 
         # Elefantenstall
@@ -818,53 +818,22 @@ class CvEventManager:
                     break
 
             if bSwitch:
-                if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_KONTERE"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_PIRAT_KONTERE")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_BIREME"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_PIRAT_BIREME")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRIREME"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_PIRAT_TRIREME")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_LIBURNE"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_KONTERE")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_BIREME"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_BIREME")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_TRIREME")
-                elif pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"):
-                    iNewUnit = gc.getInfoTypeForString("UNIT_LIBURNE")
-
-                # Unload units: geht net weil darin canUnload geprueft wird
-                #pUnit.doCommand(CommandTypes.COMMAND_UNLOAD_ALL, -1, -1 )
-
-                #NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                NewUnit = pPlayer.initUnit(iNewUnit, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pUnit.getFacingDirection()))
-                NewUnit.setExperience(pUnit.getExperience(), -1)
-                NewUnit.setLevel(pUnit.getLevel())
-                NewUnit.setDamage(pUnit.getDamage(), -1)
-                # 1 Bewegungspunkt Verlust
-                NewUnit.changeMoves(pUnit.getMoves() + 60)
-
-                PAE_Unit.copyName(NewUnit, pUnit.getUnitType(), pUnit.getName())
-
-                # Check its promotions
-                iRange = gc.getNumPromotionInfos()
-                for j in range(iRange):
-                    if pUnit.isHasPromotion(j):
-                        NewUnit.setHasPromotion(j, True)
-
-                # Veteran und Mercenary Promo checken
-                # Veteran ohne Mercenary bleibt ohne Mercenary
-                iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_COMBAT4")):
-                    if not pUnit.isHasPromotion(iPromoMercenary):
-                        if NewUnit.isHasPromotion(iPromoMercenary):
-                            NewUnit.setHasPromotion(iPromoMercenary, False)
-
-                # Original unit killen
-                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                pUnit = None
+                lShips = {
+                    gc.getInfoTypeForString("UNIT_KONTERE"): gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"),
+                    gc.getInfoTypeForString("UNIT_BIREME"): gc.getInfoTypeForString("UNIT_PIRAT_BIREME"),
+                    gc.getInfoTypeForString("UNIT_TRIREME"): gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"),
+                    gc.getInfoTypeForString("UNIT_LIBURNE"): gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"),
+                    gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"): gc.getInfoTypeForString("UNIT_KONTERE"),
+                    gc.getInfoTypeForString("UNIT_PIRAT_BIREME"): gc.getInfoTypeForString("UNIT_BIREME"),
+                    gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"): gc.getInfoTypeForString("UNIT_TRIREME"),
+                    gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"): gc.getInfoTypeForString("UNIT_LIBURNE")
+                }
+                try:
+                    # Unload units: geht net weil darin canUnload geprueft wird
+                    #pUnit.doCommand(CommandTypes.COMMAND_UNLOAD_ALL, -1, -1 )
+                    PAE_Unit.convert(pUnit, lShips[pUnit.getUnitType()], pPlayer)
+                except KeyError:
+                    pass
 
             else:
                 CyInterface().addMessage(iData4, True, 10, CyTranslator().getText("TXT_KEY_HELP_GO2PIRATE3", ("",)), None, 2, "Art/Interface/Buttons/General/button_alert_new.dds", ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
@@ -3086,8 +3055,8 @@ class CvEventManager:
         pPlayer = gc.getPlayer(iPlayer)
         # PAE Debug Mark
         #"""
-#    #If this is a wonder...
-#    if not gc.getGame().isNetworkMultiPlayer() and gc.getPlayer(pCity.getOwner()).isHuman() and isWorldWonderClass(gc.getBuildingInfo(iBuildingType).getBuildingClassType()):
+        #    #If this is a wonder...
+        #    if not gc.getGame().isNetworkMultiPlayer() and gc.getPlayer(pCity.getOwner()).isHuman() and isWorldWonderClass(gc.getBuildingInfo(iBuildingType).getBuildingClassType()):
         if pPlayer.isHuman() and gc.getBuildingInfo(iBuildingType).getMovieDefineTag() != "NONE":
             ## Platy WorldBuilder ##
             if not CyGame().GetWorldBuilderMode():
@@ -3111,553 +3080,43 @@ class CvEventManager:
             # ***TEST***
             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Palast erbaut (Zeile 2206)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-        # Der Apostolische Palast verlegt das Zentrum des Christentums (doch nicht, er soll nur den +1 Kommerzbonus fuer jede christl. Stadt haben (XML))
-        # if iBuildingType == gc.getInfoTypeForString("BUILDING_APOSTOLIC_PALACE"):
-        #  iReligion = gc.getInfoTypeForString("RELIGION_CHRISTIANITY")
-        #  pHolyCity = gc.getGame().getHolyCity(iReligion)
-        #  if pHolyCity.getID() != pCity.getID():
-        #     # Geburstkirche soll bleiben falls schon dort errichtet
-        #     # Religionszentrum verlegen:
-        #     gc.getGame().getHolyCity(iReligion).setHasReligion(iReligion,0,0,0)
-        #     gc.getGame().setHolyCity(iReligion, pCity, 0)
-
         # Kanalisation -> Suempfe werden rund um der Stadt entfernt (Sumpf/Swamps)
         # Oder Deich, Damm, Levee, Kanal
-        iBuilding = gc.getInfoTypeForString('BUILDING_SANITATION')
-        #iBuilding2 = gc.getInfoTypeForString('BUILDING_LEVEE')
-        iBuilding3 = gc.getInfoTypeForString('BUILDING_LEVEE2')
-        if iBuildingType == iBuilding or iBuildingType == iBuilding3:
-            bFeatSwamp = False
-            terrain_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
-            terrain_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-            iX = pCity.getX()
-            iY = pCity.getY()
-            for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
-                loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
-                if loopPlot is not None and not loopPlot.isNone():
-                    if loopPlot.getTerrainType() == terrain_swamp:
-                        loopPlot.setTerrainType(terrain_grass, 1, 1)
-                        bFeatSwamp = True
-            if bFeatSwamp and pPlayer.isHuman():
-                if iBuildingType == iBuilding:
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_SANITATION_BUILT",(pCity.getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-                #elif iBuildingType == iBuilding2:
-                #  CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_LEVEE_BUILT",(pCity.getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-                elif iBuildingType == iBuilding3:
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_LEVEE2_BUILT",(pCity.getName(),)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-
-            # ***TEST***
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Sumpf wird entfernt (Zeile 2232)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        lSwampRemovingBuildings = {
+            gc.getInfoTypeForString('BUILDING_SANITATION'):"TXT_KEY_MESSAGE_SANITATION_BUILT",
+            # gc.getInfoTypeForString('BUILDING_LEVEE'):"TXT_KEY_MESSAGE_LEVEE_BUILT",
+            gc.getInfoTypeForString('BUILDING_LEVEE2'):"TXT_KEY_MESSAGE_LEVEE2_BUILT"
+        }
+        try:
+            sText = lSwampRemovingBuildings[iBuildingType]
+            PAE_City.removeSwamp(pCity, sText)
+        except KeyError:
+            pass
 
         # WEIN - FEATURE ---------------------
         # Winzer / Vintager -> Winery / Weinverbreitung
-        iBuilding = gc.getInfoTypeForString('BUILDING_WINERY')
-        if iBuildingType == iBuilding and CvUtil.myRandom(2, "Wein") == 1:
-            terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
-            terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-            terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
-            feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-            bonus_grapes = gc.getInfoTypeForString('BONUS_GRAPES')
-
-            # Improvements fuer Prioritaet
-            iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")
-            iImpType2 = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
-            iImpType3 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-            iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
-            iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_MINE")
-            iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
-
-            PlotPrio1 = []
-            PlotPrio2 = []
-            PlotPrio3 = []
-            PlotPrio4 = []
-            PlotPrio5 = []
-            PlotPrio6 = []
-            PlotPrio7 = []
-            PlotPrio8 = []
-            PlotPrio9 = []
-            PlotPrio10 = []
-            correctPlotArray = []
-            setWinery = True
-
-            # wenn bereits eine Weinressource im nahen (5x5-Feld) Umkreis der Stadt ist
-            for iI in range(gc.getNUM_CITY_PLOTS()):
-                loopPlot = pCity.getCityIndexPlot(iI)
-                # die beste position finden:
-                if loopPlot is not None and not loopPlot.isNone():
-                    if loopPlot.getBonusType(-1) == bonus_grapes:
-                        setWinery = False
-                        break
-                        # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-                    if loopPlot.getTerrainType() != terr_swamp and loopPlot.getFeatureType() != feat_flood_plains and not loopPlot.isPeak():
-                        if (loopPlot.getBonusType(-1) == -1
-                                and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass)
-                                and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1)):
-
-                            # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
-                            if loopPlot.isCity():
-                                PlotPrio4.append(loopPlot)
-                            else:
-                                if loopPlot.getImprovementType() == -1:
-                                    if loopPlot.isHills():
-                                        # 1. plain and hills, unworked
-                                        if loopPlot.getTerrainType() == terr_plain:
-                                            PlotPrio1.append(loopPlot)
-                                        # 2. grass and hills, unworked
-                                        if loopPlot.getTerrainType() == terr_grass:
-                                            PlotPrio2.append(loopPlot)
-                                    # 3. irgendeinen passenden ohne Improvement
-                                    PlotPrio3.append(loopPlot)
-                                # 4. nach Improvements selektieren
-                                if loopPlot.getImprovementType() == iImpType1:
-                                    PlotPrio5.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType2:
-                                    PlotPrio6.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType3:
-                                    PlotPrio7.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType4:
-                                    PlotPrio8.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType5:
-                                    PlotPrio9.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType6:
-                                    PlotPrio10.append(loopPlot)
-
-            if PlotPrio1:
-                correctPlotArray = PlotPrio1
-            elif PlotPrio2:
-                correctPlotArray = PlotPrio2
-            elif PlotPrio3:
-                correctPlotArray = PlotPrio3
-            elif PlotPrio5:
-                correctPlotArray = PlotPrio5
-            elif PlotPrio6:
-                correctPlotArray = PlotPrio6
-            elif PlotPrio7:
-                correctPlotArray = PlotPrio7
-            elif PlotPrio8:
-                correctPlotArray = PlotPrio8
-            elif PlotPrio9:
-                correctPlotArray = PlotPrio9
-            # elif PlotPrio4: correctPlotArray = PlotPrio4 # Stadt doch nicht
-            elif PlotPrio10:
-                correctPlotArray = PlotPrio10
-
-            # Wein setzen
-            if setWinery and correctPlotArray:
-                iPlot = CvUtil.myRandom(len(correctPlotArray), "Wein")
-                sPlot = correctPlotArray[iPlot]
-                # Feature (Wald) entfernen
-                sPlot.setFeatureType(-1, 0)
-                # Bonus Wein adden
-                sPlot.setBonusType(bonus_grapes)
-                # Improvement adden
-                iImprovement = gc.getInfoTypeForString('IMPROVEMENT_WINERY')
-                sPlot.setImprovementType(iImprovement)
-
-                if gc.getPlayer(pCity.getOwner()).isHuman():
-                    iRand = 1 + CvUtil.myRandom(4, "WeinText")
-                    CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_VINTAGER_BUILT"+str(iRand), (pCity.getName(),)), None, 2, gc.getBonusInfo(bonus_grapes).getButton(), ColorTypes(8), sPlot.getX(), sPlot.getY(), True, True)
-
-                # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wein wird angebaut (Zeile 2288)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        # WEIN - FEATURE - ENDE ---------------------
+        if iBuildingType == gc.getInfoTypeForString('BUILDING_WINERY') and CvUtil.myRandom(2, "Wein") == 1:
+            PAE_Cultivation.wine(pCity)
 
         # HORSE - FEATURE ---------------------
         # Pferdeverbreitung
         if iBuildingType == gc.getInfoTypeForString('BUILDING_PFERDEZUCHT'):
-            terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
-            terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-            terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
-            feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-            iBonus = gc.getInfoTypeForString('BONUS_HORSE')
-
-            # Improvements fuer Prioritaet
-            iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")
-            iImpType2 = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
-            iImpType3 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-            iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
-            iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
-            iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_QUARRY")
-            iImpType7 = gc.getInfoTypeForString("IMPROVEMENT_HAMLET")
-            iImpType8 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE_HILL")
-            iImpType9 = gc.getInfoTypeForString("IMPROVEMENT_HAMLET_HILL")
-            iImpType10 = gc.getInfoTypeForString("IMPROVEMENT_VILLAGE")
-            iImpType11 = gc.getInfoTypeForString("IMPROVEMENT_VILLAGE_HILL")
-            iImpType12 = gc.getInfoTypeForString("IMPROVEMENT_TOWN")
-
-            PlotPrio1 = []
-            PlotPrio2 = []
-            PlotPrio3 = []
-            PlotPrio4 = []
-            PlotPrio5 = []
-            PlotPrio6 = []
-            PlotPrio7 = []
-            PlotPrio8 = []
-            PlotPrio9 = []
-            PlotPrio10 = []
-            PlotPrio11 = []
-            PlotPrio12 = []
-            PlotPrio13 = []
-            PlotPrio14 = []
-            PlotPrio15 = []
-            PlotPrio16 = []
-            correctPlotArray = []
-
-            for iI in range(gc.getNUM_CITY_PLOTS()):
-                loopPlot = pCity.getCityIndexPlot(iI)
-                # die beste position finden:
-                if loopPlot is not None and not loopPlot.isNone():
-                    if loopPlot.getOwner() == -1 or loopPlot.getOwner() == iPlayer:
-                        # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-                        if (loopPlot.getFeatureType() != feat_flood_plains
-                                and not loopPlot.isPeak()
-                                and loopPlot.getBonusType(-1) == -1
-                                and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass)):
-
-                                # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
-                            if loopPlot.isCity():
-                                PlotPrio4.append(loopPlot)
-                            else:
-                                if loopPlot.getImprovementType() == -1:
-                                    if not loopPlot.isHills():
-                                        # 1. plain and hills, unworked
-                                        if loopPlot.getTerrainType() == terr_plain:
-                                            PlotPrio1.append(loopPlot)
-                                        # 2. grass and hills, unworked
-                                        if loopPlot.getTerrainType() == terr_grass:
-                                            PlotPrio2.append(loopPlot)
-                                    # 3. irgendeinen passenden ohne Improvement
-                                    PlotPrio3.append(loopPlot)
-                                # 4. nach Improvements selektieren
-                                if loopPlot.getImprovementType() == iImpType1:
-                                    PlotPrio5.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType2:
-                                    PlotPrio6.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType3:
-                                    PlotPrio7.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType4:
-                                    PlotPrio8.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType5:
-                                    PlotPrio9.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType6:
-                                    PlotPrio10.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType7:
-                                    PlotPrio11.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType8:
-                                    PlotPrio12.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType9:
-                                    PlotPrio13.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType10:
-                                    PlotPrio14.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType11:
-                                    PlotPrio15.append(loopPlot)
-                                if loopPlot.getImprovementType() == iImpType12:
-                                    PlotPrio16.append(loopPlot)
-
-            if PlotPrio1:
-                correctPlotArray = PlotPrio1
-            elif PlotPrio2:
-                correctPlotArray = PlotPrio2
-            elif PlotPrio3:
-                correctPlotArray = PlotPrio3
-            # elif PlotPrio4: correctPlotArray = PlotPrio4 # Stadt doch nicht
-            elif PlotPrio5:
-                correctPlotArray = PlotPrio5
-            elif PlotPrio6:
-                correctPlotArray = PlotPrio6
-            elif PlotPrio7:
-                correctPlotArray = PlotPrio7
-            elif PlotPrio8:
-                correctPlotArray = PlotPrio8
-            elif PlotPrio9:
-                correctPlotArray = PlotPrio9
-            elif PlotPrio10:
-                correctPlotArray = PlotPrio10
-            elif PlotPrio11:
-                correctPlotArray = PlotPrio11
-            elif PlotPrio12:
-                correctPlotArray = PlotPrio12
-            elif PlotPrio13:
-                correctPlotArray = PlotPrio13
-            elif PlotPrio14:
-                correctPlotArray = PlotPrio14
-            elif PlotPrio15:
-                correctPlotArray = PlotPrio15
-            elif PlotPrio16:
-                correctPlotArray = PlotPrio16
-
-            # Bonus setzen
-            if correctPlotArray:
-                iPlot = CvUtil.myRandom(len(correctPlotArray), "BonusPlot")
-                sPlot = correctPlotArray[iPlot]
-                # Feature (Wald) entfernen
-                sPlot.setFeatureType(-1, 0)
-                # Bonus adden
-                sPlot.setBonusType(iBonus)
-                # Improvement adden
-                iImprovement = gc.getInfoTypeForString('IMPROVEMENT_PASTURE')
-                sPlot.setImprovementType(iImprovement)
-
-        # HORSE - FEATURE - ENDE ---------------------
+            PAE_Cultivation.horse(pCity)
 
         # KAMEL - FEATURE ---------------------
         # Kamelverbreitung
         if iBuildingType == gc.getInfoTypeForString('BUILDING_CAMEL_STABLE'):
-            terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
-            terr_desert = gc.getInfoTypeForString('TERRAIN_DESERT')
-            feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-            iBonus = gc.getInfoTypeForString('BONUS_CAMEL')
-
-            # Improvements fuer Prioritaet
-            iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
-
-            PlotPrio1 = []
-            PlotPrio2 = []
-            PlotPrio3 = []
-            PlotPrio4 = []
-            PlotPrio5 = []
-            correctPlotArray = []
-            bCityHasBonus = False
-
-            for iI in range(gc.getNUM_CITY_PLOTS()):
-                loopPlot = pCity.getCityIndexPlot(iI)
-                # die beste position finden:
-                if loopPlot is not None and not loopPlot.isNone():
-                    if loopPlot.isHills() or loopPlot.isPeak():
-                        continue
-                    if loopPlot.isCity():
-                        continue
-                    if loopPlot.getBonusType(loopPlot.getOwner()) == iBonus:
-                        bCityHasBonus = True
-                        break
-                    if (loopPlot.getFeatureType() != feat_flood_plains
-                            and loopPlot.getBonusType(-1) == -1
-                            and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_desert)
-                            and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1)):
-
-                            # 1. nach Improvements selektieren
-                        if loopPlot.getImprovementType() == iImpType1:
-                            PlotPrio1.append(loopPlot)
-                        # 2. desert, unworked
-                        elif loopPlot.getTerrainType() == terr_desert and loopPlot.getImprovementType() == -1:
-                            PlotPrio2.append(loopPlot)
-                        # 3. plains, unworked
-                        elif loopPlot.getTerrainType() == terr_plain and loopPlot.getImprovementType() == -1:
-                            PlotPrio3.append(loopPlot)
-                        # 4. irgendeinen passenden ohne Improvement
-                        elif loopPlot.getImprovementType() == -1:
-                            PlotPrio4.append(loopPlot)
-                        else:
-                            PlotPrio5.append(loopPlot)
-
-            if PlotPrio1:
-                correctPlotArray = PlotPrio1
-            elif PlotPrio2:
-                correctPlotArray = PlotPrio2
-            elif PlotPrio3:
-                correctPlotArray = PlotPrio3
-            elif PlotPrio4:
-                correctPlotArray = PlotPrio4
-            elif PlotPrio5:
-                correctPlotArray = PlotPrio5
-
-            # Bonus setzen
-            if correctPlotArray and not bCityHasBonus:
-                iPlot = CvUtil.myRandom(len(correctPlotArray), "Kamelverbreitung")
-                sPlot = correctPlotArray[iPlot]
-                # Feature (Wald) entfernen
-                # sPlot.setFeatureType(-1,0)
-                # Bonus adden
-                sPlot.setBonusType(iBonus)
-                # Improvement adden
-                sPlot.setImprovementType(iImpType1)
-
-        # KAMEL - FEATURE - ENDE ---------------------
+            PAE_Cultivation.camel(pCity)
 
         # ELEFANT - FEATURE ---------------------
         # Elefantverbreitung
         if iBuildingType == gc.getInfoTypeForString('BUILDING_ELEPHANT_STABLE'):
-            terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
-            terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-            feat_jungle = gc.getInfoTypeForString('FEATURE_JUNGLE')
-            feat_savanna = gc.getInfoTypeForString('FEATURE_SAVANNA')
-            iBonus = gc.getInfoTypeForString('BONUS_IVORY')
-
-            # Improvements fuer Prioritaet
-            iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
-
-            PlotPrio1 = []
-            PlotPrio2 = []
-            PlotPrio3 = []
-            PlotPrio4 = []
-            PlotPrio5 = []
-            PlotPrio6 = []
-            PlotPrio7 = []
-            correctPlotArray = []
-            bCityHasBonus = False
-
-            for iI in range(gc.getNUM_CITY_PLOTS()):
-                loopPlot = pCity.getCityIndexPlot(iI)
-                # die beste position finden:
-                if loopPlot is not None and not loopPlot.isNone():
-                    if loopPlot.isHills() or loopPlot.isPeak():
-                        continue
-                    if loopPlot.isCity():
-                        continue
-                    if loopPlot.getBonusType(loopPlot.getOwner()) == iBonus:
-                        bCityHasBonus = True
-                        break
-                    if loopPlot.getBonusType(-1) == -1 and (loopPlot.getTerrainType() == terr_plain or loopPlot.getTerrainType() == terr_grass) and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1):
-                        if loopPlot.getImprovementType() == -1:
-                            # 1. jungle, unworked
-                            if loopPlot.getFeatureType() == feat_jungle:
-                                PlotPrio1.append(loopPlot)
-                            # 2. savanna, unworked
-                            elif loopPlot.getFeatureType() == feat_savanna:
-                                PlotPrio2.append(loopPlot)
-                            # 4. grass, unworked
-                            elif loopPlot.getTerrainType() == terr_grass:
-                                PlotPrio4.append(loopPlot)
-                            # 5. plains, unworked
-                            elif loopPlot.getTerrainType() == terr_plain:
-                                PlotPrio5.append(loopPlot)
-                            # 6. irgendeinen passenden ohne Improvement
-                            else:
-                                PlotPrio6.append(loopPlot)
-                        # 3. nach Improvements selektieren
-                        elif loopPlot.getImprovementType() == iImpType1:
-                            PlotPrio3.append(loopPlot)
-                        else:
-                            PlotPrio7.append(loopPlot)
-
-            if PlotPrio1:
-                correctPlotArray = PlotPrio1
-            elif PlotPrio2:
-                correctPlotArray = PlotPrio2
-            elif PlotPrio3:
-                correctPlotArray = PlotPrio3
-            elif PlotPrio4:
-                correctPlotArray = PlotPrio4
-            elif PlotPrio5:
-                correctPlotArray = PlotPrio5
-            elif PlotPrio6:
-                correctPlotArray = PlotPrio6
-            elif PlotPrio7:
-                correctPlotArray = PlotPrio7
-
-            # Bonus setzen
-            if correctPlotArray and not bCityHasBonus:
-                iPlot = CvUtil.myRandom(len(correctPlotArray), "Elefantverbreitung")
-                sPlot = correctPlotArray[iPlot]
-                # Feature (Wald) entfernen
-                # sPlot.setFeatureType(-1,0)
-                # Bonus adden
-                sPlot.setBonusType(iBonus)
-                # Improvement adden
-                sPlot.setImprovementType(iImpType1)
-
-        # ELEFANT - FEATURE - ENDE ---------------------
+            PAE_Cultivation.elephant(pCity)
 
         # HUNDE - FEATURE ---------------------
         # Hundeverbreitung
         if iBuildingType == gc.getInfoTypeForString('BUILDING_HUNDEZUCHT'):
-            terr_plain = gc.getInfoTypeForString('TERRAIN_PLAINS')
-            terr_grass = gc.getInfoTypeForString('TERRAIN_GRASS')
-            terr_swamp = gc.getInfoTypeForString('TERRAIN_SWAMP')
-            feat_flood_plains = gc.getInfoTypeForString('FEATURE_FLOOD_PLAINS')
-            iBonus = gc.getInfoTypeForString('BONUS_HUNDE')
-
-            # Improvements fuer Prioritaet
-            iImpType1 = gc.getInfoTypeForString("IMPROVEMENT_CITY_RUINS")
-            iImpType2 = gc.getInfoTypeForString("IMPROVEMENT_GOODY_HUT")
-            iImpType3 = gc.getInfoTypeForString("IMPROVEMENT_LUMBER_CAMP")
-            #iImpType4 = gc.getInfoTypeForString("IMPROVEMENT_WATERMILL")
-            iImpType5 = gc.getInfoTypeForString("IMPROVEMENT_FARM")
-            iImpType6 = gc.getInfoTypeForString("IMPROVEMENT_MINE")
-            iImpType7 = gc.getInfoTypeForString("IMPROVEMENT_COTTAGE")
-
-            PlotPrio1 = []
-            PlotPrio2 = []
-            PlotPrio3 = []
-            PlotPrio4 = []
-            PlotPrio5 = []
-            PlotPrio6 = []
-            PlotPrio7 = []
-            PlotPrio8 = []
-            PlotPrio9 = []
-            PlotPrio10 = []
-            PlotPrio11 = []
-            correctPlotArray = []
-            for iI in range(gc.getNUM_CITY_PLOTS()):
-                loopPlot = pCity.getCityIndexPlot(iI)
-                # die beste position finden:
-                if loopPlot is not None and not loopPlot.isNone():
-                    # auf grass oder plain, nicht auf Sumpf oder Schwemmland, Berg oder einer anderen Bonusresi
-                    if PAE_Cultivation.canHaveBonus(loopPlot, iBonus, True) and (loopPlot.getOwner() == iPlayer or loopPlot.getOwner() == -1):
-                        # Moeglichkeit: Stadtplot (nach Farm und vor Mine)
-                        if loopPlot.isCity():
-                            PlotPrio4.append(loopPlot)
-                        else:
-                            # unworked
-                            if loopPlot.getImprovementType() == -1:
-                                if not loopPlot.isHills():
-                                    # 1. plain and hills
-                                    if loopPlot.getTerrainType() == terr_plain:
-                                        PlotPrio1.append(loopPlot)
-                                    # 2. grass and hills
-                                    if loopPlot.getTerrainType() == terr_grass:
-                                        PlotPrio2.append(loopPlot)
-                                # 3. irgendeinen passenden ohne Improvement
-                                PlotPrio3.append(loopPlot)
-                            # 4. nach Improvements selektieren
-                            elif loopPlot.getImprovementType() == iImpType1:
-                                PlotPrio5.append(loopPlot)
-                            elif loopPlot.getImprovementType() == iImpType2:
-                                PlotPrio6.append(loopPlot)
-                            elif loopPlot.getImprovementType() == iImpType3:
-                                PlotPrio7.append(loopPlot)
-                            #elif loopPlot.getImprovementType() == iImpType4: PlotPrio8.append(loopPlot)
-                            elif loopPlot.getImprovementType() == iImpType5:
-                                PlotPrio9.append(loopPlot)
-                            elif loopPlot.getImprovementType() == iImpType6:
-                                PlotPrio10.append(loopPlot)
-                            elif loopPlot.getImprovementType() == iImpType7:
-                                PlotPrio11.append(loopPlot)
-
-            if PlotPrio1:
-                correctPlotArray = PlotPrio1
-            elif PlotPrio2:
-                correctPlotArray = PlotPrio2
-            elif PlotPrio3:
-                correctPlotArray = PlotPrio3
-            elif PlotPrio5:
-                correctPlotArray = PlotPrio5
-            elif PlotPrio6:
-                correctPlotArray = PlotPrio6
-            elif PlotPrio7:
-                correctPlotArray = PlotPrio7
-            # elif PlotPrio8: correctPlotArray = PlotPrio8
-            elif PlotPrio9:
-                correctPlotArray = PlotPrio9
-            # elif PlotPrio4: correctPlotArray = PlotPrio4 # Stadt doch nicht
-            elif PlotPrio10:
-                correctPlotArray = PlotPrio10
-            elif PlotPrio11:
-                correctPlotArray = PlotPrio11
-
-            # Bonus setzen
-            if correctPlotArray:
-                iPlot = CvUtil.myRandom(len(correctPlotArray), "Hundeverbreitung")
-                sPlot = correctPlotArray[iPlot]
-                # Feature (Wald) entfernen
-                # sPlot.setFeatureType(-1,0)
-                # Bonus adden
-                sPlot.setBonusType(iBonus)
-                # Improvement adden
-                iImprovement = gc.getInfoTypeForString('IMPROVEMENT_CAMP')
-                sPlot.setImprovementType(iImprovement)
-
-        # HUNDE - FEATURE - ENDE ---------------------
+            PAE_Cultivation.dog(pCity)
 
         # Warft (ein Huegel entsteht)
         iBuilding = gc.getInfoTypeForString('BUILDING_WARFT')
@@ -4022,57 +3481,8 @@ class CvEventManager:
                         elif gc.getPlayer(pUnit.getOwner()).isHuman():
                             CyInterface().addMessage(pUnit.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_DAMAGE_SHIP_"+str(iRand), (pUnit.getName(), iSchaden)), "AS2D_UNIT_BUILD_GALLEY", 2, pUnit.getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
 
-# ----------- A Unit get damage during movement ------------------------------- #
-#    iCulture = pPlot.getCulture(pUnit.getOwner())
-#    if iCulture == 0 and pUnit.canAttack():
-#      # Verzweigte if-statements, zwecks runtime
-#      if pUnit.getDomainType() == DomainTypes.DOMAIN_LAND and not pUnit.isAnimal() and not pUnit.isBarbarian():
-#        # Erst ab einem Stack von mind. 20 Einheiten
-#        if pPlot.getNumUnits() + pOldPlot.getNumUnits() > 19 and pUnit.getDamage() < 90:
-#
-#          noDamage = False
-#
-#          # Wenn das Gebiet einem Vasallen gehoert
-#          iCultureOwner  = pPlot.getOwner()
-#          iCultureOwner2 = pUnit.getOwner()
-#          if iCultureOwner != -1:
-#            if gc.getTeam(iCultureOwner).isVassal(gc.getTeam(gc.getPlayer(iCultureOwner2).getTeam()).getID()) or gc.getTeam(iCultureOwner2).isVassal(gc.getTeam(gc.getPlayer(iCultureOwner).getTeam()).getID()): noDamage = True
-#
-#          if not noDamage:
-#
-#            # Pruefen, ob es einen Versorgungszug auf dem Plot gibt
-#            iHealChange = 1
-#            SupplyUnit = gc.getInfoTypeForString("UNIT_SUPPLY_WAGON")
-#            for iUnit in range (pOldPlot.getNumUnits()):
-#              if pPlot.getUnit(iUnit).getUnitType() == SupplyUnit:
-#                iHealChange = 2
-#                break
-#            # wenn im alten Plot kein Versorgungswagen da war, dann zaehlt auch einer im neuen plot
-#            if iHealChange == 1:
-#              for iUnit in range (pPlot.getNumUnits()):
-#                if pPlot.getUnit(iUnit).getUnitType() == SupplyUnit:
-#                  iHealChange = 2
-#                  break
-#
-#            if pUnit.maxMoves() > 60:
-#              uDamageRoad = int(1 / iHealChange)
-#              uDamage = int(3 / iHealChange)
-#            else:
-#              uDamageRoad = int(2 / iHealChange)
-#              uDamage = int(6 / iHealChange)
-#
-#            if pPlot.isRoute():
-#              pUnit.changeDamage(uDamageRoad, False)
-#            else:
-#              pUnit.changeDamage(uDamage, False)
-
-                        # ***TEST***
-                        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Einheit wird durch Bewegung verletzt (Zeile 2444)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-# --------------------------------------------------------------------- #
-
-
-# ------ BARBAREN ------------------------------------------------- #
+        # --------------------------------------------------------------------- #
+        # ------ BARBAREN ------------------------------------------------- #
         if pUnit.isBarbarian():
             # Seevoelkereinheit wird entladen, leere Seevoelkerschiffe werden gekillt
             if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SEEVOLK"):
@@ -4102,8 +3512,7 @@ class CvEventManager:
                 pUnit.kill(True, -1)
                 return
 
-# --------------------------------------------------------------------- #
-
+        # --------------------------------------------------------------------- #
         # Handelskarren - Merchant can be robbed and killed
         if pUnit.getUnitType() == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT") and not pUnit.isBarbarian():
             if pPlot.getNumUnits() == 1 and pUnit.getOwner() != pPlot.getOwner() and not pPlot.isCity():
@@ -4161,8 +3570,7 @@ class CvEventManager:
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Haendler verschwunden (Zeile 2530)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
 
-# ------ Hunnen - Bewegung / Huns movement ------ #
-
+        # ------ Hunnen - Bewegung / Huns movement ------ #
         # verschachtelte ifs zwecks optimaler laufzeit
         if pUnit.isBarbarian():
             if pPlot.getOwner() != pOldPlot.getOwner() and pPlot.getOwner() != -1:
@@ -4282,15 +3690,14 @@ class CvEventManager:
             #  if iFeat == gc.getInfoTypeForString("FEATURE_FOREST") or iFeat == gc.getInfoTypeForString("FEATURE_DICHTERWALD") or iFeat == gc.getInfoTypeForString("FEATURE_JUNGLE"):
             #    PAE_Unit.doUnitFormation (pUnit, -1)
 
-########################################################
-# --------- Bombard - Feature ----------------------
-# Wird ein Fort mit Katapulten bombardiert, kann das Fort dadurch zerstoert werden: 10%
-#    iUnit1 = gc.getInfoTypeForString("UNIT_CATAPULT")
-#    iUnit2 = gc.getInfoTypeForString("UNIT_FIRE_CATAPULT")
-#    if pUnit.getUnitType() == iUnit1 or pUnit.getUnitType() == iUnit2:
-#      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+        ########################################################
+        # --------- Bombard - Feature ----------------------
+        # Wird ein Fort mit Katapulten bombardiert, kann das Fort dadurch zerstoert werden: 10%
+        #    iUnit1 = gc.getInfoTypeForString("UNIT_CATAPULT")
+        #    iUnit2 = gc.getInfoTypeForString("UNIT_FIRE_CATAPULT")
+        #    if pUnit.getUnitType() == iUnit1 or pUnit.getUnitType() == iUnit2:
+        #      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-# -----
         # PAE Debug Mark
         #"""
         if not self.__LOG_MOVEMENT:
@@ -4400,10 +3807,6 @@ class CvEventManager:
         # ++++ Versorger / Supply Unit
         if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_HEALER"):
             PAE_Unit.initSupply(unit)
-
-        # ++++ Getreidekarren
-        # if unit.getUnitType() == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
-            # city.setFood(city.getFood()/2)
 
         # ++++ Auswanderer (Emigrants), die die Stadtbevoelkerung senken
         # deaktiviert, weil Emigrant nicht mehr absichtlich baubar
@@ -4643,7 +4046,7 @@ class CvEventManager:
         iPlayer, pPlot, pUnit, iGoodyType = argsList
         if not self.__LOG_GOODYRECEIVED:
             return
-#    CvUtil.pyPrint('%s received a goody' %(gc.getPlayer(iPlayer).getCivilizationDescription(0)),)
+        CvUtil.pyPrint('%s received a goody' %(gc.getPlayer(iPlayer).getCivilizationDescription(0)),)
 
     def onGreatPersonBorn(self, argsList):
         ## Platy WorldBuilder ##
@@ -4721,7 +4124,7 @@ class CvEventManager:
 
         if not self.__LOG_GREATPERSON:
             return
-#    CvUtil.pyPrint('A %s was born for %s in %s' %(pUnit.getName(), player.getCivilizationName(), pCity.getName()))
+        CvUtil.pyPrint('A %s was born for %s in %s' %(pUnit.getName(), pPlayer.getCivilizationDescription(0), pCity.getName()))
 
     def onTechAcquired(self, argsList):
         'Tech Acquired'
@@ -4764,8 +4167,6 @@ class CvEventManager:
 
         # Heresy ---------------------
         # if iPlayer > -1 and iTechType == gc.getInfoTypeForString("TECH_HERESY"):
-        # """
-        # pPlayer = gc.getPlayer(iPlayer)
 
         # lCities = PyPlayer(iPlayer).getCityList()
 
@@ -5343,7 +4744,7 @@ class CvEventManager:
                             CyInterface().addMessage(pHegemon.getID(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_GET_UNIT_SUPPLY_FOOD", (pCity.getName(),)), "AS2D_BUILD_GRANARY", 2, gc.getUnitInfo(iNewUnit).getButton(), ColorTypes(8), pCity.getX(), pCity.getY(), True, True)
 
 
-#    CvUtil.pyPrint("%s has grown to size %i" %(pCity.getName(),pCity.getPopulation()))
+        # CvUtil.pyPrint("%s has grown to size %i" %(pCity.getName(),pCity.getPopulation()))
         if pPlayer.isHuman():
             CyInterface().addMessage(pCity.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_GROWTH", (pCity.getName(), pCity.getPopulation())), None, 2, None, ColorTypes(13), pCity.getX(), pCity.getY(), True, True)
 
@@ -5417,7 +4818,6 @@ class CvEventManager:
         if pCity.isHasBuilding(iBuildingPlague):
             PAE_City.doPlagueEffects(pCity)
 
-########################################################################################
         # Slaves
         iCitySlaves = PAE_Sklaven.freeCitizen(pCity)
         # Sklavenerhalt: Available slave (2%) - Schwaechung bei christlicher Religion
@@ -5569,9 +4969,9 @@ class CvEventManager:
         return 0
 
 
-#################### TRIGGERED EVENTS ##################
+    #################### TRIGGERED EVENTS ##################
 
-# BTS Original
+    # BTS Original
     def __eventPlaceObjectBegin(self, argsList):
         'Place Object Event'
         CvDebugTools.CvDebugTools().initUnitPicker(argsList)
@@ -5599,9 +4999,9 @@ class CvEventManager:
         if getChtLvl() > 0:
             CvDebugTools.CvDebugTools().applyWonderMovie((popupReturn))
 
-# BTS Original kann bei Bedarf aus dem Originalcode kopiert werden ------
+    # BTS Original kann bei Bedarf aus dem Originalcode kopiert werden ------
 
-## Platy WorldBuilder ##
+    ## Platy WorldBuilder ##
     def __eventEditUnitNameBegin(self, argsList):
         pUnit = argsList
         popup = PyPopup.PyPopup(CvUtil.EventEditUnitName, EventContextTypes.EVENTCONTEXT_ALL)
@@ -5696,7 +5096,7 @@ class CvEventManager:
                 CyEngine().addSign(pPlot, iPlayer, CvUtil.convertToStr(sScript))
         WBPlotScreen.iCounter = 10
         return
-## Platy WorldBuilder ##
+    ## Platy WorldBuilder ##
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # BTS END OF FILE -----------------------------------------------------------------------

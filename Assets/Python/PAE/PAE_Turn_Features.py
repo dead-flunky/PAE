@@ -254,7 +254,7 @@ def doStrandgut():
                 CvUtil.spawnUnit(iStrandgut, pPlot, pBarbPlayer)
                 iPlotOwner = pPlot.getOwner()
                 if iPlotOwner != -1 and gc.getPlayer(iPlotOwner).isHuman():
-                    CyInterface().addMessage(iPlotOwner, True, 15, CyTranslator().getText("TXT_KEY_TREIB2STRANDGUT", ()), None, 2, None, ColorTypes(gc.getInfoTypeForString(COLOR_YIELD_FOOD)), pPlot.getX(), pPlot.getY(), False, False)
+                    CyInterface().addMessage(iPlotOwner, True, 15, CyTranslator().getText("TXT_KEY_TREIB2STRANDGUT", ()), None, 2, None, ColorTypes(gc.getInfoTypeForString("COLOR_YIELD_FOOD")), pPlot.getX(), pPlot.getY(), False, False)
                 # Disband Treibgut
                 # loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 loopUnit.kill(True, -1)  # RAMK_CTD
@@ -382,9 +382,8 @@ def setGoodyHuts():
                             if loopPlot.getTerrainType() == terrOzean:
                                 if iNumSetFlotsam < iMaxFlot:
                                     # Treibgut setzen
-                                    pBarbPlayer.initUnit(iUnit, loopPlot.getX(), loopPlot.getY(), UnitAITypes.UNITAI_EXPLORE_SEA, DirectionTypes.DIRECTION_SOUTH)
+                                    CvUtil.spawnUnit(iUnit, loopPlot, pBarbPlayer)
                                     iNumSetFlotsam += 1
-     # -------------------------------
 
 
 # New Seewind-Feature together with Elwood (ideas) and the TAC-Team (diagonal arrows)
