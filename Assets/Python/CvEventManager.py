@@ -3579,7 +3579,7 @@ class CvEventManager:
                         # Plot soll der AI (Unit) oder niemandem zugewiesen sein
                     if pPlot.getOwner() == pUnit.getOwner() or pPlot.getOwner() == -1:
                         # Nur fuer Axt, Speer und Schwerteinheiten
-                        if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN") or pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_AXEMAN") or pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"):
+                        if pUnit.getUnitCombatType() in L.LMeleeCombats:
                             if PyInfo.UnitInfo(pUnit.getUnitType()).getMoves() == 1:
                                 iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
                             else:

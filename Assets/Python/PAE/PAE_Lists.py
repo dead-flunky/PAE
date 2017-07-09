@@ -51,6 +51,17 @@ LUnitWildAnimals = [
     gc.getInfoTypeForString("UNIT_BERGZIEGE"),
 ]
 
+# Value = (iFoodMin, iFoodRand)
+DJagd = {
+    None: (2, 2),  # Default for Lion, Wolf, etc. 2 - 3
+    gc.getInfoTypeForString("UNIT_BOAR"): (5, 4),
+    gc.getInfoTypeForString("UNIT_DEER"): (3, 4),
+    gc.getInfoTypeForString("UNIT_WILD_CAMEL"): (3, 4),
+    gc.getInfoTypeForString("UNIT_BEAR"): (4, 4),
+    gc.getInfoTypeForString("UNIT_WILD_HORSE"): (4, 5),
+    gc.getInfoTypeForString("UNIT_ELEFANT"): (6, 3)
+}
+
 LArcherCombats = [
     gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),
     gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"),
@@ -110,6 +121,17 @@ LImprFortShort = [
     gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9"),
     gc.getInfoTypeForString("IMPROVEMENT_BARBARENFORT"),
 ]
+
+DPirateCaptureMap = {
+    gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"):
+    gc.getInfoTypeForString("UNIT_KONTERE"),
+    gc.getInfoTypeForString("UNIT_PIRAT_BIREME"):
+    gc.getInfoTypeForString("UNIT_BIREME"),
+    gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"):
+    gc.getInfoTypeForString("UNIT_TRIREME"),
+    gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"):
+    gc.getInfoTypeForString("UNIT_LIBURNE"),
+}
 
 LFormationNoNaval = [
     gc.getInfoTypeForString("UNIT_WORKBOAT"),
@@ -374,6 +396,102 @@ LWoodRemovedByLumberCamp = [
     gc.getInfoTypeForString("BUILD_REMOVE_FOREST"),
     gc.getInfoTypeForString("BUILD_REMOVE_FOREST_BURNT"),
 ]
+LVeteranForbiddenPromos1 = [
+    gc.getInfoTypeForString("PROMOTION_SKIRMISH1"),
+    gc.getInfoTypeForString("PROMOTION_SKIRMISH2"),
+    gc.getInfoTypeForString("PROMOTION_SKIRMISH3"),
+]
+LVeteranForbiddenPromos2 = [
+    gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"),
+    gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2"),
+    gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3"),
+    gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4"),
+    gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5"),
+]
+LVeteranForbiddenPromos3 = [
+    gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"),
+    gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2"),
+    gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3"),
+    gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4"),
+    gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5"),
+]
+LVeteranForbiddenPromos4 = [
+    gc.getInfoTypeForString("PROMOTION_RANG_ROM_1"),
+    gc.getInfoTypeForString("PROMOTION_RANG_ROM_2"),
+    gc.getInfoTypeForString("PROMOTION_RANG_ROM_3"),
+    gc.getInfoTypeForString("PROMOTION_RANG_ROM_4"),
+    gc.getInfoTypeForString("PROMOTION_RANG_ROM_5"),
+]
+
+# Kelten, Germanen, Gallier, etc.
+LCivGermanen = [
+    gc.getInfoTypeForString("CIVILIZATION_GERMANEN"),
+    gc.getInfoTypeForString("CIVILIZATION_CELT"),
+    gc.getInfoTypeForString("CIVILIZATION_GALLIEN"),
+    gc.getInfoTypeForString("CIVILIZATION_DAKER"),
+    gc.getInfoTypeForString("CIVILIZATION_BRITEN"),
+    gc.getInfoTypeForString("CIVILIZATION_VANDALS"),
+]
+
+#For doAutomatedRanking; tuple contain (Promo, %-Probabiblity)
+LPromo = [
+    (gc.getInfoTypeForString('PROMOTION_COMBAT1'), 50),
+    (gc.getInfoTypeForString('PROMOTION_COMBAT2'), 40),
+    (gc.getInfoTypeForString('PROMOTION_COMBAT3'), 30),
+    (gc.getInfoTypeForString('PROMOTION_COMBAT4'), 20),
+    (gc.getInfoTypeForString('PROMOTION_COMBAT5'), 20),
+    (gc.getInfoTypeForString('PROMOTION_COMBAT6'), 20),
+]
+LPromoNegative = [
+    (gc.getInfoTypeForString('PROMOTION_NEG1'), 10),
+    (gc.getInfoTypeForString('PROMOTION_NEG2'), 10),
+    (gc.getInfoTypeForString('PROMOTION_NEG3'), 20),
+    (gc.getInfoTypeForString('PROMOTION_NEG4'), 20),
+    (gc.getInfoTypeForString('PROMOTION_NEG5'), 20),
+]
+
+# [Unitkey] => { [Civkey] => [Unitkey], None -> [Default Unitkey]}
+DHorseDownMap = {
+    gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"): {
+        None: gc.getInfoTypeForString("UNIT_AUXILIAR"),
+        gc.getInfoTypeForString("CIVILIZATION_ROME"):
+        gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
+        gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
+        gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
+        gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"):
+        gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"),
+    },
+    gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"): {
+        None: gc.getInfoTypeForString("UNIT_FOEDERATI"),
+    },
+    # gc.getInfoTypeForString('UNIT_PRAETORIAN_RIDER'): {
+    #     None: gc.getInfoTypeForString('UNIT_PRAETORIAN'),
+    # },
+    gc.getInfoTypeForString('UNIT_MOUNTED_SACRED_BAND_CARTHAGE'): {
+        None: gc.getInfoTypeForString('UNIT_SACRED_BAND_CARTHAGE'),
+    },
+    gc.getInfoTypeForString('UNIT_MOUNTED_SCOUT'): {
+        None: gc.getInfoTypeForString("UNIT_SCOUT"),
+        gc.getInfoTypeForString("CIVILIZATION_ATHENS"):
+        gc.getInfoTypeForString("UNIT_SCOUT_GREEK"),
+        gc.getInfoTypeForString("CIVILIZATION_GREECE"):
+        gc.getInfoTypeForString("UNIT_SCOUT_GREEK"),
+    },
+}
+
+DHorseUpMap = {
+    "auxiliar": gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"),
+    gc.getInfoTypeForString("UNIT_FOEDERATI"):
+    gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"),
+    # gc.getInfoTypeForString("UNIT_PRAETORIAN"):
+    # gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"),
+    gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"):
+    gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
+    gc.getInfoTypeForString("UNIT_SCOUT"):
+    gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"),
+    gc.getInfoTypeForString("UNIT_SCOUT_GREEK"):
+    gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"),
+}
 
 LGGStandard = [
     "Adiantunnus", "Divico", "Albion",
