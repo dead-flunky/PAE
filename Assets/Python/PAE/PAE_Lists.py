@@ -261,6 +261,31 @@ LFormationen = [
     gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS"),
     gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2"),
 ]
+LUnitsNoAIReservists = [
+    gc.getInfoTypeForString("UNIT_TRIARII2"),
+    gc.getInfoTypeForString("UNIT_PRAETORIAN"),
+    gc.getInfoTypeForString("UNIT_PRAETORIAN2"),
+    gc.getInfoTypeForString("UNIT_CELERES"),
+    gc.getInfoTypeForString("UNIT_ARCHER_LEGION"),
+    gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"),
+    gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"),
+    gc.getInfoTypeForString("UNIT_SPARTAN"),
+    gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"),
+    gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"),
+    gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"),
+    gc.getInfoTypeForString("UNIT_PHARAONENGARDE"),
+    gc.getInfoTypeForString("UNIT_GAUFUERST"),
+    gc.getInfoTypeForString("UNIT_NUBIAFUERST"),
+    gc.getInfoTypeForString("UNIT_MACCABEE"),
+    gc.getInfoTypeForString("UNIT_STAMMESFUERST"),
+    gc.getInfoTypeForString("UNIT_FUERST_DAKER"),
+    gc.getInfoTypeForString("UNIT_GERMAN_HARIER"),
+    gc.getInfoTypeForString("UNIT_RADSCHA"),
+    gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"),
+    gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"),
+    gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
+    gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER")
+]
 LUnitAuxiliar = [
     gc.getInfoTypeForString("UNIT_AUXILIAR"),
     gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
