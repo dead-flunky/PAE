@@ -3093,31 +3093,7 @@ class CvEventManager:
         except KeyError:
             pass
 
-        # WEIN - FEATURE ---------------------
-        # Winzer / Vintager -> Winery / Weinverbreitung
-        if iBuildingType == gc.getInfoTypeForString('BUILDING_WINERY') and CvUtil.myRandom(2, "Wein") == 1:
-            PAE_Cultivation.wine(pCity)
-
-        # HORSE - FEATURE ---------------------
-        # Pferdeverbreitung
-        if iBuildingType == gc.getInfoTypeForString('BUILDING_PFERDEZUCHT'):
-            PAE_Cultivation.horse(pCity)
-
-        # KAMEL - FEATURE ---------------------
-        # Kamelverbreitung
-        if iBuildingType == gc.getInfoTypeForString('BUILDING_CAMEL_STABLE'):
-            PAE_Cultivation.camel(pCity)
-
-        # ELEFANT - FEATURE ---------------------
-        # Elefantverbreitung
-        if iBuildingType == gc.getInfoTypeForString('BUILDING_ELEPHANT_STABLE'):
-            PAE_Cultivation.elephant(pCity)
-
-        # HUNDE - FEATURE ---------------------
-        # Hundeverbreitung
-        if iBuildingType == gc.getInfoTypeForString('BUILDING_HUNDEZUCHT'):
-            PAE_Cultivation.dog(pCity)
-
+        PAE_Cultivation.doBuildingCultivate(pCity, iBuildingType)
         # Warft (ein Huegel entsteht)
         iBuilding = gc.getInfoTypeForString('BUILDING_WARFT')
         if iBuildingType == iBuilding:
