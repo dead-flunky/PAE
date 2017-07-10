@@ -92,7 +92,7 @@ if CIV4_SHELL:
 
     # Ramk - Redirect exception handler
     import ExtendedDebug
-    ExtendedDebug.init_extended_debug()
+    ExtendedDebug.init_extended_debug()  # Made game very slow!
 
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -439,7 +439,10 @@ class CvEventManager:
                     # don't return 1 unless you want the input consumed
 
                 elif theKey == int(InputTypes.KB_F2):
-                    if self.bShift:
+                    if self.bShift and self.bAlt:
+                        import remote_pdb
+                        remote_pdb.RemotePdb("127.0.0.1", 4444).set_trace()
+                    elif self.bShift:
                         # import CvDebugInfoScreen
                         CvScreensInterface.showDebugInfoScreen()
                         return 1
@@ -1818,6 +1821,8 @@ class CvEventManager:
         # PAE - River tiles
         self.bRiverTiles_WaitOnMainInterface = True
 
+        # PAE_Lists needs to be initialised
+        L.init()
         # PAE_Trade needs to be initialised
         PAE_Trade.init()
         PAE_Cultivation.init()

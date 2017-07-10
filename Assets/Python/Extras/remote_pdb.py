@@ -1,7 +1,9 @@
 # Modified version for Python 2.4 of
 # https://github.com/ionelmc/python-remote-pdb
 #
-#
+# Example usage:
+# import remote_pdb
+# remote_pdb.RemotePdb("127.0.0.1", 4444).set_trace()
 
 # from __future__ import print_function
 

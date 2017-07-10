@@ -684,15 +684,7 @@ def canDoFormation(pUnit, iFormation):
     if iUnitCombatType == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
         if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_KEIL") or iFormation == gc.getInfoTypeForString("PROMOTION_FORM_NAVAL_ZANGE"):
             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_LOGIK")):
-                UnitArray = [
-                    gc.getInfoTypeForString("UNIT_WORKBOAT"),
-                    gc.getInfoTypeForString("UNIT_KILIKIEN"),
-                    gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"),
-                    gc.getInfoTypeForString("UNIT_PIRAT_BIREME"),
-                    gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"),
-                    gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE")
-                ]
-                if iUnitType not in UnitArray:
+                if iUnitType not in L.LFormationNoNaval:
                     bCanDo = True
 
 
@@ -701,15 +693,7 @@ def canDoFormation(pUnit, iFormation):
         # Fourage
         if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FOURAGE"):
             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BRANDSCHATZEN")):
-                UnitArray = [
-                    gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-                    gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-                    gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-                    gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
-                    gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
-                    gc.getInfoTypeForString("UNIT_BURNING_PIGS")
-                ]
-                if iUnitType not in UnitArray:
+                if iUnitType not in L.LUnitWarAnimals:
                     bCanDo = True
 
         # Partherschuss oder Kantabrischer Kreis
@@ -940,15 +924,7 @@ def doAIPlotFormations(pPlot, iPlayer):
             for unit in lPlayerUnits:
                 if not bSupplyUnit:
                     if unit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-                        UnitArray = [
-                            gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-                            gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-                            gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-                            gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
-                            gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
-                            gc.getInfoTypeForString("UNIT_BURNING_PIGS")
-                        ]
-                        if unit.getUnitType() not in UnitArray:
+                        if unit.getUnitType() not in L.LUnitWarAnimals:
                             lMountedUnits.append(unit)
                 if i <= iLimit:
                     doAIUnitFormations(unit, True, bCity, bElefant)
@@ -1342,14 +1318,8 @@ def convertToPirate(city, unit):
     iUnitType = unit.getUnitType()
     if CvUtil.myRandom(4, "PiratenbauKI") == 1:
         if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
-            lPirates = {
-                gc.getInfoTypeForString("UNIT_KONTERE"): gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"),
-                gc.getInfoTypeForString("UNIT_BIREME"): gc.getInfoTypeForString("UNIT_PIRAT_BIREME"),
-                gc.getInfoTypeForString("UNIT_TRIREME"): gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"),
-                gc.getInfoTypeForString("UNIT_LIBURNE"): gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE")
-            }
             try:
-                iNewUnitType = lPirates[iUnitType]
+                iNewUnitType = L.DCaptureByPirate[iUnitType]
                 # unit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 unit.kill(True, -1)  # RAMK_CTD
                 unit = pPlayer.initUnit(iNewUnitType, city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
@@ -2211,7 +2181,7 @@ def doRenegadeUnit(pLoser, pWinner, pLoserPlayer, pWinnerPlayer):
         # if pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
         if True:
             # Piratenschiffe werden normale Schiffe
-            iNewUnitType = L.DPirateCaptureMap.get(iLoserUnitType, iLoserUnitType)
+            iNewUnitType = L.DCaptureFromPirate.get(iLoserUnitType, iLoserUnitType)
         else:
             iNewUnitType = iLoserUnitType
 

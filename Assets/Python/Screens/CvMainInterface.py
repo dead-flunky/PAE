@@ -2547,20 +2547,7 @@ class CvMainInterface:
                                 if iUnitType == gc.getInfoTypeForString("UNIT_SLAVE"):
                                     # Sklaven zu Feld oder Bergwerksklaven
                                     bFarms = False
-                                    lFarms = [
-                                        gc.getInfoTypeForString("IMPROVEMENT_PASTURE"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_FARM"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM3"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM4"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM5")
-                                    ]
                                     bMines = False
-                                    lMines = [
-                                        gc.getInfoTypeForString("IMPROVEMENT_MINE"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_QUARRY")
-                                    ]
 
                                     iX = pCity.getX()
                                     iY = pCity.getY()
@@ -2569,9 +2556,9 @@ class CvMainInterface:
                                         if loopPlot is not None and not loopPlot.isNone():
                                             # Plot besetzt?
                                             if pCity.canWork(loopPlot):
-                                                if loopPlot.getImprovementType() in lFarms:
+                                                if loopPlot.getImprovementType() in L.LFarms:
                                                     bFarms = True
-                                                elif loopPlot.getImprovementType() in lMines:
+                                                elif loopPlot.getImprovementType() in L.LMines:
                                                     bMines = True
                                         # Schleife vorzeitig beenden
                                         if bFarms and bMines:
@@ -2667,17 +2654,7 @@ class CvMainInterface:
                                         iCount = iCount + 1
 
                                     # Sklaven -> Tempel
-                                    lTemples = [
-                                        gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_ROME_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"),
-                                        gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-                                    ]
-                                    for iBuilding in lTemples:
+                                    for iBuilding in L.LTemples:
                                         if pCity.isHasBuilding(iBuilding):
                                             screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_SLAVES_TEMPLE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 693, 693, False)
                                             screen.show("BottomButtonContainer")
@@ -2996,13 +2973,7 @@ class CvMainInterface:
                             if iUnitType == gc.getInfoTypeForString("UNIT_SLAVE"):
                                 pPlot = pUnit.plot()
                                 if pPlot.getOwner() == pUnit.getOwner():
-                                    lLatifundien = [
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM3"),
-                                        gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM4")
-                                    ]
-                                    if pPlot.getImprovementType() in lLatifundien:
+                                    if pPlot.getImprovementType() in L.LLatifundien:
                                         if pPlot.getUpgradeTimeLeft(pPlot.getImprovementType(), iUnitOwner) > 1:
                                             screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Actions/button_action_slave2latifundium.dds", 0, WidgetTypes.WIDGET_GENERAL, 753, -1, False)
                                             screen.show("BottomButtonContainer")
@@ -3098,24 +3069,7 @@ class CvMainInterface:
 
                                         # Keil (auch weiter unten fuer Melee)
                                         if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
-                                            UnitArray = [
-                                                gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
-                                                gc.getInfoTypeForString("UNIT_EQUITES"),
-                                                gc.getInfoTypeForString("UNIT_HORSEMAN_EQUITES2"),
-                                                gc.getInfoTypeForString("UNIT_HORSEMAN_DECURIO"),
-                                                gc.getInfoTypeForString("UNIT_LEGION_TRIBUN"),
-                                                gc.getInfoTypeForString("UNIT_CATAPHRACT"),
-                                                gc.getInfoTypeForString("UNIT_CATAPHRACT_PERSIA"),
-                                                gc.getInfoTypeForString("UNIT_CLIBANARII"),
-                                                gc.getInfoTypeForString("UNIT_CLIBANARII_ROME"),
-                                                gc.getInfoTypeForString("UNIT_CELTIBERIAN_CAVALRY"),
-                                                gc.getInfoTypeForString("UNIT_MONGOL_KESHIK"),
-                                                gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"),
-                                                gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"),
-                                                gc.getInfoTypeForString("UNIT_CAMEL_CATAPHRACT")
-                                            ]
-
-                                            if pUnit.getUnitType() in UnitArray:
+                                            if pUnit.getUnitType() in L.LKeilUnits:
                                                 # Keil
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_KEIL")
                                                 if pUnit.isHasPromotion(iFormation):
@@ -3146,19 +3100,7 @@ class CvMainInterface:
                                     elif pUnit.getUnitCombatType() in L.LMeleeCombats:
                                         if pTeam.isHasTech(gc.getInfoTypeForString("TECH_BEWAFFNUNG4")):
                                             # Schildwall
-                                            UnitArray = [
-                                                gc.getInfoTypeForString("UNIT_WARRIOR"),
-                                                gc.getInfoTypeForString("UNIT_KURZSCHWERT"),
-                                                gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"),
-                                                gc.getInfoTypeForString("UNIT_FALCATA_IBERIA"),
-                                                gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN"),
-                                                gc.getInfoTypeForString("UNIT_AXEWARRIOR"),
-                                                gc.getInfoTypeForString("UNIT_AXEMAN"),
-                                                gc.getInfoTypeForString("UNIT_BERSERKER_GERMAN"),
-                                                gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR")
-                                            ]
-
-                                            if pUnit.getUnitType() not in UnitArray:
+                                            if pUnit.getUnitType() not in L.LSchildwallUnits:
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_SCHILDWALL")
                                                 if pUnit.isHasPromotion(iFormation):
                                                     screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_wall_gr.dds", 0, WidgetTypes.WIDGET_PEDIA_JUMP_TO_PROMOTION, iFormation, -1, False)
@@ -3174,18 +3116,7 @@ class CvMainInterface:
                                         if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DRILL1")):
 
                                             # Roman Legion (Kohorte / ersetzt alles)
-                                            UnitArray = [
-                                                gc.getInfoTypeForString("UNIT_LEGION"),
-                                                gc.getInfoTypeForString("UNIT_LEGION2"),
-                                                gc.getInfoTypeForString("UNIT_LEGION_OPTIO"),
-                                                gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"),
-                                                gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"),
-                                                gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"),
-                                                gc.getInfoTypeForString("UNIT_PRAETORIAN2"),
-                                                gc.getInfoTypeForString("UNIT_PRAETORIAN3")
-                                            ]
-
-                                            if pUnit.getUnitType() in UnitArray:
+                                            if pUnit.getUnitType() in L.LDrillUnits:
                                                 # Kohorte
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_KOHORTE")
                                                 if pUnit.isHasPromotion(iFormation):
@@ -3334,17 +3265,7 @@ class CvMainInterface:
 
                                             # Testudo (nur Legion)
                                             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TESTUDO")):
-                                                UnitArray = [
-                                                    gc.getInfoTypeForString("UNIT_LEGION"),
-                                                    gc.getInfoTypeForString("UNIT_LEGION2"),
-                                                    gc.getInfoTypeForString("UNIT_LEGION_OPTIO"),
-                                                    gc.getInfoTypeForString("UNIT_LEGION_OPTIO2"),
-                                                    gc.getInfoTypeForString("UNIT_LEGION_CENTURIO"),
-                                                    gc.getInfoTypeForString("UNIT_LEGION_CENTURIO2"),
-                                                    gc.getInfoTypeForString("UNIT_PRAETORIAN2"),
-                                                    gc.getInfoTypeForString("UNIT_PRAETORIAN3")
-                                                ]
-                                                if pUnit.getUnitType() in UnitArray:
+                                                if pUnit.getUnitType() in L.LDrillUnits:
                                                     iFormation = gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO")
                                                     if pUnit.isHasPromotion(iFormation):
                                                         screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_testudo_gr.dds", 0, WidgetTypes.WIDGET_PEDIA_JUMP_TO_PROMOTION, iFormation, -1, False)

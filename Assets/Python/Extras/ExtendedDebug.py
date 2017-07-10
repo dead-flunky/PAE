@@ -36,6 +36,7 @@ def traceit(frame, event, arg):
         Locs[Depth:] = [frame.f_locals]
     return traceit_2
 
+
 def traceit_2(frame, event, arg):
     if event == "return":
         globals()["Depth"] -= 1
@@ -85,8 +86,8 @@ def extendedExceptHook(the_type, value, tb):
                        CONFIG_REMOTE["host"], CONFIG_REMOTE["port"])
                   )
 
-    fOut.write(fTmp.getvalue())    
-    if hasattr(fOut, "flush"):    
+    fOut.write(fTmp.getvalue())
+    if hasattr(fOut, "flush"):
         fOut.flush()
 
     if _USE_REMOTE:
