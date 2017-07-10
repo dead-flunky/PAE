@@ -15,6 +15,7 @@ import PAE_Cultivation
 import PAE_City
 import PAE_Unit
 import PAE_Sklaven
+import PAE_Lists as L
 # globals
 gc = CyGlobalContext()
 PyPlayer = PyHelpers.PyPlayer
@@ -27,47 +28,15 @@ class CvGameUtils:
     "Miscellaneous game functions"
 
     def __init__(self):
-
         # PAE Veterans to Reservists feature
-        self.lUnitsNoAIReservists = [
-            gc.getInfoTypeForString("UNIT_TRIARII2"),
-            gc.getInfoTypeForString("UNIT_PRAETORIAN"),
-            gc.getInfoTypeForString("UNIT_PRAETORIAN2"),
-            gc.getInfoTypeForString("UNIT_CELERES"),
-            gc.getInfoTypeForString("UNIT_ARCHER_LEGION"),
-            gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"),
-            gc.getInfoTypeForString("UNIT_ARCHER_REFLEX_GREEK2"),
-            gc.getInfoTypeForString("UNIT_SPARTAN"),
-            gc.getInfoTypeForString("UNIT_UNSTERBLICH_2"),
-            gc.getInfoTypeForString("UNIT_ARGYRASPIDAI"),
-            gc.getInfoTypeForString("UNIT_ARGYRASPIDAI2"),
-            gc.getInfoTypeForString("UNIT_PHARAONENGARDE"),
-            gc.getInfoTypeForString("UNIT_GAUFUERST"),
-            gc.getInfoTypeForString("UNIT_NUBIAFUERST"),
-            gc.getInfoTypeForString("UNIT_MACCABEE"),
-            gc.getInfoTypeForString("UNIT_STAMMESFUERST"),
-            gc.getInfoTypeForString("UNIT_FUERST_DAKER"),
-            gc.getInfoTypeForString("UNIT_GERMAN_HARIER"),
-            gc.getInfoTypeForString("UNIT_RADSCHA"),
-            gc.getInfoTypeForString("UNIT_INDIAN_NAYAR"),
-            gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"),
-            gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
-            gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER")
-        ]
-
-        # PAE Foot soldier => Rider
-        self.lUnitAuxiliar = [
-            gc.getInfoTypeForString("UNIT_AUXILIAR"),
-            gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
-            gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON")
-        ]
+        # self.lUnitsNoAIReservists => PAE_Lists.LUnitsNoAIReservists
+        # self.lUnitAuxiliar => PAE_Lists.LUnitAuxiliar
 
         # PAE - vars for AI feature checks
         self.PAE_AI_ID = -1
         self.PAE_AI_Cities_Horses = []
         self.PAE_AI_Cities_Slaves = []
         self.PAE_AI_Cities_Slavemarket = []
-
 
     def isVictoryTest(self):
         return gc.getGame().getElapsedGameTurns() > 10
@@ -1115,7 +1084,7 @@ class CvGameUtils:
                 self.PAE_AI_Cities_Slavemarket = []
 
             # Inquisitor
-            if iUnitType == gc.getInfoTypeForString("UNIT_INQUISITOR") and iOwner != gc.getBARBARIAN_PLAYER():
+            if iUnitType == gc.getInfoTypeForString("UNIT_INQUISITOR") and iOwner != iBarbarianPlayer:
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("AI Inquisitor",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
                 if self.doInquisitorCore_AI(pUnit):
                     return True
@@ -1141,7 +1110,8 @@ class CvGameUtils:
                         return True
 
             # Trade and cultivation (Boggy). First, try cultivation. If unsuccessfull, try trade.
-            # if pUnit.getUnitAIType() == gc.getInfoTypeForString("UNITAI_MERCHANT") and iUnitType != gc.getInfoTypeForString("UNIT_MERCHANT") and iOwner != gc.getBARBARIAN_PLAYER():
+            # if pUnit.getUnitAIType() ==
+            # gc.getInfoTypeForString("UNITAI_MERCHANT") and iUnitType != gc.getInfoTypeForString("UNIT_MERCHANT") and iOwner != iBarbarianPlayer:
             if iUnitType in PAE_Cultivation.lCultivationUnits:
                 if PAE_Cultivation.doCultivation_AI(pUnit):
                     return True
@@ -1442,13 +1412,13 @@ class CvGameUtils:
 
                 # self.lUnitAuxiliar: globale Variable
                 # or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
-                if iUnitType in self.lUnitAuxiliar \
+                if iUnitType in L.LUnitAuxiliar \
                         or iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI") \
                         or iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"):
 
                     bSearchPlot = False
 
-                    if iUnitType in self.lUnitAuxiliar:
+                    if iUnitType in L.LUnitAuxiliar:
                         iNewUnitType = gc.getInfoTypeForString('UNIT_AUXILIAR_HORSE')
                         bSearchPlot = True
                     elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"):
@@ -1511,7 +1481,7 @@ class CvGameUtils:
                                 return True
 
                             # Weitere Cities auf Sklavenmarkt checken und Sklaven zuerst dort hinschicken
-                            if iOwner != gc.getBARBARIAN_PLAYER() and len(lCities) > len(self.PAE_AI_Cities_Slavemarket):
+                            if iOwner != iBarbarianPlayer and len(lCities) > len(self.PAE_AI_Cities_Slavemarket):
                                 if CvUtil.myRandom(10, "ai_sklavenmarkt") < 2:
                                     (loopCity, pIter) = pOwner.firstCity(False)
                                     while loopCity:
@@ -1697,7 +1667,7 @@ class CvGameUtils:
                                 self.PAE_AI_Cities_Horses.append(pCity.getID())
 
                                 # Weitere Cities auf Stallungen checken und Pferd dort hinschicken
-                                if iOwner != gc.getBARBARIAN_PLAYER():
+                                if iOwner != iBarbarianPlayer:
                                     (loopCity, pIter) = pOwner.firstCity(False)
                                     while loopCity:
                                         if loopCity.getID() not in self.PAE_AI_Cities_Horses:
@@ -1823,36 +1793,9 @@ class CvGameUtils:
                     iPromo = gc.getInfoTypeForString("PROMOTION_EDLE_RUESTUNG")
                     iPromoPrereq = gc.getInfoTypeForString("PROMOTION_COMBAT5")
                     if not pUnit.isHasPromotion(iPromo) and pUnit.isHasPromotion(iPromoPrereq):
-                        iCombatArray = [
-                            gc.getInfoTypeForString("UNITCOMBAT_NAVAL"),
-                            gc.getInfoTypeForString("UNITCOMBAT_SIEGE"),
-                            gc.getInfoTypeForString("UNITCOMBAT_RECON"),
-                            gc.getInfoTypeForString("UNITCOMBAT_HEALER"),
-                            gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),
-                            gc.getInfoTypeForString("NONE")
-                        ]
-                        if pUnit.getUnitCombatType() not in iCombatArray and pUnit.getUnitCombatType() is not None:
-                            iUnitArray = [
-                                gc.getInfoTypeForString("UNIT_WARRIOR"),
-                                gc.getInfoTypeForString("UNIT_AXEWARRIOR"),
-                                gc.getInfoTypeForString("UNIT_HUNTER"),
-                                gc.getInfoTypeForString("UNIT_LIGHT_SPEARMAN"),
-                                gc.getInfoTypeForString("UNIT_KURZSCHWERT"),
-                                gc.getInfoTypeForString("UNIT_KRUMMSAEBEL"),
-                                gc.getInfoTypeForString("UNIT_FALCATA_IBERIA"),
-                                gc.getInfoTypeForString("UNIT_CELTIC_GALLIC_WARRIOR"),
-                                gc.getInfoTypeForString("UNIT_LIGHT_CHARIOT"),
-                                gc.getInfoTypeForString("UNIT_CHARIOT_ARCHER"),
-                                gc.getInfoTypeForString("UNIT_MERC_HORSEMAN"),
-                                gc.getInfoTypeForString("UNIT_HORSEMAN"),
-                                gc.getInfoTypeForString("UNIT_HORSE_ARCHER"),
-                                gc.getInfoTypeForString("UNIT_ARABIA_CAMELARCHER"),
-                                gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-                                gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-                                gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-                                gc.getInfoTypeForString("UNIT_BURNING_PIGS")
-                            ]
-                            if pUnit.getUnitType() not in iUnitArray:
+                        if pUnit.getUnitCombatType() not in L.LCombatNoRuestung:
+                            # Removed 'is not None' check getUnitCombatType() never returns None
+                            if pUnit.getUnitType() not in L.LUnitNoRuestung:
                                 iBuilding = gc.getInfoTypeForString("BUILDING_FORGE")
                                 bonus1 = gc.getInfoTypeForString("BONUS_OREICHALKOS")
                                 bonus2 = gc.getInfoTypeForString("BONUS_MESSING")
@@ -2294,11 +2237,7 @@ class CvGameUtils:
                         lTemp.append(sTemp)
                     if lTemp:
                         sText += "\n"
-                        sText += ', '.join(map(str, lTemp))
-                        # for i in range(len(lTemp)):
-                            # sText += lTemp[i]
-                            # if i < len(lTemp) - 1:
-                                # sText += ", "
+                        sText += ', '.join([str(lT) for lT in lTemp])
 
                     iMaintenance = pCity.getMaintenanceTimes100()
                     if iMaintenance != 0:
@@ -2317,19 +2256,13 @@ class CvGameUtils:
                     if lBuildings:
                         lBuildings.sort()
                         sText += "\n" + CyTranslator().getText("[COLOR_BUILDING_TEXT]", ()) + CyTranslator().getText("TXT_KEY_PEDIA_CATEGORY_BUILDING", ()) + ": </color>"
-                        sText += ', '.join(map(str, lBuildings))
-                        # for i in range(len(lBuildings)):
-                            # sText += lBuildings[i]
-                            # if i < len(lBuildings) - 1:
-                                # sText += ", "
+                        sText += ', '.join([str(lB) for lB in lBuildings])
+
                     if lWonders:
                         lWonders.sort()
                         sText += "\n" + CyTranslator().getText("[COLOR_SELECTED_TEXT]", ()) + CyTranslator().getText("TXT_KEY_CONCEPT_WONDERS", ()) + ": </color>"
-                        sText += ', '.join(map(str, lWonders))
-                        # for i in range(len(lWonders)):
-                            # sText += lWonders[i]
-                            # if i < len(lWonders) - 1:
-                                # sText += ", "
+                        sText += ', '.join([str(lW) for lW in lWonders])
+
                     sText += "</font>"
                     return sText
             ## Religion Widget Text##
@@ -2958,7 +2891,7 @@ class CvGameUtils:
                             bWar = True
 
                 if not bWar:
-                    if pUnit.getUnitType() not in self.lUnitsNoAIReservists:
+                    if pUnit.getUnitType() not in L.LUnitsNoAIReservists:
 
                         pSeekCity = None
                         iSeek = 0

@@ -138,7 +138,7 @@ def removePagans(pCity):
         if pCity.isHasReligion(i) and i != iReligion:
             lReli.append(i)
 
-            # Kult oder Religion entfernen
+    # Kult oder Religion entfernen
     text = ""
     bUndoCorp = False
     if lCorp and lReli:
@@ -154,7 +154,11 @@ def removePagans(pCity):
                 thisBuilding = gc.getBuildingInfo(i)
                 if thisBuilding.getPrereqCorporation() == lCorp[iRand]:
                     # Akademien (Corp7)
-                    if thisBuilding.getType() != gc.getInfoTypeForString("BUILDING_ACADEMY_2") and thisBuilding.getType() != gc.getInfoTypeForString("BUILDING_ACADEMY_3") and thisBuilding.getType() != gc.getInfoTypeForString("BUILDING_ACADEMY_4"):
+                    if thisBuilding.getType() not in [
+                        gc.getInfoTypeForString("BUILDING_ACADEMY_2"),
+                        gc.getInfoTypeForString("BUILDING_ACADEMY_3"),
+                        gc.getInfoTypeForString("BUILDING_ACADEMY_4")
+                    ]:
                         pCity.setNumRealBuilding(i,0)
         pCity.setHasCorporation(lCorp[iRand], 0, 0, 0)
         text = gc.getCorporationInfo( lCorp[iRand] ).getText()

@@ -5,6 +5,8 @@ from CvPythonExtensions import *
 # import CvEventInterface
 import CvUtil
 import PAE_Barbaren
+import PAE_Lists as L
+
 import PyHelpers
 ### Defines
 gc = CyGlobalContext()
@@ -392,17 +394,6 @@ def doSeewind():
     feat_ice = gc.getInfoTypeForString("FEATURE_ICE")
 
     iNumDirection = 8
-    lFeatWind = [
-        gc.getInfoTypeForString("FEATURE_WIND_N"),
-        gc.getInfoTypeForString("FEATURE_WIND_NE"),
-        gc.getInfoTypeForString("FEATURE_WIND_E"),
-        gc.getInfoTypeForString("FEATURE_WIND_SE"),
-        gc.getInfoTypeForString("FEATURE_WIND_S"),
-        gc.getInfoTypeForString("FEATURE_WIND_SW"),
-        gc.getInfoTypeForString("FEATURE_WIND_W"),
-        gc.getInfoTypeForString("FEATURE_WIND_NW"),
-    ]
-
     iWindplots = 6 # amount of wind arrows (plots) per wind
     OceanPlots = []
     iDarkIce = gc.getInfoTypeForString("FEATURE_DARK_ICE")
@@ -439,7 +430,7 @@ def doSeewind():
                     if loopPlot.getFeatureType() == iDarkIce:
                         continue
                     if loopPlot.getFeatureType() != feat_ice and loopPlot.getTerrainType() == terr_ocean:
-                        loopPlot.setFeatureType(lFeatWind[iDirection], 0)
+                        loopPlot.setFeatureType(L.LSeewind[iDirection], 0)
                         iDirection = (iDirection+CvUtil.myRandom(3, "doSeewind3")-1)%iNumDirection
                         loopPlot = plotDirection(loopPlot.getX(), loopPlot.getY(), DirectionTypes(iDirection))
 
