@@ -12,21 +12,22 @@
 
 # Wrap definition of values into init() because during loading stage
 # getInfoTypeForString() returns always -1
+from CvPythonExtensions import CyGlobalContext
+gc = CyGlobalContext()
+
 def init():
-    from CvPythonExtensions import CyGlobalContext
-    gc = CyGlobalContext()
 
     if gc.getInfoTypeForString("COLOR_EMPTY") == -1:
         raise Exception("Called init() to early. getInfoTypeForString() returns -1.")
 
     # Renegade Ausnahmen
     LUnitWarAnimals = [
-            gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
-            gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
-            gc.getInfoTypeForString("UNIT_BURNING_PIGS"),
+        gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
+        gc.getInfoTypeForString("UNIT_KAMPFHUND"),
+        gc.getInfoTypeForString("UNIT_KAMPFHUND_TIBET"),
+        gc.getInfoTypeForString("UNIT_KAMPFHUND_MACEDON"),
+        gc.getInfoTypeForString("UNIT_KAMPFHUND_BRITEN"),
+        gc.getInfoTypeForString("UNIT_BURNING_PIGS"),
     ]
     LUnitDomesticated = [
         gc.getInfoTypeForString("UNIT_HORSE"),
@@ -129,14 +130,10 @@ def init():
     ]
 
     DCaptureFromPirate = {
-        gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"):
-        gc.getInfoTypeForString("UNIT_KONTERE"),
-        gc.getInfoTypeForString("UNIT_PIRAT_BIREME"):
-        gc.getInfoTypeForString("UNIT_BIREME"),
-        gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"):
-        gc.getInfoTypeForString("UNIT_TRIREME"),
-        gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"):
-        gc.getInfoTypeForString("UNIT_LIBURNE"),
+        gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"): gc.getInfoTypeForString("UNIT_KONTERE"),
+        gc.getInfoTypeForString("UNIT_PIRAT_BIREME"): gc.getInfoTypeForString("UNIT_BIREME"),
+        gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"): gc.getInfoTypeForString("UNIT_TRIREME"),
+        gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE"): gc.getInfoTypeForString("UNIT_LIBURNE"),
     }
     DCaptureByPirate = dict((v, k) for k, v in DCaptureFromPirate.items())
 
@@ -228,7 +225,7 @@ def init():
         gc.getInfoTypeForString("UNIT_PRAETORIAN2"),
         gc.getInfoTypeForString("UNIT_PRAETORIAN3"),
     ]
-    LTestsudoUnits = [
+    LTestudoUnits = [
         gc.getInfoTypeForString("UNIT_LEGION"),
         gc.getInfoTypeForString("UNIT_LEGION2"),
         gc.getInfoTypeForString("UNIT_LEGION_OPTIO"),
@@ -372,13 +369,13 @@ def init():
 
     LSeewind = [
         gc.getInfoTypeForString("FEATURE_WIND_N"),
-        gc.getInfoTypeForString("FEATURE_WIND_E"),
-        gc.getInfoTypeForString("FEATURE_WIND_S"),
-        gc.getInfoTypeForString("FEATURE_WIND_W"),
         gc.getInfoTypeForString("FEATURE_WIND_NE"),
-        gc.getInfoTypeForString("FEATURE_WIND_NW"),
+        gc.getInfoTypeForString("FEATURE_WIND_E"),
         gc.getInfoTypeForString("FEATURE_WIND_SE"),
+        gc.getInfoTypeForString("FEATURE_WIND_S"),
         gc.getInfoTypeForString("FEATURE_WIND_SW"),
+        gc.getInfoTypeForString("FEATURE_WIND_W"),
+        gc.getInfoTypeForString("FEATURE_WIND_NW"),
     ]
 
     # Für UNITAI-Vergabe in onBuild
@@ -459,24 +456,24 @@ def init():
         gc.getInfoTypeForString("BUILD_REMOVE_FOREST"),
         gc.getInfoTypeForString("BUILD_REMOVE_FOREST_BURNT"),
     ]
+    LCityGarrison = [
+        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"),
+        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2"),
+        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3"),
+        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4"),
+        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5")
+    ]
     LVeteranForbiddenPromos1 = [
         gc.getInfoTypeForString("PROMOTION_SKIRMISH1"),
         gc.getInfoTypeForString("PROMOTION_SKIRMISH2"),
         gc.getInfoTypeForString("PROMOTION_SKIRMISH3"),
     ]
-    LVeteranForbiddenPromos2 = [
+    LCityRaider = [
         gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"),
         gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2"),
         gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3"),
         gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4"),
         gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5"),
-    ]
-    LVeteranForbiddenPromos3 = [
-        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"),
-        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2"),
-        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3"),
-        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4"),
-        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5"),
     ]
     LVeteranForbiddenPromos4 = [
         gc.getInfoTypeForString("PROMOTION_RANG_ROM_1"),
@@ -517,12 +514,9 @@ def init():
     DHorseDownMap = {
         gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"): {
             None: gc.getInfoTypeForString("UNIT_AUXILIAR"),
-            gc.getInfoTypeForString("CIVILIZATION_ROME"):
-            gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
-            gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
-            gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
-            gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"):
-            gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"),
+            gc.getInfoTypeForString("CIVILIZATION_ROME"): gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
+            gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"): gc.getInfoTypeForString("UNIT_AUXILIAR_ROME"),
+            gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"): gc.getInfoTypeForString("UNIT_AUXILIAR_MACEDON"),
         },
         gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"): {
             None: gc.getInfoTypeForString("UNIT_FOEDERATI"),
@@ -535,25 +529,18 @@ def init():
         },
         gc.getInfoTypeForString('UNIT_MOUNTED_SCOUT'): {
             None: gc.getInfoTypeForString("UNIT_SCOUT"),
-            gc.getInfoTypeForString("CIVILIZATION_ATHENS"):
-            gc.getInfoTypeForString("UNIT_SCOUT_GREEK"),
-            gc.getInfoTypeForString("CIVILIZATION_GREECE"):
-            gc.getInfoTypeForString("UNIT_SCOUT_GREEK"),
+            gc.getInfoTypeForString("CIVILIZATION_ATHENS"): gc.getInfoTypeForString("UNIT_SCOUT_GREEK"),
+            gc.getInfoTypeForString("CIVILIZATION_GREECE"): gc.getInfoTypeForString("UNIT_SCOUT_GREEK"),
         },
     }
 
     DHorseUpMap = {
         "auxiliar": gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"),
-        gc.getInfoTypeForString("UNIT_FOEDERATI"):
-        gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"),
-        # gc.getInfoTypeForString("UNIT_PRAETORIAN"):
-        # gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"),
-        gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"):
-        gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
-        gc.getInfoTypeForString("UNIT_SCOUT"):
-        gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"),
-        gc.getInfoTypeForString("UNIT_SCOUT_GREEK"):
-        gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"),
+        gc.getInfoTypeForString("UNIT_FOEDERATI"): gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"),
+        # gc.getInfoTypeForString("UNIT_PRAETORIAN"): gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"),
+        gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"): gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"),
+        gc.getInfoTypeForString("UNIT_SCOUT"): gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"),
+        gc.getInfoTypeForString("UNIT_SCOUT_GREEK"): gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"),
     }
 
     LGGStandard = [
@@ -766,7 +753,6 @@ def init():
         ["Balamir", "Dengizich", "Ellac",
         "Oktar", "Rua", "Uldin",
         "Kursisch""Hormidac", "Ernak", "Charaton"],
-
         gc.getInfoTypeForString("CIVILIZATION_INDIA"):
         ["Pushyamitra Shunga", "Kujula Kadphises", "Chandragupta II",
         "Samudragupta", "Kharavela", "Skandagupta",
@@ -801,7 +787,7 @@ def init():
     # ]
 
     # Used in onReligionFounded
-    LRelisRemapCaptial = [
+    LRelisRemapCapital = [
         gc.getInfoTypeForString("RELIGION_CELTIC"),
         gc.getInfoTypeForString("RELIGION_NORDIC"),
         gc.getInfoTypeForString("RELIGION_PHOEN"),

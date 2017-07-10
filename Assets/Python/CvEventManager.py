@@ -4043,7 +4043,7 @@ class CvEventManager:
         iCityId = gc.getGame().getHolyCity(iReligion).getID()
 
         # PAE - capital gets Holy City for certain religions
-        if iReligion in L.LRelisRemapCaptial:
+        if iReligion in L.LRelisRemapCapital:
             pCapitalCity = gc.getPlayer(iFounder).getCapitalCity()
             if pCapitalCity:
                 if iCityId != pCapitalCity.getID():

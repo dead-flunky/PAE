@@ -578,10 +578,10 @@ def doUpgradeVeteran(pUnit, iNewUnit, bChangeCombatPromo):
             if pUnit.getUnitCombatType() != gc.getInfoTypeForString("UNITCOMBAT_ARCHER"):
                 forbiddenPromos.extend(L.LVeteranForbiddenPromos1)
             else:
-                forbiddenPromos.extend(L.LVeteranForbiddenPromos2)
+                forbiddenPromos.extend(L.LCityRaider)
 
             if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-                forbiddenPromos.extend(L.LVeteranForbiddenPromos3)
+                forbiddenPromos.extend(L.LCityGarrison)
             elif iNewUnit == gc.getInfoTypeForString("UNIT_PRAETORIAN"):
                 forbiddenPromos.extend(L.LVeteranForbiddenPromos4)
 
@@ -763,7 +763,7 @@ def canDoFormation(pUnit, iFormation):
             # Testudo
             elif iFormation == gc.getInfoTypeForString("PROMOTION_FORM_TESTUDO"):
                 if pTeam.isHasTech(gc.getInfoTypeForString("TECH_TESTUDO")):
-                    if pUnit.getUnitType() in L.LTestsudoUnits:
+                    if pUnit.getUnitType() in L.LTestudoUnits:
                         bCanDo = True
         # -- Drill end
 
@@ -1092,14 +1092,7 @@ def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack):
             # Defender
             else:
                 if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5")):
-                    lCityGarrison = [
-                        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON3"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON4"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5")
-                    ]
-                    for iPromo in lCityGarrison:
+                    for iPromo in L.LCityGarrison:
                         if not pUnitTarget.isHasPromotion(iPromo):
                             iNewPromo = iPromo
                             break

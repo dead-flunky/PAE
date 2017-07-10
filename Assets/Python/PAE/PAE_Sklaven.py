@@ -5,6 +5,7 @@
 from CvPythonExtensions import *
 # import CvEventInterface
 import CvUtil
+import PAE_Lists as L
 
 ### Defines
 gc = CyGlobalContext()
@@ -178,18 +179,8 @@ def doSlave2Palace(pCity, pUnit):
 
 # Slave -> Temple
 def doSlave2Temple(pCity, pUnit):
-    lAllTemple = [
-        gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_ROME_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-    ]
     TempleArray = []
-    for iTemple in lAllTemple:
+    for iTemple in L.LTemples:
         if pCity.isHasBuilding(iTemple):
             TempleArray.append(iTemple)
 
@@ -308,23 +299,13 @@ def dyingBuildingSlave(pCity):
     # Tempel
     # chance of losing a slave (3%)
     TempleArray = []
-    lAllTemple = [
-        gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_ROME_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-    ]
     # Trait Creative: 3 Kultur pro Sklave / 3 culture per slave
     if gc.getPlayer(pCity.getOwner()).hasTrait(gc.getInfoTypeForString("TRAIT_CREATIVE")):
         iCultureSlave = iTempleCultureKRE
     else:
         iCultureSlave = iTempleCulture
 
-    for iTemple in lAllTemple:
+    for iTemple in L.LTemples:
         if pCity.isHasBuilding(iTemple):
             eBuildingClass = gc.getBuildingInfo(iTemple).getBuildingClassType()
             if pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE) >= iCultureSlave:
@@ -451,17 +432,7 @@ def doReleaseSlaves(pPlayer, pCity, iData5):
 # Entferne Sklaven aus der Stadt / unset city slaves
 def doEnslaveCity(pCity):
     # temple slaves => 0
-    TempleArray = [
-        gc.getInfoTypeForString("BUILDING_ZORO_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_PHOEN_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_SUMER_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_ROME_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_GREEK_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_CELTIC_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"),
-        gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE")
-    ]
-    for iTemple in TempleArray:
+    for iTemple in L.LTemples:
         if pCity.isHasBuilding(iTemple):
             eBuildingClass = gc.getBuildingInfo(iTemple).getBuildingClassType()
             iCulture = pCity.getBuildingCommerceChange(eBuildingClass, CommerceTypes.COMMERCE_CULTURE)
