@@ -3005,7 +3005,7 @@ class CvMainInterface:
                                             else:
                                                 iFormation = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
                                             if not pUnit.isHasPromotion(iFormation):
-                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_fortress.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_fortress.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
 
@@ -3024,7 +3024,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_keil_marine.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_keil_marine.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
                                                 # Zange
@@ -3035,7 +3035,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_zange.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_zange.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3051,7 +3051,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_parther.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_parther.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
                                             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KANTAKREIS")):
@@ -3063,7 +3063,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_kantakreis.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_kantakreis.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3078,7 +3078,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_keil.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_keil.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3092,7 +3092,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_fourage.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_fourage.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3108,7 +3108,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_wall.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_wall.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3125,7 +3125,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_kohorte.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_kohorte.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3138,7 +3138,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_treffen.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_treffen.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3151,7 +3151,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_manipel.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_manipel.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3176,7 +3176,7 @@ class CvMainInterface:
                                                             iCount = iCount + 1
                                                             bFormationUndo = True
                                                         else:
-                                                            screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_phalanx_s.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                            screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_phalanx_s.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                             screen.show("BottomButtonContainer")
                                                             iCount = iCount + 1
 
@@ -3188,7 +3188,7 @@ class CvMainInterface:
                                                             iCount = iCount + 1
                                                             bFormationUndo = True
                                                         else:
-                                                            screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_phalanx_m.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                            screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_phalanx_m.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                             screen.show("BottomButtonContainer")
                                                             iCount = iCount + 1
 
@@ -3201,7 +3201,7 @@ class CvMainInterface:
                                                             iCount = iCount + 1
                                                             bFormationUndo = True
                                                         else:
-                                                            screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_phalanx.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                            screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_phalanx.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                             screen.show("BottomButtonContainer")
                                                             iCount = iCount + 1
 
@@ -3214,7 +3214,7 @@ class CvMainInterface:
                                                         iCount = iCount + 1
                                                         bFormationUndo = True
                                                     else:
-                                                        screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_closed.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                        screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_closed.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                         screen.show("BottomButtonContainer")
                                                         iCount = iCount + 1
                                         # Drill end ------------
@@ -3229,7 +3229,7 @@ class CvMainInterface:
                                                 iCount = iCount + 1
                                                 bFormationUndo = True
                                             else:
-                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_keil.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_keil.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
 
@@ -3242,7 +3242,7 @@ class CvMainInterface:
                                                 iCount = iCount + 1
                                                 bFormationUndo = True
                                             else:
-                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_zange_a.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_form_zange_a.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
 
@@ -3256,7 +3256,7 @@ class CvMainInterface:
                                                     iCount = iCount + 1
                                                     bFormationUndo = True
                                                 else:
-                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_flanke.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                    screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_flanke.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
 
@@ -3273,7 +3273,7 @@ class CvMainInterface:
                                                         iCount = iCount + 1
                                                         bFormationUndo = True
                                                     else:
-                                                        screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_testudo.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                        screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_testudo.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                         screen.show("BottomButtonContainer")
                                                         iCount = iCount + 1
 
@@ -3286,7 +3286,7 @@ class CvMainInterface:
                                                 iCount = iCount + 1
                                                 bFormationUndo = True
                                             else:
-                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_gasse.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_gasse.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
 
@@ -3302,7 +3302,7 @@ class CvMainInterface:
                                                 iCount = iCount + 1
                                                 bFormationUndo = True
                                             else:
-                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_gasse.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_gasse.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
 
@@ -3328,7 +3328,7 @@ class CvMainInterface:
                                                 iCount = iCount + 1
                                                 bFormationUndo = True
                                             else:
-                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_flight.dds", 0, WidgetTypes.WIDGET_HELP_PROMOTION, iFormation, 718, True)
+                                                screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Formations/button_formation_flight.dds", 0, WidgetTypes.WIDGET_GENERAL, iFormation, 718, True)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
 
