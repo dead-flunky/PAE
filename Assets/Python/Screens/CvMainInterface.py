@@ -1903,32 +1903,10 @@ class CvMainInterface:
 
                     g_pSelectedUnit = pHeadSelectedUnit
                     iCount = 0
-
                     # Limes
-                    lBuildInfos = [
-                        gc.getInfoTypeForString("BUILD_LIMES1"),
-                        gc.getInfoTypeForString("BUILD_LIMES2"),
-                        gc.getInfoTypeForString("BUILD_LIMES3"),
-                        gc.getInfoTypeForString("BUILD_LIMES4"),
-                        gc.getInfoTypeForString("BUILD_LIMES5"),
-                        gc.getInfoTypeForString("BUILD_LIMES6"),
-                        gc.getInfoTypeForString("BUILD_LIMES7"),
-                        gc.getInfoTypeForString("BUILD_LIMES8"),
-                        gc.getInfoTypeForString("BUILD_LIMES9"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_1"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_2"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_3"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_4"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_5"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_6"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_7"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_8"),
-                        gc.getInfoTypeForString("BUILD_LIMES2_9")
-                    ]
-
                     actions = CyInterface().getActionsToShow()
                     for i in actions:
-                        if not (gc.getActionInfo(i).getMissionType() == MissionTypes.MISSION_BUILD and gc.getActionInfo(i).getMissionData() in lBuildInfos):
+                        if not (gc.getActionInfo(i).getMissionType() == MissionTypes.MISSION_BUILD and gc.getActionInfo(i).getMissionData() in L.LLimes):
                             screen.appendMultiListButton("BottomButtonContainer", gc.getActionInfo(i).getButton(), 0, WidgetTypes.WIDGET_ACTION, i, -1, False)
                             screen.show("BottomButtonContainer")
 
@@ -1966,14 +1944,13 @@ class CvMainInterface:
 
                     if pUnitOwner.isTurnActive():
                         bCapital = False
+                        bCity = False
                         if g_pSelectedUnit.plot().isCity():
                             bCity = True
                             pCity = g_pSelectedUnit.plot().getPlotCity()
                             if pCity.getOwner() == iUnitOwner:
                                 if pCity.isCapital() or pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_PROVINZPALAST")):
                                     bCapital = True
-                        else:
-                            bCity = False
 
                         # ----------
                         # Missionar in eine eigene heidnische Stadt schicken
@@ -1993,19 +1970,11 @@ class CvMainInterface:
                         # ----------
                         # Inquisitor
                         if iUnitType == gc.getInfoTypeForString("UNIT_INQUISITOR") and bCity:
-                            pCityPlayer = gc.getPlayer(pCity.getOwner())
-                            if pCity.getOwner() == iUnitOwner or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(iUnitOwner).getTeam()):
-                                iStateReligion = gc.getPlayer(iUnitOwner).getStateReligion()
-                                if iStateReligion != -1:
-                                    if pCity.isHasReligion(iStateReligion):
-                                        for iReligion in range(gc.getNumReligionInfos()):
-                                            if pCity.isHasReligion(iReligion):
-                                                if pCity.isHolyCityByType(iReligion) == 0:
-                                                    if iReligion != iStateReligion:
-                                                        screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_GODS_PERSICUTION").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 665, 665, False)
-                                                        screen.show("BottomButtonContainer")
-                                                        iCount = iCount + 1
-                                                        return
+                            if PAE_Unit.InquisitionPossible(pCity, iUnitOwner):
+                                screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_GODS_PERSICUTION").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 665, 665, False)
+                                screen.show("BottomButtonContainer")
+                                iCount = iCount + 1
+                                return
 
                         # --------------------
                         # Elefant / Kamel
@@ -2013,19 +1982,19 @@ class CvMainInterface:
                             # in city
                             if bCity:
                                 if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_ELEPHANT_STABLE")):
-                                    pCityPlayer = gc.getPlayer(pCity.getOwner())
-                                    if pCity.getOwner() == iUnitOwner or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(iUnitOwner).getTeam()):
+                                    if pCity.getOwner() == iUnitOwner or gc.getTeam(pCity.getTeam()).isVassal(gc.getPlayer(iUnitOwner).getTeam()):
                                         # Check plots (Klima / climate)
                                         bOK = False
-                                        for i in range(3):
-                                            for j in range(3):
-                                                loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
-                                                if loopPlot is not None and not loopPlot.isNone():
-                                                    if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT") or loopPlot.getFeatureType() == gc.getInfoTypeForString("FEATURE_JUNGLE"):
-                                                        bOK = True
-                                                        break
-                                            if bOK:
-                                                break
+                                        iDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
+                                        iJungle = gc.getInfoTypeForString("FEATURE_JUNGLE")
+                                        iX = pCity.getX()
+                                        iY = pCity.getY()
+                                        for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
+                                            loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
+                                            if loopPlot is not None and not loopPlot.isNone():
+                                                if loopPlot.getTerrainType() == iDesert or loopPlot.getFeatureType() == iJungle:
+                                                    bOK = True
+                                                    break
 
                                         if bOK:
                                             screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Builds/button_elefantenstall.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, 1, False)
@@ -2047,19 +2016,17 @@ class CvMainInterface:
                             # in city
                             if bCity:
                                 if not pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
-                                    pCityPlayer = gc.getPlayer(pCity.getOwner())
-                                    if pCity.getOwner() == iUnitOwner or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(iUnitOwner).getTeam()):
+                                    if pCity.getOwner() == iUnitOwner or gc.getTeam(pCity.getTeam()).isVassal(gc.getPlayer(iUnitOwner).getTeam()):
                                         # Check plots (Klima / climate)
                                         bOK = False
-                                        for i in range(3):
-                                            for j in range(3):
-                                                loopPlot = gc.getMap().plot(pCity.getX() + i - 1, pCity.getY() + j - 1)
-                                                if loopPlot is not None and not loopPlot.isNone():
-                                                    if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"):
-                                                        bOK = True
-                                                        break
-                                            if bOK:
-                                                break
+                                        iX = pCity.getX()
+                                        iY = pCity.getY()
+                                        for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
+                                            loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
+                                            if loopPlot is not None and not loopPlot.isNone():
+                                                if loopPlot.getTerrainType() == gc.getInfoTypeForString("TERRAIN_DESERT"):
+                                                    bOK = True
+                                                    break
 
                                         if bOK:
                                             screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Buildings/button_camel_stable.dds", 0, WidgetTypes.WIDGET_GENERAL, 721, 4, False)
@@ -2091,10 +2058,10 @@ class CvMainInterface:
                                     screen.show("BottomButtonContainer")
                                     iCount = iCount + 1
 
-            # --------------------
+                        # --------------------
 
-            # Veteran -> Eliteunit (netMessage 705) - Belobigung
-            # Auch in GameUtils fuer die KI aendern !
+                        # Veteran -> Eliteunit (netMessage 705) - Belobigung
+                        # Auch in GameUtils fuer die KI aendern !
                         if pUnit.canMove():
                             # Kampferfahren (Streitwagen)
                             if iUnitType == gc.getInfoTypeForString("UNIT_CHARIOT"):
@@ -2209,10 +2176,7 @@ class CvMainInterface:
                                             iCount = iCount + 1
 
                                 # GREEKS
-                                elif (pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE")
-                                      or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS")
-                                      or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI")
-                                      or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA")):
+                                elif pUnit.getCivilizationType() in L.LGreeks:
                                     # Hoplit -> Elite Hoplit
                                     if iUnitType == gc.getInfoTypeForString("UNIT_HOPLIT"):
                                         screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Units/button_phalanx.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_ELITE_HOPLIT"), False)
@@ -2286,7 +2250,6 @@ class CvMainInterface:
 
                                 # Schildtraeger
                                 if iUnitType == gc.getInfoTypeForString("UNIT_SCHILDTRAEGER"):
-
                                     if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
                                         screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_gaufuerst.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_GAUFUERST"), False)
                                         screen.show("BottomButtonContainer")
@@ -2298,10 +2261,7 @@ class CvMainInterface:
                                         iCount = iCount + 1
 
                                     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KETTENPANZER")):
-                                        if pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_CELT") \
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GALLIEN") \
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BRITEN") \
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GERMANEN"):
+                                        if pUnit.getCivilizationType() in L.LNorthern:
                                             screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_stammesfuerst.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_STAMMESFUERST"), False)
                                             screen.show("BottomButtonContainer")
                                             iCount = iCount + 1
@@ -2315,11 +2275,7 @@ class CvMainInterface:
                                             iCount = iCount + 1
 
                                     if pTeam.isHasTech(gc.getInfoTypeForString("TECH_EISENWAFFEN")):
-                                        if (pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_PHON")
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ASSYRIA")
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_BABYLON")
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ISRAEL")
-                                                or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SUMERIA")):
+                                        if pUnit.getCivilizationType() in L.LNearEast:
                                             screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_syriengarde.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_SYRIAN_GARDE"), False)
                                             screen.show("BottomButtonContainer")
                                             iCount = iCount + 1
@@ -2341,10 +2297,7 @@ class CvMainInterface:
                                             screen.show("BottomButtonContainer")
                                             iCount = iCount + 1
                                         # GREEKS
-                                        elif (pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_GREECE")
-                                              or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_ATHENS")
-                                              or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_THEBAI")
-                                              or pUnit.getCivilizationType() == gc.getInfoTypeForString("CIVILIZATION_SPARTA")):
+                                        elif pUnit.getCivilizationType() in L.LGreeks:
                                             # Spearman -> Hoplit
                                             screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Units/button_unit_hoplit_peze.dds", 0, WidgetTypes.WIDGET_GENERAL, 705, gc.getInfoTypeForString("UNIT_HOPLIT"), False)
                                             screen.show("BottomButtonContainer")
@@ -2389,8 +2342,8 @@ class CvMainInterface:
 
                         # if can move
 
-            # --------------------
-            # BEGIN Horse <-> Unit
+                        # --------------------
+                        # BEGIN Horse <-> Unit
                         if pUnit.canMove():
                             bButtonDown = False
                             bButtonUp = False
@@ -2398,49 +2351,35 @@ class CvMainInterface:
 
                             # Horse -> Unit
                             if pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"):
-                                if iUnitType == gc.getInfoTypeForString("UNIT_AUXILIAR_HORSE"):
-                                    bButtonDown = True
-                                elif iUnitType == gc.getInfoTypeForString("UNIT_HEAVY_HORSEMAN"):
-                                    bButtonDown = True
-                                # elif iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN_RIDER"):
-                                #    bButtonDown = True
-                                elif iUnitType == gc.getInfoTypeForString("UNIT_MOUNTED_SACRED_BAND_CARTHAGE"):
-                                    bButtonDown = True
-                                elif iUnitType == gc.getInfoTypeForString("UNIT_MOUNTED_SCOUT"):
+                                if iUnitType in L.DHorseDownMap:
                                     bButtonDown = True
 
                             # Unit -> Horse
-                            elif pUnit.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_RECON"):
+                            elif iUnitType in L.LUnitAuxiliar or iUnitType in L.DHorseUpMap:
+                                iTechHufeisen = gc.getInfoTypeForString("TECH_HUFEISEN")
+                                iTechKettenpanzer = gc.getInfoTypeForString("TECH_KETTENPANZER")
+                                iTechRiding = gc.getInfoTypeForString("TECH_HORSEBACK_RIDING")
+                                iTechRiding2 = gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")
                                 if iUnitType == gc.getInfoTypeForString("UNIT_SCOUT") or iUnitType == gc.getInfoTypeForString("UNIT_SCOUT_GREEK"):
-                                    if pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING")):
+                                    if pTeam.isHasTech(iTechRiding):
                                         bSearchPlot = True
-                            elif pTeam.isHasTech(gc.getInfoTypeForString("TECH_HORSEBACK_RIDING_2")):
-                                if (iUnitType in L.LUnitAuxiliar
-                                        or iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI")
-                                        or iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE")):
-                                    # or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN") \
-                                    # or iUnitType == gc.getInfoTypeForString("UNIT_PRAETORIAN2") \
-
-                                    if iUnitType in L.LUnitAuxiliar and pTeam.isHasTech(gc.getInfoTypeForString("TECH_HUFEISEN")):
+                                elif pTeam.isHasTech(iTechRiding2) and pTeam.isHasTech(iTechHufeisen):
+                                    if iUnitType in L.LUnitAuxiliar:
                                         bSearchPlot = True
                                     elif iUnitType == gc.getInfoTypeForString("UNIT_FOEDERATI"):
-                                        TechHorse3 = gc.getInfoTypeForString("TECH_HUFEISEN")
-                                        if pTeam.isHasTech(TechHorse3):
-                                            bSearchPlot = True
+                                        bSearchPlot = True
                                     elif iUnitType == gc.getInfoTypeForString("UNIT_SACRED_BAND_CARTHAGE"):
-                                        TechHorse3 = gc.getInfoTypeForString("TECH_HUFEISEN")
-                                        TechHorse4 = gc.getInfoTypeForString("TECH_KETTENPANZER")
-                                        if pTeam.isHasTech(TechHorse3) and pTeam.isHasTech(TechHorse4):
+                                        if pTeam.isHasTech(iTechKettenpanzer):
                                             bSearchPlot = True
 
-                            # Pferd suchen
-                            if bSearchPlot:
-                                pPlot = gc.getMap().plot(g_pSelectedUnit.getX(), g_pSelectedUnit.getY())
-                                UnitHorse = gc.getInfoTypeForString('UNIT_HORSE')
-                                for iUnit in range(pPlot.getNumUnits()):
-                                    if pPlot.getUnit(iUnit).getUnitType() == UnitHorse and pPlot.getUnit(iUnit).getOwner() == iUnitOwner and pPlot.getUnit(iUnit).canMove():
-                                        bButtonUp = True
-                                        break
+                                # Pferd suchen
+                                if bSearchPlot:
+                                    pPlot = g_pSelectedUnit.plot()
+                                    UnitHorse = gc.getInfoTypeForString('UNIT_HORSE')
+                                    for iUnit in range(pPlot.getNumUnits()):
+                                        if pPlot.getUnit(iUnit).getUnitType() == UnitHorse and pPlot.getUnit(iUnit).getOwner() == iUnitOwner and pPlot.getUnit(iUnit).canMove():
+                                            bButtonUp = True
+                                            break
 
                             # Horse -> Swordsman
                             if bButtonDown:
@@ -2448,14 +2387,14 @@ class CvMainInterface:
                                 screen.show("BottomButtonContainer")
                                 iCount = iCount + 1
                             # Swordsman -> Horse
-                            if bButtonUp:
+                            elif bButtonUp:
                                 screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_HORSE_UP").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 667, 667, False)
                                 screen.show("BottomButtonContainer")
                                 iCount = iCount + 1
                         # Ende Horse <-> Unit
 
-            # ------------------
-            # BEGIN Merchant trade/cultivation/collect Bonus (738-741) (Boggy)
+                        # ------------------
+                        # BEGIN Merchant trade/cultivation/collect Bonus (738-741) (Boggy)
                         if pUnit.canMove():  # and not pUnit.hasMoved():
                             pPlot = g_pSelectedUnit.plot()
                             if iUnitType in PAE_Cultivation.lCultivationUnits:
@@ -2510,9 +2449,9 @@ class CvMainInterface:
                                 screen.show("BottomButtonContainer")
                                 iCount = iCount + 1
 
-            # END Merchant -----
+                        # END Merchant -----
 
-            # --------- Einheiten in einer Stadt
+                        # --------- Einheiten in einer Stadt
                         if g_pSelectedUnit.plot().isCity():
                             pCity = g_pSelectedUnit.plot().getPlotCity()
                             # In der eigenen Stadt
@@ -2590,8 +2529,7 @@ class CvMainInterface:
                                         screen.show("BottomButtonContainer")
                                         iCount = iCount + 1
 
-                                    # Sklaven -> Schule   (Gymnasion hat bereits +5 Forschung)
-                                    # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KUNST")):
+                                    # Sklaven -> Schule (Gymnasion hat bereits +5 Forschung)
                                     iBuilding1 = gc.getInfoTypeForString('BUILDING_SCHULE')
                                     if pCity.isHasBuilding(iBuilding1):
                                         iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_RESEARCH, iBuilding1)
@@ -2600,8 +2538,7 @@ class CvMainInterface:
                                             screen.show("BottomButtonContainer")
                                             iCount = iCount + 1
 
-                                    # Sklaven -> Schule   (Gymnasion hat bereits +5 Forschung)
-                                    # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_KUNST")):
+                                    # Sklaven -> Schule (Gymnasion hat bereits +5 Forschung)
                                     iBuilding1 = gc.getInfoTypeForString('BUILDING_LIBRARY')
                                     if pCity.isHasBuilding(iBuilding1):
                                         iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_RESEARCH, iBuilding1)
@@ -2611,7 +2548,6 @@ class CvMainInterface:
                                             iCount = iCount + 1
 
                                     # Sklaven -> Bordell / Freudenhaus
-                                    # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_SYNKRETISMUS")):
                                     iBuilding1 = gc.getInfoTypeForString('BUILDING_BORDELL')
                                     if pCity.isHasBuilding(iBuilding1):
                                         iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_CULTURE, iBuilding1)
@@ -2621,7 +2557,6 @@ class CvMainInterface:
                                             iCount = iCount + 1
 
                                     # Sklaven -> Theater
-                                    # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_DRAMA")):
                                     iBuilding1 = gc.getInfoTypeForString('BUILDING_THEATER')
                                     if pCity.isHasBuilding(iBuilding1):
                                         iCulture = pCity.getBuildingCommerceByBuilding(CommerceTypes.COMMERCE_CULTURE, iBuilding1)
@@ -2631,7 +2566,6 @@ class CvMainInterface:
                                             iCount = iCount + 1
 
                                     # Sklaven -> Manufaktur
-                                    # if pTeam.isHasTech(gc.getInfoTypeForString("TECH_MANUFAKTUREN")):
                                     iBuilding1 = gc.getInfoTypeForString('BUILDING_CORP3')
                                     if pCity.isHasBuilding(iBuilding1):
                                         iProd = pCity.getBuildingYieldChange(gc.getBuildingInfo(iBuilding1).getBuildingClassType(), 0)
@@ -2703,54 +2637,15 @@ class CvMainInterface:
                                 # Ende Kauf einer Edlen Ruestung
 
                                 # Terrain Promos - Ausbildner / Trainer (in City) ID 719
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_WOODSMAN5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_FOREST")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_GUERILLA5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_HILLS")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_JUNGLE5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_JUNGLE")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_SUMPF5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_SWAMP")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_DESERT5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_DESERT")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_CITY_A")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_CITY_D")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_PILLAGE5")):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_PILLAGE")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
+                                for iPromo in L.DPromosForPromoBuilding:
+                                    if pUnit.isHasPromotion(iPromo):
+                                        iBuilding = L.DPromosForPromoBuilding[iPromo]
+                                        if not pCity.isHasBuilding(iBuilding):
+                                            kBuildingInfo = gc.getBuildingInfo(iBuilding)
+                                            if not kBuildingInfo.isWater() or pCity.isCoastal(kBuildingInfo.getMinAreaSize()): #gc.getMIN_WATER_SIZE_FOR_OCEAN()
+                                                screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
+                                                screen.show("BottomButtonContainer")
+                                                iCount = iCount + 1
                                 if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_NAVIGATION4")) and pCity.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
                                     iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_NAVI")
                                     if not pCity.isHasBuilding(iBuilding):
@@ -2781,9 +2676,6 @@ class CvMainInterface:
 
                                 # Goldkarren / Treasure / Beutegold -> in die Hauptstadt
                                 if iUnitType == gc.getInfoTypeForString("UNIT_GOLDKARREN"):
-                                    #pUnitOwner = gc.getPlayer(pUnit.getOwner())
-                                    #pCapital = pUnitOwner.getCapitalCity()
-                                    # if pCity.getID() == pCapital.getID():
                                     if pCity.isCapital():
                                         # Gold in die Schatzkammer bringen
                                         screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_GOLDKARREN").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 677, 677, False)
@@ -2797,16 +2689,12 @@ class CvMainInterface:
                                     screen.show("BottomButtonContainer")
                                     iCount = iCount + 1
 
-                                # Bonusverbreitung
+                                #
                                 if iUnitType == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD"):
                                     # Nahrung abliefern
                                     screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Actions/button_getreide2town.dds", 0, WidgetTypes.WIDGET_GENERAL, 727, 727, False)
                                     screen.show("BottomButtonContainer")
                                     iCount = iCount + 1
-                                    # Bonus verbreiten
-                                    #screen.appendMultiListButton( "BottomButtonContainer", "Art/Interface/Buttons/Actions/button_bonusverbreitung.dds", 0, WidgetTypes.WIDGET_GENERAL, 726, 726, False )
-                                    #screen.show( "BottomButtonContainer" )
-                                    #iCount = iCount + 1
 
                                 # Karten zeichnen (innerhalb eigene Stadt)
                                 # if pCity.isCapital():
@@ -2885,22 +2773,11 @@ class CvMainInterface:
                             # ---- Einheit nicht in der Stadt
                             # Trojanisches Pferd vor der Stadt
                             if iUnitType == gc.getInfoTypeForString("UNIT_TROJAN_HORSE"):
-                                iX = g_pSelectedUnit.getX()
-                                iY = g_pSelectedUnit.getY()
-                                for x in range(3):
-                                    for y in range(3):
-                                        loopPlot = gc.getMap().plot(iX + x - 1, iY + y - 1)
-                                        if loopPlot is not None and not loopPlot.isNone():
-                                            if loopPlot.isCity():
-                                                loopCity = loopPlot.getPlotCity()
-                                                if loopCity.getOwner() != iUnitOwner:
-                                                    if gc.getTeam(iUnitOwner).isAtWar(gc.getPlayer(loopCity.getOwner()).getTeam()):
-                                                        iDefense = loopCity.getDefenseModifier(0)
-                                                        if iDefense > 50:
-                                                            # Stadtverteidigung auf 0 setzen
-                                                            screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TROJAN_HORSE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 697, 697, False)
-                                                            screen.show("BottomButtonContainer")
-                                                            iCount = iCount + 1
+                                if PAE_Unit.TrojanHorsePossible(g_pSelectedUnit):
+                                    # Stadtverteidigung auf 0 setzen
+                                    screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TROJAN_HORSE").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 697, 697, False)
+                                    screen.show("BottomButtonContainer")
+                                    iCount = iCount + 1
 
                             # Pillage Road
                             if pUnit.isMilitaryHappiness():
@@ -2918,31 +2795,17 @@ class CvMainInterface:
                                 if gc.getTeam(pUnitOwner.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
 
                                     if pUnit.getCivilizationType() in L.LCivPirates:
-                                        # Pirat -> normal
-                                        UnitArray1 = [
-                                            gc.getInfoTypeForString("UNIT_PIRAT_KONTERE"),
-                                            gc.getInfoTypeForString("UNIT_PIRAT_BIREME"),
-                                            gc.getInfoTypeForString("UNIT_PIRAT_TRIREME"),
-                                            gc.getInfoTypeForString("UNIT_PIRAT_LIBURNE")
-                                        ]
-                                        # Normal -> Pirat
-                                        UnitArray2 = [
-                                            gc.getInfoTypeForString("UNIT_KONTERE"),
-                                            gc.getInfoTypeForString("UNIT_BIREME"),
-                                            gc.getInfoTypeForString("UNIT_TRIREME"),
-                                            gc.getInfoTypeForString("UNIT_LIBURNE")
-                                        ]
-                                        if pUnit.getUnitType() in UnitArray1 or pUnit.getUnitType() in UnitArray2:
+                                        if pUnit.getUnitType() in L.DCaptureFromPirate or pUnit.getUnitType() in L.DCaptureByPirate:
                                             if pUnit.hasCargo():
                                                 screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Actions/button_pirat2.dds", 0, WidgetTypes.WIDGET_GENERAL, 722, 3, False)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
                                             else:
-                                                if pUnit.getUnitType() in UnitArray1:
+                                                if pUnit.getUnitType() in L.DCaptureFromPirate:
                                                     screen.appendMultiListButton("BottomButtonContainer", gc.getCivilizationInfo(pUnitOwner.getCivilizationType()).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 722, 2, False)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1
-                                                elif pUnit.getUnitType() in UnitArray2:
+                                                elif pUnit.getUnitType() in L.DCaptureByPirate:
                                                     screen.appendMultiListButton("BottomButtonContainer", "Art/Interface/Buttons/Actions/button_pirat.dds", 0, WidgetTypes.WIDGET_GENERAL, 722, 1, False)
                                                     screen.show("BottomButtonContainer")
                                                     iCount = iCount + 1

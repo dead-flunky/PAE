@@ -2519,25 +2519,10 @@ class CvGameUtils:
             # ID 719 Promo 1 Trainer Building (Forest 1, Hills 1, City Defense 1, City Attack 1,...)
             if iData1 == 719:
                 if iData2 > -1:
-                    if iData2 == gc.getInfoTypeForString("BUILDING_PROMO_FOREST"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_WOODSMAN1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_HILLS"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_GUERILLA1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_JUNGLE"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_JUNGLE1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_SWAMP"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_SUMPF1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_DESERT"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_DESERT1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_CITY_A"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_CITY_D"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_PILLAGE"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_PILLAGE1")
-                    elif iData2 == gc.getInfoTypeForString("BUILDING_PROMO_NAVI"):
-                        iPromo = gc.getInfoTypeForString("PROMOTION_NAVIGATION1")
-                    return CyTranslator().getText("TXT_KEY_HELP_PROMO_BUILDING", (gc.getBuildingInfo(iData2).getDescription(), gc.getPromotionInfo(iPromo).getDescription()))
+                    try:
+                        return CyTranslator().getText("TXT_KEY_HELP_PROMO_BUILDING", (gc.getBuildingInfo(iData2).getDescription(), gc.getPromotionInfo(L.DBuildingPromo[iData2]).getDescription()))
+                    except KeyError:
+                        pass
 
             # Legendary Hero can become a Great General
             if iData1 == 720:
@@ -2925,24 +2910,12 @@ class CvGameUtils:
         # An necessary advantage for the AI: AI does not need to move unit into a city
         # An undone possibility: units gets some strong escort units to move to an own city
         if pPlot.getOwner() == iPlayer:
-            lPromos = {
-                gc.getInfoTypeForString("PROMOTION_WOODSMAN5"): gc.getInfoTypeForString("BUILDING_PROMO_FOREST"),
-                gc.getInfoTypeForString("PROMOTION_GUERILLA5"): gc.getInfoTypeForString("BUILDING_PROMO_HILLS"),
-                gc.getInfoTypeForString("PROMOTION_JUNGLE5"): gc.getInfoTypeForString("BUILDING_PROMO_JUNGLE"),
-                gc.getInfoTypeForString("PROMOTION_SUMPF5"): gc.getInfoTypeForString("BUILDING_PROMO_SWAMP"),
-                gc.getInfoTypeForString("PROMOTION_DESERT5"): gc.getInfoTypeForString("BUILDING_PROMO_DESERT"),
-                gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5"): gc.getInfoTypeForString("BUILDING_PROMO_CITY_A"),
-                gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5"): gc.getInfoTypeForString("BUILDING_PROMO_CITY_D"),
-                gc.getInfoTypeForString("PROMOTION_PILLAGE5"): gc.getInfoTypeForString("BUILDING_PROMO_PILLAGE"),
-                gc.getInfoTypeForString("PROMOTION_NAVIGATION4"): gc.getInfoTypeForString("BUILDING_PROMO_NAVI")
-            }
-            iBuilding = -1
-            iPromo = -1
-            for iPromo in lPromos:
+            lBuildings = []
+            for iPromo in L.DPromosForPromoBuilding:
                 if pUnit.isHasPromotion(iPromo):
-                    iBuilding = lPromos[iPromo]
-                    break
-            if iBuilding != -1:
+                    lBuildings.append(L.DPromosForPromoBuilding[iPromo])
+
+            for iBuilding in lBuildings:
                 (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(iBuilding):

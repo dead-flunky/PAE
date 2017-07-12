@@ -1304,21 +1304,6 @@ def doRetireVeteran(pUnit):
     #else:
     #  pUnit.setLevel(1)
 
-def convertToPirate(city, unit):
-    """unused due to possible OOS with to many pirates"""
-    iPlayer = city.getOwner()
-    pPlayer = gc.getPlayer(iPlayer)
-    iUnitType = unit.getUnitType()
-    if CvUtil.myRandom(4, "PiratenbauKI") == 1:
-        if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
-            try:
-                iNewUnitType = L.DCaptureByPirate[iUnitType]
-                # unit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                unit.kill(True, -1)  # RAMK_CTD
-                unit = pPlayer.initUnit(iNewUnitType, city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-            except KeyError:
-                pass
-
 
 def doMobiliseFortifiedArmy(pCity):
     """PAE V ab Patch 3: Wenn Hauptstadt angegriffen wird, sollen alle Einheiten in Festungen remobilisiert werden (Promo FORTRESS)"""
@@ -1864,8 +1849,8 @@ def doAutomatedRanking(pWinner, pLoser):
     # Animal Attack brings only 1st Ranking
     """
     if (pLoser.isMilitaryHappiness() or
-        pLoser.getUnitAIType() in [UnitAITypes.UNITAI_ANIMAL, UnitAITypes.UNITAI_EXPLORE] or
-        pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
+            pLoser.getUnitAIType() in [UnitAITypes.UNITAI_ANIMAL, UnitAITypes.UNITAI_EXPLORE] or
+            pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
         iPlayer = pWinner.getOwner()
 
         if not (pWinner.isHasPromotion(L.LPromo[2][0]) and pLoser.getOwner() == gc.getBARBARIAN_PLAYER()):
@@ -2166,80 +2151,6 @@ def doDyingGeneral(pUnit, iWinnerPlayer=-1):
                 elif pWinnerPlayer.isHuman():
                     popupInfo.addPopup(iWinnerPlayer)
 
-def doRenegadeUnit(pLoser, pWinner, pLoserPlayer, pWinnerPlayer):
-    bUnitDone = False
-    iLoserUnitType = pLoser.getUnitType()
-    # Winner gets Loser Unit
-    if CvUtil.myRandom(3, "actualRenegade") == 0:
-        # if pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL"):
-        if True:
-            # Piratenschiffe werden normale Schiffe
-            iNewUnitType = L.DCaptureFromPirate.get(iLoserUnitType, iLoserUnitType)
-        else:
-            iNewUnitType = iLoserUnitType
-
-        # Create a new unit
-        NewUnit = pWinnerPlayer.initUnit(iNewUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-        NewUnit.finishMoves()
-
-        if pLoser.getUnitCombatType() != -1:
-            NewUnit.setDamage(90, -1)
-            NewUnit.setExperience(pLoser.getExperience(), -1)
-            NewUnit.setLevel(pLoser.getLevel())
-            # Check its promotions
-            iRange = gc.getNumPromotionInfos()
-            for iPromotion in range(iRange):
-                # init all promotions of the loser unit
-                if pLoser.isHasPromotion(iPromotion):
-                    NewUnit.setHasPromotion(iPromotion, True)
-
-            iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
-            iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-            # PAE V: Loyal weg, Mercenary dazu
-            if NewUnit.isHasPromotion(iPromoLoyal):
-                NewUnit.setHasPromotion(iPromoLoyal, False)
-            if not NewUnit.isHasPromotion(iPromoMercenary):
-                NewUnit.setHasPromotion(iPromoMercenary, True)
-
-            # Remove formations
-            doUnitFormation(NewUnit, -1)
-
-            # PAE V: Trait-Promotions
-            # 1. Agg und Protect Promos weg
-            # (2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten) Stimmt nicht, sie erhalten die Promo bei initUnit() sowieso
-            if not pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
-                iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")
-                if NewUnit.isHasPromotion(iPromo):
-                    NewUnit.setHasPromotion(iPromo, False)
-
-        if pWinnerPlayer.isHuman():
-            CyInterface().addMessage(pWinnerPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_1", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-        if pLoserPlayer.isHuman():
-            CyInterface().addMessage(pLoserPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_2", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
-        bUnitDone = True
-
-        # ***TEST***
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Gewinner (" + str(pWinner.getOwner()) + ") bekommt Verlierer (" + str(pLoser.getOwner()) + ")", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
-    # Winner gets Slave
-    elif pWinner.getDomainType() == DomainTypes.DOMAIN_LAND:
-        # Ausnahmen
-        if pLoser.getUnitType() not in L.LUnitNoSlaves:
-            iTechEnslavement = gc.getInfoTypeForString("TECH_ENSLAVEMENT")
-            iThisTeam = pWinnerPlayer.getTeam()
-            team = gc.getTeam(iThisTeam)
-            if team.isHasTech(iTechEnslavement):
-                # Create a slave unit
-                NewUnit = pWinnerPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
-                NewUnit.finishMoves()
-                if pWinnerPlayer.isHuman():
-                    CyInterface().addMessage(pWinnerPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_1", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
-                if pLoserPlayer.isHuman():
-                    CyInterface().addMessage(pLoserPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_2", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
-                bUnitDone = True
-                # ***TEST***
-                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Gewinner bekommt Sklave (Zeile 2627)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-    return bUnitDone
 
 def unsettledSlaves(iPlayer):
     pPlayer = gc.getPlayer(iPlayer)
@@ -2701,6 +2612,22 @@ def huntingResult(pLoser, pWinner):
             if pWinnerPlayer.isHuman():
                 CyInterface().addMessage(iWinnerPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_ADD_FOOD", (pWinner.getName(), CityArray[iCity].getName(), iFoodAdd)), None, 2, pLoser.getButton(), ColorTypes(13), pLoser.getX(), pLoser.getY(), True, True)
 
+def convertToPirate(city, unit):
+    """unused due to possible OOS with to many pirates"""
+    iPlayer = city.getOwner()
+    pPlayer = gc.getPlayer(iPlayer)
+    iUnitType = unit.getUnitType()
+    if CvUtil.myRandom(4, "PiratenbauKI") == 1:
+        if gc.getTeam(pPlayer.getTeam()).isHasTech(gc.getInfoTypeForString("TECH_PIRACY")):
+            try:
+                iNewUnitType = L.DCaptureByPirate[iUnitType]
+                # unit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                unit.kill(True, -1)  # RAMK_CTD
+                unit = pPlayer.initUnit(iNewUnitType, city.getX(), city.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+            except KeyError:
+                pass
+
+
 def rebell(pOldUnit, pNewPlayer, pPlot):
     iUnitType = pOldUnit.getUnitType()
     pNewUnit = pNewPlayer.initUnit(iUnitType, pPlot.getX(), pPlot.getY(), UnitAITypes(pOldUnit.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
@@ -2709,6 +2636,70 @@ def rebell(pOldUnit, pNewPlayer, pPlot):
     # pOldUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     pOldUnit.kill(True, -1)  # RAMK_CTD
 
+
+def doRenegadeUnit(pLoser, pWinner, pLoserPlayer, pWinnerPlayer):
+    bUnitDone = False
+    iLoserUnitType = pLoser.getUnitType()
+    # Winner gets Loser Unit
+    if CvUtil.myRandom(3, "actualRenegade") == 0:
+        # Piratenschiffe werden normale Schiffe, alles weitere bleibt der gleiche UnitType
+        iNewUnitType = L.DCaptureFromPirate.get(iLoserUnitType, iLoserUnitType)
+
+        # Create a new unit
+        NewUnit = pWinnerPlayer.initUnit(iNewUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+        NewUnit.finishMoves()
+
+        if pLoser.getUnitCombatType() != -1:
+            initUnitFromUnit(pLoser, NewUnit)
+            NewUnit.setDamage(90, -1)
+
+            iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
+            iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
+            # PAE V: Loyal weg, Mercenary dazu
+            if NewUnit.isHasPromotion(iPromoLoyal):
+                NewUnit.setHasPromotion(iPromoLoyal, False)
+            if not NewUnit.isHasPromotion(iPromoMercenary):
+                NewUnit.setHasPromotion(iPromoMercenary, True)
+
+            # Remove formations
+            doUnitFormation(NewUnit, -1)
+
+            # PAE V: Trait-Promotions
+            # 1. Agg und Protect Promos weg
+            # (2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten) Stimmt nicht, sie erhalten die Promo bei initUnit() sowieso
+            if not pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")):
+                iPromo = gc.getInfoTypeForString("PROMOTION_TRAIT_AGGRESSIVE")
+                if NewUnit.isHasPromotion(iPromo):
+                    NewUnit.setHasPromotion(iPromo, False)
+
+        if pWinnerPlayer.isHuman():
+            CyInterface().addMessage(pWinnerPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_1", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+        if pLoserPlayer.isHuman():
+            CyInterface().addMessage(pLoserPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_2", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
+        bUnitDone = True
+
+        # ***TEST***
+        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Gewinner (" + str(pWinner.getOwner()) + ") bekommt Verlierer (" + str(pLoser.getOwner()) + ")", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+
+    # Winner gets Slave
+    elif pWinner.getDomainType() == DomainTypes.DOMAIN_LAND:
+        # Ausnahmen
+        if pLoser.getUnitType() not in L.LUnitNoSlaves:
+            iTechEnslavement = gc.getInfoTypeForString("TECH_ENSLAVEMENT")
+            iThisTeam = pWinnerPlayer.getTeam()
+            team = gc.getTeam(iThisTeam)
+            if team.isHasTech(iTechEnslavement):
+                # Create a slave unit
+                NewUnit = pWinnerPlayer.initUnit(gc.getInfoTypeForString("UNIT_SLAVE"), pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
+                NewUnit.finishMoves()
+                if pWinnerPlayer.isHuman():
+                    CyInterface().addMessage(pWinnerPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_1", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+                if pLoserPlayer.isHuman():
+                    CyInterface().addMessage(pLoserPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_SLAVERY_2", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
+                bUnitDone = True
+                # ***TEST***
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Gewinner bekommt Sklave (Zeile 2627)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+    return bUnitDone
 
 def convert(pOldUnit, iNewUnit, pPlayer):
     pNewUnit = pPlayer.initUnit(iNewUnit, pOldUnit.getX(), pOldUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pOldUnit.getFacingDirection()))
@@ -2739,3 +2730,32 @@ def initUnitFromUnit(pOldUnit, pNewUnit):
         if pOldUnit.isHasPromotion(j):
             pNewUnit.setHasPromotion(j, True)
     return pNewUnit
+
+def TrojanHorsePossible(g_pSelectedUnit):
+    iX = g_pSelectedUnit.getX()
+    iY = g_pSelectedUnit.getY()
+    iUnitOwner = g_pSelectedUnit.getOwner()
+    for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
+        loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
+        if loopPlot is not None and not loopPlot.isNone():
+            if loopPlot.isCity():
+                loopCity = loopPlot.getPlotCity()
+                iCityOwner = loopCity.getOwner()
+                if iCityOwner != iUnitOwner:
+                    if gc.getTeam(iUnitOwner).isAtWar(loopCity.getTeam()):
+                        iDefense = loopCity.getDefenseModifier(0)
+                        if iDefense > 50:
+                            return True
+    return False
+def InquisitionPossible(pCity, iUnitOwner):
+    pCityPlayer = gc.getPlayer(pCity.getOwner())
+    if pCity.getOwner() == iUnitOwner or gc.getTeam(pCityPlayer.getTeam()).isVassal(gc.getPlayer(iUnitOwner).getTeam()):
+        iStateReligion = gc.getPlayer(iUnitOwner).getStateReligion()
+        if iStateReligion != -1:
+            if pCity.isHasReligion(iStateReligion):
+                for iReligion in range(gc.getNumReligionInfos()):
+                    if pCity.isHasReligion(iReligion):
+                        if pCity.isHolyCityByType(iReligion) == 0:
+                            if iReligion != iStateReligion:
+                                return True
+    return False

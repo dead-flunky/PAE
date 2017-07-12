@@ -3068,15 +3068,14 @@ class CvEventManager:
             pass
 
         PAE_Cultivation.doBuildingCultivate(pCity, iBuildingType)
+
         # Warft (ein Huegel entsteht)
-        iBuilding = gc.getInfoTypeForString('BUILDING_WARFT')
-        if iBuildingType == iBuilding:
+        if iBuildingType == gc.getInfoTypeForString('BUILDING_WARFT'):
             pPlot = pCity.plot()
             pPlot.setPlotType(PlotTypes.PLOT_HILLS, True, True)
 
         # Wonder: Tower of Babel => increasing Sympathy for all well-known AIs by +4
-        iBuilding = gc.getInfoTypeForString('BUILDING_BABEL')
-        if iBuildingType == iBuilding:
+        if iBuildingType == gc.getInfoTypeForString('BUILDING_BABEL'):
             pPlayer = gc.getPlayer(iPlayer)
             iRange = gc.getMAX_PLAYERS()
             for iSecondPlayer in range(iRange):
@@ -3086,8 +3085,7 @@ class CvEventManager:
                     pSecondPlayer.AI_changeAttitudeExtra(iPlayer, +4)
 
         # Wonder: 10 Gebote => adds 1 prophet and 10 jewish cities
-        iBuilding = gc.getInfoTypeForString('BUILDING_10GEBOTE')
-        if iBuildingType == iBuilding:
+        if iBuildingType == gc.getInfoTypeForString('BUILDING_10GEBOTE'):
             pPlayer = gc.getPlayer(pCity.getOwner())
             iUnitType = gc.getInfoTypeForString("UNIT_PROPHET")
             NewUnit = pPlayer.initUnit(iUnitType, pCity.getX(), pCity.getY(), UnitAITypes.UNITAI_PROPHET, DirectionTypes.DIRECTION_SOUTH)

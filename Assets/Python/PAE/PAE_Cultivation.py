@@ -804,12 +804,12 @@ def wine(pCity):
         if loopPlot is not None and not loopPlot.isNone():
             # wenn bereits eine Weinressource im Umkreis der Stadt ist
             if loopPlot.getBonusType(-1) == eBonus:
-                return
+                return []
             if loopPlot.getTerrainType() in lTerrains:
                 if _canBuildingCultivate(loopPlot, iPlayer):
                     if loopPlot.getImprovementType() == -1:
                         if loopPlot.isHills():
-                            for iJ in iFirstBlock:
+                            for iJ in range(iFirstBlock):
                                 if loopPlot.getTerrainType() == lTerrains[iJ]:
                                     lPlotPrio[iJ].append(loopPlot)
                         # 3. irgendeinen passenden ohne Improvement
@@ -817,7 +817,7 @@ def wine(pCity):
                             lPlotPrio[iFirstBlock].append(loopPlot)
                     # 4. nach Improvements selektieren
                     else:
-                        for iJ in len(lImprovements):
+                        for iJ in range(iSecondBlock):
                             if loopPlot.getImprovementType() == lImprovements[iJ]:
                                 lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
                                 break
@@ -863,7 +863,7 @@ def horse(pCity):
                 if _canBuildingCultivate(loopPlot, iPlayer):
                     if loopPlot.getImprovementType() == -1:
                         if not loopPlot.isHills():
-                            for iJ in iFirstBlock:
+                            for iJ in range(iFirstBlock):
                                 if loopPlot.getTerrainType() == lTerrains[iJ]:
                                     lPlotPrio[iJ].append(loopPlot)
                         # 3. irgendeinen passenden ohne Improvement
@@ -871,7 +871,7 @@ def horse(pCity):
                             lPlotPrio[iFirstBlock].append(loopPlot)
                     # 4. nach Improvements selektieren
                     else:
-                        for iJ in iSecondBlock:
+                        for iJ in range(iSecondBlock):
                             if loopPlot.getImprovementType() == lImprovements[iJ]:
                                 lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
                                 break
@@ -899,7 +899,7 @@ def camel(pCity):
         # die beste position finden:
         if loopPlot is not None and not loopPlot.isNone():
             if loopPlot.getBonusType(-1) == eBonus:
-                return None
+                return []
             if not loopPlot.isHills():
                 if loopPlot.getTerrainType() in lTerrains:
                     if _canBuildingCultivate(loopPlot, iPlayer):
@@ -907,7 +907,7 @@ def camel(pCity):
                         if loopPlot.getImprovementType() == iImpType1:
                             lPlotPrio[0].append(loopPlot)
                         elif loopPlot.getImprovementType() == -1:
-                            for iJ in iFirstBlock:
+                            for iJ in range(iFirstBlock):
                                 if loopPlot.getTerrainType() == lTerrains[iJ]:
                                     lPlotPrio[iJ+1].append(loopPlot)
                                     break
@@ -932,6 +932,7 @@ def elephant(pCity):
         gc.getInfoTypeForString('TERRAIN_PLAINS')
     ]
     iSecondBlock = len(lTerrains)
+
     eBonus = gc.getInfoTypeForString('BONUS_IVORY')
 
     # Improvements fuer Prioritaet
@@ -952,14 +953,14 @@ def elephant(pCity):
                         if loopPlot.getImprovementType() == -1:
                             # 1. jungle, unworked
                             # 2. savanna, unworked
-                            for iJ in iFirstBlock:
+                            for iJ in range(iFirstBlock):
                                 if loopPlot.getFeatureType() == lFeatures[iJ]:
                                     lPlotPrio[iJ].append(loopPlot)
                                     break
                             else:
                                 # 4. grass, unworked
                                 # 5. plains, unworked
-                                for iJ in iSecondBlock:
+                                for iJ in range(iSecondBlock):
                                     if loopPlot.getTerrainType() == lTerrains[iJ]:
                                         lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
                                         break
@@ -1006,7 +1007,7 @@ def dog(pCity):
                     # unworked
                     if loopPlot.getImprovementType() == -1:
                         if not loopPlot.isHills():
-                            for iJ in iFirstBlock:
+                            for iJ in range(iFirstBlock):
                                 if loopPlot.getTerrainType() == lTerrains[iJ]:
                                     lPlotPrio[iJ].append(loopPlot)
                                     break
@@ -1015,7 +1016,7 @@ def dog(pCity):
                             lPlotPrio[iFirstBlock].append(loopPlot)
                     # 4. nach Improvements selektieren
                     else:
-                        for iJ in iSecondBlock:
+                        for iJ in range(iSecondBlock):
                             if loopPlot.getImprovementType() == lImprovements[iJ]:
                                 lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
                                 break
@@ -1029,7 +1030,7 @@ def doBuildingCultivate(pCity, iBuildingType):
     bRemoveFeature = False
     bText = False
     sText = "dummy"
-    lPlotPrio = None
+    lPlotPrio = []
 
     # WEIN - FEATURE ---------------------
     # Winzer / Vintager -> Winery / Weinverbreitung

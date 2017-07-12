@@ -15,6 +15,73 @@
 from CvPythonExtensions import CyGlobalContext
 gc = CyGlobalContext()
 
+LUnitWarAnimals = []
+LUnitDomesticated = []
+LUnitLootLessSeaUnits = []
+LUnitCanBeDomesticated = []
+LUnitWildAnimals = []
+DJagd = {}
+LArcherCombats = []
+LMeleeCombats = []
+LMeleeSupplyCombats = []
+LMountedSupplyCombats = []
+LLimes = []
+LImprFort = []
+# LFeatureArray = []
+LImprFortShort = []
+DCaptureFromPirate = {}
+DCaptureByPirate = {}
+LFormationNoNaval = []
+LFormationMountedArcher = []
+LCivPirates = []
+LCivPartherschuss = []
+LUnitPartherschuss = []
+LKeilUnits = []
+LSchildwallUnits = []
+LDrillUnits = []
+LTestudoUnits = []
+LFluchtCombats = []
+LFormationen = []
+LUnitsNoAIReservists = []
+LUnitAuxiliar = []
+LUnitNoSlaves = []
+LCombatNoRuestung = []
+LUnitNoRuestung = []
+LUnitSkirmish = []
+LClassSkirmish = []
+LFernangriffNoCosts = []
+DFernangriffCosts = {}
+LSeewind = []
+LBuildArchers = []
+LBuildCatapults = []
+DManufakturen = {}
+DImprSupplyBonus = {}
+DBuildingPromo = {}
+DPromosForPromoBuilding = {}
+LLatifundien = []
+LFarms = []
+LMines = []
+LTemples = []
+LPromoPillage = []
+LWoodRemovedByLumberCamp = []
+LCityGarrison = []
+LVeteranForbiddenPromos1 = []
+LCityRaider = []
+LVeteranForbiddenPromos4 = []
+LCivGermanen = []
+LPromo = []
+LPromoNegative = []
+DHorseDownMap = {}
+DHorseUpMap = {}
+LGGStandard = []
+DGGNames = {}
+# LRelis = []
+LRelisRemapCapital = []
+LGreeks = []
+LNearEast = []
+LNorthern = []
+LegioNames = []
+
 def init():
 
     if gc.getInfoTypeForString("COLOR_EMPTY") == -1:
@@ -90,11 +157,7 @@ def init():
         gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"),
         gc.getInfoTypeForString("UNITCOMBAT_ELEPHANT"),
     ]
-    LImprFort = [
-        gc.getInfoTypeForString("IMPROVEMENT_TURM2"),
-        gc.getInfoTypeForString("IMPROVEMENT_FORT"),
-        gc.getInfoTypeForString("IMPROVEMENT_FORT2"),
-        gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"),
+    LLimes = [
         gc.getInfoTypeForString("IMPROVEMENT_LIMES1"),
         gc.getInfoTypeForString("IMPROVEMENT_LIMES2"),
         gc.getInfoTypeForString("IMPROVEMENT_LIMES3"),
@@ -114,6 +177,15 @@ def init():
         gc.getInfoTypeForString("IMPROVEMENT_LIMES2_8"),
         gc.getInfoTypeForString("IMPROVEMENT_LIMES2_9"),
     ]
+
+    LImprFort = [
+        gc.getInfoTypeForString("IMPROVEMENT_TURM2"),
+        gc.getInfoTypeForString("IMPROVEMENT_FORT"),
+        gc.getInfoTypeForString("IMPROVEMENT_FORT2"),
+        gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"),
+    ]
+    LImprFort.append(LLimes)
+
     # LFeatureArray = [
     #     gc.getInfoTypeForString("FEATURE_FOREST"),
     #     gc.getInfoTypeForString("FEATURE_DICHTERWALD"),
@@ -413,6 +485,28 @@ def init():
         gc.getInfoTypeForString("IMPROVEMENT_FORT2"): 40,
     }
 
+    DBuildingPromo = {
+        gc.getInfoTypeForString("BUILDING_PROMO_FOREST"): gc.getInfoTypeForString("PROMOTION_WOODSMAN1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_HILLS"): gc.getInfoTypeForString("PROMOTION_GUERILLA1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_JUNGLE"): gc.getInfoTypeForString("PROMOTION_JUNGLE1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_SWAMP"): gc.getInfoTypeForString("PROMOTION_SUMPF1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_DESERT"): gc.getInfoTypeForString("PROMOTION_DESERT1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_CITY_A"): gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_CITY_D"): gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_PILLAGE"): gc.getInfoTypeForString("PROMOTION_PILLAGE1"),
+        gc.getInfoTypeForString("BUILDING_PROMO_NAVI"): gc.getInfoTypeForString("PROMOTION_NAVIGATION1")
+    }
+    DPromosForPromoBuilding = {
+        gc.getInfoTypeForString("PROMOTION_WOODSMAN5"): gc.getInfoTypeForString("BUILDING_PROMO_FOREST"),
+        gc.getInfoTypeForString("PROMOTION_GUERILLA5"): gc.getInfoTypeForString("BUILDING_PROMO_HILLS"),
+        gc.getInfoTypeForString("PROMOTION_JUNGLE5"): gc.getInfoTypeForString("BUILDING_PROMO_JUNGLE"),
+        gc.getInfoTypeForString("PROMOTION_SUMPF5"): gc.getInfoTypeForString("BUILDING_PROMO_SWAMP"),
+        gc.getInfoTypeForString("PROMOTION_DESERT5"): gc.getInfoTypeForString("BUILDING_PROMO_DESERT"),
+        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5"): gc.getInfoTypeForString("BUILDING_PROMO_CITY_A"),
+        gc.getInfoTypeForString("PROMOTION_CITY_GARRISON5"): gc.getInfoTypeForString("BUILDING_PROMO_CITY_D"),
+        gc.getInfoTypeForString("PROMOTION_PILLAGE5"): gc.getInfoTypeForString("BUILDING_PROMO_PILLAGE"),
+        gc.getInfoTypeForString("PROMOTION_NAVIGATION4"): gc.getInfoTypeForString("BUILDING_PROMO_NAVI")
+    }
     LLatifundien = [
         gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM1"),
         gc.getInfoTypeForString("IMPROVEMENT_LATIFUNDIUM2"),
@@ -564,217 +658,217 @@ def init():
     DGGNames = {
         gc.getInfoTypeForString("CIVILIZATION_ROME"):
         ["Agilo", "Marellus", "Flavius Theodosius",
-        "Flavius Merobaudes", "Flavius Bauto", "Flavius Saturnius",
-        "Flavius Fravitta", "Sextus Pompeius", "Publius Canidius Crassus",
-        "Marcus Claudius Marellus", "Marcus Cato Censorius", "Flavius Felix",
-        "Flavius Aetius", "Gnaeus Pompeius Strabo", "Ricimer",
-        "Flavius Ardaburius Aspar", "Publius Quinctilius Varus", "Marcus Vispanius Agrippa",
-        "Marcus Antonius Primus", "Tiberius Gracchus", "Petillius Cerialis",
-        "Gaius Suetonius Paulimius", "Titus Labienus", "Gnaeus Iulius Verus",
-        "Aulus Allienus", "Marcellinus", "Flavius Castinus",
-        "Lucius Fannius", "Aulus Didius Gallus", "Rufio",
-        "Publius Servilius Rullus", "Papias"],
+         "Flavius Merobaudes", "Flavius Bauto", "Flavius Saturnius",
+         "Flavius Fravitta", "Sextus Pompeius", "Publius Canidius Crassus",
+         "Marcus Claudius Marellus", "Marcus Cato Censorius", "Flavius Felix",
+         "Flavius Aetius", "Gnaeus Pompeius Strabo", "Ricimer",
+         "Flavius Ardaburius Aspar", "Publius Quinctilius Varus", "Marcus Vispanius Agrippa",
+         "Marcus Antonius Primus", "Tiberius Gracchus", "Petillius Cerialis",
+         "Gaius Suetonius Paulimius", "Titus Labienus", "Gnaeus Iulius Verus",
+         "Aulus Allienus", "Marcellinus", "Flavius Castinus",
+         "Lucius Fannius", "Aulus Didius Gallus", "Rufio",
+         "Publius Servilius Rullus", "Papias"],
         gc.getInfoTypeForString("CIVILIZATION_ETRUSCANS"):
         ["Lars Tolumnius", "Lucius Tarquinius Priscus", "Arrunte Tarquinius",
-        "Celio Vibenna", "Elbio Vulturreno", "Arrunte Porsena",
-        "Tito Tarquinius", "Aulus Caecina Alienus", "Mezentius",
-        "Aulus Caecina Severerus", "Sextus Tarquinius", "Velthur Spurinna"],
+         "Celio Vibenna", "Elbio Vulturreno", "Arrunte Porsena",
+         "Tito Tarquinius", "Aulus Caecina Alienus", "Mezentius",
+         "Aulus Caecina Severerus", "Sextus Tarquinius", "Velthur Spurinna"],
         gc.getInfoTypeForString("CIVILIZATION_CELT"):
         ["Ortiagon", "Adiatunnus", "Boduognatus",
-        "Indutiomarus", "Catuvolcus", "Deiotaros",
-        "Viridomarus", "Chiomara", "Voccio",
-        "Kauaros", "Komontorios"],
+         "Indutiomarus", "Catuvolcus", "Deiotaros",
+         "Viridomarus", "Chiomara", "Voccio",
+         "Kauaros", "Komontorios"],
         gc.getInfoTypeForString("CIVILIZATION_GALLIEN"):
         ["Vergobret", "Viridovix", "Acco",
-        "Amandus", "Camulogenus", "Postumus",
-        "Aelianus", "Capenus", "Tibatto",
-        "Julias Classicus", "Diviciacus"],
+         "Amandus", "Camulogenus", "Postumus",
+         "Aelianus", "Capenus", "Tibatto",
+         "Julias Classicus", "Diviciacus"],
         gc.getInfoTypeForString("CIVILIZATION_GERMANEN"):
         ["Valamir", "Athaulf ", "Eurich",
-        "Sigerich", "Walia", "Julius Civilis",
-        "Malorix", "Edekon", "Vestralp",
-        "Chnodomar", "Agenarich", "Ardarich",
-        "Verritus", "Thuidimir", "Gundioch",
-        "Priarius", "Kniva", "Radagaisus",
-        "Alaviv", "Athanarich", "Hunulf",
-        "Hunimund", "Rechiar", "Rechila",
-        "Cannabaudes", "Eriulf", "Adovacrius",
-        "Gundomad", "Hariobaud", "Hortar",
-        "Suomar", "Marcomer", "Gennobaudes",
-        "Sunno", "Merogaisus", "Segimer",
-        "Inguiomer", "Vadomar", "Ascaricus",
-        "Ursicinus", "Arbogast"],
+         "Sigerich", "Walia", "Julius Civilis",
+         "Malorix", "Edekon", "Vestralp",
+         "Chnodomar", "Agenarich", "Ardarich",
+         "Verritus", "Thuidimir", "Gundioch",
+         "Priarius", "Kniva", "Radagaisus",
+         "Alaviv", "Athanarich", "Hunulf",
+         "Hunimund", "Rechiar", "Rechila",
+         "Cannabaudes", "Eriulf", "Adovacrius",
+         "Gundomad", "Hariobaud", "Hortar",
+         "Suomar", "Marcomer", "Gennobaudes",
+         "Sunno", "Merogaisus", "Segimer",
+         "Inguiomer", "Vadomar", "Ascaricus",
+         "Ursicinus", "Arbogast"],
         gc.getInfoTypeForString("CIVILIZATION_DAKER"):
         ["Cotisone", "Oroles", "Duras",
-        "Rubobostes", "Dromichaetes", "Rholes",
-        "Zyraxes", "Dapys", "Fastida",
-        "Zenon"],
+         "Rubobostes", "Dromichaetes", "Rholes",
+         "Zyraxes", "Dapys", "Fastida",
+         "Zenon"],
         gc.getInfoTypeForString("CIVILIZATION_ILLYRIA"):
         ["Bardylis", "Glaukias", "Monunios II",
-        "Skerdilaidas", "Bato I", "Demetrios Pharos",
-        "Pleuratos I", "Sirras", "Bato II",
-        "Epulon", "Longarus", "Pinnes Pannonien",
-        "Cleitus", "Bardylis II", "Genthios"],
+         "Skerdilaidas", "Bato I", "Demetrios Pharos",
+         "Pleuratos I", "Sirras", "Bato II",
+         "Epulon", "Longarus", "Pinnes Pannonien",
+         "Cleitus", "Bardylis II", "Genthios"],
         gc.getInfoTypeForString("CIVILIZATION_GREECE"):
         ["Adeimantos", "Xenokleides", "Timonides Leukas",
-        "Pyrrhias", "Philopoimen", "Milon",
-        "Leosthenes", "Kineas", "Dorimachos",
-        "Daochos I", "Ameinias", "Herakleides",
-        "Panares", "Lasthenes", "Onomarchus",
-        "Menon Pharsalos", "Timoleon", "Hermokrates",
-        "Archytas Tarent", "Keridas"],
+         "Pyrrhias", "Philopoimen", "Milon",
+         "Leosthenes", "Kineas", "Dorimachos",
+         "Daochos I", "Ameinias", "Herakleides",
+         "Panares", "Lasthenes", "Onomarchus",
+         "Menon Pharsalos", "Timoleon", "Hermokrates",
+         "Archytas Tarent", "Keridas"],
         gc.getInfoTypeForString("CIVILIZATION_ATHENS"):
         ["Konon", "Miltiades", "Perikles",
-        "Leon", "Menon", "Aristeides",
-        "Autokles", "Chares", "Eukrates",
-        "Hippokrates", "Kallistratos", "Thrasyllos",
-        "Timomachos", "Xanthippos", "Xenophon",
-        "Demosthenes", "Anytos"],
+         "Leon", "Menon", "Aristeides",
+         "Autokles", "Chares", "Eukrates",
+         "Hippokrates", "Kallistratos", "Thrasyllos",
+         "Timomachos", "Xanthippos", "Xenophon",
+         "Demosthenes", "Anytos"],
         gc.getInfoTypeForString("CIVILIZATION_THEBAI"):
         ["Kleomenes Boeotarich", "Pagondas", "Pelopidas",
-        "Proxenos", "Coeratadas", "Gorgidas",
-        "Peisis Thespiai", "Theagenes Boeotarich", "Apollokrates",
-        "Polyxenos"],
+         "Proxenos", "Coeratadas", "Gorgidas",
+         "Peisis Thespiai", "Theagenes Boeotarich", "Apollokrates",
+         "Polyxenos"],
         gc.getInfoTypeForString("CIVILIZATION_SPARTA"):
         ["Brasidas", "Eurybiades", "Klearchos",
-        "Xanthippos", "Mindaros", "Peisander",
-        "Therimenes", "Thibron", "Agesilaos",
-        "Gylippos", "Astyochos", "Aiantides Milet",
-        "Antalkidas", "Archidamos II", "Aristodemos",
-        "Chalkideus", "Derkylidas", "Euryanax",
-        "Eurylochos", "Hippokrates Sparta", "Kallikratidas",
-        "Phoibidas", "Cheirisophos"],
+         "Xanthippos", "Mindaros", "Peisander",
+         "Therimenes", "Thibron", "Agesilaos",
+         "Gylippos", "Astyochos", "Aiantides Milet",
+         "Antalkidas", "Archidamos II", "Aristodemos",
+         "Chalkideus", "Derkylidas", "Euryanax",
+         "Eurylochos", "Hippokrates Sparta", "Kallikratidas",
+         "Phoibidas", "Cheirisophos"],
         gc.getInfoTypeForString("CIVILIZATION_MACEDONIA"):
         ["Admetos", "Attalos", "Antipatros",
-        "Antigonos", "Antigenes", "Demetrios Althaimenes",
-        "Gorgias", "Herakon", "Karanos",
-        "Kleitos", "Memnon", "Nikanor",
-        "Parmenion", "Philippos", "Pleistarchos",
-        "Meleagros", "Menidas", "Menandros",
-        "Telesphoros", "Demetrios I Poliorketes", "Adaios Alektryon",
-        "Alexandros", "Koinos", "Zopyrion"],
+         "Antigonos", "Antigenes", "Demetrios Althaimenes",
+         "Gorgias", "Herakon", "Karanos",
+         "Kleitos", "Memnon", "Nikanor",
+         "Parmenion", "Philippos", "Pleistarchos",
+         "Meleagros", "Menidas", "Menandros",
+         "Telesphoros", "Demetrios I Poliorketes", "Adaios Alektryon",
+         "Alexandros", "Koinos", "Zopyrion"],
         gc.getInfoTypeForString("CIVILIZATION_HETHIT"):
         ["Pithana", "Anitta", "Labarna",
-        "Mursili I", "Hantili I", "Arnuwanda II",
-        "Muwattalli II", "Suppiluliuma II", "Kantuzzili",
-        "Kurunta"],
+         "Mursili I", "Hantili I", "Arnuwanda II",
+         "Muwattalli II", "Suppiluliuma II", "Kantuzzili",
+         "Kurunta"],
         gc.getInfoTypeForString("CIVILIZATION_LYDIA"):
         ["Ardys II", "Sadyattes II", "Gyges",
-        "Paktyes", "Mazares", "Myrsus",
-        "Lydus", "Manes", "Agron",
-        "Meles"],
+         "Paktyes", "Mazares", "Myrsus",
+         "Lydus", "Manes", "Agron",
+         "Meles"],
         gc.getInfoTypeForString("CIVILIZATION_PHON"):
         ["Luli", "Abdi-Milkutti", "Straton I",
-        "Tabnit", "Abd-Melqart", "Azemilkos",
-        "Baal I", "Ithobaal III", "Elukaios",
-        "Baal II", "Panam-muwa II", "Esmun-ezer"],
+         "Tabnit", "Abd-Melqart", "Azemilkos",
+         "Baal I", "Ithobaal III", "Elukaios",
+         "Baal II", "Panam-muwa II", "Esmun-ezer"],
         gc.getInfoTypeForString("CIVILIZATION_CARTHAGE"):
         ["Adherbal", "Bomilkar", "Hannibal Gisko",
-        "Boodes", "Hamilkar", "Mago",
-        "Maharbal", "Hanno", "Himilkon",
-        "Gisco", "Hannibal Bomilkars", "Hasdrubal Cartagagena",
-        "Hasdrubal Barkas", "Hasdrubal Hannos", "Hasdrubal Gisco",
-        "Mago Barkas", "Malchus"],
+         "Boodes", "Hamilkar", "Mago",
+         "Maharbal", "Hanno", "Himilkon",
+         "Gisco", "Hannibal Bomilkars", "Hasdrubal Cartagagena",
+         "Hasdrubal Barkas", "Hasdrubal Hannos", "Hasdrubal Gisco",
+         "Mago Barkas", "Malchus"],
         gc.getInfoTypeForString("CIVILIZATION_ISRAEL"):
         ["Bar Kochbar", "Jonathan", "Judas Makkabaeus",
-        "Justasas", "Schimon bar Giora", "Simon Makkabaeus",
-        "Johann Gischala", "Barak", "Patricius",
-        "Abner", "Scheba", "Jaobs",
-        "Benaja", "Omri", "Jeha",
-        "Goliath"],
+         "Justasas", "Schimon bar Giora", "Simon Makkabaeus",
+         "Johann Gischala", "Barak", "Patricius",
+         "Abner", "Scheba", "Jaobs",
+         "Benaja", "Omri", "Jeha",
+         "Goliath"],
         gc.getInfoTypeForString("CIVILIZATION_SUMERIA"):
         ["Agga", "Ur-Nammu", "Gudea",
-        "Eanatum", "Amar-Sin", "Sulgi",
-        "Utuhengal", "Lugalbanda", "Enuk-duanna",
-        "Rim-Anum", "Ibbi-Sin"],
+         "Eanatum", "Amar-Sin", "Sulgi",
+         "Utuhengal", "Lugalbanda", "Enuk-duanna",
+         "Rim-Anum", "Ibbi-Sin"],
         gc.getInfoTypeForString("CIVILIZATION_BABYLON"):
         ["Sumu-abum", "Sumulael", "Sabium",
-        "Hammurapi", "Eriba-Marduk", "Burna-burias I",
-        "Neriglissar", "Abi-esuh", "Nergalscharrussar",
-        "Ulamburiasch", "Musezib-Marduk", "Bel-simanni",
-        "Agum III", "Marduk-apla-iddina II", "Nabu-nasir",
-        "Bel-ibni"],
+         "Hammurapi", "Eriba-Marduk", "Burna-burias I",
+         "Neriglissar", "Abi-esuh", "Nergalscharrussar",
+         "Ulamburiasch", "Musezib-Marduk", "Bel-simanni",
+         "Agum III", "Marduk-apla-iddina II", "Nabu-nasir",
+         "Bel-ibni"],
         gc.getInfoTypeForString("CIVILIZATION_ASSYRIA"):
         ["Dajan-Assur", "Samsi-ilu", "Sin-sumu-lisir",
-        "Assur-bela-ka-in", "Bel-lu-Ballet", "Nergal-ilaya",
-        "Nabu-da-inannil", "Inurta-ilaya", "Tustanu",
-        "Schanabuschu", "Assur-dan I", "Assur-nirari V",
-        "Eriba-Adad I", "Assur-dan II", "Sanherib",
-        "Asarhaddon"],
+         "Assur-bela-ka-in", "Bel-lu-Ballet", "Nergal-ilaya",
+         "Nabu-da-inannil", "Inurta-ilaya", "Tustanu",
+         "Schanabuschu", "Assur-dan I", "Assur-nirari V",
+         "Eriba-Adad I", "Assur-dan II", "Sanherib",
+         "Asarhaddon"],
         gc.getInfoTypeForString("CIVILIZATION_PERSIA"):
         ["Artaphernes", "Artasyras", "Shahrbaraz",
-        "Harpagos", "Mardonios", "Xenias Parrhasia",
-        "Otanes Sisamnes", "Tissaphernes", "Hydarnes",
-        "Pharnabazos II", "Tithraustes",
-        "Smerdomenes", "Tritantaichmes", "Tiribazos",
-        "Megabazos", "Megabates", "Artabozos I",
-        "Pharnabazos III", "Pherendates", "Abrokomas",
-        "Atropates", "Datis", "Satibarzanes",
-        "Oxyathres", "Struthas"],
+         "Harpagos", "Mardonios", "Xenias Parrhasia",
+         "Otanes Sisamnes", "Tissaphernes", "Hydarnes",
+         "Pharnabazos II", "Tithraustes",
+         "Smerdomenes", "Tritantaichmes", "Tiribazos",
+         "Megabazos", "Megabates", "Artabozos I",
+         "Pharnabazos III", "Pherendates", "Abrokomas",
+         "Atropates", "Datis", "Satibarzanes",
+         "Oxyathres", "Struthas"],
         gc.getInfoTypeForString("CIVILIZATION_EGYPT"):
         ["Ahmose", "Djehuti", "Ahmose Pennechbet",
-        "Antef", "Seti", "Psammetich I",
-        "Sib-e", "Ramses III", "Psammetich III",
-        "Merenptah", "Haremhab", "Amasis",
-        "Amenemhab", "Re-e", "Djefaihap",
-        "Kanefer"],
+         "Antef", "Seti", "Psammetich I",
+         "Sib-e", "Ramses III", "Psammetich III",
+         "Merenptah", "Haremhab", "Amasis",
+         "Amenemhab", "Re-e", "Djefaihap",
+         "Kanefer"],
         gc.getInfoTypeForString("CIVILIZATION_NUBIA"):
         ["Kaschta", "Pije", "Schabaka",
-        "Schabataka", "Tanotamun", "Aspelta",
-        "Pekartror", "Harsijotef", "Charamadoye",
-        "Cheperkare"],
+         "Schabataka", "Tanotamun", "Aspelta",
+         "Pekartror", "Harsijotef", "Charamadoye",
+         "Cheperkare"],
         gc.getInfoTypeForString("CIVILIZATION_IBERER"):
         ["Mandonio", "Caro Segeda", "Megara",
-        "Olindico", "Culcas", "Gauson",
-        "Hilerno", "Istolacio", "Luxinio",
-        "Punico", "Besadino", "Budar",
-        "Edecon", "Indortes"],
+         "Olindico", "Culcas", "Gauson",
+         "Hilerno", "Istolacio", "Luxinio",
+         "Punico", "Besadino", "Budar",
+         "Edecon", "Indortes"],
         gc.getInfoTypeForString("CIVILIZATION_NUMIDIA"):
         ["Gauda", "Gulussa", "Matho",
-        "Tacfarinas", "Syphax", "Hiempsal I",
-        "Micipsa", "Arabion", "Suburra",
-        "Mastanabal"],
+         "Tacfarinas", "Syphax", "Hiempsal I",
+         "Micipsa", "Arabion", "Suburra",
+         "Mastanabal"],
         gc.getInfoTypeForString("CIVILIZATION_BERBER"):
         ["Masties", "Lusius Quietus", "Firmus",
-        "Gildon", "Quintus Lollius Urbicus", "Sabalus",
-        "Bagas", "Bogud", "Bocchus II",
-        "Lucius Balbus Minor"],
+         "Gildon", "Quintus Lollius Urbicus", "Sabalus",
+         "Bagas", "Bogud", "Bocchus II",
+         "Lucius Balbus Minor"],
         gc.getInfoTypeForString("CIVILIZATION_LIBYA"):
         ["Osorkon II", "Namilt I", "Iupet",
-        "Osochor", "Paschedbastet", "Namilt II",
-        "Takelot II", "Petubastis I", "Osorkon III",
-        "Bakenntah"],
+         "Osochor", "Paschedbastet", "Namilt II",
+         "Takelot II", "Petubastis I", "Osorkon III",
+         "Bakenntah"],
         gc.getInfoTypeForString("CIVILIZATION_SKYTHEN"):
         ["Idanthyrsos", "Maues", "Satrakes",
-        "Skilurus", "Scopasis", "Palacus",
-        "Madius", "Eunones", "Octamasadas",
-        "Azes I"],
+         "Skilurus", "Scopasis", "Palacus",
+         "Madius", "Eunones", "Octamasadas",
+         "Azes I"],
         gc.getInfoTypeForString("CIVILIZATION_HUNNEN"):
         ["Balamir", "Dengizich", "Ellac",
-        "Oktar", "Rua", "Uldin",
-        "Kursisch""Hormidac", "Ernak", "Charaton"],
+         "Oktar", "Rua", "Uldin",
+         "Kursisch""Hormidac", "Ernak", "Charaton"],
         gc.getInfoTypeForString("CIVILIZATION_INDIA"):
         ["Pushyamitra Shunga", "Kujula Kadphises", "Chandragupta II",
-        "Samudragupta", "Kharavela", "Skandagupta",
-        "Dhana Nanda", "Vidudabha", "Vishvamitra",
-        "Bimbisara", "Ajatashatru", "Bindusara",
-        "Kanishka", "Vima Kadphises", "Soter Megas"],
+         "Samudragupta", "Kharavela", "Skandagupta",
+         "Dhana Nanda", "Vidudabha", "Vishvamitra",
+         "Bimbisara", "Ajatashatru", "Bindusara",
+         "Kanishka", "Vima Kadphises", "Soter Megas"],
         gc.getInfoTypeForString("CIVILIZATION_BRITEN"):
         ["Cassivelanaunus", "Cingetorix", "Carvillius",
-        "Taximagulus", "Segovax", "Ambrosius Aurelius",
-        "Hengest", "Horsa", "Vortigern",
-        "Riothamus", "Venutius", "Togodumnus",
-        "Allectus", "Nennius", "Calgacus"],
+         "Taximagulus", "Segovax", "Ambrosius Aurelius",
+         "Hengest", "Horsa", "Vortigern",
+         "Riothamus", "Venutius", "Togodumnus",
+         "Allectus", "Nennius", "Calgacus"],
         gc.getInfoTypeForString("CIVILIZATION_PARTHER"):
         ["Surena", "Artabanus V", "Vologase I",
-        "Vologase IV", "Phraates IV", "Osreos I",
-        "Phraates II", "Pakoros I", "Artabanus IV",
-        "Barzapharnes", "Pharnapates"],
+         "Vologase IV", "Phraates IV", "Osreos I",
+         "Phraates II", "Pakoros I", "Artabanus IV",
+         "Barzapharnes", "Pharnapates"],
         gc.getInfoTypeForString("CIVILIZATION_VANDALS"):
         ["Godigisel", "Gunderich", "Gunthamund",
-        "Gento", "Thrasamund", "Hoamer",
-        "Wisimar", "Flavius Stilicho", "Andevoto",
-        "Hilderich"]
+         "Gento", "Thrasamund", "Hoamer",
+         "Wisimar", "Flavius Stilicho",
+         "Andevoto", "Hilderich"]
     }
 
     # # Religionen
@@ -796,6 +890,25 @@ def init():
         gc.getInfoTypeForString("RELIGION_JUDAISM")
     ]
 
+    LGreeks = [
+        gc.getInfoTypeForString("CIVILIZATION_GREECE"),
+        gc.getInfoTypeForString("CIVILIZATION_ATHENS"),
+        gc.getInfoTypeForString("CIVILIZATION_THEBAI"),
+        gc.getInfoTypeForString("CIVILIZATION_SPARTA")
+    ]
+    LNearEast = [
+        gc.getInfoTypeForString("CIVILIZATION_PHON"),
+        gc.getInfoTypeForString("CIVILIZATION_ASSYRIA"),
+        gc.getInfoTypeForString("CIVILIZATION_BABYLON"),
+        gc.getInfoTypeForString("CIVILIZATION_ISRAEL"),
+        gc.getInfoTypeForString("CIVILIZATION_SUMERIA")
+    ]
+    LNorthern = [
+        gc.getInfoTypeForString("CIVILIZATION_CELT"),
+        gc.getInfoTypeForString("CIVILIZATION_GALLIEN"),
+        gc.getInfoTypeForString("CIVILIZATION_BRITEN"),
+        gc.getInfoTypeForString("CIVILIZATION_GERMANEN")
+    ]
     LegioNames = [
         "Legio I Adiutrix", "Legio I Germanica", "Legio I Italica",
         "Legio I Macriana Liberatrix", "Legio I Minervia", "Legio I Parthica",
