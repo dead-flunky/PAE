@@ -2646,13 +2646,6 @@ class CvMainInterface:
                                                 screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
                                                 screen.show("BottomButtonContainer")
                                                 iCount = iCount + 1
-                                if pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_NAVIGATION4")) and pCity.isCoastal(gc.getMIN_WATER_SIZE_FOR_OCEAN()):
-                                    iBuilding = gc.getInfoTypeForString("BUILDING_PROMO_NAVI")
-                                    if not pCity.isHasBuilding(iBuilding):
-                                        screen.appendMultiListButton("BottomButtonContainer", gc.getBuildingInfo(iBuilding).getButton(), 0, WidgetTypes.WIDGET_GENERAL, 719, iBuilding, False)
-                                        screen.show("BottomButtonContainer")
-                                        iCount = iCount + 1
-                                # Ende Ausbildung Promos
 
                                 # Auswanderer / Emigrant -> in der eigenen Stadt
                                 if iUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT"):
