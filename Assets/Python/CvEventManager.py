@@ -1889,6 +1889,8 @@ class CvEventManager:
         # PAE - River tiles
         self.bRiverTiles_WaitOnMainInterface = True
 
+        # PAE_Lists needs to be initialised
+        L.init()
         # PAE_Trade needs to be initialised
         PAE_Trade.init()
         PAE_Cultivation.init()
