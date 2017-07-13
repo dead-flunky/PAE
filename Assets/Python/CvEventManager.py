@@ -433,7 +433,13 @@ class CvEventManager:
                         unit.setDamage(d, PlayerTypes.NO_PLAYER)
 
                 elif theKey == int(InputTypes.KB_F1):
-                    if self.bShift:
+                    if self.bShift and self.bAlt:
+                        CyInterface().addImmediateMessage("BEGIN Python file optimization", "")
+                        import ResolveConstantFunctions
+                        ResolveConstantFunctions.main(True)
+                        CyInterface().addImmediateMessage("END Python file optimization", "")
+                        return 1
+                    elif self.bShift:
                         CvScreensInterface.replayScreen.showScreen(False)
                         return 1
                     # don't return 1 unless you want the input consumed
@@ -442,6 +448,7 @@ class CvEventManager:
                     if self.bShift and self.bAlt:
                         import remote_pdb
                         remote_pdb.RemotePdb("127.0.0.1", 4444).set_trace()
+                        return 1
                     elif self.bShift:
                         # import CvDebugInfoScreen
                         CvScreensInterface.showDebugInfoScreen()
@@ -464,7 +471,7 @@ class CvEventManager:
 
         iData1, iData2, iData3, iData4, iData5 = argsList
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("onModNetMessage: ",iData1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        print "Modder's net message!"
+        print("Modder's net message!")
         CvUtil.pyPrint('onModNetMessage')
 
         # iData1 = iMessageID (!)
@@ -2075,7 +2082,7 @@ class CvEventManager:
 
     def onGameEnd(self, argsList):
         'Called at the End of the game'
-        print "Game is ending"
+        print("Game is ending")
         return
 
     # this is a LOCAL function !!!
