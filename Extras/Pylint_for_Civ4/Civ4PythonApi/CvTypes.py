@@ -777,6 +777,7 @@ class DomainTypes:
     DOMAIN_AIR = -1
     DOMAIN_LAND = -1
     DOMAIN_IMMOBILE = -1
+    DOMAIN_HELICOPTER = -1
     NUM_DOMAIN_TYPES = -1
 
 class UnitClassTypes:
@@ -1106,6 +1107,7 @@ class AnimationTypes:
 
 class EntityEventTypes:
     ENTITY_EVENT_NONE = -1
+    ENTEVENT_MOVE = 1
 
 class AnimationPathTypes:
     ANIMATIONPATH_NONE = -1
@@ -1129,6 +1131,7 @@ class AnimationPathTypes:
     ANIMATIONPATH_AIRFADEOUT = -1
     ANIMATIONPATH_AIRSTRIKE = -1
     ANIMATIONPATH_AIRBOMB = -1
+    ANIMATIONPATH_RUN = -1
 
 class AnimationCategoryTypes:
     ANIMCAT_NONE = -1
@@ -1553,6 +1556,7 @@ class CivilopediaPageTypes:
     CIVILOPEDIA_PAGE_TERRAIN = -1
     CIVILOPEDIA_PAGE_FEATURE = -1
     CIVILOPEDIA_PAGE_HINTS = -1
+    CIVILOPEDIA_PAGE_MAIN = -1
 
     NUM_CIVILOPEDIA_PAGE_TYPES = -1
 

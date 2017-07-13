@@ -59,6 +59,54 @@ class CombatDetails:
     sUnitName = str()
 
 
+class CvAssetInfoBase:
+
+    @staticmethod
+    def getPath():
+        return str()
+
+    @staticmethod
+    def getTag():
+        return str()
+
+    @staticmethod
+    def setPath(szDesc):
+        pass
+
+    @staticmethod
+    def setTag(szDesc):
+        pass
+class CvArtInfoAsset(CvAssetInfoBase):
+
+    @staticmethod
+    def getButton():
+        return str()
+
+    @staticmethod
+    def getKFM():
+        return str()
+
+    @staticmethod
+    def getNIF():
+        return str()
+
+    @staticmethod
+    def setButton(szVal):
+        pass
+
+    @staticmethod
+    def setKFM(szDesc):
+        pass
+
+    @staticmethod
+    def setNIF(szDesc):
+        pass
+
+
+class CvArtInfoScalableAsset(CvArtInfoAsset):
+    pass
+
+
 class CvActionInfo:
 
     @staticmethod
@@ -106,50 +154,6 @@ class CvActionInfo:
         return bool()
 
 
-class CvAssetInfoBase:
-
-    @staticmethod
-    def getPath():
-        return str()
-
-    @staticmethod
-    def getTag():
-        return str()
-
-    @staticmethod
-    def setPath(szDesc):
-        pass
-
-    @staticmethod
-    def setTag(szDesc):
-        pass
-
-
-class CvArtInfoAsset(CvAssetInfoBase):
-
-    @staticmethod
-    def getButton():
-        return str()
-
-    @staticmethod
-    def getKFM():
-        return str()
-
-    @staticmethod
-    def getNIF():
-        return str()
-
-    @staticmethod
-    def setButton(szVal):
-        pass
-
-    @staticmethod
-    def setKFM(szDesc):
-        pass
-
-    @staticmethod
-    def setNIF(szDesc):
-        pass
 
 
 class CvArtInfoBonus(CvArtInfoScalableAsset):
@@ -205,10 +209,6 @@ class CvArtInfoMisc(CvArtInfoAsset):
 
 
 class CvArtInfoMovie(CvArtInfoAsset):
-    pass
-
-
-class CvArtInfoScalableAsset(CvArtInfoAsset):
     pass
 
 
