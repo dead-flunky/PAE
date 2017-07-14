@@ -233,7 +233,7 @@ def doStrandgut():
     eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
 
     lUnits = PyPlayer(iBarbPlayer).getUnitsOfType(iTreibgut)
-    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Test",len(lUnits))), None, 2, None, ColorTypes(11), pPlot.getX(), pPlot.getY(), False, False)
+    # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Test",len(lUnits))), None, 2, None, ColorTypes(11), 0, 0, False, False)
     for loopUnit in lUnits:
         pPlot = loopUnit.plot()
         if pPlot.getTerrainType() == eCoast:
@@ -247,8 +247,6 @@ def doStrandgut():
                     if not loopPlot.isWater():
                         if not loopPlot.isPeak() and not loopPlot.isUnit() and loopPlot.getFeatureType() != iDarkIce:
                             lPlots.append(loopPlot)
-
-
             if lPlots:
                 pPlot = lPlots[CvUtil.myRandom(len(lPlots), "strandgut")]
                 # Create Strandgut
@@ -263,7 +261,7 @@ def doStrandgut():
             # Create Goldkarren
             CvUtil.spawnUnit(iGoldkarren, pPlot, pBarbPlayer)
             # Disband Treibgut
-            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("disbandTreibgutCity", ()), None, 2, None, ColorTypes(11), pPlot.getX(), pPlot.getY(), False, False)
+            # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("disbandTreibgutCity", ()), None, 2, None, ColorTypes(11), pPlot.getX(), pPlot.getY(), False, False)
             # loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
             loopUnit.kill(True, -1)  # RAMK_CTD
      # --------- Strandgut -----------

@@ -2443,7 +2443,7 @@ def doNavalOnCombatResult(pWinner, pLoser, bWinnerIsDead):
                     iRand = CvUtil.myRandom(len(SeaPlots), "SeaPlots")
                     loopPlot = SeaPlots[iRand]
                     # Unit erzeugen
-                    CvUtil.spawnUnit(iUnitTreibgut, loopPlot, barbPlayer)
+                    NewUnit = barbPlayer.initUnit(iUnitTreibgut, loopPlot.getX(), loopPlot.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.NO_DIRECTION)
                     NewUnit.setImmobileTimer(2)
                     if pWinnerPlayer.isHuman():
                         CyInterface().addMessage(iWinnerPlayer, True, 10, CyTranslator().getText("TXT_KEY_UNIT_ERSTELLT", (gc.getUnitInfo(iUnitTreibgut).getDescription(),)), None, 2, gc.getUnitInfo(iUnitTreibgut).getButton(), ColorTypes(11), loopPlot.getX(), loopPlot.getY(), True, True)
