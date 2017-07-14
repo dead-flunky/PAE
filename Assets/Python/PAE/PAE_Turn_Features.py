@@ -233,6 +233,7 @@ def doStrandgut():
     eCoast = gc.getInfoTypeForString("TERRAIN_COAST")
 
     lUnits = PyPlayer(iBarbPlayer).getUnitsOfType(iTreibgut)
+    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Test",len(lUnits))), None, 2, None, ColorTypes(11), pPlot.getX(), pPlot.getY(), False, False)
     for loopUnit in lUnits:
         pPlot = loopUnit.plot()
         if pPlot.getTerrainType() == eCoast:
@@ -242,13 +243,11 @@ def doStrandgut():
             # iRange = 1
             for iI in range(DirectionTypes.NUM_DIRECTION_TYPES):
                 loopPlot = plotDirection(iX, iY, DirectionTypes(iI))
-            # for i in range(-iRange, iRange+1):
-                # for j in range(-iRange, iRange+1):
-                    # loopPlot = plotXY(iX, iY, i, j)
                 if loopPlot is not None and not loopPlot.isNone():
                     if not loopPlot.isWater():
                         if not loopPlot.isPeak() and not loopPlot.isUnit() and loopPlot.getFeatureType() != iDarkIce:
                             lPlots.append(loopPlot)
+
 
             if lPlots:
                 pPlot = lPlots[CvUtil.myRandom(len(lPlots), "strandgut")]
@@ -256,18 +255,17 @@ def doStrandgut():
                 CvUtil.spawnUnit(iStrandgut, pPlot, pBarbPlayer)
                 iPlotOwner = pPlot.getOwner()
                 if iPlotOwner != -1 and gc.getPlayer(iPlotOwner).isHuman():
-                    CyInterface().addMessage(iPlotOwner, True, 15, CyTranslator().getText("TXT_KEY_TREIB2STRANDGUT", ()), None, 2, None, ColorTypes(gc.getInfoTypeForString("COLOR_YIELD_FOOD")), pPlot.getX(), pPlot.getY(), False, False)
+                    CyInterface().addMessage(iPlotOwner, True, 15, CyTranslator().getText("TXT_KEY_TREIB2STRANDGUT", ()), None, 2, None, ColorTypes(11), pPlot.getX(), pPlot.getY(), False, False)
                 # Disband Treibgut
                 # loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 loopUnit.kill(True, -1)  # RAMK_CTD
-                loopUnit = None
         elif pPlot.isCity():
             # Create Goldkarren
             CvUtil.spawnUnit(iGoldkarren, pPlot, pBarbPlayer)
             # Disband Treibgut
+            CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("disbandTreibgutCity", ()), None, 2, None, ColorTypes(11), pPlot.getX(), pPlot.getY(), False, False)
             # loopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
             loopUnit.kill(True, -1)  # RAMK_CTD
-            loopUnit = None
      # --------- Strandgut -----------
 
 ##### Goody-Doerfer erstellen (goody-huts / GoodyHuts / Goodies / Villages) ####

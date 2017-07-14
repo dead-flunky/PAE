@@ -2204,7 +2204,7 @@ def doSpawnPest(pCity):
 
 def doPlagueEffects(pCity):
     iBuildingPlague = gc.getInfoTypeForString('BUILDING_PLAGUE')
-    iPlayer = pCity.getOwner
+    iPlayer = pCity.getOwner()
     pPlayer = gc.getPlayer(iPlayer)
     #iCulture = pCity.getBuildingCommerceByBuilding(2, iBuildingPlague)
     iCulture = pCity.getCulture(iPlayer)

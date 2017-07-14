@@ -27915,7 +27915,7 @@
       <iHealth>0</iHealth>
       <iAreaHealth>0</iAreaHealth>
       <iGlobalHealth>0</iGlobalHealth>
-      <iHappiness>0</iHappiness>
+      <iHappiness>1</iHappiness>
       <iAreaHappiness>0</iAreaHappiness>
       <iGlobalHappiness>0</iGlobalHappiness>
       <iStateReligionHappiness>0</iStateReligionHappiness>
@@ -27945,9 +27945,7 @@
       <CommerceChanges/>
       <ObsoleteSafeCommerceChanges/>
       <CommerceChangeDoubleTimes/>
-      <CommerceModifiers>
-        <iCommerce>10</iCommerce>
-      </CommerceModifiers>
+      <CommerceModifiers/>
       <GlobalCommerceModifiers/>
       <SpecialistExtraCommerces/>
       <StateReligionCommerces/>
@@ -27977,8 +27975,8 @@
       <ImprovementFreeSpecialists/>
       <Flavors>
         <Flavor>
-          <FlavorType>FLAVOR_GOLD</FlavorType>
-          <iFlavor>10</iFlavor>
+          <FlavorType>FLAVOR_GROWTH</FlavorType>
+          <iFlavor>8</iFlavor>
         </Flavor>
       </Flavors>
       <HotKey/>
@@ -37985,7 +37983,7 @@
       <iAreaHealth>0</iAreaHealth>
       <iGlobalHealth>0</iGlobalHealth>
       <iHappiness>0</iHappiness>
-      <iAreaHappiness>1</iAreaHappiness>
+      <iAreaHappiness>0</iAreaHappiness>
       <iGlobalHappiness>0</iGlobalHappiness>
       <iStateReligionHappiness>0</iStateReligionHappiness>
       <iWorkerSpeedModifier>0</iWorkerSpeedModifier>
@@ -46167,7 +46165,7 @@
       <iHurryCostModifier>0</iHurryCostModifier>
       <iAdvancedStartCost>-1</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-      <iMinAreaSize>10</iMinAreaSize>
+      <iMinAreaSize>-1</iMinAreaSize>
       <iConquestProb>50</iConquestProb>
       <iCitiesPrereq>0</iCitiesPrereq>
       <iTeamsPrereq>0</iTeamsPrereq>
