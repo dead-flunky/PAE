@@ -3448,7 +3448,7 @@
       <Capture>UNITCLASS_SUPPLY_FOOD</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_LAND</Domain>
-      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_RESERVE</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_SUPPLY_FOOD</Description>
@@ -3772,7 +3772,7 @@
       <Capture>NONE</Capture>
       <Combat>NONE</Combat>
       <Domain>DOMAIN_SEA</Domain>
-      <DefaultUnitAI>UNITAI_EXPLORE_SEA</DefaultUnitAI>
+      <DefaultUnitAI>UNITAI_UNKNOWN</DefaultUnitAI>
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_TREIBGUT</Description>
@@ -3842,7 +3842,7 @@
       <iAIWeight>0</iAIWeight>
       <iCost>-1</iCost>
       <iHurryCostModifier>0</iHurryCostModifier>
-      <iAdvancedStartCost>100</iAdvancedStartCost>
+      <iAdvancedStartCost>0</iAdvancedStartCost>
       <iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
       <iMinAreaSize>-1</iMinAreaSize>
       <iMoves>1</iMoves>

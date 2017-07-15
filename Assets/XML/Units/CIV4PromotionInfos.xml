@@ -3660,7 +3660,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>20</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>10</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3671,7 +3671,7 @@
       <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
-      <iCombatPercent>10</iCombatPercent>
+      <iCombatPercent>0</iCombatPercent>
       <iCityAttack>0</iCityAttack>
       <iCityDefense>0</iCityDefense>
       <iHillsAttack>0</iHillsAttack>
@@ -3727,7 +3727,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>20</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>10</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3738,7 +3738,7 @@
       <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
-      <iCombatPercent>10</iCombatPercent>
+      <iCombatPercent>0</iCombatPercent>
       <iCityAttack>0</iCityAttack>
       <iCityDefense>0</iCityDefense>
       <iHillsAttack>0</iHillsAttack>
@@ -3806,7 +3806,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>20</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>10</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -3817,7 +3817,7 @@
       <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
-      <iCombatPercent>10</iCombatPercent>
+      <iCombatPercent>0</iCombatPercent>
       <iCityAttack>0</iCityAttack>
       <iCityDefense>0</iCityDefense>
       <iHillsAttack>0</iHillsAttack>
@@ -8668,7 +8668,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>20</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8743,7 +8743,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>20</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8818,7 +8818,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8893,7 +8893,7 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
@@ -8968,9 +8968,9 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
-      <iCollateralDamageChange>20</iCollateralDamageChange>
+      <iCollateralDamageChange>15</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
@@ -9244,11 +9244,11 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
-      <iFirstStrikesChange>0</iFirstStrikesChange>
+      <iFirstStrikesChange>1</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
       <iEnemyHealChange>0</iEnemyHealChange>
       <iNeutralHealChange>0</iNeutralHealChange>
@@ -9323,12 +9323,12 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
-      <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
+      <iChanceFirstStrikesChange>1</iChanceFirstStrikesChange>
       <iEnemyHealChange>0</iEnemyHealChange>
       <iNeutralHealChange>0</iNeutralHealChange>
       <iFriendlyHealChange>0</iFriendlyHealChange>
@@ -9402,12 +9402,12 @@
       <iAirRangeChange>0</iAirRangeChange>
       <iInterceptChange>0</iInterceptChange>
       <iEvasionChange>0</iEvasionChange>
-      <iWithdrawalChange>10</iWithdrawalChange>
+      <iWithdrawalChange>0</iWithdrawalChange>
       <iCargoChange>0</iCargoChange>
       <iCollateralDamageChange>0</iCollateralDamageChange>
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
-      <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
+      <iChanceFirstStrikesChange>1</iChanceFirstStrikesChange>
       <iEnemyHealChange>0</iEnemyHealChange>
       <iNeutralHealChange>0</iNeutralHealChange>
       <iFriendlyHealChange>0</iFriendlyHealChange>

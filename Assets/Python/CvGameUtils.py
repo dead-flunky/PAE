@@ -1083,6 +1083,15 @@ class CvGameUtils:
                 self.PAE_AI_Cities_Slaves = []
                 self.PAE_AI_Cities_Slavemarket = []
 
+            if iUnitType == gc.getInfoTypeForString("UNIT_TREIBGUT"):
+                # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("TreibgutAI",)), None, 2, None, ColorTypes(11), pUnit.getX(), pUnit.getY(), False, False)
+                return True
+
+            if iUnitType == gc.getInfoTypeForString("UNIT_STRANDGUT"):
+                # wird nie erreicht :hahm:
+                # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 15, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("StrandgutAI",)), None, 2, None, ColorTypes(11), pUnit.getX(), pUnit.getY(), False, False)
+                return True
+
             # Inquisitor
             if iUnitType == gc.getInfoTypeForString("UNIT_INQUISITOR") and iOwner != iBarbarianPlayer:
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("AI Inquisitor",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)

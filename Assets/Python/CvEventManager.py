@@ -2809,7 +2809,7 @@ class CvEventManager:
                 # Feature: Wenn die Generalseinheit stirbt, ist in jeder Stadt 2 bis 4 Hurry Anger! (GG Great General dies)
                 # Richtet sich nach der Anzahl der lebenden Generals
                 # PAE V: Einheiten im Stack bekommen Mercenary-Promo (je nach Anzahl an Generals im Stack)
-                PAE_Unit.doDyingGeneral(pLoser, pWinnerPlayer)
+                PAE_Unit.doDyingGeneral(pLoser, iWinnerPlayer)
 
                 # ------- Rebell takes over slaves if capturing
                 if iLoserUnitType == gc.getInfoTypeForString("UNIT_SLAVE") and iWinnerPlayer == gc.getBARBARIAN_PLAYER() and not bWinnerAnimal:
