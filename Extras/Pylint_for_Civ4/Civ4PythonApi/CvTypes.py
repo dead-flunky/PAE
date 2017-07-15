@@ -1,32 +1,45 @@
-class GameStateTypes:
+class Enum:  # Boost.Python.enum
+    # Will be filled with constants of child classes
+    # Note that the definition differs from
+    # the Boost variant. Here, the values would be integer,
+    # but not of childclass type.
+    values = {}
+
+    def __init__(self):
+        d = self.__class__.__dict__
+        for t in d:
+            if not t[0] == "_":
+                self.values[t] = d[t]
+
+class GameStateTypes(Enum):
     GAMESTATE_ON = -1
     GAMESTATE_OVER = -1
     GAMESTATE_EXTENDED = -1
 
-class PopupStates:
+class PopupStates(Enum):
     POPUPSTATE_IMMEDIATE = -1
     POPUPSTATE_QUEUED = -1
     POPUPSTATE_MINIMIZED = -1
 
-class CameraLookAtTypes:
+class CameraLookAtTypes(Enum):
     CAMERALOOKAT_NORMAL = -1
     CAMERALOOKAT_CITY_ZOOM_IN = -1
     CAMERALOOKAT_BATTLE = -1
     CAMERALOOKAT_BATTLE_ZOOM_IN = -1
     CAMERALOOKAT_IMMEDIATE = -1
 
-class CameraMovementSpeeds:
+class CameraMovementSpeeds(Enum):
     CAMERAMOVEMENTSPEED_NORMAL = -1
     CAMERAMOVEMENTSPEED_SLOW = -1
     CAMERAMOVEMENTSPEED_FAST = -1
 
-class ZoomLevelTypes:
+class ZoomLevelTypes(Enum):
     ZOOM_UNKNOWN = -1
     ZOOM_GLOBEVIEW = -1
     ZOOM_NORMAL = -1
     ZOOM_DETAIL = -1
 
-class DirectionTypes:
+class DirectionTypes(Enum):
     NO_DIRECTION = -1
     DIRECTION_NORTH = -1
     DIRECTION_NORTHEAST = -1
@@ -38,7 +51,7 @@ class DirectionTypes:
     DIRECTION_NORTHWEST = -1
     NUM_DIRECTION_TYPES = -1
 
-class CardinalDirectionTypes:
+class CardinalDirectionTypes(Enum):
     NO_CARDINALDIRECTION = -1
     CARDINALDIRECTION_NORTH = -1
     CARDINALDIRECTION_EAST = -1
@@ -46,13 +59,13 @@ class CardinalDirectionTypes:
     CARDINALDIRECTION_WEST = -1
     NUM_CARDINALDIRECTION_TYPES = -1
 
-class ColorTypes:
+class ColorTypes(Enum):
     NO_COLOR = -1
 
-class PlayerColorTypes:
+class PlayerColorTypes(Enum):
     NO_PLAYERCOLOR = -1
 
-class PlotStyles:
+class PlotStyles(Enum):
     PLOT_STYLE_NONE = -1
     PLOT_STYLE_NUMPAD_1 = -1
     PLOT_STYLE_NUMPAD_2 = -1
@@ -82,7 +95,7 @@ class PlotStyles:
     PLOT_STYLE_DOTS = -1
     PLOT_STYLE_CIRCLES = -1
 
-class PlotLandscapeLayers:
+class PlotLandscapeLayers(Enum):
     PLOT_LANDSCAPE_LAYER_ALL = -1
     PLOT_LANDSCAPE_LAYER_BASE = -1
     PLOT_LANDSCAPE_LAYER_RECOMMENDED_PLOTS = -1
@@ -90,7 +103,7 @@ class PlotLandscapeLayers:
     PLOT_LANDSCAPE_LAYER_NUMPAD_HELP = -1
     PLOT_LANDSCAPE_LAYER_REVEALED_PLOTS = -1
 
-class AreaBorderLayers:
+class AreaBorderLayers(Enum):
     AREA_BORDER_LAYER_REVEALED_PLOTS = -1
     AREA_BORDER_LAYER_WORLD_BUILDER = -1
     AREA_BORDER_LAYER_FOUNDING_BORDER = -1
@@ -101,7 +114,7 @@ class AreaBorderLayers:
     AREA_BORDER_LAYER_BLOCKADED = -1
     NUM_AREA_BORDER_LAYERS = -1
 
-class InterfaceModeTypes:
+class InterfaceModeTypes(Enum):
     NO_INTERFACEMODE = -1
     INTERFACEMODE_SELECTION = -1
     INTERFACEMODE_PING = -1
@@ -124,7 +137,7 @@ class InterfaceModeTypes:
     INTERFACEMODE_SAVE_PLOT_NIFS = -1
     NUM_INTERFACEMODE_TYPES = -1
 
-class InterfaceMessageTypes:
+class InterfaceMessageTypes(Enum):
     NO_MESSAGE_TYPE = -1
     MESSAGE_TYPE_INFO = -1
     MESSAGE_TYPE_DISPLAY_ONLY = -1
@@ -135,7 +148,7 @@ class InterfaceMessageTypes:
     MESSAGE_TYPE_QUEST = -1
     NUM_INTERFACE_MESSAGE_TYPES = -1
 
-class MinimapModeTypes:
+class MinimapModeTypes(Enum):
     NO_MINIMAPMODE = -1
     MINIMAPMODE_TERRITORY = -1
     MINIMAPMODE_TERRAIN = -1
@@ -143,13 +156,13 @@ class MinimapModeTypes:
     MINIMAPMODE_MILITARY = -1
     NUM_MINIMAPMODE_TYPES = -1
 
-class EngineDirtyBits:
+class EngineDirtyBits(Enum):
     GlobeTexture_DIRTY_BIT = -1
     MinimapTexture_DIRTY_BIT = -1
     CultureBorders_DIRTY_BIT = -1
     NUM_ENGINE_DIRTY_BITS = -1
 
-class InterfaceDirtyBits:
+class InterfaceDirtyBits(Enum):
     SelectionCamera_DIRTY_BIT = -1
     Fog_DIRTY_BIT = -1
     GlobeLayer_DIRTY_BIT = -1
@@ -187,13 +200,13 @@ class InterfaceDirtyBits:
     Advanced_Start_DIRTY_BIT = -1
     NUM_INTERFACE_DIRTY_BITS = -1
 
-class CityTabTypes:
+class CityTabTypes(Enum):
     CITYTAB_UNITS = -1
     CITYTAB_BUILDINGS = -1
     CITYTAB_WONDERS = -1
     NUM_CITYTAB_TYPES = -1
 
-class WidgetTypes:
+class WidgetTypes(Enum):
     WIDGET_PLOT_LIST = -1
     WIDGET_PLOT_LIST_SHIFT = -1
     WIDGET_CITY_SCROLL = -1
@@ -358,7 +371,7 @@ class WidgetTypes:
 
     NUM_WIDGET_TYPES = -1
 
-class ButtonPopupTypes:
+class ButtonPopupTypes(Enum):
     BUTTONPOPUP_TEXT = -1
     BUTTONPOPUP_MAIN_MENU = -1
     BUTTONPOPUP_CONFIRM_MENU = -1
@@ -399,16 +412,16 @@ class ButtonPopupTypes:
 
     NUM_BUTTONPOPUP_TYPES = -1
 
-class ClimateTypes:
+class ClimateTypes(Enum):
     NO_CLIMATE = -1
 
-class SeaLevelTypes:
+class SeaLevelTypes(Enum):
     NO_SEALEVEL = -1
 
-class CustomMapOptionTypes:
+class CustomMapOptionTypes(Enum):
     NO_CUSTOM_MAPOPTION = -1
 
-class WorldSizeTypes:
+class WorldSizeTypes(Enum):
     NO_WORLDSIZE = -1
     WORLDSIZE_DUEL = -1
     WORLDSIZE_TINY = -1
@@ -418,10 +431,10 @@ class WorldSizeTypes:
     WORLDSIZE_HUGE = -1
     NUM_WORLDSIZE_TYPES = -1
 
-class TerrainTypes:
+class TerrainTypes(Enum):
     NO_TERRAIN = -1
 
-class PlotTypes:
+class PlotTypes(Enum):
     NO_PLOT = -1
     PLOT_PEAK = -1
     PLOT_HILLS = -1
@@ -429,30 +442,30 @@ class PlotTypes:
     PLOT_OCEAN = -1
     NUM_PLOT_TYPES = -1
 
-class YieldTypes:
+class YieldTypes(Enum):
     NO_YIELD = -1
     YIELD_FOOD = -1
     YIELD_PRODUCTION = -1
     YIELD_COMMERCE = -1
     NUM_YIELD_TYPES = -1
 
-class CommerceTypes:
+class CommerceTypes(Enum):
     COMMERCE_GOLD = -1
     COMMERCE_RESEARCH = -1
     COMMERCE_CULTURE = -1
     COMMERCE_ESPIONAGE = -1
     NUM_COMMERCE_TYPES = -1
 
-class AdvisorTypes:
+class AdvisorTypes(Enum):
     NO_ADVISOR = -1
 
-class FlavorTypes:
+class FlavorTypes(Enum):
     NO_FLAVOR = -1
 
-class EmphasizeTypes:
+class EmphasizeTypes(Enum):
     NO_EMPHASIZE = -1
 
-class GameOptionTypes:
+class GameOptionTypes(Enum):
     NO_GAMEOPTION = -1
     GAMEOPTION_ADVANCED_START = -1
     GAMEOPTION_NO_CITY_RAZING = -1
@@ -480,7 +493,7 @@ class GameOptionTypes:
     GAMEOPTION_NO_ESPIONAGE = -1
     NUM_GAMEOPTION_TYPES = -1
 
-class MultiplayerOptionTypes:
+class MultiplayerOptionTypes(Enum):
     NO_MPOPTION = -1
     MPOPTION_SIMULTANEOUS_TURNS = -1
     MPOPTION_TAKEOVER_AI = -1
@@ -489,12 +502,12 @@ class MultiplayerOptionTypes:
     MPOPTION_TURN_TIMER = -1
     NUM_MPOPTION_TYPES = -1
 
-class SpecialOptionTypes:
+class SpecialOptionTypes(Enum):
     NO_SPECIALOPTION = -1
     SPECIALOPTION_REPORT_STATS = -1
     NUM_SPECIALOPTION_TYPES = -1
 
-class PlayerOptionTypes:
+class PlayerOptionTypes(Enum):
     NO_PLAYEROPTION = -1
     PLAYEROPTION_ADVISOR_POPUPS = -1
     PLAYEROPTION_ADVISOR_HELP = -1
@@ -520,7 +533,7 @@ class PlayerOptionTypes:
     PLAYEROPTION_MODDER_3 = -1
     NUM_PLAYEROPTION_TYPES = -1
 
-class GraphicOptionTypes:
+class GraphicOptionTypes(Enum):
     NO_GRAPHICOPTION = -1
     GRAPHICOPTION_SINGLE_UNIT_GRAPHICS = -1
     GRAPHICOPTION_HEALTH_BARS = -1
@@ -537,7 +550,7 @@ class GraphicOptionTypes:
     GRAPHICOPTION_CITY_RADIUS = -1
     NUM_GRAPHICOPTION_TYPES = -1
 
-class ForceControlTypes:
+class ForceControlTypes(Enum):
     NO_FORCECONTROL = -1
     FORCECONTROL_SPEED = -1
     FORCECONTROL_HANDICAP = -1
@@ -548,37 +561,37 @@ class ForceControlTypes:
     FORCECONTROL_ADVANCED_START = -1
     NUM_FORCECONTROL_TYPES = -1
 
-class VictoryTypes:
+class VictoryTypes(Enum):
     NO_VICTORY = -1
 
-class FeatureTypes:
+class FeatureTypes(Enum):
     NO_FEATURE = -1
 
-class BonusTypes:
+class BonusTypes(Enum):
     NO_BONUS = -1
 
-class BonusClassTypes:
+class BonusClassTypes(Enum):
     NO_BONUSCLASS = -1
 
-class ImprovementTypes:
+class ImprovementTypes(Enum):
     NO_IMPROVEMENT = -1
 
-class RouteTypes:
+class RouteTypes(Enum):
     NO_ROUTE = -1
 
-class RiverTypes:
+class RiverTypes(Enum):
     NO_RIVER = -1
 
-class GoodyTypes:
+class GoodyTypes(Enum):
     NO_GOODY = -1
 
-class BuildTypes:
+class BuildTypes(Enum):
     NO_BUILD = -1
 
-class SymbolTypes:
+class SymbolTypes(Enum):
     NO_SYMBOL = -1
 
-class FontSymbols:
+class FontSymbols(Enum):
     HAPPY_CHAR = -1
     UNHAPPY_CHAR = -1
     HEALTHY_CHAR = -1
@@ -604,62 +617,62 @@ class FontSymbols:
     POWER_CHAR = -1
     MAX_NUM_SYMBOLS = -1
 
-class HandicapTypes:
+class HandicapTypes(Enum):
     NO_HANDICAP = -1
 
-class GameSpeedTypes:
+class GameSpeedTypes(Enum):
     NO_GAMESPEED = -1
 
-class TurnTimerTypes:
+class TurnTimerTypes(Enum):
     NO_TURNTIMER = -1
 
-class EraTypes:
+class EraTypes(Enum):
     NO_ERA = -1
 
-class CivilizationTypes:
+class CivilizationTypes(Enum):
     NO_CIVILIZATION = -1
 
-class LeaderHeadTypes:
+class LeaderHeadTypes(Enum):
     NO_LEADER = -1
 
-class ArtStyleTypes:
+class ArtStyleTypes(Enum):
     NO_ARTSTYLE = -1
 
-class CitySizeTypes:
+class CitySizeTypes(Enum):
     NO_CITYSIZE = -1
     CITYSIZE_SMALL = -1
     CITYSIZE_MEDIUM = -1
     CITYSIZE_LARGE = -1
     NUM_CITYSIZE_TYPES = -1
 
-class FootstepAudioTypes:
+class FootstepAudioTypes(Enum):
     NO_FOOTSTEPAUDIO = -1
 
-class FootstepAudioTags:
+class FootstepAudioTags(Enum):
     NO_FOOTSTEPAUDIO_TAG = -1
 
-class ChatTargetTypes:
+class ChatTargetTypes(Enum):
     NO_CHATTARGET = -1
     CHATTARGET_ALL = -1
     CHATTARGET_TEAM = -1
 
-class VoiceTargetTypes:
+class VoiceTargetTypes(Enum):
     NO_VOICETARGET = -1
     VOICETARGET_DIPLO = -1
     VOICETARGET_TEAM = -1
     VOICETARGET_ALL = -1
     NUM_VOICETARGETS = -1
 
-class TeamTypes:
+class TeamTypes(Enum):
     NO_TEAM = -1
 
-class PlayerTypes:
+class PlayerTypes(Enum):
     NO_PLAYER = -1
 
-class TraitTypes:
+class TraitTypes(Enum):
     NO_TRAIT = -1
 
-class OrderTypes:
+class OrderTypes(Enum):
     NO_ORDER = -1
     ORDER_TRAIN = -1
     ORDER_CONSTRUCT = -1
@@ -667,7 +680,7 @@ class OrderTypes:
     ORDER_MAINTAIN = -1
     NUM_ORDER_TYPES = -1
 
-class TaskTypes:
+class TaskTypes(Enum):
     TASK_RAZE = -1
     TASK_DISBAND = -1
     TASK_GIFT = -1
@@ -685,25 +698,25 @@ class TaskTypes:
     TASK_LIBERATE = -1
     NUM_TASK_TYPES = -1
 
-class BuildingClassTypes:
+class BuildingClassTypes(Enum):
     NO_BUILDINGCLASS = -1
 
-class BuildingTypes:
+class BuildingTypes(Enum):
     NO_BUILDING = -1
 
-class SpecialBuildingTypes:
+class SpecialBuildingTypes(Enum):
     NO_SPECIALBUILDING = -1
 
-class ProjectTypes:
+class ProjectTypes(Enum):
     NO_PROJECT = -1
 
-class ProcessTypes:
+class ProcessTypes(Enum):
     NO_PROCESS = -1
 
-class VoteTypes:
+class VoteTypes(Enum):
     NO_VOTE = -1
 
-class PlayerVoteTypes:
+class PlayerVoteTypes(Enum):
     NO_PLAYER_VOTE_CHECKED = -1
     PLAYER_VOTE_NEVER = -1
     PLAYER_VOTE_ABSTAIN = -1
@@ -711,26 +724,26 @@ class PlayerVoteTypes:
     PLAYER_VOTE_YES = -1
     NO_PLAYER_VOTE = -1
 
-class InfoBarTypes:
+class InfoBarTypes(Enum):
     INFOBAR_STORED = -1
     INFOBAR_RATE = -1
     INFOBAR_RATE_EXTRA = -1
     INFOBAR_EMPTY = -1
     NUM_INFOBAR_TYPES = -1
 
-class HealthBarTypes:
+class HealthBarTypes(Enum):
     HEALTHBAR_ALIVE_ATTACK = -1
     HEALTHBAR_ALIVE_DEFEND = -1
     HEALTHBAR_DEAD = -1
     NUM_HEALTHBAR_TYPES = -1
 
-class ConceptTypes:
+class ConceptTypes(Enum):
     NO_CONCEPT = -1
 
-class NewConceptTypes:
+class NewConceptTypes(Enum):
     NO_NEW_CONCEPT = -1
 
-class CalendarTypes:
+class CalendarTypes(Enum):
     CALENDAR_DEFAULT = -1
     CALENDAR_BI_YEARLY = -1
     CALENDAR_YEARS = -1
@@ -739,13 +752,13 @@ class CalendarTypes:
     CALENDAR_MONTHS = -1
     CALENDAR_WEEKS = -1
 
-class SeasonTypes:
+class SeasonTypes(Enum):
     NO_SEASON = -1
 
-class MonthTypes:
+class MonthTypes(Enum):
     NO_MONTH = -1
 
-class DenialTypes:
+class DenialTypes(Enum):
     NO_DENIAL = -1
     DENIAL_UNKNOWN = -1
     DENIAL_NEVER = -1
@@ -772,7 +785,7 @@ class DenialTypes:
     DENIAL_POWER_YOUR_ENEMIES = -1
     DENIAL_TOO_FAR = -1
 
-class DomainTypes:
+class DomainTypes(Enum):
     DOMAIN_SEA = -1
     DOMAIN_AIR = -1
     DOMAIN_LAND = -1
@@ -780,19 +793,19 @@ class DomainTypes:
     DOMAIN_HELICOPTER = -1
     NUM_DOMAIN_TYPES = -1
 
-class UnitClassTypes:
+class UnitClassTypes(Enum):
     NO_UNITCLASS = -1
 
-class UnitTypes:
+class UnitTypes(Enum):
     NO_UNIT = -1
 
-class SpecialUnitTypes:
+class SpecialUnitTypes(Enum):
     NO_SPECIALUNIT = -1
 
-class UnitCombatTypes:
+class UnitCombatTypes(Enum):
     NO_UNITCOMBAT = -1
 
-class UnitAITypes:
+class UnitAITypes(Enum):
     NO_UNITAI = -1
     UNITAI_UNKNOWN = -1
     UNITAI_ANIMAL = -1
@@ -837,19 +850,19 @@ class UnitAITypes:
     UNITAI_ATTACK_CITY_LEMMING = -1
     NUM_UNITAI_TYPES = -1
 
-class InvisibleTypes:
+class InvisibleTypes(Enum):
     NO_INVISIBLE = -1
 
-class VoteSourceTypes:
+class VoteSourceTypes(Enum):
     NO_VOTESOURCE = -1
 
-class ProbabilityTypes:
+class ProbabilityTypes(Enum):
     NO_PROBABILITY = -1
     PROBABILITY_LOW = -1
     PROBABILITY_REAL = -1
     PROBABILITY_HIGH = -1
 
-class ActivityTypes:
+class ActivityTypes(Enum):
     NO_ACTIVITY = -1
     ACTIVITY_AWAKE = -1
     ACTIVITY_HOLD = -1
@@ -862,7 +875,7 @@ class ActivityTypes:
     ACTIVITY_PLUNDER = -1
     NUM_ACTIVITY_TYPES = -1
 
-class AutomateTypes:
+class AutomateTypes(Enum):
     NO_AUTOMATE = -1
     AUTOMATE_BUILD = -1
     AUTOMATE_NETWORK = -1
@@ -871,7 +884,7 @@ class AutomateTypes:
     AUTOMATE_RELIGION = -1
     NUM_AUTOMATE_TYPES = -1
 
-class MissionTypes:
+class MissionTypes(Enum):
     NO_MISSION = -1
     MISSION_MOVE_TO = -1
     MISSION_ROUTE_TO = -1
@@ -921,7 +934,7 @@ class MissionTypes:
     MISSION_MULTI_DESELECT = -1
     NUM_MISSION_TYPES = -1
 
-class MissionAITypes:
+class MissionAITypes(Enum):
     NO_MISSIONAI = -1
     MISSIONAI_SHADOW = -1
     MISSIONAI_GROUP = -1
@@ -947,7 +960,7 @@ class MissionAITypes:
     MISSIONAI_CARRIER = -1
     MISSIONAI_PICKUP = -1
 
-class CommandTypes:
+class CommandTypes(Enum):
     NO_COMMAND = -1
     COMMAND_PROMOTION = -1
     COMMAND_UPGRADE = -1
@@ -965,7 +978,7 @@ class CommandTypes:
     COMMAND_HOTKEY = -1
     NUM_COMMAND_TYPES = -1
 
-class ControlTypes:
+class ControlTypes(Enum):
     NO_CONTROL = -1
     CONTROL_CENTERONSELECTION = -1
     CONTROL_SELECTYUNITTYPE = -1
@@ -1033,37 +1046,37 @@ class ControlTypes:
 
     NUM_CONTROL_TYPES = -1
 
-class PromotionTypes:
+class PromotionTypes(Enum):
     NO_PROMOTION = -1
 
-class TechTypes:
+class TechTypes(Enum):
     NO_TECH = -1
 
-class SpecialistTypes:
+class SpecialistTypes(Enum):
     NO_SPECIALIST = -1
 
-class ReligionTypes:
+class ReligionTypes(Enum):
     NO_RELIGION = -1
 
-class CorporationTypes:
+class CorporationTypes(Enum):
     NO_CORPORATION = -1
 
-class HurryTypes:
+class HurryTypes(Enum):
     NO_HURRY = -1
 
-class UpkeepTypes:
+class UpkeepTypes(Enum):
     NO_UPKEEP = -1
 
-class CultureLevelTypes:
+class CultureLevelTypes(Enum):
     NO_CULTURELEVEL = -1
 
-class CivicOptionTypes:
+class CivicOptionTypes(Enum):
     NO_CIVICOPTION = -1
 
-class CivicTypes:
+class CivicTypes(Enum):
     NO_CIVIC = -1
 
-class WarPlanTypes:
+class WarPlanTypes(Enum):
     NO_WARPLAN = -1
     WARPLAN_ATTACKED_RECENT = -1
     WARPLAN_ATTACKED = -1
@@ -1073,7 +1086,7 @@ class WarPlanTypes:
     WARPLAN_TOTAL = -1
     WARPLAN_DOGPILE = -1
 
-class AreaAITypes:
+class AreaAITypes(Enum):
     NO_AREAAI = -1
     AREAAI_OFFENSIVE = -1
     AREAAI_DEFENSIVE = -1
@@ -1081,18 +1094,18 @@ class AreaAITypes:
     AREAAI_ASSAULT = -1
     AREAAI_NEUTRAL = -1
 
-class EndTurnButtonStates:
+class EndTurnButtonStates(Enum):
     END_TURN_GO = -1
     END_TURN_OVER_HIGHLIGHT = -1
     END_TURN_OVER_DARK = -1
     NUM_END_TURN_STATES = -1
 
-class FogOfWarModeTypes:
+class FogOfWarModeTypes(Enum):
     FOGOFWARMODE_OFF = -1
     FOGOFWARMODE_UNEXPLORED = -1
     NUM_FOGOFWARMODE_TYPES = -1
 
-class AnimationTypes:
+class AnimationTypes(Enum):
     NONE_ANIMATION = -1
     BONUSANIMATION_UNIMPROVED = -1
     BONUSANIMATION_NOT_WORKED = -1
@@ -1105,11 +1118,11 @@ class AnimationTypes:
     IMPROVEMENTANIMATION_ON_EXTRA_3 = -1
     IMPROVEMENTANIMATION_ON_EXTRA_4 = -1
 
-class EntityEventTypes:
+class EntityEventTypes(Enum):
     ENTITY_EVENT_NONE = -1
     ENTEVENT_MOVE = 1
 
-class AnimationPathTypes:
+class AnimationPathTypes(Enum):
     ANIMATIONPATH_NONE = -1
     ANIMATIONPATH_IDLE = -1
     ANIMATIONPATH_MOVE = -1
@@ -1133,13 +1146,13 @@ class AnimationPathTypes:
     ANIMATIONPATH_AIRBOMB = -1
     ANIMATIONPATH_RUN = -1
 
-class AnimationCategoryTypes:
+class AnimationCategoryTypes(Enum):
     ANIMCAT_NONE = -1
 
-class CursorTypes:
+class CursorTypes(Enum):
     NO_CURSOR = -1
 
-class TradeableItems:
+class TradeableItems(Enum):
     NO_TRADEABLE_ITEMS = -1
     TRADE_GOLD = -1
     TRADE_GOLD_PER_TURN = -1
@@ -1162,7 +1175,7 @@ class TradeableItems:
     NUM_TRADEABLE_HEADINGS = -1
     NUM_TRADEABLE_ITEMS = -1
 
-class DiploEventTypes:
+class DiploEventTypes(Enum):
     NO_DIPLOEVENT = -1
     DIPLOEVENT_CONTACT = -1
     DIPLOEVENT_AI_CONTACT = -1
@@ -1187,10 +1200,10 @@ class DiploEventTypes:
     DIPLOEVENT_MADE_DEMAND_VASSAL = -1
     NUM_DIPLOEVENT_TYPES = -1
 
-class DiploCommentTypes:
+class DiploCommentTypes(Enum):
     NO_DIPLOCOMMENT = -1
 
-class NetContactTypes:
+class NetContactTypes(Enum):
     NO_NETCONTACT = -1
     NETCONTACT_INITIAL = -1
     NETCONTACT_RESPONSE = -1
@@ -1198,7 +1211,7 @@ class NetContactTypes:
     NETCONTACT_BUSY = -1
     NUM_NETCONTACT_TYPES = -1
 
-class ContactTypes:
+class ContactTypes(Enum):
     CONTACT_RELIGION_PRESSURE = -1
     CONTACT_CIVIC_PRESSURE = -1
     CONTACT_JOIN_WAR = -1
@@ -1215,7 +1228,7 @@ class ContactTypes:
     CONTACT_TRADE_MAP = -1
     NUM_CONTACT_TYPES = -1
 
-class MemoryTypes:
+class MemoryTypes(Enum):
     MEMORY_DECLARED_WAR = -1
     MEMORY_DECLARED_WAR_ON_FRIEND = -1
     MEMORY_HIRED_WAR_ALLY = -1
@@ -1251,7 +1264,7 @@ class MemoryTypes:
     MEMORY_LIBERATED_CITIES = -1
     NUM_MEMORY_TYPES = -1
 
-class AttitudeTypes:
+class AttitudeTypes(Enum):
     NO_ATTITUDE = -1
     ATTITUDE_FURIOUS = -1
     ATTITUDE_ANNOYED = -1
@@ -1260,7 +1273,7 @@ class AttitudeTypes:
     ATTITUDE_FRIENDLY = -1
     NUM_ATTITUDE_TYPES = -1
 
-class LeaderheadAction:
+class LeaderheadAction(Enum):
     NO_LEADERANIM = -1
     LEADERANIM_GREETING = -1
     LEADERANIM_FRIENDLY = -1
@@ -1272,14 +1285,14 @@ class LeaderheadAction:
     LEADERANIM_AGREE = -1
     NUM_LEADERANIM_TYPES = -1
 
-class DiplomacyPowerTypes:
+class DiplomacyPowerTypes(Enum):
     NO_DIPLOMACYPOWER = -1
     DIPLOMACYPOWER_WEAKER = -1
     DIPLOMACYPOWER_EQUAL = -1
     DIPLOMACYPOWER_STRONGER = -1
     NUM_DIPLOMACYPOWER_TYPES = -1
 
-class FeatTypes:
+class FeatTypes(Enum):
     FEAT_UNITCOMBAT_ARCHER = -1
     FEAT_UNITCOMBAT_MOUNTED = -1
     FEAT_UNITCOMBAT_MELEE = -1
@@ -1313,7 +1326,7 @@ class FeatTypes:
     FEAT_PAD = -1
     NUM_FEAT_TYPES = -1
 
-class SaveGameTypes:
+class SaveGameTypes(Enum):
     SAVEGAME_NONE = -1
     SAVEGAME_AUTO = -1
     SAVEGAME_RECOVERY = -1
@@ -1326,7 +1339,7 @@ class SaveGameTypes:
     SAVEGAME_REPLAY = -1
     NUM_SAVEGAME_TYPES = -1
 
-class GameType:
+class GameType(Enum):
     GAME_NONE = -1
     GAME_SP_NEW = -1
     GAME_SP_SCENARIO = -1
@@ -1343,27 +1356,27 @@ class GameType:
     GAME_REPLAY = -1
     NUM_GAMETYPES = -1
 
-class GameMode:
+class GameMode(Enum):
     NO_GAMEMODE = -1
     GAMEMODE_NORMAL = -1
     GAMEMODE_PITBOSS = -1
     NUM_GAMEMODES = -1
 
-class InterfaceVisibility:
+class InterfaceVisibility(Enum):
     INTERFACE_SHOW = -1
     INTERFACE_HIDE = -1
     INTERFACE_HIDE_ALL = -1
     INTERFACE_MINIMAP_ONLY = -1
     INTERFACE_ADVANCED_START = -1
 
-class GenericButtonSizes:
+class GenericButtonSizes(Enum):
     BUTTON_SIZE_46 = -1
     BUTTON_SIZE_32 = -1
     BUTTON_SIZE_24 = -1
     BUTTON_SIZE_16 = -1
     BUTTON_SIZE_CUSTOM = -1
 
-class WorldBuilderPopupTypes:
+class WorldBuilderPopupTypes(Enum):
     WBPOPUP_NONE = -1
     WBPOPUP_START = -1
     WBPOPUP_CITY = -1
@@ -1376,7 +1389,7 @@ class WorldBuilderPopupTypes:
     WBPOPUP_GAME = -1
     NUM_WBPOPUP = -1
 
-class EventType:
+class EventType(Enum):
     EVT_LBUTTONDOWN = -1
     EVT_LBUTTONDBLCLICK = -1
     EVT_RBUTTONDOWN = -1
@@ -1385,21 +1398,21 @@ class EventType:
     EVT_KEYDOWN = -1
     EVT_KEYUP = -1
 
-class LoadType:
+class LoadType(Enum):
     LOAD_NORMAL = -1
     LOAD_INIT = -1
     LOAD_SETUP = -1
     LOAD_GAMETYPE = -1
     LOAD_REPLAY = -1
 
-class FontTypes:
+class FontTypes(Enum):
     TITLE_FONT = -1
     GAME_FONT = -1
     SMALL_FONT = -1
     MENU_FONT = -1
     MENU_HIGHLIGHT_FONT = -1
 
-class PanelStyles:
+class PanelStyles(Enum):
     PANEL_STYLE_STANDARD = -1
     PANEL_STYLE_SOLID = -1
     PANEL_STYLE_EMPTY = -1
@@ -1457,7 +1470,7 @@ class PanelStyles:
     PANEL_STYLE_MAIN_BOTTOMBAR = -1
     PANEL_STYLE_MAIN_SELECT = -1
 
-class ButtonStyles:
+class ButtonStyles(Enum):
     BUTTON_STYLE_STANDARD = -1
     BUTTON_STYLE_ETCHED = -1
     BUTTON_STYLE_FLAT = -1
@@ -1486,7 +1499,7 @@ class ButtonStyles:
     BUTTON_STYLE_ARROW_LEFT = -1
     BUTTON_STYLE_ARROW_RIGHT = -1
 
-class TableStyles:
+class TableStyles(Enum):
     TABLE_STYLE_STANDARD = -1
     TABLE_STYLE_EMPTY = -1
     TABLE_STYLE_ALTEMPTY = -1
@@ -1495,12 +1508,12 @@ class TableStyles:
     TABLE_STYLE_ALTDEFAULT = -1
     TABLE_STYLE_STAGINGROOM = -1
 
-class EventContextTypes:
+class EventContextTypes(Enum):
     NO_EVENTCONTEXT = -1
     EVENTCONTEXT_SELF = -1
     EVENTCONTEXT_ALL = -1
 
-class TabGroupTypes:
+class TabGroupTypes(Enum):
     NO_TABGROUP = -1
 
     TABGROUP_GAME = -1
@@ -1511,7 +1524,7 @@ class TabGroupTypes:
 
     NUM_TABGROUPS = -1
 
-class ReplayMessageTypes:
+class ReplayMessageTypes(Enum):
     NO_REPLAY_MESSAGE = -1
 
     REPLAY_MESSAGE_MAJOR_EVENT = -1
@@ -1520,7 +1533,7 @@ class ReplayMessageTypes:
 
     NUM_REPLAY_MESSAGE_TYPES = -1
 
-class AudioTag:
+class AudioTag(Enum):
     AUDIOTAG_NONE = -1
     AUDIOTAG_SOUNDID = -1
     AUDIOTAG_CONTEXTID = -1
@@ -1533,7 +1546,7 @@ class AudioTag:
     AUDIOTAG_LOADTYPE = -1
     AUDIOTAG_COUNT = -1
 
-class CivilopediaPageTypes:
+class CivilopediaPageTypes(Enum):
     NO_CIVILOPEDIA_PAGE = -1
 
     CIVILOPEDIA_PAGE_TECH = -1
@@ -1560,7 +1573,7 @@ class CivilopediaPageTypes:
 
     NUM_CIVILOPEDIA_PAGE_TYPES = -1
 
-class ActionSubTypes:
+class ActionSubTypes(Enum):
     NO_ACTIONSUBTYPE = -1
 
     ACTIONSUBTYPE_INTERFACEMODE = -1
@@ -1577,7 +1590,7 @@ class ActionSubTypes:
 
     NUM_ACTIONSUBTYPES = -1
 
-class GameMessageTypes:
+class GameMessageTypes(Enum):
     GAMEMESSAGE_NETWORK_READY = -1
     GAMEMESSAGE_SAVE_GAME_FLAG = -1
     GAMEMESSAGE_SAVE_FLAG_ACK = -1
@@ -1674,21 +1687,21 @@ class GameMessageTypes:
     GAMEMESSAGE_FOUND_RELIGION = -1
     GAMEMESSAGE_MOD_NET_MESSAGE = -1
 
-class PopupControlLayout:
+class PopupControlLayout(Enum):
     POPUP_LAYOUT_LEFT = -1
     POPUP_LAYOUT_CENTER = -1
     POPUP_LAYOUT_RIGHT = -1
     POPUP_LAYOUT_STRETCH = -1
     POPUP_LAYOUT_NUMLAYOUTS = -1
 
-class JustificationTypes:
+class JustificationTypes(Enum):
     DLL_FONT_LEFT_JUSTIFY = -1
     DLL_FONT_RIGHT_JUSTIFY = -1
     DLL_FONT_CENTER_JUSTIFY = -1
     DLL_FONT_CENTER_VERTICALLY = -1
     DLL_FONT_ADDITIVE = -1
 
-class ToolTipAlignTypes:
+class ToolTipAlignTypes(Enum):
     TOOLTIP_TOP_LEFT = -1
     TOOLTIP_TOP_INLEFT = -1
     TOOLTIP_TOP_CENTER = -1
@@ -1709,36 +1722,36 @@ class ToolTipAlignTypes:
     TOOLTIP_CENTER_LEFT = -1
     TOOLTIP_INTOP_LEFT = -1
 
-class ActivationTypes:
+class ActivationTypes(Enum):
     ACTIVATE_NORMAL = -1
     ACTIVATE_CHILDFOCUS = -1
     ACTIVATE_MIMICPARENT = -1
     ACTIVATE_MIMICPARENTFOCUS = -1
 
-class HitTestTypes:
+class HitTestTypes(Enum):
     HITTEST_DEFAULT = -1
     HITTEST_NOHIT = -1
     HITTEST_SOLID = -1
     HITTEST_ON = -1
     HITTEST_CHILDREN = -1
 
-class GraphicLevelTypes:
+class GraphicLevelTypes(Enum):
     GRAPHICLEVEL_HIGH = -1
     GRAPHICLEVEL_MEDIUM = -1
     GRAPHICLEVEL_LOW = -1
     GRAPHICLEVEL_CURRENT = -1
     NUM_GRAPHICLEVELS = -1
 
-class EventTypes:
+class EventTypes(Enum):
     NO_EVENT = -1
 
-class EventTriggerTypes:
+class EventTriggerTypes(Enum):
     NO_EVENTTRIGGER = -1
 
-class EspionageMissionTypes:
+class EspionageMissionTypes(Enum):
     NO_ESPIONAGEMISSION = -1
 
-class AdvancedStartActionTypes:
+class AdvancedStartActionTypes(Enum):
     NO_ADVANCEDSTARTACTION = -1
 
     ADVANCEDSTARTACTION_EXIT = -1
@@ -1753,7 +1766,7 @@ class AdvancedStartActionTypes:
     ADVANCEDSTARTACTION_VISIBILITY = -1
     ADVANCEDSTARTACTION_AUTOMATE = -1
 
-class InputTypes:
+class InputTypes(Enum):
     KB_NONE = -1  # 0
     KB_ESCAPE = -1
     KB_0 = -1
@@ -1875,7 +1888,7 @@ class InputTypes:
     NUM_INPUT_TYPE = -1
     NONE = 0
 
-class NotifyCode:
+class NotifyCode(Enum):
     NOTIFY_CHARACTER = -1
     NOTIFY_CLICKED = -1
     NOTIFY_CURSOR_MOVE_OFF = -1
@@ -1884,6 +1897,6 @@ class NotifyCode:
     NOTIFY_MOVIE_DONE = -1
     NOTIFY_SLIDER_NEWSTOP = -1
 
-class MouseFlags:
+class MouseFlags(Enum):
     MOUSE_LBUTTONUP = -1
     MOUSE_RBUTTONUP = -1
