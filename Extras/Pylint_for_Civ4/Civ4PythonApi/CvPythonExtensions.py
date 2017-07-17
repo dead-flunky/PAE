@@ -18664,3 +18664,6 @@ def getClockText():
 # def NiTextOut(szText):
 #    pass
 #
+
+def getWBSaveExtension():
+    return str()
