@@ -1853,7 +1853,7 @@ def doAutomatedRanking(pWinner, pLoser):
             pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
         iPlayer = pWinner.getOwner()
 
-        if not (pWinner.isHasPromotion(L.LPromo[2][0]) and pLoser.getOwner() == gc.getBARBARIAN_PLAYER()):
+        if not pWinner.isHasPromotion(L.LPromo[2][0]) and pLoser.getOwner() != gc.getBARBARIAN_PLAYER():
             iNewRank = -1
             if not pWinner.isHasPromotion(L.LPromo[-1][0]):
                 for iPromo, iChance in L.LPromo:
