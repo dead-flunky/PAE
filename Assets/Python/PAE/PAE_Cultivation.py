@@ -8,58 +8,13 @@ import CvUtil
 
 import PAE_Unit
 import PAE_Trade
+import PAE_Lists as L
 ### Defines
 gc = CyGlobalContext()
 
-### Globals
-lCorn = [] # Lists of cultivatable bonuses
-lLivestock = []
-lPlantation = []
-lCultivatable = [] # = lCorn + lLivestock + lPlantation + BONUS_HORSE
-lCultivationUnits = [] # List of cultivation units
-bInitialized = False # Whether global variables are already initialised
-
-# Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["b"], -1), CvUtil.addScriptData(pUnit, "b", eBonus) (add uses string, get list of strings)
-# getScriptData returns string => cast might be necessary
-# Update (Ramk): No, CvUtil-Functions unpack an dict. You could directly use int, etc.
-
+# Update (Ramk): CvUtil-Functions unpack an dict. You could directly use int, etc.
 # Used keys for UnitScriptData:
 # "b": index of bonus stored in merchant/cultivation unit (only one at a time)
-
-def init():
-    global bInitialized
-    global lCorn
-    global lLivestock
-    global lCultivatable
-    global lPlantation
-    global lCultivationUnits
-
-    if not bInitialized:
-        # BonusClass indices
-        eGrain = gc.getInfoTypeForString("BONUSCLASS_GRAIN")
-        # WHEAT, GERSTE, HAFER, ROGGEN, HIRSE, RICE
-        eLivestock = gc.getInfoTypeForString("BONUSCLASS_LIVESTOCK")
-        # COW, PIG, SHEEP
-        ePlantation = gc.getInfoTypeForString("BONUSCLASS_PLANTATION")
-        # GRAPES, OLIVES, DATTELN
-
-        iNumBonuses = gc.getNumBonusInfos()
-        for eBonus in range(iNumBonuses):
-            pBonusInfo = gc.getBonusInfo(eBonus)
-            iClass = pBonusInfo.getBonusClassType()
-            if iClass == eGrain:
-                lCorn.append(eBonus)
-            elif iClass == eLivestock:
-                lLivestock.append(eBonus)
-            elif iClass == ePlantation:
-                lPlantation.append(eBonus)
-
-        lCultivatable = lCorn + lLivestock + lPlantation + [gc.getInfoTypeForString("BONUS_HORSE")]
-
-        lCultivationUnits = [gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")]
-
-        bInitialized = True
-
 
 def _getCitiesInRange(pPlot, iPlayer):
     iX = pPlot.getX()
@@ -79,10 +34,8 @@ def _getCitiesInRange(pPlot, iPlayer):
     return lCities
 
 def _isCityCultivationPossible(pCity):
-
     iMax = getCityCultivationAmount(pCity)
     iBonusAnzahl = getCityCultivatedBonuses(pCity)
-
     return iBonusAnzahl < iMax
 
 def getCityCultivationAmount(pCity):
@@ -103,18 +56,19 @@ def getCityCultivatedBonuses(pCity):
         pLoopPlot = pCity.getCityIndexPlot(i)
         if pLoopPlot is not None and not pLoopPlot.isNone():
             iLoopBonus = pLoopPlot.getBonusType(-1)
-            if iLoopBonus in lCultivatable:
+            if iLoopBonus in L.LBonusCultivatable:
                 iAnz += 1
     return iAnz
 
 
 def _isBonusCultivationChance(iPlayer, pPlot, eBonus, bVisibleOnly=True):
-    """Returns chance to cultivate eBonus on pPlot. Currently: either 0 (impossible) or 80 (possible)
+    """
+        Returns chance to cultivate eBonus on pPlot. Currently: either 0 (impossible) or 80 (possible)
         bVisibleOnly: Non-cultivatable bonuses cannot be replaced. If there is an invisible (tech reveal) bonus on pPlot, player receives NO information.
         In particular, the normal cultivation chance will be displayed, but bVisibleOnly=False prevents invisible bonus from removal.
     """
     # Variety of invalid situations
-    if (eBonus not in lCultivatable
+    if (eBonus not in L.LBonusCultivatable
             or pPlot is None or pPlot.isNone()
             or pPlot.getOwner() != iPlayer
             or pPlot.isCity()
@@ -126,14 +80,14 @@ def _isBonusCultivationChance(iPlayer, pPlot, eBonus, bVisibleOnly=True):
     if bVisibleOnly:
         eTeam = pPlot.getTeam()
     ePlotBonus = pPlot.getBonusType(eTeam)
-    if ePlotBonus != -1 and (ePlotBonus not in lCultivatable or ePlotBonus == eBonus):
+    if ePlotBonus != -1 and (ePlotBonus not in L.LBonusCultivatable or ePlotBonus == eBonus):
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "uncultivatable bonus present", None, 2, None, ColorTypes(10), 0, 0, False, False)
         return False
 
     # Fertility conditions
     if (not canHaveBonus(pPlot, eBonus, True)
             # or (eBonus in lCorn and not pPlot.isFreshWater()) # siehe https://www.civforum.de/showthread.php?97599-PAE-Bonusressourcen&p=7653686&viewfull=1#post7653686
-            or (eBonus in lPlantation and
+            or (eBonus in L.LBonusPlantation and
                 (eBonus == gc.getInfoTypeForString("BONUS_DATTELN") and not pPlot.isFreshWater())
                 or (eBonus == gc.getInfoTypeForString("BONUS_OLIVES") and not pPlot.isCoastalLand())
                 or (eBonus == gc.getInfoTypeForString("BONUS_GRAPES") and not pPlot.isFreshWater()))):
@@ -230,8 +184,9 @@ def doCultivateBonus(pPlot, pUnit, eBonus):
 
 
 def getCityCultivationPlot(pCity, eBonus):
-    """Cultivates eBonus on random plot within radius of iRange around pUnit (chance of success: 80%).
-       Never replaces existing bonus.
+    """
+        Cultivates eBonus on random plot within radius of iRange around pUnit (chance of success: 80%).
+        Never replaces existing bonus.
     """
     iPlayer = pCity.getOwner()
     lPlotList = []
@@ -250,7 +205,7 @@ def getCityCultivationPlot(pCity, eBonus):
 # Checks fertility conditions AND unit store
 # if iIsCity == 1, 5x5 square is checked. Otherwise: Only current plot.
 def isBonusCultivatable(pUnit):
-    if not pUnit.getUnitType() in lCultivationUnits:
+    if not pUnit.getUnitType() in L.LCultivationUnits:
         return False
 
     eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
@@ -306,10 +261,10 @@ def AI_bestCultivation(pCity, iSkipN=-1, eBonus=-1):
 # Lets pUnit cultivate bonus at nearest city
 def doCultivation_AI(pUnit):
 
-    if not pUnit.getUnitType() in lCultivationUnits:
+    if not pUnit.getUnitType() in L.LCultivationUnits:
         return False
 
-    lFood = lCorn+lLivestock
+    lFood = L.LBonusCorn+L.LBonusLivestock
 
     pUnitPlot = pUnit.plot()
     iPlayer = pUnit.getOwner()
@@ -632,7 +587,7 @@ def doCollectBonus4Cultivation(pUnit):
     if eBonus == -1:
         return False
 
-    if eBonus not in lCultivatable:
+    if eBonus not in L.LBonusCultivatable:
         return False
 
     eUnitBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
@@ -645,9 +600,10 @@ def doCollectBonus4Cultivation(pUnit):
     pPlot.setBonusType(-1) # remove bonus
 
     # Handelsposten auch entfernen
-    lImprovements = []
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"))
-    lImprovements.append(gc.getInfoTypeForString("IMPROVEMENT_PASTURE"))
+    lImprovements = [
+        gc.getInfoTypeForString("IMPROVEMENT_HANDELSPOSTEN"),
+        gc.getInfoTypeForString("IMPROVEMENT_PASTURE")
+    ]
     if pPlot.getImprovementType() in lImprovements:
         pPlot.setImprovementType(-1)
 
@@ -662,7 +618,7 @@ def getCollectableGoods4Cultivation(pUnit):
         lGoods = _getCollectableGoods4Cultivation(pCity)
     else:
         ePlotBonus = pPlot.getBonusType(pPlot.getTeam())
-        if ePlotBonus != -1 and ePlotBonus in lCultivatable:
+        if ePlotBonus != -1 and ePlotBonus in L.LBonusCultivatable:
             lGoods = [ePlotBonus]
 
     return lGoods
@@ -670,18 +626,19 @@ def getCollectableGoods4Cultivation(pUnit):
     # Returns list of the cultivatable bonuses which pCity has access to / Liste kultivierbarer Ressis im Handelsnetz von pCity
 def _getCollectableGoods4Cultivation(pCity):
     lGoods = []
-    for eBonus in lCultivatable:
+    for eBonus in L.LBonusCultivatable:
         if pCity.hasBonus(eBonus):
             lGoods.append(eBonus)
     return lGoods
 
 
-# Price of cultivation goods
-# regional (on plot): *1
-# national: *2
-# international: *3
 def _calculateBonusBuyingPrice4Cultivation(eBonus, iBuyer, pPlot):
-
+    """
+    # Price of cultivation goods
+    # regional (on plot): *1
+    # national: *2
+    # international: *3
+    """
     iPrice = PAE_Trade.getBonusValue(eBonus)
     pCity = pPlot.getPlotCity()
     if pCity is None:
@@ -713,7 +670,7 @@ def _calculateBonusBuyingPrice4Cultivation(eBonus, iBuyer, pPlot):
 
 
 def doBuyBonus4Cultivation(pUnit, eBonus):
-    if not pUnit.getUnitType() in lCultivationUnits:
+    if not pUnit.getUnitType() in L.LCultivationUnits:
         return
     if eBonus == -1:
         return

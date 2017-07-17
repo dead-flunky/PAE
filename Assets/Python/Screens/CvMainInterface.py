@@ -2397,7 +2397,7 @@ class CvMainInterface:
                         # BEGIN Merchant trade/cultivation/collect Bonus (738-741) (Boggy)
                         if pUnit.canMove():  # and not pUnit.hasMoved():
                             pPlot = g_pSelectedUnit.plot()
-                            if iUnitType in PAE_Cultivation.lCultivationUnits:
+                            if iUnitType in L.LCultivationUnits:
                                 if pPlot.getOwner() == iUnitOwner:
                                     iIsCity = pPlot.isCity()
                                     eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
@@ -2405,7 +2405,7 @@ class CvMainInterface:
                                     ePlotBonus = pPlot.getBonusType(iUnitOwner)  # Invisible bonuses can NOT be collected
                                     # remove from plot => iData2 = 0. 1 = charge all goods without removing. Nur bei leerem Karren.
                                     if eBonus == -1:
-                                        if ePlotBonus != -1 and ePlotBonus in PAE_Cultivation.lCultivatable:
+                                        if ePlotBonus != -1 and ePlotBonus in L.LCultivatable:
                                             screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True)
                                             screen.show("BottomButtonContainer")
                                             iCount = iCount + 1
@@ -2423,7 +2423,7 @@ class CvMainInterface:
                                         screen.show("BottomButtonContainer")
                                         iCount = iCount + 1
                             # Buy / sell goods in cities (domestic or foreign)
-                            if iUnitType in PAE_Trade.lTradeUnits:
+                            if iUnitType in L.LTradeUnits:
                                 if pPlot.isCity():
                                     eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
                                     # Sell
@@ -2442,7 +2442,7 @@ class CvMainInterface:
                                     screen.show("BottomButtonContainer")
                                     iCount = iCount + 1
                         # Cancel automated trade route
-                        if iUnitType in PAE_Trade.lTradeUnits:
+                        if iUnitType in L.LTradeUnits:
                             bTradeRouteActive = int(CvUtil.getScriptData(pUnit, ["autA"], 0))
                             if bTradeRouteActive:
                                 screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_AUTO_STOP").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 748, 748, False)
@@ -5221,7 +5221,7 @@ class CvMainInterface:
                             else:
                                 iValue1 = pUnit.getOwner()
 
-                        # elif pUnit.getUnitType() in PAE_Trade.lTradeUnits:
+                        # elif pUnit.getUnitType() in L.LTradeUnits:
                         #  UnitBarType = "TRADE"
                         #  iValue1 = CvUtil.getScriptData(pUnit, ["b"], -1)
 
@@ -5453,7 +5453,7 @@ class CvMainInterface:
 
                     # PAE Cultivation and Trade (Boggy)
                     szText = ""
-                    if pHeadSelectedUnit.getUnitType() in PAE_Trade.lTradeUnits + PAE_Cultivation.lCultivationUnits:
+                    if pHeadSelectedUnit.getUnitType() in L.LTradeUnits + L.LCultivationUnits:
                         szText = localText.getText("TXT_UNIT_INFO_BAR_5", ()) + u" "
                         iValue1 = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
                         if iValue1 != -1:

@@ -10,12 +10,6 @@ import PAE_Lists as L
 gc = CyGlobalContext()
 
 ### Globals
-lUntradeable = [] # List of untradeable bonuses
-lCorn = [] # Lists of cultivatable bonuses
-lLivestock = []
-lPlantation = []
-lLuxury = [] # List of bonuses which may create trade routes
-lRarity = [] # List of bonuses which may create trade routes
 bInitialized = False # Whether global variables are already initialised
 iMaxCitiesSpecialBonus = 3
 iCitiesSpecialBonus = 0 # Cities with Special Trade Bonus
@@ -40,46 +34,9 @@ iCitiesSpecialBonus = 0 # Cities with Special Trade Bonus
 
 def init():
     global bInitialized
-    global lUntradeable
-    global lCorn
-    global lLivestock
-    global lPlantation
-    global lLuxury
-    global lRarity
     global iCitiesSpecialBonus
 
     if not bInitialized:
-        # BonusClass indices
-        eGrain = gc.getInfoTypeForString("BONUSCLASS_GRAIN") # WHEAT, GERSTE, HAFER, ROGGEN, HIRSE, RICE
-        eLivestock = gc.getInfoTypeForString("BONUSCLASS_LIVESTOCK") # COW, PIG, SHEEP
-        ePlantation = gc.getInfoTypeForString("BONUSCLASS_PLANTATION") # GRAPES, OLIVES, DATTELN
-        eGeneral = gc.getInfoTypeForString("BONUSCLASS_GENERAL") # COAL (Blei), ZINN, ZINK, ZEDERNHOLZ, COPPER, BRONZE, IRON, MESSING, HORSE, CAMEL, HUNDE, PAPYRUS_PAPER
-        eLuxury = gc.getInfoTypeForString("BONUSCLASS_LUXURY") # GOLD, SILVER, PEARL, LION, SALT, DYE, FUR, INCENSE, MYRRHE, IVORY, SPICES, WINE, MUSIC
-        eRarity = gc.getInfoTypeForString("BONUSCLASS_RARITY") # MAGNETIT, OBSIDIAN, OREICHALKOS, GLAS, BERNSTEIN, ELEKTRON, WALRUS, GEMS, SILK, SILPHIUM, TERRACOTTA
-        eWonder = gc.getInfoTypeForString("BONUSCLASS_WONDER") # MARBLE, STONE
-        # eMisc =  gc.getInfoTypeForString("BONUSCLASS_MISC") # BANANA, CRAB, DEER, FISH, CLAM, PAPYRUS
-        # eMerc =  gc.getInfoTypeForString("BONUSCLASS_MERCENARY") # BALEAREN, TEUTONEN, BAKTRIEN, KRETA, KILIKIEN, MARS, THRAKIEN
-
-        iNumBonuses = gc.getNumBonusInfos()
-        for eBonus in range(iNumBonuses):
-            pBonusInfo = gc.getBonusInfo(eBonus)
-            iClass = pBonusInfo.getBonusClassType()
-            if iClass == eGrain:
-                lCorn.append(eBonus)
-            elif iClass == eLivestock:
-                lLivestock.append(eBonus)
-            elif iClass == ePlantation:
-                lPlantation.append(eBonus)
-            elif iClass == eLuxury:
-                lLuxury.append(eBonus)
-            elif iClass == eRarity:
-                lRarity.append(eBonus)
-            # eg BONUSCLASS_MISC
-            elif iClass != eWonder and iClass != eGeneral:
-                lUntradeable.append(eBonus)
-            # BonusClasse wonder and general are not stored separately (bc. unnecessary)
-
-
         # Cities mit Special Trade Bonus herausfinden
         iRange = gc.getMAX_PLAYERS()
         for i in range(iRange):
@@ -181,10 +138,10 @@ def doSellBonus(pUnit, pCity):
                 iChance = 20
 
             # Trade route / Handelsstrasse
-            if eBonus in lLuxury + lRarity:
+            if eBonus in L.LBonusLuxury + L.LBonusRarity:
                 if not CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus) and pUnit.getDomainType() != gc.getInfoTypeForString("DOMAIN_SEA"):
                     # Rarities doubles chance
-                    if eBonus in lRarity:
+                    if eBonus in L.LBonusRarity:
                         iChance *= 2
                     if CvUtil.myRandom(100, "Handelsstrasse") < iChance:
                         iOriginX = CvUtil.getScriptData(pUnit, ["x"], -1)
@@ -236,7 +193,7 @@ def doSellBonus(pUnit, pCity):
 
         # Special Order
         if iOriginCiv != iBuyer:
-            if eBonus in lLuxury + lRarity:
+            if eBonus in L.LBonusLuxury + L.LBonusRarity:
                 _doCheckCitySpecialBonus(pUnit, pCity, eBonus)
         pUnit.finishMoves()
 
@@ -343,13 +300,13 @@ def doPopupChooseBonus(pUnit, pCity):
 # Basis value for each bonus
 # auch in TXT_KEY_TRADE_ADVISOR_WERT_PANEL
 def getBonusValue(eBonus):
-    if eBonus == -1 or eBonus in lUntradeable:
+    if eBonus == -1 or eBonus in L.LBonusUntradeable:
         return -1
-    if eBonus in lCorn + lLivestock + lPlantation:
+    if eBonus in L.LBonusCorn + L.LBonusLivestock + L.LBonusPlantation:
         return 20
-    elif eBonus in lLuxury:
+    elif eBonus in L.LBonusLuxury:
         return 40
-    elif eBonus in lRarity:
+    elif eBonus in L.LBonusRarity:
         return 50
     return 30 # strategic bonus ressource
 
@@ -498,7 +455,7 @@ def getCitySaleableGoods(pCity, iBuyer):
                 # plot needs to have suitable improvement and city needs to have access to bonus (=> connection via trade route (street))
                 eBonus = pLoopPlot.getBonusType(iCityOwnerTeam)
                 eImprovement = pLoopPlot.getImprovementType()
-                if eImprovement != -1 and eBonus != -1 and eBonus not in lGoods and eBonus not in lUntradeable:
+                if eImprovement != -1 and eBonus != -1 and eBonus not in lGoods and eBonus not in L.LBonusUntradeable:
                     if gc.getImprovementInfo(eImprovement).isImprovementBonusMakesValid(eBonus) and CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus):
                         if iBuyer == -1 or _calculateBonusBuyingPrice(eBonus, iBuyer, iCityOwner) <= iMaxPrice: # Max price
                             lGoods.append(eBonus)
@@ -506,7 +463,7 @@ def getCitySaleableGoods(pCity, iBuyer):
     for iBuilding in range(iMaxNumBuildings): # check buildings
         if pCity.isHasBuilding(iBuilding):
             eBonus = gc.getBuildingInfo(iBuilding).getFreeBonus()
-            if eBonus != -1 and eBonus not in lUntradeable and eBonus not in lGoods and CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus):
+            if eBonus != -1 and eBonus not in L.LBonusUntradeable and eBonus not in lGoods and CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus):
                 if iBuyer == -1 or _calculateBonusBuyingPrice(eBonus, iBuyer, iCityOwner) <= iMaxPrice: # Max price
                     lGoods.append(eBonus)
     return lGoods
@@ -841,10 +798,10 @@ def _getPlayerLuxuryCities(iPlayer):
 # Returns list of the luxuries in reach of pCity (saleable). Used by AI trade route determination.
 def _getCityLuxuries(pCity):
     lBonuses = getCitySaleableGoods(pCity, -1)
-    lBonuses2 = CvUtil.getIntersection(lRarity, lBonuses)
+    lBonuses2 = CvUtil.getIntersection(L.LBonusRarity, lBonuses)
     if lBonuses2:
         return lBonuses2
-    lBonuses2 = CvUtil.getIntersection(lLuxury, lBonuses)
+    lBonuses2 = CvUtil.getIntersection(L.LBonusLuxury, lBonuses)
     if lBonuses2:
         return lBonuses2
     return lBonuses
@@ -903,7 +860,7 @@ def addCityWithSpecialBonus(iGameTurn):
         # Dauer auswaehlen
         iTurns = lTurns[CvUtil.myRandom(len(lTurns), "turns addCityWithSpecialBonus")]
         # Bonusgut herausfinden
-        for iBonus in lLuxury + lRarity:
+        for iBonus in L.LBonusLuxury + L.LBonusRarity:
             if not pCity.hasBonus(iBonus):
                 lNewBonus.append(iBonus)
         # Bonus setzen wenn die Stadt nicht eh schon alles hat.
