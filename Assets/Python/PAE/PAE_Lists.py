@@ -968,6 +968,12 @@ def init():
     # eMerc =  gc.getInfoTypeForString("BONUSCLASS_MERCENARY") # BALEAREN, TEUTONEN, BAKTRIEN, KRETA, KILIKIEN, MARS, THRAKIEN
 
     iNumBonuses = gc.getNumBonusInfos()
+    LCorn = []
+    LLivestock = []
+    LPlantation = []
+    LLuxury = []
+    LRarity = []
+    LUntradeable = []
     for eBonus in range(iNumBonuses):
         pBonusInfo = gc.getBonusInfo(eBonus)
         iClass = pBonusInfo.getBonusClassType()
@@ -987,6 +993,7 @@ def init():
         # BonusClass wonder and general are not stored separately (bc. unnecessary)
 
     LCultivatable = LCorn + LLivestock + LPlantation + [gc.getInfoTypeForString("BONUS_HORSE")]
+
     # Tranfer local defined variables into module ones.
     lnames = [l for l in locals().keys() if l[0] != "_" and l != "gc"]
     for l in lnames:
