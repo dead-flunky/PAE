@@ -107,6 +107,13 @@ def init():
         gc.getInfoTypeForString("UNIT_GAULOS"),
         gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
     ]
+    LTradeUnits = [
+        gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"),
+        gc.getInfoTypeForString("UNIT_CARAVAN"),
+        gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
+        gc.getInfoTypeForString("UNIT_GAULOS"),
+        gc.getInfoTypeForString("UNIT_CARVEL_TRADE")
+    ]
     LUnitCanBeDomesticated = [
         gc.getInfoTypeForString("UNIT_WILD_HORSE"),
         gc.getInfoTypeForString("UNIT_WILD_CAMEL"),
