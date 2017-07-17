@@ -85,11 +85,14 @@ import FirstPunicWar
     Note that the flag will also be used to enable/disable
     other debugging features of Ramkhamhaeng
 """
-CIV4_SHELL = False
+CIV4_SHELL = True
+RAMK_EXTENDED_DEBUG = False
+RAMK_WRAP_FUNCTIONS = False
 if CIV4_SHELL:
     import Civ4ShellBackend
     civ4Console = Civ4ShellBackend.Server(tcp_port=3333)
 
+if RAMK_EXTENDED_DEBUG:
     # Ramk - Redirect exception handler
     import ExtendedDebug
     ExtendedDebug.init_extended_debug()  # Made game very slow!
@@ -1783,7 +1786,7 @@ class CvEventManager:
     def onInit(self, argsList):
         'Called when Civ starts up'
         CvUtil.pyPrint('OnInit')
-        if CIV4_SHELL:
+        if RAMK_WRAP_FUNCTIONS:
             import Wrappers
             Wrappers.addWrappers()
 
