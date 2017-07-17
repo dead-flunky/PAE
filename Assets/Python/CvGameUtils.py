@@ -111,7 +111,7 @@ class CvGameUtils:
             iUnitType = pHeadSelectedUnit.getUnitType()
 
             # Cultivation
-            if iUnitType in PAE_Cultivation.lCultivationUnits:
+            if iUnitType in L.LCultivationUnits:
                 eBonus = CvUtil.getScriptData(pHeadSelectedUnit, ["b"], -1)
                 if eBonus != -1 and not gc.getActivePlayer().isOption(PlayerOptionTypes.PLAYEROPTION_NO_UNIT_RECOMMENDATIONS):
                     pPlayer = gc.getPlayer(pHeadSelectedUnit.getOwner())
@@ -1121,12 +1121,12 @@ class CvGameUtils:
             # Trade and cultivation (Boggy). First, try cultivation. If unsuccessfull, try trade.
             # if pUnit.getUnitAIType() ==
             # gc.getInfoTypeForString("UNITAI_MERCHANT") and iUnitType != gc.getInfoTypeForString("UNIT_MERCHANT") and iOwner != iBarbarianPlayer:
-            if iUnitType in PAE_Cultivation.lCultivationUnits:
+            if iUnitType in L.LCultivationUnits:
                 if PAE_Cultivation.doCultivation_AI(pUnit):
                     return True
 
             # s = pOwner.getName()
-            if iUnitType in PAE_Trade.lTradeUnits:
+            if iUnitType in L.LTradeUnits:
                 # CyInterface().addMessage(iHumanPlayer, True, 10, "Vor doAutom 1 " + s, None, 2, None, ColorTypes(5), pUnit.getX(), pUnit.getY(), False, False)
                 if PAE_Trade.doAutomateMerchant(pUnit, True):
                     return True

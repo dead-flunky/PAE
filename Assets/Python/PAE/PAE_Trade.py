@@ -1,30 +1,20 @@
 # Trade and Cultivation feature
 # From BoggyB
-
 ### Imports
 from CvPythonExtensions import *
 # import CvEventInterface
 import CvUtil
 import PAE_Unit
+import PAE_Lists as L
 ### Defines
 gc = CyGlobalContext()
 
 ### Globals
-lUntradeable = [] # List of untradeable bonuses
-lCorn = [] # Lists of cultivatable bonuses
-lLivestock = []
-lPlantation = []
-lLuxury = [] # List of bonuses which may create trade routes
-lRarity = [] # List of bonuses which may create trade routes
-lTradeUnits = [] # List of merchant units
 bInitialized = False # Whether global variables are already initialised
-
 iMaxCitiesSpecialBonus = 3
-lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
+iCitiesSpecialBonus = 0 # Cities with Special Trade Bonus
 
-# Reminder: How to use ScriptData: CvUtil.getScriptData(pUnit, ["b"], -1), CvUtil.addScriptData(pUnit, "b", eBonus) (add uses string, get list of strings)
-# getScriptData returns string => cast might be necessary
-# Update (Ramk): No, CvUtil-Functions unpack an dict. You could directly use int, etc.
+# Update (Ramk): CvUtil-Functions unpack an dict. You could directly use int, etc.
 
 # Used keys for UnitScriptData:
 # "x"/"y": coordinates of plots where bonus was picked up (merchants)
@@ -44,76 +34,23 @@ lCitiesSpecialBonus = [] # Cities with Special Trade Bonus
 
 def init():
     global bInitialized
-    global lUntradeable
-    global lCorn
-    global lLivestock
-    global lPlantation
-    global lLuxury
-    global lRarity
-    global lTradeUnits
-    global lCitiesSpecialBonus
+    global iCitiesSpecialBonus
 
     if not bInitialized:
-        # BonusClass indices
-        eGrain = gc.getInfoTypeForString("BONUSCLASS_GRAIN")
-        # WHEAT, GERSTE, HAFER, ROGGEN, HIRSE, RICE
-        eLivestock = gc.getInfoTypeForString("BONUSCLASS_LIVESTOCK")
-        # COW, PIG, SHEEP
-        ePlantation = gc.getInfoTypeForString("BONUSCLASS_PLANTATION")
-        # GRAPES, OLIVES, DATTELN
-        eGeneral = gc.getInfoTypeForString("BONUSCLASS_GENERAL")
-        # COAL (Blei), ZINN, ZINK, ZEDERNHOLZ, COPPER, BRONZE, IRON, MESSING, HORSE, CAMEL, HUNDE, PAPYRUS_PAPER
-        eLuxury = gc.getInfoTypeForString("BONUSCLASS_LUXURY")
-        # GOLD, SILVER, PEARL, LION, SALT, DYE, FUR, INCENSE, MYRRHE, IVORY, SPICES, WINE, MUSIC
-        eRarity = gc.getInfoTypeForString("BONUSCLASS_RARITY")
-        # MAGNETIT, OBSIDIAN, OREICHALKOS, GLAS, BERNSTEIN, ELEKTRON, WALRUS, GEMS, SILK, SILPHIUM, TERRACOTTA
-        eWonder = gc.getInfoTypeForString("BONUSCLASS_WONDER")
-        # MARBLE, STONE
-        # eMisc =  gc.getInfoTypeForString("BONUSCLASS_MISC")
-        # BANANA, CRAB, DEER, FISH, CLAM, PAPYRUS
-        # eMerc =  gc.getInfoTypeForString("BONUSCLASS_MERCENARY")
-        # BALEAREN, TEUTONEN, BAKTRIEN, KRETA, KILIKIEN, MARS, THRAKIEN
-
-        iNumBonuses = gc.getNumBonusInfos()
-        for eBonus in range(iNumBonuses):
-            pBonusInfo = gc.getBonusInfo(eBonus)
-            iClass = pBonusInfo.getBonusClassType()
-            if iClass == eGrain:
-                lCorn.append(eBonus)
-            elif iClass == eLivestock:
-                lLivestock.append(eBonus)
-            elif iClass == ePlantation:
-                lPlantation.append(eBonus)
-            elif iClass == eLuxury:
-                lLuxury.append(eBonus)
-            elif iClass == eRarity:
-                lRarity.append(eBonus)
-            # eg BONUSCLASS_MISC
-            elif iClass != eWonder and iClass != eGeneral:
-                lUntradeable.append(eBonus)
-            # BonusClasse wonder and general are not stored separately (bc. unnecessary)
-        lTradeUnits = [
-            gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"),
-            gc.getInfoTypeForString("UNIT_CARAVAN"),
-            gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
-            gc.getInfoTypeForString("UNIT_GAULOS"),
-            gc.getInfoTypeForString("UNIT_CARVEL_TRADE")
-        ]
-
         # Cities mit Special Trade Bonus herausfinden
         iRange = gc.getMAX_PLAYERS()
         for i in range(iRange):
             loopPlayer = gc.getPlayer(i)
-            if loopPlayer.isAlive():
+            if loopPlayer.isAlive() and not loopPlayer.isBarbarian():
                 (loopCity, pIter) = loopPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isNone() and loopCity.getOwner() == loopPlayer.getID(): #only valid cities
-                        if int(CvUtil.getScriptData(loopCity, ["tsb"], -1)) != -1:
-                            lCitiesSpecialBonus.append(loopCity)
-                            if len(lCitiesSpecialBonus) == iMaxCitiesSpecialBonus:
+                        if CvUtil.getScriptData(loopCity, ["tsb"], -1) != -1:
+                            iCitiesSpecialBonus += 1
+                            if iCitiesSpecialBonus == iMaxCitiesSpecialBonus:
                                 break
                     (loopCity, pIter) = loopPlayer.nextCity(pIter, False)
-            if len(lCitiesSpecialBonus) == iMaxCitiesSpecialBonus:
+            if iCitiesSpecialBonus == iMaxCitiesSpecialBonus:
                 break
         bInitialized = True
 
@@ -122,7 +59,7 @@ def init():
 # Unit stores bonus, owner pays, if UnitOwner != CityOwner: city owner gets money
 def doBuyBonus(pUnit, eBonus, iCityOwner):
 
-    if not pUnit.getUnitType() in lTradeUnits:
+    if not pUnit.getUnitType() in L.LTradeUnits:
         return
 
     if eBonus != -1:
@@ -183,7 +120,7 @@ def doSellBonus(pUnit, pCity):
         pSeller.changeGold(iPrice)
         iGewinnWissen = 0
 
-        iOriginCiv = int(CvUtil.getScriptData(pUnit, ["originCiv"], -1)) # where the goods come from
+        iOriginCiv = CvUtil.getScriptData(pUnit, ["originCiv"], -1) # where the goods come from
         CvUtil.removeScriptData(pUnit, "b")
         if iOriginCiv != iBuyer:
 
@@ -201,10 +138,10 @@ def doSellBonus(pUnit, pCity):
                 iChance = 20
 
             # Trade route / Handelsstrasse
-            if eBonus in lLuxury + lRarity:
+            if eBonus in L.LBonusLuxury + L.LBonusRarity:
                 if not CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus) and pUnit.getDomainType() != gc.getInfoTypeForString("DOMAIN_SEA"):
                     # Rarities doubles chance
-                    if eBonus in lRarity:
+                    if eBonus in L.LBonusRarity:
                         iChance *= 2
                     if CvUtil.myRandom(100, "Handelsstrasse") < iChance:
                         iOriginX = CvUtil.getScriptData(pUnit, ["x"], -1)
@@ -256,7 +193,7 @@ def doSellBonus(pUnit, pCity):
 
         # Special Order
         if iOriginCiv != iBuyer:
-            if eBonus in lLuxury + lRarity:
+            if eBonus in L.LBonusLuxury + L.LBonusRarity:
                 _doCheckCitySpecialBonus(pUnit, pCity, eBonus)
         pUnit.finishMoves()
 
@@ -363,13 +300,13 @@ def doPopupChooseBonus(pUnit, pCity):
 # Basis value for each bonus
 # auch in TXT_KEY_TRADE_ADVISOR_WERT_PANEL
 def getBonusValue(eBonus):
-    if eBonus == -1 or eBonus in lUntradeable:
+    if eBonus == -1 or eBonus in L.LBonusUntradeable:
         return -1
-    if eBonus in lCorn + lLivestock + lPlantation:
+    if eBonus in L.LBonusCorn + L.LBonusLivestock + L.LBonusPlantation:
         return 20
-    elif eBonus in lLuxury:
+    elif eBonus in L.LBonusLuxury:
         return 40
-    elif eBonus in lRarity:
+    elif eBonus in L.LBonusRarity:
         return 50
     return 30 # strategic bonus ressource
 
@@ -391,10 +328,9 @@ def _calculateBonusBuyingPrice(eBonus, iBuyer, iSeller):
 
 # Money player gets for selling bonus
 def calculateBonusSellingPrice(pUnit, pCity):
-
-    if not pUnit.getUnitType() in lTradeUnits:
+    if not pUnit.getUnitType() in L.LTradeUnits:
         return -1
-    eBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
+    eBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
     if eBonus == -1:
         return -1
     iValue = getBonusValue(eBonus)
@@ -519,7 +455,7 @@ def getCitySaleableGoods(pCity, iBuyer):
                 # plot needs to have suitable improvement and city needs to have access to bonus (=> connection via trade route (street))
                 eBonus = pLoopPlot.getBonusType(iCityOwnerTeam)
                 eImprovement = pLoopPlot.getImprovementType()
-                if eImprovement != -1 and eBonus != -1 and eBonus not in lGoods and eBonus not in lUntradeable:
+                if eImprovement != -1 and eBonus != -1 and eBonus not in lGoods and eBonus not in L.LBonusUntradeable:
                     if gc.getImprovementInfo(eImprovement).isImprovementBonusMakesValid(eBonus) and CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus):
                         if iBuyer == -1 or _calculateBonusBuyingPrice(eBonus, iBuyer, iCityOwner) <= iMaxPrice: # Max price
                             lGoods.append(eBonus)
@@ -527,7 +463,7 @@ def getCitySaleableGoods(pCity, iBuyer):
     for iBuilding in range(iMaxNumBuildings): # check buildings
         if pCity.isHasBuilding(iBuilding):
             eBonus = gc.getBuildingInfo(iBuilding).getFreeBonus()
-            if eBonus != -1 and eBonus not in lUntradeable and eBonus not in lGoods and CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus):
+            if eBonus != -1 and eBonus not in L.LBonusUntradeable and eBonus not in lGoods and CvUtil.hasBonusIgnoreFreeBonuses(pCity, eBonus):
                 if iBuyer == -1 or _calculateBonusBuyingPrice(eBonus, iBuyer, iCityOwner) <= iMaxPrice: # Max price
                     lGoods.append(eBonus)
     return lGoods
@@ -647,25 +583,25 @@ def doAutomateMerchant(pUnit, bAI):
     # s = pPlayer.getName()
     pUnitPlot = pUnit.plot()
     # set to False if automated route is deactivated
-    bActive = int(CvUtil.getScriptData(pUnit, ["autA"], 0))
+    bActive = CvUtil.getScriptData(pUnit, ["autA"], 0)
     if not bActive:
         return False
     iTurn = gc.getGame().getGameTurn()
     # Verhindern, dass mehrmals pro Runden geprueft wird, um Rundenzeit zu sparen
     # Z.B. bei bedrohten Einheiten ruft Civ die Funktion sonst 100 Mal auf, weiss nicht wieso...
-    iLastTurnChecked = int(CvUtil.getScriptData(pUnit, ["autLTC"], -1))
+    iLastTurnChecked = CvUtil.getScriptData(pUnit, ["autLTC"], -1)
     if iLastTurnChecked >= iTurn:
         return False
     else:
         CvUtil.addScriptData(pUnit, "autLTC", iTurn)
     pUnit.getGroup().clearMissionQueue()
-    eStoredBonus = int(CvUtil.getScriptData(pUnit, ["b"], -1))
-    iX1 = int(CvUtil.getScriptData(pUnit, ["autX1"], -1))
-    iY1 = int(CvUtil.getScriptData(pUnit, ["autY1"], -1))
-    iX2 = int(CvUtil.getScriptData(pUnit, ["autX2"], -1))
-    iY2 = int(CvUtil.getScriptData(pUnit, ["autY2"], -1))
-    eBonus1 = int(CvUtil.getScriptData(pUnit, ["autB1"], -1)) # bonus bought in city 1
-    eBonus2 = int(CvUtil.getScriptData(pUnit, ["autB2"], -1)) # bonus bought in city 2
+    eStoredBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
+    iX1 = CvUtil.getScriptData(pUnit, ["autX1"], -1)
+    iY1 = CvUtil.getScriptData(pUnit, ["autY1"], -1)
+    iX2 = CvUtil.getScriptData(pUnit, ["autX2"], -1)
+    iY2 = CvUtil.getScriptData(pUnit, ["autY2"], -1)
+    eBonus1 = CvUtil.getScriptData(pUnit, ["autB1"], -1) # bonus bought in city 1
+    eBonus2 = CvUtil.getScriptData(pUnit, ["autB2"], -1) # bonus bought in city 2
     pCityPlot1 = CyMap().plot(iX1, iY1)
     pCityPlot2 = CyMap().plot(iX2, iY2)
     pCity1 = pCityPlot1.getPlotCity()
@@ -862,60 +798,57 @@ def _getPlayerLuxuryCities(iPlayer):
 # Returns list of the luxuries in reach of pCity (saleable). Used by AI trade route determination.
 def _getCityLuxuries(pCity):
     lBonuses = getCitySaleableGoods(pCity, -1)
-    lBonuses2 = CvUtil.getIntersection(lRarity, lBonuses)
+    lBonuses2 = CvUtil.getIntersection(L.LBonusRarity, lBonuses)
     if lBonuses2:
         return lBonuses2
-    lBonuses2 = CvUtil.getIntersection(lLuxury, lBonuses)
+    lBonuses2 = CvUtil.getIntersection(L.LBonusLuxury, lBonuses)
     if lBonuses2:
         return lBonuses2
     return lBonuses
 
-
 ############# Cities with special bonus order #################
-
-# lCitiesSpecialBonus:
 # tsb: TradeSpecialBonus
 # tst: TradeSpecialTurns
 def doUpdateCitiesWithSpecialBonus(iGameTurn):
-    # Max 3 cities
-    for pCity in lCitiesSpecialBonus:
-        if pCity is not None and not pCity.isNone():
-            iTurn = int(CvUtil.getScriptData(pCity, ["tst"], -1))
-            if iTurn <= iGameTurn:
-                eBonus = int(CvUtil.getScriptData(pCity, ["tsb"], -1))
-                CvUtil.removeScriptData(pCity, "tsb")
-                CvUtil.removeScriptData(pCity, "tst")
-                lCitiesSpecialBonus.remove(pCity)
-                if eBonus != -1:
-                    iCityOwner = pCity.getOwner()
-                    pPlayer = gc.getPlayer(iCityOwner)
-                    pTeam = gc.getTeam(pPlayer.getTeam())
-                    if pTeam.isHasMet(gc.getPlayer(gc.getGame().getActivePlayer()).getTeam()):
-                        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_1", (pCity.getName(), gc.getBonusInfo(eBonus).getDescription())), None, 2, None, ColorTypes(13), 0, 0, False, False)
-
-    return
+    global iCitiesSpecialBonus
+    # Cities mit Special Trade Bonus herausfinden
+    for i in range(gc.getMAX_PLAYERS()):
+        loopPlayer = gc.getPlayer(i)
+        if loopPlayer.isAlive() and not loopPlayer.isBarbarian():
+            (loopCity, pIter) = loopPlayer.firstCity(False)
+            while loopCity:
+                if not loopCity.isNone() and loopCity.getOwner() == loopPlayer.getID(): #only valid cities
+                    iTurn = CvUtil.getScriptData(loopCity, ["tst"], -1)
+                    if iTurn != -1 and iTurn <= iGameTurn:
+                        eBonus = CvUtil.getScriptData(loopCity, ["tsb"], -1)
+                        CvUtil.removeScriptData(loopCity, "tsb")
+                        CvUtil.removeScriptData(loopCity, "tst")
+                        iCitiesSpecialBonus -= 1
+                        if eBonus != -1:
+                            iCityOwner = loopCity.getOwner()
+                            pPlayer = gc.getPlayer(iCityOwner)
+                            pTeam = gc.getTeam(pPlayer.getTeam())
+                            iActivePlayer = gc.getGame().getActivePlayer()
+                            if pTeam.isHasMet(gc.getPlayer(iActivePlayer).getTeam()):
+                                CyInterface().addMessage(iActivePlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_1", (loopCity.getName(), gc.getBonusInfo(eBonus).getDescription())), None, 2, None, ColorTypes(13), 0, 0, False, False)
+                (loopCity, pIter) = loopPlayer.nextCity(pIter, False)
 
 def addCityWithSpecialBonus(iGameTurn):
-
+    global iCitiesSpecialBonus
     lTurns = [20, 25, 30, 35, 40]
-
-    # Test
-    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("lCitiesSpecialBonus",len(lCitiesSpecialBonus))), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
     # Max 3 cities
-    # Neue Stadt mit Sonderauftrag hinzufuegen
-    if len(lCitiesSpecialBonus) >= iMaxCitiesSpecialBonus:
+    if iCitiesSpecialBonus >= iMaxCitiesSpecialBonus:
         return
 
     lNewCities = []
-    iRange = gc.getMAX_PLAYERS()
-    for i in range(iRange):
+    for i in range(gc.getMAX_PLAYERS()):
         loopPlayer = gc.getPlayer(i)
         if loopPlayer.isAlive() and not loopPlayer.isHuman() and not loopPlayer.isBarbarian():
             (loopCity, pIter) = loopPlayer.firstCity(False)
             while loopCity:
                 if not loopCity.isNone() and loopCity.getOwner() == loopPlayer.getID(): #only valid cities
-                    if loopCity not in lCitiesSpecialBonus:
+                    iTurn = CvUtil.getScriptData(loopCity, ["tst"], -1)
+                    if iTurn == -1:
                         lNewCities.append(loopCity)
                 (loopCity, pIter) = loopPlayer.nextCity(pIter, False)
 
@@ -927,24 +860,22 @@ def addCityWithSpecialBonus(iGameTurn):
         # Dauer auswaehlen
         iTurns = lTurns[CvUtil.myRandom(len(lTurns), "turns addCityWithSpecialBonus")]
         # Bonusgut herausfinden
-        # lNewBonus = [iBonus for iBonus in lLuxury + lRarity if not pCity.hasBonus(iBonus)]
-        for iBonus in lLuxury + lRarity:
+        for iBonus in L.LBonusLuxury + L.LBonusRarity:
             if not pCity.hasBonus(iBonus):
                 lNewBonus.append(iBonus)
-
         # Bonus setzen wenn die Stadt nicht eh schon alles hat.
         if lNewBonus:
             # Globale Variable setzen
-            lCitiesSpecialBonus.append(pCity)
+            iCitiesSpecialBonus += 1
             CvUtil.addScriptData(pCity, "tst", iGameTurn+iTurns)
             eBonus = lNewBonus[CvUtil.myRandom(len(lNewBonus), "bonus addCityWithSpecialBonus")]
             CvUtil.addScriptData(pCity, "tsb", eBonus)
-
             iCityOwner = pCity.getOwner()
             pPlayer = gc.getPlayer(iCityOwner)
             pTeam = gc.getTeam(pPlayer.getTeam())
-            if pTeam.isHasMet(gc.getPlayer(gc.getGame().getActivePlayer()).getTeam()):
-                CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_2", (pCity.getName(), gc.getBonusInfo(eBonus).getDescription())), None, 2, None, ColorTypes(11), 0, 0, False, False)
+            iActivePlayer = gc.getGame().getActivePlayer()
+            if pTeam.isHasMet(gc.getPlayer(iActivePlayer).getTeam()):
+                CyInterface().addMessage(iActivePlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_2", (pCity.getName(), gc.getBonusInfo(eBonus).getDescription())), None, 2, None, ColorTypes(11), 0, 0, False, False)
             break
         else:
             iTry += 1
@@ -952,29 +883,24 @@ def addCityWithSpecialBonus(iGameTurn):
 
 # In doSellBonus
 def _doCheckCitySpecialBonus(pUnit, pCity, eBonus):
-
-    if not pCity in lCitiesSpecialBonus:
-        return
-
-    eCityBonus = int(CvUtil.getScriptData(pCity, ["tsb"], -1))
+    global iCitiesSpecialBonus
+    eCityBonus = CvUtil.getScriptData(pCity, ["tsb"], -1)
     if eCityBonus != -1 and eCityBonus == eBonus:
-        lCitiesSpecialBonus.remove(pCity)
-
+        iCitiesSpecialBonus -= 1
+        CvUtil.removeScriptData(pCity, "tsb")
+        CvUtil.removeScriptData(pCity, "tst")
         iPlayer = pUnit.getOwner()
         pPlayer = gc.getPlayer(iPlayer)
         if iPlayer != gc.getGame().getActivePlayer():
             CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_3", (pPlayer.getName(),)), None, 2, None, ColorTypes(13), 0, 0, False, False)
         else:
             CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_4", ("",)), "AS2D_WELOVEKING", 2, None, ColorTypes(13), 0, 0, False, False)
-
         # Belohnungen
         lGift = []
-
         # Military unit as gift:
         if CvUtil.myRandom(5, "Military unit as gift") == 1:
             eCiv = gc.getCivilizationInfo(gc.getPlayer(pCity.getOwner()).getCivilizationType())
             eOrigCiv = gc.getCivilizationInfo(gc.getPlayer(pCity.getOriginalOwner()).getCivilizationType())
-
             lUnits = [
                 eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_WAR_ELEPHANT")),
                 eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_CAMEL_ARCHER")),
@@ -992,18 +918,14 @@ def _doCheckCitySpecialBonus(pUnit, pCity, eBonus):
                     lGift.append(eOrigCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_CHARIOT")))
                 if pCity.canTrain(eCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER")), 0, 0):
                     lGift.append(eOrigCiv.getCivilizationUnits(gc.getInfoTypeForString("UNITCLASS_HORSE_ARCHER")))
-
             for iUnit in lUnits:
                 if pCity.canTrain(iUnit, 0, 0):
                     lGift.append(iUnit)
-
             # Set AI Type
             iNewUnitAIType = UnitAITypes.UNITAI_ATTACK
-
             # Message : Stadt schenkt Truppen
             if pPlayer.isHuman():
                 CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_5", ("",)), "AS2D_WELOVEKING", 2, None, ColorTypes(13), 0, 0, False, False)
-
         # Standard gift
         if not lGift:
             lGift.append(gc.getInfoTypeForString("UNIT_GOLDKARREN"))
@@ -1019,19 +941,13 @@ def _doCheckCitySpecialBonus(pUnit, pCity, eBonus):
             # Kamel
             if pCity.isHasBuilding(gc.getInfoTypeForString("BUILDING_CAMEL_STABLE")):
                 lGift.append(gc.getInfoTypeForString("UNIT_CAMEL"))
-
             # Set AI Type
             iNewUnitAIType = UnitAITypes.NO_UNITAI
-
             # Message : Stadt schenkt Kostbarkeiten
             if pPlayer.isHuman():
                 CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TRADE_SPECIAL_6", ("",)), "AS2D_WELOVEKING", 2, None, ColorTypes(13), 0, 0, False, False)
-
         for _ in range(3):
             # Choose units
             iNewUnit = lGift[CvUtil.myRandom(len(lGift), "Choose gift units")]
             # Create units
             pPlayer.initUnit(iNewUnit, pCity.getX(), pCity.getY(), iNewUnitAIType, DirectionTypes.DIRECTION_SOUTH)
-
-        CvUtil.removeScriptData(pCity, "tsb")
-        CvUtil.removeScriptData(pCity, "tst")

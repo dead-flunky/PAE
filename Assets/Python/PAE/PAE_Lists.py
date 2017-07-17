@@ -15,6 +15,15 @@
 from CvPythonExtensions import CyGlobalContext
 gc = CyGlobalContext()
 
+LTradeUnits = []
+LCultivationUnits = []
+LBonusCultivatable = []
+LBonusUntradeable = [] # List of untradeable bonuses
+LBonusCorn = [] # Lists of cultivatable bonuses
+LBonusLivestock = []
+LBonusPlantation = []
+LBonusLuxury = [] # List of bonuses which may create trade routes
+LBonusRarity = [] # List of bonuses which may create trade routes
 LUnitWarAnimals = []
 LUnitDomesticated = []
 LUnitLootLessSeaUnits = []
@@ -87,6 +96,14 @@ def init():
     if gc.getInfoTypeForString("COLOR_EMPTY") == -1:
         raise Exception("Called init() to early. getInfoTypeForString() returns -1.")
 
+    LTradeUnits = [
+        gc.getInfoTypeForString("UNIT_TRADE_MERCHANT"),
+        gc.getInfoTypeForString("UNIT_CARAVAN"),
+        gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
+        gc.getInfoTypeForString("UNIT_GAULOS"),
+        gc.getInfoTypeForString("UNIT_CARVEL_TRADE")
+    ]
+    LCultivationUnits = [gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")]
     # Renegade Ausnahmen
     LUnitWarAnimals = [
         gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
@@ -939,6 +956,37 @@ def init():
         "Legio XII Victrix", "Legio Thebaica",
     ]
 
+    # BonusClass indices
+    eGrain = gc.getInfoTypeForString("BONUSCLASS_GRAIN") # WHEAT, GERSTE, HAFER, ROGGEN, HIRSE, RICE
+    eLivestock = gc.getInfoTypeForString("BONUSCLASS_LIVESTOCK") # COW, PIG, SHEEP
+    ePlantation = gc.getInfoTypeForString("BONUSCLASS_PLANTATION") # GRAPES, OLIVES, DATTELN
+    eGeneral = gc.getInfoTypeForString("BONUSCLASS_GENERAL") # COAL (Blei), ZINN, ZINK, ZEDERNHOLZ, COPPER, BRONZE, IRON, MESSING, HORSE, CAMEL, HUNDE, PAPYRUS_PAPER
+    eLuxury = gc.getInfoTypeForString("BONUSCLASS_LUXURY") # GOLD, SILVER, PEARL, LION, SALT, DYE, FUR, INCENSE, MYRRHE, IVORY, SPICES, WINE, MUSIC
+    eRarity = gc.getInfoTypeForString("BONUSCLASS_RARITY") # MAGNETIT, OBSIDIAN, OREICHALKOS, GLAS, BERNSTEIN, ELEKTRON, WALRUS, GEMS, SILK, SILPHIUM, TERRACOTTA
+    eWonder = gc.getInfoTypeForString("BONUSCLASS_WONDER") # MARBLE, STONE
+    # eMisc =  gc.getInfoTypeForString("BONUSCLASS_MISC") # BANANA, CRAB, DEER, FISH, CLAM, PAPYRUS
+    # eMerc =  gc.getInfoTypeForString("BONUSCLASS_MERCENARY") # BALEAREN, TEUTONEN, BAKTRIEN, KRETA, KILIKIEN, MARS, THRAKIEN
+
+    iNumBonuses = gc.getNumBonusInfos()
+    for eBonus in range(iNumBonuses):
+        pBonusInfo = gc.getBonusInfo(eBonus)
+        iClass = pBonusInfo.getBonusClassType()
+        if iClass == eGrain:
+            LCorn.append(eBonus)
+        elif iClass == eLivestock:
+            LLivestock.append(eBonus)
+        elif iClass == ePlantation:
+            LPlantation.append(eBonus)
+        elif iClass == eLuxury:
+            LLuxury.append(eBonus)
+        elif iClass == eRarity:
+            LRarity.append(eBonus)
+        # eg BONUSCLASS_MISC
+        elif iClass != eWonder and iClass != eGeneral:
+            LUntradeable.append(eBonus)
+        # BonusClass wonder and general are not stored separately (bc. unnecessary)
+
+    LCultivatable = LCorn + LLivestock + LPlantation + [gc.getInfoTypeForString("BONUS_HORSE")]
     # Tranfer local defined variables into module ones.
     lnames = [l for l in locals().keys() if l[0] != "_" and l != "gc"]
     for l in lnames:

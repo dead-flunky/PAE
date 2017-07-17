@@ -1835,7 +1835,6 @@ class CvEventManager:
         L.init()
         # PAE_Trade needs to be initialised
         PAE_Trade.init()
-        PAE_Cultivation.init()
 
         PAE_Christen.init()
 
@@ -1903,7 +1902,6 @@ class CvEventManager:
         L.init()
         # PAE_Trade needs to be initialised
         PAE_Trade.init()
-        PAE_Cultivation.init()
 
         PAE_Christen.init()
 
@@ -2193,7 +2191,7 @@ class CvEventManager:
             (pLoopUnit, pIter) = pPlayer.firstUnit(False)
             while pLoopUnit:
                 iUnitType = pLoopUnit.getUnitType()
-                if iUnitType in PAE_Trade.lTradeUnits:
+                if iUnitType in L.LTradeUnits:
                     bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["autA", "t"], 0))
                     if bTradeRouteActive and pLoopUnit.getGroup().getLengthMissionQueue() == 0:
                         PAE_Trade.doAutomateMerchant(pLoopUnit, False)
@@ -3259,7 +3257,7 @@ class CvEventManager:
 
                     # Nicht fuer Plaenklereinheiten
                     if (pLoopUnit.getUnitType() not in L.LUnitSkirmish and
-                        pLoopUnit.getUnitClassType() not in L.LClassSkirmish):
+                            pLoopUnit.getUnitClassType() not in L.LClassSkirmish):
                         if pLoopUnit.getGroup().hasMoved():
                             pLoopUnit.finishMoves()
 
@@ -3273,7 +3271,7 @@ class CvEventManager:
                         iUnitCombat = unit.getUnitCombatType()
                         try:
                             iGold += L.DFernangriffCosts[iUnitClass]
-                        except:
+                        except KeyError:
                             iGold += 2
 
                     if iGold > 0:
@@ -3661,7 +3659,7 @@ class CvEventManager:
                             iNum += 1
                 # UnitAIType 10 = UNITAI_CITY_DEFENSE
                 if (iUnitType in L.LBuildArchers and iNum < 3 or
-                    iUnitType in L.LBuildCatapults and iNum < 2):
+                        iUnitType in L.LBuildCatapults and iNum < 2):
                     unit.setUnitAIType(10)
             # Set offensive Formations
             else:
