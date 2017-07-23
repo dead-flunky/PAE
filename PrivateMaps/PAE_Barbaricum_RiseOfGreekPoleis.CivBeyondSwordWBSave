@@ -17,7 +17,7 @@ BeginGame
 	NumAdvancedStartPoints=0
 	TargetScore=0
 	StartYear=-5000
-	Description=
+	Description=TXT_KEY_BARBARICUM_RISE_OF_GREEK_POLEIS
 	ModPath=
 EndGame
 BeginTeam
@@ -1793,6 +1793,8 @@ BeginMap
 	num signs written=0
 	Randomize Resources=false
 EndMap
+
+### Plot Info ###
 BeginPlot
 	x=0,y=0
 	ScriptData=BarbaricumRiseOfGreekPoleis
@@ -31032,3 +31034,5 @@ BeginPlot
 	PlotType=3
 	TeamReveal=18,
 EndPlot
+
+### Sign Info ###
