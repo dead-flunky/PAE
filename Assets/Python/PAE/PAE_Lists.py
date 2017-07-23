@@ -83,7 +83,6 @@ gc = CyGlobalContext()
 # LGGStandard = []
 # DGGNames = {}
 # # LRelis = []
-# LRelisRemapCapital = []
 # LGreeks = []
 # LNearEast = []
 # LNorthern = []
@@ -160,13 +159,8 @@ def init():
         gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),
         gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"),
     ]
-    LMeleeSupplyCombats = [
-        gc.getInfoTypeForString("UNITCOMBAT_AXEMAN"),
-        gc.getInfoTypeForString("UNITCOMBAT_SWORDSMAN"),
-        gc.getInfoTypeForString("UNITCOMBAT_SPEARMAN"),
-        gc.getInfoTypeForString("UNITCOMBAT_SKIRMISHER"),
-        gc.getInfoTypeForString("UNITCOMBAT_ARCHER"),
-    ]
+    LMeleeSupplyCombats = LMeleeCombats+LArcherCombats
+
     LMountedSupplyCombats = [
         gc.getInfoTypeForString("UNITCOMBAT_CHARIOT"),
         gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"),
@@ -912,16 +906,6 @@ def init():
     #     gc.getInfoTypeForString("RELIGION_CHRISTIANITY"),
     #     gc.getInfoTypeForString("RELIGION_JAINISMUS"),
     # ]
-
-    # Used in onReligionFounded
-    LRelisRemapCapital = [
-        gc.getInfoTypeForString("RELIGION_CELTIC"),
-        gc.getInfoTypeForString("RELIGION_NORDIC"),
-        gc.getInfoTypeForString("RELIGION_PHOEN"),
-        gc.getInfoTypeForString("RELIGION_GREEK"),
-        gc.getInfoTypeForString("RELIGION_ROME"),
-        gc.getInfoTypeForString("RELIGION_JUDAISM")
-    ]
 
     LGreeks = [
         gc.getInfoTypeForString("CIVILIZATION_GREECE"),

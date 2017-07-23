@@ -401,6 +401,14 @@
     <Spanish>El estatus de ciudad es asignado autom&#225;ticamente. Muchos edificios requieren un estatus de ciudad espec&#237;fico.</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Tag>
+    <English>Stadtholders can create provincial palaces in cities. Such cities reduce the maintenance costs of surrounding cities.</English>
+    <French>Stadtholders can create provincial palaces in cities. Such cities reduce the maintenance costs of surrounding cities.</French>
+    <German>Statthalter k&#246;nnen Provinzpal&#228;ste in St&#228;dten erstellen. Solche St&#228;dte senken die Unterhaltskosten umliegender St&#228;dte.</German>
+    <Italian>Stadtholders can create provincial palaces in cities. Such cities reduce the maintenance costs of surrounding cities.</Italian>
+    <Spanish>Stadtholders can create provincial palaces in cities. Such cities reduce the maintenance costs of surrounding cities.</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_TECH_TOLERANZ_STRATEGY</Tag>
     <English>With this form of government all religions are officially tolerated.</English>
     <French>Entretien moyen.[NEWLINE]Aucune religion d'&#233;tat. +2 [ICON_HAPPY] par religion.</French>

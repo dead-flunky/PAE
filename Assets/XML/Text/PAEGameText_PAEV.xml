@@ -729,14 +729,6 @@
     <Spanish>Alimentaci&#243;n (%d1[ICON_FOOD]): %d2/%d3 unidades</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_FREE</Tag>
-    <English></English>
-    <French></French>
-    <German></German>
-    <Italian></Italian>
-    <Spanish></Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_MAIN_CITY_SUPPLY_DANGER</Tag>
     <English>Hunger (%d1[ICON_EATENFOOD]): [COLOR_RED]%d2[COLOR_REVERT]/%d3 units</English>
     <French>Famine (%d1[ICON_EATENFOOD]) : [COLOR_RED]%d2[COLOR_REVERT]/%d3 unit&#233;s</French>
@@ -2505,6 +2497,14 @@
     <Spanish>Arquero a Caballo Escita</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER</Tag>
+    <English>Governor</English>
+    <French>Governor</French>
+    <German>Statthalter</German>
+    <Italian>Governor</Italian>
+    <Spanish>Governor</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_UNIT_UR</Tag>
     <English>Urus</English>
     <French>Ure</French>
@@ -2924,7 +2924,7 @@
     <Tag>TXT_KEY_BUILDING_GREAT_PANTHEON</Tag>
     <English>Great Pantheon</English>
     <French>Grand Panth&#233;on</French>
-    <German>Pantheon</German>
+    <German>Gro&#223;es Pantheon</German>
     <Italian><Text>Grande Pantheon</Text><Gender>Male</Gender><Plural>0</Plural></Italian>
     <Spanish>Gran Pante&#243;n</Spanish>
   </TEXT>
@@ -3569,6 +3569,46 @@
     <Spanish>M&#225;quinas de asedio de torsi&#243;n</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER_SUMER</Tag>
+    <English>Ensi</English>
+    <French>Ens&#237;</French>
+    <German>Ensi</German>
+    <Italian>Ensi</Italian>
+    <Spanish>Ensi</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER_NORTH</Tag>
+    <English>Gauf&#252;rst</English>
+    <French>Gauf&#252;rst</French>
+    <German>Gauf&#252;rst</German>
+    <Italian>Gauf&#252;rst</Italian>
+    <Spanish>Gauf&#252;rst</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER_EGYPT</Tag>
+    <English>Nomarch</English>
+    <French>Nomarch</French>
+    <German>Nomarch</German>
+    <Italian>Nomarch</Italian>
+    <Spanish>Nomarca:Nomarcas</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER_PERSIA</Tag>
+    <English>Satrap</English>
+    <French>Satrape</French>
+    <German>Satrap</German>
+    <Italian>Satrapo</Italian>
+    <Spanish>S&#225;trapa</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER_GRECO</Tag>
+    <English>Praefect</English>
+    <French>Pr&#233;fet</French>
+    <German>Pr&#228;fekt</German>
+    <Italian>Prefetto</Italian>
+    <Spanish>Prefecto</Spanish>
+  </TEXT>
+  <TEXT>
     <Tag>TXT_KEY_TECH_TOLERANZ</Tag>
     <English>Edict of Toleration</English>
     <French>&#201;dit de tol&#233;rance</French>
@@ -3751,6 +3791,14 @@
     <German>Argantonius</German>
     <Italian>Argantonio</Italian>
     <Spanish>Argantonio</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_UNIT_STATTHALTER</Tag>
+    <English>Stadtholder</English>
+    <French>Stathouder</French>
+    <German>Statthalter</German>
+    <Italian>Statolder</Italian>
+    <Spanish>Estat&#250;der</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_POPUP_TRADE_ROUTE_CHOOSE_BONUS</Tag>

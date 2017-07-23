@@ -1,9 +1,4 @@
 <?xml version="1.0"?>
-<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Firaxis Games (Firaxis Games) -->
-<!-- Sid Meier's Civilization 4 -->
-<!-- Copyright Firaxis Games 2005 -->
-<!-- edited by pie, Keinpferd -->
-<!-- Civilization Infos -->
 <Civ4CivilizationInfos xmlns="x-schema:CIV4CivilizationsSchema.xml">
   <CivilizationInfos>
     <CivilizationInfo>
@@ -171,6 +166,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_SYRIAN_GARDE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_SUMER</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
@@ -491,10 +490,6 @@
           <BuildingType>BUILDING_GYMNASION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL6</BuildingClassType>
           <BuildingType>BUILDING_AGORA</BuildingType>
         </Building>
@@ -551,6 +546,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_ELITE_HOPLIT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_GRECO</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SCOUT</UnitClassType>
@@ -822,6 +821,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_SYRIAN_GARDE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_SUMER</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
@@ -1283,6 +1286,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL5</UnitClassType>
           <UnitType>UNIT_WARBAND</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_NORTH</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
@@ -1894,6 +1901,10 @@
           <UnitType>UNIT_ARVERNER</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_NORTH</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
           <UnitType>UNIT_DRUIDE</UnitType>
         </Unit>
@@ -2125,6 +2136,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL3</UnitClassType>
           <UnitType>UNIT_FUERST_DAKER</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_NORTH</UnitType>
         </Unit>
       </Units>
       <FreeUnitClasses>
@@ -2381,6 +2396,10 @@
           <UnitType>UNIT_PHARAONENGARDE</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_EGYPT</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_KURZSCHWERT</UnitClassType>
           <UnitType>UNIT_KRUMMSAEBEL</UnitType>
         </Unit>
@@ -2604,16 +2623,8 @@
           <BuildingType>BUILDING_KASTELL</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL2</BuildingClassType>
-          <BuildingType>BUILDING_TABULARIUM</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL3</BuildingClassType>
           <BuildingType>BUILDING_SCHULE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL6</BuildingClassType>
@@ -2668,6 +2679,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_PRAETORIAN</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_GRECO</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_PELTIST</UnitClassType>
@@ -3011,6 +3026,10 @@
           <UnitType>UNIT_ARVERNER</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_NORTH</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
           <UnitType>UNIT_DRUIDE</UnitType>
         </Unit>
@@ -3324,6 +3343,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_GERMAN_HARIER</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_NORTH</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
@@ -3676,10 +3699,6 @@
           <BuildingType>BUILDING_GYMNASION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL6</BuildingClassType>
           <BuildingType>BUILDING_AGORA</BuildingType>
         </Building>
@@ -3752,6 +3771,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_ELITE_HOPLIT</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_GRECO</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SCOUT</UnitClassType>
@@ -4282,6 +4305,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_HEAVY_HORSEMAN_HUN</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_PERSIA</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HORSE_ARCHER</UnitClassType>
@@ -6052,10 +6079,6 @@
           <BuildingType>BUILDING_GYMNASION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL7</BuildingClassType>
           <BuildingType>BUILDING_SANITATION</BuildingType>
         </Building>
@@ -6108,6 +6131,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_THORAKITAI</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_PERSIA</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
@@ -6400,6 +6427,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_SPECIAL2</UnitClassType>
           <UnitType>UNIT_NUBIAFUERST</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_EGYPT</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ARCHER</UnitClassType>
@@ -7169,6 +7200,10 @@
           <UnitType>UNIT_CATAPHRACT_PERSIA</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_PERSIA</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_CHARIOT</UnitClassType>
           <UnitType>UNIT_PERSIAN_WARCHARIOT</UnitType>
         </Unit>
@@ -7692,16 +7727,8 @@
           <BuildingType>BUILDING_KASTELL</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL2</BuildingClassType>
-          <BuildingType>BUILDING_TABULARIUM</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL3</BuildingClassType>
           <BuildingType>BUILDING_SCHULE</BuildingType>
-        </Building>
-        <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
         </Building>
         <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL6</BuildingClassType>
@@ -7756,6 +7783,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_PRAETORIAN</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_GRECO</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_PELTIST</UnitClassType>
@@ -8124,6 +8155,10 @@
           <UnitType>UNIT_CAMP</UnitType>
         </Unit>
         <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_PERSIA</UnitType>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
           <UnitType>UNIT_FOEDERATI</UnitType>
         </Unit>
@@ -8429,10 +8464,6 @@
           <BuildingType>BUILDING_GYMNASION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL6</BuildingClassType>
           <BuildingType>BUILDING_AGORA</BuildingType>
         </Building>
@@ -8489,6 +8520,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE1</UnitClassType>
           <UnitType>UNIT_SPARTAN</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_GRECO</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
@@ -8757,6 +8792,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_SYRIAN_GARDE</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_SUMER</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HORSEMAN</UnitClassType>
@@ -9060,10 +9099,6 @@
           <BuildingType>BUILDING_GYMNASION</BuildingType>
         </Building>
         <Building>
-          <BuildingClassType>BUILDINGCLASS_SPECIAL5</BuildingClassType>
-          <BuildingType>BUILDING_PANTHEON</BuildingType>
-        </Building>
-        <Building>
           <BuildingClassType>BUILDINGCLASS_SPECIAL6</BuildingClassType>
           <BuildingType>BUILDING_AGORA</BuildingType>
         </Building>
@@ -9125,6 +9160,10 @@
           <UnitClassType>UNITCLASS_ELITE3</UnitClassType>
           <UnitType>UNIT_ELITE_HOPLIT</UnitType>
         </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_GRECO</UnitType>
+        </Unit>        
         <Unit>
           <UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
           <UnitType>UNIT_FOEDERATI</UnitType>
@@ -9443,6 +9482,10 @@
         <Unit>
           <UnitClassType>UNITCLASS_ELITE2</UnitClassType>
           <UnitType>UNIT_GERMAN_HARIER</UnitType>
+        </Unit>
+        <Unit>
+          <UnitClassType>UNITCLASS_STATTHALTER</UnitClassType>
+          <UnitType>UNIT_STATTHALTER_NORTH</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
@@ -9917,7 +9960,7 @@
           <UnitClassType>UNITCLASS_CARVEL_WAR</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
-		<Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_SUPPLY_WAGON</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
@@ -9932,20 +9975,20 @@
         <Unit>
           <UnitClassType>UNITCLASS_TRADE_MERCHANT</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>		
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_NORDIC_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
-		<Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_JEWISH_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_CHRISTIAN_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>	
-		<Unit>
+        </Unit>
+        <Unit>
           <UnitClassType>UNITCLASS_ZORO_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
         </Unit>
@@ -9964,27 +10007,27 @@
         <Unit>
           <UnitClassType>UNITCLASS_EGYPT_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>		
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_ROME_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>		
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_SUMER_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>		
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_HINDU_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>		
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_BUDDHIST_MISSIONARY</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>	
+        </Unit>
         <Unit>
           <UnitClassType>UNITCLASS_MISSIONARY_JAINISMUS</UnitClassType>
           <UnitType>NONE</UnitType>
-        </Unit>			
+        </Unit>
       </Units>
       <FreeUnitClasses>
         <FreeUnitClass>

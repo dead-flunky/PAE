@@ -169,7 +169,6 @@ def doCultivateBonus(pPlot, pUnit, eBonus):
                 CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_POPUP_BONUSVERBREITUNG_DONE", (gc.getBonusInfo(eBonus).getDescription(),)), None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
             # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
             pUnit.kill(True, -1)  # RAMK_CTD
-            pUnit = None
         else:
             CvUtil.removeScriptData(pUnit, "b")
             if pPlayer.isHuman():
@@ -467,7 +466,6 @@ def doCultivation_AI(pUnit):
                   #~ loopPlot.setBonusType(iBonus)
                 #~ # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 #~ pUnit.kill(True, -1)  # RAMK_CTD
-                #~ pUnit = None
                 #~ return True
 
       #~ # --- Stadt gecheckt

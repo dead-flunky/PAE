@@ -1138,7 +1138,7 @@
       <Strategy>TXT_KEY_CIVIC_BUERGERRECHT_STRATEGY</Strategy>
       <Help>TXT_KEY_CIVIC_BUERGERRECHT_HELP</Help>
       <Button>Art/Interface/Buttons/Civics/civic_buerger.dds</Button>
-      <TechPrereq>TECH_ARISTOKRATIE</TechPrereq>
+      <TechPrereq>TECH_PRIVATWIRTSCHAFT</TechPrereq>
       <iAnarchyLength>1</iAnarchyLength>
       <Upkeep>UPKEEP_HIGH</Upkeep>
       <iAIWeight>4</iAIWeight>

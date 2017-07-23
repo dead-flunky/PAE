@@ -14,7 +14,6 @@
 <!-- +++++++ BUILDINGCLASS_SPECIAL2 ++++++ -->
 <!-- BUILDING_JURTE: Berber, Hunnen, Libyer, Numid, Parther, Skythen, Barbar -->
 <!-- BUILDING_GREEK_ODEON: Griechen, Ath,Theb -->
-<!-- BUILDING_TABULARIUM: Etrus, Rom -->
 <!-- BUILDING_LEVEE:  Heth, Phoen, Perser, Babylon, Sumer, Karthago, Egypt, Nubien, Indien -->
 <!-- BUILDING_LEVEE2: Kelten, Germanen, Briten  -->
 <!-- +++++++ BUILDINGCLASS_SPECIAL3 ++++++ -->
@@ -24,8 +23,7 @@
 <!-- BUILDING_GARDEN: Assyrer, Phoen, Perser, Babylon, Sumer, Karthago, Egypt, Israel -->
 <!-- BUILDING_STEINKREIS: Kelten, Gallier, Briten, Daker, Iberer -->
 <!-- +++++++ BUILDINGCLASS_SPECIAL5 ++++++ -->
-<!-- Diese Klasse ist Vorraussetzung fuer das Grosse Pantheon Wunder -->
-<!-- BUILDING_PANTHEON: Rom, Etrusker, Griechen (Ath,The,Spa), Makedonen -->
+<!-- frei -->
 <!-- +++++++ BUILDINGCLASS_SPECIAL6 ++++++ -->
 <!-- BUILDING_ROMAN_FORUM: Etrus, Rom -->
 <!-- BUILDING_AGORA: Griechen, Ath, Spa, Theb -->

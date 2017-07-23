@@ -1775,15 +1775,15 @@ def doKillUnits(pPlot, iChance):
                 # Wenn ein General draufgeht hat das Auswirkungen
                 if pUnit.getLeaderUnitType() > -1:
                     PAE_Unit.doDyingGeneral(pUnit)
-                if pUnit.getOwner() > -1 and gc.getPlayer(pUnit.getOwner()).isHuman():
+                iOwner = pUnit.getOwner()
+                if iOwner != -1 and gc.getPlayer(iOwner).isHuman():
                     # Message: Eure Einheit %s hat diese schreckliche Naturgewalt nicht ueberlebt!
-                    CyInterface().addMessage(pUnit.getOwner(), True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_UNIT_KILLED", (pPlot.getUnit(iUnit).getName(), 0)), "AS2D_PLAGUE", 2, pPlot.getUnit(iUnit).getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
+                    CyInterface().addMessage(iOwner, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_DISASTER_UNIT_KILLED", (pUnit.getName(), 0)), "AS2D_PLAGUE", 2, pUnit.getButton(), ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
                 # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 pUnit.kill(True, -1)  # RAMK_CTD
-                pUnit = None
             else:
-                pPlot.getUnit(iUnit).setDamage(60, -1)
-                pPlot.getUnit(iUnit).setImmobileTimer(1)
+                pUnit.setDamage(60, -1)
+                pUnit.setImmobileTimer(1)
 
 
 def doDestroyWalls(pCity):

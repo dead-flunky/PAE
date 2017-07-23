@@ -71,7 +71,6 @@ def doSlave2Gladiator(pCity, pUnit):
     pCity.changeFreeSpecialistCount(gc.getInfoTypeForString("SPECIALIST_GLADIATOR"), 1)
     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     pUnit.kill(True, -1)  # RAMK_CTD
-    pUnit = None
 
 
 def doSlave2Schule(pCity, pUnit):
@@ -212,7 +211,6 @@ def doSlave2Feuerwehr(pCity, pUnit):
             pCity.setBuildingHappyChange(eBuildingClass, iHappyiness)
             # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
             pUnit.kill(True, -1)  # RAMK_CTD
-            return True
     return False
 
 
@@ -473,7 +471,6 @@ def doSell(iPlayer, iUnit):
         CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_BUTTON_SELL_SLAVE_SOLD", (iGold,)), None, InterfaceMessageTypes.MESSAGE_TYPE_INFO, "Art/Interface/Buttons/Units/button_slave.dds", ColorTypes(8), pUnit.getX(), pUnit.getY(), True, True)
     pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     # pUnit.kill(True, -1)  # RAMK_CTD
-    pUnit = None
 
 
   ##############
@@ -779,7 +776,6 @@ def dyingGlad(pCity, iCityGlads, bTeamHasGladiators):
             if pLoopUnit.getOwner() == iPlayer and pLoopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SLAVE"):
                 # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                 pLoopUnit.kill(True, -1)  # RAMK_CTD
-                pLoopUnit = None
                 bErsatz = True
                 break
 

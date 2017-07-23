@@ -1728,7 +1728,7 @@ class CvGameUtils:
                                 if not pUnit.atPlot(pCapital.plot()):
                                     pUnit.getGroup().pushMoveToMission(pCapital.getX(), pCapital.getY())
                                 else:
-                                    iGold = 100 + CvUtil.myRandom(76, "ai_beutegold")  # KI Bonus (HI: 50 + x)
+                                    iGold = 50 + CvUtil.myRandom(50, "ai_beutegold")  # KI Bonus (HI: 10 + x)
                                     pOwner.changeGold(iGold)
                                     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                     pUnit.kill(True, -1)  # RAMK_CTD

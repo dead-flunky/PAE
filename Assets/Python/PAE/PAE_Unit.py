@@ -536,7 +536,6 @@ def doStackRebellion(iPlayer, PlotArrayRebellion, iStackLimit2):
                         #pUnit = sPlot.getUnit(seekUnit)
                         ## pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                         #pUnit.kill(True, -1)  # RAMK_CTD
-                        #pUnit = None
 
                         # AI teilt Stack (jede 4. Einheit)
                         for i in range(iNumUnits):
@@ -618,7 +617,6 @@ def doUpgradeVeteran(pUnit, iNewUnit, bChangeCombatPromo):
 
             # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
             pUnit.kill(True, -1)  # RAMK_CTD
-            pUnit = None
 
 # Unit Rang Promos (PAE, ModMessage:751)
 def doUpgradeRang(iPlayer, iUnit):
@@ -716,7 +714,7 @@ def canDoFormation(pUnit, iFormation):
                     bCanDo = True
 
     # Melee and Spear
-    elif iUnitCombatType in L.LMeleeSupplyCombats:
+    elif iUnitCombatType in L.LMeleeCombats:
         # Fortress
         if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS") and pUnit.baseMoves() == 1:
             bCanDo = True
@@ -787,6 +785,11 @@ def canDoFormation(pUnit, iFormation):
 
     # Archers
     elif iUnitCombatType in L.LArcherCombats:
+        # Fortress
+        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS") and pUnit.baseMoves() == 1:
+            bCanDo = True
+        if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2") and pUnit.baseMoves() > 1:
+            bCanDo = True
         # Elefantengasse (auch weiter unten fuer Bogen)
         if iFormation == gc.getInfoTypeForString("PROMOTION_FORM_GASSE"):
             if pTeam.isHasTech(gc.getInfoTypeForString("TECH_GEOMETRIE2")):
@@ -1305,7 +1308,6 @@ def doBuildHandelsposten(pUnit):
     pPlayer.changeGold(-iPrice)
     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     pUnit.kill(True, -1)  # RAMK_CTD
-    pUnit = None
 
 # isHills: PROMOTION_GUERILLA1
 # FEATURE_FOREST, FEATURE_DICHTERWALD: PROMOTION_WOODSMAN1
@@ -1943,7 +1945,6 @@ def doHorseDown(pUnit):
                 NewUnit.setHasPromotion(iPromotion, True)
         # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
         pUnit.kill(True, -1)  # RAMK_CTD
-        pUnit = None
         NewUnit.finishMoves()
 
         # ***TEST***
@@ -1963,11 +1964,10 @@ def doHorseUp(pPlot, pUnit):
     UnitHorse = gc.getInfoTypeForString("UNIT_HORSE")
     iRange = pPlot.getNumUnits()
     for iUnit in range(iRange):
-        pUnit = pPlot.getUnit(iUnit)
-        if pUnit.getUnitType() == UnitHorse:
+        pLoopUnit = pPlot.getUnit(iUnit)
+        if pLoopUnit.getUnitType() == UnitHorse:
             # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-            pUnit.kill(True, -1)  # RAMK_CTD
-            pUnit = None
+            pLoopUnit.kill(True, -1)  # RAMK_CTD
             break
 
     if iUnitType in L.LUnitAuxiliar:
@@ -1994,7 +1994,6 @@ def doHorseUp(pPlot, pUnit):
                 NewUnit.setHasPromotion(iPromotion, True)
         # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
         pUnit.kill(True, -1)  # RAMK_CTD
-        pUnit = None
 
         # ***TEST***
         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Horse Up (Zeile 5057)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -2044,7 +2043,6 @@ def doTrojanHorse(pCity, pUnit):
 
         # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
         pUnit.kill(True, -1)  # RAMK_CTD
-        pUnit = None
 
     # ***TEST***
     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Trojanisches Pferd (Zeile 9497)", 0)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -2172,7 +2170,6 @@ def unsettledSlaves(iPlayer):
                         CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_2_CHRIST", (0,)), None, 2, "Art/Interface/Buttons/Actions/button_kreuz.dds", ColorTypes(14), pUnit.getX(), pUnit.getY(), True, True)
                     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                     pUnit.kill(True, -1)  # RAMK_CTD
-                    pUnit = None
 
                     # ***TEST***
                     #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Sklave zu Christ. Missionar (Zeile 1275)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
@@ -2187,9 +2184,11 @@ def unsettledSlaves(iPlayer):
                         if CvUtil.myRandom(2, "Fluchtversuch") == 1:
                             # Einen guenstigen Plot auswaehlen
                             rebelPlotArray = []
+                            iX = pUnit.getX()
+                            iY = pUnit.getY()
                             for i in range(3):
                                 for j in range(3):
-                                    loopPlot = gc.getMap().plot(pUnit.getX() + i - 1, pUnit.getY() + j - 1)
+                                    loopPlot = gc.getMap().plot(iX + i - 1, iY + j - 1)
                                     if loopPlot is not None and not loopPlot.isNone() and not loopPlot.isUnit():
                                         if not loopPlot.isImpassable() and not loopPlot.isWater() and not loopPlot.isPeak():
                                             rebelPlotArray.append(loopPlot)
@@ -2200,7 +2199,6 @@ def unsettledSlaves(iPlayer):
 
                         # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                         pUnit.kill(True, -1)  # RAMK_CTD
-                        pUnit = None
                         # ***TEST***
                         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Slave lost in enemy territory (Zeile 1297)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
@@ -2208,9 +2206,11 @@ def unsettledSlaves(iPlayer):
                         # Einen guenstigen Plot auswaehlen
                         rebelPlotArray = []
                         rebelPlotArrayB = []
+                        iX = pUnit.getX()
+                        iY = pUnit.getY()
                         for i in range(3):
                             for j in range(3):
-                                loopPlot = gc.getMap().plot(pUnit.getX() + i - 1, pUnit.getY() + j - 1)
+                                loopPlot = gc.getMap().plot(iX + i - 1, iY + j - 1)
                                 if loopPlot is not None and not loopPlot.isNone() and not loopPlot.isUnit():
                                     if loopPlot.getOwner() == iPlayer:
                                         if loopPlot.isHills():
@@ -2230,7 +2230,6 @@ def unsettledSlaves(iPlayer):
                                 CyInterface().addMessage(iPlayer, True, 8, CyTranslator().getText("TXT_KEY_MESSAGE_SLAVE_2_REBELL", (0,)), None, 2, "Art/Interface/Buttons/Units/button_rebell.dds", ColorTypes(7), pPlot.getX(), pPlot.getY(), True, True)
                             # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                             pUnit.kill(True, -1)  # RAMK_CTD
-                            pUnit = None
                             # ***TEST***
                             #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("Sklave zu Rebell (Zeile 1327)", 1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 

@@ -2930,7 +2930,7 @@
     <Tag>TXT_KEY_CORPORATION_6_MUSEION</Tag>
     <English>Great Mouseion</English>
     <French>Grand Mouse&#238;on</French>
-    <German>Gro&#223;e Museion</German>
+    <German>Gro&#223;es Museion</German>
     <Italian>Grande Museo</Italian>
     <Spanish>Gran Mouseion</Spanish>
   </TEXT>
@@ -3348,7 +3348,7 @@
     <French>Ecole spartiate</French>
     <German>Agoge</German>
     <Italian>Agoghe</Italian>
-    <Spanish>Lugar de Entrenamiento Agog&#233;</Spanish>
+    <Spanish>Agog&#233; espartana</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_GLUECKSSPIELHAUS</Tag>
@@ -3959,19 +3959,11 @@
     <Spanish>Acr&#243;polis</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_BUILDING_PANTHEON</Tag>
-    <English>Pantheon</English>
-    <French>Panth&#233;on</French>
-    <German>Pantheon</German>
-    <Italian>Panteon</Italian>
-    <Spanish>Pante&#243;n</Spanish>
-  </TEXT>
-  <TEXT>
     <Tag>TXT_KEY_BUILDING_MALI_MINT</Tag>
     <English>Urban Mint</English>
-    <French>Atelier urbain de frappe de monnaie</French>
-    <German>St&#228;dtische M&#252;nzst&#228;tte</German>
-    <Italian>Zecca urbano</Italian>
+    <French>Menthe urbain</French>
+    <German>St&#228;dtische M&#252;nzpr&#228;ge</German>
+    <Italian>Menta urbano</Italian>
     <Spanish><Text>Ceca urbana</Text><Gender>Female</Gender><Plural>0</Plural></Spanish>
   </TEXT>
   <TEXT>
@@ -4028,7 +4020,7 @@
     <French>Colis&#233;e</French>
     <German>Kolosseum von Rom</German>
     <Italian>Colosseo di Roma</Italian>
-    <Spanish>Coliseo</Spanish>
+    <Spanish>El Coliseo de Roma</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_BUILDING_SANITATION</Tag>
@@ -5040,11 +5032,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_GAUFUERST</Tag>
-    <English>Nomarch</English>
-    <French>Nomarque</French>
-    <German>Gauf&#252;rst</German>
-    <Italian>Nomarca</Italian>
-    <Spanish>Nomarca:Nomarcas</Spanish>
+    <English>Medjay Warrior</English>
+    <French>Medja&#255; guerrier</French>
+    <German>Medjau-Krieger</German>
+    <Italian>Medjay Warrior</Italian>
+    <Spanish>Medjay Warrior</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_CAMEL_CATAPHRACT</Tag>

@@ -85,7 +85,7 @@ import FirstPunicWar
     Note that the flag will also be used to enable/disable
     other debugging features of Ramkhamhaeng
 """
-CIV4_SHELL = True
+CIV4_SHELL = False
 RAMK_EXTENDED_DEBUG = False
 RAMK_WRAP_FUNCTIONS = False
 if CIV4_SHELL:
@@ -563,7 +563,7 @@ class CvEventManager:
             pCity = pPlot.getPlotCity()
             pPlayer = gc.getPlayer(iData4)
             pUnit = pPlayer.getUnit(iData5)
-            iGold = 50 + CvUtil.myRandom(76, "677")
+            iGold = 10 + CvUtil.myRandom(50, "677")
             pPlayer.changeGold(iGold)
             pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
             pUnit = None
@@ -3526,89 +3526,88 @@ class CvEventManager:
                                     # COMMAND_DELETE can cause CtD if used in onUnitMove()
                                     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                     pUnit.kill(True, -1)
-                                    pUnit = None
                             else:
                                 gc.getPlayer(iPlayer).changeGold(-100)
                                 # COMMAND_DELETE can cause CtD if used in onUnitMove()
                                 # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 pUnit.kill(True, -1)
-                                pUnit = None
 
                     elif gc.getPlayer(iPlayer).isHuman():
                         CyInterface().addMessage(iPlayer, True, 5, CyTranslator().getText("TXT_KEY_POPUP_HUNS_NO_MONEY", ()), None, 2, pUnit.getButton(), ColorTypes(10), pPlot.getX(), pPlot.getY(), True, True)
 
-        # In der Stadt
-        if pPlot.isCity():
-            pCity = pPlot.getPlotCity()
+        if pUnit is not None and not pUnit.isNone() and not pUnit.isDead():
+            # In der Stadt
+            if pPlot.isCity():
+                pCity = pPlot.getPlotCity()
 
-            # Unit can stop city revolt / unit city revolt
-            if pCity.getOccupationTimer() > 2:
-                if pUnit.isMilitaryHappiness():
-                    # if pUnit.getOwner() == pCity.getOwner():  # -> allies can help ;)
-                    # if pPlot.getNumUnits() > pCity.getPopulation():
-                    # if pUnit.movesLeft() <= 20:
-                    if PyInfo.UnitInfo(pUnit.getUnitType()).getMoves() == 1:
-                        pCity.changeOccupationTimer(-1)
+                # Unit can stop city revolt / unit city revolt
+                if pCity.getOccupationTimer() > 2:
+                    if pUnit.isMilitaryHappiness():
+                        # if pUnit.getOwner() == pCity.getOwner():  # -> allies can help ;)
+                        # if pPlot.getNumUnits() > pCity.getPopulation():
+                        # if pUnit.movesLeft() <= 20:
+                        if PyInfo.UnitInfo(pUnit.getUnitType()).getMoves() == 1:
+                            pCity.changeOccupationTimer(-1)
 
-            # Keine Formationen in der Stadt (rausgegeben ab PAE V Patch 2, Formationen sind auf Stadtangriff/verteidigung angepasst)
-            #PAE_Unit.doUnitFormation (pUnit, -1)
+                # Keine Formationen in der Stadt (rausgegeben ab PAE V Patch 2, Formationen sind auf Stadtangriff/verteidigung angepasst)
+                #PAE_Unit.doUnitFormation (pUnit, -1)
 
-        # nicht eine Stadt
-        else:
-            # AI Festungsformation
-            iAnzahlFortifiedUnits = 2
-            if not gc.getPlayer(pUnit.getOwner()).isHuman():
-                iImp = pPlot.getImprovementType()
+            # nicht eine Stadt
+            else:
+                # AI Festungsformation
+                iAnzahlFortifiedUnits = 2
+                if not gc.getPlayer(pUnit.getOwner()).isHuman():
+                    iImp = pPlot.getImprovementType()
 
-                # Bei einem Turm2 oder einer Festung1,2 oder einem Limeskastell
-                if iImp in L.LImprFortShort:
-                        # Alle Formationen entfernen
-                        #PAE_Unit.doUnitFormation (pUnit, -1)
+                    # Bei einem Turm2 oder einer Festung1,2 oder einem Limeskastell
+                    if iImp in L.LImprFortShort:
+                            # Alle Formationen entfernen
+                            #PAE_Unit.doUnitFormation (pUnit, -1)
 
-                        # Plot soll der AI (Unit) oder niemandem zugewiesen sein
-                    if pPlot.getOwner() == pUnit.getOwner() or pPlot.getOwner() == -1:
-                        # Nur fuer Axt, Speer und Schwerteinheiten
-                        if pUnit.getUnitCombatType() in L.LMeleeCombats:
-                            if PyInfo.UnitInfo(pUnit.getUnitType()).getMoves() == 1:
-                                iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
-                            else:
-                                iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
-                            iRange = pPlot.getNumUnits()
-                            iNum = 0
-                            k = 0
-                            for k in range(iRange):
-                                if pPlot.getUnit(k).isHasPromotion(iPromo):
-                                    iNum += 1
-                                if iNum > iAnzahlFortifiedUnits:
-                                    break
-                            if iNum < iAnzahlFortifiedUnits:
-                                PAE_Unit.doUnitFormation(pUnit, iPromo)
+                            # Plot soll der AI (Unit) oder niemandem zugewiesen sein
+                        if pPlot.getOwner() == pUnit.getOwner() or pPlot.getOwner() == -1:
+                            # Nur fuer Axt, Speer und Schwerteinheiten
+                            if pUnit.getUnitCombatType() in L.LMeleeCombats:
+                                if PyInfo.UnitInfo(pUnit.getUnitType()).getMoves() == 1:
+                                    iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS")
+                                else:
+                                    iPromo = gc.getInfoTypeForString("PROMOTION_FORM_FORTRESS2")
+                                iRange = pPlot.getNumUnits()
+                                iNum = 0
+                                k = 0
+                                for k in range(iRange):
+                                    if pPlot.getUnit(k).isHasPromotion(iPromo):
+                                        iNum += 1
+                                    if iNum > iAnzahlFortifiedUnits:
+                                        break
+                                if iNum < iAnzahlFortifiedUnits:
+                                    PAE_Unit.doUnitFormation(pUnit, iPromo)
 
-            # Keine Formation in bestimmte Features
-            #iFeat = pPlot.getFeatureType()
-            # if iFeat > -1:
-            #  if iFeat == gc.getInfoTypeForString("FEATURE_FOREST") or iFeat == gc.getInfoTypeForString("FEATURE_DICHTERWALD") or iFeat == gc.getInfoTypeForString("FEATURE_JUNGLE"):
-            #    PAE_Unit.doUnitFormation (pUnit, -1)
+                # Keine Formation in bestimmte Features
+                #iFeat = pPlot.getFeatureType()
+                # if iFeat > -1:
+                #  if iFeat == gc.getInfoTypeForString("FEATURE_FOREST") or iFeat == gc.getInfoTypeForString("FEATURE_DICHTERWALD") or iFeat == gc.getInfoTypeForString("FEATURE_JUNGLE"):
+                #    PAE_Unit.doUnitFormation (pUnit, -1)
 
-        ########################################################
-        # --------- Bombard - Feature ----------------------
-        # Wird ein Fort mit Katapulten bombardiert, kann das Fort dadurch zerstoert werden: 10%
-        #    iUnit1 = gc.getInfoTypeForString("UNIT_CATAPULT")
-        #    iUnit2 = gc.getInfoTypeForString("UNIT_FIRE_CATAPULT")
-        #    if pUnit.getUnitType() == iUnit1 or pUnit.getUnitType() == iUnit2:
-        #      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
+            ########################################################
+            # --------- Bombard - Feature ----------------------
+            # Wird ein Fort mit Katapulten bombardiert, kann das Fort dadurch zerstoert werden: 10%
+            #    iUnit1 = gc.getInfoTypeForString("UNIT_CATAPULT")
+            #    iUnit2 = gc.getInfoTypeForString("UNIT_FIRE_CATAPULT")
+            #    if pUnit.getUnitType() == iUnit1 or pUnit.getUnitType() == iUnit2:
+            #      CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
-        # PAE Debug Mark
-        #"""
-        if not self.__LOG_MOVEMENT:
-            return
-        elif not pUnit.isDead():
-            player = PyPlayer(pUnit.getOwner())
-            unitInfo = PyInfo.UnitInfo(pUnit.getUnitType())
-            if player and unitInfo:
-                CvUtil.pyPrint('Player %d Civilization %s unit %s is moving to %d, %d'
-                               % (player.getID(), player.getCivilizationName(), unitInfo.getDescription(),
-                                  pUnit.getX(), pUnit.getY()))
+            # PAE Debug Mark
+            #"""
+            if not self.__LOG_MOVEMENT:
+                return
+            else:
+                player = PyPlayer(pUnit.getOwner())
+                unitInfo = PyInfo.UnitInfo(pUnit.getUnitType())
+                if player and unitInfo:
+                    CvUtil.pyPrint('Player %d Civilization %s unit %s is moving to %d, %d'
+                                   % (player.getID(), player.getCivilizationName(), unitInfo.getDescription(),
+                                      pUnit.getX(), pUnit.getY()))
 
     def onUnitSetXY(self, argsList):
         'units xy coords set manually'
@@ -4045,13 +4044,21 @@ class CvEventManager:
         ## Platy WorldBuilder ##
         if CyGame().GetWorldBuilderMode() and not CvPlatyBuilderScreen.bPython:
             return
+        LRelisRemapCapital = [
+            gc.getInfoTypeForString("RELIGION_CELTIC"),
+            gc.getInfoTypeForString("RELIGION_NORDIC"),
+            gc.getInfoTypeForString("RELIGION_PHOEN"),
+            gc.getInfoTypeForString("RELIGION_GREEK"),
+            gc.getInfoTypeForString("RELIGION_ROME"),
+            gc.getInfoTypeForString("RELIGION_JUDAISM")
+        ]
         ## Platy WorldBuilder ##
         iReligion, iFounder = argsList
         player = PyPlayer(iFounder)
         iCityId = gc.getGame().getHolyCity(iReligion).getID()
 
         # PAE - capital gets Holy City for certain religions
-        if iReligion in L.LRelisRemapCapital:
+        if iReligion in LRelisRemapCapital:
             pCapitalCity = gc.getPlayer(iFounder).getCapitalCity()
             if pCapitalCity:
                 if iCityId != pCapitalCity.getID():

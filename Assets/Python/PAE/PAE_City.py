@@ -522,8 +522,6 @@ def doInquisitorPersecution(pCity, pUnit):
 
     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     pUnit.kill(True, -1)  # RAMK_CTD
-    pUnit = None
-  # -------------
 
 def doInquisitorPersecution2(iPlayer, iCity, iButton, iReligion, iUnit):
     pPlayer = gc.getPlayer(iPlayer)
@@ -548,9 +546,9 @@ def doInquisitorPersecution2(iPlayer, iCity, iButton, iReligion, iUnit):
         else:
             iHC = 15
         pUnit = pPlayer.getUnit(iUnit)
-        # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-        pUnit.kill(True, -1)  # RAMK_CTD
-        pUnit = None
+        if pUnit is not None and not pUnit.isNone():
+            # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+            pUnit.kill(True, -1)  # RAMK_CTD
 
         # Does Persecution succeed
         iRandom = CvUtil.myRandom(100, "pers_success")
@@ -977,7 +975,6 @@ def doEmigrant(pCity, pUnit):
     pPlot.changeCulture(iPlayerCulture, iCulture, 1)
     # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     pUnit.kill(True, -1)  # RAMK_CTD
-    pUnit = None
 
     pCity.changePopulation(1)
     # PAE Provinzcheck
@@ -1367,10 +1364,6 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnit):
         iUnitType = pLoopUnit.getUnitType()
         iUnitAIType = pLoopUnit.getUnitAIType()
         iUnitCombatType = pLoopUnit.getUnitCombatType()
-
-        # TEST
-        # iUnitOwner = iNewOwner
-        #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Test 2 - iUnitOwner",iUnitOwner)), None, 2, None, ColorTypes(10), 0, 0, False, False)
 
         # UnitAIType -1 (NO_UNITAI) -> UNITAI_UNKNOWN = 0 , ATTACK = 4, City Defense = 10
         if iUnitAIType in [-1, 0, 4]:
@@ -2324,11 +2317,10 @@ def doPlagueEffects(pCity):
                     sOwner = pLoopUnit.getOwner()
                     psOwner = gc.getPlayer(sOwner)
                     if pLoopUnit.getDamage() > 95:
-                        # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                        pLoopUnit.kill(True, -1)  # RAMK_CTD
-                        pLoopUnit = None
                         if psOwner is not None and psOwner.isHuman():
                             CyInterface().addMessage(sOwner, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_CITY_PEST_KILL_UNIT", (pLoopUnit.getName(), pCity.getName())), None, 2, 'Art/Interface/Buttons/Actions/button_skull.dds', ColorTypes(12), loopPlot.getX(), loopPlot.getY(), True, True)
+                        # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                        pLoopUnit.kill(True, -1)  # RAMK_CTD
                     if psOwner is not None and psOwner.isHuman():
                         if sOwner not in lMessageOwners:
                             lMessageOwners.append(sOwner)
@@ -2542,7 +2534,6 @@ def doSettledSlavesAndReservists(pCity):
                 if pLoopUnit.getOwner() == iPlayer and pLoopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SLAVE"):
                     # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                     pLoopUnit.kill(True, -1)  # RAMK_CTD
-                    pLoopUnit = None
                     bErsatz = True
                     break
 
@@ -2676,7 +2667,6 @@ def doSettledSlavesAndReservists(pCity):
                             if iDone < iNumRebels2 and pLoopUnit.getUnitType() == gc.getInfoTypeForString("UNIT_SLAVE"):
                                 # pLoopUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 pLoopUnit.kill(True, -1)  # RAMK_CTD
-                                pLoopUnit = None
                                 iDone += 1
 
                     iNumRebels = 0

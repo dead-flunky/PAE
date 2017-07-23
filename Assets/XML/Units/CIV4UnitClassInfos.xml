@@ -119,6 +119,15 @@
       <DefaultUnit>UNIT_FREED_SLAVE</DefaultUnit>
     </UnitClassInfo>
     <UnitClassInfo>
+      <Type>UNITCLASS_STATTHALTER</Type>
+      <Description>TXT_KEY_UNIT_STATTHALTER</Description>
+      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
+      <iMaxTeamInstances>-1</iMaxTeamInstances>
+      <iMaxPlayerInstances>1</iMaxPlayerInstances>
+      <iInstanceCostModifier>0</iInstanceCostModifier>
+      <DefaultUnit>UNIT_STATTHALTER</DefaultUnit>
+    </UnitClassInfo>
+    <UnitClassInfo>
       <Type>UNITCLASS_WORKER</Type>
       <Description>TXT_KEY_UNIT_WORKER</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>

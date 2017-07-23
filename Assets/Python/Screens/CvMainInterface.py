@@ -41,7 +41,7 @@ MAX_BONUS_ROWS = 10
 
 # BUG - field of view slider - start
 DEFAULT_FIELD_OF_VIEW = 44
-bFieldOfView = False  # PAE (False for better ingame python programming)
+bFieldOfView = True  # PAE (False for better ingame python programming)
 # BUG - field of view slider - end
 
 # SPECIALIST STACKER        05/02/07      JOHNY
@@ -1556,7 +1556,6 @@ class CvMainInterface:
 
     # Will hide and show the selection buttons and their associated buttons
     def updateSelectionButtons(self):
-
         global SELECTION_BUTTON_COLUMNS
         global g_pSelectedUnit
 
@@ -2844,11 +2843,8 @@ class CvMainInterface:
                             # PAE V Patch 2: disabled for fights on his own units
                             if not pUnit.isHasPromotion(gc.getInfoTypeForString("PROMOTION_MERCENARY")):
                                 pPlot = pUnit.plot()
-
                                 iImp = pPlot.getImprovementType()
-
                                 #iFeat = pPlot.getFeatureType()
-
                                 # in Festungen (keine Formationen erlauben, ausser PROMOTION_FORM_FORTRESS)
                                 if iImp in L.LImprFort:
                                     # Besitzerabfrage

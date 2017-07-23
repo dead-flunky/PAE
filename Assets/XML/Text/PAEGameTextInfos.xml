@@ -319,7 +319,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
   <TEXT>
     <Tag>TXT_KEY_MAIN_EMIGRATE_AB_3</Tag>
     <English>Emigration (from pop 6 on)</English>
-    <French>Emigration (si popul. > 5)</French>
+    <French>Emigration (si popul. > 6)</French>
     <German>Auswanderung (ab Pop 6)</German>
     <Italian>Emigrazione (dal pop 6)</Italian>
     <Spanish>Emigraci&#243;n (desde 6 en ad.)</Spanish>
@@ -7186,7 +7186,7 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <French>Promouvoir un Grand G&#233;n&#233;ral illustre parmi votre unit&#233; l&#233;gendaire ou h&#233;ro&#239;que</French>
     <German>Einen Gro&#223;en General aus Eurer legend&#228;ren bzw. heldenhaften Einheit erschaffen</German>
     <Italian>Create a Great General out of your legendary or heroic unit</Italian>
-    <Spanish>Crear un comandante a partir de tu unidad heroica o legendaria</Spanish>
+    <Spanish>Crear un gran general a partir de tu unidad heroica o legendaria</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_POPUP_VICTORY</Tag>
