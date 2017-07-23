@@ -1155,45 +1155,15 @@ def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack):
                     iNewPromo = gc.getInfoTypeForString("PROMOTION_AMPHIBIOUS")
                 else:
                     if lTerrain[iRand] == "Hills":
-                        lPromos = [
-                            gc.getInfoTypeForString("PROMOTION_GUERILLA1"),
-                            gc.getInfoTypeForString("PROMOTION_GUERILLA2"),
-                            gc.getInfoTypeForString("PROMOTION_GUERILLA3"),
-                            gc.getInfoTypeForString("PROMOTION_GUERILLA4"),
-                            gc.getInfoTypeForString("PROMOTION_GUERILLA5")
-                        ]
+                        lPromos = L.LGuerilla
                     elif lTerrain[iRand] == "Forest":
-                        lPromos = [
-                            gc.getInfoTypeForString("PROMOTION_WOODSMAN1"),
-                            gc.getInfoTypeForString("PROMOTION_WOODSMAN2"),
-                            gc.getInfoTypeForString("PROMOTION_WOODSMAN3"),
-                            gc.getInfoTypeForString("PROMOTION_WOODSMAN4"),
-                            gc.getInfoTypeForString("PROMOTION_WOODSMAN5")
-                        ]
+                        lPromos = L.LWoodsman
                     elif lTerrain[iRand] == "Jungle":
-                        lPromos = [
-                            gc.getInfoTypeForString("PROMOTION_JUNGLE1"),
-                            gc.getInfoTypeForString("PROMOTION_JUNGLE2"),
-                            gc.getInfoTypeForString("PROMOTION_JUNGLE3"),
-                            gc.getInfoTypeForString("PROMOTION_JUNGLE4"),
-                            gc.getInfoTypeForString("PROMOTION_JUNGLE5")
-                        ]
+                        lPromos = L.LJungle
                     elif lTerrain[iRand] == "Swamp":
-                        lPromos = [
-                            gc.getInfoTypeForString("PROMOTION_SUMPF1"),
-                            gc.getInfoTypeForString("PROMOTION_SUMPF2"),
-                            gc.getInfoTypeForString("PROMOTION_SUMPF3"),
-                            gc.getInfoTypeForString("PROMOTION_SUMPF4"),
-                            gc.getInfoTypeForString("PROMOTION_SUMPF5")
-                        ]
+                        lPromos = L.LSwamp
                     elif lTerrain[iRand] == "Desert":
-                        lPromos = [
-                            gc.getInfoTypeForString("PROMOTION_DESERT1"),
-                            gc.getInfoTypeForString("PROMOTION_DESERT2"),
-                            gc.getInfoTypeForString("PROMOTION_DESERT3"),
-                            gc.getInfoTypeForString("PROMOTION_DESERT4"),
-                            gc.getInfoTypeForString("PROMOTION_DESERT5")
-                        ]
+                        lPromos = L.LDesert
 
                     for iPromo in lPromos:
                         if not pUnitTarget.isHasPromotion(iPromo):
@@ -1848,24 +1818,40 @@ def doAutomatedRanking(pWinner, pLoser):
     # Each promotion gives +x% Strength
     # Animal Attack brings only 1st Ranking
     """
-    if (pLoser.isMilitaryHappiness() or
-            pLoser.getUnitAIType() in [UnitAITypes.UNITAI_ANIMAL, UnitAITypes.UNITAI_EXPLORE] or
-            pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
+    # tuple contain (Promo, %-Probabiblity)
+    LPromo = [
+        (gc.getInfoTypeForString('PROMOTION_COMBAT1'), 50),
+        (gc.getInfoTypeForString('PROMOTION_COMBAT2'), 40),
+        (gc.getInfoTypeForString('PROMOTION_COMBAT3'), 30),
+        (gc.getInfoTypeForString('PROMOTION_COMBAT4'), 20),
+        (gc.getInfoTypeForString('PROMOTION_COMBAT5'), 20),
+        (gc.getInfoTypeForString('PROMOTION_COMBAT6'), 20),
+    ]
+    LPromoNegative = [
+        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG1'), 10),
+        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG2'), 10),
+        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG3'), 20),
+        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG4'), 20),
+        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG5'), 20),
+    ]
+    if (pLoser.isMilitaryHappiness()
+            or pLoser.getUnitAIType() in [UnitAITypes.UNITAI_ANIMAL, UnitAITypes.UNITAI_EXPLORE]
+            or pLoser.getUnitCombatType() == gc.getInfoTypeForString("UNITCOMBAT_NAVAL")):
         iPlayer = pWinner.getOwner()
 
-        if not pWinner.isHasPromotion(L.LPromo[2][0]) and pLoser.getOwner() != gc.getBARBARIAN_PLAYER():
+        if not pWinner.isHasPromotion(LPromo[2][0]) and pLoser.getOwner() != gc.getBARBARIAN_PLAYER():
             iNewRank = -1
-            if not pWinner.isHasPromotion(L.LPromo[-1][0]):
-                for iPromo, iChance in L.LPromo:
+            if not pWinner.isHasPromotion(LPromo[-1][0]):
+                for iPromo, iChance in LPromo:
                     if not pWinner.isHasPromotion(iPromo):
                         iNewRank = iPromo
                         break
 
             # PAE for better AI: always gets it by 50%
-            if not gc.getPlayer(pWinner.getOwner()).isHuman():
+            if not gc.getPlayer(iPlayer).isHuman():
                 iChance = 50
 
-            if iNewRank == L.LPromo[0][0] or iNewRank == L.LPromo[1][0] or pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
+            if iNewRank == LPromo[0][0] or iNewRank == LPromo[1][0] or pLoser.getUnitAIType() != UnitAITypes.UNITAI_ANIMAL or pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
                 if iNewRank != -1 and CvUtil.myRandom(100, "automatedRanking") < iChance:
                     if (iPlayer, pWinner.getID()) not in PAEInstanceFightingModifier:
                         PAEInstanceFightingModifier.append((iPlayer, pWinner.getID()))
@@ -1874,9 +1860,9 @@ def doAutomatedRanking(pWinner, pLoser):
                             CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_RANKING", (pWinner.getName(), gc.getPromotionInfo(iNewRank).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewRank).getButton(), ColorTypes(13), pWinner.getX(), pWinner.getY(), True, True)
 
                 # War weariness parallel ab Elite
-                elif pWinner.isHasPromotion(L.LPromo[4][0]) and not pWinner.isHasPromotion(L.LPromoNegative[-1][0]):
+                elif pWinner.isHasPromotion(LPromo[4][0]) and not pWinner.isHasPromotion(LPromoNegative[-1][0]):
                     if (iPlayer, pWinner.getID()) not in PAEInstanceFightingModifier:
-                        for iPromo, iChance in L.LPromoNegative:
+                        for iPromo, iChance in LPromoNegative:
                             if not pWinner.isHasPromotion(iPromo):
                                 if iChance > CvUtil.myRandom(100, "war weariness"):
                                     PAEInstanceFightingModifier.append((iPlayer, pWinner.getID()))
@@ -1889,7 +1875,7 @@ def doAutomatedRanking(pWinner, pLoser):
         # PAE V: Gewinner kann Mercenary-Promo ab Veteran verlieren
         # Better AI: 100%
         iPromoMercenary = gc.getInfoTypeForString("PROMOTION_MERCENARY")
-        if pWinner.isHasPromotion(L.LPromo[3][0]) and pWinner.isHasPromotion(iPromoMercenary):
+        if pWinner.isHasPromotion(LPromo[3][0]) and pWinner.isHasPromotion(iPromoMercenary):
             bDoIt = False
             if gc.getPlayer(iPlayer).isHuman():
                 iPromoLoyal = gc.getInfoTypeForString("PROMOTION_LOYALITAT")
@@ -1912,13 +1898,13 @@ def doAutomatedRanking(pWinner, pLoser):
         # PAE V: Old veterans needs more time to get fit again (elite needs longer)
         # Better AI: HI only
         if gc.getPlayer(iPlayer).isHuman():
-            if pWinner.isHasPromotion(L.LPromo[5][0]):
+            if pWinner.isHasPromotion(LPromo[5][0]):
                 if pWinner.getDamage() < 50:
                     pWinner.setDamage(50, -1)
-            elif pWinner.isHasPromotion(L.LPromo[4][0]):
+            elif pWinner.isHasPromotion(LPromo[4][0]):
                 if pWinner.getDamage() < 70:
                     pWinner.setDamage(30, -1)
-            #elif pWinner.isHasPromotion(L.LPromo[3][0]):
+            #elif pWinner.isHasPromotion(LPromo[3][0]):
             #  if pWinner.getDamage() < 20: pWinner.setDamage(20, -1)
 
 

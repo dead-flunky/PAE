@@ -15,81 +15,79 @@
 from CvPythonExtensions import CyGlobalContext
 gc = CyGlobalContext()
 
-LTradeUnits = []
-LCultivationUnits = []
-LBonusCultivatable = []
-LBonusUntradeable = [] # List of untradeable bonuses
-LBonusCorn = [] # Lists of cultivatable bonuses
-LBonusLivestock = []
-LBonusPlantation = []
-LBonusLuxury = [] # List of bonuses which may create trade routes
-LBonusRarity = [] # List of bonuses which may create trade routes
-LUnitWarAnimals = []
-LUnitDomesticated = []
-LUnitLootLessSeaUnits = []
-LUnitCanBeDomesticated = []
-LUnitWildAnimals = []
-DJagd = {}
-LArcherCombats = []
-LMeleeCombats = []
-LMeleeSupplyCombats = []
-LMountedSupplyCombats = []
-LLimes = []
-LImprFort = []
-# LFeatureArray = []
-LImprFortShort = []
-DCaptureFromPirate = {}
-DCaptureByPirate = {}
-LFormationNoNaval = []
-LFormationMountedArcher = []
-LCivPirates = []
-LCivPartherschuss = []
-LUnitPartherschuss = []
-LKeilUnits = []
-LSchildwallUnits = []
-LDrillUnits = []
-LTestudoUnits = []
-LFluchtCombats = []
-LFormationen = []
-LUnitsNoAIReservists = []
-LUnitAuxiliar = []
-LUnitNoSlaves = []
-LCombatNoRuestung = []
-LUnitNoRuestung = []
-LUnitSkirmish = []
-LClassSkirmish = []
-LFernangriffNoCosts = []
-DFernangriffCosts = {}
-LSeewind = []
-LBuildArchers = []
-LBuildCatapults = []
-DManufakturen = {}
-DImprSupplyBonus = {}
-DBuildingPromo = {}
-DPromosForPromoBuilding = {}
-LLatifundien = []
-LFarms = []
-LMines = []
-LTemples = []
-LPromoPillage = []
-LWoodRemovedByLumberCamp = []
-LCityGarrison = []
-LVeteranForbiddenPromos1 = []
-LCityRaider = []
-LVeteranForbiddenPromos4 = []
-LCivGermanen = []
-LPromo = []
-LPromoNegative = []
-DHorseDownMap = {}
-DHorseUpMap = {}
-LGGStandard = []
-DGGNames = {}
-# LRelis = []
-LRelisRemapCapital = []
-LGreeks = []
-LNearEast = []
-LNorthern = []
-LegioNames = []
+# LTradeUnits = []
+# LCultivationUnits = []
+# LBonusCultivatable = []
+# LBonusUntradeable = [] # List of untradeable bonuses
+# LBonusCorn = [] # Lists of cultivatable bonuses
+# LBonusLivestock = []
+# LBonusPlantation = []
+# LBonusLuxury = [] # List of bonuses which may create trade routes
+# LBonusRarity = [] # List of bonuses which may create trade routes
+# LUnitWarAnimals = []
+# LUnitDomesticated = []
+# LUnitLootLessSeaUnits = []
+# LUnitCanBeDomesticated = []
+# LUnitWildAnimals = []
+# DJagd = {}
+# LArcherCombats = []
+# LMeleeCombats = []
+# LMeleeSupplyCombats = []
+# LMountedSupplyCombats = []
+# LLimes = []
+# LImprFort = []
+# # LFeatureArray = []
+# LImprFortShort = []
+# DCaptureFromPirate = {}
+# DCaptureByPirate = {}
+# LFormationNoNaval = []
+# LFormationMountedArcher = []
+# LCivPirates = []
+# LCivPartherschuss = []
+# LUnitPartherschuss = []
+# LKeilUnits = []
+# LSchildwallUnits = []
+# LDrillUnits = []
+# LTestudoUnits = []
+# LFluchtCombats = []
+# LFormationen = []
+# LUnitsNoAIReservists = []
+# LUnitAuxiliar = []
+# LUnitNoSlaves = []
+# LCombatNoRuestung = []
+# LUnitNoRuestung = []
+# LUnitSkirmish = []
+# LClassSkirmish = []
+# LFernangriffNoCosts = []
+# DFernangriffCosts = {}
+# LSeewind = []
+# LBuildArchers = []
+# LBuildCatapults = []
+# DManufakturen = {}
+# DImprSupplyBonus = {}
+# DBuildingPromo = {}
+# DPromosForPromoBuilding = {}
+# LLatifundien = []
+# LFarms = []
+# LMines = []
+# LTemples = []
+# LPromoPillage = []
+# LWoodRemovedByLumberCamp = []
+# LCityGarrison = []
+# LVeteranForbiddenPromos1 = []
+# LCityRaider = []
+# LVeteranForbiddenPromos4 = []
+# LCivGermanen = []
+# DHorseDownMap = {}
+# DHorseUpMap = {}
+# LGGStandard = []
+# DGGNames = {}
+# # LRelis = []
+# LRelisRemapCapital = []
+# LGreeks = []
+# LNearEast = []
+# LNorthern = []
+# LegioNames = []
 
 def init():
 
@@ -567,6 +565,41 @@ def init():
         gc.getInfoTypeForString("BUILD_REMOVE_FOREST"),
         gc.getInfoTypeForString("BUILD_REMOVE_FOREST_BURNT"),
     ]
+    LGuerilla = [
+        gc.getInfoTypeForString("PROMOTION_GUERILLA1"),
+        gc.getInfoTypeForString("PROMOTION_GUERILLA2"),
+        gc.getInfoTypeForString("PROMOTION_GUERILLA3"),
+        gc.getInfoTypeForString("PROMOTION_GUERILLA4"),
+        gc.getInfoTypeForString("PROMOTION_GUERILLA5")
+    ]
+    LWoodsman = [
+        gc.getInfoTypeForString("PROMOTION_WOODSMAN1"),
+        gc.getInfoTypeForString("PROMOTION_WOODSMAN2"),
+        gc.getInfoTypeForString("PROMOTION_WOODSMAN3"),
+        gc.getInfoTypeForString("PROMOTION_WOODSMAN4"),
+        gc.getInfoTypeForString("PROMOTION_WOODSMAN5")
+    ]
+    LJungle = [
+        gc.getInfoTypeForString("PROMOTION_JUNGLE1"),
+        gc.getInfoTypeForString("PROMOTION_JUNGLE2"),
+        gc.getInfoTypeForString("PROMOTION_JUNGLE3"),
+        gc.getInfoTypeForString("PROMOTION_JUNGLE4"),
+        gc.getInfoTypeForString("PROMOTION_JUNGLE5")
+    ]
+    LSwamp = [
+        gc.getInfoTypeForString("PROMOTION_SUMPF1"),
+        gc.getInfoTypeForString("PROMOTION_SUMPF2"),
+        gc.getInfoTypeForString("PROMOTION_SUMPF3"),
+        gc.getInfoTypeForString("PROMOTION_SUMPF4"),
+        gc.getInfoTypeForString("PROMOTION_SUMPF5")
+    ]
+    LDesert = [
+        gc.getInfoTypeForString("PROMOTION_DESERT1"),
+        gc.getInfoTypeForString("PROMOTION_DESERT2"),
+        gc.getInfoTypeForString("PROMOTION_DESERT3"),
+        gc.getInfoTypeForString("PROMOTION_DESERT4"),
+        gc.getInfoTypeForString("PROMOTION_DESERT5")
+    ]
     LCityGarrison = [
         gc.getInfoTypeForString("PROMOTION_CITY_GARRISON1"),
         gc.getInfoTypeForString("PROMOTION_CITY_GARRISON2"),
@@ -602,23 +635,6 @@ def init():
         gc.getInfoTypeForString("CIVILIZATION_DAKER"),
         gc.getInfoTypeForString("CIVILIZATION_BRITEN"),
         gc.getInfoTypeForString("CIVILIZATION_VANDALS"),
-    ]
-
-    #For doAutomatedRanking; tuple contain (Promo, %-Probabiblity)
-    LPromo = [
-        (gc.getInfoTypeForString('PROMOTION_COMBAT1'), 50),
-        (gc.getInfoTypeForString('PROMOTION_COMBAT2'), 40),
-        (gc.getInfoTypeForString('PROMOTION_COMBAT3'), 30),
-        (gc.getInfoTypeForString('PROMOTION_COMBAT4'), 20),
-        (gc.getInfoTypeForString('PROMOTION_COMBAT5'), 20),
-        (gc.getInfoTypeForString('PROMOTION_COMBAT6'), 20),
-    ]
-    LPromoNegative = [
-        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG1'), 10),
-        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG2'), 10),
-        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG3'), 20),
-        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG4'), 20),
-        (gc.getInfoTypeForString('PROMOTION_MORAL_NEG5'), 20),
     ]
 
     # [Unitkey] => { [Civkey] => [Unitkey], None -> [Default Unitkey]}
@@ -968,31 +984,31 @@ def init():
     # eMerc =  gc.getInfoTypeForString("BONUSCLASS_MERCENARY") # BALEAREN, TEUTONEN, BAKTRIEN, KRETA, KILIKIEN, MARS, THRAKIEN
 
     iNumBonuses = gc.getNumBonusInfos()
-    LCorn = []
-    LLivestock = []
-    LPlantation = []
-    LLuxury = []
-    LRarity = []
-    LUntradeable = []
+    LBonusCorn = []
+    LBonusLivestock = []
+    LBonusPlantation = []
+    LBonusLuxury = []
+    LBonusRarity = []
+    LBonusUntradeable = []
     for eBonus in range(iNumBonuses):
         pBonusInfo = gc.getBonusInfo(eBonus)
         iClass = pBonusInfo.getBonusClassType()
         if iClass == eGrain:
-            LCorn.append(eBonus)
+            LBonusCorn.append(eBonus)
         elif iClass == eLivestock:
-            LLivestock.append(eBonus)
+            LBonusLivestock.append(eBonus)
         elif iClass == ePlantation:
-            LPlantation.append(eBonus)
+            LBonusPlantation.append(eBonus)
         elif iClass == eLuxury:
-            LLuxury.append(eBonus)
+            LBonusLuxury.append(eBonus)
         elif iClass == eRarity:
-            LRarity.append(eBonus)
+            LBonusRarity.append(eBonus)
         # eg BONUSCLASS_MISC
         elif iClass != eWonder and iClass != eGeneral:
-            LUntradeable.append(eBonus)
+            LBonusUntradeable.append(eBonus)
         # BonusClass wonder and general are not stored separately (bc. unnecessary)
 
-    LCultivatable = LCorn + LLivestock + LPlantation + [gc.getInfoTypeForString("BONUS_HORSE")]
+    LBonusCultivatable = LBonusCorn + LBonusLivestock + LBonusPlantation + [gc.getInfoTypeForString("BONUS_HORSE")]
 
     # Tranfer local defined variables into module ones.
     lnames = [l for l in locals().keys() if l[0] != "_" and l != "gc"]

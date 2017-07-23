@@ -86,7 +86,7 @@ def _isBonusCultivationChance(iPlayer, pPlot, eBonus, bVisibleOnly=True):
 
     # Fertility conditions
     if (not canHaveBonus(pPlot, eBonus, True)
-            # or (eBonus in lCorn and not pPlot.isFreshWater()) # siehe https://www.civforum.de/showthread.php?97599-PAE-Bonusressourcen&p=7653686&viewfull=1#post7653686
+            # or (eBonus in L.LBonusCorn and not pPlot.isFreshWater()) # siehe https://www.civforum.de/showthread.php?97599-PAE-Bonusressourcen&p=7653686&viewfull=1#post7653686
             or (eBonus in L.LBonusPlantation and
                 (eBonus == gc.getInfoTypeForString("BONUS_DATTELN") and not pPlot.isFreshWater())
                 or (eBonus == gc.getInfoTypeForString("BONUS_OLIVES") and not pPlot.isCoastalLand())
@@ -832,7 +832,6 @@ def horse(pCity):
                             if loopPlot.getImprovementType() == lImprovements[iJ]:
                                 lPlotPrio[iJ + iFirstBlock + 1].append(loopPlot)
                                 break
-
     return lPlotPrio
 
 def camel(pCity):
@@ -998,6 +997,7 @@ def doBuildingCultivate(pCity, iBuildingType):
         bText = True
         iRand = 1 + CvUtil.myRandom(4, "WeinText")
         sText = CyTranslator().getText("TXT_KEY_MESSAGE_VINTAGER_BUILT"+str(iRand), (pCity.getName(),))
+        eBonus = gc.getInfoTypeForString('BONUS_WINE')
 
     # HORSE - FEATURE ---------------------
     # Pferdeverbreitung
@@ -1005,12 +1005,14 @@ def doBuildingCultivate(pCity, iBuildingType):
         lPlotPrio = horse(pCity)
         bRemoveFeature = True
         iImprovement = gc.getInfoTypeForString('IMPROVEMENT_PASTURE')
+        eBonus = gc.getInfoTypeForString('BONUS_HORSE')
 
     # KAMEL - FEATURE ---------------------
     # Kamelverbreitung
     elif iBuildingType == gc.getInfoTypeForString('BUILDING_CAMEL_STABLE'):
         lPlotPrio = camel(pCity)
         iImprovement = gc.getInfoTypeForString("IMPROVEMENT_CAMP")
+        eBonus = gc.getInfoTypeForString('BONUS_CAMEL')
 
     # ELEFANT - FEATURE ---------------------
     # Elefantverbreitung
@@ -1026,21 +1028,18 @@ def doBuildingCultivate(pCity, iBuildingType):
         iImprovement = gc.getInfoTypeForString('IMPROVEMENT_CAMP')
         eBonus = gc.getInfoTypeForString('BONUS_HUNDE')
 
-    # implizit: if lPlotPrio:
     for lPlots in lPlotPrio:
         if lPlots:
+            # ***TEST***
+            # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Prio Loop",eBonus)), None, 2, None, ColorTypes(10), 0, 0, False, False)
             pPlot = lPlots[CvUtil.myRandom(len(lPlots), "Gebaeudeverbreitung")]
             pPlot.setBonusType(eBonus)
             pPlot.setImprovementType(iImprovement)
             if bRemoveFeature:
                 # Feature (Wald) entfernen
                 pPlot.setFeatureType(-1, 0)
-
             if bText and pPlayer.isHuman():
                 CyInterface().addMessage(iPlayer, True, 10, sText, None, 2, gc.getBonusInfo(eBonus).getButton(), ColorTypes(8), pPlot.getX(), pPlot.getY(), True, True)
-
-            # ***TEST***
-            #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Wein wird angebaut (Zeile 2288)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
             return
 
 def _canBuildingCultivate(loopPlot, iPlayer):

@@ -3182,6 +3182,7 @@ def getTechOnConquer(pCity, iPreviousOwner, iNewOwner):
 
         if iTechOld != -1:
             iProgress = int(gc.getTechInfo(iTechOld).getResearchCost() / 4) + pCity.getPopulation() * 10
+            iProgress = min(iProgress, pTeamOld.getResearchProgress(iTechOld))
             # Halber Wert bei unterentwickelter CIV
             if pPreviousOwner.getTechScore() < pPlayer.getTechScore():
                 iProgress = iProgress / 2
