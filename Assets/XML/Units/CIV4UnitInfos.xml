@@ -2997,7 +2997,7 @@
       <StateReligion>NONE</StateReligion>
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>NONE</PrereqBuilding>
+      <PrereqBuilding>BUILDING_KOLONIE</PrereqBuilding>
       <PrereqTech>TECH_BELAGERUNG</PrereqTech>
       <TechTypes/>
       <BonusType>NONE</BonusType>
@@ -3169,7 +3169,7 @@
       <StateReligion>NONE</StateReligion>
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>NONE</PrereqBuilding>
+      <PrereqBuilding>BUILDING_KOLONIE</PrereqBuilding>
       <PrereqTech>TECH_SCHAMANISMUS</PrereqTech>
       <TechTypes/>
       <BonusType>NONE</BonusType>
@@ -3341,7 +3341,7 @@
       <StateReligion>NONE</StateReligion>
       <PrereqReligion>NONE</PrereqReligion>
       <PrereqCorporation>NONE</PrereqCorporation>
-      <PrereqBuilding>NONE</PrereqBuilding>
+      <PrereqBuilding>BUILDING_KOLONIE</PrereqBuilding>
       <PrereqTech>TECH_POLYTHEISM</PrereqTech>
       <TechTypes/>
       <BonusType>NONE</BonusType>
@@ -51716,7 +51716,7 @@
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STATTHALTER</Description>
-      <Civilopedia>TXT_KEY_UNIT_STATTHALTER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BUILDING_PROVINZPALAST_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <bAnimal>0</bAnimal>
@@ -51883,7 +51883,7 @@
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STATTHALTER_EGYPT</Description>
-      <Civilopedia>TXT_KEY_UNIT_STATTHALTER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BUILDING_PROVINZPALAST_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <bAnimal>0</bAnimal>
@@ -52050,7 +52050,7 @@
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STATTHALTER_SUMER</Description>
-      <Civilopedia>TXT_KEY_UNIT_STATTHALTER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BUILDING_PROVINZPALAST_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <bAnimal>0</bAnimal>
@@ -52217,7 +52217,7 @@
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STATTHALTER_GRECO</Description>
-      <Civilopedia>TXT_KEY_UNIT_STATTHALTER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BUILDING_PROVINZPALAST_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <bAnimal>0</bAnimal>
@@ -52384,7 +52384,7 @@
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STATTHALTER_PERSIA</Description>
-      <Civilopedia>TXT_KEY_UNIT_STATTHALTER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BUILDING_PROVINZPALAST_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <bAnimal>0</bAnimal>
@@ -52551,7 +52551,7 @@
       <Invisible>NONE</Invisible>
       <SeeInvisible>NONE</SeeInvisible>
       <Description>TXT_KEY_UNIT_STATTHALTER_NORTH</Description>
-      <Civilopedia>TXT_KEY_UNIT_STATTHALTER_PEDIA</Civilopedia>
+      <Civilopedia>TXT_KEY_BUILDING_PROVINZPALAST_PEDIA</Civilopedia>
       <Strategy>TXT_KEY_UNIT_STATTHALTER_STRATEGY</Strategy>
       <Advisor>ADVISOR_ECONOMY</Advisor>
       <bAnimal>0</bAnimal>

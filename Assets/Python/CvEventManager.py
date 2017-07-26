@@ -2673,13 +2673,11 @@ class CvEventManager:
                 PAE_Unit.doAutomatedRanking(pWinner, pLoser)
 
             # ------- Unit gets certain promotion PAE V Beta 2 Patch 7
-            if pLoser.getUnitCombatType() != -1 and not bWinnerAnimal and not bLoserAnimal:
+            if pLoser.getUnitCombatType() != -1 and not bWinnerAnimal and not (bLoserAnimal and pLoser.isOnlyDefensive()):
                 if pWinner.isMadeAttack() and pWinnerPlayer.isTurnActive():
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("pLoser.plot",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-                    PAE_Unit.doUnitGetsPromo(pWinner, pLoser, pLoserPlot, True)
+                    PAE_Unit.doUnitGetsPromo(pWinner, pLoser, pLoserPlot, True, bLoserAnimal)
                 else:
-                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("pWinner.plot",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-                    PAE_Unit.doUnitGetsPromo(pWinner, pLoser, pWinnerPlot, False)
+                    PAE_Unit.doUnitGetsPromo(pWinner, pLoser, pWinnerPlot, False, bLoserAnimal)
 
         # Auto Formation Flight
         #iFormation = gc.getInfoTypeForString("PROMOTION_FORM_WHITEFLAG")
@@ -2749,56 +2747,11 @@ class CvEventManager:
                             CyInterface().addMessage(iWinnerPlayer, True, 5, CyTranslator().getText("TXT_KEY_UNIT_EROBERT", (unitY.getDescription(), 0)), None, 2, None, ColorTypes(8), 0, 0, False, False)
         # ----- Ende Loser Unit (not captured)
 
-        # pWinner may get bonus experience etc, if pLoser is not being domesticated and pLoser is not Treibgut
-        if not bUnitDone and not bWinnerIsDead:
-            # ------- Feature 1: Generalseinheiten bekommen +1XP, wenn im selben Stack eine angreifende Einheit siegt (10%)
-            # ------- Feature 2: Eine Generalseinheit bekommt HERO Promotion wenn eine Einheit einen General oder einen Held besiegt.
-            # ------------------ Ist kein General im Stack bekommt die Promotion die Gewinner-Unit
-            # ------------------ Und Gewinner bekommt additional +3 XP
-            iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
-            # ------- Diese Features betreffen nur attackierende Einheiten (keine defensiven)
-            if pWinner.isMadeAttack() and not bWinnerAnimal and pWinner.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
-                iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
-                bPromoHero = False
-                bPromoHeroDone = False
-                if pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoHero):
-                    bPromoHero = True
-                    # Hero und +3 XP
-                    bPromoHeroDone = PAE_Unit.doUnitGetsHero(pWinner, pLoser)
-                # for each general who accompanies the stack: +1 XP
-                # one general gets the hero promo, if not possessing
-                bLeaderAnwesend = PAE_Unit.getExperienceForLeader(pWinner, pLoser, bPromoHero and not bPromoHeroDone)
-
-                # Eine Einheit mit Mercenary-Promo kann diese verlieren, wenn ein General im Stack ist (5% Chance)
-                if bLeaderAnwesend:
-                    PAE_Unit.removeMercenaryPromo(pWinner)
-
-                # Attacks not against animals
-                if not bLoserAnimal and pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
-                    # PAE Feature 3: Unit Rang Promos (Unit Ranks, Unit Ranking)
-                    PAE_Unit.doRankPromo(pWinner)
-            # end if pWinner.isMadeAttack
-
-            # ------- Feature 1: Held Promo + 3 XP wenn Stier (Ur) oder Tier mit mehr als 3 Level erlegt wird
-            # ---------------- nur wenn Einheit nicht schon ein Held ist
-            # ---------------- und wenn Combat ST Sieger < als Combat ST vom Gegner
-            # ------- Feature 2: Ab Tech Kriegerethos bekommen Sieger + XP
-            if bLoserAnimal:
-                PAE_Unit.doHunterHero(pWinner, pLoser)
-            else:
-                # PAE Feature: Kriegerethos
-                iTech = gc.getInfoTypeForString("TECH_KRIEGERETHOS")
-                pWinnerTeam = gc.getTeam(pWinnerPlayer.getTeam())
-                if pWinnerTeam.isHasTech(iTech):
-                    iXP = 1
-                    if pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")) or pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")):
-                        iXP = 2
-                    pWinner.changeExperience(iXP, -1, 0, 0, 0)
-
         bUnitFlucht = False
         bCityRenegade = False
         bUnitRenegades = False
         pLoserFlucht = None
+
         if not bUnitDone:
             if bWinnerIsDead or pWinner.isDead():
                 iWinnerDamage = 100
@@ -2806,7 +2759,9 @@ class CvEventManager:
                 iWinnerDamage = pWinner.getDamage()
             # pLoser tries to flee if pLoser is not being domesticated and pLoser is not Treibgut
             bUnitFlucht, pLoserFlucht = PAE_Unit.flee(pLoser, iWinnerPlayer, iWinnerDamage)
-            if not bUnitFlucht:
+            if bUnitFlucht and pLoserFlucht is not None:
+                PAE_Unit.doUnitGetsPromo(pLoserFlucht, pWinner, pLoserPlot, False, bWinnerAnimal)
+            else:
                 # Feature: Wenn die Generalseinheit stirbt, ist in jeder Stadt 2 bis 4 Hurry Anger! (GG Great General dies)
                 # Richtet sich nach der Anzahl der lebenden Generals
                 # PAE V: Einheiten im Stack bekommen Mercenary-Promo (je nach Anzahl an Generals im Stack)
@@ -2825,15 +2780,54 @@ class CvEventManager:
 
                         # ***TEST***
                         #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Rebell holt sich Bausklaven zu sich (Zeile 1947)",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-
                 if not bWinnerIsDead:
-                    # ---- Script DATAs in Units
-                    PAE_Mercenaries.startMercTorture(pLoser, iWinnerPlayer)
+                    # pWinner may get bonus experience etc, if pLoser is not being domesticated and pLoser is not Treibgut
+                    # ------- Feature 1: Generalseinheiten bekommen +1XP, wenn im selben Stack eine angreifende Einheit siegt (10%)
+                    # ------- Feature 2: Eine Generalseinheit bekommt HERO Promotion wenn eine Einheit einen General oder einen Held besiegt.
+                    # ------------------ Ist kein General im Stack bekommt die Promotion die Gewinner-Unit
+                    # ------------------ Und Gewinner bekommt additional +3 XP
+                    iPromoHero = gc.getInfoTypeForString("PROMOTION_HERO")
+                    # ------- Diese Features betreffen nur attackierende Einheiten (keine defensiven)
+                    if pWinner.isMadeAttack() and not bWinnerAnimal and pWinner.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
+                        iPromoLeader = gc.getInfoTypeForString("PROMOTION_LEADER")
+                        bPromoHero = False
+                        bPromoHeroDone = False
+                        if pLoser.isHasPromotion(iPromoLeader) or pLoser.isHasPromotion(iPromoHero):
+                            bPromoHero = True
+                            # Hero und +3 XP
+                            bPromoHeroDone = PAE_Unit.doUnitGetsHero(pWinner, pLoser)
+                        # for each general who accompanies the stack: +1 XP
+                        # one general gets the hero promo, if not possessing
+                        bLeaderAnwesend = PAE_Unit.getExperienceForLeader(pWinner, pLoser, bPromoHero and not bPromoHeroDone)
+                        # Eine Einheit mit Mercenary-Promo kann diese verlieren, wenn ein General im Stack ist (5% Chance)
+                        if bLeaderAnwesend:
+                            PAE_Unit.removeMercenaryPromo(pWinner)
+                        # Attacks not against animals
+                        if not bLoserAnimal and pLoser.getUnitAIType() != UnitAITypes.UNITAI_EXPLORE:
+                            # PAE Feature 3: Unit Rang Promos (Unit Ranks, Unit Ranking)
+                            PAE_Unit.doRankPromo(pWinner)
+                    # end if pWinner.isMadeAttack
 
-                    # --------- Jagd - Feature ----------------------
-                    # Ab Tech Jagd (Hunting) bringen Tiere Essen in nahegelegene Stadt
                     if bLoserAnimal:
+                        # Held Promo + 3 XP wenn Stier (Ur) oder Tier mit mehr als 3 Level erlegt wird
+                        # nur wenn Einheit nicht schon ein Held ist
+                        # und wenn Combat ST Sieger < als Combat ST vom Gegner
+                        PAE_Unit.doHunterHero(pWinner, pLoser)
+
+                        # Ab Tech Jagd (Hunting) bringen Tiere Essen in nahegelegene Stadt
                         PAE_Unit.huntingResult(pLoser, pWinner)
+                    else:
+                        # Ab Tech Kriegerethos bekommen Sieger + XP
+                        iTech = gc.getInfoTypeForString("TECH_KRIEGERETHOS")
+                        pWinnerTeam = gc.getTeam(pWinnerPlayer.getTeam())
+                        if pWinnerTeam.isHasTech(iTech):
+                            iXP = 1
+                            if pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_AGGRESSIVE")) or pWinnerPlayer.hasTrait(gc.getInfoTypeForString("TRAIT_EROBERER")):
+                                iXP = 2
+                            pWinner.changeExperience(iXP, -1, 0, 0, 0)
+
+                        # ---- Script DATAs in Units
+                        PAE_Mercenaries.startMercTorture(pLoser, iWinnerPlayer)
 
                 if pLoserPlot.isCity():
                     pCity = pLoserPlot.getPlotCity()
@@ -2843,20 +2837,13 @@ class CvEventManager:
                     # ------ ueberlaufende Stadt - City renegades
                     # pLoser wird nicht angetastet
                     bCityRenegade = PAE_City.doRenegadeOnCombatResult(pLoser, pCity, iWinnerPlayer)
-
                 if not bCityRenegade:
                     bUnitRenegades = PAE_Unit.renegade(pWinner, pLoser)
-
                 # LOSER: Mounted -> Melee or Horse
                 # Nur wenn die Einheit nicht desertiert hat: bUnitRenegades
                 if not bUnitRenegades and pLoser.getUnitCombatType() in [gc.getInfoTypeForString("UNITCOMBAT_MOUNTED"), gc.getInfoTypeForString("UNITCOMBAT_CHARIOT")]:
                     bUnitDone = PAE_Unit.doLoserLoseHorse(pLoser, iWinnerPlayer)
 
-
-        if not bCityRenegade and not bUnitRenegades and not bUnitDone and bUnitFlucht and pLoserFlucht is not None:
-            PAE_Unit.doUnitGetsPromo(pLoserFlucht, pWinner, pLoserPlot, False)
-
-        #####################################################
         # PAE Debug Mark
         #"""
 

@@ -1005,7 +1005,7 @@ def doAIUnitFormations(pUnit, bOffensive, bCity, bElefant):
 
 
 # PAE UNIT BATTLE PROMOTION
-def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack):
+def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack, bOpponentAnimal):
     # Unit promos --------------------
     # UNITCOMBAT_ARCHER: PROMOTION_COVER1
     # UNITCOMBAT_SKIRMISHER: PROMOTION_PARADE_SKIRM1
@@ -1077,14 +1077,7 @@ def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack):
             if bMadeAttack:
             # Attacker
                 if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5")):
-                    lCityRaider = [
-                        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4"),
-                        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5")
-                    ]
-                    for iPromo in lCityRaider:
+                    for iPromo in L.LCityRaider:
                         if not pUnitTarget.isHasPromotion(iPromo):
                             iNewPromo = iPromo
                             break
@@ -1178,12 +1171,13 @@ def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack):
                     iNewPromo = -1
 
     if iNewPromo != -1:
-        # naechste Chance verringern
-        iChanceUnitType = iChanceUnitType / 2
-        pUnitTarget.setHasPromotion(iNewPromo, True)
-        PAEInstanceFightingModifier.append((pUnitTarget.getOwner(), pUnitTarget.getID()))
-        if gc.getPlayer(pUnitTarget.getOwner()).isHuman():
-            CyInterface().addMessage(pUnitTarget.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_PROMOTION", (pUnitTarget.getName(), gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pUnitTarget.getX(), pUnitTarget.getY(), True, True)
+        if not bOpponentAnimal or iNewPromo in lFirstPromos:
+            # naechste Chance verringern
+            iChanceUnitType = iChanceUnitType / 2
+            pUnitTarget.setHasPromotion(iNewPromo, True)
+            PAEInstanceFightingModifier.append((pUnitTarget.getOwner(), pUnitTarget.getID()))
+            if gc.getPlayer(pUnitTarget.getOwner()).isHuman():
+                CyInterface().addMessage(pUnitTarget.getOwner(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_GETS_PROMOTION", (pUnitTarget.getName(), gc.getPromotionInfo(iNewPromo).getDescription())), "AS2D_IF_LEVELUP", 2, gc.getPromotionInfo(iNewPromo).getButton(), ColorTypes(13), pUnitTarget.getX(), pUnitTarget.getY(), True, True)
 
     # 2. chance: enemy combat type
     iNewPromo = -1
@@ -1246,7 +1240,7 @@ def doUnitGetsPromo(pUnitTarget, pUnitSource, pPlot, bMadeAttack):
             if not pUnitTarget.isHasPromotion(gc.getInfoTypeForString("PROMOTION_CHARGE")):
                 iNewPromo = gc.getInfoTypeForString("PROMOTION_CHARGE")
 
-        if iNewPromo > -1:
+        if iNewPromo != -1:
             pUnitTarget.setHasPromotion(iNewPromo, True)
             PAEInstanceFightingModifier.append((iPlayer, pUnitTarget.getID()))
             if pPlayer.isHuman():
@@ -1871,7 +1865,7 @@ def doAutomatedRanking(pWinner, pLoser):
                                     pWinner.setHasPromotion(iPromo, True)
                                     if gc.getPlayer(iPlayer).isHuman():
                                         CyInterface().addMessage(iPlayer, True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_WAR_WEARINESS", (pWinner.getName(), gc.getPromotionInfo(iPromo).getDescription())), "AS2D_REBELLION", 2, gc.getPromotionInfo(iPromo).getButton(), ColorTypes(12), pWinner.getX(), pWinner.getY(), True, True)
-                                    break
+                                break
 
 
         # PAE V: Gewinner kann Mercenary-Promo ab Veteran verlieren
@@ -2617,7 +2611,8 @@ def convertToPirate(city, unit):
 def rebell(pOldUnit, pNewPlayer, pPlot):
     iUnitType = pOldUnit.getUnitType()
     pNewUnit = pNewPlayer.initUnit(iUnitType, pPlot.getX(), pPlot.getY(), UnitAITypes(pOldUnit.getUnitAIType()), DirectionTypes.DIRECTION_SOUTH)
-    pNewUnit = initUnitFromUnit(pOldUnit, pNewUnit)
+    initUnitFromUnit(pOldUnit, pNewUnit)
+    pNewUnit.setDamage(pOldUnit.getDamage(), -1)
     # Original unit killen
     # pOldUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
     pOldUnit.kill(True, -1)  # RAMK_CTD
@@ -2631,6 +2626,7 @@ def doRenegadeUnit(pLoser, pWinner, pLoserPlayer, pWinnerPlayer):
         # Piratenschiffe werden normale Schiffe, alles weitere bleibt der gleiche UnitType
         iNewUnitType = L.DCaptureFromPirate.get(iLoserUnitType, iLoserUnitType)
 
+        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_TEST", ("UnitType zum Ueberlaufen: ", iNewUnitType)), None, 2, None, ColorTypes(14), pWinner.getX(), pWinner.getY(), False, False)
         # Create a new unit
         NewUnit = pWinnerPlayer.initUnit(iNewUnitType, pWinner.getX(), pWinner.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
         NewUnit.finishMoves()
@@ -2659,9 +2655,9 @@ def doRenegadeUnit(pLoser, pWinner, pLoserPlayer, pWinnerPlayer):
                     NewUnit.setHasPromotion(iPromo, False)
 
         if pWinnerPlayer.isHuman():
-            CyInterface().addMessage(pWinnerPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_1", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(14), 0, 0, False, False)
+            CyInterface().addMessage(pWinnerPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_1", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(14), pWinner.getX(), pWinner.getY(), False, False)
         if pLoserPlayer.isHuman():
-            CyInterface().addMessage(pLoserPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_2", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(12), 0, 0, False, False)
+            CyInterface().addMessage(pLoserPlayer.getID(), True, 5, CyTranslator().getText("TXT_KEY_MESSAGE_UNIT_DESERTION_2", (gc.getUnitInfo(iLoserUnitType).getDescription(), 0)), None, 2, None, ColorTypes(12), pWinner.getX(), pWinner.getY(), False, False)
         bUnitDone = True
 
         # ***TEST***
@@ -2689,7 +2685,8 @@ def doRenegadeUnit(pLoser, pWinner, pLoserPlayer, pWinnerPlayer):
 
 def convert(pOldUnit, iNewUnit, pPlayer):
     pNewUnit = pPlayer.initUnit(iNewUnit, pOldUnit.getX(), pOldUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes(pOldUnit.getFacingDirection()))
-    pNewUnit = initUnitFromUnit(pOldUnit, pNewUnit)
+    initUnitFromUnit(pOldUnit, pNewUnit)
+    pNewUnit.setDamage(pOldUnit.getDamage(), -1)
     # 1 Bewegungspunkt Verlust
     pNewUnit.changeMoves(pOldUnit.getMoves() + 60)
     ## extra fuer Piraten
@@ -2708,7 +2705,6 @@ def convert(pOldUnit, iNewUnit, pPlayer):
 def initUnitFromUnit(pOldUnit, pNewUnit):
     pNewUnit.setExperience(pOldUnit.getExperience(), -1)
     pNewUnit.setLevel(pOldUnit.getLevel())
-    pNewUnit.setDamage(pOldUnit.getDamage(), -1)
     copyName(pNewUnit, pOldUnit.getUnitType(), pOldUnit.getName())
     # Check its promotions
     iRange = gc.getNumPromotionInfos()

@@ -328,18 +328,6 @@
       <VictoryThresholds/>
     </BuildingClassInfo>
     <BuildingClassInfo>
-      <Type>BUILDINGCLASS_HUNDEZUCHT</Type>
-      <Description>TXT_KEY_BUILDING_HUNDEZUCHT</Description>
-      <iMaxGlobalInstances>-1</iMaxGlobalInstances>
-      <iMaxTeamInstances>-1</iMaxTeamInstances>
-      <iMaxPlayerInstances>-1</iMaxPlayerInstances>
-      <iExtraPlayerInstances>0</iExtraPlayerInstances>
-      <bNoLimit>0</bNoLimit>
-      <bMonument>0</bMonument>
-      <DefaultBuilding>BUILDING_HUNDEZUCHT</DefaultBuilding>
-      <VictoryThresholds/>
-    </BuildingClassInfo>
-    <BuildingClassInfo>
       <Type>BUILDINGCLASS_GLADIATORENSCHULE</Type>
       <Description>TXT_KEY_BUILDING_GLADIATORENSCHULE</Description>
       <iMaxGlobalInstances>-1</iMaxGlobalInstances>

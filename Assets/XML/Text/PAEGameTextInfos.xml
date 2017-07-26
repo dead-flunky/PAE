@@ -2221,6 +2221,38 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <Spanish>La poluci&#243;n en %s1 forz&#243; a algunos ciudadanos a salir de tu ciudad que disminuy&#243; al tama&#241;o %d2 (de %d3).</Spanish>
   </TEXT>
   <TEXT>
+    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_3</Tag>
+    <English>The anarchie forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</English>
+    <French></French>
+    <German>Die Anarchie zwang einige B&#252;rger Eure Stadt %s1 zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_4</Tag>
+    <English>The absence of your state religion in %s1 forced some citizens to leave your city which dropped to the size %d2 (of %d3).</English>
+    <French></French>
+    <German>Die fehlende Staatsreligion in %s1 zwang einige B&#252;rger Eure Stadt zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_5</Tag>
+    <English>The high taxes forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</English>
+    <French></French>
+    <German>Die hohen Steuern zwangen einige B&#252;rger Eure Stadt %s1 zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
+    <Italian></Italian>
+    <Spanish></Spanish>
+  </TEXT>
+  <TEXT>
+     <Tag>TXT_KEY_TREIB2STRANDGUT</Tag>
+     <English>Flotsam was washed on your beach!</English>
+     <French>Flotsam was washed on your beach!</French>
+     <German>Treibgut wurde an eurem Strand angeschwemmt!</German>
+     <Italian>Flotsam was washed on your beach!</Italian>
+     <Spanish>Flotsam was washed on your beach!</Spanish>
+   </TEXT>  
+  <TEXT>
     <Tag>TXT_KEY_MESSAGE_CITY_ADD_FOOD</Tag>
     <English>Your %s1 returned wild game of %d3[ICON_FOOD] to %s2.</English>
     <French>[NUM1:Votre:Votre:Vos:Vos] %s1 [NUM1:a:a:ont:ont] chass&#233; une proie de %d3[ICON_FOOD] pour %s2.</French>
@@ -7851,38 +7883,6 @@ El sol se alza en el a&#241;o %s1_year. %s3_leader, vuestro pueblo os ha conferi
     <German>[ICON_TRADE] Voller Dankbarkeit &#252;bergibt Euch die Stadt einige ihrer Kostbarkeiten.</German>
     <Italian>[ICON_TRADE] Thankfully, the city gives you some of its treasures.</Italian>
     <Spanish>[ICON_TRADE] Afortunadamente, la ciudad da algunos de sus tesoros.</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_3</Tag>
-    <English>The anarchie forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</English>
-    <French>The anarchie forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</French>
-    <German>Die Anarchie zwang einige B&#252;rger Eure Stadt %s1 zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
-    <Italian>The anarchie forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</Italian>
-    <Spanish>La anarqu&#237;a forz&#243; a algunos ciudadanos a dejar tu ciudad %s1 la cual ha ca&#237;do al tama&#241;o %d2 (de %d3)</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_4</Tag>
-    <English>The absence of your state religion in %s1 forced some citizens to leave your city which dropped to the size %d2 (of %d3).</English>
-    <French>The absence of your state religion in %s1 forced some citizens to leave your city which dropped to the size %d2 (of %d3).</French>
-    <German>Die fehlende Staatsreligion in %s1 zwang einige B&#252;rger Eure Stadt zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
-    <Italian>The absence of your state religion in %s1 forced some citizens to leave your city which dropped to the size %d2 (of %d3).</Italian>
-    <Spanish>La ausencia de tu religi&#243;n estatal en %s1 forz&#243; a algunos a ciudadanos a abandonar tu ciudad la cual ha ca&#237;do al tama&#241;o %d2 (de %d3)</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_MESSAGE_CITY_EMIGRANTS_5</Tag>
-    <English>The high taxes forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</English>
-    <French>The high taxes forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</French>
-    <German>Die hohen Steuern zwangen einige B&#252;rger Eure Stadt %s1 zu verlassen, die auf die Gr&#246;&#223;e %d2 (von %d3) sank.</German>
-    <Italian>The high taxes forced some citizens to leave your city %s1 which dropped to the size %d2 (of %d3).</Italian>
-    <Spanish>Los altos impuestos forzaron a algunos ciudadanos a abandonar tu ciudad %s1 la cual cay&#243; al tama&#241;o %d2 (de %d3)</Spanish>
-  </TEXT>
-  <TEXT>
-    <Tag>TXT_KEY_TREIB2STRANDGUT</Tag>
-    <English>Flotsam was washed up on your beach!</English>
-    <French>Flotsam was washed up on your beach!</French>
-    <German>Treibgut wurde an eurem Strand angeschwemmt!</German>
-    <Italian>Flotsam was washed up on your beach!</Italian>
-    <Spanish>&#161;Un pecio ha sido arrastrado hasta tus playas!</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_EROBERT</Tag>

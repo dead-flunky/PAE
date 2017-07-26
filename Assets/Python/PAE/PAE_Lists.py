@@ -102,6 +102,12 @@ def init():
     ]
     LCultivationUnits = [gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")]
     # Renegade Ausnahmen
+    LUnitLootLessSeaUnits = [
+        gc.getInfoTypeForString("UNIT_WORKBOAT"),
+        gc.getInfoTypeForString("UNIT_TREIBGUT"),
+        gc.getInfoTypeForString("UNIT_GAULOS"),
+        gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
+    ]
     LUnitWarAnimals = [
         gc.getInfoTypeForString("UNIT_BEGLEITHUND"),
         gc.getInfoTypeForString("UNIT_KAMPFHUND"),
@@ -114,12 +120,6 @@ def init():
         gc.getInfoTypeForString("UNIT_HORSE"),
         gc.getInfoTypeForString("UNIT_CAMEL"),
         gc.getInfoTypeForString("UNIT_ELEFANT"),
-    ]
-    LUnitLootLessSeaUnits = [
-        gc.getInfoTypeForString("UNIT_WORKBOAT"),
-        gc.getInfoTypeForString("UNIT_TREIBGUT"),
-        gc.getInfoTypeForString("UNIT_GAULOS"),
-        gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN"),
     ]
     LUnitCanBeDomesticated = [
         gc.getInfoTypeForString("UNIT_WILD_HORSE"),
@@ -546,18 +546,24 @@ def init():
         gc.getInfoTypeForString("BUILDING_EGYPT_TEMPLE"),
         gc.getInfoTypeForString("BUILDING_NORDIC_TEMPLE"),
     ]
-
+    LWoodRemovedByLumberCamp = [
+        gc.getInfoTypeForString("BUILD_REMOVE_JUNGLE"),
+        gc.getInfoTypeForString("BUILD_REMOVE_FOREST"),
+        gc.getInfoTypeForString("BUILD_REMOVE_FOREST_BURNT"),
+    ]
+    LCityRaider = [
+        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"),
+        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2"),
+        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3"),
+        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4"),
+        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5")
+    ]
     LPromoPillage = [
         gc.getInfoTypeForString("PROMOTION_PILLAGE1"),
         gc.getInfoTypeForString("PROMOTION_PILLAGE2"),
         gc.getInfoTypeForString("PROMOTION_PILLAGE3"),
         gc.getInfoTypeForString("PROMOTION_PILLAGE4"),
         gc.getInfoTypeForString("PROMOTION_PILLAGE5"),
-    ]
-    LWoodRemovedByLumberCamp = [
-        gc.getInfoTypeForString("BUILD_REMOVE_JUNGLE"),
-        gc.getInfoTypeForString("BUILD_REMOVE_FOREST"),
-        gc.getInfoTypeForString("BUILD_REMOVE_FOREST_BURNT"),
     ]
     LGuerilla = [
         gc.getInfoTypeForString("PROMOTION_GUERILLA1"),
@@ -605,13 +611,6 @@ def init():
         gc.getInfoTypeForString("PROMOTION_SKIRMISH1"),
         gc.getInfoTypeForString("PROMOTION_SKIRMISH2"),
         gc.getInfoTypeForString("PROMOTION_SKIRMISH3"),
-    ]
-    LCityRaider = [
-        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER1"),
-        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER2"),
-        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER3"),
-        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER4"),
-        gc.getInfoTypeForString("PROMOTION_CITY_RAIDER5"),
     ]
     LVeteranForbiddenPromos4 = [
         gc.getInfoTypeForString("PROMOTION_RANG_ROM_1"),

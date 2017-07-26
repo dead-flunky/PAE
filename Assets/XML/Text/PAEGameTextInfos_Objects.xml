@@ -4952,11 +4952,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_GOLDKARREN</Tag>
-    <English>Treasure</English>
-    <French>Tr&#233;sor</French>
-    <German>Beutegold</German>
-    <Italian>Tesoro</Italian>
-    <Spanish>Tesoro:Tesoros</Spanish>
+    <English>Gold cart</English>
+    <French>Chariot en or</French>
+    <German>Goldkarren</German>
+    <Italian>Carrello d'oro</Italian>
+    <Spanish>Carro de oro</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_MOUNTED_SCOUT</Tag>
@@ -5036,7 +5036,7 @@
     <French>Medja&#255; guerrier</French>
     <German>Medjau-Krieger</German>
     <Italian>Medjay Warrior</Italian>
-    <Spanish>Medjay Warrior</Spanish>
+    <Spanish>Guerrero Medjai</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_CAMEL_CATAPHRACT</Tag>

@@ -1088,9 +1088,9 @@
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-      <iEnemyHealChange>-2</iEnemyHealChange>
-      <iNeutralHealChange>-2</iNeutralHealChange>
-      <iFriendlyHealChange>-2</iFriendlyHealChange>
+      <iEnemyHealChange>0</iEnemyHealChange>
+      <iNeutralHealChange>0</iNeutralHealChange>
+      <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
       <iCombatPercent>-20</iCombatPercent>
@@ -1187,9 +1187,9 @@
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-      <iEnemyHealChange>-2</iEnemyHealChange>
-      <iNeutralHealChange>-2</iNeutralHealChange>
-      <iFriendlyHealChange>-2</iFriendlyHealChange>
+      <iEnemyHealChange>0</iEnemyHealChange>
+      <iNeutralHealChange>0</iNeutralHealChange>
+      <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
       <iCombatPercent>-20</iCombatPercent>
@@ -1286,9 +1286,9 @@
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-      <iEnemyHealChange>-2</iEnemyHealChange>
-      <iNeutralHealChange>-2</iNeutralHealChange>
-      <iFriendlyHealChange>-2</iFriendlyHealChange>
+      <iEnemyHealChange>0</iEnemyHealChange>
+      <iNeutralHealChange>0</iNeutralHealChange>
+      <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
       <iCombatPercent>-20</iCombatPercent>
@@ -1385,9 +1385,9 @@
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-      <iEnemyHealChange>-2</iEnemyHealChange>
-      <iNeutralHealChange>-2</iNeutralHealChange>
-      <iFriendlyHealChange>-2</iFriendlyHealChange>
+      <iEnemyHealChange>0</iEnemyHealChange>
+      <iNeutralHealChange>0</iNeutralHealChange>
+      <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
       <iCombatPercent>-20</iCombatPercent>
@@ -1484,9 +1484,9 @@
       <iBombardRateChange>0</iBombardRateChange>
       <iFirstStrikesChange>0</iFirstStrikesChange>
       <iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-      <iEnemyHealChange>-2</iEnemyHealChange>
-      <iNeutralHealChange>-2</iNeutralHealChange>
-      <iFriendlyHealChange>-2</iFriendlyHealChange>
+      <iEnemyHealChange>0</iEnemyHealChange>
+      <iNeutralHealChange>0</iNeutralHealChange>
+      <iFriendlyHealChange>0</iFriendlyHealChange>
       <iSameTileHealChange>0</iSameTileHealChange>
       <iAdjacentTileHealChange>0</iAdjacentTileHealChange>
       <iCombatPercent>-10</iCombatPercent>

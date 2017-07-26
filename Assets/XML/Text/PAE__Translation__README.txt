@@ -1,4 +1,4 @@
-<!-- translated via online text tool by Pie (Pierre Voak, Austria) with the help of civforum and civfanatics fans -->
+<!-- translated via online text tool by Pie (Pierre Voak, Austria) with the help of civforum.de and civfanatics.com fans -->
 
 <!-- PAE texts in all languages are available online! -->
 

@@ -2497,12 +2497,12 @@
     <Spanish>Arquero a Caballo Escita</Spanish>
   </TEXT>
   <TEXT>
-    <Tag>TXT_KEY_UNIT_STATTHALTER</Tag>
-    <English>Governor</English>
-    <French>Governor</French>
-    <German>Statthalter</German>
-    <Italian>Governor</Italian>
-    <Spanish>Governor</Spanish>
+    <Tag>TXT_KEY_FREE</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_UR</Tag>
@@ -3578,11 +3578,11 @@
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_STATTHALTER_NORTH</Tag>
-    <English>Gauf&#252;rst</English>
-    <French>Gauf&#252;rst</French>
+    <English>Gau ruler</English>
+    <French>Gau ruler</French>
     <German>Gauf&#252;rst</German>
-    <Italian>Gauf&#252;rst</Italian>
-    <Spanish>Gauf&#252;rst</Spanish>
+    <Italian>Gau ruler</Italian>
+    <Spanish>Gau ruler</Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_UNIT_STATTHALTER_EGYPT</Tag>
@@ -3703,6 +3703,14 @@
     <German>Heldendenkmal</German>
     <Italian>Heroic Monument</Italian>
     <Spanish>Monumento a los h&#233;roes</Spanish>
+  </TEXT>
+  <TEXT>
+    <Tag>TXT_KEY_FREE</Tag>
+    <English></English>
+    <French></French>
+    <German></German>
+    <Italian></Italian>
+    <Spanish></Spanish>
   </TEXT>
   <TEXT>
     <Tag>TXT_KEY_PROMOTION_RANG_ROM_EQUES_3</Tag>

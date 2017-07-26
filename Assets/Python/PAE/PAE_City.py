@@ -1391,6 +1391,7 @@ def doRenegadeCity(pCity, iNewOwner, LoserUnit):
             PAE_Unit.copyName(NewUnit, iUnitType, pLoopUnit.getName())
             if iUnitCombatType != -1:
                 PAE_Unit.initUnitFromUnit(NewUnit, pLoopUnit)
+                NewUnit.setDamage(pLoopUnit.getDamage(), -1)
                 # PAE V: Trait-Promotions
                 # 1. Agg Promo weg
                 # 2. Trait nur fuer Eigenbau: eroberte Einheiten sollen diese Trait-Promos nicht erhalten

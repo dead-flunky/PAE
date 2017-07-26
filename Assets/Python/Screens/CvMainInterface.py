@@ -2404,7 +2404,7 @@ class CvMainInterface:
                                     ePlotBonus = pPlot.getBonusType(iUnitOwner)  # Invisible bonuses can NOT be collected
                                     # remove from plot => iData2 = 0. 1 = charge all goods without removing. Nur bei leerem Karren.
                                     if eBonus == -1:
-                                        if ePlotBonus != -1 and ePlotBonus in L.LCultivatable:
+                                        if ePlotBonus != -1 and ePlotBonus in L.LBonusCultivatable:
                                             screen.appendMultiListButton("BottomButtonContainer", ArtFileMgr.getInterfaceArtInfo("INTERFACE_TRADE_COLLECT").getPath(), 0, WidgetTypes.WIDGET_GENERAL, 739, 0, True)
                                             screen.show("BottomButtonContainer")
                                             iCount = iCount + 1

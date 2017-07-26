@@ -1453,6 +1453,7 @@ class CvGameUtils:
                                 # Create a new unit
                                 NewUnit = pOwner.initUnit(iNewUnitType, pUnit.getX(), pUnit.getY(), UnitAITypes.NO_UNITAI, DirectionTypes.DIRECTION_SOUTH)
                                 PAE_Unit.initUnitFromUnit(pUnit, NewUnit)
+                                NewUnit.setDamage(pUnit.getDamage(), -1)
                                 NewUnit.changeMoves(90)
                                 # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
                                 pUnit.kill(True, -1)  # RAMK_CTD

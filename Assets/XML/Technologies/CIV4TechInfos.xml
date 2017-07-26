@@ -1983,9 +1983,7 @@
       <OrPreReqs>
         <PrereqTech>TECH_PRIESTHOOD</PrereqTech>
       </OrPreReqs>
-      <AndPreReqs>
-        <PrereqTech>TECH_CEREMONIAL</PrereqTech>
-      </AndPreReqs>
+      <AndPreReqs/>
       <Quote>TXT_KEY_TECH_WRITING_QUOTE</Quote>
       <Sound>AS2D_TECH_WRITING</Sound>
       <SoundMP>AS2D_TECH_MP_WRITING</SoundMP>
@@ -2394,7 +2392,9 @@
       <OrPreReqs>
         <PrereqTech>TECH_ASTRONOMIE</PrereqTech>
       </OrPreReqs>
-      <AndPreReqs/>
+      <AndPreReqs>
+        <PrereqTech>TECH_PFLUG</PrereqTech>
+      </AndPreReqs>
       <Quote>TXT_KEY_PAE_QUOTE_100</Quote>
       <Sound>AS2D_TECH_PAE_QUOTE_100</Sound>
       <SoundMP>AS2D_TECH_PAE_QUOTE_100</SoundMP>
@@ -2875,9 +2875,7 @@
       <OrPreReqs>
         <PrereqTech>TECH_CALENDAR</PrereqTech>
       </OrPreReqs>
-      <AndPreReqs>
-        <PrereqTech>TECH_CEREMONIAL</PrereqTech>
-      </AndPreReqs>
+      <AndPreReqs/>
       <Quote>TXT_KEY_PAE_QUOTE_47</Quote>
       <Sound>AS2D_TECH_PAE_QUOTE_47</Sound>
       <SoundMP>AS2D_TECH_PAE_QUOTE_47</SoundMP>
@@ -4365,7 +4363,7 @@
         <PrereqTech>TECH_ENSLAVEMENT</PrereqTech>
       </OrPreReqs>
       <AndPreReqs>
-        <PrereqTech>TECH_PRIESTHOOD</PrereqTech>
+        <PrereqTech>TECH_CEREMONIAL</PrereqTech>
       </AndPreReqs>
       <Quote>TXT_KEY_TECH_PRIESTHOOD_QUOTE</Quote>
       <Sound>AS2D_TECH_PRIESTHOOD</Sound>
