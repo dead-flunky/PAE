@@ -81,10 +81,10 @@ import PeloponnesianWarKeinpferd
 import Schmelz
 import FirstPunicWar
 
-""" Flag to enable Civ4 shell (See Extras/Pyconsole).
-    Note that the flag will also be used to enable/disable
-    other debugging features of Ramkhamhaeng
-"""
+# Flag to enable Civ4 shell (See Extras/Pyconsole).
+# Note that the flag will also be used to enable/disable
+# other debugging features of Ramkhamhaeng
+
 CIV4_SHELL = False
 RAMK_EXTENDED_DEBUG = False
 RAMK_WRAP_FUNCTIONS = False
@@ -474,7 +474,7 @@ class CvEventManager:
 
         iData1, iData2, iData3, iData4, iData5 = argsList
         # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("onModNetMessage: ",iData1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
-        print("Modder's net message!")
+        print "Modder's net message!"
         CvUtil.pyPrint('onModNetMessage')
 
         # iData1 = iMessageID (!)
@@ -1742,9 +1742,6 @@ class CvEventManager:
                 # Start trade route
                 CvUtil.addScriptData(pUnit, "autA", 1)
                 PAE_Trade.doAutomateMerchant(pUnit, False)
-                # Falls Haendler in Stadt zieht und noch Fortbewegung hat, soll direkt ge-/verkauft werden
-                # if pUnit.canMove():
-                #    PAE_Trade.doAutomateMerchant(pUnit, False)
 
         elif iData1 == 748:
             pUnit = gc.getPlayer(iData4).getUnit(iData5)
@@ -1851,40 +1848,39 @@ class CvEventManager:
     # +++++ PAE Debug: disband/delete things (for different reasons: CtD or OOS)
     def onGameStartAndKickSomeAss(self):
         pass
-        """
-        iRange = gc.getMAX_PLAYERS()
-        for iPlayer in range(iRange):
-            pPlayer = gc.getPlayer(iPlayer)
-            if pPlayer is not None and not pPlayer.isNone() and pPlayer.isAlive():
-                if pPlayer.isBarbarian():
-                    # Units
-                    # if not pPlayer.isHuman():
-                    lUnits = PyPlayer(pPlayer.getID()).getUnitList()
-                    for pUnit in lUnits:
-                        if pUnit is not None and not pUnit.isNone():
-                            eUnitType = pUnit.getUnitType()
-                            if (eUnitType == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT")
-                                    or eUnitType == gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN")
-                                    or eUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT")
-                                    or eUnitType == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")):
-                                pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
-                                pUnit = None
-                # City buildings
-                #iNumCities = pPlayer.getNumCities()
-                #for iCity in range (iNumCities):
-                #  pCity = pPlayer.getCity(iCity)
-                #  if not pCity.isNone():
-                #    iRange2 = gc.getNumBuildingInfos()
-                #    for iBuilding in range (iRange2):
-                #        pCity.setNumRealBuilding(iBuilding,0)
-        """
-        """
-        # Remove a certain improvement from all plots
-        for i in xrange(CyMap().numPlots()):
-            loopPlot = CyMap().plotByIndex(i)
-            if loopPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_MINE"):
-                loopPlot.setImprovementType(-1)
-        """
+
+        # iRange = gc.getMAX_PLAYERS()
+        # for iPlayer in range(iRange):
+            # pPlayer = gc.getPlayer(iPlayer)
+            # if pPlayer is not None and not pPlayer.isNone() and pPlayer.isAlive():
+                # if pPlayer.isBarbarian():
+                    # # Units
+                    # # if not pPlayer.isHuman():
+                    # lUnits = PyPlayer(pPlayer.getID()).getUnitList()
+                    # for pUnit in lUnits:
+                        # if pUnit is not None and not pUnit.isNone():
+                            # eUnitType = pUnit.getUnitType()
+                            # if (eUnitType == gc.getInfoTypeForString("UNIT_TRADE_MERCHANT")
+                                    # or eUnitType == gc.getInfoTypeForString("UNIT_TRADE_MERCHANTMAN")
+                                    # or eUnitType == gc.getInfoTypeForString("UNIT_EMIGRANT")
+                                    # or eUnitType == gc.getInfoTypeForString("UNIT_SUPPLY_FOOD")):
+                                # pUnit.doCommand(CommandTypes.COMMAND_DELETE, -1, -1)
+                                # pUnit = None
+                # # City buildings
+                # #iNumCities = pPlayer.getNumCities()
+                # #for iCity in range (iNumCities):
+                # #  pCity = pPlayer.getCity(iCity)
+                # #  if not pCity.isNone():
+                # #    iRange2 = gc.getNumBuildingInfos()
+                # #    for iBuilding in range (iRange2):
+                # #        pCity.setNumRealBuilding(iBuilding,0)
+
+        # # Remove a certain improvement from all plots
+        # for i in xrange(CyMap().numPlots()):
+            # loopPlot = CyMap().plotByIndex(i)
+            # if loopPlot.getImprovementType() == gc.getInfoTypeForString("IMPROVEMENT_MINE"):
+                # loopPlot.setImprovementType(-1)
+
 
     def onGameStart(self, argsList):
         'Called at the start of the game'
@@ -2083,7 +2079,7 @@ class CvEventManager:
 
     def onGameEnd(self, argsList):
         'Called at the End of the game'
-        print("Game is ending")
+        print "Game is ending"
         return
 
     # this is a LOCAL function !!!
@@ -2192,12 +2188,7 @@ class CvEventManager:
             while pLoopUnit:
                 iUnitType = pLoopUnit.getUnitType()
                 if iUnitType in L.LTradeUnits:
-                    bTradeRouteActive = int(CvUtil.getScriptData(pLoopUnit, ["autA", "t"], 0))
-                    if bTradeRouteActive and pLoopUnit.getGroup().getLengthMissionQueue() == 0:
-                        PAE_Trade.doAutomateMerchant(pLoopUnit, False)
-                        # pLoopUnit.finishMoves()
-                        # Falls Haendler in Stadt zieht und noch Fortbewegung hat, soll direkt ge-/verkauft werden
-                        #if pLoopUnit.canMove(): PAE_Trade.doAutomateMerchant(pLoopUnit, False)
+                    PAE_Trade.doAutomateMerchant(pLoopUnit, False)
                 (pLoopUnit, pIter) = pPlayer.nextUnit(pIter, False)
 
         # ------- Scenario PeloponnesianWarKeinpferd Events Poteidaia, Megara, Plataiai, Syrakus

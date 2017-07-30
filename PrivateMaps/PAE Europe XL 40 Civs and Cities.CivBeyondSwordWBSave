@@ -5900,7 +5900,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=9,y=34
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -6451,7 +6451,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=3
 	isWOfRiver
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -10531,7 +10531,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=18,y=60
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -13392,7 +13392,7 @@ BeginPlot
 	isNOfRiver
 	RiverWEDirection=1
 	isWOfRiver
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -15954,7 +15954,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=29,y=42
-	BonusType=BONUS_COPPER
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -19614,7 +19614,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=36,y=49
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -19761,7 +19761,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=36,y=72
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -21004,6 +21004,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=39,y=45
+	BonusType=BONUS_ZINN
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -24343,6 +24344,18 @@ BeginPlot
 	RouteType=ROUTE_ROAD
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
+	BeginUnit
+		UnitType=UNIT_WARRIOR, UnitOwner=16
+		Level=1, Experience=0
+		FacingDirection=4
+		UnitAIType=UNITAI_CITY_DEFENSE
+	EndUnit
+	BeginUnit
+		UnitType=UNIT_WARRIOR, UnitOwner=16
+		Level=1, Experience=0
+		FacingDirection=4
+		UnitAIType=UNITAI_CITY_DEFENSE
+	EndUnit
 	BeginCity
 		CityOwner=16
 		CityName=TXT_KEY_CITY_NAME_SPARTA
@@ -24830,18 +24843,6 @@ BeginPlot
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
-	BeginUnit
-		UnitType=UNIT_WARRIOR, UnitOwner=16
-		Level=1, Experience=0
-		FacingDirection=4
-		UnitAIType=UNITAI_CITY_DEFENSE
-	EndUnit
-	BeginUnit
-		UnitType=UNIT_WARRIOR, UnitOwner=16
-		Level=1, Experience=0
-		FacingDirection=4
-		UnitAIType=UNITAI_CITY_DEFENSE
-	EndUnit
 	TeamReveal=16,
 	Player16Culture=2
 EndPlot
@@ -25990,6 +25991,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=49,y=53
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -26336,7 +26338,6 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=50,y=32
-	BonusType=BONUS_IRON
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -26867,17 +26868,18 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=51,y=29
-	TerrainType=TERRAIN_COAST
-	PlotType=3
-EndPlot
-BeginPlot
-	x=51,y=30
 	BonusType=BONUS_FISH
 	TerrainType=TERRAIN_COAST
 	PlotType=3
 EndPlot
 BeginPlot
+	x=51,y=30
+	TerrainType=TERRAIN_COAST
+	PlotType=3
+EndPlot
+BeginPlot
 	x=51,y=31
+	BonusType=BONUS_IRON
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -27443,7 +27445,6 @@ EndPlot
 BeginPlot
 	x=52,y=33
 	BonusType=BONUS_MARBLE
-	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
 	TeamReveal=15,
@@ -28073,7 +28074,6 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=53,y=49
-	BonusType=BONUS_IRON
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -28473,7 +28473,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=54,y=37
-	BonusType=BONUS_COPPER
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -28525,7 +28525,6 @@ BeginPlot
 	x=54,y=46
 	isNOfRiver
 	RiverWEDirection=1
-	BonusType=BONUS_GOLD
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -28548,6 +28547,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=54,y=50
+	BonusType=BONUS_IRON
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -31123,8 +31123,9 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=60,y=16
+	BonusType=BONUS_ZINK
 	TerrainType=TERRAIN_DESERT
-	PlotType=2
+	PlotType=1
 EndPlot
 BeginPlot
 	x=60,y=17
@@ -32149,7 +32150,7 @@ BeginPlot
 	x=62,y=35
 	isNOfRiver
 	RiverWEDirection=3
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -32680,7 +32681,6 @@ BeginPlot
 	x=63,y=41
 	isNOfRiver
 	RiverWEDirection=3
-	BonusType=BONUS_GOLD
 	FeatureType=FEATURE_FOREST, FeatureVariety=1
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
@@ -35317,6 +35317,8 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=68,y=35
+	BonusType=BONUS_GOLD
+	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
 EndPlot
@@ -35787,12 +35789,13 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=69,y=33
+	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
 EndPlot
 BeginPlot
 	x=69,y=34
-	FeatureType=FEATURE_FOREST, FeatureVariety=1
+	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
 EndPlot
@@ -36261,6 +36264,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=70,y=33
+	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
 	Player11Culture=2
@@ -36743,7 +36747,7 @@ BeginPlot
 	x=71,y=35
 	RiverNSDirection=2
 	isWOfRiver
-	BonusType=BONUS_ZINN
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=1
@@ -39110,6 +39114,18 @@ BeginPlot
 	RouteType=ROUTE_ROAD
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
+	BeginUnit
+		UnitType=UNIT_WARRIOR, UnitOwner=9
+		Level=1, Experience=0
+		FacingDirection=4
+		UnitAIType=UNITAI_CITY_DEFENSE
+	EndUnit
+	BeginUnit
+		UnitType=UNIT_WARRIOR, UnitOwner=9
+		Level=1, Experience=0
+		FacingDirection=4
+		UnitAIType=UNITAI_CITY_DEFENSE
+	EndUnit
 	BeginCity
 		CityOwner=9
 		CityName=TXT_KEY_CITY_NAME_C26
@@ -39126,18 +39142,6 @@ BeginPlot
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_GRASS
 	PlotType=2
-	BeginUnit
-		UnitType=UNIT_WARRIOR, UnitOwner=9
-		Level=1, Experience=0
-		FacingDirection=4
-		UnitAIType=UNITAI_CITY_DEFENSE
-	EndUnit
-	BeginUnit
-		UnitType=UNIT_WARRIOR, UnitOwner=9
-		Level=1, Experience=0
-		FacingDirection=4
-		UnitAIType=UNITAI_CITY_DEFENSE
-	EndUnit
 	TeamReveal=9,
 	Player9Culture=2
 EndPlot
@@ -40629,6 +40633,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=79,y=27
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_DESERT
 	PlotType=1
@@ -42084,6 +42089,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=82,y=34
+	BonusType=BONUS_CAMEL
 	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_DESERT
 	PlotType=2
@@ -43573,7 +43579,6 @@ EndPlot
 BeginPlot
 	x=85,y=32
 	BonusType=BONUS_STONE
-	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1
 	TeamReveal=4,
@@ -46147,6 +46152,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=90,y=33
+	BonusType=BONUS_ZINK
 	TerrainType=TERRAIN_DESERT
 	PlotType=1
 EndPlot
@@ -46634,8 +46640,6 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=91,y=33
-	BonusType=BONUS_CAMEL
-	FeatureType=FEATURE_SAVANNA, FeatureVariety=0
 	TerrainType=TERRAIN_DESERT
 	PlotType=2
 EndPlot
@@ -50839,7 +50843,7 @@ BeginPlot
 EndPlot
 BeginPlot
 	x=100,y=31
-	BonusType=BONUS_GEMS
+	BonusType=BONUS_ZINK
 	FeatureType=FEATURE_FOREST, FeatureVariety=0
 	TerrainType=TERRAIN_PLAINS
 	PlotType=1

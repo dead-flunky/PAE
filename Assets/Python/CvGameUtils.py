@@ -776,7 +776,7 @@ class CvGameUtils:
                         return iTech
 
         if eTeam.isHasTech(gc.getInfoTypeForString('TECH_MECHANIK')):
-            iTech = gc.getInfoTypeForString('TECH_CATAPULT')
+            iTech = gc.getInfoTypeForString('TECH_TORSION')
             if not eTeam.isHasTech(iTech):
                 if pPlayer.canResearch(iTech, False):
                     if eTeam.getAtWarCount(True) >= 1:
@@ -1123,17 +1123,20 @@ class CvGameUtils:
             # gc.getInfoTypeForString("UNITAI_MERCHANT") and iUnitType != gc.getInfoTypeForString("UNIT_MERCHANT") and iOwner != iBarbarianPlayer:
             if iUnitType in L.LCultivationUnits:
                 if PAE_Cultivation.doCultivation_AI(pUnit):
+                    # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Python AI Cultivation",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
                     return True
 
             # s = pOwner.getName()
             if iUnitType in L.LTradeUnits:
                 # CyInterface().addMessage(iHumanPlayer, True, 10, "Vor doAutom 1 " + s, None, 2, None, ColorTypes(5), pUnit.getX(), pUnit.getY(), False, False)
                 if PAE_Trade.doAutomateMerchant(pUnit, True):
+                    CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Python AI automate merchant",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
                     return True
                 elif PAE_Trade.doAssignTradeRoute_AI(pUnit):
                     # CyInterface().addMessage(iHumanPlayer, True, 10, "Vor doAutom 2 " + s, None, 2, None, ColorTypes(6), pUnit.getX(), pUnit.getY(), False, False)
                     # try again
                     if PAE_Trade.doAutomateMerchant(pUnit, True):
+                        CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, CyTranslator().getText("TXT_KEY_MESSAGE_TEST",("Python AI automate merchant new trade route",1)), None, 2, None, ColorTypes(10), 0, 0, False, False)
                         return True
 
             # Veteran -> Eliteunit (netMessage 705)
@@ -2247,7 +2250,7 @@ class CvGameUtils:
                         lTemp.append(sTemp)
                     if lTemp:
                         sText += "\n"
-                        sText += ', '.join([str(lT) for lT in lTemp])
+                        sText += ', '.join([lT for lT in lTemp])
 
                     iMaintenance = pCity.getMaintenanceTimes100()
                     if iMaintenance != 0:
@@ -2923,9 +2926,9 @@ class CvGameUtils:
             lBuildings = []
             for iPromo in L.DPromosForPromoBuilding:
                 if pUnit.isHasPromotion(iPromo):
-                    lBuildings.append(L.DPromosForPromoBuilding[iPromo])
+                    lBuildings.append((L.DPromosForPromoBuilding[iPromo], iPromo))
 
-            for iBuilding in lBuildings:
+            for iBuilding, iPromo in lBuildings:
                 (loopCity, pIter) = pPlayer.firstCity(False)
                 while loopCity:
                     if not loopCity.isHasBuilding(iBuilding):

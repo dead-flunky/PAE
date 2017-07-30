@@ -1024,16 +1024,13 @@ BeginTeam
   Tech=TECH_SPEERSPITZEN
   Tech=TECH_MINING
   Tech=TECH_ASTRONOMIE
-  Tech=TECH_WRITING
   Tech=TECH_LEADERSHIP
   Tech=TECH_STEINABBAU
   Tech=TECH_CALENDAR
-  Tech=TECH_ZAHLENSYSTEME
   Tech=TECH_CEREMONIAL
   Tech=TECH_STAATENBILDUNG
   Tech=TECH_BRONZE_WORKING
   Tech=TECH_FRUCHTBARKEIT
-  Tech=TECH_GEOMETRIE
   Tech=TECH_KLANGMUSIK
   Tech=TECH_MASONRY
   Tech=TECH_COLONIZATION
@@ -1051,14 +1048,12 @@ BeginTeam
   Tech=TECH_TEMPELWIRTSCHAFT
   Tech=TECH_CODEX
   Tech=TECH_AGRICULTURE2
-  Tech=TECH_SCHIFFSBAU
   Tech=TECH_PFERDEZUCHT
   Tech=TECH_ASTROLOGIE
   Tech=TECH_MEDICINE2
   Tech=TECH_IRRIGATION
   Tech=TECH_DEFENCES
   Tech=TECH_THE_WHEEL3
-  Tech=TECH_DUALISMUS
   Tech=TECH_BUCHSTABEN
   Tech=TECH_BEWAFFNUNG3
   Tech=TECH_BRANDSCHATZEN
@@ -1080,7 +1075,6 @@ BeginTeam
   Tech=TECH_VASALLENTUM
   Tech=TECH_PIRACY
   Tech=TECH_KARTOGRAPHIE
-  Tech=TECH_LIBRARY
   Tech=TECH_MATHEMATICS
   Tech=TECH_BEWAFFNUNG4
   Tech=TECH_PHILOSOPHY
@@ -1095,7 +1089,6 @@ BeginTeam
   Tech=TECH_DEMOCRACY
   Tech=TECH_BAUKUNST
   Tech=TECH_CODE_OF_LAWS
-  Tech=TECH_PHALANX
   Tech=TECH_GLADIATOR
   Tech=TECH_ELEMENTARLEHRE
   Tech=TECH_BEWEIS
@@ -1147,17 +1140,13 @@ BeginTeam
   Tech=TECH_SPEERSPITZEN
   Tech=TECH_MINING
   Tech=TECH_ASTRONOMIE
-  Tech=TECH_WRITING2
-  Tech=TECH_WRITING
   Tech=TECH_LEADERSHIP
   Tech=TECH_STEINABBAU
   Tech=TECH_CALENDAR
-  Tech=TECH_ZAHLENSYSTEME
   Tech=TECH_CEREMONIAL
   Tech=TECH_STAATENBILDUNG
   Tech=TECH_BRONZE_WORKING
   Tech=TECH_FRUCHTBARKEIT
-  Tech=TECH_GEOMETRIE
   Tech=TECH_KLANGMUSIK
   Tech=TECH_MASONRY
   Tech=TECH_COLONIZATION
@@ -1175,14 +1164,12 @@ BeginTeam
   Tech=TECH_TEMPELWIRTSCHAFT
   Tech=TECH_CODEX
   Tech=TECH_AGRICULTURE2
-  Tech=TECH_SCHIFFSBAU
   Tech=TECH_PFERDEZUCHT
   Tech=TECH_ASTROLOGIE
   Tech=TECH_MEDICINE2
   Tech=TECH_IRRIGATION
   Tech=TECH_DEFENCES
   Tech=TECH_THE_WHEEL3
-  Tech=TECH_DUALISMUS
   Tech=TECH_BUCHSTABEN
   Tech=TECH_BEWAFFNUNG3
   Tech=TECH_BRANDSCHATZEN
@@ -1204,7 +1191,6 @@ BeginTeam
   Tech=TECH_VASALLENTUM
   Tech=TECH_PIRACY
   Tech=TECH_KARTOGRAPHIE
-  Tech=TECH_LIBRARY
   Tech=TECH_MATHEMATICS
   Tech=TECH_BEWAFFNUNG4
   Tech=TECH_PHILOSOPHY
@@ -1219,7 +1205,6 @@ BeginTeam
   Tech=TECH_DEMOCRACY
   Tech=TECH_BAUKUNST
   Tech=TECH_CODE_OF_LAWS
-  Tech=TECH_PHALANX
   Tech=TECH_GLADIATOR
   Tech=TECH_ELEMENTARLEHRE
   Tech=TECH_BEWEIS
@@ -1266,22 +1251,18 @@ BeginTeam
   Tech=TECH_SPEERSPITZEN
   Tech=TECH_MINING
   Tech=TECH_ASTRONOMIE
-  Tech=TECH_WRITING
   Tech=TECH_LEADERSHIP
   Tech=TECH_STEINABBAU
   Tech=TECH_CALENDAR
-  Tech=TECH_ZAHLENSYSTEME
   Tech=TECH_CEREMONIAL
   Tech=TECH_STAATENBILDUNG
   Tech=TECH_BRONZE_WORKING
   Tech=TECH_FRUCHTBARKEIT
-  Tech=TECH_GEOMETRIE
   Tech=TECH_KLANGMUSIK
   Tech=TECH_MASONRY
   Tech=TECH_COLONIZATION
   Tech=TECH_ARCHERY2
   Tech=TECH_BEWAFFNUNG2
-  Tech=TECH_CLOSED_FORM
   Tech=TECH_SOELDNERTUM
   Tech=TECH_KULTIVIERUNG
   Tech=TECH_KONSERVIERUNG
@@ -1293,14 +1274,12 @@ BeginTeam
   Tech=TECH_TEMPELWIRTSCHAFT
   Tech=TECH_CODEX
   Tech=TECH_AGRICULTURE2
-  Tech=TECH_SCHIFFSBAU
   Tech=TECH_PFERDEZUCHT
   Tech=TECH_ASTROLOGIE
   Tech=TECH_MEDICINE2
   Tech=TECH_IRRIGATION
   Tech=TECH_DEFENCES
   Tech=TECH_THE_WHEEL3
-  Tech=TECH_DUALISMUS
   Tech=TECH_BUCHSTABEN
   Tech=TECH_BEWAFFNUNG3
   Tech=TECH_BRANDSCHATZEN
@@ -1322,7 +1301,6 @@ BeginTeam
   Tech=TECH_VASALLENTUM
   Tech=TECH_PIRACY
   Tech=TECH_KARTOGRAPHIE
-  Tech=TECH_LIBRARY
   Tech=TECH_MATHEMATICS
   Tech=TECH_BEWAFFNUNG4
   Tech=TECH_PHILOSOPHY
@@ -1337,7 +1315,6 @@ BeginTeam
   Tech=TECH_DEMOCRACY
   Tech=TECH_BAUKUNST
   Tech=TECH_CODE_OF_LAWS
-  Tech=TECH_PHALANX
   Tech=TECH_GLADIATOR
   Tech=TECH_ELEMENTARLEHRE
   Tech=TECH_BEWEIS
@@ -1351,7 +1328,6 @@ BeginTeam
   ContactWithTeam=0
   ContactWithTeam=1
   ContactWithTeam=2
-  ContactWithTeam=3
   ContactWithTeam=4
   ContactWithTeam=5
   ContactWithTeam=7
@@ -1476,7 +1452,6 @@ BeginTeam
   ContactWithTeam=0
   ContactWithTeam=1
   ContactWithTeam=2
-  ContactWithTeam=3
   ContactWithTeam=4
   ContactWithTeam=5
   ContactWithTeam=6
@@ -1577,7 +1552,6 @@ BeginTeam
   Tech=TECH_VASALLENTUM
   Tech=TECH_PIRACY
   Tech=TECH_KARTOGRAPHIE
-  Tech=TECH_LIBRARY
   Tech=TECH_MATHEMATICS
   Tech=TECH_BEWAFFNUNG4
   Tech=TECH_PHILOSOPHY
@@ -1606,7 +1580,6 @@ BeginTeam
   Tech=TECH_OLIGARCHY
   ContactWithTeam=0
   ContactWithTeam=2
-  ContactWithTeam=3
   ContactWithTeam=4
   ContactWithTeam=6
   ContactWithTeam=8
@@ -1703,7 +1676,6 @@ BeginTeam
   Tech=TECH_VASALLENTUM
   Tech=TECH_PIRACY
   Tech=TECH_KARTOGRAPHIE
-  Tech=TECH_LIBRARY
   Tech=TECH_MATHEMATICS
   Tech=TECH_BEWAFFNUNG4
   Tech=TECH_PHILOSOPHY
@@ -1731,7 +1703,6 @@ BeginTeam
   ContactWithTeam=0
   ContactWithTeam=1
   ContactWithTeam=2
-  ContactWithTeam=3
   ContactWithTeam=4
   ContactWithTeam=5
   ContactWithTeam=6
@@ -9194,7 +9165,6 @@ BeginPlot
     BuildingType=BUILDING_ORACLE2
     BuildingType=BUILDING_MALI_MINT
     BuildingType=BUILDING_BUND_ETRUS
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -9746,7 +9716,6 @@ BeginPlot
     BuildingType=BUILDING_AGORA
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
@@ -9878,7 +9847,6 @@ BeginPlot
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_ROME_TEMPLE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -10856,7 +10824,6 @@ BeginPlot
     BuildingType=BUILDING_AGORA
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
@@ -10936,7 +10903,6 @@ BeginPlot
     BuildingType=BUILDING_MARKET
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -11582,7 +11548,6 @@ BeginPlot
     BuildingType=BUILDING_MARKET
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -12200,7 +12165,6 @@ BeginPlot
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_OLYMPIC_GAMES
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_MILITARY_ACADEMY_SPARTA
     BuildingType=BUILDING_STATUE_OF_ZEUS
     BuildingType=BUILDING_SKLAVENMARKT
@@ -12282,7 +12246,6 @@ BeginPlot
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_ORACLE2
     BuildingType=BUILDING_ORACLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -12693,7 +12656,6 @@ BeginPlot
     BuildingType=BUILDING_ORACLE2
     BuildingType=BUILDING_MALI_MINT
     BuildingType=BUILDING_BUND_MACEDON
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -13110,7 +13072,6 @@ BeginPlot
     BuildingType=BUILDING_MALI_MINT
     BuildingType=BUILDING_BUND_GREEK
     BuildingType=BUILDING_PARTHENON
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -13773,7 +13734,6 @@ BeginPlot
     BuildingType=BUILDING_MARKET
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
@@ -13915,84 +13875,84 @@ BeginPlot
   TerrainType=TERRAIN_GRASS
   PlotType=1
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
     UnitAIType=UNITAI_ATTACK
   EndUnit
   BeginUnit
-    UnitType=UNIT_HORSE_ARCHER_SCYTHS, UnitOwner=BARBARIAN
+    UnitType=UNIT_HORSEMAN_SKYTHEN, UnitOwner=BARBARIAN
     Level=1, Experience=0
     PromotionType=PROMOTION_SKIRMISH1
     FacingDirection=4
@@ -14315,7 +14275,6 @@ BeginPlot
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
     BuildingType=BUILDING_PERGAMONALTAR
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_ARTEMIS
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
@@ -14933,7 +14892,6 @@ BeginPlot
     BuildingType=BUILDING_AGORA
     BuildingType=BUILDING_COURTHOUSE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE
     BuildingType=BUILDING_STADT
@@ -15814,7 +15772,6 @@ BeginPlot
     BuildingType=BUILDING_PUBLIC_EXECUTION
     BuildingType=BUILDING_ZORO_TEMPLE
     BuildingType=BUILDING_GREEK_TEMPLE
-    BuildingType=BUILDING_PANTHEON
     BuildingType=BUILDING_SKLAVENMARKT
     BuildingType=BUILDING_SIEDLUNG
     BuildingType=BUILDING_KOLONIE

@@ -26387,7 +26387,6 @@ BeginPlot
                 BuildingType=BUILDING_GREEK_TEMPLE
                 BuildingType=BUILDING_OLYMPIC_GAMES
                 BuildingType=BUILDING_ORACLE
-                BuildingType=BUILDING_PANTHEON
                 BuildingType=BUILDING_STATUE_OF_ZEUS
                 BuildingType=BUILDING_SIEDLUNG
                 BuildingType=BUILDING_KOLONIE

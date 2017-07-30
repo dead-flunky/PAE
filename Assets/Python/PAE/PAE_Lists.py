@@ -15,80 +15,162 @@
 from CvPythonExtensions import CyGlobalContext
 gc = CyGlobalContext()
 
-# LTradeUnits = []
-# LCultivationUnits = []
-# LBonusCultivatable = []
-# LBonusUntradeable = [] # List of untradeable bonuses
-# LBonusCorn = [] # Lists of cultivatable bonuses
-# LBonusLivestock = []
-# LBonusPlantation = []
-# LBonusLuxury = [] # List of bonuses which may create trade routes
-# LBonusRarity = [] # List of bonuses which may create trade routes
-# LUnitWarAnimals = []
-# LUnitDomesticated = []
-# LUnitLootLessSeaUnits = []
-# LUnitCanBeDomesticated = []
-# LUnitWildAnimals = []
-# DJagd = {}
-# LArcherCombats = []
-# LMeleeCombats = []
-# LMeleeSupplyCombats = []
-# LMountedSupplyCombats = []
-# LLimes = []
-# LImprFort = []
-# # LFeatureArray = []
-# LImprFortShort = []
-# DCaptureFromPirate = {}
-# DCaptureByPirate = {}
-# LFormationNoNaval = []
-# LFormationMountedArcher = []
-# LCivPirates = []
-# LCivPartherschuss = []
-# LUnitPartherschuss = []
-# LKeilUnits = []
-# LSchildwallUnits = []
-# LDrillUnits = []
-# LTestudoUnits = []
-# LFluchtCombats = []
-# LFormationen = []
-# LUnitsNoAIReservists = []
-# LUnitAuxiliar = []
-# LUnitNoSlaves = []
-# LCombatNoRuestung = []
-# LUnitNoRuestung = []
-# LUnitSkirmish = []
-# LClassSkirmish = []
-# LFernangriffNoCosts = []
-# DFernangriffCosts = {}
-# LSeewind = []
-# LBuildArchers = []
-# LBuildCatapults = []
-# DManufakturen = {}
-# DImprSupplyBonus = {}
-# DBuildingPromo = {}
-# DPromosForPromoBuilding = {}
-# LLatifundien = []
-# LFarms = []
-# LMines = []
-# LTemples = []
-# LPromoPillage = []
-# LWoodRemovedByLumberCamp = []
-# LCityGarrison = []
-# LVeteranForbiddenPromos1 = []
-# LCityRaider = []
-# LVeteranForbiddenPromos4 = []
-# LCivGermanen = []
-# DHorseDownMap = {}
-# DHorseUpMap = {}
-# LGGStandard = []
-# DGGNames = {}
-# # LRelis = []
-# LGreeks = []
-# LNearEast = []
-# LNorthern = []
-# LegioNames = []
+LGuerilla = []
+LWoodsman = []
+LJungle = []
+LSwamp = []
+LDesert = []
+LTradeUnits = []
+LCultivationUnits = []
+LBonusCultivatable = []
+LBonusUntradeable = [] # List of untradeable bonuses
+LBonusCorn = [] # Lists of cultivatable bonuses
+LBonusLivestock = []
+LBonusPlantation = []
+LBonusLuxury = [] # List of bonuses which may create trade routes
+LBonusRarity = [] # List of bonuses which may create trade routes
+LUnitWarAnimals = []
+LUnitDomesticated = []
+LUnitLootLessSeaUnits = []
+LUnitCanBeDomesticated = []
+LUnitWildAnimals = []
+DJagd = {}
+LArcherCombats = []
+LMeleeCombats = []
+LMeleeSupplyCombats = []
+LMountedSupplyCombats = []
+LLimes = []
+LImprFort = []
+# LFeatureArray = []
+LImprFortShort = []
+DCaptureFromPirate = {}
+DCaptureByPirate = {}
+LFormationNoNaval = []
+LFormationMountedArcher = []
+LCivPirates = []
+LCivPartherschuss = []
+LUnitPartherschuss = []
+LKeilUnits = []
+LSchildwallUnits = []
+LDrillUnits = []
+LTestudoUnits = []
+LFluchtCombats = []
+LFormationen = []
+LUnitsNoAIReservists = []
+LUnitAuxiliar = []
+LUnitNoSlaves = []
+LCombatNoRuestung = []
+LUnitNoRuestung = []
+LUnitSkirmish = []
+LClassSkirmish = []
+LFernangriffNoCosts = []
+DFernangriffCosts = {}
+LSeewind = []
+LBuildArchers = []
+LBuildCatapults = []
+DManufakturen = {}
+DImprSupplyBonus = {}
+DBuildingPromo = {}
+DPromosForPromoBuilding = {}
+LLatifundien = []
+LFarms = []
+LMines = []
+LTemples = []
+LPromoPillage = []
+LWoodRemovedByLumberCamp = []
+LCityGarrison = []
+LVeteranForbiddenPromos1 = []
+LCityRaider = []
+LVeteranForbiddenPromos4 = []
+LCivGermanen = []
+DHorseDownMap = {}
+DHorseUpMap = {}
+LGGStandard = []
+DGGNames = {}
+# LRelis = []
+LGreeks = []
+LNearEast = []
+LNorthern = []
+LegioNames = []
 
 def init():
+    global LGuerilla
+    global LWoodsman
+    global LJungle
+    global LSwamp
+    global LDesert
+    global LTradeUnits
+    global LCultivationUnits
+    global LBonusCultivatable
+    global LBonusUntradeable # List of untradeable bonuses
+    global LBonusCorn # Lists of cultivatable bonuses
+    global LBonusLivestock
+    global LBonusPlantation
+    global LBonusLuxury # List of bonuses which may create trade routes
+    global LBonusRarity # List of bonuses which may create trade routes
+    global LUnitWarAnimals
+    global LUnitDomesticated
+    global LUnitLootLessSeaUnits
+    global LUnitCanBeDomesticated
+    global LUnitWildAnimals
+    global DJagd
+    global LArcherCombats
+    global LMeleeCombats
+    global LMeleeSupplyCombats
+    global LMountedSupplyCombats
+    global LLimes
+    global LImprFort
+    #global  LFeatureArray
+    global LImprFortShort
+    global DCaptureFromPirate
+    global DCaptureByPirate
+    global LFormationNoNaval
+    global LFormationMountedArcher
+    global LCivPirates
+    global LCivPartherschuss
+    global LUnitPartherschuss
+    global LKeilUnits
+    global LSchildwallUnits
+    global LDrillUnits
+    global LTestudoUnits
+    global LFluchtCombats
+    global LFormationen
+    global LUnitsNoAIReservists
+    global LUnitAuxiliar
+    global LUnitNoSlaves
+    global LCombatNoRuestung
+    global LUnitNoRuestung
+    global LUnitSkirmish
+    global LClassSkirmish
+    global LFernangriffNoCosts
+    global DFernangriffCosts
+    global LSeewind
+    global LBuildArchers
+    global LBuildCatapults
+    global DManufakturen
+    global DImprSupplyBonus
+    global DBuildingPromo
+    global DPromosForPromoBuilding
+    global LLatifundien
+    global LFarms
+    global LMines
+    global LTemples
+    global LPromoPillage
+    global LWoodRemovedByLumberCamp
+    global LCityGarrison
+    global LVeteranForbiddenPromos1
+    global LCityRaider
+    global LVeteranForbiddenPromos4
+    global LCivGermanen
+    global DHorseDownMap
+    global DHorseUpMap
+    global LGGStandard
+    global DGGNames
+    #global  LRelis
+    global LGreeks
+    global LNearEast
+    global LNorthern
+    global LegioNames
 
     if gc.getInfoTypeForString("COLOR_EMPTY") == -1:
         raise Exception("Called init() to early. getInfoTypeForString() returns -1.")
@@ -993,7 +1075,7 @@ def init():
 
     LBonusCultivatable = LBonusCorn + LBonusLivestock + LBonusPlantation + [gc.getInfoTypeForString("BONUS_HORSE")]
 
-    # Tranfer local defined variables into module ones.
-    lnames = [l for l in locals().keys() if l[0] != "_" and l != "gc"]
-    for l in lnames:
-        globals()[l] = locals()[l]
+    # # Tranfer local defined variables into module ones.
+    # lnames = [l for l in locals().keys() if l[0] != "_" and l != "gc"]
+    # for l in lnames:
+        # globals()[l] = locals()[l]

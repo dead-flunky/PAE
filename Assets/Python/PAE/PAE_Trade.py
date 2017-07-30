@@ -574,101 +574,106 @@ def getPlotTradingRoad(pSource, pDest):
 
 # Lets pUnit shuttle between two cities (defined by UnitScriptData). Used by AI and by HI (automated trade routes).
 def doAutomateMerchant(pUnit, bAI):
-##    for i in range(gc.getMAX_PLAYERS()):
-##        if gc.getPlayer(i).isHuman():
-##            iHumanPlayer = i (needed for test messages, otherwise unnecessary)
-##            break
-    iPlayer = pUnit.getOwner()
-    # pPlayer = gc.getPlayer(iPlayer)
-    # s = pPlayer.getName()
-    pUnitPlot = pUnit.plot()
-    # set to False if automated route is deactivated
-    bActive = CvUtil.getScriptData(pUnit, ["autA"], 0)
-    if not bActive:
-        return False
-    iTurn = gc.getGame().getGameTurn()
-    # Verhindern, dass mehrmals pro Runden geprueft wird, um Rundenzeit zu sparen
-    # Z.B. bei bedrohten Einheiten ruft Civ die Funktion sonst 100 Mal auf, weiss nicht wieso...
-    iLastTurnChecked = CvUtil.getScriptData(pUnit, ["autLTC"], -1)
-    if iLastTurnChecked >= iTurn:
-        return False
-    else:
-        CvUtil.addScriptData(pUnit, "autLTC", iTurn)
-    pUnit.getGroup().clearMissionQueue()
-    eStoredBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
-    iX1 = CvUtil.getScriptData(pUnit, ["autX1"], -1)
-    iY1 = CvUtil.getScriptData(pUnit, ["autY1"], -1)
-    iX2 = CvUtil.getScriptData(pUnit, ["autX2"], -1)
-    iY2 = CvUtil.getScriptData(pUnit, ["autY2"], -1)
-    eBonus1 = CvUtil.getScriptData(pUnit, ["autB1"], -1) # bonus bought in city 1
-    eBonus2 = CvUtil.getScriptData(pUnit, ["autB2"], -1) # bonus bought in city 2
-    pCityPlot1 = CyMap().plot(iX1, iY1)
-    pCityPlot2 = CyMap().plot(iX2, iY2)
-    pCity1 = pCityPlot1.getPlotCity()
-    pCity2 = pCityPlot2.getPlotCity()
-    if pCity1 is None or pCity1.isNone() or pCity2 is None or pCity2.isNone():
-        return False
-    if pUnit.atPlot(pCityPlot1) or pUnit.atPlot(pCityPlot2):
-        if pUnit.atPlot(pCityPlot1):
-            pCurrentCity = pCity1
-            pNewCity = pCity2
-            eBonusBuy = eBonus1
-            eBonusSell = eBonus2
-        elif pUnit.atPlot(pCityPlot2):
-            pCurrentCity = pCity2
-            pNewCity = pCity1
-            eBonusBuy = eBonus2
-            eBonusSell = eBonus1
-        if eBonusSell != -1 and eStoredBonus == eBonusSell:
-            doSellBonus(pUnit, pCurrentCity)
-        # HI: if player does not have enough money, trade route is cancelled
-        # AI: if AI does not have enough money, AI buys bonus nonetheless (causes no known errors)
-        if bAI:
-            iBuyer = -1
-        else:
-            iBuyer = iPlayer
-        lCitySaleableGoods = getCitySaleableGoods(pCurrentCity, iBuyer)
-        if eBonusBuy == -1:
-            #pUnit.getGroup().clearMissionQueue()
-            pUnit.getGroup().pushMoveToMission(pNewCity.getX(), pNewCity.getY())
-            # CyInterface().addMessage(iHumanPlayer, True, 10, "Mission eBonusBuy == -1 " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
-        elif eBonusBuy in lCitySaleableGoods:
-            if eStoredBonus != eBonusBuy:
-                # if not already acquired / Wenn Bonus nicht bereits gekauft wurde
-                doBuyBonus(pUnit, eBonusBuy, pCurrentCity.getOwner())
-            #pUnit.getGroup().clearMissionQueue()
-            pUnit.getGroup().pushMoveToMission(pNewCity.getX(), pNewCity.getY())
-            # CyInterface().addMessage(iHumanPlayer, True, 10, "Mission eBonusBuy in lCitySaleable " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
-        elif eStoredBonus == eBonusBuy:
-            #pUnit.getGroup().clearMissionQueue()
-            pUnit.getGroup().pushMoveToMission(pNewCity.getX(), pNewCity.getY())
-            # CyInterface().addMessage(iHumanPlayer, True, 10, "Mission eBonusBuy == eStoredBonus " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
-        else:
-            # bonus is no longer available (or player does not have enough money) => cancel automated trade route
-            CvUtil.addScriptData(pUnit, "autA", 0) # deactivate route
-            # CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns False " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+    # DEBUG
+    # iHumanPlayer = gc.getGame().getActivePlayer()
+    bTradeRouteActive = int(CvUtil.getScriptData(pUnit, ["autA", "t"], 0))
+    if bTradeRouteActive and pUnit.getGroup().getLengthMissionQueue() == 0:
+        iPlayer = pUnit.getOwner()
+        # DEBUG
+        # pPlayer = gc.getPlayer(iPlayer)
+        # s = pPlayer.getName()
+        pUnitPlot = pUnit.plot()
+        iTurn = gc.getGame().getGameTurn()
+        # Verhindern, dass mehrmals pro Runden geprueft wird, um Rundenzeit zu sparen
+        # Z.B. bei bedrohten Einheiten ruft Civ die Funktion sonst 100 Mal auf, weiss nicht wieso...
+        iLastTurnChecked = CvUtil.getScriptData(pUnit, ["autLTC"], -1)
+        if iLastTurnChecked >= iTurn:
             return False
-    else:
-        # unit is anywhere => send to city 1
-        iDistance1 = CyMap().calculatePathDistance(pUnitPlot, pCityPlot1)
-        iDistance2 = CyMap().calculatePathDistance(pUnitPlot, pCityPlot1)
-        if iDistance1 == -1 and iDistance2 == -1:
-            # CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns False " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
-            return False # plot unreachable
-        elif iDistance1 == -1:
-            pUnit.getGroup().pushMoveToMission(pCityPlot2.getX(), pCityPlot2.getY())
-        elif iDistance2 == -1 or iDistance1 <= iDistance2:
-            pUnit.getGroup().pushMoveToMission(pCityPlot1.getX(), pCityPlot1.getY())
         else:
-            pUnit.getGroup().pushMoveToMission(pCityPlot2.getX(), pCityPlot2.getY())
-##        if iDistance != -1: pUnit.getGroup().pushMoveToMission(pCityPlot1.getX(), pCityPlot1.getY())
-##        else:
-##            CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns False " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
-##            return False # plot unreachable
-    # CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns True " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
-    # Am Ende eine Runde warten, da die Einheit sonst, wenn sie bei Erreichen einer Stadt noch Bewegungspunkte hat, einen neuen Befehl verlangt
-    pUnit.getGroup().pushMission(MissionTypes.MISSION_SKIP, 0, 0, 0, True, False, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
-    return True
+            CvUtil.addScriptData(pUnit, "autLTC", iTurn)
+        pUnit.getGroup().clearMissionQueue()
+        eStoredBonus = CvUtil.getScriptData(pUnit, ["b"], -1)
+        iX1 = CvUtil.getScriptData(pUnit, ["autX1"], -1)
+        iY1 = CvUtil.getScriptData(pUnit, ["autY1"], -1)
+        iX2 = CvUtil.getScriptData(pUnit, ["autX2"], -1)
+        iY2 = CvUtil.getScriptData(pUnit, ["autY2"], -1)
+        eBonus1 = CvUtil.getScriptData(pUnit, ["autB1"], -1) # bonus bought in city 1
+        eBonus2 = CvUtil.getScriptData(pUnit, ["autB2"], -1) # bonus bought in city 2
+        pCityPlot1 = CyMap().plot(iX1, iY1)
+        pCityPlot2 = CyMap().plot(iX2, iY2)
+        pCity1 = pCityPlot1.getPlotCity()
+        pCity2 = pCityPlot2.getPlotCity()
+        if pCity1 is None or pCity1.isNone() or pCity2 is None or pCity2.isNone():
+            # delete invalid trade route
+            CvUtil.removeScriptData(pUnit, "autA")
+            CvUtil.removeScriptData(pUnit, "autLTC")
+            CvUtil.removeScriptData(pUnit, "autX1")
+            CvUtil.removeScriptData(pUnit, "autY1")
+            CvUtil.removeScriptData(pUnit, "autX2")
+            CvUtil.removeScriptData(pUnit, "autY2")
+            CvUtil.removeScriptData(pUnit, "autB1")
+            CvUtil.removeScriptData(pUnit, "autB2")
+            return False
+        if pUnit.atPlot(pCityPlot1) or pUnit.atPlot(pCityPlot2):
+            if pUnit.atPlot(pCityPlot1):
+                pCurrentCity = pCity1
+                pNewCity = pCity2
+                eBonusBuy = eBonus1
+                eBonusSell = eBonus2
+            elif pUnit.atPlot(pCityPlot2):
+                pCurrentCity = pCity2
+                pNewCity = pCity1
+                eBonusBuy = eBonus2
+                eBonusSell = eBonus1
+            if eBonusSell != -1 and eStoredBonus == eBonusSell:
+                doSellBonus(pUnit, pCurrentCity)
+            # HI: if player does not have enough money, trade route is cancelled
+            # AI: if AI does not have enough money, AI buys bonus nonetheless (causes no known errors)
+            ## doBuyBonus doesn't work this way. AIs traderoute will be deactivated as well. 
+            if bAI:
+                iBuyer = -1
+            else:
+                iBuyer = iPlayer
+            lCitySaleableGoods = getCitySaleableGoods(pCurrentCity, iBuyer)
+            if eBonusBuy == -1:
+                pUnit.getGroup().pushMoveToMission(pNewCity.getX(), pNewCity.getY())
+                # CyInterface().addMessage(iHumanPlayer, True, 10, "Mission eBonusBuy == -1 " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+            elif eBonusBuy in lCitySaleableGoods:
+                if eStoredBonus != eBonusBuy:
+                    # if not already acquired / Wenn Bonus nicht bereits gekauft wurde
+                    doBuyBonus(pUnit, eBonusBuy, pCurrentCity.getOwner())
+                pUnit.getGroup().pushMoveToMission(pNewCity.getX(), pNewCity.getY())
+                # CyInterface().addMessage(iHumanPlayer, True, 10, "Mission eBonusBuy in lCitySaleable " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+            elif eStoredBonus == eBonusBuy:
+                pUnit.getGroup().pushMoveToMission(pNewCity.getX(), pNewCity.getY())
+                # CyInterface().addMessage(iHumanPlayer, True, 10, "Mission eBonusBuy == eStoredBonus " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+            else:
+                # bonus is no longer available (or player does not have enough money) => cancel automated trade route
+                CvUtil.addScriptData(pUnit, "autA", 0) # deactivate route
+                # CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns False " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+                return False
+        else:
+            # unit is anywhere => send to city 1
+            iDistance1 = CyMap().calculatePathDistance(pUnitPlot, pCityPlot1)
+            iDistance2 = CyMap().calculatePathDistance(pUnitPlot, pCityPlot2)
+            if iDistance1 == -1 and iDistance2 == -1:
+                # CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns False " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+                return False # plot unreachable
+            elif iDistance1 == -1:
+                pUnit.getGroup().pushMoveToMission(pCityPlot2.getX(), pCityPlot2.getY())
+            elif iDistance2 == -1 or iDistance1 <= iDistance2:
+                pUnit.getGroup().pushMoveToMission(pCityPlot1.getX(), pCityPlot1.getY())
+            else:
+                pUnit.getGroup().pushMoveToMission(pCityPlot2.getX(), pCityPlot2.getY())
+    ##        if iDistance != -1: pUnit.getGroup().pushMoveToMission(pCityPlot1.getX(), pCityPlot1.getY())
+    ##        else:
+    ##            CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns False " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+    ##            return False # plot unreachable
+        # CyInterface().addMessage(iHumanPlayer, True, 10, "doAutomateMerchant returns True " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+        # Am Ende eine Runde warten, da die Einheit sonst, wenn sie bei Erreichen einer Stadt noch Bewegungspunkte hat, einen neuen Befehl verlangt
+        pUnit.getGroup().pushMission(MissionTypes.MISSION_SKIP, 0, 0, 0, True, False, MissionAITypes.NO_MISSIONAI, pUnit.plot(), pUnit)
+        return True
+    return False
 
 # Weist der Einheit eine moeglichst kurze Handelsroute zu, die moeglichst so verlaeuft, dass an beiden Stationen ein Luxusgut eingeladen wird
 def doAssignTradeRoute_AI(pUnit):
@@ -686,16 +691,25 @@ def doAssignTradeRoute_AI(pUnit):
     iRange = gc.getMAX_PLAYERS()
     for iLoopPlayer in range(iRange):
         pLoopPlayer = gc.getPlayer(iLoopPlayer)
-        # if pLoopPlayer.isHuman(): iHumanPlayer = iLoopPlayer
         if pLoopPlayer.isAlive() and iLoopPlayer != iPlayer:
             if pTeam.isHasMet(pLoopPlayer.getTeam()):
                 if pTeam.isOpenBorders(pLoopPlayer.getTeam()):
-                    if not pTeam.isAtWar(pLoopPlayer.getTeam()):
-                        # Distanz mittels Abstand zur Hauptstadt herausfinden
-                        if not pLoopPlayer.getCity(0).isNone():
-                            iDistance = CyMap().calculatePathDistance(pUnitPlot, pLoopPlayer.getCity(0).plot())
-                            if iDistance != -1:
-                                lNeighbors.append([iDistance, iLoopPlayer])
+                    # widerspricht ohnehin open borders
+                    # if not pTeam.isAtWar(pLoopPlayer.getTeam()):
+                    # Distanz mittels Abstand zur Hauptstadt herausfinden
+                    (loopCity, pIter) = pLoopPlayer.firstCity(False)
+                    while loopCity:
+                        if not loopCity.isNone() and loopCity.getOwner() == iLoopPlayer: #only valid cities
+                            if loopCity.isCapital():
+                                iDistance = CyMap().calculatePathDistance(pUnitPlot, loopCity.plot())
+                                if iDistance != -1:
+                                    lNeighbors.append([iDistance, iLoopPlayer])
+                        (loopCity, pIter) = pLoopPlayer.nextCity(pIter, False)
+                    # if not pLoopPlayer.getCity(0).isNone():
+                        # iDistance = CyMap().calculatePathDistance(pUnitPlot, pLoopPlayer.getCity(0).plot())
+                        # if iDistance != -1:
+                            # lNeighbors.append([iDistance, iLoopPlayer])
+
     lNeighbors.sort() # sort by distance
     lNeighbors = lNeighbors[:5] # only check max. 5 neighbors
     # Liste aller Staedte des Spielers mit verfuegbaren Luxusguetern. Staedte ohne Luxusgut ausgelassen.
@@ -706,8 +720,6 @@ def doAssignTradeRoute_AI(pUnit):
     pBestPlayerCity = None
     pBestNeighborCity = None
     for [iDistance, iNeighbor] in lNeighbors:
-        #iNeighbor = lList[1]
-        # pNeighbor = gc.getPlayer(iNeighbor)
         lNeighborLuxuryCities = _getPlayerLuxuryCities(iNeighbor)
         # Sucht nach Paar von Staedten, zwischen denen Luxushandel moeglich ist, mit min. Distanz.
         # Routen, bei denen in beiden Staedten Luxus eingekauft werden kann, der in der anderen Stadt wieder verkauft
@@ -715,58 +727,58 @@ def doAssignTradeRoute_AI(pUnit):
         # Sonst wird eine Route gewaehlt, bei der der Haendler nur in eine Richtung handelt (andere Richtung Leertransport)
         for [pNeighborCity, lNeighborCityLuxury] in lNeighborLuxuryCities:
             for [pPlayerCity, lPlayerCityLuxury] in lPlayerLuxuryCities:
-                pCityPlotPlayer = CyMap().plot(pPlayerCity.getX(), pPlayerCity.getY())
-                pCityPlotNeighbor = CyMap().plot(pNeighborCity.getX(), pNeighborCity.getY())
-                #CyInterface().addMessage(iHumanPlayer, True, 10, "Innere for-Schleife", None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
+                pCityPlotPlayer = pPlayerCity.plot()
+                pCityPlotNeighbor = pNeighborCity.plot()
                 # Handelsstrasse existiert schon => andere Route waehlen
                 if getPlotTradingRoad(pCityPlotPlayer, pCityPlotNeighbor) is not None:
                     continue
-                #CyInterface().addMessage(iHumanPlayer, True, 10, "Keine Handelsstrasse", None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
+                #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "Keine Handelsstrasse", None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
                 bDirection1 = False
                 bDirection2 = False
                 for eBonus in lNeighborCityLuxury:
-                    #if eBonus not in lPlayerCityLuxury:
                     if not pPlayerCity.hasBonus(eBonus):
                         bDirection1 = True
                         break
                 for eBonus in lPlayerCityLuxury:
-                    #if eBonus not in lNeighborCityLuxury:
                     if not pNeighborCity.hasBonus(eBonus):
                         bDirection2 = True
                         break
                 iDistance = CyMap().calculatePathDistance(pCityPlotPlayer, pCityPlotNeighbor)
                 if iDistance != -1 and iDistance < iMaxDistance:
-                    #CyInterface().addMessage(iHumanPlayer, True, 10, "iDistance != -1", None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
+                    #CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "iDistance != -1", None, 2, None, ColorTypes(8), pUnit.getX(), pUnit.getY(), False, False)
                     if bDirection1 and bDirection2:
                         if iMinDistance == -1 or iDistance < iMinDistance or not bBothDirections:
                             bBothDirections = True
                             iMinDistance = iDistance
                             pBestPlayerCity = pPlayerCity
                             pBestNeighborCity = pNeighborCity
+                            # Wenn Route, die in beide Richtungen funktioniert, gefunden wurde, abbrechen (spart Rechenzeit)
+                            # Route ist zwar ggf. nicht optimal, aber gut genug (beide Richtungen, Abstand <= iMaxDistance)
+                            break
                     elif (bDirection1 or bDirection2) and not bBothDirections:
                         if iMinDistance == -1 or iDistance < iMinDistance:
                             iMinDistance = iDistance
                             pBestPlayerCity = pPlayerCity
                             pBestNeighborCity = pNeighborCity
-        # Wenn Route, die in beide Richtungen funktioniert, gefunden wurde, abbrechen (spart Rechenzeit)
-        # Route ist zwar ggf. nicht optimal, aber gut genug (beide Richtungen, Abstand <= iMaxDistance)
+            # Wenn Route, die in beide Richtungen funktioniert, gefunden wurde, abbrechen (spart Rechenzeit)
+            # Route ist zwar ggf. nicht optimal, aber gut genug (beide Richtungen, Abstand <= iMaxDistance)
+            if bBothDirections:
+                break
         if bBothDirections:
             break
 
     if pBestPlayerCity is not None and pBestNeighborCity is not None:
         # s = pPlayer.getName()
-        # CyInterface().addMessage(iHumanPlayer, True, 10, "Stadt gefunden " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
+        # CyInterface().addMessage(gc.getGame().getActivePlayer(), True, 10, "Stadt gefunden " + s, None, 2, None, ColorTypes(7), pUnit.getX(), pUnit.getY(), False, False)
         lPlayerLuxuries = _getCityLuxuries(pBestPlayerCity)
         lNeighborLuxuries = _getCityLuxuries(pBestNeighborCity)
         eBonus1 = -1
         eBonus2 = -1
         for eBonus in lPlayerLuxuries:
-            #if eBonus not in lNeighborLuxuries:
             if not pBestNeighborCity.hasBonus(eBonus):
                 eBonus1 = eBonus
                 break
         for eBonus in lNeighborLuxuries:
-            #if eBonus not in lPlayerLuxuries:
             if not pBestPlayerCity.hasBonus(eBonus):
                 eBonus2 = eBonus
                 break
